@@ -1,0 +1,25 @@
+# deps
+node_modules/
+npm-debug.log*
+yarn-error.log
+
+# env
+.env
+.env.local
+.env.*.local
+
+# builds
+client/dist/
+client/build/
+server/uploads/*
+!server/uploads/.gitkeep
+
+# large media
+client/public/ira-figures/
+client/public/par-figures/
+client/public/cax-figures/
+
+# editors
+.vscode/
+.idea/
+.DS_Store
