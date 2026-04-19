@@ -14,7 +14,7 @@ export default function Navbar() {
     <nav className="nav">
       <div className="container nav-inner">
         <NavLink to="/" className="nav-brand">
-          FAA<span style={{ color: 'var(--blue)' }}>Examinations</span><span style={{ color: 'var(--text2)' }}>.com</span>
+          <span style={{ letterSpacing: '.2px' }}>FAA<span style={{ color: 'var(--blue)' }}>Examinations</span><span style={{ color: 'var(--text2)', fontSize: '0.85em' }}>.com</span></span>
         </NavLink>
 
         <div className="nav-links">
