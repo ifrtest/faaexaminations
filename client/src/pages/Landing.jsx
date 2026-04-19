@@ -197,7 +197,7 @@ export default function Landing() {
               <div className="lp-step-num">03</div>
               <div className="lp-step-title">Pass With Confidence</div>
               <p className="lp-step-desc">When your readiness score hits 85%+, you're ready. Walk into the FAA test with everything covered. Guaranteed.</p>
-              <img src="/plane-card.jpeg" alt="Pass exam" className="lp-step-img" />
+              <img src="/plane-pass.webp" alt="Pass exam" className="lp-step-img" />
             </div>
           </div>
         </div>
