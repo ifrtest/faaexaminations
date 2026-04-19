@@ -3,6 +3,7 @@ const express = require('express');
 const Stripe  = require('stripe');
 const db      = require('../config/db');
 const { requireAuth } = require('../middleware/auth');
+const { sendEmail, subscriptionEmail, cancellationEmail } = require('../utils/email');
 
 const router = express.Router();
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
@@ -124,6 +125,18 @@ async function activateSubscription(customerId, subscriptionId) {
      WHERE stripe_customer_id = $5`,
     [subscriptionId, priceId, endsAt, priceId, customerId]
   );
+
+  // Send subscription confirmation email
+  const userRes = await db.query('SELECT email, full_name FROM users WHERE stripe_customer_id = $1', [customerId]);
+  const user = userRes.rows[0];
+  if (user) {
+    const plan = getPlanName(priceId);
+    sendEmail({
+      to: user.email,
+      subject: 'Your FAAExaminations.com Subscription is Active ✅',
+      html: subscriptionEmail(user.full_name || user.email.split('@')[0], plan),
+    });
+  }
 }
 
 async function updateSubscription(sub) {
@@ -150,6 +163,17 @@ async function deactivateSubscription(customerId) {
      WHERE stripe_customer_id = $1`,
     [customerId]
   );
+
+  // Send cancellation email
+  const userRes = await db.query('SELECT email, full_name FROM users WHERE stripe_customer_id = $1', [customerId]);
+  const user = userRes.rows[0];
+  if (user) {
+    sendEmail({
+      to: user.email,
+      subject: 'Your FAAExaminations.com Subscription Has Been Cancelled',
+      html: cancellationEmail(user.full_name || user.email.split('@')[0]),
+    });
+  }
 }
 
 // POST /api/users/cancel-subscription

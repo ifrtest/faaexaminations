@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const db     = require('../config/db');
 const { sign } = require('../middleware/auth');
 const { randomToken } = require('../utils/helpers');
+const { sendEmail, welcomeEmail } = require('../utils/email');
 
 const ROUNDS = parseInt(process.env.BCRYPT_ROUNDS || '10', 10);
 
@@ -30,6 +31,12 @@ exports.register = async (req, res, next) => {
     );
     const user = rows[0];
     const token = sign({ id: user.id, role: user.role });
+    // Send welcome email (non-blocking)
+    sendEmail({
+      to: user.email,
+      subject: 'Welcome to FAAExaminations.com ✈',
+      html: welcomeEmail(user.full_name || user.email.split('@')[0]),
+    });
     res.status(201).json({ user, token });
   } catch (err) { next(err); }
 };
