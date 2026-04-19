@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /exams
+Disallow: /quiz/
+Disallow: /results/
+Disallow: /profile
+Disallow: /admin
+
+Sitemap: https://www.faaexaminations.com/sitemap.xml

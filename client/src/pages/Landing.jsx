@@ -93,7 +93,7 @@ export default function Landing() {
                 <div className="lp-product-name">Private Pilot Package</div>
                 <div className="lp-product-desc">Complete preparation for the FAA Private Pilot Airman Knowledge Test (PAR). 11 modules covering the full FAA syllabus.</div>
                 <ul className="lp-product-features">
-                  <li>1,000+ Private Pilot questions</li>
+                  <li>1,469 Private Pilot questions</li>
                   <li>11 categorized study modules</li>
                   <li>Timed exam simulator</li>
                   <li>Full FAA references provided</li>
@@ -115,7 +115,7 @@ export default function Landing() {
                 <div className="lp-product-name">Instrument Rating Package</div>
                 <div className="lp-product-desc">Complete preparation for the FAA Instrument Rating Airman Knowledge Test (IRA). Master IFR procedures, charts, and regulations.</div>
                 <ul className="lp-product-features">
-                  <li>1,000+ Instrument Rating questions</li>
+                  <li>821 Instrument Rating questions</li>
                   <li>Categorized study modules</li>
                   <li>Timed exam simulator</li>
                   <li>Full FAA references provided</li>
@@ -137,7 +137,7 @@ export default function Landing() {
                 <div className="lp-product-name">Commercial Pilot Package</div>
                 <div className="lp-product-desc">Targeted prep for the FAA Commercial Pilot Airman Knowledge Test (CAX). FARs, performance, and advanced operations.</div>
                 <ul className="lp-product-features">
-                  <li>800+ Commercial Pilot questions</li>
+                  <li>536 Commercial Pilot questions</li>
                   <li>11 categorized study modules</li>
                   <li>Timed exam simulator</li>
                   <li>Full FAR references included</li>
