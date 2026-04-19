@@ -32,7 +32,9 @@ function shell(headline, bodyHtml) {
     <div style="max-width:560px;margin:0 auto;background:${PANEL};border:1px solid ${BORDER};border-radius:14px;overflow:hidden">
       <div style="background:linear-gradient(135deg, #0b1622 0%, #132231 100%);padding:28px 32px;border-bottom:1px solid ${BORDER}">
         <div style="font-size:22px;font-weight:800;letter-spacing:.2px;margin-bottom:10px">
-          <span style="color:${TEXT}">FAA</span><span style="color:${ACCENT}">Examinations</span><span style="color:${MUTED};font-size:0.85em">.com</span>
+          <a href="${SITE()}" style="text-decoration:none;color:${TEXT}">
+            <span style="color:${TEXT};text-decoration:none">FAA</span><span style="color:${ACCENT};text-decoration:none">Examinations</span><span style="color:${MUTED};font-size:0.85em;text-decoration:none">.com</span>
+          </a>
         </div>
         <h1 style="color:${TEXT};margin:0;font-size:22px;font-weight:700;letter-spacing:-.3px">${headline}</h1>
       </div>
