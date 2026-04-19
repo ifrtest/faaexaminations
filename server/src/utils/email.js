@@ -16,67 +16,75 @@ async function sendEmail({ to, subject, html }) {
   }
 }
 
-function welcomeEmail(name) {
+// Shared dark-theme wrapper matching faaexaminations.com brand.
+// Email clients can't load Google Fonts — fall back to a clean sans stack.
+const FONT = `'Helvetica Neue', Helvetica, Arial, sans-serif`;
+const BG = '#080e14';
+const PANEL = '#0f1822';
+const BORDER = '#1e2a38';
+const ACCENT = '#30ace2';
+const TEXT = '#e5eef5';
+const MUTED = '#93a5b5';
+
+function shell(headline, bodyHtml) {
   return `
-    <div style="font-family:sans-serif;max-width:560px;margin:0 auto;color:#1a1a2e">
-      <div style="background:#0b3d91;padding:24px 32px;border-radius:12px 12px 0 0">
-        <h1 style="color:#fff;margin:0;font-size:22px">Welcome to FAAExaminations.com ✈</h1>
+  <div style="background:${BG};padding:32px 16px;font-family:${FONT};color:${TEXT}">
+    <div style="max-width:560px;margin:0 auto;background:${PANEL};border:1px solid ${BORDER};border-radius:14px;overflow:hidden">
+      <div style="background:linear-gradient(135deg, #0b1622 0%, #132231 100%);padding:28px 32px;border-bottom:1px solid ${BORDER}">
+        <div style="color:${ACCENT};font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:6px">FAAExaminations<span style="color:${TEXT}">.com</span></div>
+        <h1 style="color:${TEXT};margin:0;font-size:24px;font-weight:700;letter-spacing:-.3px">${headline}</h1>
       </div>
-      <div style="background:#f9fafb;padding:32px;border-radius:0 0 12px 12px;border:1px solid #e5e7eb">
-        <p style="font-size:16px">Hi ${name},</p>
-        <p>Your account is ready. Start practising for your FAA written exam today.</p>
-        <a href="${SITE()}/exams" style="display:inline-block;background:#0b3d91;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:700;margin:16px 0">Start Practising →</a>
-        <p style="color:#6b7280;font-size:14px">Questions? Reply to this email or contact <a href="mailto:support@faaexaminations.com">support@faaexaminations.com</a></p>
+      <div style="padding:32px;color:${TEXT};font-size:15px;line-height:1.6">
+        ${bodyHtml}
       </div>
-    </div>`;
+      <div style="background:#0a121b;padding:18px 32px;border-top:1px solid ${BORDER};text-align:center">
+        <div style="color:${MUTED};font-size:12px">FAAExaminations.com · FAA practice exams for student pilots</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function button(href, label) {
+  return `<a href="${href}" style="display:inline-block;background:${ACCENT};color:#041018;padding:13px 28px;border-radius:8px;text-decoration:none;font-weight:700;letter-spacing:.3px;margin:20px 0;font-size:15px">${label}</a>`;
+}
+
+function welcomeEmail(name) {
+  return shell('Welcome aboard ✈', `
+    <p style="margin:0 0 12px">Hi ${name},</p>
+    <p style="margin:0 0 16px">Your account is ready. Start practising for your FAA written exam with real question banks, timed simulations, and an AI Instructor when you get stuck.</p>
+    ${button(`${SITE()}/exams`, 'Start Practising →')}
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Questions? Reply to this email or contact <a href="mailto:support@faaexaminations.com" style="color:${ACCENT};text-decoration:none">support@faaexaminations.com</a></p>
+  `);
 }
 
 function subscriptionEmail(name, plan) {
   const planNames = { par: 'Private Pilot (PAR)', ira: 'Instrument Rating (IRA)', cax: 'Commercial Pilot (CAX)', bundle: 'All 3 Exams Bundle' };
-  return `
-    <div style="font-family:sans-serif;max-width:560px;margin:0 auto;color:#1a1a2e">
-      <div style="background:#0b3d91;padding:24px 32px;border-radius:12px 12px 0 0">
-        <h1 style="color:#fff;margin:0;font-size:22px">Subscription Confirmed ✅</h1>
-      </div>
-      <div style="background:#f9fafb;padding:32px;border-radius:0 0 12px 12px;border:1px solid #e5e7eb">
-        <p style="font-size:16px">Hi ${name},</p>
-        <p>You're now subscribed to <strong>${planNames[plan] || plan}</strong>. You have full access to all practice exams, timed simulations, and AI Instructor support.</p>
-        <a href="${SITE()}/exams" style="display:inline-block;background:#0b3d91;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:700;margin:16px 0">Start Your Exam →</a>
-        <p style="color:#6b7280;font-size:14px">You can manage or cancel your subscription anytime at <a href="${SITE()}/cancel-policy">${SITE()}/cancel-policy</a></p>
-      </div>
-    </div>`;
+  return shell('Subscription Confirmed ✅', `
+    <p style="margin:0 0 12px">Hi ${name},</p>
+    <p style="margin:0 0 16px">You're now subscribed to <strong style="color:${ACCENT}">${planNames[plan] || plan}</strong>. Full access is unlocked: all practice exams, timed simulations, and AI Instructor support.</p>
+    ${button(`${SITE()}/exams`, 'Start Your Exam →')}
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Manage or cancel your subscription anytime at <a href="${SITE()}/cancel-policy" style="color:${ACCENT};text-decoration:none">${SITE()}/cancel-policy</a></p>
+  `);
 }
 
 function cancellationEmail(name) {
-  return `
-    <div style="font-family:sans-serif;max-width:560px;margin:0 auto;color:#1a1a2e">
-      <div style="background:#6b7280;padding:24px 32px;border-radius:12px 12px 0 0">
-        <h1 style="color:#fff;margin:0;font-size:22px">Subscription Cancelled</h1>
-      </div>
-      <div style="background:#f9fafb;padding:32px;border-radius:0 0 12px 12px;border:1px solid #e5e7eb">
-        <p style="font-size:16px">Hi ${name},</p>
-        <p>Your subscription has been cancelled. You'll keep access until the end of your current billing period — no further charges will be made.</p>
-        <p>Your account and exam history are saved. You can resubscribe anytime.</p>
-        <a href="${SITE()}/exams" style="display:inline-block;background:#0b3d91;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:700;margin:16px 0">Resubscribe →</a>
-        <p style="color:#6b7280;font-size:14px">Questions? Contact <a href="mailto:support@faaexaminations.com">support@faaexaminations.com</a></p>
-      </div>
-    </div>`;
+  return shell('Subscription Cancelled', `
+    <p style="margin:0 0 12px">Hi ${name},</p>
+    <p style="margin:0 0 12px">Your subscription has been cancelled. You'll keep access until the end of your current billing period — no further charges will be made.</p>
+    <p style="margin:0 0 16px">Your account and exam history are saved. You can resubscribe anytime.</p>
+    ${button(`${SITE()}/exams`, 'Resubscribe →')}
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Questions? Contact <a href="mailto:support@faaexaminations.com" style="color:${ACCENT};text-decoration:none">support@faaexaminations.com</a></p>
+  `);
 }
 
 function passwordResetEmail(name, resetUrl) {
-  return `
-    <div style="font-family:sans-serif;max-width:560px;margin:0 auto;color:#1a1a2e">
-      <div style="background:#0b3d91;padding:24px 32px;border-radius:12px 12px 0 0">
-        <h1 style="color:#fff;margin:0;font-size:22px">Reset Your Password ✈</h1>
-      </div>
-      <div style="background:#f9fafb;padding:32px;border-radius:0 0 12px 12px;border:1px solid #e5e7eb">
-        <p style="font-size:16px">Hi ${name},</p>
-        <p>We received a request to reset your password. Click the button below — this link expires in <strong>1 hour</strong>.</p>
-        <a href="${resetUrl}" style="display:inline-block;background:#0b3d91;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:700;margin:16px 0">Reset My Password →</a>
-        <p style="color:#6b7280;font-size:14px">If you didn't request this, you can safely ignore this email. Your password won't change.</p>
-        <p style="color:#6b7280;font-size:13px;word-break:break-all">Or copy this link: <a href="${resetUrl}" style="color:#0b3d91">${resetUrl}</a></p>
-      </div>
-    </div>`;
+  return shell('Reset Your Password', `
+    <p style="margin:0 0 12px">Hi ${name},</p>
+    <p style="margin:0 0 16px">We received a request to reset your password. Click the button below — this link expires in <strong style="color:${ACCENT}">1 hour</strong>.</p>
+    ${button(resetUrl, 'Reset My Password →')}
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 12px">If you didn't request this, you can safely ignore this email. Your password won't change.</p>
+    <p style="color:${MUTED};font-size:12px;word-break:break-all;margin:0">Or copy this link: <a href="${resetUrl}" style="color:${ACCENT};text-decoration:none">${resetUrl}</a></p>
+  `);
 }
 
 module.exports = { sendEmail, welcomeEmail, subscriptionEmail, cancellationEmail, passwordResetEmail };
