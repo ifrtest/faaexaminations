@@ -125,6 +125,20 @@ export default function ExamList() {
       <p style={{color:'var(--muted)'}}>Pick a certificate and a mode to begin.</p>
       {err && <div className="alert alert-err">{err}</div>}
 
+      {/* Free sample banner — shown to non-subscribers */}
+      {subscription && subscription.status !== 'active' && (
+        <div style={{background:'#fff',border:'2px solid var(--blue)',borderRadius:10,padding:'16px 20px',marginBottom:24,display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:12}}>
+          <div>
+            <div style={{fontWeight:700,color:'var(--navy)',fontSize:'1rem'}}>🎁 Try 10 Free Sample Questions</div>
+            <div style={{fontSize:'.875rem',color:'var(--muted)',marginTop:2}}>No subscription needed — get a feel for the Private Pilot (PAR) exam in Study Mode.</div>
+          </div>
+          <button className="btn btn-primary" onClick={startDemo} disabled={starting}
+            style={{whiteSpace:'nowrap',minWidth:160}}>
+            {starting ? 'Loading…' : 'Start Free Sample →'}
+          </button>
+        </div>
+      )}
+
       {/* Exam type picker */}
       <div className="exam-cards" style={{marginBottom:24}}>
         {exams.map((e) => {
@@ -208,19 +222,6 @@ export default function ExamList() {
             </button>
           ) : (
             <div>
-              {/* Free sample — PAR only */}
-              {selected === 'PAR' && (
-                <div style={{marginBottom:16,padding:'14px 16px',background:'#f0fdf4',border:'1px solid #86efac',borderRadius:8}}>
-                  <div style={{fontWeight:700,color:'#166534',marginBottom:4}}>🎁 Try 10 Free Sample Questions</div>
-                  <div style={{fontSize:'.875rem',color:'#166534',marginBottom:10}}>
-                    No subscription needed — get a feel for the PAR exam in Study Mode.
-                  </div>
-                  <button className="btn btn-block" onClick={startDemo} disabled={starting}
-                    style={{background:'#16a34a',color:'#fff',fontWeight:700}}>
-                    {starting ? 'Loading…' : 'Start Free Sample →'}
-                  </button>
-                </div>
-              )}
               <div className="alert" style={{background:'var(--panel2)',border:'1px solid var(--blue)',color:'var(--text2)',marginBottom:12,fontSize:'.9rem'}}>
                 A subscription is required for full access to {selected} practice exams.
               </div>
