@@ -31,8 +31,10 @@ function shell(headline, bodyHtml) {
   <div style="background:${BG};padding:32px 16px;font-family:${FONT};color:${TEXT}">
     <div style="max-width:560px;margin:0 auto;background:${PANEL};border:1px solid ${BORDER};border-radius:14px;overflow:hidden">
       <div style="background:linear-gradient(135deg, #0b1622 0%, #132231 100%);padding:28px 32px;border-bottom:1px solid ${BORDER}">
-        <div style="color:${ACCENT};font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:6px">FAAExaminations<span style="color:${TEXT}">.com</span></div>
-        <h1 style="color:${TEXT};margin:0;font-size:24px;font-weight:700;letter-spacing:-.3px">${headline}</h1>
+        <div style="font-size:22px;font-weight:800;letter-spacing:.2px;margin-bottom:10px">
+          <span style="color:${TEXT}">FAA</span><span style="color:${ACCENT}">Examinations</span><span style="color:${MUTED};font-size:0.85em">.com</span>
+        </div>
+        <h1 style="color:${TEXT};margin:0;font-size:22px;font-weight:700;letter-spacing:-.3px">${headline}</h1>
       </div>
       <div style="padding:32px;color:${TEXT};font-size:15px;line-height:1.6">
         ${bodyHtml}
