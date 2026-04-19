@@ -21,6 +21,8 @@ export default function Footer() {
         </div>
         <div style={{ marginTop: 6, fontSize: '.78rem', color: 'var(--text2)', opacity: 0.6 }}>
           Designed by <a href="https://websitework.ca" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text2)' }}>websitework.ca</a>
+          {' · '}
+          <a href="https://ifrtest.ca" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text2)' }}>ifrtest.ca</a>
         </div>
       </div>
     </footer>
