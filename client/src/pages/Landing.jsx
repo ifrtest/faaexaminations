@@ -69,7 +69,7 @@ export default function Landing() {
           </div>
           <div className="lp-hero-stats">
             <div><div className="lp-hs-val">2,826</div><div className="lp-hs-lbl">Practice Questions</div></div>
-            <div><div className="lp-hs-val">2</div><div className="lp-hs-lbl">Exam Certificates</div></div>
+            <div><div className="lp-hs-val">3</div><div className="lp-hs-lbl">Exam Certificates</div></div>
             <div><div className="lp-hs-val">95%</div><div className="lp-hs-lbl">Pass Rate</div></div>
             <div><div className="lp-hs-val">FAA</div><div className="lp-hs-lbl">Compliant 2026</div></div>
           </div>
@@ -95,36 +95,36 @@ export default function Landing() {
                 <ul className="lp-product-features">
                   <li>1,000+ Private Pilot questions</li>
                   <li>11 categorized study modules</li>
-                  <li>40 questions per module</li>
+                  <li>Timed exam simulator</li>
                   <li>Full FAA references provided</li>
-                  <li>Instructor verification included</li>
+                  <li>AI Instructor explanations</li>
                   <li>FAA compliant · 2026 updated</li>
                 </ul>
-                <div className="lp-product-price">$29.99</div>
+                <div className="lp-product-price">$24.99</div>
                 <div className="lp-product-price-sub">Per month · Cancel anytime</div>
                 <Link to="/register" className="lp-btn-product lp-btn-product-secondary">Start Free Sample →</Link>
               </div>
             </div>
 
-            <div className="lp-product-card lp-featured">
+            <div className="lp-product-card">
               <div className="lp-product-img">
-                <img src="/plane-hero.jpeg" alt="Bundle" />
-                <div className="lp-product-img-overlay"><span className="lp-product-tag">BEST VALUE</span></div>
+                <img src="/plane-hero.jpeg" alt="Instrument Rating" />
+                <div className="lp-product-img-overlay"><span className="lp-product-tag">IRA</span></div>
               </div>
               <div className="lp-product-body">
-                <div className="lp-product-name">Private + Commercial Bundle</div>
-                <div className="lp-product-desc">Full access to both PAR and CAX packages. Perfect for instructors, license converters, and commercial career students.</div>
+                <div className="lp-product-name">Instrument Rating Package</div>
+                <div className="lp-product-desc">Complete preparation for the FAA Instrument Rating Airman Knowledge Test (IRA). Master IFR procedures, charts, and regulations.</div>
                 <ul className="lp-product-features">
-                  <li>2,826 total practice questions</li>
-                  <li>22 modules — PAR &amp; CAX combined</li>
-                  <li>AI Instructor explanations</li>
+                  <li>1,000+ Instrument Rating questions</li>
+                  <li>Categorized study modules</li>
                   <li>Timed exam simulator</li>
-                  <li>Progress dashboard &amp; tracking</li>
-                  <li>Instructor verification included</li>
+                  <li>Full FAA references provided</li>
+                  <li>AI Instructor explanations</li>
+                  <li>FAA compliant · 2026 updated</li>
                 </ul>
-                <div className="lp-product-price">$49.99</div>
+                <div className="lp-product-price">$24.99</div>
                 <div className="lp-product-price-sub">Per month · Cancel anytime</div>
-                <Link to="/register" className="lp-btn-product lp-btn-product-primary">Get Bundle Access →</Link>
+                <Link to="/register" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
               </div>
             </div>
 
@@ -139,14 +139,36 @@ export default function Landing() {
                 <ul className="lp-product-features">
                   <li>800+ Commercial Pilot questions</li>
                   <li>11 categorized study modules</li>
-                  <li>40 questions per module</li>
+                  <li>Timed exam simulator</li>
                   <li>Full FAR references included</li>
-                  <li>Instructor verification included</li>
+                  <li>AI Instructor explanations</li>
                   <li>FAA compliant · 2026 updated</li>
                 </ul>
-                <div className="lp-product-price">$29.99</div>
+                <div className="lp-product-price">$24.99</div>
                 <div className="lp-product-price-sub">Per month · Cancel anytime</div>
-                <Link to="/register" className="lp-btn-product lp-btn-product-secondary">Start Free Sample →</Link>
+                <Link to="/register" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
+              </div>
+            </div>
+
+            <div className="lp-product-card lp-featured lp-product-bundle">
+              <div className="lp-product-img">
+                <img src="/plane-pass.webp" alt="Bundle" />
+                <div className="lp-product-img-overlay"><span className="lp-product-tag">BEST VALUE</span></div>
+              </div>
+              <div className="lp-product-body">
+                <div className="lp-product-name">All 3 Exams Bundle</div>
+                <div className="lp-product-desc">Full access to PAR, IRA, and CAX. Perfect for instructors, license converters, and career-track pilots.</div>
+                <ul className="lp-product-features">
+                  <li>2,826 total practice questions</li>
+                  <li>All PAR, IRA &amp; CAX modules</li>
+                  <li>AI Instructor explanations</li>
+                  <li>Timed exam simulator</li>
+                  <li>Progress dashboard &amp; tracking</li>
+                  <li>Best value — save vs. individual</li>
+                </ul>
+                <div className="lp-product-price">$39.99</div>
+                <div className="lp-product-price-sub">Per month · Cancel anytime</div>
+                <Link to="/register" className="lp-btn-product lp-btn-product-primary">Get Bundle Access →</Link>
               </div>
             </div>
 

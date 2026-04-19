@@ -1,11 +1,17 @@
 // client/src/pages/Profile.jsx
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { users } from '../api/client';
 import { useAuth } from '../context/AuthContext';
 
 export default function Profile() {
-  const { user, updateUser } = useAuth();
+  const { user, updateUser, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/');
+  };
   const [name, setName] = useState(user?.full_name || '');
   const [cur,  setCur]  = useState('');
   const [pw,   setPw]   = useState('');
@@ -86,6 +92,17 @@ export default function Profile() {
         <Link to="/cancel-policy" className="btn" style={{ background: 'transparent', border: '1px solid var(--red)', color: 'var(--red)', display: 'inline-block' }}>
           Cancellation &amp; Refund Policy
         </Link>
+      </div>
+
+      <div className="card">
+        <div className="card-title">Sign out</div>
+        <p style={{ color: 'var(--text2)', marginBottom: 14 }}>
+          Using a shared or public device? Sign out to keep your account secure.
+        </p>
+        <button className="btn" onClick={handleLogout}
+          style={{ background: 'transparent', border: '1px solid var(--border)', color: 'var(--text2)' }}>
+          Log out of this device
+        </button>
       </div>
     </div>
   );
