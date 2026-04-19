@@ -107,6 +107,16 @@ export default function ExamList() {
     } finally { setStarting(false); }
   };
 
+  const startDemo = async () => {
+    setErr(''); setStarting(true);
+    try {
+      const { session } = await quizApi.start({ exam_code: 'PAR', mode: 'study', demo: true });
+      navigate(`/quiz/${session.id}`);
+    } catch (ex) {
+      setErr(ex.response?.data?.error || 'Could not start free sample.');
+    } finally { setStarting(false); }
+  };
+
   if (!exams.length && !err) return <div className="container page"><Spinner /></div>;
 
   return (
@@ -198,8 +208,21 @@ export default function ExamList() {
             </button>
           ) : (
             <div>
+              {/* Free sample — PAR only */}
+              {selected === 'PAR' && (
+                <div style={{marginBottom:16,padding:'14px 16px',background:'#f0fdf4',border:'1px solid #86efac',borderRadius:8}}>
+                  <div style={{fontWeight:700,color:'#166534',marginBottom:4}}>🎁 Try 10 Free Sample Questions</div>
+                  <div style={{fontSize:'.875rem',color:'#166534',marginBottom:10}}>
+                    No subscription needed — get a feel for the PAR exam in Study Mode.
+                  </div>
+                  <button className="btn btn-block" onClick={startDemo} disabled={starting}
+                    style={{background:'#16a34a',color:'#fff',fontWeight:700}}>
+                    {starting ? 'Loading…' : 'Start Free Sample →'}
+                  </button>
+                </div>
+              )}
               <div className="alert" style={{background:'var(--panel2)',border:'1px solid var(--blue)',color:'var(--text2)',marginBottom:12,fontSize:'.9rem'}}>
-                A subscription is required to access {selected} practice exams.
+                A subscription is required for full access to {selected} practice exams.
               </div>
               <button
                 className="btn btn-primary btn-block"

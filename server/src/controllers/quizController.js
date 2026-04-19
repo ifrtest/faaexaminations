@@ -41,6 +41,7 @@ exports.startSession = async (req, res, next) => {
       num_questions,
       topic_id,
       time_limit,
+      demo = false,
     } = req.body;
 
     if (!exam_code) return res.status(400).json({ error: 'exam_code is required' });
@@ -52,6 +53,24 @@ exports.startSession = async (req, res, next) => {
     );
     const exam = examRows[0];
     if (!exam) return res.status(404).json({ error: 'Exam not found' });
+
+    // Demo mode: free users get 10 PAR questions in study mode, no subscription needed
+    if (demo) {
+      if (exam.code !== 'PAR') {
+        return res.status(403).json({ error: 'Free sample is only available for the PAR exam.' });
+      }
+      const { rows: demoPool } = await db.query(
+        `SELECT id FROM questions WHERE exam_id=$1 AND is_active ORDER BY RANDOM() LIMIT 10`,
+        [exam.id]
+      );
+      if (!demoPool.length) return res.status(400).json({ error: 'No questions available' });
+      const { rows: sessRows } = await db.query(
+        `INSERT INTO exam_sessions (user_id, exam_id, mode, question_ids, time_limit)
+         VALUES ($1,$2,'study',$3,0) RETURNING *`,
+        [req.user.id, exam.id, demoPool.map((r) => r.id)]
+      );
+      return res.status(201).json({ session: sessRows[0] });
+    }
 
     // Subscription access check
     const { rows: userRows } = await db.query(
@@ -67,18 +86,44 @@ exports.startSession = async (req, res, next) => {
 
     const limit = Math.max(1, Math.min(parseInt(num_questions, 10) || exam.num_questions, 200));
 
-    // Pool of eligible questions
-    const params = [exam.id];
-    let where = 'q.exam_id=$1 AND q.is_active';
+    // Find questions this user has already seen in completed sessions for this exam
+    const { rows: seenRows } = await db.query(
+      `SELECT DISTINCT unnest(question_ids) AS qid
+       FROM exam_sessions
+       WHERE user_id=$1 AND exam_id=$2 AND status='completed'`,
+      [req.user.id, exam.id]
+    );
+    const seenIds = seenRows.map((r) => r.qid);
+
+    // Build base filter
+    const baseParams = [exam.id];
+    let baseWhere = 'q.exam_id=$1 AND q.is_active';
     if (topic_id) {
-      params.push(topic_id);
-      where += ` AND q.topic_id=$${params.length}`;
+      baseParams.push(topic_id);
+      baseWhere += ` AND q.topic_id=$${baseParams.length}`;
     }
 
-    const { rows: poolRows } = await db.query(
-      `SELECT id FROM questions q WHERE ${where} ORDER BY RANDOM() LIMIT ${limit}`,
-      params
-    );
+    // Try unseen questions first; fall back to full pool if not enough
+    let poolRows = [];
+    if (seenIds.length > 0) {
+      const unseenParams = [...baseParams, seenIds];
+      const { rows } = await db.query(
+        `SELECT id FROM questions q WHERE ${baseWhere} AND q.id <> ALL($${unseenParams.length}::int[]) ORDER BY RANDOM() LIMIT ${limit}`,
+        unseenParams
+      );
+      poolRows = rows;
+    }
+
+    // If we don't have enough unseen questions, top up from the full pool
+    if (poolRows.length < limit) {
+      const exclude = poolRows.map((r) => r.id);
+      const topUpParams = [...baseParams, exclude.length ? exclude : [-1]];
+      const { rows: topUp } = await db.query(
+        `SELECT id FROM questions q WHERE ${baseWhere} AND q.id <> ALL($${topUpParams.length}::int[]) ORDER BY RANDOM() LIMIT ${limit - poolRows.length}`,
+        topUpParams
+      );
+      poolRows = [...poolRows, ...topUp];
+    }
 
     if (!poolRows.length) return res.status(400).json({ error: 'No questions available' });
 
