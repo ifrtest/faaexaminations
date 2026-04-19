@@ -239,7 +239,10 @@ export default function QuizRunner() {
               </button>
             </div>
 
-            <div className="question-text">{current.question_text}</div>
+            <div
+              className="question-text"
+              dangerouslySetInnerHTML={{ __html: current.question_text }}
+            />
             {current.image_url && (
               <img className="question-image" src={current.image_url} alt="Reference" />
             )}
@@ -261,7 +264,7 @@ export default function QuizRunner() {
               return (
                 <div key={letter} className={className} onClick={() => choose(letter)}>
                   <div className="letter">{letter}</div>
-                  <div className="text">{text}</div>
+                  <div className="text" dangerouslySetInnerHTML={{ __html: text }} />
                 </div>
               );
             })}
@@ -275,7 +278,9 @@ export default function QuizRunner() {
                   </div>
                   <div>
                     <strong>Explanation:</strong>{' '}
-                    {current.explanation || 'No explanation is available for this question.'}
+                    {current.explanation
+                      ? <span dangerouslySetInnerHTML={{ __html: current.explanation }} />
+                      : 'No explanation is available for this question.'}
                   </div>
                   <div style={{marginTop:14}}>
                     <button
