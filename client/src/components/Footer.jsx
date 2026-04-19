@@ -19,6 +19,9 @@ export default function Footer() {
           © {new Date().getFullYear()} FAAExaminations.com · FAA practice exams for student pilots ·
           Not affiliated with the Federal Aviation Administration
         </div>
+        <div style={{ marginTop: 6, fontSize: '.78rem', color: 'var(--text2)', opacity: 0.6 }}>
+          Designed by <a href="https://websitework.ca" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text2)' }}>websitework.ca</a>
+        </div>
       </div>
     </footer>
   );

@@ -280,6 +280,9 @@ export default function Landing() {
           <a href="mailto:info@faaexaminations.com" className="lp-footer-link">Contact</a>
         </div>
         <div className="lp-footer-copy">© 2026 FAAExaminations.com · Not affiliated with the FAA · For educational purposes only</div>
+        <div style={{ marginTop: 8, fontSize: '.75rem', color: 'var(--lp-text3)', opacity: 0.6 }}>
+          Designed by <a href="https://websitework.ca" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--lp-text3)' }}>websitework.ca</a>
+        </div>
       </footer>
     </div>
   );
