@@ -63,4 +63,20 @@ function cancellationEmail(name) {
     </div>`;
 }
 
-module.exports = { sendEmail, welcomeEmail, subscriptionEmail, cancellationEmail };
+function passwordResetEmail(name, resetUrl) {
+  return `
+    <div style="font-family:sans-serif;max-width:560px;margin:0 auto;color:#1a1a2e">
+      <div style="background:#0b3d91;padding:24px 32px;border-radius:12px 12px 0 0">
+        <h1 style="color:#fff;margin:0;font-size:22px">Reset Your Password ✈</h1>
+      </div>
+      <div style="background:#f9fafb;padding:32px;border-radius:0 0 12px 12px;border:1px solid #e5e7eb">
+        <p style="font-size:16px">Hi ${name},</p>
+        <p>We received a request to reset your password. Click the button below — this link expires in <strong>1 hour</strong>.</p>
+        <a href="${resetUrl}" style="display:inline-block;background:#0b3d91;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:700;margin:16px 0">Reset My Password →</a>
+        <p style="color:#6b7280;font-size:14px">If you didn't request this, you can safely ignore this email. Your password won't change.</p>
+        <p style="color:#6b7280;font-size:13px;word-break:break-all">Or copy this link: <a href="${resetUrl}" style="color:#0b3d91">${resetUrl}</a></p>
+      </div>
+    </div>`;
+}
+
+module.exports = { sendEmail, welcomeEmail, subscriptionEmail, cancellationEmail, passwordResetEmail };

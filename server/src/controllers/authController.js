@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const db     = require('../config/db');
 const { sign } = require('../middleware/auth');
 const { randomToken } = require('../utils/helpers');
-const { sendEmail, welcomeEmail } = require('../utils/email');
+const { sendEmail, welcomeEmail, passwordResetEmail } = require('../utils/email');
 
 const ROUNDS = parseInt(process.env.BCRYPT_ROUNDS || '10', 10);
 
@@ -89,11 +89,21 @@ exports.requestPasswordReset = async (req, res, next) => {
       'INSERT INTO password_resets (user_id, token, expires_at) VALUES ($1,$2,$3)',
       [user.id, token, expires]
     );
-    // In production, email this. For dev we return it.
-    res.json({
-      message: 'Password reset token generated',
-      ...(process.env.NODE_ENV !== 'production' ? { token } : {}),
+
+    const clientUrl = process.env.CLIENT_URL || 'https://faaexaminations.com';
+    const resetUrl = `${clientUrl}/reset?token=${token}`;
+
+    // Get user's name for the email
+    const { rows: nameRows } = await db.query('SELECT full_name FROM users WHERE id=$1', [user.id]);
+    const name = nameRows[0]?.full_name || email.split('@')[0];
+
+    await sendEmail({
+      to: email.toLowerCase(),
+      subject: 'Reset your FAAExaminations.com password',
+      html: passwordResetEmail(name, resetUrl),
     });
+
+    res.json({ message: 'If that email is registered, a reset link has been sent.' });
   } catch (err) { next(err); }
 };
 

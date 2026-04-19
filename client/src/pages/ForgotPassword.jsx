@@ -6,7 +6,6 @@ import { auth } from '../api/client';
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
   const [msg, setMsg]     = useState('');
-  const [token, setToken] = useState('');
   const [err, setErr]     = useState('');
   const [busy, setBusy]   = useState(false);
 
@@ -16,7 +15,6 @@ export default function ForgotPassword() {
     try {
       const res = await auth.forgot(email);
       setMsg(res.message);
-      if (res.token) setToken(res.token); // dev only
     } catch (ex) {
       setErr(ex.response?.data?.error || 'Unable to send reset email.');
     } finally { setBusy(false); }
@@ -28,17 +26,7 @@ export default function ForgotPassword() {
         <h2>Forgot password</h2>
         <p className="sub">Enter your email and we'll send a reset link.</p>
         {err && <div className="alert alert-err">{err}</div>}
-        {msg && (
-          <div className="alert alert-ok">
-            {msg}
-            {token && (
-              <div style={{marginTop:8,fontSize:'.85rem'}}>
-                <strong>Dev token:</strong>{' '}
-                <Link to={`/reset?token=${token}`}>{token.slice(0, 12)}…</Link>
-              </div>
-            )}
-          </div>
-        )}
+        {msg && <div className="alert alert-ok">{msg}</div>}
         <form onSubmit={submit}>
           <div className="field">
             <label>Email</label>
