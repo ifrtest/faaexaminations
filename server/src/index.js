@@ -18,6 +18,7 @@ const userRoutes      = require('./routes/users');
 const resultRoutes    = require('./routes/results');
 const aiRoutes        = require('./routes/ai');
 const stripeRoutes    = require('./routes/stripe');
+const unsubscribeRoutes = require('./routes/unsubscribe');
 
 const app = express();
 const PORT = parseInt(process.env.PORT, 10) || 5000;
@@ -63,6 +64,7 @@ app.use('/api/users',      userRoutes);
 app.use('/api/results',    resultRoutes);
 app.use('/api/ai',         aiRoutes);
 app.use('/api/stripe',     stripeRoutes);
+app.use('/api/unsubscribe', unsubscribeRoutes);
 
 // -------- 404 & error -----------------------------------------------
 app.use(notFound);

@@ -127,14 +127,16 @@ async function activateSubscription(customerId, subscriptionId) {
   );
 
   // Send subscription confirmation email
-  const userRes = await db.query('SELECT email, full_name FROM users WHERE stripe_customer_id = $1', [customerId]);
+  const userRes = await db.query('SELECT id, email, full_name FROM users WHERE stripe_customer_id = $1', [customerId]);
   const user = userRes.rows[0];
   if (user) {
     const plan = getPlanName(priceId);
     sendEmail({
       to: user.email,
       subject: 'Your FAAExaminations.com Subscription is Active ✅',
-      html: subscriptionEmail(user.full_name || user.email.split('@')[0], plan),
+      html: subscriptionEmail(user.full_name || user.email.split('@')[0], plan, user.id),
+      userId: user.id,
+      allowUnsubscribed: true,
     });
   }
 }
@@ -165,13 +167,15 @@ async function deactivateSubscription(customerId) {
   );
 
   // Send cancellation email
-  const userRes = await db.query('SELECT email, full_name FROM users WHERE stripe_customer_id = $1', [customerId]);
+  const userRes = await db.query('SELECT id, email, full_name FROM users WHERE stripe_customer_id = $1', [customerId]);
   const user = userRes.rows[0];
   if (user) {
     sendEmail({
       to: user.email,
       subject: 'Your FAAExaminations.com Subscription Has Been Cancelled',
-      html: cancellationEmail(user.full_name || user.email.split('@')[0]),
+      html: cancellationEmail(user.full_name || user.email.split('@')[0], user.id),
+      userId: user.id,
+      allowUnsubscribed: true,
     });
   }
 }

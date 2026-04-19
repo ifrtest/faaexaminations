@@ -35,7 +35,8 @@ exports.register = async (req, res, next) => {
     sendEmail({
       to: user.email,
       subject: 'Welcome to FAAExaminations.com ✈',
-      html: welcomeEmail(user.full_name || user.email.split('@')[0]),
+      html: welcomeEmail(user.full_name || user.email.split('@')[0], user.id),
+      userId: user.id,
     });
     res.status(201).json({ user, token });
   } catch (err) { next(err); }
@@ -100,7 +101,9 @@ exports.requestPasswordReset = async (req, res, next) => {
     await sendEmail({
       to: email.toLowerCase(),
       subject: 'Reset your FAAExaminations.com password',
-      html: passwordResetEmail(name, resetUrl),
+      html: passwordResetEmail(name, resetUrl, user.id),
+      userId: user.id,
+      allowUnsubscribed: true,
     });
 
     res.json({ message: 'If that email is registered, a reset link has been sent.' });
