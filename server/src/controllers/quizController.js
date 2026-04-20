@@ -170,8 +170,8 @@ exports.getSession = async (req, res, next) => {
     // until completion. In study mode, return them so the client can reveal.
     const hideAnswers = session.mode === 'exam' && session.status === 'in_progress';
     const baseCols = hideAnswers
-      ? 'q.id, q.exam_id, q.topic_id, q.question_text, q.choice_a, q.choice_b, q.choice_c, q.choice_d, q.image_url, q.difficulty'
-      : 'q.id, q.exam_id, q.topic_id, q.question_text, q.choice_a, q.choice_b, q.choice_c, q.choice_d, q.image_url, q.difficulty, q.correct_answer, q.explanation';
+      ? 'q.id, q.exam_id, q.topic_id, q.question_text, q.choice_a, q.choice_b, q.choice_c, q.choice_d, q.image_url, q.extra_image_urls, q.difficulty'
+      : 'q.id, q.exam_id, q.topic_id, q.question_text, q.choice_a, q.choice_b, q.choice_c, q.choice_d, q.image_url, q.extra_image_urls, q.difficulty, q.correct_answer, q.explanation';
 
     const { rows: qRows } = await db.query(
       `SELECT ${baseCols}, t.name AS topic_name

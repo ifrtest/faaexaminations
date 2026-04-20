@@ -277,40 +277,59 @@ export default function QuizRunner() {
               className="question-text"
               dangerouslySetInnerHTML={{ __html: current.question_text }}
             />
-            {current.image_url && (
-              <div style={{ margin: '12px 0' }}>
-                <a href={current.image_url} target="_blank" rel="noopener noreferrer" title="Open figure in a new tab">
-                  <img
-                    className="question-image"
-                    src={current.image_url}
-                    alt="Reference figure"
-                    style={{ cursor: 'zoom-in' }}
-                  />
-                </a>
-                <div style={{ marginTop: 6, fontSize: '.82rem' }}>
-                  <a
-                    href={current.image_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: 6,
-                      color: 'var(--blue)',
-                      textDecoration: 'none',
-                      padding: '4px 10px',
-                      borderRadius: 6,
-                      border: '1px solid var(--blue)',
-                      fontWeight: 600,
-                    }}>
-                    🔍 Open figure in new tab ↗
-                  </a>
-                  <span style={{ marginLeft: 10, color: 'var(--muted)', fontSize: '.78rem' }}>
-                    Keeps your exam open so you can reference while answering
-                  </span>
+            {current.image_url && (() => {
+              const extras = Array.isArray(current.extra_image_urls) ? current.extra_image_urls : [];
+              const allImages = [current.image_url, ...extras];
+              return (
+                <div style={{ margin: '12px 0' }}>
+                  {allImages.map((url, i) => {
+                    const figNum = (url.match(/figure-(\d+[A-Za-z]?)/) || [])[1];
+                    return (
+                      <div key={url + i} style={{ marginBottom: i < allImages.length - 1 ? 14 : 0 }}>
+                        {figNum && (
+                          <div style={{ fontSize: '.82rem', color: 'var(--text2)', marginBottom: 4, fontWeight: 600 }}>
+                            Figure {figNum}
+                          </div>
+                        )}
+                        <a href={url} target="_blank" rel="noopener noreferrer" title="Open in a new tab">
+                          <img
+                            className="question-image"
+                            src={url}
+                            alt={figNum ? `Figure ${figNum}` : 'Reference figure'}
+                            style={{ cursor: 'zoom-in' }}
+                          />
+                        </a>
+                        <div style={{ marginTop: 4 }}>
+                          <a
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: 6,
+                              color: 'var(--blue)',
+                              textDecoration: 'none',
+                              padding: '4px 10px',
+                              borderRadius: 6,
+                              border: '1px solid var(--blue)',
+                              fontSize: '.82rem',
+                              fontWeight: 600,
+                            }}>
+                            🔍 Open Figure {figNum || ''} in new tab ↗
+                          </a>
+                        </div>
+                      </div>
+                    );
+                  })}
+                  {allImages.length > 1 && (
+                    <div style={{ marginTop: 6, color: 'var(--muted)', fontSize: '.78rem' }}>
+                      This question references multiple figures — review all of them before answering.
+                    </div>
+                  )}
                 </div>
-              </div>
-            )}
+              );
+            })()}
 
             {LETTERS.map((letter) => {
               const text = current[`choice_${letter.toLowerCase()}`];
