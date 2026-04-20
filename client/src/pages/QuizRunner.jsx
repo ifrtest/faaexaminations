@@ -21,6 +21,11 @@ export default function QuizRunner() {
   const [confirmSubmit, setConfirm] = useState(false);
   const [aiResponse, setAiResponse]   = useState({});  // { [questionId]: text }
   const [aiLoading, setAiLoading]     = useState(false);
+  const [rotations, setRotations]     = useState({});  // { [imageUrl]: 0|90|180|270 }
+
+  const rotate = (url) => {
+    setRotations((r) => ({ ...r, [url]: ((r[url] || 0) + 90) % 360 }));
+  };
 
   // Timer state
   const [secondsLeft, setSecondsLeft] = useState(null); // null = untimed
@@ -291,15 +296,22 @@ export default function QuizRunner() {
                             Figure {figNum}
                           </div>
                         )}
-                        <a href={url} target="_blank" rel="noopener noreferrer" title="Open in a new tab">
-                          <img
-                            className="question-image"
-                            src={url}
-                            alt={figNum ? `Figure ${figNum}` : 'Reference figure'}
-                            style={{ cursor: 'zoom-in' }}
-                          />
-                        </a>
-                        <div style={{ marginTop: 4 }}>
+                        <div style={{ overflow: 'hidden', display: 'inline-block', maxWidth: '100%' }}>
+                          <a href={url} target="_blank" rel="noopener noreferrer" title="Open in a new tab">
+                            <img
+                              className="question-image"
+                              src={url}
+                              alt={figNum ? `Figure ${figNum}` : 'Reference figure'}
+                              style={{
+                                cursor: 'zoom-in',
+                                transform: `rotate(${rotations[url] || 0}deg)`,
+                                transition: 'transform .25s ease',
+                                transformOrigin: 'center center',
+                              }}
+                            />
+                          </a>
+                        </div>
+                        <div style={{ marginTop: 4, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                           <a
                             href={url}
                             target="_blank"
@@ -318,6 +330,25 @@ export default function QuizRunner() {
                             }}>
                             🔍 Open Figure {figNum || ''} in new tab ↗
                           </a>
+                          <button
+                            type="button"
+                            onClick={() => rotate(url)}
+                            title="Rotate 90°"
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: 6,
+                              background: 'transparent',
+                              color: 'var(--blue)',
+                              padding: '4px 10px',
+                              borderRadius: 6,
+                              border: '1px solid var(--blue)',
+                              fontSize: '.82rem',
+                              fontWeight: 600,
+                              cursor: 'pointer',
+                            }}>
+                            🔄 Rotate ({rotations[url] || 0}°)
+                          </button>
                         </div>
                       </div>
                     );
