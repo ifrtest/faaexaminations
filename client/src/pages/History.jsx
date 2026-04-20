@@ -56,7 +56,7 @@ export default function History() {
                       }}>
                         {r.exam_code}
                       </span>
-                      <strong>{r.topic_name || 'Full practice exam'}</strong>
+                      <strong>{r.topic_name || 'Mixed practice'}</strong>
                       {r.session_mode && (
                         <span style={{
                           padding:'2px 8px',borderRadius:6,
@@ -67,6 +67,11 @@ export default function History() {
                         </span>
                       )}
                     </div>
+                    {!r.topic_name && r.topic_breakdown && (
+                      <div style={{color:'var(--muted)',fontSize:'.78rem',marginTop:4,lineHeight:1.4}}>
+                        {summarizeTopics(r.topic_breakdown)}
+                      </div>
+                    )}
                   </td>
                   <td>{Number(r.score).toFixed(1)}%</td>
                   <td>
@@ -85,6 +90,16 @@ export default function History() {
       )}
     </div>
   );
+}
+
+function summarizeTopics(breakdown) {
+  try {
+    const bd = typeof breakdown === 'string' ? JSON.parse(breakdown) : breakdown;
+    const names = Object.keys(bd || {}).filter((n) => n && n !== 'Uncategorized');
+    if (!names.length) return null;
+    if (names.length <= 3) return names.join(' · ');
+    return `${names.slice(0, 3).join(' · ')} +${names.length - 3} more`;
+  } catch { return null; }
 }
 
 function formatDuration(sec) {
