@@ -48,7 +48,26 @@ export default function History() {
               {items.map((r) => (
                 <tr key={r.id}>
                   <td>{new Date(r.created_at).toLocaleString()}</td>
-                  <td><strong>{r.exam_code}</strong> — {r.exam_name}</td>
+                  <td>
+                    <div style={{display:'flex',alignItems:'center',gap:8,flexWrap:'wrap'}}>
+                      <span style={{
+                        background:'var(--blue)',color:'#fff',padding:'2px 8px',
+                        borderRadius:6,fontSize:'.72rem',fontWeight:700,letterSpacing:'.5px',
+                      }}>
+                        {r.exam_code}
+                      </span>
+                      <strong>{r.topic_name || 'Full practice exam'}</strong>
+                      {r.session_mode && (
+                        <span style={{
+                          padding:'2px 8px',borderRadius:6,
+                          background:'rgba(245,166,35,.15)',color:'var(--amber)',
+                          fontSize:'.7rem',fontWeight:600,textTransform:'uppercase',letterSpacing:'.5px',
+                        }}>
+                          {r.session_mode === 'exam' ? 'Exam' : 'Study'}
+                        </span>
+                      )}
+                    </div>
+                  </td>
                   <td>{Number(r.score).toFixed(1)}%</td>
                   <td>
                     <span className={`badge ${r.passed ? 'badge-ok' : 'badge-err'}`}>

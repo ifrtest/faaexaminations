@@ -5,9 +5,19 @@ const db = require('../config/db');
 exports.myResults = async (req, res, next) => {
   try {
     const { rows } = await db.query(
-      `SELECT r.*, e.code AS exam_code, e.name AS exam_name
+      `SELECT r.*, e.code AS exam_code, e.name AS exam_name, s.mode AS session_mode,
+              (
+                SELECT t.name
+                  FROM questions q
+                  JOIN topics t ON t.id = q.topic_id
+                 WHERE q.id = ANY(s.question_ids)
+                 GROUP BY t.name
+                HAVING COUNT(*) = array_length(s.question_ids, 1)
+                 LIMIT 1
+              ) AS topic_name
          FROM exam_results r
          JOIN exams e ON e.id=r.exam_id
+         LEFT JOIN exam_sessions s ON s.id=r.session_id
         WHERE r.user_id=$1
         ORDER BY r.created_at DESC
         LIMIT 50`,
