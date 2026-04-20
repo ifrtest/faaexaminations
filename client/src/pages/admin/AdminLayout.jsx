@@ -10,6 +10,7 @@ export default function AdminLayout() {
           <NavLink to="/admin" end>Overview</NavLink>
           <NavLink to="/admin/questions">Questions</NavLink>
           <NavLink to="/admin/questions/new">Add question</NavLink>
+          <NavLink to="/admin/figures">Link IRA figures</NavLink>
           <NavLink to="/admin/users">Users</NavLink>
         </aside>
         <section>

@@ -24,6 +24,7 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminQuestions from './pages/admin/AdminQuestions';
 import AdminEditor    from './pages/admin/AdminEditor';
 import AdminUsers     from './pages/admin/AdminUsers';
+import AdminFigures   from './pages/admin/AdminFigures';
 
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
@@ -63,6 +64,7 @@ export default function App() {
             <Route path="questions/new" element={<AdminEditor />} />
             <Route path="questions/:id" element={<AdminEditor />} />
             <Route path="users"         element={<AdminUsers />} />
+            <Route path="figures"       element={<AdminFigures />} />
           </Route>
 
           {/* Fallback */}
