@@ -449,13 +449,15 @@ table.data td strong { color: var(--text); }
   transition: all .12s;
 }
 .q-nav-grid button:hover { border-color: var(--blue); color: var(--blue); }
-.q-nav-grid button.answered { background: var(--blue-dim); color: var(--blue); border-color: var(--border2); }
-.q-nav-grid button.flagged  { background: var(--warn-bg); color: var(--amber); border-color: rgba(245,166,35,.3); }
-.q-nav-grid button.current  { background: var(--blue); color: #fff; border-color: var(--blue); }
-.q-nav-legend { font-size: .78rem; color: var(--text3); }
-.q-nav-legend span { display: inline-flex; align-items: center; gap: 6px; margin-right: 10px; }
+.q-nav-grid button.unanswered { background: transparent; color: var(--text3); border: 1px dashed var(--border); }
+.q-nav-grid button.answered { background: var(--blue-dim); color: var(--blue); border: 1px solid var(--border2); }
+.q-nav-grid button.flagged  { background: var(--warn-bg); color: var(--amber); border: 1px solid rgba(245,166,35,.5); }
+.q-nav-grid button.current  { box-shadow: 0 0 0 2px var(--blue); }
+.q-nav-legend { font-size: .78rem; color: var(--text3); display: flex; flex-wrap: wrap; gap: 4px 12px; }
+.q-nav-legend span { display: inline-flex; align-items: center; gap: 6px; }
 .q-nav-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; background: var(--blue-dim); border: 1px solid var(--border2); }
-.q-nav-legend i.f { background: var(--warn-bg); border-color: rgba(245,166,35,.3); }
+.q-nav-legend i.u { background: transparent; border: 1px dashed var(--border); }
+.q-nav-legend i.f { background: var(--warn-bg); border-color: rgba(245,166,35,.5); }
 
 /* ===================================================================
    Results

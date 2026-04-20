@@ -374,18 +374,20 @@ export default function QuizRunner() {
             <h4>Question navigator</h4>
             <div className="q-nav-grid">
               {questions.map((q, i) => {
-                let cls = '';
-                if (answers[q.id]) cls = 'answered';
-                if (flagged.has(q.id)) cls = 'flagged';
-                if (i === idx) cls = 'current';
+                const classes = [];
+                if (answers[q.id]) classes.push('answered');
+                else classes.push('unanswered');
+                if (flagged.has(q.id)) classes.push('flagged');
+                if (i === idx) classes.push('current');
                 return (
-                  <button key={q.id} className={cls} onClick={() => go(i)}>
+                  <button key={q.id} className={classes.join(' ')} onClick={() => go(i)}>
                     {i + 1}
                   </button>
                 );
               })}
             </div>
             <div className="q-nav-legend">
+              <span><i className="u" /> Unanswered</span>
               <span><i /> Answered</span>
               <span><i className="f" /> Flagged</span>
             </div>
