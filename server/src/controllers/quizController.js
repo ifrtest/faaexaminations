@@ -191,7 +191,16 @@ exports.getSession = async (req, res, next) => {
 exports.listMySessions = async (req, res, next) => {
   try {
     const { rows } = await db.query(
-      `SELECT s.*, e.code AS exam_code, e.name AS exam_name
+      `SELECT s.*, e.code AS exam_code, e.name AS exam_name,
+              (
+                SELECT t.name
+                  FROM questions q
+                  JOIN topics t ON t.id = q.topic_id
+                 WHERE q.id = ANY(s.question_ids)
+                 GROUP BY t.name
+                HAVING COUNT(*) = array_length(s.question_ids, 1)
+                 LIMIT 1
+              ) AS topic_name
        FROM exam_sessions s
        JOIN exams e ON e.id=s.exam_id
        WHERE s.user_id=$1

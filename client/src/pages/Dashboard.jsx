@@ -88,11 +88,31 @@ export default function Dashboard() {
       </div>
 
       {resume && (
-        <div className="alert alert-info" style={{alignItems:'center',justifyContent:'space-between'}}>
-          <span>
-            You have an exam in progress —{' '}
-            <strong>question {resume.current_index + 1} of {resume.question_ids.length}</strong>
-          </span>
+        <div className="alert alert-info" style={{alignItems:'center',justifyContent:'space-between',gap:12,flexWrap:'wrap'}}>
+          <div>
+            <div style={{display:'flex',alignItems:'center',gap:8,flexWrap:'wrap',marginBottom:4}}>
+              <span style={{
+                background:'var(--blue)',color:'#fff',padding:'2px 8px',
+                borderRadius:6,fontSize:'.72rem',fontWeight:700,letterSpacing:'.5px',
+              }}>
+                {resume.exam_code}
+              </span>
+              <strong style={{fontSize:'.95rem'}}>{resume.exam_name}</strong>
+              {resume.topic_name && (
+                <span style={{color:'var(--muted)',fontSize:'.85rem'}}>· {resume.topic_name}</span>
+              )}
+              <span style={{
+                marginLeft:4,padding:'2px 8px',borderRadius:6,
+                background:'rgba(245,166,35,.15)',color:'var(--amber)',
+                fontSize:'.72rem',fontWeight:600,textTransform:'uppercase',letterSpacing:'.5px',
+              }}>
+                {resume.mode === 'exam' ? 'Exam' : 'Study'}
+              </span>
+            </div>
+            <div style={{fontSize:'.88rem'}}>
+              In progress — <strong>question {resume.current_index + 1} of {resume.question_ids.length}</strong>
+            </div>
+          </div>
           <Link to={`/quiz/${resume.id}`} className="btn btn-primary btn-sm">Resume</Link>
         </div>
       )}
