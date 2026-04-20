@@ -301,7 +301,7 @@ exports.submitSession = async (req, res, next) => {
       const q = byId.get(qid);
       if (!q) continue;
       const selected = answers[qid] || null;
-      const isCorrect = selected && selected === q.correct_answer;
+      const isCorrect = selected !== null && selected === q.correct_answer;
       if (isCorrect) correct += 1;
 
       const topicName = q.topic_id ? (topicMap.get(q.topic_id) || 'Uncategorized') : 'Uncategorized';
