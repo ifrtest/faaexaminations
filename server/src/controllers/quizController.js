@@ -19,13 +19,22 @@ exports.listExams = async (_req, res, next) => {
 exports.listTopics = async (req, res, next) => {
   try {
     const { code } = req.params;
+    // Hide sub-section topics (names starting with a digit, like "1.1 Compass Errors",
+    // "91.103 Preflight Action") — show only top-level Topics + Appendices.
+    // Sort Topic 1, Topic 2, ... 10, 11, 12 numerically, then Appendix A after.
     const { rows } = await db.query(`
       SELECT t.id, t.name, t.slug,
              (SELECT COUNT(*) FROM questions q WHERE q.topic_id=t.id AND q.is_active) AS question_count
       FROM topics t
       JOIN exams e ON e.id=t.exam_id
       WHERE e.code=$1
-      ORDER BY t.name
+        AND t.name !~ '^[0-9]'
+      ORDER BY
+        CASE WHEN t.name ~ '^Topic ([0-9]+)' THEN 0
+             WHEN t.name ~ '^Appendix'       THEN 1
+             ELSE 2 END,
+        COALESCE(NULLIF(substring(t.name from '^Topic ([0-9]+)'), '')::int, 0),
+        t.name
     `, [code.toUpperCase()]);
     res.json({ topics: rows });
   } catch (err) { next(err); }
