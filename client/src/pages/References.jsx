@@ -15,7 +15,7 @@ const SECTIONS = [
       },
       {
         name: 'Instrument Flying Handbook (FAA-H-8083-15)',
-        file: 'https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/instrument_flying_handbook',
+        file: 'https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/FAA-H-8083-15B.pdf',
         note: 'Core reference for IRA',
         external: true,
       },
@@ -33,7 +33,7 @@ const SECTIONS = [
       },
       {
         name: 'Aviation Weather Handbook (FAA-H-8083-28)',
-        file: 'https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/media/faa-h-8083-28.pdf',
+        file: 'https://www.faa.gov/sites/faa.gov/files/FAA-H-8083-28B.pdf',
         note: 'Weather theory and products',
         external: true,
       },
