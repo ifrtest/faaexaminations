@@ -207,6 +207,24 @@ export default function QuizRunner() {
     <div className="container page">
       <div className="quiz-topbar">
         <div>
+          {session.exam_code && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
+              <span style={{
+                background: 'var(--blue)',
+                color: '#fff',
+                padding: '3px 10px',
+                borderRadius: 6,
+                fontSize: '.75rem',
+                fontWeight: 700,
+                letterSpacing: '.5px',
+              }}>
+                {session.exam_code}
+              </span>
+              <span style={{ color: 'var(--text2)', fontSize: '.92rem', fontWeight: 600 }}>
+                {session.exam_name}
+              </span>
+            </div>
+          )}
           <strong style={{color:'var(--navy)'}}>{session.mode === 'exam' ? 'Exam Simulation' : 'Study Mode'}</strong>
           <span className="quiz-progress" style={{marginLeft:12}}>
             Question {idx + 1} of {total} · {answered} answered · {flagged.size} flagged
@@ -232,8 +250,24 @@ export default function QuizRunner() {
         {/* ---- question panel ---- */}
         <div>
           <div className="card question-card">
-            <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:12}}>
-              <span className="badge">Question {idx + 1}</span>
+            <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:12,gap:12,flexWrap:'wrap'}}>
+              <div style={{display:'flex',alignItems:'center',gap:10,flexWrap:'wrap'}}>
+                <span className="badge">Question {idx + 1}</span>
+                {current.topic_name && (
+                  <span style={{
+                    background: 'rgba(48,172,226,0.12)',
+                    color: 'var(--blue)',
+                    padding: '4px 10px',
+                    borderRadius: 6,
+                    fontSize: '.78rem',
+                    fontWeight: 600,
+                    letterSpacing: '.3px',
+                    textTransform: 'uppercase',
+                  }}>
+                    📘 {current.topic_name}
+                  </span>
+                )}
+              </div>
               <button className={`flag-btn ${flagged.has(current.id) ? 'on' : ''}`} onClick={toggleFlag} title="Flag (F)">
                 {flagged.has(current.id) ? '🚩 Flagged' : '🏳  Flag for review'}
               </button>

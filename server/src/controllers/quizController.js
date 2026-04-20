@@ -157,7 +157,10 @@ exports.getSession = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { rows } = await db.query(
-      'SELECT * FROM exam_sessions WHERE id=$1 AND user_id=$2',
+      `SELECT s.*, e.code AS exam_code, e.name AS exam_name
+       FROM exam_sessions s
+       JOIN exams e ON e.id = s.exam_id
+       WHERE s.id=$1 AND s.user_id=$2`,
       [id, req.user.id]
     );
     const session = rows[0];
@@ -166,12 +169,15 @@ exports.getSession = async (req, res, next) => {
     // Fetch question payloads. Hide correct_answer & explanation during exam mode
     // until completion. In study mode, return them so the client can reveal.
     const hideAnswers = session.mode === 'exam' && session.status === 'in_progress';
-    const selectCols = hideAnswers
-      ? 'id, exam_id, topic_id, question_text, choice_a, choice_b, choice_c, choice_d, image_url, difficulty'
-      : 'id, exam_id, topic_id, question_text, choice_a, choice_b, choice_c, choice_d, image_url, difficulty, correct_answer, explanation';
+    const baseCols = hideAnswers
+      ? 'q.id, q.exam_id, q.topic_id, q.question_text, q.choice_a, q.choice_b, q.choice_c, q.choice_d, q.image_url, q.difficulty'
+      : 'q.id, q.exam_id, q.topic_id, q.question_text, q.choice_a, q.choice_b, q.choice_c, q.choice_d, q.image_url, q.difficulty, q.correct_answer, q.explanation';
 
     const { rows: qRows } = await db.query(
-      `SELECT ${selectCols} FROM questions WHERE id = ANY($1::int[])`,
+      `SELECT ${baseCols}, t.name AS topic_name
+         FROM questions q
+         LEFT JOIN topics t ON t.id = q.topic_id
+         WHERE q.id = ANY($1::int[])`,
       [session.question_ids]
     );
     // Preserve the original question order.
