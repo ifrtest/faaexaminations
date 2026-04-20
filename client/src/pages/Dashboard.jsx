@@ -97,10 +97,9 @@ export default function Dashboard() {
               }}>
                 {resume.exam_code}
               </span>
-              <strong style={{fontSize:'.95rem'}}>{resume.exam_name}</strong>
-              {resume.topic_name && (
-                <span style={{color:'var(--muted)',fontSize:'.85rem'}}>· {resume.topic_name}</span>
-              )}
+              <strong style={{fontSize:'.95rem'}}>
+                {resume.topic_name || 'Full practice exam'}
+              </strong>
               <span style={{
                 marginLeft:4,padding:'2px 8px',borderRadius:6,
                 background:'rgba(245,166,35,.15)',color:'var(--amber)',
