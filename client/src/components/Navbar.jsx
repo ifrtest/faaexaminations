@@ -23,12 +23,14 @@ export default function Navbar() {
               <NavLink to="/dashboard">Dashboard</NavLink>
               <NavLink to="/exams">Practice Exams</NavLink>
               <NavLink to="/results">History</NavLink>
+              <NavLink to="/references">References</NavLink>
               <NavLink to="/profile">Profile</NavLink>
               {user.role === 'admin' && <NavLink to="/admin">Admin</NavLink>}
               <button onClick={handleLogout}>Log out</button>
             </>
           ) : (
             <>
+              <NavLink to="/references">References</NavLink>
               <NavLink to="/login">Login</NavLink>
               <NavLink to="/register"
                 style={{ background: 'var(--blue)', color: '#fff', padding: '8px 16px', borderRadius: 8, fontWeight: 700 }}>

@@ -8,6 +8,9 @@ export default function Footer() {
           FAA<span style={{ color: 'var(--blue)' }}>Examinations</span>.com
         </div>
         <div style={{ marginBottom: 8 }}>
+          <Link to="/references" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>
+            Free FAA References
+          </Link>
           <Link to="/cancel-policy" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>
             Cancellation &amp; Refund Policy
           </Link>

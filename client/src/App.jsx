@@ -17,6 +17,7 @@ import Result      from './pages/Result';
 import History     from './pages/History';
 import Profile      from './pages/Profile';
 import CancelPolicy from './pages/CancelPolicy';
+import References   from './pages/References';
 
 import AdminLayout    from './pages/admin/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -51,6 +52,9 @@ export default function App() {
           <Route path="/results"   element={<ProtectedRoute><History /></ProtectedRoute>} />
           <Route path="/profile"        element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path="/cancel-policy"  element={<CancelPolicy />} />
+          <Route path="/references"     element={<References />} />
+
+          {/* Public references page */}
 
           {/* Admin */}
           <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>

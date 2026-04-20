@@ -37,6 +37,7 @@ export default function Landing() {
           <a href="#features" className="lp-nav-link">Features</a>
           <a href="#how" className="lp-nav-link">How It Works</a>
           <a href="#testimonials" className="lp-nav-link">Reviews</a>
+          <Link to="/references" className="lp-nav-link">Free References</Link>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           {user ? (
@@ -277,6 +278,7 @@ export default function Landing() {
           <Link to="/dashboard" className="lp-footer-link">Dashboard</Link>
           <a href="#products" className="lp-footer-link">Packages</a>
           <a href="#features" className="lp-footer-link">Features</a>
+          <Link to="/references" className="lp-footer-link">Free FAA References</Link>
           <a href="mailto:info@faaexaminations.com" className="lp-footer-link">Contact</a>
         </div>
         <div className="lp-footer-copy">© 2026 FAAExaminations.com · Not affiliated with the FAA · For educational purposes only</div>
