@@ -24,6 +24,9 @@ import AdminQuestions from './pages/admin/AdminQuestions';
 import AdminEditor    from './pages/admin/AdminEditor';
 import AdminUsers     from './pages/admin/AdminUsers';
 
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
+
 export default function App() {
   const { pathname } = useLocation();
   const isLanding = pathname === '/';
@@ -63,6 +66,8 @@ export default function App() {
         </Routes>
       </main>
       {!isLanding && <Footer />}
+      <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
