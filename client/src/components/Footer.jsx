@@ -19,44 +19,39 @@ export default function Footer() {
         <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 18, fontWeight: 800, color: '#fff', marginBottom: 8 }}>
           FAA<span style={{ color: 'var(--blue)' }}>Examinations</span>.com
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginBottom: 12 }}>
-          <a href="https://www.facebook.com/profile.php?id=61550998640330" target="_blank" rel="noopener noreferrer"
-            style={{ color: 'var(--text2)', opacity: 0.7, transition: 'opacity .2s' }}
-            onMouseEnter={e => e.currentTarget.style.opacity = 1}
-            onMouseLeave={e => e.currentTarget.style.opacity = 0.7}
-            title="Facebook">
-            <FacebookIcon />
-          </a>
-          <a href="https://www.instagram.com/faaexaminations" target="_blank" rel="noopener noreferrer"
-            style={{ color: 'var(--text2)', opacity: 0.7, transition: 'opacity .2s' }}
-            onMouseEnter={e => e.currentTarget.style.opacity = 1}
-            onMouseLeave={e => e.currentTarget.style.opacity = 0.7}
-            title="Instagram">
-            <InstagramIcon />
-          </a>
-        </div>
-        <div style={{ marginBottom: 8 }}>
-          <Link to="/references" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>
-            Free FAA References
-          </Link>
-          <Link to="/cancel-policy" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>
-            Cancellation &amp; Refund Policy
-          </Link>
-          <a href="mailto:support@faaexaminations.com" style={{ color: 'var(--text2)', fontSize: '.85rem' }}>
-            support@faaexaminations.com
-          </a>
+        <div style={{ marginBottom: 8, display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '4px 0' }}>
+          <Link to="/" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Home</Link>
+          <Link to="/exams" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Practice Exams</Link>
+          <Link to="/dashboard" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Dashboard</Link>
+          <Link to="/references" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Free FAA References</Link>
+          <Link to="/cancel-policy" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Cancellation &amp; Refund Policy</Link>
+          <a href="mailto:support@faaexaminations.com" style={{ color: 'var(--text2)', fontSize: '.85rem' }}>support@faaexaminations.com</a>
         </div>
         <div>
           © {new Date().getFullYear()} FAAExaminations.com · FAA practice exams for student pilots ·
           Not affiliated with the Federal Aviation Administration
         </div>
-        <div style={{ marginTop: 6, fontSize: '.78rem', color: 'var(--text2)', opacity: 0.6 }}>
-          Designed by <a href="https://websitework.ca" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text2)' }}>websitework.ca</a>
-        </div>
-        <div style={{ marginTop: 4, fontSize: '.78rem', color: 'var(--text2)', opacity: 0.6, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5 }}>
-          Our Canadian Partner
-          <img src="/maple-leaf.png" alt="🍁" style={{ width: 13, height: 13, display: 'inline-block', verticalAlign: 'middle' }} />
-          <a href="https://ifrtest.ca" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text2)' }}>ifrtest.ca</a>
+        <div style={{ marginTop: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap', gap: '6px 20px', fontSize: '.78rem', color: 'var(--text2)', opacity: 0.6 }}>
+          <div style={{ display: 'flex', gap: 14 }}>
+            <a href="https://www.facebook.com/profile.php?id=61550998640330" target="_blank" rel="noopener noreferrer"
+              style={{ color: 'var(--text2)', display: 'flex', alignItems: 'center' }}
+              onMouseEnter={e => e.currentTarget.style.opacity = 1}
+              onMouseLeave={e => e.currentTarget.style.opacity = 0.7}
+              title="Facebook"><FacebookIcon /></a>
+            <a href="https://www.instagram.com/faaexaminations" target="_blank" rel="noopener noreferrer"
+              style={{ color: 'var(--text2)', display: 'flex', alignItems: 'center' }}
+              onMouseEnter={e => e.currentTarget.style.opacity = 1}
+              onMouseLeave={e => e.currentTarget.style.opacity = 0.7}
+              title="Instagram"><InstagramIcon /></a>
+          </div>
+          <span style={{ opacity: 0.4 }}>·</span>
+          <span>Designed by <a href="https://websitework.ca" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text2)' }}>websitework.ca</a></span>
+          <span style={{ opacity: 0.4 }}>·</span>
+          <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+            Our Canadian Partner
+            <img src="/maple-leaf.png" alt="🍁" style={{ width: 12, height: 12 }} />
+            <a href="https://ifrtest.ca" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text2)' }}>ifrtest.ca</a>
+          </span>
         </div>
       </div>
     </footer>

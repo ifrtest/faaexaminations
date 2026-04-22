@@ -30,11 +30,14 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <NavLink to="/references">References</NavLink>
+              <NavLink to="/">Home</NavLink>
+              <a href="/#features" style={{ color: 'var(--text2)', textDecoration: 'none', padding: '6px 10px', borderRadius: 6 }}>Features</a>
+              <a href="/#products" style={{ color: 'var(--text2)', textDecoration: 'none', padding: '6px 10px', borderRadius: 6 }}>Pricing</a>
+              <NavLink to="/references">Free References</NavLink>
               <NavLink to="/login">Login</NavLink>
               <NavLink to="/register"
                 style={{ background: 'var(--blue)', color: '#fff', padding: '8px 16px', borderRadius: 8, fontWeight: 700 }}>
-                Start Free
+                Get Started
               </NavLink>
             </>
           )}
