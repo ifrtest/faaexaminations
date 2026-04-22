@@ -69,7 +69,7 @@ export default function Dashboard() {
   if (err)  return <div className="container page"><div className="alert alert-err">{err}</div></div>;
   if (!data) return <div className="container page"><Spinner /></div>;
 
-  const { totals, perExam, trend, weakTopics, readiness } = data;
+  const { totals, perExam, trend, weakTopics, readiness, examStats } = data;
 
   const chartData = (trend || []).map((t, i) => ({
     n: `#${i + 1}`,
@@ -259,6 +259,70 @@ export default function Dashboard() {
           )}
         </div>
       </div>
+
+      {/* ---------- full exams completed (site-wide) ---------- */}
+      {examStats && (
+        <div className="card" style={{marginTop:20}}>
+          <div className="card-header">
+            <div>
+              <div className="card-title">Full Exams Completed</div>
+              <div className="card-sub">All students — site-wide totals</div>
+            </div>
+          </div>
+          <div style={{
+            display:'grid',
+            gridTemplateColumns:'repeat(auto-fit, minmax(200px, 1fr))',
+            gap:16, marginTop:8,
+          }}>
+            {examStats.map((e) => {
+              const passRate = e.total_completed > 0
+                ? Math.round((e.total_passed / e.total_completed) * 100)
+                : 0;
+              const color = passRate >= 75 ? '#16A34A' : passRate >= 50 ? '#F59E0B' : '#EF4444';
+              return (
+                <div key={e.code} style={{
+                  background:'var(--surface)',
+                  border:'1px solid var(--border)',
+                  borderRadius:12,
+                  padding:'18px 20px',
+                }}>
+                  <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:10}}>
+                    <span style={{
+                      background:'var(--navy)',color:'#fff',
+                      borderRadius:6,padding:'2px 9px',
+                      fontSize:'.72rem',fontWeight:700,letterSpacing:'.5px',
+                    }}>{e.code}</span>
+                    <span style={{fontSize:'.85rem',color:'var(--muted)',fontWeight:500}}>{e.name}</span>
+                  </div>
+                  <div style={{display:'flex',justifyContent:'space-between',marginBottom:6}}>
+                    <span style={{fontSize:'.82rem',color:'var(--muted)'}}>Exams completed</span>
+                    <strong style={{fontSize:'1.1rem'}}>{e.total_completed.toLocaleString()}</strong>
+                  </div>
+                  <div style={{display:'flex',justifyContent:'space-between',marginBottom:6}}>
+                    <span style={{fontSize:'.82rem',color:'var(--muted)'}}>Passed</span>
+                    <strong style={{color:'#16A34A'}}>{e.total_passed.toLocaleString()}</strong>
+                  </div>
+                  <div style={{display:'flex',justifyContent:'space-between',marginBottom:10}}>
+                    <span style={{fontSize:'.82rem',color:'var(--muted)'}}>Avg score</span>
+                    <strong>{Number(e.avg_score).toFixed(1)}%</strong>
+                  </div>
+                  <div style={{background:'var(--border)',borderRadius:99,height:6,overflow:'hidden'}}>
+                    <div style={{
+                      width:`${passRate}%`,height:'100%',
+                      background:color,borderRadius:99,
+                      transition:'width .5s ease',
+                    }} />
+                  </div>
+                  <div style={{
+                    textAlign:'right',fontSize:'.75rem',
+                    color:color,fontWeight:700,marginTop:4,
+                  }}>{passRate}% pass rate</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

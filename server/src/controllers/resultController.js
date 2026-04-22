@@ -126,6 +126,18 @@ exports.dashboard = async (req, res, next) => {
       accuracy: r.total ? +((r.correct / r.total) * 100).toFixed(1) : 0,
     }));
 
+    // Full exams completed (all users, grouped by exam)
+    const { rows: examStats } = await db.query(
+      `SELECT e.code, e.name,
+              COUNT(r.id)::int                                         AS total_completed,
+              COUNT(*) FILTER (WHERE r.passed = true)::int            AS total_passed,
+              COALESCE(ROUND(AVG(r.score)::numeric, 1), 0)            AS avg_score
+         FROM exams e
+         LEFT JOIN exam_results r ON r.exam_id = e.id
+         GROUP BY e.id, e.code, e.name
+         ORDER BY e.id`
+    );
+
     // Pass predictor
     const readiness = computeReadiness({
       perExam, totals, weakTopics: topics,
@@ -137,6 +149,7 @@ exports.dashboard = async (req, res, next) => {
       trend,
       weakTopics: topics,
       readiness,
+      examStats,
     });
   } catch (err) { next(err); }
 };
