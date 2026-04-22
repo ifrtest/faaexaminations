@@ -26,6 +26,7 @@ import AdminEditor    from './pages/admin/AdminEditor';
 import AdminUsers     from './pages/admin/AdminUsers';
 import AdminFigures   from './pages/admin/AdminFigures';
 import Blog           from './pages/Blog';
+import BlogPost       from './pages/BlogPost';
 import NotFound       from './pages/NotFound';
 
 import { Analytics } from '@vercel/analytics/react';
@@ -57,6 +58,7 @@ export default function App() {
           <Route path="/cancel-policy"  element={<CancelPolicy />} />
           <Route path="/references"     element={<References />} />
           <Route path="/blog"           element={<Blog />} />
+          <Route path="/blog/:slug"     element={<BlogPost />} />
 
           {/* Public references page */}
 

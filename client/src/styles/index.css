@@ -599,3 +599,16 @@ kbd {
   .stat-grid { grid-template-columns: 1fr; }
   .q-nav-grid { grid-template-columns: repeat(6, 1fr); }
 }
+
+/* ── Blog article body typography ─────────────────────────────────── */
+.blog-body { color: var(--text); font-size: 1rem; line-height: 1.8; }
+.blog-body p  { margin: 0 0 1.2em; }
+.blog-body h2 { font-size: 1.25rem; font-weight: 800; color: var(--text); margin: 2em 0 .6em; }
+.blog-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); margin: 1.6em 0 .5em; }
+.blog-body ul,
+.blog-body ol { padding-left: 1.4em; margin: 0 0 1.2em; }
+.blog-body li { margin-bottom: .45em; }
+.blog-body strong { color: var(--text); }
+.blog-body table { width: 100%; border-collapse: collapse; margin-bottom: 1.4em; font-size: .9rem; }
+.blog-body th    { text-align: left; padding: 9px 12px; color: var(--text); border-bottom: 2px solid var(--border); }
+.blog-body td    { padding: 9px 12px; color: var(--text2); border-bottom: 1px solid var(--border); }
