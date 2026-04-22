@@ -64,7 +64,9 @@ export default function Landing() {
       {/* HERO */}
       <section className="lp-hero">
         <div className="lp-hero-bg">
-          <img src={HERO_IMAGES[heroIdx]} alt="" />
+          {HERO_IMAGES.map((src, i) => (
+            <img key={src} src={src} alt="" style={{ opacity: i === heroIdx ? 0.75 : 0 }} />
+          ))}
         </div>
         <div className="lp-hero-grid" />
         <div className="lp-hero-content">
