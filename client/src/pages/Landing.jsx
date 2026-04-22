@@ -1,10 +1,20 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+
+const HERO_IMAGES = ['/plane-pass.webp', '/plane-hero.jpeg'];
 
 export default function Landing() {
   const { user } = useAuth();
   const navRef = useRef(null);
+  const [heroIdx, setHeroIdx] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroIdx((i) => (i + 1) % HERO_IMAGES.length);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -54,7 +64,7 @@ export default function Landing() {
       {/* HERO */}
       <section className="lp-hero">
         <div className="lp-hero-bg">
-          <img src="/plane-hero.jpeg" alt="" />
+          <img src={HERO_IMAGES[heroIdx]} alt="" />
         </div>
         <div className="lp-hero-grid" />
         <div className="lp-hero-content">
