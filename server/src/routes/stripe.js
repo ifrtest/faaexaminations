@@ -12,6 +12,7 @@ const PRICE_MAP = {
   par:    process.env.STRIPE_PRICE_PAR,
   ira:    process.env.STRIPE_PRICE_IRA,
   cax:    process.env.STRIPE_PRICE_CAX,
+  uag:    process.env.STRIPE_PRICE_UAG,
   bundle: process.env.STRIPE_PRICE_BUNDLE,
 };
 
@@ -20,6 +21,7 @@ const PRICE_EXAMS = {
   [process.env.STRIPE_PRICE_PAR]:    [1],
   [process.env.STRIPE_PRICE_IRA]:    [2],
   [process.env.STRIPE_PRICE_CAX]:    [3],
+  [process.env.STRIPE_PRICE_UAG]:    [4],
   [process.env.STRIPE_PRICE_BUNDLE]: [1, 2, 3],
 };
 
@@ -228,6 +230,7 @@ function getPlanName(priceId) {
   if (priceId === process.env.STRIPE_PRICE_PAR)    return 'par';
   if (priceId === process.env.STRIPE_PRICE_IRA)    return 'ira';
   if (priceId === process.env.STRIPE_PRICE_CAX)    return 'cax';
+  if (priceId === process.env.STRIPE_PRICE_UAG)    return 'uag';
   if (priceId === process.env.STRIPE_PRICE_BUNDLE) return 'bundle';
   return null;
 }

@@ -8,19 +8,26 @@ const PLAN_ACCESS = {
   par:    ['PAR'],
   ira:    ['IRA'],
   cax:    ['CAX'],
+  uag:    ['UAG'],
   bundle: ['PAR', 'IRA', 'CAX'],
 };
+
+// Exams that are always free — no subscription needed
+const FREE_EXAMS = ['TRUST'];
 
 const EXAM_PLAN = {
   PAR: 'par',
   IRA: 'ira',
   CAX: 'cax',
+  UAG: 'uag',
 };
 
 const DESCRIPTIONS = {
-  PAR: 'The Private Pilot Airplane knowledge test — your first FAA written exam.',
-  IRA: 'The Instrument Rating knowledge test — required for IFR flying.',
-  CAX: 'The Commercial Pilot Airplane knowledge test — for professional-track pilots.',
+  PAR:   'The Private Pilot Airplane knowledge test — your first FAA written exam.',
+  IRA:   'The Instrument Rating knowledge test — required for IFR flying.',
+  CAX:   'The Commercial Pilot Airplane knowledge test — for professional-track pilots.',
+  UAG:   'The FAA Part 107 Remote Pilot knowledge test — required to fly drones commercially.',
+  TRUST: 'The FAA recreational drone safety test — required for all hobbyist drone flyers. Free!',
 };
 
 export default function ExamList() {
@@ -65,6 +72,8 @@ export default function ExamList() {
   const current = exams.find((e) => e.code === selected);
 
   const hasAccess = (examCode) => {
+    // Free exams are always accessible
+    if (FREE_EXAMS.includes(examCode)) return true;
     if (!subscription || subscription.status !== 'active') return false;
     const plan = subscription.plan;
     return plan && PLAN_ACCESS[plan]?.includes(examCode);
@@ -232,12 +241,14 @@ export default function ExamList() {
                 style={{marginBottom:8}}>
                 {checkoutLoading ? 'Loading…' : `Subscribe to ${selected} — $24.99/month`}
               </button>
-              <button
-                className="btn btn-ghost btn-block"
-                onClick={() => startCheckout('bundle')}
-                disabled={checkoutLoading}>
-                {checkoutLoading ? 'Loading…' : 'Get All 3 Exams (Bundle) — $39.99/month'}
-              </button>
+              {selected !== 'UAG' && (
+                <button
+                  className="btn btn-ghost btn-block"
+                  onClick={() => startCheckout('bundle')}
+                  disabled={checkoutLoading}>
+                  {checkoutLoading ? 'Loading…' : 'Get All 3 Manned Exams (Bundle) — $39.99/month'}
+                </button>
+              )}
             </div>
           )}
         </div>

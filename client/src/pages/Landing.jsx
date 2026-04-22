@@ -61,7 +61,7 @@ export default function Landing() {
           <div className="lp-hero-badge">✈ FAA KNOWLEDGE TEST PREP · 2026 UPDATED</div>
           <h1>Pass Your <span className="lp-accent">FAA Written</span><br />Exam First Try</h1>
           <p className="lp-hero-sub">
-            2,826 authentic FAA practice questions for Private Pilot, Instrument Rating, and Commercial Pilot certificates.
+            3,000+ authentic FAA practice questions for Private Pilot, Instrument Rating, Commercial Pilot, Part 107 Remote Pilot, and the free TRUST recreational safety test.
             Timed exam simulator, full explanations, and AI instructor support — everything you need to pass.
           </p>
           <div className="lp-hero-btns">
@@ -69,8 +69,8 @@ export default function Landing() {
             <a href="#products" className="lp-btn-outline">View Packages</a>
           </div>
           <div className="lp-hero-stats">
-            <div><div className="lp-hs-val">2,826</div><div className="lp-hs-lbl">Practice Questions</div></div>
-            <div><div className="lp-hs-val">3</div><div className="lp-hs-lbl">Exam Certificates</div></div>
+            <div><div className="lp-hs-val">3,000+</div><div className="lp-hs-lbl">Practice Questions</div></div>
+            <div><div className="lp-hs-val">5</div><div className="lp-hs-lbl">Exam Types</div></div>
             <div><div className="lp-hs-val">95%</div><div className="lp-hs-lbl">Pass Rate</div></div>
             <div><div className="lp-hs-val">FAA</div><div className="lp-hs-lbl">Compliant 2026</div></div>
           </div>
@@ -170,6 +170,58 @@ export default function Landing() {
                 <div className="lp-product-price">$39.99</div>
                 <div className="lp-product-price-sub">Per month · Cancel anytime</div>
                 <Link to="/register" className="lp-btn-product lp-btn-product-primary">Get Bundle Access →</Link>
+              </div>
+            </div>
+
+
+            <div className="lp-product-card">
+              <div className="lp-product-img">
+                <img src="/drone-part107.png" alt="Part 107 Remote Pilot" />
+                <div className="lp-product-img-overlay"><span className="lp-product-tag">UAG</span></div>
+              </div>
+              <div className="lp-product-body">
+                <div className="lp-product-name">Part 107 Remote Pilot Package</div>
+                <div className="lp-product-desc">Complete prep for the FAA Part 107 Remote Pilot knowledge test. Drone regulations, airspace, weather, and operations.</div>
+                <ul className="lp-product-features">
+                  <li>166 Part 107 practice questions</li>
+                  <li>5 categorized study modules</li>
+                  <li>Timed 60-question simulator</li>
+                  <li>Full regulation references</li>
+                  <li>AI Instructor explanations</li>
+                  <li>FAA compliant · 2026 updated</li>
+                </ul>
+                <div className="lp-product-price">$24.99</div>
+                <div className="lp-product-price-sub">Per month · Cancel anytime</div>
+                <Link to="/register" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
+              </div>
+            </div>
+
+            <div className="lp-product-card" style={{ position: 'relative' }}>
+              <div style={{
+                position: 'absolute', top: 16, right: 16, zIndex: 10,
+                background: 'linear-gradient(135deg,#F7C948,#D4A017)',
+                color: '#0B3D91', fontWeight: 800, fontSize: '.8rem',
+                padding: '4px 14px', borderRadius: 999, letterSpacing: '.05em',
+                boxShadow: '0 2px 8px rgba(247,201,72,.4)',
+              }}>FREE</div>
+              <div className="lp-product-img">
+                <img src="/drone-trust.png" alt="TRUST Recreational Safety Test" />
+                <div className="lp-product-img-overlay"><span className="lp-product-tag">TRUST</span></div>
+              </div>
+              <div className="lp-product-body">
+                <div className="lp-product-name">TRUST Recreational Safety Test</div>
+                <div className="lp-product-desc">The FAA-required safety test for all recreational drone hobbyists. Free to practice — covers rules, airspace, and safe flying.</div>
+                <ul className="lp-product-features">
+                  <li>48 recreational safety questions</li>
+                  <li>Required by FAA for all hobbyists</li>
+                  <li>Covers 49 USC 44809 rules</li>
+                  <li>No subscription needed</li>
+                  <li>Instant access — completely free</li>
+                  <li>Perfect first step for new pilots</li>
+                </ul>
+                <div className="lp-product-price" style={{ color: '#16A34A' }}>Free</div>
+                <div className="lp-product-price-sub">No credit card required</div>
+                <Link to="/register" className="lp-btn-product lp-btn-product-secondary" style={{ background: '#16A34A', borderColor: '#16A34A', color: '#fff' }}>Start Free →</Link>
               </div>
             </div>
 
