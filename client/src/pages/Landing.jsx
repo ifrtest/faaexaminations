@@ -153,7 +153,7 @@ export default function Landing() {
 
             <div className="lp-product-card lp-featured lp-product-bundle">
               <div className="lp-product-img">
-                <img src="/plane-pass.webp" alt="Bundle" />
+                <img src="/plane-bundle.jpg" alt="Bundle" />
                 <div className="lp-product-img-overlay"><span className="lp-product-tag">BEST VALUE</span></div>
               </div>
               <div className="lp-product-body">
