@@ -64,8 +64,8 @@ router.post('/checkout', requireAuth, async (req, res) => {
 });
 
 // POST /api/stripe/webhook
-// Stripe sends events here
-router.post('/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
+// Stripe sends events here — raw body parsed globally in index.js, NOT here
+router.post('/webhook', async (req, res) => {
   const sig = req.headers['stripe-signature'];
   let event;
   try {
