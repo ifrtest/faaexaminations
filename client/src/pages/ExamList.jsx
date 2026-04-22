@@ -10,6 +10,7 @@ const PLAN_ACCESS = {
   cax:    ['CAX'],
   uag:    ['UAG'],
   bundle: ['PAR', 'IRA', 'CAX'],
+  all:    ['PAR', 'IRA', 'CAX', 'UAG'],
 };
 
 // Exams that are always free — no subscription needed
