@@ -16,7 +16,6 @@ server/uploads/*
 
 # large media
 client/public/ira-figures/
-client/public/par-figures/
 
 # editors
 .vscode/
