@@ -175,7 +175,7 @@ export default function Landing() {
 
           </div>
           <div style={{ textAlign: 'center', marginTop: 22, fontSize: 14, color: 'var(--lp-text3)' }}>
-            All packages include a pass guarantee. Questions? <a href="mailto:info@faaexaminations.com" style={{ color: 'var(--lp-blue)', textDecoration: 'none' }}>Contact us</a>
+            All packages include a pass guarantee. Questions? <a href="mailto:support@faaexaminations.com" style={{ color: 'var(--lp-blue)', textDecoration: 'none' }}>Contact us</a>
           </div>
         </div>
       </section>
@@ -279,7 +279,7 @@ export default function Landing() {
           <a href="#products" className="lp-footer-link">Packages</a>
           <a href="#features" className="lp-footer-link">Features</a>
           <Link to="/references" className="lp-footer-link">Free FAA References</Link>
-          <a href="mailto:info@faaexaminations.com" className="lp-footer-link">Contact</a>
+          <a href="mailto:support@faaexaminations.com" className="lp-footer-link">Contact</a>
         </div>
         <div className="lp-footer-copy">© 2026 FAAExaminations.com · Not affiliated with the FAA · For educational purposes only</div>
         <div style={{ marginTop: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap', gap: '6px 18px', fontSize: '.75rem', color: 'var(--lp-text3)', opacity: 0.6 }}>
