@@ -87,7 +87,7 @@ export default function Landing() {
 
             <div className="lp-product-card">
               <div className="lp-product-img">
-                <img src="/plane-card.jpeg" alt="Private Pilot" />
+                <img src="/plane-par.jpg" alt="Private Pilot" />
                 <div className="lp-product-img-overlay"><span className="lp-product-tag">PAR</span></div>
               </div>
               <div className="lp-product-body">
@@ -109,7 +109,7 @@ export default function Landing() {
 
             <div className="lp-product-card">
               <div className="lp-product-img">
-                <img src="/plane-hero.jpeg" alt="Instrument Rating" />
+                <img src="/plane-ira.jpg" alt="Instrument Rating" />
                 <div className="lp-product-img-overlay"><span className="lp-product-tag">IRA</span></div>
               </div>
               <div className="lp-product-body">
@@ -131,7 +131,7 @@ export default function Landing() {
 
             <div className="lp-product-card">
               <div className="lp-product-img">
-                <img src="/plane-cpl.webp" alt="Commercial Pilot" />
+                <img src="/plane-cax.jpg" alt="Commercial Pilot" />
                 <div className="lp-product-img-overlay"><span className="lp-product-tag">CAX</span></div>
               </div>
               <div className="lp-product-body">
@@ -153,7 +153,7 @@ export default function Landing() {
 
             <div className="lp-product-card lp-featured lp-product-bundle">
               <div className="lp-product-img">
-                <img src="/plane-pass.webp" alt="Bundle" />
+                <img src="/plane-bundle.jpg" alt="Bundle" />
                 <div className="lp-product-img-overlay"><span className="lp-product-tag">BEST VALUE</span></div>
               </div>
               <div className="lp-product-body">
