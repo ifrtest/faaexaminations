@@ -279,6 +279,7 @@ export default function Landing() {
           <a href="#products" className="lp-footer-link">Packages</a>
           <a href="#features" className="lp-footer-link">Features</a>
           <Link to="/references" className="lp-footer-link">Free FAA References</Link>
+          <Link to="/blog" className="lp-footer-link">Blog</Link>
           <a href="mailto:support@faaexaminations.com" className="lp-footer-link">Contact</a>
         </div>
         <div className="lp-footer-copy">© 2026 FAAExaminations.com · Not affiliated with the FAA · For educational purposes only</div>

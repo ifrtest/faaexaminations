@@ -24,6 +24,7 @@ export default function Footer() {
           <Link to="/exams" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Practice Exams</Link>
           <Link to="/dashboard" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Dashboard</Link>
           <Link to="/references" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Free FAA References</Link>
+          <Link to="/blog" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Blog</Link>
           <Link to="/cancel-policy" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Cancellation &amp; Refund Policy</Link>
           <a href="mailto:support@faaexaminations.com" style={{ color: 'var(--text2)', fontSize: '.85rem' }}>support@faaexaminations.com</a>
         </div>
