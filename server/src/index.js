@@ -35,12 +35,22 @@ app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 
-// Basic rate limit on auth endpoints (brute force protection)
+// Rate limit on auth endpoints (brute force protection)
 app.use('/api/auth', rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 60,
+  max: 20,
   standardHeaders: true,
   legacyHeaders: false,
+  message: { error: 'Too many attempts, please try again later.' },
+}));
+
+// Rate limit on AI endpoint (cost protection)
+app.use('/api/ai', rateLimit({
+  windowMs: 60 * 1000,
+  max: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many AI requests, please slow down.' },
 }));
 
 // Static uploads (question images uploaded by admins)

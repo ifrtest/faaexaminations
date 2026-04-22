@@ -11,7 +11,8 @@ const FROM = () => process.env.EMAIL_FROM || 'support@faaexaminations.com';
 const SITE = () => process.env.CLIENT_URL || 'https://faaexaminations.com';
 
 function unsubToken(userId) {
-  const secret = process.env.JWT_SECRET || 'fallback';
+  const secret = process.env.JWT_SECRET || process.env.UNSUBSCRIBE_SECRET;
+  if (!secret) throw new Error('JWT_SECRET environment variable is not set');
   return crypto.createHmac('sha256', secret).update(String(userId)).digest('hex').slice(0, 32);
 }
 
