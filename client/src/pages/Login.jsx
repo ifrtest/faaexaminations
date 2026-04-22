@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { Helmet } from 'react-helmet-async';
 
 export default function Login() {
   const { login } = useAuth();
@@ -29,6 +30,10 @@ export default function Login() {
 
   return (
     <div className="container page center-col">
+      <Helmet>
+        <title>Log In | FAAExaminations.com</title>
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
       <div className="card auth-card">
         <h2>Welcome back</h2>
         <p className="sub">Sign in to continue your exam prep.</p>

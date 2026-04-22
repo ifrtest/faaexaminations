@@ -1,5 +1,6 @@
 // client/src/pages/References.jsx
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const SECTIONS = [
   {
@@ -127,6 +128,14 @@ export default function References() {
 
   return (
     <div className="container page" style={{ maxWidth: 960 }}>
+      <Helmet>
+        <title>Free FAA Study Materials — Handbooks, ACS &amp; Supplements | FAAExaminations.com</title>
+        <meta name="description" content="All official FAA study materials in one place: Pilot's Handbook of Aeronautical Knowledge, Instrument Flying Handbook, ACS standards, testing supplements, and performance charts. Free for student pilots." />
+        <link rel="canonical" href="https://www.faaexaminations.com/references" />
+        <meta property="og:title" content="Free FAA Study Materials — Handbooks, ACS &amp; Supplements" />
+        <meta property="og:description" content="Every official FAA handbook, ACS standard, and testing supplement you need to pass your written exam — all free, all in one place." />
+        <meta property="og:url" content="https://www.faaexaminations.com/references" />
+      </Helmet>
       <h1>Free FAA Study References</h1>
       <p style={{ color: 'var(--text2)', marginBottom: 32, lineHeight: 1.7, fontSize: '1.05rem' }}>
         Every official FAA handbook, Airman Certification Standard (ACS), and testing supplement
@@ -135,7 +144,7 @@ export default function References() {
 
       {SECTIONS.map((section) => (
         <div key={section.title} className="card" style={{ marginBottom: 24 }}>
-          <div className="card-title">{section.title}</div>
+          <h2 className="card-title" style={{ fontSize: '1rem', margin: 0 }}>{section.title}</h2>
           <p style={{ color: 'var(--text2)', marginBottom: 16, lineHeight: 1.6 }}>
             {section.description}
           </p>

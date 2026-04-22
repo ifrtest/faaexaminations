@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { Helmet } from 'react-helmet-async';
 
 export default function Register() {
   const { register } = useAuth();
@@ -31,6 +32,10 @@ export default function Register() {
 
   return (
     <div className="container page center-col">
+      <Helmet>
+        <title>Create Your Account | FAAExaminations.com</title>
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
       <div className="card auth-card">
         <h2>Create your account</h2>
         <p className="sub">Free forever. No card needed.</p>

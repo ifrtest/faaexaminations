@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 export default function CancelPolicy() {
   const { user } = useAuth();
@@ -35,6 +36,10 @@ export default function CancelPolicy() {
 
   return (
     <div className="container page" style={{ maxWidth: 760 }}>
+      <Helmet>
+        <title>Cancellation &amp; Refund Policy | FAAExaminations.com</title>
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
       <h1>Cancellation &amp; Refund Policy</h1>
       <p style={{ color: 'var(--text2)', marginBottom: 32 }}>
         Last updated: April 2026

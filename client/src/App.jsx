@@ -1,5 +1,5 @@
 // client/src/App.jsx
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { ProtectedRoute, AdminRoute } from './components/ProtectedRoute';
@@ -25,6 +25,7 @@ import AdminQuestions from './pages/admin/AdminQuestions';
 import AdminEditor    from './pages/admin/AdminEditor';
 import AdminUsers     from './pages/admin/AdminUsers';
 import AdminFigures   from './pages/admin/AdminFigures';
+import NotFound       from './pages/NotFound';
 
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
@@ -67,8 +68,8 @@ export default function App() {
             <Route path="figures"       element={<AdminFigures />} />
           </Route>
 
-          {/* Fallback */}
-          <Route path="*" element={<Navigate to="/" replace />} />
+          {/* 404 */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       {!isLanding && <Footer />}
