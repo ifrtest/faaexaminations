@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
-const HERO_IMAGES = ['/plane-pass.webp', '/plane-hero-2.jpg', '/plane-hero.jpeg'];
+const HERO_IMAGES = ['/plane-pass.webp', '/plane-hero-2.jpg', '/plane-hero-3.jpg', '/plane-hero.jpeg'];
 
 export default function Landing() {
   const { user } = useAuth();
