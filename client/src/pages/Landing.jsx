@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
-const HERO_IMAGES = ['/plane-hero-4.jpg', '/plane-hero-2.jpg', '/plane-hero-3.jpg', '/plane-hero.jpeg'];
+const HERO_IMAGES = ['/plane-hero-4.jpg', '/plane-hero-2.jpg', '/plane-hero-3.jpg', '/plane-hero-5.jpg'];
 
 export default function Landing() {
   const { user } = useAuth();
@@ -100,7 +100,7 @@ export default function Landing() {
             <div className="lp-product-card">
               <div className="lp-product-img">
                 <img src="/plane-par.jpg" alt="Private Pilot" />
-                <div className="lp-product-img-overlay"><span className="lp-product-tag">PAR</span></div>
+                <div className="lp-product-img-overlay" />
               </div>
               <div className="lp-product-body">
                 <div className="lp-product-name">Private Pilot Package</div>
@@ -122,7 +122,7 @@ export default function Landing() {
             <div className="lp-product-card">
               <div className="lp-product-img">
                 <img src="/plane-ira.jpg" alt="Instrument Rating" />
-                <div className="lp-product-img-overlay"><span className="lp-product-tag">IRA</span></div>
+                <div className="lp-product-img-overlay" />
               </div>
               <div className="lp-product-body">
                 <div className="lp-product-name">Instrument Rating Package</div>
@@ -144,7 +144,7 @@ export default function Landing() {
             <div className="lp-product-card">
               <div className="lp-product-img">
                 <img src="/plane-cax.jpg" alt="Commercial Pilot" />
-                <div className="lp-product-img-overlay"><span className="lp-product-tag">CAX</span></div>
+                <div className="lp-product-img-overlay" />
               </div>
               <div className="lp-product-body">
                 <div className="lp-product-name">Commercial Pilot Package</div>
@@ -166,7 +166,7 @@ export default function Landing() {
             <div className="lp-product-card lp-featured lp-product-bundle">
               <div className="lp-product-img">
                 <img src="/plane-bundle.jpg" alt="Bundle" />
-                <div className="lp-product-img-overlay"><span className="lp-product-tag">BEST VALUE</span></div>
+                <div className="lp-product-img-overlay" />
               </div>
               <div className="lp-product-body">
                 <div className="lp-product-name">All 3 Exams Bundle</div>
@@ -189,7 +189,7 @@ export default function Landing() {
             <div className="lp-product-card">
               <div className="lp-product-img">
                 <img src="/drone-part107.png" alt="Part 107 Remote Pilot" />
-                <div className="lp-product-img-overlay"><span className="lp-product-tag">UAG</span></div>
+                <div className="lp-product-img-overlay" />
               </div>
               <div className="lp-product-body">
                 <div className="lp-product-name">Part 107 Remote Pilot Package</div>
@@ -209,16 +209,9 @@ export default function Landing() {
             </div>
 
             <div className="lp-product-card" style={{ position: 'relative' }}>
-              <div style={{
-                position: 'absolute', top: 16, right: 16, zIndex: 10,
-                background: 'linear-gradient(135deg,#F7C948,#D4A017)',
-                color: '#0B3D91', fontWeight: 800, fontSize: '.8rem',
-                padding: '4px 14px', borderRadius: 999, letterSpacing: '.05em',
-                boxShadow: '0 2px 8px rgba(247,201,72,.4)',
-              }}>FREE</div>
               <div className="lp-product-img">
                 <img src="/drone-trust.png" alt="TRUST Recreational Safety Test" />
-                <div className="lp-product-img-overlay"><span className="lp-product-tag">TRUST</span></div>
+                <div className="lp-product-img-overlay" />
               </div>
               <div className="lp-product-body">
                 <div className="lp-product-name">TRUST Recreational Safety Test</div>
