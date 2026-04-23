@@ -183,10 +183,12 @@ export default function Landing() {
                   <li>Progress dashboard &amp; tracking</li>
                   <li>Best value — save vs. individual</li>
                 </ul>
-                <div className="lp-product-price">$39.99
-                  <span style={{ fontSize: 13, fontWeight: 400, color: '#16A34A', marginLeft: 10, background: 'rgba(22,163,74,0.12)', padding: '3px 10px', borderRadius: 20 }}>Save $35/month</span>
+                <div className="lp-product-price" style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+                  <span style={{ textDecoration: 'line-through', opacity: 0.45, fontSize: '1.2rem' }}>$74.97</span>
+                  $39.99
+                  <span style={{ fontSize: 13, fontWeight: 400, color: '#16A34A', background: 'rgba(22,163,74,0.12)', padding: '3px 10px', borderRadius: 20 }}>Save $35/month</span>
                 </div>
-                <div className="lp-product-price-sub">Per month · Cancel anytime · $74.97 if bought separately</div>
+                <div className="lp-product-price-sub">Per month · Cancel anytime</div>
                 <Link to="/register" className="lp-btn-product lp-btn-product-primary">Get Bundle Access →</Link>
               </div>
             </div>
