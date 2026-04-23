@@ -85,16 +85,20 @@ exports.startSession = async (req, res, next) => {
     // Free exams — accessible to all registered users, no subscription needed
     const FREE_EXAM_CODES = ['TRUST'];
     if (!FREE_EXAM_CODES.includes(exam.code)) {
-      // Subscription access check
-      const { rows: userRows } = await db.query(
-        'SELECT subscription_status, subscription_price_id FROM users WHERE id=$1',
-        [req.user.id]
-      );
-      const user = userRows[0];
-      const PRICE_EXAMS = require('../routes/stripe').PRICE_EXAMS;
-      const allowedExamIds = PRICE_EXAMS[user?.subscription_price_id] || [];
-      if (user?.subscription_status !== 'active' || !allowedExamIds.includes(exam.id)) {
-        return res.status(403).json({ error: 'A subscription is required to access this exam.' });
+      // Admins and "all" subscribers bypass price-ID gating
+      const isUnlimited = req.user.role === 'admin' || req.user.subscription === 'all';
+      if (!isUnlimited) {
+        // Subscription access check
+        const { rows: userRows } = await db.query(
+          'SELECT subscription_status, subscription_price_id FROM users WHERE id=$1',
+          [req.user.id]
+        );
+        const user = userRows[0];
+        const PRICE_EXAMS = require('../routes/stripe').PRICE_EXAMS;
+        const allowedExamIds = PRICE_EXAMS[user?.subscription_price_id] || [];
+        if (user?.subscription_status !== 'active' || !allowedExamIds.includes(exam.id)) {
+          return res.status(403).json({ error: 'A subscription is required to access this exam.' });
+        }
       }
     }
 

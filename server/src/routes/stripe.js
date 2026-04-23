@@ -210,15 +210,17 @@ router.post('/cancel-subscription', requireAuth, async (req, res) => {
 router.get('/subscription', requireAuth, async (req, res) => {
   try {
     const userRes = await db.query(
-      'SELECT subscription_status, subscription_price_id, subscription_ends_at FROM users WHERE id = $1',
+      'SELECT subscription, subscription_status, subscription_price_id, subscription_ends_at FROM users WHERE id = $1',
       [req.user.id]
     );
     const user = userRes.rows[0];
+    // Admins and manually-granted "all" users get full plan access
+    const isUnlimited = req.user.role === 'admin' || user.subscription === 'all';
     res.json({
-      status:   user.subscription_status || 'inactive',
+      status:   isUnlimited ? 'active' : (user.subscription_status || 'inactive'),
       price_id: user.subscription_price_id,
       ends_at:  user.subscription_ends_at,
-      plan:     getPlanName(user.subscription_price_id),
+      plan:     isUnlimited ? 'all' : getPlanName(user.subscription_price_id),
     });
   } catch (err) {
     res.status(500).json({ error: 'Could not fetch subscription.' });
