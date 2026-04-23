@@ -28,7 +28,10 @@ export default function About() {
           In March 2020, my husband was days away from his first day flying for an airline. Years of training, exams, ratings, simulator hours — all of it pointed to that week. Then the world shut down and the call came. Just like that, it was gone.
         </p>
         <p style={{ marginBottom: 24 }}>
-          The months that followed were rough. Depression, uncertainty, a lot of staring at the ceiling. At some point we decided we needed to do something with our hands. I'm a web developer. He's a flight instructor who knows the FAA exam system inside out. So we started building.
+          The months that followed were rough. Depression, uncertainty, a lot of staring at the ceiling. But one thing kept coming back to us — all those years of training, every exam, every flight hour, every late night with the books. We couldn't let that just disappear. And we weren't the only ones who felt it. Student pilots who'd been flying with Ash kept reaching out, asking what he was doing, whether he was still teaching. We didn't want to let them down either.
+        </p>
+        <p style={{ marginBottom: 24 }}>
+          So we built something. I'm a web developer. He's a flight instructor who knows the FAA exam system inside out. It felt like the only way to make that chapter mean something.
         </p>
         <p style={{ marginBottom: 24 }}>
           Our first version of FAAExaminations.com was bad. We didn't know how to structure a question database, what platform to use, how to serve questions reliably. We figured it out as we went. When I started integrating AI into the platform, the whole thing finally became what we'd been trying to make from the start — accurate, clean, actually useful.
