@@ -250,7 +250,7 @@ export default function Landing() {
         <div className="lp-section-inner">
           <div className="lp-badge">FEATURES</div>
           <h2>Everything You Need to Pass</h2>
-          <p className="lp-section-sub">Built by experienced FAA instructors and commercial pilots for how pilots actually study.</p>
+          <p className="lp-section-sub">Built by experienced FAA instructors and commercial pilots for how pilots actually study. <Link to="/about" style={{ color: 'var(--lp-blue)', textDecoration: 'none' }}>Our story →</Link></p>
           <div className="lp-features-grid fade-up">
             <div className="lp-feat-card"><span className="lp-feat-icon">🧠</span><div className="lp-feat-title">3,000+ FAA Questions</div><div className="lp-feat-desc">Authentic PAR, IRA, CAX, and Part 107 questions across all study units. Every question the FAA has tested pilots on, organized by module.</div></div>
             <div className="lp-feat-card"><span className="lp-feat-icon">⏱️</span><div className="lp-feat-title">Exam Simulator</div><div className="lp-feat-desc">Timed exams matching real FAA question counts per exam type. Instant pass/fail scoring at 70%. Full review after each attempt.</div></div>
