@@ -17,7 +17,7 @@ export default function About() {
           <img
             src="/about-ash.jpg"
             alt="Ash in pilot uniform"
-            style={{ width: '100%', height: 280, objectFit: 'cover', objectPosition: 'center 15%', display: 'block' }}
+            style={{ width: '100%', height: 280, objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }}
           />
           <div style={{ textAlign: 'center', fontSize: '0.78rem', color: 'var(--text2)', opacity: 0.5, padding: '8px 0 10px' }}>Ash — Certified Flight Instructor</div>
         </div>
