@@ -4,6 +4,15 @@ export default function About() {
       <h1 style={{ marginBottom: 8 }}>About FAAExaminations.com</h1>
       <p style={{ color: 'var(--text2)', marginBottom: 48 }}>Built by pilots, for pilots.</p>
 
+      <div style={{ marginBottom: 40, borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border)', maxHeight: 400, display: 'flex', alignItems: 'center' }}>
+        <img
+          src="/about-ash-leila.jpg"
+          alt="Leila and Ash in the cockpit"
+          style={{ width: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
+        />
+      </div>
+      <p style={{ textAlign: 'center', fontSize: '0.8rem', color: 'var(--text2)', opacity: 0.5, marginTop: -32, marginBottom: 40 }}>Leila &amp; Ash — somewhere over Ontario</p>
+
       <div style={{ lineHeight: 1.85, fontSize: '1.05rem', color: 'var(--text2)' }}>
         <p style={{ marginBottom: 24 }}>
           In March 2020, my husband was days away from his first day flying for an airline. Years of training, exams, ratings, simulator hours — all of it pointed to that week. Then the world shut down and the call came. Just like that, it was gone.
