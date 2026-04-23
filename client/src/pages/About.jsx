@@ -11,7 +11,7 @@ export default function About() {
             alt="Leila and Ash in the cockpit"
             style={{ width: '100%', height: 280, objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
           />
-          <div style={{ textAlign: 'center', fontSize: '0.78rem', color: 'var(--text2)', opacity: 0.5, padding: '8px 0 10px' }}>Leila &amp; Ash — somewhere over Ontario</div>
+          <div style={{ textAlign: 'center', fontSize: '0.78rem', color: 'var(--text2)', opacity: 0.5, padding: '8px 0 10px' }}>Leila &amp; Ash</div>
         </div>
         <div style={{ borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border)' }}>
           <img
@@ -48,7 +48,7 @@ export default function About() {
           { label: 'Flight Instructor', desc: 'FAA-certified CFI behind all the content' },
           { label: 'Web Developer', desc: 'Full-stack engineer behind the platform' },
           { label: '3,000+ Questions', desc: 'Covering PAR, IRA, CAX, Part 107, and TRUST' },
-          { label: 'Built in Canada', desc: 'Remote team, FAA-focused content' },
+          { label: 'Since 2020', desc: 'Built from the ground up, continuously improved' },
         ].map(({ label, desc }) => (
           <div key={label} style={{
             background: 'var(--card)',
