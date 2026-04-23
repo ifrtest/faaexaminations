@@ -121,7 +121,7 @@ exports.startSession = async (req, res, next) => {
     if (seenIds.length > 0) {
       const unseenParams = [...baseParams, seenIds];
       const { rows } = await db.query(
-        `SELECT id FROM questions q WHERE ${baseWhere} AND q.id <> ALL($${unseenParams.length}::int[]) ORDER BY RANDOM() LIMIT ${limit}`,
+        `SELECT id FROM questions q WHERE ${baseWhere} AND q.id <> ALL($${unseenParams.length}::int[]) ORDER BY id LIMIT ${limit}`,
         unseenParams
       );
       poolRows = rows;
@@ -132,7 +132,7 @@ exports.startSession = async (req, res, next) => {
       const exclude = poolRows.map((r) => r.id);
       const topUpParams = [...baseParams, exclude.length ? exclude : [-1]];
       const { rows: topUp } = await db.query(
-        `SELECT id FROM questions q WHERE ${baseWhere} AND q.id <> ALL($${topUpParams.length}::int[]) ORDER BY RANDOM() LIMIT ${limit - poolRows.length}`,
+        `SELECT id FROM questions q WHERE ${baseWhere} AND q.id <> ALL($${topUpParams.length}::int[]) ORDER BY id LIMIT ${limit - poolRows.length}`,
         topUpParams
       );
       poolRows = [...poolRows, ...topUp];
