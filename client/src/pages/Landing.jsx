@@ -223,7 +223,7 @@ export default function Landing() {
                 <ul className="lp-product-features">
                   <li>48 recreational safety questions</li>
                   <li>Required by FAA for all hobbyists</li>
-                  <li>Covers 49 USC 44809 rules</li>
+                  <li>Covers all FAA rules for recreational drone flyers</li>
                   <li>No subscription needed</li>
                   <li>Instant access — completely free</li>
                   <li>Perfect first step for new pilots</li>
