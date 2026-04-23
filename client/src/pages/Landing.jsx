@@ -80,6 +80,9 @@ export default function Landing() {
             <Link to="/register" className="lp-btn-hero">▶ Start Free Today</Link>
             <a href="#products" className="lp-btn-outline">View Packages</a>
           </div>
+          <div style={{ fontSize: 13, color: 'var(--lp-text3)', marginTop: 14, opacity: 0.8 }}>
+            Free account includes 10 practice questions · No credit card required
+          </div>
           <div className="lp-hero-stats">
             <div><div className="lp-hs-val">3,000+</div><div className="lp-hs-lbl">Practice Questions</div></div>
             <div><div className="lp-hs-val">5</div><div className="lp-hs-lbl">Exam Types</div></div>
