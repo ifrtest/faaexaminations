@@ -4,14 +4,24 @@ export default function About() {
       <h1 style={{ marginBottom: 8 }}>About FAAExaminations.com</h1>
       <p style={{ color: 'var(--text2)', marginBottom: 48 }}>Built by pilots, for pilots.</p>
 
-      <div style={{ marginBottom: 40, borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border)', maxHeight: 400, display: 'flex', alignItems: 'center' }}>
-        <img
-          src="/about-ash-leila.jpg"
-          alt="Leila and Ash in the cockpit"
-          style={{ width: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
-        />
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 40 }}>
+        <div style={{ borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border)' }}>
+          <img
+            src="/about-ash-leila.jpg"
+            alt="Leila and Ash in the cockpit"
+            style={{ width: '100%', height: 280, objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
+          />
+          <div style={{ textAlign: 'center', fontSize: '0.78rem', color: 'var(--text2)', opacity: 0.5, padding: '8px 0 10px' }}>Leila &amp; Ash — somewhere over Ontario</div>
+        </div>
+        <div style={{ borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border)' }}>
+          <img
+            src="/about-ash.jpg"
+            alt="Ash in pilot uniform"
+            style={{ width: '100%', height: 280, objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
+          />
+          <div style={{ textAlign: 'center', fontSize: '0.78rem', color: 'var(--text2)', opacity: 0.5, padding: '8px 0 10px' }}>Ash — Certified Flight Instructor</div>
+        </div>
       </div>
-      <p style={{ textAlign: 'center', fontSize: '0.8rem', color: 'var(--text2)', opacity: 0.5, marginTop: -32, marginBottom: 40 }}>Leila &amp; Ash — somewhere over Ontario</p>
 
       <div style={{ lineHeight: 1.85, fontSize: '1.05rem', color: 'var(--text2)' }}>
         <p style={{ marginBottom: 24 }}>
