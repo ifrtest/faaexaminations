@@ -25,19 +25,19 @@ export default function About() {
 
       <div style={{ lineHeight: 1.85, fontSize: '1.05rem', color: 'var(--text2)' }}>
         <p style={{ marginBottom: 24 }}>
-          In March 2020, my husband was days away from his first day flying for an airline. Years of training, exams, ratings, simulator hours — all of it pointed to that week. Then the world shut down and the call came. Just like that, it was gone.
+          In March 2020, Ash was days away from his first day flying for an airline. Years of exams, ratings, simulator hours, early mornings — all of it was supposed to finally pay off that week. Then the world shut down. The call came. Just like that, it was gone.
         </p>
         <p style={{ marginBottom: 24 }}>
-          The months that followed were rough. Depression, uncertainty, a lot of staring at the ceiling. But one thing kept coming back to us — all those years of training, every exam, every flight hour, every late night with the books. We couldn't let that just disappear. And we weren't the only ones who felt it. Student pilots who'd been flying with Ash kept reaching out, asking what he was doing, whether he was still teaching. We didn't want to let them down either.
+          The months that followed were genuinely hard. Depression, a lot of uncertainty, a lot of not knowing what to do with yourself when the thing you'd worked toward just disappears. But we kept coming back to the same question: were we really going to let all of that mean nothing? Every exam, every flight hour, every night with the books.
         </p>
         <p style={{ marginBottom: 24 }}>
-          So we built something. I'm a web developer. He's a flight instructor who knows the FAA exam system inside out. It felt like the only way to make that chapter mean something.
+          It wasn't just us asking either. Student pilots who'd been training with Ash kept reaching out. Checking in. Asking if he was still teaching, what we were doing. We didn't want to let them down on top of everything else.
         </p>
         <p style={{ marginBottom: 24 }}>
-          Our first version of FAAExaminations.com was bad. We didn't know how to structure a question database, what platform to use, how to serve questions reliably. We figured it out as we went. When I started integrating AI into the platform, the whole thing finally became what we'd been trying to make from the start — accurate, clean, actually useful.
+          So we started building. I'm a web developer. Ash is a flight instructor who knows the FAA exam system cold. Our first version was bad — genuinely bad. We didn't know how to structure a question database, which platform to use, how to stop things from falling apart. We figured it out anyway. When I started integrating AI into the platform, it finally became what we'd been trying to make the whole time.
         </p>
         <p style={{ marginBottom: 48 }}>
-          We've gone through every FAA exam prep site we could find. We haven't found one we think is better. The students who write us after they pass — that's what makes it worth it.
+          We've been through every FAA exam prep site out there. We haven't found one we think is better. And when students email us after they pass their test — that's why we built it.
         </p>
       </div>
 
