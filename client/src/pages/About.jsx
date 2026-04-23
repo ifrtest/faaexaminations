@@ -25,19 +25,22 @@ export default function About() {
 
       <div style={{ lineHeight: 1.85, fontSize: '1.05rem', color: 'var(--text2)' }}>
         <p style={{ marginBottom: 24 }}>
-          In March 2020, Ash was days away from his first day flying for an airline. Years of exams, ratings, simulator hours, early mornings — all of it was supposed to finally pay off that week. Then the world shut down. The call came. Just like that, it was gone.
+          In March 2020, Ash was just days away from starting his first airline job. Years of exams, ratings, simulator hours, and early mornings had all led to that moment. Then the world shut down — and just like that, the opportunity was gone.
         </p>
         <p style={{ marginBottom: 24 }}>
-          The months that followed were genuinely hard. Depression, a lot of uncertainty, a lot of not knowing what to do with yourself when the thing you'd worked toward just disappears. But we kept coming back to the same question: were we really going to let all of that mean nothing? Every exam, every flight hour, every night with the books.
+          What followed was a difficult stretch. A lot of uncertainty, a lot of questions, and the challenge of figuring out what comes next when everything you've worked toward suddenly disappears. But one thought kept coming back: was all of that effort really going to lead nowhere?
         </p>
         <p style={{ marginBottom: 24 }}>
-          It wasn't just us asking either. Student pilots who'd been training with Ash kept reaching out. Checking in. Asking if he was still teaching, what we were doing. We didn't want to let them down on top of everything else.
+          Around the same time, student pilots Ash had trained began reaching out — checking in, asking if he was still teaching, looking for guidance. It became clear that stepping away wasn't really an option.
         </p>
         <p style={{ marginBottom: 24 }}>
-          So we started building. I'm a web developer. Ash is a flight instructor who knows the FAA exam system cold. Our first version was a challenge — we didn't know how to structure a question database, which platform to use, how to stop things from falling apart. We figured it out anyway. When I started integrating AI into the platform, it finally became what we'd been trying to make the whole time.
+          So we started building. I'm a web developer, and Ash is a flight instructor with deep expertise in the FAA exam system. Our first version wasn't great — we were figuring everything out from scratch: how to structure a question bank, what platform to use, how to make it all actually work. But we kept improving it. When we began integrating AI to explain questions and support students, it finally became what we had originally set out to create.
+        </p>
+        <p style={{ marginBottom: 24 }}>
+          We've used nearly every FAA exam prep resource out there, and we built this to be better — simpler, clearer, and more effective.
         </p>
         <p style={{ marginBottom: 48 }}>
-          We've been through every FAA exam prep site out there. We haven't found one we think is better. And when students email us after they pass their test — that's why we built it.
+          The real validation comes from students who come back and tell us they passed. That's why we do this.
         </p>
       </div>
 
