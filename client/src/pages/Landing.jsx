@@ -152,7 +152,7 @@ export default function Landing() {
               </div>
               <div className="lp-product-body">
                 <div className="lp-product-name">Commercial Pilot Package</div>
-                <div className="lp-product-desc">Targeted prep for the FAA Commercial Pilot Airman Knowledge Test (CAX). FARs, performance, and advanced operations.</div>
+                <div className="lp-product-desc">Targeted prep for the FAA Commercial Pilot Airman Knowledge Test (CAX). 14 CFR regulations, performance, and advanced operations.</div>
                 <ul className="lp-product-features">
                   <li>536 Commercial Pilot questions</li>
                   <li>11 categorized study modules</li>
