@@ -34,7 +34,7 @@ export default function About() {
           It wasn't just us asking either. Student pilots who'd been training with Ash kept reaching out. Checking in. Asking if he was still teaching, what we were doing. We didn't want to let them down on top of everything else.
         </p>
         <p style={{ marginBottom: 24 }}>
-          So we started building. I'm a web developer. Ash is a flight instructor who knows the FAA exam system cold. Our first version was bad — genuinely bad. We didn't know how to structure a question database, which platform to use, how to stop things from falling apart. We figured it out anyway. When I started integrating AI into the platform, it finally became what we'd been trying to make the whole time.
+          So we started building. I'm a web developer. Ash is a flight instructor who knows the FAA exam system cold. Our first version was a challenge — we didn't know how to structure a question database, which platform to use, how to stop things from falling apart. We figured it out anyway. When I started integrating AI into the platform, it finally became what we'd been trying to make the whole time.
         </p>
         <p style={{ marginBottom: 48 }}>
           We've been through every FAA exam prep site out there. We haven't found one we think is better. And when students email us after they pass their test — that's why we built it.
