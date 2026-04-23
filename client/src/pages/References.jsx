@@ -75,6 +75,18 @@ const SECTIONS = [
     description: 'Official FAA reference booklets — these are the exact figures and charts used on your real FAA written exam.',
     items: [
       {
+        name: 'Private Pilot (PAR) — Airman Knowledge Testing Supplement',
+        file: 'https://www.faa.gov/sites/faa.gov/files/training_testing/testing/supplements/sport_rec_private_akts.pdf',
+        note: 'Figures and charts for Private Pilot exam',
+        external: true,
+      },
+      {
+        name: 'Commercial Pilot (CAX) — Airman Knowledge Testing Supplement',
+        file: 'https://www.faa.gov/sites/faa.gov/files/training_testing/testing/supplements/commercial_akts.pdf',
+        note: 'Figures and charts for Commercial Pilot exam',
+        external: true,
+      },
+      {
         name: 'Instrument Rating (IRA) — Airman Knowledge Testing Supplement',
         file: '/references/instrument_rating_akts.pdf',
         note: 'Figures and charts for IRA exam',
