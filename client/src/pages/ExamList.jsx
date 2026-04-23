@@ -39,7 +39,7 @@ export default function ExamList() {
   const [topics, setTopics]     = useState([]);
   const [mode, setMode]         = useState('exam');
   const [topicId, setTopicId]   = useState('');
-  const [numQ, setNumQ]         = useState(60);
+  const [numQ, setNumQ]         = useState(200);
   const [err, setErr]           = useState('');
   const [starting, setStarting] = useState(false);
   const [subscription, setSubscription] = useState(null);

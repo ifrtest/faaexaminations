@@ -29,6 +29,7 @@ exports.listTopics = async (req, res, next) => {
       JOIN exams e ON e.id=t.exam_id
       WHERE e.code=$1
         AND t.name !~ '^[0-9]'
+        AND (SELECT COUNT(*) FROM questions q WHERE q.topic_id=t.id AND q.is_active) > 0
       ORDER BY
         CASE WHEN t.name ~ '^Topic ([0-9]+)' THEN 0
              WHEN t.name ~ '^Appendix'       THEN 1

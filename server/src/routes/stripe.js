@@ -22,7 +22,7 @@ const PRICE_EXAMS = {
   [process.env.STRIPE_PRICE_IRA]:    [2],
   [process.env.STRIPE_PRICE_CAX]:    [3],
   [process.env.STRIPE_PRICE_UAG]:    [4],
-  [process.env.STRIPE_PRICE_BUNDLE]: [1, 2, 3],
+  [process.env.STRIPE_PRICE_BUNDLE]: [1, 2, 3, 4],
 };
 
 // POST /api/stripe/checkout
