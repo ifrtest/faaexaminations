@@ -26,6 +26,8 @@ export default function Footer() {
           <Link to="/references" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Free FAA References</Link>
           <Link to="/blog" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Blog</Link>
           <Link to="/cancel-policy" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Cancellation &amp; Refund Policy</Link>
+          <Link to="/privacy" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Privacy Policy</Link>
+          <Link to="/terms" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Terms of Service</Link>
           <a href="mailto:support@faaexaminations.com" style={{ color: 'var(--text2)', fontSize: '.85rem' }}>support@faaexaminations.com</a>
         </div>
         <div>
@@ -49,7 +51,7 @@ export default function Footer() {
           <span>Designed by <a href="https://websitework.ca" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text2)' }}>websitework.ca</a></span>
           <span style={{ opacity: 0.4 }}>·</span>
           <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-            Our Canadian Partner
+            Canadian pilots:
             <img src="/maple-leaf.png" alt="🍁" style={{ width: 12, height: 12 }} />
             <a href="https://ifrtest.ca" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text2)' }}>ifrtest.ca</a>
           </span>

@@ -16,8 +16,10 @@ import QuizRunner  from './pages/QuizRunner';
 import Result      from './pages/Result';
 import History     from './pages/History';
 import Profile      from './pages/Profile';
-import CancelPolicy from './pages/CancelPolicy';
-import References   from './pages/References';
+import CancelPolicy  from './pages/CancelPolicy';
+import References    from './pages/References';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 
 import AdminLayout    from './pages/admin/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -57,6 +59,8 @@ export default function App() {
           <Route path="/profile"        element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path="/cancel-policy"  element={<CancelPolicy />} />
           <Route path="/references"     element={<References />} />
+          <Route path="/privacy"        element={<PrivacyPolicy />} />
+          <Route path="/terms"          element={<TermsOfService />} />
           <Route path="/blog"           element={<Blog />} />
           <Route path="/blog/:slug"     element={<BlogPost />} />
 

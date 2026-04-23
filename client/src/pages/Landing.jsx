@@ -73,7 +73,7 @@ export default function Landing() {
           <div className="lp-hero-badge">✈ FAA KNOWLEDGE TEST PREP · 2026 UPDATED</div>
           <h1>Pass Your <span className="lp-accent">FAA Written</span><br />Exam First Try</h1>
           <p className="lp-hero-sub">
-            3,000+ authentic FAA practice questions for Private Pilot, Instrument Rating, Commercial Pilot, Part 107 Remote Pilot, and the free TRUST recreational safety test.
+            3,000+ authentic FAA practice questions for Private Pilot, Instrument Rating, and Commercial Pilot certificates — plus Part 107 Remote Pilot and the free TRUST recreational safety test.
             Timed exam simulator, full explanations, and AI instructor support — everything you need to pass.
           </p>
           <div className="lp-hero-btns">
@@ -83,7 +83,7 @@ export default function Landing() {
           <div className="lp-hero-stats">
             <div><div className="lp-hs-val">3,000+</div><div className="lp-hs-lbl">Practice Questions</div></div>
             <div><div className="lp-hs-val">5</div><div className="lp-hs-lbl">Exam Types</div></div>
-            <div><div className="lp-hs-val">95%</div><div className="lp-hs-lbl">Pass Rate</div></div>
+            <div><div className="lp-hs-val">AI</div><div className="lp-hs-lbl">Instructor Included</div></div>
             <div><div className="lp-hs-val">FAA</div><div className="lp-hs-lbl">Compliant 2026</div></div>
           </div>
         </div>
@@ -153,7 +153,7 @@ export default function Landing() {
                   <li>536 Commercial Pilot questions</li>
                   <li>11 categorized study modules</li>
                   <li>Timed exam simulator</li>
-                  <li>Full FAR references included</li>
+                  <li>Full 14 CFR references included</li>
                   <li>AI Instructor explanations</li>
                   <li>FAA compliant · 2026 updated</li>
                 </ul>
@@ -169,10 +169,10 @@ export default function Landing() {
                 <div className="lp-product-img-overlay" />
               </div>
               <div className="lp-product-body">
-                <div className="lp-product-name">All 3 Exams Bundle</div>
-                <div className="lp-product-desc">Full access to PAR, IRA, and CAX. Perfect for instructors, license converters, and career-track pilots.</div>
+                <div className="lp-product-name">Pilot Certificate Bundle — PAR + IRA + CAX</div>
+                <div className="lp-product-desc">Full access to all three pilot certificate exams. Perfect for instructors, license converters, and career-track pilots.</div>
                 <ul className="lp-product-features">
-                  <li>2,826 total practice questions</li>
+                  <li>2,826 PAR + IRA + CAX questions</li>
                   <li>All PAR, IRA &amp; CAX modules</li>
                   <li>AI Instructor explanations</li>
                   <li>Timed exam simulator</li>
@@ -232,7 +232,7 @@ export default function Landing() {
 
           </div>
           <div style={{ textAlign: 'center', marginTop: 22, fontSize: 14, color: 'var(--lp-text3)' }}>
-            All packages include a pass guarantee. Questions? <a href="mailto:support@faaexaminations.com" style={{ color: 'var(--lp-blue)', textDecoration: 'none' }}>Contact us</a>
+            Questions about a package? <a href="mailto:support@faaexaminations.com" style={{ color: 'var(--lp-blue)', textDecoration: 'none' }}>Contact us</a>
           </div>
         </div>
       </section>
@@ -244,8 +244,8 @@ export default function Landing() {
           <h2>Everything You Need to Pass</h2>
           <p className="lp-section-sub">Built by experienced FAA instructors and commercial pilots for how pilots actually study.</p>
           <div className="lp-features-grid fade-up">
-            <div className="lp-feat-card"><span className="lp-feat-icon">🧠</span><div className="lp-feat-title">2,826 FAA Questions</div><div className="lp-feat-desc">Authentic PAR, IRA, and CAX questions across all study units. Every question the FAA has tested pilots on, organized by module.</div></div>
-            <div className="lp-feat-card"><span className="lp-feat-icon">⏱️</span><div className="lp-feat-title">Exam Simulator</div><div className="lp-feat-desc">Timed 60-question exams matching real FAA conditions. Instant pass/fail scoring at 70%. Full review after each attempt.</div></div>
+            <div className="lp-feat-card"><span className="lp-feat-icon">🧠</span><div className="lp-feat-title">3,000+ FAA Questions</div><div className="lp-feat-desc">Authentic PAR, IRA, CAX, and Part 107 questions across all study units. Every question the FAA has tested pilots on, organized by module.</div></div>
+            <div className="lp-feat-card"><span className="lp-feat-icon">⏱️</span><div className="lp-feat-title">Exam Simulator</div><div className="lp-feat-desc">Timed exams matching real FAA question counts per exam type. Instant pass/fail scoring at 70%. Full review after each attempt.</div></div>
             <div className="lp-feat-card"><span className="lp-feat-icon">💡</span><div className="lp-feat-title">Full Explanations</div><div className="lp-feat-desc">Every question includes a detailed explanation with the specific FAA regulation or handbook reference.</div></div>
             <div className="lp-feat-card"><span className="lp-feat-icon">🤖</span><div className="lp-feat-title">AI Instructor Mode</div><div className="lp-feat-desc">Get a real-world breakdown of any question — why the answer is correct, a practical scenario, and a memory tip.</div></div>
             <div className="lp-feat-card"><span className="lp-feat-icon">📊</span><div className="lp-feat-title">Progress Dashboard</div><div className="lp-feat-desc">Visual readiness gauge, category performance tracking, exam history, and activity heatmap to guide your prep.</div></div>
@@ -259,7 +259,7 @@ export default function Landing() {
         <div className="lp-section-inner" style={{ textAlign: 'center' }}>
           <div className="lp-badge">HOW IT WORKS</div>
           <h2>Three Steps to Exam Success</h2>
-          <p className="lp-section-sub" style={{ margin: '0 auto' }}>A proven path used by thousands of student pilots across North America.</p>
+          <p className="lp-section-sub" style={{ margin: '0 auto' }}>A straightforward path used by student pilots working toward their FAA certificate.</p>
           <div className="lp-steps fade-up">
             <div className="lp-step">
               <div className="lp-step-num">01</div>
@@ -270,7 +270,7 @@ export default function Landing() {
             <div className="lp-step">
               <div className="lp-step-num">02</div>
               <div className="lp-step-title">Work Through the Modules</div>
-              <p className="lp-step-desc">11 categorized modules per exam, 40 questions each. Track weak areas and use AI Instructor to master tough concepts.</p>
+              <p className="lp-step-desc">Categorized modules covering every topic on your exam. Track weak areas and use AI Instructor to master tough concepts.</p>
               <img src="/plane-hero.jpeg" alt="Study modules" className="lp-step-img" />
             </div>
             <div className="lp-step">
@@ -297,13 +297,54 @@ export default function Landing() {
             <div className="lp-testi">
               <div className="lp-t-stars">★★★★★</div>
               <p className="lp-t-quote">"As a flight instructor, it's crucial that my students are fully prepared. The quiz bundles from faaexaminations.com are the best study tools we've found. Comprehensive, easy to use, and accurate."</p>
-              <div className="lp-t-author"><div className="lp-t-avatar">SM</div><div><div className="lp-t-name">Sarah M.</div><div className="lp-t-title-sub">Private Pilot, KDEN</div></div></div>
+              <div className="lp-t-author"><div className="lp-t-avatar">SM</div><div><div className="lp-t-name">Sarah M.</div><div className="lp-t-title-sub">Certified Flight Instructor, KDEN</div></div></div>
             </div>
             <div className="lp-testi">
               <div className="lp-t-stars">★★★★★</div>
               <p className="lp-t-quote">"Switching my license to FAA was daunting, but this quiz bundle made all the difference. The modules cover everything systematically and the explanations are clear. Highly recommend!"</p>
               <div className="lp-t-author"><div className="lp-t-avatar">RT</div><div><div className="lp-t-name">Robert T.</div><div className="lp-t-title-sub">License Converter, KLAX</div></div></div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section style={{ padding: '90px 40px', background: 'var(--lp-bg2, #0b1520)' }}>
+        <div className="lp-section-inner" style={{ maxWidth: 760 }}>
+          <div className="lp-badge">FAQ</div>
+          <h2 style={{ marginBottom: 40 }}>Common Questions</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+            {[
+              {
+                q: 'Are these the real FAA questions?',
+                a: 'Our question bank is sourced from official FAA Airman Knowledge Test materials and study guides. The FAA does not publicly release its exact active question pool, but our questions are drawn from the same source materials used by every major FAA test prep provider.',
+              },
+              {
+                q: 'What\'s actually free? Do I need a credit card to sign up?',
+                a: 'No credit card required to create an account. Free accounts include a 10-question Private Pilot (PAR) sample in Study Mode and full access to the TRUST recreational drone safety test. Full exam access (all modules, full question pools, exam simulator) requires a paid subscription.',
+              },
+              {
+                q: 'What\'s included in each package?',
+                a: 'Each individual package (PAR, IRA, CAX, or Part 107) gives you full access to that exam\'s complete question pool, all study modules, the timed exam simulator, and AI Instructor support. The Pilot Certificate Bundle gives you PAR + IRA + CAX at a discounted combined price.',
+              },
+              {
+                q: 'Can I cancel anytime?',
+                a: 'Yes. Cancel anytime from your account settings — no penalties, no questions asked. You keep access until the end of your current billing period. See our full Cancellation & Refund Policy for details.',
+              },
+              {
+                q: 'Is this updated for 2026?',
+                a: 'Yes. Our question bank reflects current FAA regulations and ACS (Airman Certification Standards) requirements as of 2026. We update content when the FAA revises its testing standards.',
+              },
+              {
+                q: 'Does this work for the Commercial Pilot (CAX) exam?',
+                a: 'Yes. The Commercial Pilot package covers all topics on the FAA Commercial Pilot Airplane (CAX) Airman Knowledge Test, including 14 CFR Part 91/119/135 operations, performance, advanced weather, and navigation.',
+              },
+            ].map(({ q, a }) => (
+              <div key={q} style={{ borderBottom: '1px solid var(--lp-border, #1e2d3d)', paddingBottom: 24 }}>
+                <div style={{ fontWeight: 700, fontSize: '1rem', marginBottom: 8, color: '#fff' }}>{q}</div>
+                <div style={{ color: 'var(--lp-text2)', lineHeight: 1.7, fontSize: '.95rem' }}>{a}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -317,7 +358,7 @@ export default function Landing() {
           <div className="lp-badge">GET STARTED</div>
           <h2>Ready to Pass Your FAA Exam?</h2>
           <p style={{ fontSize: 16, color: 'var(--lp-text2)', marginBottom: 36, maxWidth: 500, marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.7 }}>
-            Join thousands of student pilots who prepared with FAAExaminations.com. Create your free account today.
+            Join student pilots across North America who are preparing with FAAExaminations.com. Create your free account today.
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/register" className="lp-btn-hero">▶ Create Free Account</Link>
@@ -337,6 +378,8 @@ export default function Landing() {
           <a href="#features" className="lp-footer-link">Features</a>
           <Link to="/references" className="lp-footer-link">Free FAA References</Link>
           <Link to="/blog" className="lp-footer-link">Blog</Link>
+          <Link to="/privacy" className="lp-footer-link">Privacy Policy</Link>
+          <Link to="/terms" className="lp-footer-link">Terms of Service</Link>
           <a href="mailto:support@faaexaminations.com" className="lp-footer-link">Contact</a>
         </div>
         <div className="lp-footer-copy">© 2026 FAAExaminations.com · Not affiliated with the FAA · For educational purposes only</div>
@@ -355,7 +398,7 @@ export default function Landing() {
           <span>Designed by <a href="https://websitework.ca" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--lp-text3)' }}>websitework.ca</a></span>
           <span style={{ opacity: 0.4 }}>·</span>
           <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-            Our Canadian Partner
+            Canadian pilots:
             <img src="/maple-leaf.png" alt="🍁" style={{ width: 12, height: 12 }} />
             <a href="https://ifrtest.ca" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--lp-text3)' }}>ifrtest.ca</a>
           </span>
