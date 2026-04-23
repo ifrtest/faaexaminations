@@ -20,6 +20,7 @@ import CancelPolicy  from './pages/CancelPolicy';
 import References    from './pages/References';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
+import About from './pages/About';
 
 import AdminLayout    from './pages/admin/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -61,6 +62,7 @@ export default function App() {
           <Route path="/references"     element={<References />} />
           <Route path="/privacy"        element={<PrivacyPolicy />} />
           <Route path="/terms"          element={<TermsOfService />} />
+          <Route path="/about"          element={<About />} />
           <Route path="/blog"           element={<Blog />} />
           <Route path="/blog/:slug"     element={<BlogPost />} />
 

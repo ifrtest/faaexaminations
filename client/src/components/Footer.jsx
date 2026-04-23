@@ -25,6 +25,7 @@ export default function Footer() {
           <Link to="/dashboard" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Dashboard</Link>
           <Link to="/references" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Free FAA References</Link>
           <Link to="/blog" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Blog</Link>
+          <Link to="/about" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>About</Link>
           <Link to="/cancel-policy" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Cancellation &amp; Refund Policy</Link>
           <Link to="/privacy" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Privacy Policy</Link>
           <Link to="/terms" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Terms of Service</Link>
