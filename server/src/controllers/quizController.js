@@ -145,7 +145,7 @@ exports.startSession = async (req, res, next) => {
 
     if (!poolRows.length) return res.status(400).json({ error: 'No questions available' });
 
-    const question_ids = poolRows.map((r) => r.id);
+    const question_ids = shuffle(poolRows.map((r) => r.id));
     const resolvedLimit = mode === 'exam'
       ? (parseInt(time_limit, 10) || exam.time_limit)
       : 0;
