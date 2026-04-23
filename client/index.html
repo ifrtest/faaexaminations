@@ -12,7 +12,13 @@
     <title>FAAExaminations.com — FAA Practice Exams for Student Pilots</title>
     <meta name="description" content="FAA written test prep for Private Pilot, Instrument Rating &amp; Commercial Pilot. 2,826 practice questions, timed simulator, AI Instructor. Pass first try." />
     <meta name="keywords" content="FAA practice exam, FAA written test, private pilot exam, instrument rating exam, commercial pilot exam, PAR test prep, IRA test prep, CAX test prep, airman knowledge test" />
-    <link rel="canonical" href="https://www.faaexaminations.com/" />
+    <script>
+      (function() {
+        var c = document.querySelector('link[rel="canonical"]');
+        if (!c) { c = document.createElement('link'); c.rel = 'canonical'; document.head.appendChild(c); }
+        c.href = 'https://www.faaexaminations.com' + window.location.pathname;
+      })();
+    </script>
     <meta name="robots" content="index, follow" />
     <meta name="language" content="en-US" />
 
