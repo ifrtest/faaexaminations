@@ -40,7 +40,7 @@ export default function ExamList() {
   const [exams, setExams]       = useState([]);
   const [selected, setSelected] = useState(params.get('exam') || null);
   const [topics, setTopics]     = useState([]);
-  const [mode, setMode]         = useState('exam');
+  const [mode, setMode]         = useState('study');
   const [topicId, setTopicId]   = useState('');
   const [numQ, setNumQ]         = useState(200);
   const [err, setErr]           = useState('');
