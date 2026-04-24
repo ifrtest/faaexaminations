@@ -69,9 +69,10 @@ exports.startSession = async (req, res, next) => {
       if (exam.code !== 'PAR') {
         return res.status(403).json({ error: 'Free sample is only available for the PAR exam.' });
       }
+      const DEMO_QUESTION_IDS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
       const { rows: demoPool } = await db.query(
-        `SELECT id FROM questions WHERE exam_id=$1 AND is_active ORDER BY RANDOM() LIMIT 10`,
-        [exam.id]
+        `SELECT id FROM questions WHERE id = ANY($1::int[]) AND is_active ORDER BY array_position($1::int[], id)`,
+        [DEMO_QUESTION_IDS]
       );
       if (!demoPool.length) return res.status(400).json({ error: 'No questions available' });
       const { rows: sessRows } = await db.query(
