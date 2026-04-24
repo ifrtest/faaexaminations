@@ -337,7 +337,7 @@ export default function Landing() {
               },
               {
                 q: 'Can I cancel anytime?',
-                a: 'Yes. Cancel anytime from your account settings — no penalties, no questions asked. You keep access until the end of your current billing period. See our full Cancellation & Refund Policy for details.',
+                a: <>Yes. Cancel anytime from your account settings — no penalties, no questions asked. You keep access until the end of your current billing period. See our full <Link to="/cancel-policy" style={{ color: 'var(--lp-accent, #30ace2)' }}>Cancellation &amp; Refund Policy</Link> for details.</>,
               },
               {
                 q: 'Is this updated for 2026?',
