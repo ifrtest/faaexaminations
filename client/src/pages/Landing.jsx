@@ -283,6 +283,74 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* INSTALL AS APP */}
+      <section style={{ padding: '90px 40px', background: 'var(--lp-bg2, #0b1520)' }}>
+        <div className="lp-section-inner">
+          <div className="lp-badge">STUDY ANYWHERE</div>
+          <h2>Save It to Your Phone or Desktop</h2>
+          <p className="lp-section-sub">Add FAAExaminations.com to your home screen and it opens like a native app — no app store required, always up to date.</p>
+          <div className="lp-features-grid fade-up" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', marginTop: 48 }}>
+
+            <div className="lp-feat-card" style={{ textAlign: 'left' }}>
+              <div style={{ fontSize: 36, marginBottom: 12 }}>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="5" y="1" width="14" height="22" rx="2" stroke="#2563eb" strokeWidth="1.8"/>
+                  <circle cx="12" cy="19" r="1" fill="#2563eb"/>
+                </svg>
+              </div>
+              <div className="lp-feat-title">iPhone / iPad</div>
+              <div className="lp-feat-desc" style={{ marginTop: 12 }}>
+                <ol style={{ paddingLeft: 18, margin: 0, lineHeight: 2.1, color: 'var(--lp-text2)' }}>
+                  <li>Open in <strong style={{ color: '#fff' }}>Safari</strong></li>
+                  <li>Tap the <strong style={{ color: '#fff' }}>Share</strong> button <span style={{ fontSize: '1.1em' }}>⎙</span></li>
+                  <li>Tap <strong style={{ color: '#fff' }}>"Add to Home Screen"</strong></li>
+                  <li>Tap <strong style={{ color: '#fff' }}>Add</strong></li>
+                </ol>
+                <div style={{ marginTop: 12, fontSize: '.8rem', color: 'var(--lp-text3)', fontStyle: 'italic' }}>Opens full-screen like a native app</div>
+              </div>
+            </div>
+
+            <div className="lp-feat-card" style={{ textAlign: 'left' }}>
+              <div style={{ fontSize: 36, marginBottom: 12 }}>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="5" y="1" width="14" height="22" rx="2" stroke="#16a34a" strokeWidth="1.8"/>
+                  <rect x="9" y="19.5" width="6" height="1.5" rx=".75" fill="#16a34a"/>
+                </svg>
+              </div>
+              <div className="lp-feat-title" style={{ color: '#16a34a' }}>Android</div>
+              <div className="lp-feat-desc" style={{ marginTop: 12 }}>
+                <ol style={{ paddingLeft: 18, margin: 0, lineHeight: 2.1, color: 'var(--lp-text2)' }}>
+                  <li>Open in <strong style={{ color: '#fff' }}>Chrome</strong></li>
+                  <li>Tap the <strong style={{ color: '#fff' }}>⋮</strong> menu (top right)</li>
+                  <li>Tap <strong style={{ color: '#fff' }}>"Add to Home Screen"</strong></li>
+                  <li>Tap <strong style={{ color: '#fff' }}>Add</strong></li>
+                </ol>
+                <div style={{ marginTop: 12, fontSize: '.8rem', color: 'var(--lp-text3)', fontStyle: 'italic' }}>An install banner may appear automatically</div>
+              </div>
+            </div>
+
+            <div className="lp-feat-card" style={{ textAlign: 'left' }}>
+              <div style={{ fontSize: 36, marginBottom: 12 }}>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="3" width="20" height="14" rx="2" stroke="#f59e0b" strokeWidth="1.8"/>
+                  <path d="M8 21h8M12 17v4" stroke="#f59e0b" strokeWidth="1.8" strokeLinecap="round"/>
+                </svg>
+              </div>
+              <div className="lp-feat-title" style={{ color: '#f59e0b' }}>Desktop (Chrome / Edge)</div>
+              <div className="lp-feat-desc" style={{ marginTop: 12 }}>
+                <ol style={{ paddingLeft: 18, margin: 0, lineHeight: 2.1, color: 'var(--lp-text2)' }}>
+                  <li>Open the site in <strong style={{ color: '#fff' }}>Chrome or Edge</strong></li>
+                  <li>Click the <strong style={{ color: '#fff' }}>install icon</strong> in the address bar</li>
+                  <li>Click <strong style={{ color: '#fff' }}>"Install"</strong></li>
+                </ol>
+                <div style={{ marginTop: 12, fontSize: '.8rem', color: 'var(--lp-text3)', fontStyle: 'italic' }}>Appears in your taskbar or dock like any other app</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* HOW IT WORKS */}
       <section className="lp-how-bg" id="how">
         <div className="lp-section-inner" style={{ textAlign: 'center' }}>
