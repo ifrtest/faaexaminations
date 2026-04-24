@@ -238,6 +238,27 @@ export default function Landing() {
               </div>
             </div>
 
+            {/* ATP Coming Soon */}
+            <div className="lp-product-card" style={{ position: 'relative', opacity: 0.65 }}>
+              <div style={{ position: 'absolute', top: 16, right: 16, zIndex: 2, background: 'var(--lp-blue)', color: '#fff', fontSize: '0.7rem', fontWeight: 700, padding: '4px 12px', borderRadius: 20, letterSpacing: '0.05em' }}>COMING SOON</div>
+              <div className="lp-product-img" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0b1a35', minHeight: 160 }}>
+                <span style={{ fontSize: 64 }}>✈️</span>
+              </div>
+              <div className="lp-product-body">
+                <div className="lp-product-name">Airline Transport Pilot (ATP)</div>
+                <div className="lp-product-desc">The ATP knowledge test — required to fly for the airlines. The most advanced FAA written exam.</div>
+                <ul className="lp-product-features">
+                  <li>1,496 practice questions</li>
+                  <li>18 study units</li>
+                  <li>Timed 80-question simulator</li>
+                  <li>Full regulation &amp; systems coverage</li>
+                </ul>
+                <div className="lp-product-price">Coming Soon</div>
+                <div className="lp-product-price-sub">Notify me when available</div>
+                <a href="mailto:support@faaexaminations.com?subject=ATP Exam — Notify Me" className="lp-btn-product lp-btn-product-secondary" style={{ opacity: 0.8 }}>Notify Me →</a>
+              </div>
+            </div>
+
           </div>
           <div style={{ textAlign: 'center', marginTop: 22, fontSize: 14, color: 'var(--lp-text3)' }}>
             Questions about a package? <a href="mailto:support@faaexaminations.com" style={{ color: 'var(--lp-blue)', textDecoration: 'none' }}>Contact us</a>
