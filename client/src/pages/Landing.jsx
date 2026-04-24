@@ -242,7 +242,7 @@ export default function Landing() {
             <div className="lp-product-card" style={{ position: 'relative', opacity: 0.65 }}>
               <div style={{ position: 'absolute', top: 16, right: 16, zIndex: 2, background: 'var(--lp-blue)', color: '#fff', fontSize: '0.7rem', fontWeight: 700, padding: '4px 12px', borderRadius: 20, letterSpacing: '0.05em' }}>COMING SOON</div>
               <div className="lp-product-img" style={{ overflow: 'hidden', minHeight: 160 }}>
-                <img src="/plane-atp.webp" alt="ATP aircraft" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
+                <img src="/plane-atp.jpg" alt="ATP captain" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
               </div>
               <div className="lp-product-body">
                 <div className="lp-product-name">Airline Transport Pilot (ATP)</div>
