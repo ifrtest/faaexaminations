@@ -175,24 +175,24 @@ export default function ExamList() {
             </div>
           );
         })}
-      </div>
 
-      {/* ATP Coming Soon card — always shown, not selectable */}
-      {!exams.find((e) => e.code === 'ATP') && (
-        <div className="exam-card" style={{opacity:.65,cursor:'default',position:'relative'}}
-             role="presentation">
-          <span className="tag" style={{background:'var(--muted)'}}>ATP</span>
-          <span style={{position:'absolute',top:14,right:14,background:'var(--navy)',color:'#fff',fontSize:'.7rem',fontWeight:700,padding:'3px 9px',borderRadius:20,letterSpacing:'.04em'}}>COMING SOON</span>
-          <h3>Airline Transport Pilot (ATP)</h3>
-          <p style={{color:'var(--muted)',fontSize:'.9rem',margin:'0 0 14px'}}>
-            The Airline Transport Pilot knowledge test — required to fly for the airlines.
-          </p>
-          <div style={{display:'flex',justifyContent:'space-between',fontSize:'.85rem',color:'var(--muted)'}}>
-            <span>1,496 questions</span>
-            <span>240 min · 70% to pass</span>
+        {/* ATP Coming Soon — shown when ATP is not live for this user */}
+        {!exams.find((e) => e.code === 'ATP') && (
+          <div className="exam-card" style={{opacity:.6,cursor:'default',position:'relative'}}
+               role="presentation">
+            <span className="tag" style={{background:'var(--muted)'}}>ATP</span>
+            <span style={{position:'absolute',top:14,right:14,background:'var(--navy)',color:'#fff',fontSize:'.7rem',fontWeight:700,padding:'3px 9px',borderRadius:20,letterSpacing:'.04em'}}>COMING SOON</span>
+            <h3>Airline Transport Pilot (ATP)</h3>
+            <p style={{color:'var(--muted)',fontSize:'.9rem',margin:'0 0 14px'}}>
+              The Airline Transport Pilot knowledge test — required to fly for the airlines.
+            </p>
+            <div style={{display:'flex',justifyContent:'space-between',fontSize:'.85rem',color:'var(--muted)'}}>
+              <span>1,496 questions</span>
+              <span>240 min · 70% to pass</span>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Mode + configuration */}
       {current && (
