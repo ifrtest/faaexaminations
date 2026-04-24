@@ -274,32 +274,32 @@ export default function Landing() {
           <p className="lp-section-sub">Built by experienced FAA instructors and commercial pilots for how pilots actually study. <Link to="/about" style={{ color: 'var(--lp-blue)', textDecoration: 'none' }}>Our story →</Link></p>
           <div className="lp-features-grid fade-up">
             <div className="lp-feat-card">
-              <span className="lp-feat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span>
+              <span className="lp-feat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span>
               <div className="lp-feat-title">3,000+ FAA Questions</div>
               <div className="lp-feat-desc">Authentic PAR, IRA, CAX, and Part 107 questions across all study units. Every question the FAA has tested pilots on, organized by module.</div>
             </div>
             <div className="lp-feat-card">
-              <span className="lp-feat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+              <span className="lp-feat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
               <div className="lp-feat-title">Exam Simulator</div>
               <div className="lp-feat-desc">Timed exams matching real FAA question counts per exam type. Instant pass/fail scoring at 70%. Full review after each attempt.</div>
             </div>
             <div className="lp-feat-card">
-              <span className="lp-feat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+              <span className="lp-feat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
               <div className="lp-feat-title">Full Explanations</div>
               <div className="lp-feat-desc">Every question includes a detailed explanation with the specific FAA regulation or handbook reference.</div>
             </div>
             <div className="lp-feat-card">
-              <span className="lp-feat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+              <span className="lp-feat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
               <div className="lp-feat-title">AI Instructor Mode</div>
               <div className="lp-feat-desc">Get a real-world breakdown of any question — why the answer is correct, a practical scenario, and a memory tip.</div>
             </div>
             <div className="lp-feat-card">
-              <span className="lp-feat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+              <span className="lp-feat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
               <div className="lp-feat-title">Progress Dashboard</div>
               <div className="lp-feat-desc">Visual readiness gauge, category performance tracking, exam history, and activity heatmap to guide your prep.</div>
             </div>
             <div className="lp-feat-card">
-              <span className="lp-feat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
+              <span className="lp-feat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
               <div className="lp-feat-title">Study Anywhere</div>
               <div className="lp-feat-desc">Fully responsive on any device. Study on your phone between flights, on a tablet at the airport, or at your desktop.</div>
             </div>
@@ -318,8 +318,8 @@ export default function Landing() {
             <div className="lp-feat-card" style={{ textAlign: 'left' }}>
               <div style={{ fontSize: 36, marginBottom: 12 }}>
                 <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="5" y="1" width="14" height="22" rx="2" stroke="#2563eb" strokeWidth="1.8"/>
-                  <circle cx="12" cy="19" r="1" fill="#2563eb"/>
+                  <rect x="5" y="1" width="14" height="22" rx="2" stroke="#30ace2" strokeWidth="1.8"/>
+                  <circle cx="12" cy="19" r="1" fill="#30ace2"/>
                 </svg>
               </div>
               <div className="lp-feat-title">iPhone / iPad</div>
