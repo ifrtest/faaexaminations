@@ -2,15 +2,19 @@
 const db = require('../config/db');
 const { shuffle } = require('../utils/helpers');
 
+const ATP_PREVIEW_EMAIL = 'ifrtest.ca@gmail.com';
+
 // GET /api/quizzes/exams  ->  list of exam categories
-exports.listExams = async (_req, res, next) => {
+exports.listExams = async (req, res, next) => {
   try {
+    const showAtp = req.user?.email === ATP_PREVIEW_EMAIL;
     const { rows } = await db.query(`
       SELECT e.*,
              (SELECT COUNT(*) FROM questions q WHERE q.exam_id=e.id AND q.is_active) AS question_count
       FROM exams e
+      WHERE e.code != 'ATP' OR $1
       ORDER BY e.id
-    `);
+    `, [showAtp]);
     res.json({ exams: rows });
   } catch (err) { next(err); }
 };
