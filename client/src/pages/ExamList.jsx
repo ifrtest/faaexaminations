@@ -9,8 +9,9 @@ const PLAN_ACCESS = {
   ira:    ['IRA'],
   cax:    ['CAX'],
   uag:    ['UAG'],
+  atp:    ['ATP'],
   bundle: ['PAR', 'IRA', 'CAX'],
-  all:    ['PAR', 'IRA', 'CAX', 'UAG'],
+  all:    ['PAR', 'IRA', 'CAX', 'UAG', 'ATP'],
 };
 
 // Exams that are always free — no subscription needed
@@ -21,6 +22,7 @@ const EXAM_PLAN = {
   IRA: 'ira',
   CAX: 'cax',
   UAG: 'uag',
+  ATP: 'atp',
 };
 
 const DESCRIPTIONS = {
@@ -28,6 +30,7 @@ const DESCRIPTIONS = {
   IRA:   'The Instrument Rating knowledge test — required for IFR flying.',
   CAX:   'The Commercial Pilot Airplane knowledge test — for professional-track pilots.',
   UAG:   'The FAA Part 107 Remote Pilot knowledge test — required to fly drones commercially.',
+  ATP:   'The Airline Transport Pilot knowledge test — required to fly for the airlines.',
   TRUST: 'The FAA recreational drone safety test — required for all hobbyist drone flyers. Free!',
 };
 
