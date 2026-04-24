@@ -293,19 +293,19 @@ export default function Landing() {
             <div className="lp-step">
               <div className="lp-step-num">01</div>
               <div className="lp-step-title">Choose Your Package</div>
-              <p className="lp-step-desc">Select Private Pilot, Commercial Pilot, or the Bundle. Instant access to all questions, modules, and tools.</p>
+              <p className="lp-step-desc">Pick the exam you're preparing for — Private Pilot (PAR), Instrument Rating (IRA), Commercial Pilot (CAX), Part 107, or the full Bundle. Instant access the moment you subscribe.</p>
               <img src="/plane-card.jpeg" alt="Choose package" className="lp-step-img" />
             </div>
             <div className="lp-step">
               <div className="lp-step-num">02</div>
               <div className="lp-step-title">Work Through the Modules</div>
-              <p className="lp-step-desc">Categorized modules covering every topic on your exam. Track weak areas and use AI Instructor to master tough concepts.</p>
+              <p className="lp-step-desc">Every topic organized by category, exactly how the FAA tests it. Track your weak areas and use the AI Instructor to work through anything that isn't clicking.</p>
               <img src="/plane-hero.jpeg" alt="Study modules" className="lp-step-img" />
             </div>
             <div className="lp-step">
               <div className="lp-step-num">03</div>
               <div className="lp-step-title">Pass With Confidence</div>
-              <p className="lp-step-desc">When your readiness score hits 85%+, you're ready. Walk into the FAA test with everything covered. Guaranteed.</p>
+              <p className="lp-step-desc">When your readiness score hits 85%+, you're ready. Walk into the test knowing you've covered every question the FAA is going to ask.</p>
               <img src="/plane-pass.webp" alt="Pass exam" className="lp-step-img" />
             </div>
           </div>
