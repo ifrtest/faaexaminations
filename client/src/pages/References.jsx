@@ -94,7 +94,7 @@ const SECTIONS = [
     ],
   },
   {
-    title: '📊 Performance Charts',
+    title: 'Performance Charts',
     description: 'Aircraft performance charts used in practice questions.',
     items: [
       { name: 'Airspeed Correction Chart', file: '/172-Airspeed-Correction-Chart.pdf' },
@@ -109,7 +109,7 @@ const SECTIONS = [
     ],
   },
   {
-    title: '⚖ Weight & Balance',
+    title: 'Weight & Balance',
     description: 'Weight and balance reference charts.',
     items: [
       { name: 'Weight and Balance Chart 1', file: '/Weight-and-Balance-Chart-1.pdf' },
@@ -118,7 +118,7 @@ const SECTIONS = [
     ],
   },
   {
-    title: '🛫 Takeoff & Landing',
+    title: 'Takeoff & Landing',
     description: 'Takeoff distance reference charts.',
     items: [
       { name: 'Takeoff Distance Chart (3)', file: '/Take-Distance-chart-3.pdf' },
@@ -126,7 +126,7 @@ const SECTIONS = [
     ],
   },
   {
-    title: '🧭 Instruments',
+    title: 'Instruments',
     description: 'Flight instrument diagrams and reference tables.',
     items: [
       { name: 'Turn Coordinator Diagram', file: '/1920px-Turn_coordinators-en.svg_.png' },

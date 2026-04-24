@@ -391,7 +391,7 @@ export default function BlogPost() {
           <title>Article Not Found | FAAExaminations.com</title>
           <meta name="robots" content="noindex" />
         </Helmet>
-        <div style={{ fontSize: 56, marginBottom: 16 }}>✈️</div>
+        <div style={{ marginBottom: 16 }}><svg width="56" height="56" viewBox="0 0 24 24" fill="var(--blue)" xmlns="http://www.w3.org/2000/svg"><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></div>
         <h1>Article not found</h1>
         <p style={{ color: 'var(--text2)', marginBottom: 24 }}>That article doesn't exist or may have moved.</p>
         <Link to="/blog" className="btn btn-primary">Back to Blog</Link>

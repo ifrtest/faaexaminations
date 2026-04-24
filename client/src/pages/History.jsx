@@ -24,7 +24,7 @@ export default function History() {
 
       {items.length === 0 ? (
         <div className="empty">
-          <div className="icon">📊</div>
+          <div className="icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
           <div>No exams completed yet.</div>
           <Link to="/exams" className="btn btn-primary" style={{marginTop:10}}>
             Take your first exam

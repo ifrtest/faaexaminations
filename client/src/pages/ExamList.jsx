@@ -211,13 +211,13 @@ export default function ExamList() {
                 active={mode === 'study'} onClick={() => setMode('study')}
                 title="Study Mode"
                 desc="Unlimited time. See explanation after every answer."
-                icon="📚"
+                icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>}
               />
               <ModeOption
                 active={mode === 'exam'} onClick={() => setMode('exam')}
                 title="Exam Simulation"
                 desc="Timed. Explanations shown at the end. Just like the real thing."
-                icon="⏱️"
+                icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>}
               />
             </div>
           </div>

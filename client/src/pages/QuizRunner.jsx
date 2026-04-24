@@ -328,7 +328,7 @@ export default function QuizRunner() {
                               fontSize: '.82rem',
                               fontWeight: 600,
                             }}>
-                            🔍 Open Figure {figNum || ''} in new tab ↗
+                            Open Figure {figNum || ''} in new tab ↗
                           </a>
                           <button
                             type="button"
@@ -409,12 +409,13 @@ export default function QuizRunner() {
                         fontSize:'.9rem',fontWeight:600,
                         opacity: aiLoading || aiResponse[current.id] ? 0.6 : 1,
                       }}>
-                      🤖 {aiLoading ? 'Thinking…' : aiResponse[current.id] ? 'AI Instructor' : 'Ask AI Instructor'}
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                      {aiLoading ? 'Thinking…' : aiResponse[current.id] ? 'AI Instructor' : 'Ask AI Instructor'}
                     </button>
                     {aiResponse[current.id] && (
                       <div style={{marginTop:10,padding:'12px 16px',background:'var(--panel2)',
                                    borderLeft:'3px solid var(--blue)',borderRadius:'0 8px 8px 0'}}>
-                        <strong style={{color:'var(--blue)',fontSize:'.85rem'}}>✈ AI Instructor</strong>
+                        <strong style={{color:'var(--blue)',fontSize:'.85rem',display:'flex',alignItems:'center',gap:6}}><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> AI Instructor</strong>
                         <p style={{margin:'8px 0 0',color:'var(--text2)',lineHeight:1.6,fontSize:'.92rem'}}>
                           {aiResponse[current.id]}
                         </p>

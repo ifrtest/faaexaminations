@@ -70,7 +70,7 @@ export default function Landing() {
         </div>
         <div className="lp-hero-grid" />
         <div className="lp-hero-content">
-          <div className="lp-hero-badge">✈ FAA KNOWLEDGE TEST PREP · 2026 UPDATED</div>
+          <div className="lp-hero-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style={{marginRight:5,verticalAlign:'middle'}}><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg> FAA KNOWLEDGE TEST PREP · 2026 UPDATED</div>
           <h1>Pass Your <span className="lp-accent">FAA Written</span><br />Exam First Try</h1>
           <p className="lp-hero-sub">
             3,000+ authentic FAA practice questions for Private Pilot, Instrument Rating, and Commercial Pilot certificates — plus Part 107 Remote Pilot and the free TRUST recreational safety test.

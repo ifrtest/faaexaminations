@@ -47,7 +47,7 @@ export default function CancelPolicy() {
 
       {/* Policy cards */}
       <div className="card" style={{ marginBottom: 20 }}>
-        <div className="card-title">✈ Cancel Anytime</div>
+        <div className="card-title">Cancel Anytime</div>
         <p style={{ color: 'var(--text2)', lineHeight: 1.7 }}>
           You can cancel your subscription at any time — no questions asked. Once cancelled,
           your access continues until the end of your current billing period. You will not be
@@ -56,7 +56,7 @@ export default function CancelPolicy() {
       </div>
 
       <div className="card" style={{ marginBottom: 20 }}>
-        <div className="card-title">💳 Refund Policy</div>
+        <div className="card-title">Refund Policy</div>
         <p style={{ color: 'var(--text2)', lineHeight: 1.7 }}>
           We do not offer refunds for the current billing period that has already been paid.
           All subscription charges are final for the month in which they are billed. If you
@@ -65,7 +65,7 @@ export default function CancelPolicy() {
       </div>
 
       <div className="card" style={{ marginBottom: 20 }}>
-        <div className="card-title">📋 What Happens When You Cancel</div>
+        <div className="card-title">What Happens When You Cancel</div>
         <ul style={{ color: 'var(--text2)', lineHeight: 2, paddingLeft: 20 }}>
           <li>Your subscription is cancelled immediately</li>
           <li>You keep full access until the end of your current billing period</li>
