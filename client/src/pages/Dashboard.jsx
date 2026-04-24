@@ -54,6 +54,13 @@ export default function Dashboard() {
   const [err, setErr]     = useState('');
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('subscribed') === '1' && window.fbq) {
+      fbq('track', 'Purchase', { value: 24.99, currency: 'USD' });
+    }
+  }, []);
+
+  useEffect(() => {
     (async () => {
       try {
         const [d, s] = await Promise.all([resultsApi.dashboard(), quizApi.mySessions()]);

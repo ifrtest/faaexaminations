@@ -22,6 +22,7 @@ export default function Register() {
     setBusy(true);
     try {
       await register(form.email, form.password, form.full_name);
+      if (window.fbq) fbq('track', 'Lead');
       navigate('/dashboard', { replace: true });
     } catch (ex) {
       setErr(ex.response?.data?.error || 'Could not create account.');
