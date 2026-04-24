@@ -1,6 +1,6 @@
 {
   "name": "FAAExaminations.com",
-  "short_name": "FAAExams",
+  "short_name": "FAA Examinations",
   "description": "FAA practice exams for student pilots",
   "start_url": "/dashboard",
   "display": "standalone",
