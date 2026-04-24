@@ -225,9 +225,9 @@ export default function ExamList() {
           <div className="row-2">
             <div className="field">
               <label>Number of questions</label>
-              <input type="number" min="5"
-                     max={Math.max(5, Number(current.question_count) || 100)}
-                     value={numQ} onChange={(e) => setNumQ(parseInt(e.target.value, 10) || 5)} />
+              <input type="number" min="1"
+                     max={Math.max(1, Number(current.question_count) || 100)}
+                     value={numQ} onChange={(e) => setNumQ(parseInt(e.target.value, 10) || 1)} />
               <div className="hint">
                 Up to {current.question_count} questions available.{' '}
                 Real exam: {current.num_questions}.
