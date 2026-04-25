@@ -47,6 +47,7 @@ export default function ExamList() {
   const [starting, setStarting] = useState(false);
   const [subscription, setSubscription] = useState(null);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [upgrading, setUpgrading] = useState(false);
 
   useEffect(() => {
     quizApi.exams()
@@ -99,6 +100,8 @@ export default function ExamList() {
         });
         const data = await res.json();
         if (data.success) {
+          setUpgrading(true);
+          await new Promise((r) => setTimeout(r, 4000));
           window.location.href = '/dashboard?subscribed=1';
         } else {
           setErr(data.error || 'Could not upgrade subscription.');
@@ -156,6 +159,14 @@ export default function ExamList() {
       <h1>Practice Exams</h1>
       <p style={{color:'var(--muted)'}}>Pick a certificate and a mode to begin.</p>
       {err && <div className="alert alert-err">{err}</div>}
+
+      {/* Upgrade in progress */}
+      {upgrading && (
+        <div style={{background:'#0f1f35',border:'1px solid #1e3a5f',borderRadius:10,padding:'20px 24px',marginBottom:24,textAlign:'center'}}>
+          <div style={{fontSize:'1rem',fontWeight:700,color:'#fff',marginBottom:6}}>Updating your plan…</div>
+          <div style={{fontSize:'.88rem',color:'#94b8d4'}}>Your payment is being confirmed. You'll be redirected in a moment.</div>
+        </div>
+      )}
 
       {/* Free sample banner — shown to non-subscribers */}
       {subscription && subscription.status !== 'active' && (

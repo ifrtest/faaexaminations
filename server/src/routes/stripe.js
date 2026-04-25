@@ -200,22 +200,13 @@ router.post('/upgrade', requireAuth, async (req, res) => {
     const sub = await stripe.subscriptions.retrieve(user.stripe_subscription_id);
     const itemId = sub.items.data[0].id;
 
-    const updated = await stripe.subscriptions.update(user.stripe_subscription_id, {
+    await stripe.subscriptions.update(user.stripe_subscription_id, {
       items: [{ id: itemId, price: priceId }],
       proration_behavior: 'create_prorations',
     });
 
-    // Update DB immediately — don't wait for webhook
-    const endsAt = new Date(updated.current_period_end * 1000);
-    await db.query(
-      `UPDATE users SET
-         subscription_price_id = $1,
-         subscription_ends_at  = $2,
-         subscription_status   = 'active'
-       WHERE id = $3`,
-      [priceId, endsAt, req.user.id]
-    );
-
+    // DB update is handled by the customer.subscription.updated webhook
+    // once Stripe confirms payment. We do not grant access here.
     res.json({ success: true });
   } catch (err) {
     console.error('[stripe/upgrade]', err.message);
