@@ -214,6 +214,23 @@ router.post('/upgrade', requireAuth, async (req, res) => {
   }
 });
 
+// GET /api/stripe/plan — returns current plan name, used for upgrade polling
+router.get('/plan', requireAuth, async (req, res) => {
+  try {
+    const { rows } = await db.query(
+      'SELECT subscription_price_id, subscription_status FROM users WHERE id = $1',
+      [req.user.id]
+    );
+    const user = rows[0];
+    res.json({
+      plan: getPlanName(user.subscription_price_id),
+      status: user.subscription_status,
+    });
+  } catch (err) {
+    res.status(500).json({ error: 'Could not fetch plan.' });
+  }
+});
+
 // POST /api/users/cancel-subscription
 router.post('/cancel-subscription', requireAuth, async (req, res) => {
   try {

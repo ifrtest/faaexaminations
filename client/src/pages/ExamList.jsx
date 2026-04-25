@@ -101,7 +101,21 @@ export default function ExamList() {
         const data = await res.json();
         if (data.success) {
           setUpgrading(true);
-          await new Promise((r) => setTimeout(r, 4000));
+          // Poll until the webhook has updated the DB to the new plan
+          const token = localStorage.getItem('faa_token');
+          const deadline = Date.now() + 30000; // max 30s
+          while (Date.now() < deadline) {
+            await new Promise((r) => setTimeout(r, 1500));
+            const r = await fetch('/api/stripe/plan', {
+              headers: { Authorization: `Bearer ${token}` },
+            });
+            const d = await r.json();
+            if (d.plan === plan) {
+              window.location.href = '/dashboard?subscribed=1';
+              return;
+            }
+          }
+          // Webhook took too long — redirect anyway, access likely active
           window.location.href = '/dashboard?subscribed=1';
         } else {
           setErr(data.error || 'Could not upgrade subscription.');
