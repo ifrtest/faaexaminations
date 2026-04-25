@@ -8,9 +8,115 @@ const tagColors = {
   'Study Tips':         { bg: 'rgba(245,166,35,0.12)',  color: '#f5a623' },
   'Resources':          { bg: 'rgba(48,172,226,0.12)', color: '#30ace2' },
   'License Conversion': { bg: 'rgba(93,200,217,0.12)', color: '#5dc8d9' },
+  'Part 107':           { bg: 'rgba(61,214,140,0.12)', color: '#3dd68c' },
 };
 
 const POSTS = {
+
+  /* ================================================================ */
+  'part-107-drone-test-study-guide': {
+    title: 'How to Pass the Part 107 Drone Test First Try',
+    description: 'Everything you need to pass the FAA Part 107 Remote Pilot test first try. Study plan, key topics, and 166 practice questions at FAAExaminations.com. Start free.',
+    date: 'April 25, 2026',
+    readTime: '7 min read',
+    tag: 'Part 107',
+    image: '/blog-part107-drone.jpg',
+    content: (
+      <>
+        <p>Most drone pilots who want to fly commercially underestimate this test. They assume that because they can fly well, the knowledge side will be easy. It isn't. The FAA Part 107 exam covers airspace, weather, regulations, and emergency procedures — and it doesn't care how smooth your footage is.</p>
+        <p>60 questions. 70% to pass. The question bank is public. No surprises if you put in the work.</p>
+
+        <h2>What the Part 107 test actually covers</h2>
+        <p>This is not a flying test. The FAA will not ask about gimbal settings or return-to-home altitude.</p>
+        <ul>
+          <li>Regulations — Part 107 rules on altitude, speed, prohibited operations</li>
+          <li>Airspace — Classes B through G, restricted areas, TFRs</li>
+          <li>Weather — METARs, TAFs, density altitude, how conditions affect performance</li>
+          <li>Loading and performance — how weight changes flight behavior</li>
+          <li>Emergency procedures — lost link, fly-away, flying near people</li>
+          <li>Radio communications — when to contact ATC and how</li>
+          <li>Crew resource management — visual observer duties</li>
+        </ul>
+        <p>Weather and airspace are where most people lose points. Not because they're hard — because drone pilots skip them, assuming the flying experience covers it. It doesn't.</p>
+
+        <h2>The rules you need to know cold</h2>
+        <p>Memorize these before you touch a single practice question:</p>
+        <div style={{ overflowX: 'auto', marginBottom: 24 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.9rem' }}>
+            <thead>
+              <tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
+                <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Rule</th>
+                <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Requirement</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ['Maximum altitude', '400 ft AGL'],
+                ['Maximum speed', '100 mph (87 knots)'],
+                ['Minimum visibility', '3 statute miles from control station'],
+                ['Cloud clearance', '500 ft below, 2,000 ft horizontal'],
+                ['Daylight operations', '30 min before sunrise to 30 min after sunset'],
+                ['Night operations', 'Anti-collision lighting visible 3 miles'],
+                ['Over people', 'Prohibited without waiver (Category exceptions apply)'],
+                ['Over moving vehicles', 'Prohibited without waiver'],
+                ['Certificate renewal', 'Every 24 months'],
+              ].map(([rule, req], i) => (
+                <tr key={i} style={{ borderBottom: '1px solid var(--border)', background: i % 2 === 0 ? 'var(--card-bg)' : 'transparent' }}>
+                  <td style={{ padding: '9px 12px', color: 'var(--text)' }}>{rule}</td>
+                  <td style={{ padding: '9px 12px', color: 'var(--text2)' }}>{req}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>These come up constantly. If you have to think through them on test day, that's time you don't need to spend.</p>
+
+        <h2>How to study</h2>
+
+        <h3>Week 1: Regulations and airspace</h3>
+        <p>Read Part 107. It's not long — a few hours. Then work through airspace. Get comfortable with the sectional chart legend. Know what each airspace class requires for drone operations and where you need authorization before you fly.</p>
+
+        <h3>Week 2: Weather and practice questions</h3>
+        <p>Learn to read a METAR. Know how to pull ceiling, visibility, and wind from one. Understand density altitude — it matters more for drone performance than most people expect, especially in hot weather or at elevation.</p>
+        <p>Then start practice questions, by topic. At <a href="https://www.faaexaminations.com" style={{color:'var(--blue)'}}>FAAExaminations.com</a>, all 166 Part 107 questions are sorted by category. Drill the weak areas instead of cycling through what you already know.</p>
+
+        <h3>Week 3: Full practice exams and booking</h3>
+        <p>Run the 60-question timed simulator. Aim for 80%+ before you book. The actual exam gives you 2 hours — most people finish in 45 minutes.</p>
+        <p>Once you're consistently at 80%, book it. PSI Services runs the testing centers. Bring a valid government ID. Fee is around $175.</p>
+
+        <h2>The airspace question that gets everyone</h2>
+        <p>The most commonly missed question type involves reading a sectional chart to figure out whether you need authorization at a specific location.</p>
+        <ul>
+          <li>Class G airspace — no authorization needed up to 400 ft AGL</li>
+          <li>Class E at surface (dashed magenta line) — authorization required</li>
+          <li>Class D, C, B — authorization required, usually through LAANC</li>
+          <li>Within 5 miles of an airport — doesn't automatically mean you can't fly; check the class and altitude</li>
+        </ul>
+        <p>LAANC is the fast-approval system for controlled airspace. Know what it is, what it covers, and where it doesn't apply. It comes up more than once.</p>
+
+        <h2>What happens after you pass</h2>
+        <p>Apply for your Remote Pilot Certificate through IACRA, the FAA's online application system. TSA runs a background check, typically a few days to a few weeks. Your temporary certificate arrives by email. The plastic card follows by mail.</p>
+        <p>Renewal is every 24 months via a recurrent knowledge test — shorter than the initial, but you still have to pass it.</p>
+
+        <h2>FAQ</h2>
+
+        <h3>How hard is the Part 107 test?</h3>
+        <p>Harder than most drone pilots expect. Two to three weeks of focused study is usually enough to pass first try, but you have to actually study the weather and airspace sections.</p>
+
+        <h3>How many questions are on the Part 107 test?</h3>
+        <p>60 questions. You need 42 correct (70%) to pass. You have 2 hours.</p>
+
+        <h3>Can I use a sectional chart during the test?</h3>
+        <p>Yes. There's a supplement booklet with charts and legends. Practice reading sectionals beforehand — test day is not the time to figure out what the symbols mean.</p>
+
+        <h3>What if I fail?</h3>
+        <p>14-day wait, then rebook. No limit on attempts but the $175 fee applies each time. Figure out which sections cost you and drill those before going back.</p>
+
+        <h3>Do I need Part 107 to fly for a client?</h3>
+        <p>Yes. Any commercial drone work — photography, inspections, mapping — requires a Part 107 Remote Pilot Certificate. The recreational exception doesn't cover paid work.</p>
+      </>
+    ),
+  },
 
   /* ================================================================ */
   'how-to-pass-faa-written-exam-first-try': {

@@ -4,6 +4,15 @@ import { Helmet } from 'react-helmet-async';
 
 const POSTS = [
   {
+    slug: 'part-107-drone-test-study-guide',
+    title: 'How to Pass the Part 107 Drone Test First Try',
+    excerpt: 'The FAA Part 107 exam isn\'t a flying test — it\'s a knowledge test. Weather and airspace trip up most drone pilots. Here\'s how to prepare and pass first try.',
+    date: 'April 25, 2026',
+    readTime: '7 min read',
+    tag: 'Part 107',
+    image: '/blog-part107-drone.jpg',
+  },
+  {
     slug: 'how-to-pass-faa-written-exam-first-try',
     title: 'How to Pass the FAA Written Exam First Try',
     excerpt: 'The knowledge test has a published question bank — you\'re not guessing what might show up, you\'re practicing the actual questions. Here\'s the study method that works.',
@@ -68,6 +77,7 @@ const tagColors = {
   'Study Tips':         { bg: 'rgba(245,166,35,0.12)',  color: '#f5a623' },
   'Resources':          { bg: 'rgba(48,172,226,0.12)', color: '#30ace2' },
   'License Conversion': { bg: 'rgba(93,200,217,0.12)', color: '#5dc8d9' },
+  'Part 107':           { bg: 'rgba(61,214,140,0.12)', color: '#3dd68c' },
 };
 
 export default function Blog() {
