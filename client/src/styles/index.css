@@ -617,6 +617,7 @@ kbd {
   .lp-steps { grid-template-columns: 1fr; gap: 40px; }
   .lp-steps::before { display: none; }
   .lp-hero-stats { gap: 24px; }
+  .lp-btn-hero, .lp-btn-outline { align-self: flex-start; }
 }
 
 @media (max-width: 560px) {

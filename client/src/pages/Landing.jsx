@@ -82,7 +82,7 @@ export default function Landing() {
             Timed exam simulator, full explanations, and AI instructor support — everything you need to pass.
           </p>
           <div className="lp-hero-btns">
-            <Link to="/register" className="lp-btn-hero">▶ Start Free Today</Link>
+            <Link to="/register" className="lp-btn-hero"><svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>Start Free Today</Link>
             <a href="#products" className="lp-btn-outline">View Packages</a>
           </div>
           <div style={{ fontSize: 13, color: 'var(--lp-text3)', marginTop: 14, opacity: 0.8, lineHeight: 2 }}>
@@ -487,7 +487,7 @@ export default function Landing() {
             Join student pilots across North America who are preparing with FAAExaminations.com. Create your free account today.
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/register" className="lp-btn-hero">▶ Create Free Account</Link>
+            <Link to="/register" className="lp-btn-hero">▶︎ Create Free Account</Link>
             <a href="#products" className="lp-btn-outline">View Packages</a>
           </div>
         </div>
