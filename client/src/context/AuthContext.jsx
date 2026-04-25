@@ -10,6 +10,7 @@ export function AuthProvider({ children }) {
 
   // On load, if a token exists, try to fetch the user.
   useEffect(() => {
+    fetch('/api/health').catch(() => {});
     const token = localStorage.getItem('faa_token');
     if (!token) { setLoading(false); return; }
     authApi.me()
