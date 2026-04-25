@@ -38,8 +38,26 @@ export default function Register() {
         <meta name="robots" content="noindex, follow" />
       </Helmet>
       <div className="card auth-card">
-        <h2>Create your account</h2>
-        <p className="sub">Free forever. No card needed.</p>
+        <h2>Get Your Free FAA Access</h2>
+        <p className="sub">No credit card required · Cancel anytime</p>
+        <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 20px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <li style={{ display: 'flex', alignItems: 'center', gap: 9, fontSize: '.92rem', color: 'var(--text2, #cbd5e1)' }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Every official FAA handbook &amp; ACS — free
+          </li>
+          <li style={{ display: 'flex', alignItems: 'center', gap: 9, fontSize: '.92rem', color: 'var(--text2, #cbd5e1)' }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            10 Private Pilot practice questions — free
+          </li>
+          <li style={{ display: 'flex', alignItems: 'center', gap: 9, fontSize: '.92rem', color: 'var(--text2, #cbd5e1)' }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Full TRUST recreational drone test — free
+          </li>
+          <li style={{ display: 'flex', alignItems: 'center', gap: 9, fontSize: '.92rem', color: 'var(--text2, #cbd5e1)' }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            PAR · IRA · CAX · Part 107 packages from $24.99/mo
+          </li>
+        </ul>
         {err && <div className="alert alert-err">{err}</div>}
         <form onSubmit={submit}>
           <div className="field">
@@ -64,7 +82,7 @@ export default function Register() {
             </div>
           </div>
           <button type="submit" className="btn btn-primary btn-block" disabled={busy}>
-            {busy ? 'Creating…' : 'Create account'}
+            {busy ? 'Creating…' : 'Get Free Access →'}
           </button>
         </form>
         <div className="alt">

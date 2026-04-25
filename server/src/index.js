@@ -9,6 +9,8 @@ const morgan     = require('morgan');
 const rateLimit  = require('express-rate-limit');
 
 const db         = require('./config/db');
+const cron       = require('node-cron');
+const { runNurture } = require('./utils/nurture');
 const { notFound, errorHandler } = require('./middleware/errorHandler');
 
 const authRoutes      = require('./routes/auth');
@@ -86,6 +88,13 @@ if (require.main === module) {
     console.log(`\n  FAAExaminations API listening on port ${PORT}`);
     console.log(`  Health: http://localhost:${PORT}/api/health\n`);
   });
+
+  // Nurture email sequence — runs daily at 10:00 AM UTC
+  cron.schedule('0 10 * * *', () => {
+    console.log('[nurture] daily job starting');
+    runNurture().catch((err) => console.error('[nurture] job failed:', err.message));
+  });
+  console.log('  Nurture emails: scheduled daily at 10:00 UTC\n');
 }
 
 module.exports = app;

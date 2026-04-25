@@ -182,6 +182,36 @@ async function deactivateSubscription(customerId) {
   }
 }
 
+// POST /api/stripe/upgrade
+// Swaps an existing active subscription to a new plan (no double-charge)
+router.post('/upgrade', requireAuth, async (req, res) => {
+  const { plan } = req.body;
+  const priceId = PRICE_MAP[plan?.toLowerCase()];
+  if (!priceId) return res.status(400).json({ error: 'Invalid plan.' });
+
+  try {
+    const userRes = await db.query('SELECT * FROM users WHERE id = $1', [req.user.id]);
+    const user = userRes.rows[0];
+
+    if (!user.stripe_subscription_id) {
+      return res.status(400).json({ error: 'No active subscription to upgrade.' });
+    }
+
+    const sub = await stripe.subscriptions.retrieve(user.stripe_subscription_id);
+    const itemId = sub.items.data[0].id;
+
+    await stripe.subscriptions.update(user.stripe_subscription_id, {
+      items: [{ id: itemId, price: priceId }],
+      proration_behavior: 'create_prorations',
+    });
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error('[stripe/upgrade]', err.message);
+    res.status(500).json({ error: 'Could not upgrade subscription.' });
+  }
+});
+
 // POST /api/users/cancel-subscription
 router.post('/cancel-subscription', requireAuth, async (req, res) => {
   try {

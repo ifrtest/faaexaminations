@@ -7,7 +7,10 @@ function getResend() {
   return new Resend(process.env.RESEND_API_KEY);
 }
 
-const FROM = () => process.env.EMAIL_FROM || 'support@faaexaminations.com';
+const FROM = () => {
+  const addr = process.env.EMAIL_FROM || 'support@faaexaminations.com';
+  return `FAA Examinations <${addr}>`;
+};
 const SITE = () => process.env.CLIENT_URL || 'https://faaexaminations.com';
 
 function unsubToken(userId) {
@@ -25,6 +28,21 @@ function unsubUrl(userId) {
  * the email is skipped — UNLESS `allowUnsubscribed` is true
  * (use for password resets, etc. that are security-critical).
  */
+function htmlToText(html) {
+  return html
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/p>/gi, '\n\n')
+    .replace(/<\/li>/gi, '\n')
+    .replace(/<\/div>/gi, '\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&amp;/g, '&')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
 async function sendEmail({ to, subject, html, userId = null, allowUnsubscribed = false }) {
   try {
     if (userId && !allowUnsubscribed) {
@@ -37,7 +55,7 @@ async function sendEmail({ to, subject, html, userId = null, allowUnsubscribed =
         return;
       }
     }
-    await getResend().emails.send({ from: FROM(), to, subject, html });
+    await getResend().emails.send({ from: FROM(), to, subject, html, text: htmlToText(html) });
   } catch (err) {
     console.error('[email] failed to send:', err.message);
   }
@@ -121,12 +139,88 @@ function passwordResetEmail(name, resetUrl, userId) {
   `, userId);
 }
 
+// ---------- Nurture sequence -----------------------------------------
+
+function nurtureDay3(name, userId) {
+  return shell('What the FAA actually tests you on ✈', `
+    <p style="margin:0 0 12px">Hi ${name},</p>
+    <p style="margin:0 0 16px">You created your FAAExaminations.com account a few days ago. Here's something useful while you're getting started.</p>
+    <p style="margin:0 0 8px;font-weight:700;color:#fff">The FAA written exam is 60 questions. You need a 70% to pass.</p>
+    <p style="margin:0 0 16px;color:${MUTED}">But the questions aren't random — the FAA tests specific topics in specific proportions. Private Pilot (PAR) covers 11 subject areas, from regulations to weather to navigation. The pilots who fail aren't underprepared overall — they have one or two weak areas that drag them below 70%.</p>
+    <p style="margin:0 0 8px;font-weight:700;color:#fff">That's what our platform is built around.</p>
+    <p style="margin:0 0 20px">Every question is organized by topic. Your dashboard tracks your score per category so you can see exactly where you're strong and where you need work — before you sit the real exam.</p>
+    ${button(`${SITE()}/exams`, 'See Your Practice Questions →')}
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Your free account includes 10 Private Pilot questions to get started. Full access from $24.99/month.</p>
+  `, userId);
+}
+
+function nurtureDay7(name, userId) {
+  return shell('How pilots pass the FAA written first try', `
+    <p style="margin:0 0 12px">Hi ${name},</p>
+    <p style="margin:0 0 16px">The pilots who pass the FAA written first try have one thing in common: they didn't just read the handbook. They practiced under exam conditions.</p>
+    <p style="margin:0 0 8px;font-weight:700;color:#fff">Here's what actually works:</p>
+    <ul style="margin:0 0 20px;padding-left:20px;color:${MUTED};line-height:2">
+      <li>Work through questions by topic first — not in random order</li>
+      <li>Use explanations to understand the <em style="color:${TEXT}">why</em>, not just memorize the answer</li>
+      <li>Run timed practice exams once your topic scores are above 80%</li>
+      <li>Focus extra time on your weakest two or three categories</li>
+    </ul>
+    <p style="margin:0 0 20px">FAAExaminations.com is built around that exact workflow — 3,000+ questions organized by topic, full explanations, a timed exam simulator, and an AI Instructor for anything that doesn't click.</p>
+    ${button(`${SITE()}/exams`, 'Start Practicing →')}
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">PAR · IRA · CAX · Part 107 — packages from $24.99/month. Cancel anytime.</p>
+  `, userId);
+}
+
+function nurtureDay14(name, userId) {
+  return shell('Still studying for your FAA written?', `
+    <p style="margin:0 0 12px">Hi ${name},</p>
+    <p style="margin:0 0 16px">You signed up two weeks ago. If you're still in study mode — or about to get serious — this is a good time to unlock the full question bank.</p>
+    <p style="margin:0 0 8px;font-weight:700;color:#fff">What you get with a full subscription:</p>
+    <ul style="margin:0 0 20px;padding-left:20px;color:${MUTED};line-height:2">
+      <li>Complete question bank for your exam (PAR: 1,469 questions · IRA: 821 · CAX: 536)</li>
+      <li>All study modules organized by FAA topic</li>
+      <li>Timed exam simulator — 60 questions, real pass/fail scoring</li>
+      <li>AI Instructor for any question you want explained</li>
+      <li>Progress dashboard showing readiness by category</li>
+    </ul>
+    <p style="margin:0 0 20px">$24.99/month. Cancel anytime from your account — no questions asked.</p>
+    ${button(`${SITE()}/exams`, 'Unlock Full Access →')}
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Questions? Reply to this email — we read every one.</p>
+  `, userId);
+}
+
+function bundleUpsellEmail(name, currentPlan, userId) {
+  const planNames = { par: 'Private Pilot (PAR)', ira: 'Instrument Rating (IRA)', cax: 'Commercial Pilot (CAX)', uag: 'Part 107' };
+  const current = planNames[currentPlan] || currentPlan;
+  return shell('Unlock all three pilot exams for $39.99', `
+    <p style="margin:0 0 12px">Hi ${name},</p>
+    <p style="margin:0 0 16px">You're currently subscribed to <strong style="color:${ACCENT}">${current}</strong>. If you're planning to go further with your certificates, the Pilot Bundle gives you PAR + IRA + CAX for less than the cost of two individual plans.</p>
+    <table style="width:100%;border-collapse:collapse;margin:0 0 20px">
+      <tr style="border-bottom:1px solid ${BORDER}">
+        <td style="padding:10px 0;color:${MUTED};font-size:.88rem">Individual plans (PAR + IRA + CAX)</td>
+        <td style="padding:10px 0;text-align:right;text-decoration:line-through;color:${MUTED};font-size:.88rem">$74.97/month</td>
+      </tr>
+      <tr>
+        <td style="padding:10px 0;font-weight:700;color:#fff">Pilot Certificate Bundle</td>
+        <td style="padding:10px 0;text-align:right;font-weight:700;color:${ACCENT};font-size:1.1rem">$39.99/month</td>
+      </tr>
+    </table>
+    <p style="margin:0 0 20px;color:${MUTED}">That's 2,826 PAR + IRA + CAX questions, all study modules, the exam simulator, and AI Instructor — everything you need for all three certificates.</p>
+    ${button(`${SITE()}/exams`, 'Upgrade to Bundle →')}
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Your current subscription is replaced, not added. Cancel anytime.</p>
+  `, userId);
+}
+
 module.exports = {
   sendEmail,
   welcomeEmail,
   subscriptionEmail,
   cancellationEmail,
   passwordResetEmail,
+  nurtureDay3,
+  nurtureDay7,
+  nurtureDay14,
+  bundleUpsellEmail,
   unsubToken,
   unsubUrl,
 };

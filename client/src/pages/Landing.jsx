@@ -2,16 +2,21 @@ import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
-const HERO_IMAGES = ['/plane-hero-4.jpg', '/plane-hero-2.jpg', '/plane-hero-3.jpg', '/plane-hero-5.jpg'];
+const HERO_IMAGES = ['/plane-hero-4.webp', '/plane-hero-2.webp', '/plane-hero-3.webp', '/plane-hero-5.webp'];
 
 export default function Landing() {
   const { user } = useAuth();
   const navRef = useRef(null);
   const [heroIdx, setHeroIdx] = useState(0);
+  const [loadedIdx, setLoadedIdx] = useState(new Set([0]));
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setHeroIdx((i) => (i + 1) % HERO_IMAGES.length);
+      setHeroIdx((i) => {
+        const next = (i + 1) % HERO_IMAGES.length;
+        setLoadedIdx((s) => new Set([...s, next]));
+        return next;
+      });
     }, 7000);
     return () => clearInterval(timer);
   }, []);
@@ -65,7 +70,7 @@ export default function Landing() {
       <section className="lp-hero">
         <div className="lp-hero-bg">
           {HERO_IMAGES.map((src, i) => (
-            <img key={src} src={src} alt="" style={{ opacity: i === heroIdx ? 0.75 : 0 }} />
+            <img key={src} src={loadedIdx.has(i) ? src : undefined} alt="" style={{ opacity: i === heroIdx ? 0.75 : 0 }} />
           ))}
         </div>
         <div className="lp-hero-grid" />
@@ -103,7 +108,7 @@ export default function Landing() {
 
             <div className="lp-product-card">
               <div className="lp-product-img">
-                <img src="/plane-par.jpg" alt="Private Pilot" />
+                <img src="/plane-par.webp" alt="Private Pilot" />
                 <div className="lp-product-img-overlay" />
               </div>
               <div className="lp-product-body">
@@ -125,7 +130,7 @@ export default function Landing() {
 
             <div className="lp-product-card">
               <div className="lp-product-img">
-                <img src="/plane-ira.jpg" alt="Instrument Rating" />
+                <img src="/plane-ira.webp" alt="Instrument Rating" />
                 <div className="lp-product-img-overlay" />
               </div>
               <div className="lp-product-body">
@@ -147,7 +152,7 @@ export default function Landing() {
 
             <div className="lp-product-card">
               <div className="lp-product-img">
-                <img src="/plane-cax.jpg" alt="Commercial Pilot" />
+                <img src="/plane-cax.webp" alt="Commercial Pilot" />
                 <div className="lp-product-img-overlay" />
               </div>
               <div className="lp-product-body">
@@ -169,7 +174,7 @@ export default function Landing() {
 
             <div className="lp-product-card lp-featured lp-product-bundle">
               <div className="lp-product-img">
-                <img src="/plane-bundle.jpg" alt="Bundle" />
+                <img src="/plane-bundle.webp" alt="Bundle" />
                 <div className="lp-product-img-overlay" />
               </div>
               <div className="lp-product-body">
@@ -196,7 +201,7 @@ export default function Landing() {
 
             <div className="lp-product-card">
               <div className="lp-product-img">
-                <img src="/drone-part107.png" alt="Part 107 Remote Pilot" />
+                <img src="/drone-part107.webp" alt="Part 107 Remote Pilot" />
                 <div className="lp-product-img-overlay" />
               </div>
               <div className="lp-product-body">

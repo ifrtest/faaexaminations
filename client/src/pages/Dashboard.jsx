@@ -94,6 +94,46 @@ export default function Dashboard() {
         <Link to="/exams" className="btn btn-primary">Start new exam</Link>
       </div>
 
+      {/* ---------- upgrade banner (free users only) ---------- */}
+      {user?.subscription === 'free' && (
+        <div style={{
+          background:'linear-gradient(135deg,#0b1e36 0%,#0d2a4a 100%)',
+          border:'1px solid #1e3a5f',borderRadius:14,padding:'24px 28px',
+          marginBottom:24,display:'flex',alignItems:'center',
+          justifyContent:'space-between',flexWrap:'wrap',gap:20,
+        }}>
+          <div style={{flex:1,minWidth:260}}>
+            <div style={{fontSize:'.72rem',fontWeight:700,letterSpacing:'.1em',color:'#30ace2',textTransform:'uppercase',marginBottom:6}}>
+              Unlock Full Access
+            </div>
+            <div style={{fontSize:'1.1rem',fontWeight:700,color:'#fff',marginBottom:10}}>
+              You're on a free account — ready to go deeper?
+            </div>
+            <div style={{display:'flex',flexDirection:'column',gap:6}}>
+              {[
+                '3,000+ PAR · IRA · CAX · Part 107 practice questions',
+                'Timed exam simulator — real pass/fail scoring',
+                'AI Instructor for every question',
+                'Full topic-by-topic progress tracking',
+              ].map((item) => (
+                <div key={item} style={{display:'flex',alignItems:'center',gap:8,fontSize:'.88rem',color:'#94b8d4'}}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div style={{display:'flex',flexDirection:'column',gap:10,alignItems:'flex-start'}}>
+            <Link to="/exams" className="btn btn-primary" style={{whiteSpace:'nowrap',padding:'12px 28px',fontSize:'1rem'}}>
+              Unlock Full Access →
+            </Link>
+            <div style={{fontSize:'.78rem',color:'#5d8aaa',textAlign:'center',width:'100%'}}>
+              From $24.99/month · Cancel anytime
+            </div>
+          </div>
+        </div>
+      )}
+
       {resume && (
         <div className="alert alert-info" style={{alignItems:'center',justifyContent:'space-between',gap:12,flexWrap:'wrap'}}>
           <div>

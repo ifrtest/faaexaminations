@@ -86,17 +86,36 @@ export default function ExamList() {
   const startCheckout = async (plan) => {
     setCheckoutLoading(true);
     try {
-      const res = await fetch('/api/stripe/checkout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('faa_token')}`,
-        },
-        body: JSON.stringify({ plan }),
-      });
-      const data = await res.json();
-      if (data.url) window.location.href = data.url;
-      else setErr(data.error || 'Could not start checkout.');
+      // If already subscribed, use upgrade endpoint (swap plan, no double-charge)
+      const alreadySubscribed = subscription?.status === 'active';
+      if (alreadySubscribed) {
+        const res = await fetch('/api/stripe/upgrade', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('faa_token')}`,
+          },
+          body: JSON.stringify({ plan }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          window.location.href = '/dashboard?subscribed=1';
+        } else {
+          setErr(data.error || 'Could not upgrade subscription.');
+        }
+      } else {
+        const res = await fetch('/api/stripe/checkout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('faa_token')}`,
+          },
+          body: JSON.stringify({ plan }),
+        });
+        const data = await res.json();
+        if (data.url) window.location.href = data.url;
+        else setErr(data.error || 'Could not start checkout.');
+      }
     } catch {
       setErr('Could not start checkout.');
     } finally {
