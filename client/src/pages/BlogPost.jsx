@@ -13,6 +13,120 @@ const tagColors = {
 const POSTS = {
 
   /* ================================================================ */
+  'how-to-pass-faa-written-exam-first-try': {
+    title: 'How to Pass the FAA Written Exam First Try',
+    description: 'Practical strategies to pass your FAA knowledge test first try. Study smarter with 3,000+ practice questions, timed simulator, and AI Instructor at FAAExaminations.com.',
+    date: 'April 25, 2026',
+    readTime: '7 min read',
+    tag: 'Study Tips',
+    image: '/plane-par.webp',
+    content: (
+      <>
+        <p>Most student pilots stress about the written more than their first solo. Wrong thing to worry about. The knowledge test has a published question bank — you're not guessing what might show up, you're practicing the actual questions. Pass rates are high for people who prepare right.</p>
+
+        <h2>Understand what the FAA is actually testing</h2>
+        <p>The FAA isn't trying to trick you. The test covers the fundamentals of safe flight: regulations, weather, navigation, performance, airspace. Stuff you need to know anyway.</p>
+        <p>The numbers: Private Pilot (PAR) is 60 questions, 70% to pass. Instrument Rating (IRA) is 60. Commercial Pilot (CAX) is 100. Part 107 is 60.</p>
+        <p>The FAA draws from a published test bank. Practice the questions, understand the answers, show up.</p>
+
+        <h2>Step 1: Learn the material before you touch practice questions</h2>
+        <p>Most students blow this. They go straight to practice questions and wonder why nothing sticks.</p>
+        <p>Spend your first week with the FAA handbooks:</p>
+        <ul>
+          <li>Pilot's Handbook of Aeronautical Knowledge (PHAK)</li>
+          <li>Airplane Flying Handbook</li>
+          <li>Aeronautical Information Manual (AIM)</li>
+        </ul>
+        <p>You don't need to memorize them. You need to understand the logic. Once you know <em>why</em> a regulation exists, the correct answer stops being a guess.</p>
+
+        <h2>Step 2: Practice by topic, not randomly</h2>
+        <p>Random drilling feels productive. It isn't. Work through one category at a time:</p>
+        <ol>
+          <li>Regulations (14 CFR Part 61 and 91)</li>
+          <li>Airspace</li>
+          <li>Weather</li>
+          <li>Navigation and charts</li>
+          <li>Aircraft performance and weight &amp; balance</li>
+          <li>Aerodynamics</li>
+        </ol>
+        <p>At <a href="https://www.faaexaminations.com" style={{color:'var(--blue)'}}>FAAExaminations.com</a>, all 3,000+ questions are sorted by module — same categories the FAA uses. Drill your weak areas instead of repeating what you already know.</p>
+
+        <h3>The topics that show up on almost every exam</h3>
+        <p>Where to put your time:</p>
+        <ul>
+          <li>Weather — METARs, TAFs, SIGMETs, cloud types, fronts</li>
+          <li>Airspace — class boundaries, requirements, radio calls</li>
+          <li>Regulations — currency requirements, right-of-way rules</li>
+          <li>Charts — sectional symbols, runway markings, VOR navigation</li>
+          <li>Performance — density altitude, weight &amp; balance</li>
+        </ul>
+        <p>These five cover a lot of ground on every exam.</p>
+
+        <h2>Step 3: Read the explanations, not just the answers</h2>
+        <p>I've seen students drill 1,000 questions and still retake the exam. Usually because they were checking answers without reading why.</p>
+        <p>When you get a question wrong — and when you get it right — read the explanation. The FAA reuses the same logic across different phrasings. Understand the concept once and you'll recognize it in a question you've never seen.</p>
+        <p>FAAExaminations.com has a full explanation for every question, tied to the specific FAA regulation or handbook section. The AI Instructor lets you ask follow-ups on anything that isn't clicking.</p>
+
+        <h2>Step 4: Simulate the real exam before you book it</h2>
+        <p>Two weeks out, start running full timed practice exams — not to study, but to get comfortable with the format.</p>
+        <p>You want to know how the time pressure feels, how to keep moving when you're unsure, and how long you can realistically spend per question. Most exams give you about 2.5 hours.</p>
+        <p>Hit 80%+ consistently before you book. At 85%, go book it. Stuck below 75%, don't.</p>
+
+        <h3>Stuck below 75%?</h3>
+        <p>Stop doing full exams. Find the two or three categories dragging your score down and work through every question in those modules. Most students have one problem area — usually weather or airspace. Fix that and the overall score moves.</p>
+
+        <h2>Step 5: The week before</h2>
+        <p>Don't learn new material this week. One practice exam per day, review only the questions you missed. Confirm your ID, testing center, and appointment. Sleep the two nights before.</p>
+        <p>Cramming the night before doesn't help. You'll walk in tired and second-guess answers you knew cold.</p>
+
+        <h2>How long does it take to prepare?</h2>
+        <p>Two to four weeks for most students who study consistently:</p>
+        <div style={{ overflowX: 'auto', marginBottom: 24 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.9rem' }}>
+            <thead>
+              <tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
+                <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Week</th>
+                <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Focus</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ['1', 'Handbooks and ground school'],
+                ['2', 'Topic-by-topic practice questions'],
+                ['3', 'Full practice exams, weak area review'],
+                ['4', 'Final sims, confirm booking, rest'],
+              ].map(([week, focus], i) => (
+                <tr key={i} style={{ borderBottom: '1px solid var(--border)', background: i % 2 === 0 ? 'var(--card-bg)' : 'transparent' }}>
+                  <td style={{ padding: '9px 12px', color: 'var(--text)' }}>Week {week}</td>
+                  <td style={{ padding: '9px 12px', color: 'var(--text2)' }}>{focus}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>45 minutes a day beats a six-hour Saturday.</p>
+
+        <h2>FAQ</h2>
+
+        <h3>How many questions are on the FAA private pilot written exam?</h3>
+        <p>60 questions. You need 42 correct (70%) to pass.</p>
+
+        <h3>Can I use a calculator?</h3>
+        <p>Yes. Bring an approved aviation calculator — and practice with it beforehand. Don't figure out the buttons on test day.</p>
+
+        <h3>How long is the score valid?</h3>
+        <p>24 months. Your checkride has to happen within that window.</p>
+
+        <h3>What happens if I fail?</h3>
+        <p>14-day wait, then you can retake it. Your instructor signs you off again. Go back and find which topics cost you.</p>
+
+        <h3>Is FAAExaminations.com enough without ground school?</h3>
+        <p>A lot of students use it as their only prep and pass. The explanations and AI Instructor cover the same ground as most ground school courses. If you're completely new to aviation, a structured course alongside it will speed things up — but it's not required.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
   'how-to-pass-faa-private-pilot-written-exam': {
     title: 'How to Pass the FAA Private Pilot Written Exam',
     description: 'Everything you need to know about the PAR knowledge test — topics covered, question count, passing score, and the most effective study strategies.',
@@ -419,6 +533,14 @@ export default function BlogPost() {
           ← All articles
         </Link>
       </div>
+
+      {/* Hero image */}
+      {post.image && (
+        <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', marginBottom: 32, height: 260 }}>
+          <img src={post.image} alt={post.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(8,14,20,0.2), rgba(8,14,20,0.65))' }} />
+        </div>
+      )}
 
       {/* Header */}
       <div style={{ marginBottom: 32 }}>

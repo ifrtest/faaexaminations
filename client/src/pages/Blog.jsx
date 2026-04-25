@@ -4,6 +4,15 @@ import { Helmet } from 'react-helmet-async';
 
 const POSTS = [
   {
+    slug: 'how-to-pass-faa-written-exam-first-try',
+    title: 'How to Pass the FAA Written Exam First Try',
+    excerpt: 'The knowledge test has a published question bank — you\'re not guessing what might show up, you\'re practicing the actual questions. Here\'s the study method that works.',
+    date: 'April 25, 2026',
+    readTime: '7 min read',
+    tag: 'Study Tips',
+    image: '/plane-par.webp',
+  },
+  {
     slug: 'how-to-pass-faa-private-pilot-written-exam',
     title: 'How to Pass the FAA Private Pilot Written Exam',
     excerpt: 'Everything you need to know about the PAR knowledge test — what topics are covered, how many questions, what score you need, and the most effective study strategies.',
