@@ -20,7 +20,7 @@ const POSTS = {
     date: 'April 25, 2026',
     readTime: '6 min read',
     tag: 'Study Tips',
-    image: '/plane-hero-3.webp',
+    image: '/blog-metar.webp',
     content: (
       <>
         <h2>What is a METAR?</h2>
