@@ -4,6 +4,33 @@ import { Helmet } from 'react-helmet-async';
 
 const POSTS = [
   {
+    slug: 'how-to-read-a-metar',
+    title: 'How to Read a METAR (With Real Examples)',
+    excerpt: 'METARs look confusing at first. They\'re not. Once you learn the structure you can decode one in under a minute — and they show up on every FAA knowledge test.',
+    date: 'April 25, 2026',
+    readTime: '6 min read',
+    tag: 'Study Tips',
+    image: '/plane-hero-3.webp',
+  },
+  {
+    slug: 'faa-written-exam-study-guide',
+    title: 'FAA Written Exam Study Guide: What to Study and in What Order',
+    excerpt: 'A topic-by-topic breakdown of the FAA written exam — what\'s high priority, what order to study it, and how long each area actually takes.',
+    date: 'April 25, 2026',
+    readTime: '8 min read',
+    tag: 'Study Tips',
+    image: '/plane-step2.jpg',
+  },
+  {
+    slug: 'instrument-rating-knowledge-test-tips',
+    title: 'Instrument Rating Knowledge Test: What Makes It Hard and How to Pass',
+    excerpt: 'The IRA has a lower pass rate than the private pilot test. Here\'s what actually makes it harder — and the study order that works.',
+    date: 'April 25, 2026',
+    readTime: '8 min read',
+    tag: 'Instrument Rating',
+    image: '/plane-ira.webp',
+  },
+  {
     slug: 'part-107-drone-test-study-guide',
     title: 'How to Pass the Part 107 Drone Test First Try',
     excerpt: 'The FAA Part 107 exam isn\'t a flying test — it\'s a knowledge test. Weather and airspace trip up most drone pilots. Here\'s how to prepare and pass first try.',

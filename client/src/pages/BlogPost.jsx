@@ -14,6 +14,259 @@ const tagColors = {
 const POSTS = {
 
   /* ================================================================ */
+  'how-to-read-a-metar': {
+    title: 'How to Read a METAR (With Real Examples)',
+    description: 'METARs show up on every FAA knowledge test. Learn to decode them field by field with real examples — Private Pilot, Instrument Rating, Commercial, and Part 107.',
+    date: 'April 25, 2026',
+    readTime: '6 min read',
+    tag: 'Study Tips',
+    image: '/plane-hero-3.webp',
+    content: (
+      <>
+        <h2>What is a METAR?</h2>
+        <p>A METAR is a routine weather observation for an airport. Pilots use it to understand current conditions before flight. Drone operators need it to check wind, visibility, and precipitation. And if you're taking any FAA knowledge test — Private Pilot, Instrument Rating, Commercial, or Part 107 — you will see METAR questions.</p>
+        <p>The format looks confusing at first. It isn't. Once you learn the structure, you can decode one in under a minute.</p>
+
+        <h2>A real METAR, decoded</h2>
+        <p>Here's a real-looking METAR:</p>
+        <p style={{fontFamily:'monospace', background:'var(--card-bg)', padding:'12px 16px', borderRadius:8, fontSize:'.9rem', overflowX:'auto', display:'block', marginBottom:20}}>METAR KORD 211552Z 27015G22KT 10SM FEW040 SCT080 BKN250 18/06 A2998 RMK AO2 SLP152 T01780061</p>
+
+        <h3>METAR</h3>
+        <p>The report type. METAR is a routine observation issued on schedule. SPECI is a special report issued outside the normal schedule — usually because conditions changed fast.</p>
+
+        <h3>KORD</h3>
+        <p>The station identifier. K means it's in the contiguous United States. ORD is O'Hare International in Chicago. Four-letter ICAO codes are used here, not the three-letter codes you see on tickets.</p>
+
+        <h3>211552Z</h3>
+        <p>The date and time. 21 is the day of the month. 1552Z is the time in Zulu (UTC). This observation was taken on the 21st at 15:52 UTC. Always UTC — never local time.</p>
+
+        <h3>27015G22KT</h3>
+        <p>Wind. Direction is 270 degrees — due west. Speed is 15 knots. G22 means gusting to 22 knots. VRB means variable direction. Winds under 3 knots are reported as calm. On the FAA test, wind direction is always magnetic.</p>
+
+        <h3>10SM</h3>
+        <p>Visibility in statute miles. 10SM is a good VFR day. The FAA uses statute miles for surface visibility in METARs — not nautical miles. Below 3SM starts to matter for VFR minimums. Below ¼SM is essentially zero-zero.</p>
+
+        <h3>FEW040 SCT080 BKN250</h3>
+        <p>Sky condition. Three layers reported here. Add two zeros to get the altitude in feet AGL:</p>
+        <ul>
+          <li>FEW040 — Few clouds at 4,000 ft AGL</li>
+          <li>SCT080 — Scattered at 8,000 ft</li>
+          <li>BKN250 — Broken layer at 25,000 ft</li>
+        </ul>
+        <div style={{ overflowX: 'auto', marginBottom: 20 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.9rem' }}>
+            <thead><tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Code</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Coverage</th>
+            </tr></thead>
+            <tbody>
+              {[['SKC or CLR','Clear'],['FEW','1–2 eighths'],['SCT','3–4 eighths'],['BKN','5–7 eighths'],['OVC','8 eighths (overcast)']].map(([c,d],i)=>(
+                <tr key={i} style={{ borderBottom:'1px solid var(--border)', background: i%2===0?'var(--card-bg)':'transparent' }}>
+                  <td style={{ padding:'9px 12px', color:'var(--text)', fontFamily:'monospace' }}>{c}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{d}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>BKN and OVC are ceilings. FEW and SCT are not. That distinction matters for VFR minimums and for the test.</p>
+
+        <h3>18/06</h3>
+        <p>Temperature and dewpoint in Celsius. Temp is 18°C, dewpoint is 6°C. When the spread is small — 2°C or less — expect fog or low clouds. Carburetor ice risk increases when temps are between -10°C and +30°C with high humidity.</p>
+
+        <h3>A2998</h3>
+        <p>Altimeter setting. A2998 means 29.98 inches of mercury. Set this in your Kollsman window before flight. Altimeter settings change constantly — that's why you get updated METARs.</p>
+
+        <h3>RMK AO2 SLP152 T01780061</h3>
+        <p>Remarks. AO2 means the station has a precipitation discriminator — it can tell rain from snow. AO1 cannot. SLP152 is sea level pressure 1015.2 millibars. The T group gives temp and dewpoint to the tenth of a degree.</p>
+        <p>Remarks are frequently tested — especially AO1 vs. AO2 and sea level pressure decoding.</p>
+
+        <h2>Common mistakes on the FAA test</h2>
+
+        <h3>Mixing up statute miles and nautical miles</h3>
+        <p>Visibility in METARs is always in statute miles. Cloud heights are in feet AGL. Don't convert when you don't need to.</p>
+
+        <h3>Forgetting that cloud heights are AGL</h3>
+        <p>METAR cloud heights are above ground level, not above sea level. A field at 3,000 ft MSL with a BKN020 ceiling has clouds at roughly 5,000 ft MSL. Matters for flight planning.</p>
+
+        <h3>Misreading wind direction</h3>
+        <p>Wind direction in a METAR is where the wind is coming FROM. 270 degrees means the wind is out of the west, moving east. This trips up a lot of students.</p>
+
+        <h3>Ignoring the timestamp</h3>
+        <p>The observation time matters. A METAR from two hours ago may not reflect current conditions. The test will sometimes ask you to evaluate a METAR time relative to a proposed departure.</p>
+
+        <h2>Why this matters beyond the test</h2>
+        <p>You'll use METARs before every flight. As a drone operator, Part 107 requires you to verify weather conditions before each flight. Learn to decode one quickly. Pull up a real METAR, work through it yourself, then check with a decoder. Ten minutes of that is worth more than an hour of passive reading.</p>
+
+        <h2>Practice METAR questions before your exam</h2>
+        <p><a href="https://www.faaexaminations.com/register" style={{color:'var(--blue)'}}>FAAExaminations.com</a> has 3,000+ FAA practice questions including weather decoding across the Private Pilot, Instrument Rating, Commercial, and Part 107 exams — with explanations for every answer. Free account, no credit card.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'faa-written-exam-study-guide': {
+    title: 'FAA Written Exam Study Guide: What to Study and in What Order',
+    description: 'A topic-by-topic breakdown of the FAA written exam — high vs low priority topics, study order, and how long each area actually takes. Start free at FAAExaminations.com.',
+    date: 'April 25, 2026',
+    readTime: '8 min read',
+    tag: 'Study Tips',
+    image: '/plane-step2.jpg',
+    content: (
+      <>
+        <p>Most student pilots make the same mistake. They open a thick ground school manual, start on page one, and try to read their way to passing. Weeks later they're deep into aerodynamics theory and still haven't touched airspace or weather — two of the heaviest topics on the actual exam.</p>
+        <p>A better approach: know what the test covers, then study in the order that builds on itself.</p>
+
+        <h2>High priority topics first</h2>
+
+        <h3>1. Regulations (FAR)</h3>
+        <p>Time: 4–6 hours. Priority: High.</p>
+        <p>Know Part 61 and Part 91 cold. Certificate requirements, currency rules, equipment requirements, right-of-way rules. The FAA tests these directly and repeatedly. Don't skip the definitions section — "controlled airspace," "instrument flight rules," and "pilot in command" all have specific FAA definitions that show up in questions.</p>
+
+        <h3>2. Airspace</h3>
+        <p>Time: 3–5 hours. Priority: High.</p>
+        <p>Class A through G. Memorize the floor, ceiling, and equipment requirements for each class. Know when a transponder is required. Know Mode C veil rules. Draw it if you need to — a hand-drawn airspace diagram sticks better than anything you read.</p>
+        <p>Common test mistake: Class B requires an ATC clearance AND a Mode C transponder. Class C just requires establishing radio contact. Students mix these up constantly.</p>
+
+        <h3>3. Weather and weather services</h3>
+        <p>Time: 5–7 hours. Priority: High.</p>
+        <p>Break it into chunks:</p>
+        <ul>
+          <li>METARs and TAFs — how to read them</li>
+          <li>PIREPs and AIRMETs/SIGMETs</li>
+          <li>Winds aloft forecasts</li>
+          <li>Weather hazards — thunderstorms, icing, wind shear</li>
+        </ul>
+        <p>Do METARs first. They're the most tested and they build vocabulary for everything else in aviation weather.</p>
+
+        <h3>4. Navigation</h3>
+        <p>Time: 5–8 hours. Priority: High.</p>
+        <p>Sectional chart reading, pilotage, dead reckoning, VOR navigation. Know how to read a sectional — airspace depictions, airport symbols, obstruction symbols, chart legend. Practice plotting a course. Know how to compute magnetic course from true course.</p>
+        <p>The math isn't hard, but it has to be automatic. Use the E6B until it's second nature.</p>
+
+        <h2>Medium priority topics</h2>
+
+        <h3>5. Aircraft systems and performance</h3>
+        <p>Time: 4–6 hours. Priority: Medium-High.</p>
+        <p>Pitot-static system, gyroscopic instruments, electrical systems, fuel systems. Know what fails when, and why. Know how to read a POH performance chart — density altitude, takeoff distance, cruise performance. The FAA will give you a chart and ask you to extract a number. Practice with real charts.</p>
+
+        <h3>6. Aerodynamics</h3>
+        <p>Time: 3–4 hours. Priority: Medium.</p>
+        <p>Four forces of flight, angle of attack, stalls, load factor in turns. You don't need an engineering degree. Know how lift is generated, what causes a stall (AOA, not airspeed), and what load factor does to stall speed.</p>
+
+        <h3>7. Airport operations</h3>
+        <p>Time: 2–3 hours. Priority: Medium.</p>
+        <p>Runway markings, signs, lighting. Taxiway vs. runway signage. Hot spots. Hold short instructions. LAHSO. This section is smaller but students often skip it and miss easy points.</p>
+
+        <h3>8. Physiological factors</h3>
+        <p>Time: 2–3 hours. Priority: Medium.</p>
+        <p>Hypoxia, hyperventilation, spatial disorientation, night vision, alcohol and drugs. Most of this is common sense with specific FAA language. The 8-hour bottle-to-throttle rule. Blood alcohol limits. Know the exact numbers.</p>
+
+        <h2>Lower priority (don't skip)</h2>
+
+        <h3>9. Cross-country flight planning</h3>
+        <p>Time: 3–4 hours. Priority: Medium-Low.</p>
+        <p>Filing a flight plan, fuel requirements, alternates, lost procedures. Most of this ties back to regulations and navigation. Review it after those are locked down.</p>
+
+        <h3>10. Aeromedical and human factors</h3>
+        <p>Time: 1–2 hours. Priority: Low.</p>
+        <p>IMSAFE checklist, fatigue, decision-making. Short section, easy points. Don't spend too long here — it won't carry the exam, but it's low-hanging fruit.</p>
+
+        <h2>How long does it actually take?</h2>
+        <p>Studying 1–2 hours per day, six days a week, you can cover the material in three to four weeks. A practical schedule:</p>
+        <ul>
+          <li>Week 1 — Regulations and airspace</li>
+          <li>Week 2 — Weather and weather services</li>
+          <li>Week 3 — Navigation and flight planning</li>
+          <li>Week 4 — Systems, aerodynamics, airport ops</li>
+          <li>Week 5 — Review, practice tests, weak areas</li>
+        </ul>
+
+        <h2>One rule for all of it</h2>
+        <p>Don't just read. Answer questions. Passive reading gives you a false sense of readiness. Active recall — answering questions and reviewing explanations when you get them wrong — is how the material actually sticks. Every topic you study, find the corresponding practice questions and do them.</p>
+
+        <h2>Practice questions mapped to every topic</h2>
+        <p><a href="https://www.faaexaminations.com/register" style={{color:'var(--blue)'}}>FAAExaminations.com</a> has 3,000+ official FAA practice questions covering every topic above. Answer them, review the explanations, and track your weak areas by topic. Free account, no credit card.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'instrument-rating-knowledge-test-tips': {
+    title: 'Instrument Rating Knowledge Test: What Makes It Hard and How to Pass',
+    description: 'The IRA has a lower pass rate than the private pilot test. Here\'s what makes it harder — IFR charts, approach plates, holding patterns — and the study order that works.',
+    date: 'April 25, 2026',
+    readTime: '8 min read',
+    tag: 'Instrument Rating',
+    image: '/plane-ira.webp',
+    content: (
+      <>
+        <p>A lot of instrument students go into the knowledge test expecting something like the Private Pilot exam — just more material. That's not right. The IRA doesn't just have more content. It has harder content that requires you to apply knowledge, not just recognize facts.</p>
+        <p>The pass rate for the IRA is lower than the PAR. Students who treat it like the private pilot test often find out the hard way with a 65 or 68 when they needed a 70.</p>
+
+        <h2>The volume is real</h2>
+        <p>The private pilot test covers roughly 60 topics. The IRA covers close to 100 — and many go deeper. You're not just adding IFR regulations on top of what you know. You're learning an entirely new operating environment: airways, approach charts, IFR filing, IFR weather minimums, holding patterns, departure and arrival procedures.</p>
+        <p>Each of those could be its own exam. Together, they're one.</p>
+
+        <h2>The topics that trip people up most</h2>
+
+        <h3>1. IFR charts — enroute and approach</h3>
+        <p>This is the single biggest differentiator between students who pass and students who don't. Enroute low altitude charts look nothing like sectionals. The symbology is different. MEA, MOCA, MAA — minimum enroute altitude, minimum obstruction clearance altitude, maximum authorized altitude. You need to know which applies when and why.</p>
+        <p>Approach plates are harder for most students. An ILS plate has procedure notes, minimums, plan view, profile view, and a missed approach procedure — all on one page. The FAA will hand you a plate and ask specific questions about it. You need to be fluent, not just familiar.</p>
+        <p>What works: pick one approach type at a time. Start with ILS. Learn what every symbol means before moving to RNAV or VOR. Print plates and mark them up. Take practice questions that require chart interpretation.</p>
+
+        <h3>2. Holding patterns</h3>
+        <p>Holding patterns aren't complicated in theory. The questions make them complicated. The FAA will ask you about entry procedures (direct, teardrop, parallel), timing, wind correction, and EFC time requirements.</p>
+        <p>The mental picture has to be clear before you can answer these fast. Students who memorize "turn right in a standard hold" without understanding the geometry get confused on non-standard holds and entry type questions from unusual positions.</p>
+        <p>Draw holds. Lots of them. From different positions, with different headings. Ten minutes of drawing beats an hour of reading.</p>
+
+        <h3>3. IFR weather minimums</h3>
+        <p>IFR weather minimums are layered. Takeoff minimums. Alternate airport minimums. Approach minimums — and those change by aircraft category, approach type, and available equipment. The 1-2-3 rule for alternate planning. What qualifies an airport as an alternate.</p>
+        <p>Common mistake: confusing alternate minimums (1 hour before and after ETA) with approach minimums. Different numbers, different purposes.</p>
+
+        <h3>4. Instrument approaches</h3>
+        <p>Precision vs. non-precision. ILS vs. RNAV vs. VOR vs. NDB. Each has different minimums and procedures. The FAA tests:</p>
+        <ul>
+          <li>Decision altitude (DA) vs. minimum descent altitude (MDA)</li>
+          <li>What visual references are required to continue below minimums</li>
+          <li>When you must execute a missed approach</li>
+          <li>Category differences for approach speed</li>
+        </ul>
+        <p>DA vs. MDA is tested repeatedly. DA applies to precision approaches — you decide at a specific altitude. MDA applies to non-precision — you don't descend below it without required visual references. Know this cold.</p>
+
+        <h3>5. IFR departure and arrival procedures</h3>
+        <p>DPs and STARs are on the test. ODP vs. SID. When you're required to fly a DP. What happens when one isn't published. Students skip this area because it seems procedural — but the questions are specific, and the points are real.</p>
+
+        <h3>6. Lost communication procedures</h3>
+        <p>Lost comm generates multiple questions and is worth focused study. The rule: fly the highest of the MEA, assigned altitude, or expected altitude. Fly the route you were cleared to, expected, or filed. Begin the approach at the EFC time or your calculated ETA. Know the logic, not just the acronym.</p>
+
+        <h2>Study order for the IRA</h2>
+        <p>Don't start with the charts. Start with IFR regulations — get the legal framework clear first. Then weather, which builds on your private pilot knowledge but adds PIREPs, AIRMETs, SIGMETs, and IFR-specific hazards. Then charts — enroute first, approach plates second.</p>
+        <ol>
+          <li>IFR regulations (Parts 61 and 91)</li>
+          <li>IFR weather services and hazards</li>
+          <li>Navigation systems (VOR, ILS, RNAV, GPS)</li>
+          <li>Enroute chart reading</li>
+          <li>Approach procedures and plates</li>
+          <li>Holding patterns</li>
+          <li>IFR departure, arrival, and flight planning</li>
+          <li>Practice tests, full review of weak areas</li>
+        </ol>
+
+        <h2>The one thing that separates passers from failures</h2>
+        <p>The IRA rewards students who understand why things work, not just what to do. When you understand why a teardrop entry is used in a certain position, you don't have to memorize it — it's obvious. When you understand why DA is used on precision approaches and MDA on non-precision, the minimums questions become logical instead of arbitrary.</p>
+        <p>Ask "why" constantly while you study. If you can't explain why a rule exists, you don't own the knowledge yet.</p>
+
+        <h2>Don't walk into this test cold on the charts</h2>
+        <p>The number one thing students underestimate is chart fluency. You can read about IFR charts all day. Until you've worked through approach plates and answered questions about specific elements on specific plates, you're not ready. That's a skill that takes practice, not reading.</p>
+
+        <h2>Instrument Rating practice questions</h2>
+        <p><a href="https://www.faaexaminations.com/register" style={{color:'var(--blue)'}}>FAAExaminations.com</a> has a full Instrument Rating question bank covering IFR regulations, chart interpretation, approach minimums, holding patterns, weather, and lost comm procedures — with explanations for every answer. Free account, no credit card.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
   'part-107-drone-test-study-guide': {
     title: 'How to Pass the Part 107 Drone Test First Try',
     description: 'Everything you need to pass the FAA Part 107 Remote Pilot test first try. Study plan, key topics, and 166 practice questions at FAAExaminations.com. Start free.',
