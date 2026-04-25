@@ -487,7 +487,7 @@ export default function Landing() {
             Join student pilots across North America who are preparing with FAAExaminations.com. Create your free account today.
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/register" className="lp-btn-hero">▶︎ Create Free Account</Link>
+            <Link to="/register" className="lp-btn-hero"><svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>Create Free Account</Link>
             <a href="#products" className="lp-btn-outline">View Packages</a>
           </div>
         </div>
