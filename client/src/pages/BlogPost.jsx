@@ -19,7 +19,7 @@ const POSTS = {
     date: 'April 25, 2026',
     readTime: '7 min read',
     tag: 'Study Tips',
-    image: '/plane-par.webp',
+    image: '/blog-faa-simulator.jpg',
     content: (
       <>
         <p>Most student pilots stress about the written more than their first solo. Wrong thing to worry about. The knowledge test has a published question bank — you're not guessing what might show up, you're practicing the actual questions. Pass rates are high for people who prepare right.</p>
