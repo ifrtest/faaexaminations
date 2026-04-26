@@ -52,6 +52,7 @@ export default function Landing() {
           <a href="#features" className="lp-nav-link">Features</a>
           <a href="#how" className="lp-nav-link">How It Works</a>
           <a href="#testimonials" className="lp-nav-link">Reviews</a>
+          <Link to="/blog" className="lp-nav-link">Blog</Link>
           <Link to="/references" className="lp-nav-link">Free References</Link>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
