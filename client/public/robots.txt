@@ -8,4 +8,4 @@ Disallow: /results/
 Disallow: /profile
 Disallow: /admin
 
-Sitemap: https://www.faaexaminations.com/sitemap.xml
+Sitemap: https://faaexaminations.com/sitemap.xml
