@@ -18,6 +18,7 @@ const POSTS = {
     title: 'How to Read a METAR (With Real Examples)',
     description: 'METARs show up on every FAA knowledge test. Learn to decode them field by field with real examples — Private Pilot, Instrument Rating, Commercial, and Part 107.',
     date: 'April 25, 2026',
+    dateISO: '2026-04-25',
     readTime: '6 min read',
     tag: 'Study Tips',
     image: '/blog-metar.webp',
@@ -109,6 +110,7 @@ const POSTS = {
     title: 'FAA Written Exam Study Guide: What to Study and in What Order',
     description: 'A topic-by-topic breakdown of the FAA written exam — high vs low priority topics, study order, and how long each area actually takes. Start free at FAAExaminations.com.',
     date: 'April 25, 2026',
+    dateISO: '2026-04-25',
     readTime: '8 min read',
     tag: 'Study Tips',
     image: '/plane-step2.jpg',
@@ -196,6 +198,7 @@ const POSTS = {
     title: 'Instrument Rating Knowledge Test: What Makes It Hard and How to Pass',
     description: 'The IRA has a lower pass rate than the private pilot test. Here\'s what makes it harder — IFR charts, approach plates, holding patterns — and the study order that works.',
     date: 'April 25, 2026',
+    dateISO: '2026-04-25',
     readTime: '8 min read',
     tag: 'Instrument Rating',
     image: '/plane-ira.webp',
@@ -271,6 +274,7 @@ const POSTS = {
     title: 'How to Pass the Part 107 Drone Test First Try',
     description: 'Everything you need to pass the FAA Part 107 Remote Pilot test first try. Study plan, key topics, and 166 practice questions at FAAExaminations.com. Start free.',
     date: 'April 25, 2026',
+    dateISO: '2026-04-25',
     readTime: '7 min read',
     tag: 'Part 107',
     image: '/blog-part107-drone.jpg',
@@ -376,6 +380,7 @@ const POSTS = {
     title: 'How to Pass the FAA Written Exam First Try',
     description: 'Practical strategies to pass your FAA knowledge test first try. Study smarter with 3,000+ practice questions, timed simulator, and AI Instructor at FAAExaminations.com.',
     date: 'April 25, 2026',
+    dateISO: '2026-04-25',
     readTime: '7 min read',
     tag: 'Study Tips',
     image: '/blog-faa-simulator.jpg',
@@ -490,6 +495,7 @@ const POSTS = {
     title: 'How to Pass the FAA Private Pilot Written Exam',
     description: 'Everything you need to know about the PAR knowledge test — topics covered, question count, passing score, and the most effective study strategies.',
     date: 'April 18, 2026',
+    dateISO: '2026-04-18',
     readTime: '8 min read',
     tag: 'Private Pilot',
     content: (
@@ -549,6 +555,7 @@ const POSTS = {
     title: 'FAA Written Exam: How Many Questions, What Score to Pass & How to Prepare',
     description: 'A complete breakdown of the FAA Airman Knowledge Test format — number of questions per exam, passing scores, time limits, and what to do if you fail.',
     date: 'April 15, 2026',
+    dateISO: '2026-04-15',
     readTime: '6 min read',
     tag: 'Study Tips',
     content: (
@@ -622,6 +629,7 @@ const POSTS = {
     title: 'Instrument Rating Knowledge Test: Study Tips That Actually Work',
     description: 'The IRA is the hardest FAA written exam. Here\'s how to tackle the weather, navigation, and regulations topics that trip up most students.',
     date: 'April 10, 2026',
+    dateISO: '2026-04-10',
     readTime: '7 min read',
     tag: 'Instrument Rating',
     content: (
@@ -674,6 +682,7 @@ const POSTS = {
     title: 'Best FAA Test Prep Tools Compared (2026)',
     description: 'We compare the most popular FAA knowledge test prep platforms — question banks, features, pricing, and pass rates — so you can choose the right one.',
     date: 'April 5, 2026',
+    dateISO: '2026-04-05',
     readTime: '5 min read',
     tag: 'Resources',
     content: (
@@ -728,6 +737,7 @@ const POSTS = {
     title: 'Common Mistakes on the Private Pilot Written Exam (And How to Avoid Them)',
     description: 'From weather charts to airspace questions, these are the topics where student pilots lose the most points — and how to make sure you don\'t.',
     date: 'March 28, 2026',
+    dateISO: '2026-03-28',
     readTime: '6 min read',
     tag: 'Private Pilot',
     content: (
@@ -779,6 +789,7 @@ const POSTS = {
     title: 'FAA License Conversion: What Foreign Pilots Need to Know',
     description: 'Holding an ICAO or Transport Canada pilot licence and converting to FAA? Here\'s exactly what knowledge tests you need and how to prepare.',
     date: 'March 20, 2026',
+    dateISO: '2026-03-20',
     readTime: '7 min read',
     tag: 'License Conversion',
     content: (
@@ -884,6 +895,18 @@ export default function BlogPost() {
         <meta property="og:description" content={post.description} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={`https://www.faaexaminations.com/blog/${slug}`} />
+        {post.image && <meta property="og:image" content={`https://www.faaexaminations.com${post.image}`} />}
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": post.title,
+          "description": post.description,
+          "datePublished": post.dateISO,
+          "author": { "@type": "Organization", "name": "FAAExaminations.com", "url": "https://www.faaexaminations.com" },
+          "publisher": { "@type": "Organization", "name": "FAAExaminations.com", "url": "https://www.faaexaminations.com", "logo": { "@type": "ImageObject", "url": "https://www.faaexaminations.com/favicon.png" } },
+          "mainEntityOfPage": { "@type": "WebPage", "@id": `https://www.faaexaminations.com/blog/${slug}` },
+          ...(post.image ? { "image": `https://www.faaexaminations.com${post.image}` } : {})
+        })}</script>
       </Helmet>
 
       {/* Back link */}
