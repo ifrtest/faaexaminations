@@ -13,10 +13,22 @@ export function AuthProvider({ children }) {
     fetch('/api/health').catch(() => {});
     const token = localStorage.getItem('faa_token');
     if (!token) { setLoading(false); return; }
+
+    // If the backend is cold-starting (Render free tier), authApi.me() can hang
+    // for 30-60s. We bail after 15s so the user sees login instead of spinning forever.
+    // We keep the token so the next attempt re-validates it without asking them to retype.
+    const timeout = setTimeout(() => setLoading(false), 15000);
+
     authApi.me()
       .then((d) => setUser(d.user))
       .catch(() => { localStorage.removeItem('faa_token'); setUser(null); })
-      .finally(() => setLoading(false));
+      .finally(() => { clearTimeout(timeout); setLoading(false); });
+  }, []);
+
+  // Keep-alive ping every 10 minutes so Render doesn't go to sleep between visits.
+  useEffect(() => {
+    const id = setInterval(() => { fetch('/api/health').catch(() => {}); }, 10 * 60 * 1000);
+    return () => clearInterval(id);
   }, []);
 
   const login = useCallback(async (email, password) => {
