@@ -22,6 +22,7 @@ const POSTS = {
     readTime: '6 min read',
     tag: 'Study Tips',
     image: '/blog-metar.webp',
+    related: ['faa-written-exam-study-guide', 'instrument-rating-knowledge-test-tips', 'how-to-pass-faa-written-exam-first-try'],
     content: (
       <>
         <h2>What is a METAR?</h2>
@@ -114,6 +115,7 @@ const POSTS = {
     readTime: '8 min read',
     tag: 'Study Tips',
     image: '/plane-step2.jpg',
+    related: ['how-to-pass-faa-written-exam-first-try', 'how-to-pass-faa-private-pilot-written-exam', 'common-mistakes-private-pilot-written-exam'],
     content: (
       <>
         <p>Most student pilots make the same mistake. They open a thick ground school manual, start on page one, and try to read their way to passing. Weeks later they're deep into aerodynamics theory and still haven't touched airspace or weather — two of the heaviest topics on the actual exam.</p>
@@ -202,6 +204,7 @@ const POSTS = {
     readTime: '8 min read',
     tag: 'Instrument Rating',
     image: '/plane-ira.webp',
+    related: ['instrument-rating-knowledge-test-study-tips', 'how-to-read-a-metar', 'faa-written-exam-study-guide'],
     content: (
       <>
         <p>A lot of instrument students go into the knowledge test expecting something like the Private Pilot exam — just more material. That's not right. The IRA doesn't just have more content. It has harder content that requires you to apply knowledge, not just recognize facts.</p>
@@ -278,6 +281,7 @@ const POSTS = {
     readTime: '7 min read',
     tag: 'Part 107',
     image: '/blog-part107-drone.jpg',
+    related: ['how-to-read-a-metar', 'faa-written-exam-questions-score-tips', 'best-faa-test-prep-tools'],
     content: (
       <>
         <p>Most drone pilots who want to fly commercially underestimate this test. They assume that because they can fly well, the knowledge side will be easy. It isn't. The FAA Part 107 exam covers airspace, weather, regulations, and emergency procedures — and it doesn't care how smooth your footage is.</p>
@@ -384,6 +388,7 @@ const POSTS = {
     readTime: '7 min read',
     tag: 'Study Tips',
     image: '/blog-faa-simulator.jpg',
+    related: ['faa-written-exam-study-guide', 'how-to-pass-faa-private-pilot-written-exam', 'best-faa-test-prep-tools'],
     content: (
       <>
         <p>Most student pilots stress about the written more than their first solo. Wrong thing to worry about. The knowledge test has a published question bank — you're not guessing what might show up, you're practicing the actual questions. Pass rates are high for people who prepare right.</p>
@@ -498,6 +503,7 @@ const POSTS = {
     dateISO: '2026-04-18',
     readTime: '8 min read',
     tag: 'Private Pilot',
+    related: ['how-to-pass-faa-written-exam-first-try', 'common-mistakes-private-pilot-written-exam', 'faa-written-exam-study-guide'],
     content: (
       <>
         <p>The FAA Private Pilot written exam — officially the PAR, or Airman Knowledge Test — is the one written hurdle every student pilot faces before the checkride. It's 60 questions, 2.5 hours, and you need a 70% to pass. Sounds manageable. And it is, if you actually prepare for it.</p>
@@ -558,6 +564,7 @@ const POSTS = {
     dateISO: '2026-04-15',
     readTime: '6 min read',
     tag: 'Study Tips',
+    related: ['how-to-pass-faa-written-exam-first-try', 'faa-written-exam-study-guide', 'best-faa-test-prep-tools'],
     content: (
       <>
         <p>Before you open a study guide or book a testing slot, it helps to know the basic shape of the exam you're preparing for. How long is it? How hard is hard? What happens if you don't make it the first time? Here's everything you need up front.</p>
@@ -632,6 +639,7 @@ const POSTS = {
     dateISO: '2026-04-10',
     readTime: '7 min read',
     tag: 'Instrument Rating',
+    related: ['instrument-rating-knowledge-test-tips', 'how-to-read-a-metar', 'faa-written-exam-study-guide'],
     content: (
       <>
         <p>Ask a group of instrument-rated pilots which FAA written gave them the most trouble and the IRA will win by a significant margin. It's not the hardest written because it's designed to be unfair — it's hard because the material is genuinely more complex. IFR procedures, approach charts, weather you'd never see on a VFR flight, airspace rules that only apply when you're in the clouds. It's a different category of knowledge.</p>
@@ -685,6 +693,7 @@ const POSTS = {
     dateISO: '2026-04-05',
     readTime: '5 min read',
     tag: 'Resources',
+    related: ['how-to-pass-faa-written-exam-first-try', 'faa-written-exam-study-guide', 'faa-written-exam-questions-score-tips'],
     content: (
       <>
         <p>There's no shortage of FAA test prep material out there. Apps, books, video ground schools, flashcard decks, YouTube channels. The problem isn't finding resources — it's figuring out which ones are actually worth your time before you're two weeks deep and realize they weren't.</p>
@@ -740,6 +749,7 @@ const POSTS = {
     dateISO: '2026-03-28',
     readTime: '6 min read',
     tag: 'Private Pilot',
+    related: ['how-to-pass-faa-private-pilot-written-exam', 'how-to-read-a-metar', 'faa-written-exam-study-guide'],
     content: (
       <>
         <p>Certain patterns show up in student practice results so consistently that they're worth calling out directly. The same subjects trip people up over and over — not because those topics are uniquely difficult, but because they're easy to skim during studying and brutal to face unprepared on test day. Here's where the points usually go and what to do about it.</p>
@@ -792,6 +802,7 @@ const POSTS = {
     dateISO: '2026-03-20',
     readTime: '7 min read',
     tag: 'License Conversion',
+    related: ['faa-written-exam-questions-score-tips', 'best-faa-test-prep-tools', 'how-to-pass-faa-written-exam-first-try'],
     content: (
       <>
         <p>If you hold a pilot licence from another country and want to fly as pilot-in-command in the United States, you'll need an FAA certificate. The conversion process is designed to be accessible for pilots who already have solid training — the FAA isn't asking you to start from scratch. But there are specific steps, and a few things that catch people off guard if they don't know what to expect.</p>
@@ -942,6 +953,33 @@ export default function BlogPost() {
       <div className="blog-body">
         {post.content}
       </div>
+
+      {/* Related articles */}
+      {post.related && post.related.length > 0 && (
+        <div style={{ marginTop: 48 }}>
+          <div style={{ fontSize: '.78rem', fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text3)', marginBottom: 16 }}>Related articles</div>
+          <div style={{ display: 'grid', gap: 12 }}>
+            {post.related.map(s => {
+              const r = POSTS[s];
+              if (!r) return null;
+              const rtc = tagColors[r.tag] || tagColors['Study Tips'];
+              return (
+                <Link key={s} to={`/blog/${s}`} style={{ textDecoration: 'none' }}>
+                  <div className="card" style={{ padding: '16px 20px', cursor: 'pointer', transition: 'border-color .2s' }}
+                    onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--border2)'}
+                    onMouseLeave={e => e.currentTarget.style.borderColor = ''}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                      <span style={{ fontSize: '.7rem', fontWeight: 700, padding: '2px 8px', borderRadius: 20, background: rtc.bg, color: rtc.color }}>{r.tag}</span>
+                      <span style={{ fontSize: '.75rem', color: 'var(--text3)' }}>{r.readTime}</span>
+                    </div>
+                    <div style={{ fontWeight: 700, fontSize: '.95rem', color: 'var(--text)' }}>{r.title}</div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* CTA */}
       <div className="card" style={{ marginTop: 48, textAlign: 'center', padding: '28px 24px', background: 'var(--blue-dim)', borderColor: 'var(--border2)' }}>
