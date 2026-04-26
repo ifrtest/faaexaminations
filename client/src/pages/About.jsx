@@ -1,6 +1,16 @@
+import { Helmet } from 'react-helmet-async';
+
 export default function About() {
   return (
     <div className="container" style={{ maxWidth: 720, margin: '60px auto', padding: '0 24px 80px' }}>
+      <Helmet>
+        <title>About Us | FAAExaminations.com</title>
+        <meta name="description" content="FAAExaminations.com was built by a certified flight instructor and a web developer after COVID shut down the airline industry. Here's our story." />
+        <link rel="canonical" href="https://www.faaexaminations.com/about" />
+        <meta property="og:title" content="About FAAExaminations.com" />
+        <meta property="og:description" content="Built by a CFI and a web developer. 3,000+ FAA practice questions for Private Pilot, Instrument Rating, Commercial, and Part 107." />
+        <meta property="og:url" content="https://www.faaexaminations.com/about" />
+      </Helmet>
       <h1 style={{ marginBottom: 8 }}>About FAAExaminations.com</h1>
       <p style={{ color: 'var(--text2)', marginBottom: 48 }}>Built by pilots, for pilots.</p>
 

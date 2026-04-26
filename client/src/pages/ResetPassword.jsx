@@ -1,6 +1,7 @@
 // client/src/pages/ResetPassword.jsx
 import { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { auth } from '../api/client';
 
 export default function ResetPassword() {
@@ -31,6 +32,10 @@ export default function ResetPassword() {
 
   return (
     <div className="container page center-col">
+      <Helmet>
+        <title>Reset Password | FAAExaminations.com</title>
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
       <div className="card auth-card">
         <h2>Choose a new password</h2>
         <p className="sub">Enter your new password below.</p>

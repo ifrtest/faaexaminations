@@ -1,6 +1,7 @@
 // client/src/pages/ForgotPassword.jsx
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { auth } from '../api/client';
 
 export default function ForgotPassword() {
@@ -22,6 +23,10 @@ export default function ForgotPassword() {
 
   return (
     <div className="container page center-col">
+      <Helmet>
+        <title>Forgot Password | FAAExaminations.com</title>
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
       <div className="card auth-card">
         <h2>Forgot password</h2>
         <p className="sub">Enter your email and we'll send a reset link.</p>
