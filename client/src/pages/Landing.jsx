@@ -109,7 +109,7 @@ export default function Landing() {
 
             <div className="lp-product-card">
               <div className="lp-product-img">
-                <img src="/plane-par.webp" alt="Private Pilot" />
+                <img src="/plane-par.webp" alt="Private Pilot — FAA Private Pilot Airman Knowledge Test prep" />
                 <div className="lp-product-img-overlay" />
               </div>
               <div className="lp-product-body">
@@ -131,7 +131,7 @@ export default function Landing() {
 
             <div className="lp-product-card">
               <div className="lp-product-img">
-                <img src="/plane-ira.webp" alt="Instrument Rating" />
+                <img src="/plane-ira.webp" alt="Instrument Rating — FAA IRA Airman Knowledge Test prep" />
                 <div className="lp-product-img-overlay" />
               </div>
               <div className="lp-product-body">
@@ -153,7 +153,7 @@ export default function Landing() {
 
             <div className="lp-product-card">
               <div className="lp-product-img">
-                <img src="/plane-cax.webp" alt="Commercial Pilot" />
+                <img src="/plane-cax.webp" alt="Commercial Pilot — FAA CAX Airman Knowledge Test prep" />
                 <div className="lp-product-img-overlay" />
               </div>
               <div className="lp-product-body">
@@ -175,7 +175,7 @@ export default function Landing() {
 
             <div className="lp-product-card lp-featured lp-product-bundle">
               <div className="lp-product-img">
-                <img src="/plane-bundle.webp" alt="Bundle" />
+                <img src="/plane-bundle.webp" alt="Pilot Certificate Bundle — PAR, IRA, and CAX exam prep combined" />
                 <div className="lp-product-img-overlay" />
               </div>
               <div className="lp-product-body">
