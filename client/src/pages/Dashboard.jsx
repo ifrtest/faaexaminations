@@ -56,7 +56,8 @@ export default function Dashboard() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get('subscribed') === '1' && window.fbq) {
-      fbq('track', 'Purchase', { value: 24.99, currency: 'USD' });
+      const eid = params.get('eid');
+      fbq('track', 'Purchase', { value: 24.99, currency: 'USD' }, eid ? { eventID: eid } : {});
     }
   }, []);
 

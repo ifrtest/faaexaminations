@@ -39,10 +39,10 @@ export function AuthProvider({ children }) {
   }, []);
 
   const register = useCallback(async (email, password, full_name) => {
-    const { user, token } = await authApi.register({ email, password, full_name });
-    localStorage.setItem('faa_token', token);
-    setUser(user);
-    return user;
+    const data = await authApi.register({ email, password, full_name });
+    localStorage.setItem('faa_token', data.token);
+    setUser(data.user);
+    return data;
   }, []);
 
   const logout = useCallback(async () => {

@@ -21,8 +21,8 @@ export default function Register() {
     if (form.password !== form.confirm) return setErr('Passwords do not match.');
     setBusy(true);
     try {
-      await register(form.email, form.password, form.full_name);
-      if (window.fbq) fbq('track', 'Lead');
+      const data = await register(form.email, form.password, form.full_name);
+      if (window.fbq) fbq('track', 'Lead', {}, data?.leadEventId ? { eventID: data.leadEventId } : {});
       navigate('/dashboard', { replace: true });
     } catch (ex) {
       setErr(ex.response?.data?.error || 'Could not create account.');

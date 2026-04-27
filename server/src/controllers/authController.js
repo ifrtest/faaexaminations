@@ -1,9 +1,11 @@
 // server/src/controllers/authController.js
+const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const db     = require('../config/db');
 const { sign } = require('../middleware/auth');
 const { randomToken } = require('../utils/helpers');
 const { sendEmail, welcomeEmail, passwordResetEmail } = require('../utils/email');
+const { capiLead } = require('../utils/metaCapi');
 
 const ROUNDS = parseInt(process.env.BCRYPT_ROUNDS || '10', 10);
 
@@ -38,7 +40,15 @@ exports.register = async (req, res, next) => {
       html: welcomeEmail(user.full_name || user.email.split('@')[0], user.id),
       userId: user.id,
     });
-    res.status(201).json({ user, token });
+    // Fire CAPI Lead event (non-blocking)
+    const leadEventId = crypto.randomUUID();
+    capiLead({
+      eventId:   leadEventId,
+      email:     user.email,
+      firstName: user.full_name?.split(' ')[0],
+      userAgent: req.headers['user-agent'],
+    });
+    res.status(201).json({ user, token, leadEventId });
   } catch (err) { next(err); }
 };
 

@@ -1,9 +1,11 @@
 // server/src/routes/stripe.js
+const crypto  = require('crypto');
 const express = require('express');
 const Stripe  = require('stripe');
 const db      = require('../config/db');
 const { requireAuth } = require('../middleware/auth');
 const { sendEmail, subscriptionEmail, cancellationEmail } = require('../utils/email');
+const { capiPurchase } = require('../utils/metaCapi');
 
 const router = express.Router();
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
@@ -48,14 +50,15 @@ router.post('/checkout', requireAuth, async (req, res) => {
       await db.query('UPDATE users SET stripe_customer_id = $1 WHERE id = $2', [customerId, user.id]);
     }
 
+    const capiEventId = crypto.randomUUID();
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
       mode: 'subscription',
       payment_method_types: ['card'],
       line_items: [{ price: priceId, quantity: 1 }],
-      success_url: `${process.env.CLIENT_URL}/dashboard?subscribed=1`,
+      success_url: `${process.env.CLIENT_URL}/dashboard?subscribed=1&eid=${capiEventId}`,
       cancel_url:  `${process.env.CLIENT_URL}/exams`,
-      metadata: { user_id: String(user.id), plan },
+      metadata: { user_id: String(user.id), plan, capi_event_id: capiEventId },
     });
 
     res.json({ url: session.url });
@@ -82,7 +85,7 @@ router.post('/webhook', async (req, res) => {
       case 'checkout.session.completed': {
         const session = event.data.object;
         if (session.mode === 'subscription') {
-          await activateSubscription(session.customer, session.subscription);
+          await activateSubscription(session);
         }
         break;
       }
@@ -112,7 +115,11 @@ router.post('/webhook', async (req, res) => {
   }
 });
 
-async function activateSubscription(customerId, subscriptionId) {
+async function activateSubscription(session) {
+  const customerId     = session.customer;
+  const subscriptionId = session.subscription;
+  const capiEventId    = session.metadata?.capi_event_id;
+
   const sub = await stripe.subscriptions.retrieve(subscriptionId);
   const priceId = sub.items.data[0].price.id;
   const endsAt = new Date(sub.current_period_end * 1000);
@@ -128,7 +135,7 @@ async function activateSubscription(customerId, subscriptionId) {
     [subscriptionId, priceId, endsAt, priceId, customerId]
   );
 
-  // Send subscription confirmation email
+  // Send subscription confirmation email + fire CAPI Purchase
   const userRes = await db.query('SELECT id, email, full_name FROM users WHERE stripe_customer_id = $1', [customerId]);
   const user = userRes.rows[0];
   if (user) {
@@ -140,6 +147,14 @@ async function activateSubscription(customerId, subscriptionId) {
       userId: user.id,
       allowUnsubscribed: true,
     });
+    // Fire CAPI Purchase — server-side so iOS-blocked browsers still report conversions
+    if (capiEventId) {
+      capiPurchase({
+        eventId:   capiEventId,
+        email:     user.email,
+        firstName: user.full_name?.split(' ')[0],
+      });
+    }
   }
 }
 
