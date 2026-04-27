@@ -4,12 +4,31 @@ export default function About() {
   return (
     <div className="container" style={{ maxWidth: 720, margin: '60px auto', padding: '0 24px 80px' }}>
       <Helmet>
-        <title>About Us | FAAExaminations.com</title>
-        <meta name="description" content="FAAExaminations.com was built by a certified flight instructor and a web developer after COVID shut down the airline industry. Here's our story." />
-        <link rel="canonical" href="https://www.faaexaminations.com/about" />
-        <meta property="og:title" content="About FAAExaminations.com" />
-        <meta property="og:description" content="Built by a CFI and a web developer. 3,000+ FAA practice questions for Private Pilot, Instrument Rating, Commercial, and Part 107." />
-        <meta property="og:url" content="https://www.faaexaminations.com/about" />
+        <title>About FAAExaminations.com — Built by Pilots, for Pilots</title>
+        <meta name="description" content="FAAExaminations.com was built by a Certified Flight Instructor and a web developer after COVID shut down the airline industry. 3,000+ FAA practice questions for PAR, IRA, CAX, and Part 107." />
+        <link rel="canonical" href="https://faaexaminations.com/about" />
+        <meta property="og:title" content="About FAAExaminations.com — Built by Pilots, for Pilots" />
+        <meta property="og:description" content="Built by a Certified Flight Instructor and a web developer. 3,000+ FAA practice questions for Private Pilot, Instrument Rating, Commercial, and Part 107." />
+        <meta property="og:url" content="https://faaexaminations.com/about" />
+        <meta property="og:image" content="https://faaexaminations.com/plane-hero.jpeg" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          "name": "About FAAExaminations.com",
+          "url": "https://faaexaminations.com/about",
+          "description": "FAAExaminations.com was built by a Certified Flight Instructor and a web developer to provide the best FAA knowledge test prep.",
+          "publisher": { "@type": "Organization", "name": "FAAExaminations.com", "url": "https://faaexaminations.com" },
+          "author": [{
+            "@type": "Person",
+            "name": "Ash",
+            "jobTitle": "Certified Flight Instructor",
+            "hasCredential": {
+              "@type": "EducationalOccupationalCredential",
+              "credentialCategory": "Certified Flight Instructor (CFI)",
+              "recognizedBy": { "@type": "Organization", "name": "Federal Aviation Administration" }
+            }
+          }]
+        })}</script>
       </Helmet>
       <h1 style={{ marginBottom: 8 }}>About FAAExaminations.com</h1>
       <p style={{ color: 'var(--text2)', marginBottom: 48 }}>Built by pilots, for pilots.</p>

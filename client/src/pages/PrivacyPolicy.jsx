@@ -6,7 +6,7 @@ export default function PrivacyPolicy() {
       <Helmet>
         <title>Privacy Policy | FAAExaminations.com</title>
         <meta name="description" content="Privacy policy for FAAExaminations.com — how we collect, use, and protect your personal information." />
-        <link rel="canonical" href="https://www.faaexaminations.com/privacy" />
+        <link rel="canonical" href="https://faaexaminations.com/privacy" />
       </Helmet>
       <h1 style={{ marginBottom: 8 }}>Privacy Policy</h1>
       <p style={{ color: 'var(--text2)', marginBottom: 40 }}>Last updated: April 2026</p>

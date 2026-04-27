@@ -101,7 +101,7 @@ const POSTS = {
         <p>You'll use METARs before every flight. As a drone operator, Part 107 requires you to verify weather conditions before each flight. Learn to decode one quickly. Pull up a real METAR, work through it yourself, then check with a decoder. Ten minutes of that is worth more than an hour of passive reading.</p>
 
         <h2>Practice METAR questions before your exam</h2>
-        <p><a href="https://www.faaexaminations.com/register" style={{color:'var(--blue)'}}>FAAExaminations.com</a> has 3,000+ FAA practice questions including weather decoding across the Private Pilot, Instrument Rating, Commercial, and Part 107 exams — with explanations for every answer. Free account, no credit card.</p>
+        <p><a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>FAAExaminations.com</a> has 3,000+ FAA practice questions including weather decoding across the Private Pilot, Instrument Rating, Commercial, and Part 107 exams — with explanations for every answer. Free account, no credit card.</p>
       </>
     ),
   },
@@ -190,7 +190,7 @@ const POSTS = {
         <p>Don't just read. Answer questions. Passive reading gives you a false sense of readiness. Active recall — answering questions and reviewing explanations when you get them wrong — is how the material actually sticks. Every topic you study, find the corresponding practice questions and do them.</p>
 
         <h2>Practice questions mapped to every topic</h2>
-        <p><a href="https://www.faaexaminations.com/register" style={{color:'var(--blue)'}}>FAAExaminations.com</a> has 3,000+ official FAA practice questions covering every topic above. Answer them, review the explanations, and track your weak areas by topic. Free account, no credit card.</p>
+        <p><a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>FAAExaminations.com</a> has 3,000+ official FAA practice questions covering every topic above. Answer them, review the explanations, and track your weak areas by topic. Free account, no credit card.</p>
       </>
     ),
   },
@@ -267,7 +267,7 @@ const POSTS = {
         <p>The number one thing students underestimate is chart fluency. You can read about IFR charts all day. Until you've worked through approach plates and answered questions about specific elements on specific plates, you're not ready. That's a skill that takes practice, not reading.</p>
 
         <h2>Instrument Rating practice questions</h2>
-        <p><a href="https://www.faaexaminations.com/register" style={{color:'var(--blue)'}}>FAAExaminations.com</a> has a full Instrument Rating question bank covering IFR regulations, chart interpretation, approach minimums, holding patterns, weather, and lost comm procedures — with explanations for every answer. Free account, no credit card.</p>
+        <p><a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>FAAExaminations.com</a> has a full Instrument Rating question bank covering IFR regulations, chart interpretation, approach minimums, holding patterns, weather, and lost comm procedures — with explanations for every answer. Free account, no credit card.</p>
       </>
     ),
   },
@@ -339,7 +339,7 @@ const POSTS = {
 
         <h3>Week 2: Weather and practice questions</h3>
         <p>Learn to read a METAR. Know how to pull ceiling, visibility, and wind from one. Understand density altitude — it matters more for drone performance than most people expect, especially in hot weather or at elevation.</p>
-        <p>Then start practice questions, by topic. At <a href="https://www.faaexaminations.com" style={{color:'var(--blue)'}}>FAAExaminations.com</a>, all 166 Part 107 questions are sorted by category. Drill the weak areas instead of cycling through what you already know.</p>
+        <p>Then start practice questions, by topic. At <a href="https://faaexaminations.com" style={{color:'var(--blue)'}}>FAAExaminations.com</a>, all 166 Part 107 questions are sorted by category. Drill the weak areas instead of cycling through what you already know.</p>
 
         <h3>Week 3: Full practice exams and booking</h3>
         <p>Run the 60-question timed simulator. Aim for 80%+ before you book. The actual exam gives you 2 hours — most people finish in 45 minutes.</p>
@@ -418,7 +418,7 @@ const POSTS = {
           <li>Aircraft performance and weight &amp; balance</li>
           <li>Aerodynamics</li>
         </ol>
-        <p>At <a href="https://www.faaexaminations.com" style={{color:'var(--blue)'}}>FAAExaminations.com</a>, all 3,000+ questions are sorted by module — same categories the FAA uses. Drill your weak areas instead of repeating what you already know.</p>
+        <p>At <a href="https://faaexaminations.com" style={{color:'var(--blue)'}}>FAAExaminations.com</a>, all 3,000+ questions are sorted by module — same categories the FAA uses. Drill your weak areas instead of repeating what you already know.</p>
 
         <h3>The topics that show up on almost every exam</h3>
         <p>Where to put your time:</p>
@@ -901,22 +901,22 @@ export default function BlogPost() {
       <Helmet>
         <title>{post.title} | FAAExaminations.com</title>
         <meta name="description" content={post.description} />
-        <link rel="canonical" href={`https://www.faaexaminations.com/blog/${slug}`} />
+        <link rel="canonical" href={`https://faaexaminations.com/blog/${slug}`} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.description} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://www.faaexaminations.com/blog/${slug}`} />
-        {post.image && <meta property="og:image" content={`https://www.faaexaminations.com${post.image}`} />}
+        <meta property="og:url" content={`https://faaexaminations.com/blog/${slug}`} />
+        {post.image && <meta property="og:image" content={`https://faaexaminations.com${post.image}`} />}
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Article",
           "headline": post.title,
           "description": post.description,
           "datePublished": post.dateISO,
-          "author": { "@type": "Organization", "name": "FAAExaminations.com", "url": "https://www.faaexaminations.com" },
-          "publisher": { "@type": "Organization", "name": "FAAExaminations.com", "url": "https://www.faaexaminations.com", "logo": { "@type": "ImageObject", "url": "https://www.faaexaminations.com/favicon.png" } },
-          "mainEntityOfPage": { "@type": "WebPage", "@id": `https://www.faaexaminations.com/blog/${slug}` },
-          ...(post.image ? { "image": `https://www.faaexaminations.com${post.image}` } : {})
+          "author": { "@type": "Organization", "name": "FAAExaminations.com", "url": "https://faaexaminations.com" },
+          "publisher": { "@type": "Organization", "name": "FAAExaminations.com", "url": "https://faaexaminations.com", "logo": { "@type": "ImageObject", "url": "https://faaexaminations.com/favicon.png" } },
+          "mainEntityOfPage": { "@type": "WebPage", "@id": `https://faaexaminations.com/blog/${slug}` },
+          ...(post.image ? { "image": `https://faaexaminations.com${post.image}` } : {})
         })}</script>
       </Helmet>
 

@@ -141,12 +141,24 @@ export default function References() {
   return (
     <div className="container page" style={{ maxWidth: 960 }}>
       <Helmet>
-        <title>Free FAA Study Materials — Handbooks, ACS &amp; Supplements | FAAExaminations.com</title>
-        <meta name="description" content="All official FAA study materials in one place: Pilot's Handbook of Aeronautical Knowledge, Instrument Flying Handbook, ACS standards, testing supplements, and performance charts. Free for student pilots." />
-        <link rel="canonical" href="https://www.faaexaminations.com/references" />
-        <meta property="og:title" content="Free FAA Study Materials — Handbooks, ACS &amp; Supplements" />
+        <title>Free FAA Study References — Handbooks &amp; ACS | FAAExaminations.com</title>
+        <meta name="description" content="All official FAA handbooks, ACS standards, and testing supplements in one place — free for student pilots. PHAK, Instrument Flying Handbook, performance charts, and more." />
+        <link rel="canonical" href="https://faaexaminations.com/references" />
+        <meta property="og:title" content="Free FAA Study References — Handbooks &amp; ACS" />
         <meta property="og:description" content="Every official FAA handbook, ACS standard, and testing supplement you need to pass your written exam — all free, all in one place." />
-        <meta property="og:url" content="https://www.faaexaminations.com/references" />
+        <meta property="og:url" content="https://faaexaminations.com/references" />
+        <meta property="og:image" content="https://faaexaminations.com/plane-hero.jpeg" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem", "position": 1,
+            "name": "Home", "item": "https://faaexaminations.com"
+          }, {
+            "@type": "ListItem", "position": 2,
+            "name": "Free FAA References", "item": "https://faaexaminations.com/references"
+          }]
+        })}</script>
       </Helmet>
       <h1>Free FAA Study References</h1>
       <p style={{ color: 'var(--text2)', marginBottom: 32, lineHeight: 1.7, fontSize: '1.05rem' }}>

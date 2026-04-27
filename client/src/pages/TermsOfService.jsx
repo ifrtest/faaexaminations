@@ -6,7 +6,7 @@ export default function TermsOfService() {
       <Helmet>
         <title>Terms of Service | FAAExaminations.com</title>
         <meta name="description" content="Terms of service for FAAExaminations.com — your rights and responsibilities when using our FAA exam prep platform." />
-        <link rel="canonical" href="https://www.faaexaminations.com/terms" />
+        <link rel="canonical" href="https://faaexaminations.com/terms" />
       </Helmet>
       <h1 style={{ marginBottom: 8 }}>Terms of Service</h1>
       <p style={{ color: 'var(--text2)', marginBottom: 40 }}>Last updated: April 2026</p>

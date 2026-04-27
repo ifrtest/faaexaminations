@@ -112,8 +112,23 @@ export default function Blog() {
     <div className="container page" style={{ maxWidth: 860 }}>
       <Helmet>
         <title>Blog — FAA Exam Tips &amp; Study Guides | FAAExaminations.com</title>
-        <meta name="description" content="FAA knowledge test tips, study guides, and exam prep advice for Private Pilot, Instrument Rating, and Commercial Pilot written exams." />
-        <link rel="canonical" href="https://www.faaexaminations.com/blog" />
+        <meta name="description" content="FAA knowledge test tips, study guides, and exam prep advice for Private Pilot, Instrument Rating, and Commercial Pilot written exams. Pass your FAA written test first try." />
+        <link rel="canonical" href="https://faaexaminations.com/blog" />
+        <meta property="og:title" content="FAA Exam Tips &amp; Study Guides — FAAExaminations.com Blog" />
+        <meta property="og:description" content="FAA knowledge test tips, study guides, and exam prep advice for Private Pilot, Instrument Rating, and Commercial Pilot written exams." />
+        <meta property="og:url" content="https://faaexaminations.com/blog" />
+        <meta property="og:image" content="https://faaexaminations.com/plane-hero.jpeg" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem", "position": 1,
+            "name": "Home", "item": "https://faaexaminations.com"
+          }, {
+            "@type": "ListItem", "position": 2,
+            "name": "Blog", "item": "https://faaexaminations.com/blog"
+          }]
+        })}</script>
       </Helmet>
 
       <h1>FAA Exam Tips &amp; Study Guides</h1>
