@@ -51,6 +51,36 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://faaexaminations.com/blog/how-to-pass-faa-private-pilot-written-exam-first-try</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://faaexaminations.com/blog/part-107-study-guide-2026</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://faaexaminations.com/blog/faa-instrument-rating-written-test-study-tips-2026</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://faaexaminations.com/blog/how-long-to-get-private-pilot-license</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://faaexaminations.com/blog/part-107-vs-private-pilot-license</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://faaexaminations.com/blog/how-to-read-a-metar</loc>
     <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>

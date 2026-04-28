@@ -113,8 +113,7 @@ export default function Part107Landing() {
             <a href="#includes" className="lp-btn-outline">See What's Included</a>
           </div>
           <div style={{ fontSize: 13, color: 'var(--lp-text3)', marginTop: 14, opacity: 0.8, lineHeight: 2 }}>
-            Free account includes 10 practice questions · No credit card required<br />
-            Full access from $24.99/month · Cancel anytime
+            No credit card required to start · Full access from $24.99/month · Cancel anytime
           </div>
           <div className="lp-hero-stats">
             <div><div className="lp-hs-val">60</div><div className="lp-hs-lbl">Exam Questions</div></div>
@@ -186,7 +185,7 @@ export default function Part107Landing() {
                 </li>
               ))}
             </ul>
-            <Link to="/register" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Start Free — Get 10 Questions Now</Link>
+            <Link to="/register" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Start Studying Part 107 Now</Link>
             <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}>No credit card required to start · Upgrade when you're ready</div>
           </div>
         </div>
