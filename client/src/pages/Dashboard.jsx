@@ -55,9 +55,14 @@ export default function Dashboard() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    if (params.get('subscribed') === '1' && window.fbq) {
+    if (params.get('subscribed') === '1') {
       const eid = params.get('eid');
-      fbq('track', 'Purchase', { value: 24.99, currency: 'USD' }, eid ? { eventID: eid } : {});
+      if (window.fbq) {
+        fbq('track', 'Purchase', { value: 24.99, currency: 'USD' }, eid ? { eventID: eid } : {});
+      }
+      if (window.gtag) {
+        gtag('event', 'purchase', { currency: 'CAD', value: 24.99 });
+      }
     }
   }, []);
 
