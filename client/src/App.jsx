@@ -32,13 +32,17 @@ import Blog           from './pages/Blog';
 import BlogPost       from './pages/BlogPost';
 import NotFound       from './pages/NotFound';
 import PARLanding     from './pages/PARLanding';
+import IRALanding     from './pages/IRALanding';
+import CAXLanding     from './pages/CAXLanding';
+import Part107Landing from './pages/Part107Landing';
+import BundleLanding  from './pages/BundleLanding';
 
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
 export default function App() {
   const { pathname } = useLocation();
-  const isLanding = pathname === '/' || pathname === '/par';
+  const isLanding = ['/', '/par', '/ira', '/cax', '/part-107', '/bundle'].includes(pathname);
 
   return (
     <div className="app-shell">
@@ -48,6 +52,10 @@ export default function App() {
           {/* Public */}
           <Route path="/"               element={<Landing />} />
           <Route path="/par"            element={<PARLanding />} />
+          <Route path="/ira"            element={<IRALanding />} />
+          <Route path="/cax"            element={<CAXLanding />} />
+          <Route path="/part-107"       element={<Part107Landing />} />
+          <Route path="/bundle"         element={<BundleLanding />} />
           <Route path="/login"          element={<Login />} />
           <Route path="/register"       element={<Register />} />
           <Route path="/forgot"         element={<ForgotPassword />} />
