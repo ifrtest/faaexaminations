@@ -885,11 +885,11 @@ const POSTS = {
     related: ['faa-written-exam-study-guide', 'common-mistakes-private-pilot-written-exam', 'how-to-pass-faa-written-exam-first-try'],
     content: (
       <>
-        <p>The FAA Private Pilot Airman Knowledge Test (PAR) has 60 questions. You need a 70% to pass — meaning you can miss up to 18. That sounds forgiving. Most students who fail don't fail because the test is hard. They fail because they studied the wrong things in the wrong order.</p>
-        <p>Here's a study plan that works.</p>
+        <p>The FAA Private Pilot Airman Knowledge Test has 60 questions and a 70% passing score. You can miss up to 18. That sounds forgiving — and for most topics, it is. But students fail this test every day, and almost never because it was too hard. They fail because they spent three weeks studying the wrong things and walked in underprepared on weather and airspace, which together make up roughly half the exam.</p>
+        <p>Here's what a study plan that actually works looks like.</p>
 
         <h2>What the PAR actually tests</h2>
-        <p>The FAA draws from a published question bank across 11 subject areas. Nothing on the test is a surprise — every question comes from that bank. Your job is to work through the bank systematically, understand why each answer is correct, and spot the patterns.</p>
+        <p>Here's the thing most people don't realize: the FAA publishes the entire question bank. Every question on the real exam comes from that bank. Nothing is a surprise, nothing is hidden. Your job isn't to get lucky — it's to work through the bank, understand why each answer is correct, and recognize the patterns when you sit down for the real thing.</p>
         <p>The 11 topics on the PAR:</p>
         <ul>
           <li>Pilot Qualifications</li>
@@ -904,42 +904,40 @@ const POSTS = {
           <li>Emergency Procedures</li>
           <li>Aeromedical Factors</li>
         </ul>
-        <p>Not all topics carry equal weight. Regulations, weather, and airspace together account for roughly half the exam. Start there.</p>
+        <p>They're not equally weighted. Regulations, weather, and airspace together are about half the exam. If you're short on time, those three are where your hours go first.</p>
 
         <h2>The 3-week study plan</h2>
 
         <h3>Week 1 — Regulations, airspace, and weather</h3>
-        <p>These three topics are the backbone of the exam. Part 61 and Part 91 cover what you can and can't do as a pilot — certificate requirements, currency, equipment rules, right-of-way. Airspace covers the different classes, their dimensions, and what you need to enter each. Weather covers METARs, TAFs, winds aloft, and how to interpret forecast products.</p>
-        <p>Spend 1–2 hours per day on these. Don't try to memorize — try to understand. When you understand why a rule exists, the questions become obvious.</p>
+        <p>Start here. Part 61 covers pilot certificates — what you need, how to keep current, when your medical expires. Part 91 covers the operating rules: right-of-way, equipment requirements, cloud clearance minimums. Airspace covers the six classes, their dimensions, and what you need to enter each one. Weather covers METARs, TAFs, winds aloft forecasts, and how to read weather products.</p>
+        <p>Give these 1–2 hours a day. Don't try to memorize rules cold — try to understand the logic behind them. When you understand why a regulation exists, the question practically answers itself.</p>
 
         <h3>Week 2 — Navigation, charts, and airport operations</h3>
-        <p>Sectional chart reading is a skill, not trivia. Learn the symbols. Practice identifying airspace on a chart. Navigation covers dead reckoning, pilotage, and VOR tracking. Airport operations covers runway markings, light signals, and taxiway procedures.</p>
-        <p>This week requires hands-on practice with charts. Pull up a free sectional on SkyVector and work through questions with the chart in front of you.</p>
+        <p>Sectional chart reading is a skill you build, not a list of facts you memorize. You need to actually sit with a chart and work through questions with it in front of you. Pull up SkyVector for free and practice identifying airspace, finding airports, reading the legend. Navigation covers dead reckoning, pilotage, and VOR basics. Airport ops covers runway markings, lighting systems, and taxiway procedures — easier than it sounds, but you have to see the diagrams.</p>
 
         <h3>Week 3 — Aerodynamics, systems, and full practice exams</h3>
-        <p>Aerodynamics is tested lightly on the PAR — angle of attack, load factors, stall characteristics. Aircraft systems covers engines, fuel, electrical, and pitot-static. Aeromedical covers hypoxia, spatial disorientation, and alcohol rules.</p>
-        <p>By the end of week 3 you should be running full 60-question timed practice exams and scoring consistently above 80%. If you are, you're ready.</p>
+        <p>Aerodynamics on the PAR is lighter than most students expect — angle of attack, load factors, stall characteristics. Aircraft systems covers engines, fuel, electrical, and pitot-static instruments. Aeromedical covers hypoxia, spatial disorientation, and the alcohol rules (more tested than people think).</p>
+        <p>By Friday of week 3, you should be running full 60-question timed practice exams and consistently scoring above 80%. When you hit that three times in a row, you're ready to book.</p>
 
-        <h2>The most common reasons students fail</h2>
+        <h2>The mistakes that actually cause failures</h2>
 
-        <h3>Passive reading instead of active practice</h3>
-        <p>Reading a ground school manual is not the same as practicing questions. The FAA test uses specific phrasing. You need to see the actual question formats before your exam — not just the concepts.</p>
+        <h3>Reading instead of doing</h3>
+        <p>A ground school manual is not test prep. The FAA test uses specific question phrasing that you need to have seen before. Students who only read — and never practice actual questions — walk into the exam unfamiliar with the format and lose easy points. Start questions early. Read explanations every time you get one wrong.</p>
 
-        <h3>Skipping weather</h3>
-        <p>Weather is the most consistently tested topic on the PAR. Students who skip it or rush through it almost always fail or barely pass. METARs, TAFs, and weather chart interpretation take time to learn. Give them at least 4–5 hours.</p>
+        <h3>Rushing through weather</h3>
+        <p>Weather is the most heavily tested topic on the PAR, and it's the one students most consistently underinvest in. METARs, TAFs, winds aloft, weather chart interpretation — these take time to get comfortable with. Budget at least 4–5 hours here. Students who breeze through weather almost always regret it.</p>
 
-        <h3>Not reviewing wrong answers</h3>
-        <p>Every wrong answer on a practice test is worth 10 minutes of review. Read the explanation. Understand the principle. Don't just move on.</p>
+        <h3>Moving on without reviewing wrong answers</h3>
+        <p>Every wrong answer is worth stopping for. Read the explanation. Figure out where your thinking went wrong. That's where the real learning happens — not in the questions you already knew.</p>
 
-        <h2>How to use practice questions effectively</h2>
-        <p>Work topic by topic first, not random. Once you've studied regulations, do 50 regulation questions. Check your score. Review everything you got wrong. Then move on to the next topic.</p>
-        <p>In your final week, switch to full 60-question timed exams. Simulate real test conditions — no looking things up, no pausing. If you're scoring 80%+ consistently, book your exam.</p>
+        <h2>How to actually use practice questions</h2>
+        <p>Don't start with random mode. Go topic by topic — study regulations, then do 40–50 regulation questions before moving on. Check your score. Review what you missed. Repeat with each topic. In your final week, switch to full 60-question timed exams with no pausing and no looking things up. Real conditions. If you score 80%+ three times running, book the test.</p>
 
-        <h2>The day before your exam</h2>
-        <p>Do one practice exam in the morning. Review any weak areas in the afternoon. Don't cram new material the night before. Get a full night's sleep. The test is 2.5 hours — you need to be focused, not exhausted.</p>
+        <h2>The day before</h2>
+        <p>One practice exam in the morning. Review your weakest topic in the afternoon. Do not cram new material the night before — that doesn't work and it adds anxiety you don't need. Sleep. The exam is 2.5 hours. You need to be sharp, not wired.</p>
 
         <h2>Start with 1,469 real PAR questions</h2>
-        <p><a href="https://faaexaminations.com/par" style={{color:'var(--blue)'}}>FAAExaminations.com</a> has the complete FAA Private Pilot question bank — 1,469 questions across all 11 topics, with full explanations and a timed exam simulator. Free account, no credit card required.</p>
+        <p><a href="https://faaexaminations.com/par" style={{color:'var(--blue)'}}>FAAExaminations.com</a> has the complete FAA Private Pilot question bank — 1,469 questions across all 11 topics, with full explanations on every answer and a timed exam simulator. No credit card required to start.</p>
       </>
     ),
   },
@@ -956,60 +954,57 @@ const POSTS = {
     related: ['how-to-read-a-metar', 'part-107-drone-test-study-guide', 'faa-written-exam-study-guide'],
     content: (
       <>
-        <p>The FAA Part 107 Remote Pilot Certificate is the license you need to fly a drone commercially in the United States. If you're getting paid to fly — shooting real estate, weddings, inspections, mapping, or anything else — you need it. The fine for flying without it can reach $11,000 per violation.</p>
-        <p>The good news: the knowledge test is straightforward, and you don't need any prior aviation experience. Most people pass in 2–3 weeks of focused study.</p>
-        <p>Here's exactly what to study.</p>
+        <p>A lot of people discover Part 107 when they realize they need it — usually after they've already started charging clients for drone footage. The fine for commercial drone operations without a Part 107 certificate can hit $11,000 per violation. That tends to focus the mind.</p>
+        <p>The good news: you don't need any aviation background to pass this exam. No flight hours, no medical certificate, nothing. Most people are ready to test in 2–3 weeks. Here's what the exam actually covers and how to study it efficiently.</p>
 
-        <h2>What is the Part 107 knowledge test?</h2>
-        <p>The Unmanned Aircraft General — Small (UAG) exam is a 60-question multiple choice test administered at PSI testing centers. You need a 70% to pass (42 out of 60 correct). It costs $175 to take. Once you pass, your Remote Pilot Certificate is valid for 24 months before recurrency training is required.</p>
-        <p>You must be at least 16 years old. No pilot's license, flight hours, or prior aviation experience required.</p>
+        <h2>What the Part 107 test actually is</h2>
+        <p>It's called the Unmanned Aircraft General — Small (UAG) exam. 60 multiple-choice questions, administered at a PSI testing center. You need a 70% to pass (42 correct out of 60). The test fee is $175. Once you pass, your Remote Pilot Certificate is good for 24 months before you need recurrent training.</p>
+        <p>Minimum age is 16. No prior experience required. This is genuinely one of the more accessible FAA exams — the challenge is that it covers real aviation concepts that drone pilots have never had to think about before.</p>
 
         <h2>The 7 topics the FAA tests on Part 107</h2>
 
         <h3>1. Regulations (Part 107)</h3>
-        <p>The FAA's Part 107 rules cover what you can and can't do as a remote pilot. Know the operating limitations: maximum altitude (400 ft AGL unless within 400 ft of a structure), daylight operations, visual line of sight, maximum speed (100 mph), no operations over moving vehicles or people without a waiver, and the rules around flying near airports.</p>
-        <p>This is the most tested topic. Don't skip it.</p>
+        <p>The core operating rules. Maximum altitude is 400 ft AGL — unless you're within 400 ft of a structure, in which case you can fly up to 400 ft above it. You must maintain visual line of sight. Daylight operations only (unless you have a waiver). Maximum speed 100 mph. No flying over people or moving vehicles without authorization.</p>
+        <p>This is the most heavily tested topic on the exam. Read Part 107 front to back at least once. It's shorter than you think — maybe two hours of reading.</p>
 
         <h3>2. Airspace</h3>
-        <p>You need to understand the six classes of airspace (A through G), what each requires to enter, and how to read a sectional chart. Class B, C, and D airspace around airports require authorization through the FAA's LAANC system or a manual waiver before you fly.</p>
-        <p>Learn to identify airspace on a sectional. The test will show you a chart and ask you to determine what authorization is needed.</p>
+        <p>This is where most people underestimate the exam. You need to understand the six classes of airspace — A through G — what each one requires to enter, and how to read a VFR sectional chart to identify them. Class B, C, and D airspace around airports requires LAANC authorization or a manual FAA waiver before you fly.</p>
+        <p>The test will show you a sectional chart and ask what authorization is needed. If you haven't practiced reading charts, this section will hurt you. Spend real time here.</p>
 
         <h3>3. Weather</h3>
-        <p>Weather is tested heavily. You need to read METARs and TAFs, understand wind and visibility minimums, and know how different weather conditions affect drone operations. Part 107 requires 3 statute miles of visibility and 500 ft below clouds as minimum conditions.</p>
-        <p>Learn to decode a METAR — the test will give you one and ask questions about it.</p>
+        <p>Part 107 minimum weather conditions are 3 statute miles of visibility and 500 ft below clouds. The test goes deeper than that — you need to decode METARs, interpret TAFs, and understand how wind and temperature affect drone operations. If you've never read a METAR before, budget extra time here. It looks confusing at first and becomes obvious once you learn the structure.</p>
 
         <h3>4. Loading and performance</h3>
-        <p>Battery life, payload effects on flight time, and how temperature and altitude affect performance. High altitude and hot temperatures reduce air density, which reduces lift and battery efficiency. Know how these affect your operating envelope.</p>
+        <p>High altitude and high heat both reduce air density — which reduces lift and shortens battery life. Cold temperatures also hammer batteries. The FAA wants to know you understand how environmental conditions affect your drone's actual performance, not just its specs.</p>
 
         <h3>5. Emergency procedures</h3>
-        <p>Loss of control link, fly-aways, fly-overs of people, and how to handle in-flight emergencies. The FAA wants to know you'll make safe decisions when things go wrong.</p>
+        <p>Loss of control link, flyaways, operations that go wrong. The FAA is essentially asking: when something unexpected happens, will you make a safe decision or a stupid one? These questions are usually common sense — but they're written carefully, and a few are designed to catch people who aren't paying attention.</p>
 
         <h3>6. Radio communications</h3>
-        <p>When and how to communicate with ATC. Knowing the phonetic alphabet and basic radio phraseology. If you're operating near a controlled airport, communication basics matter.</p>
+        <p>The phonetic alphabet, basic ATC phraseology, and when you're required to communicate with ATC. If you plan to operate near controlled airports regularly, this matters beyond the test. For the exam, it's a small section — but don't ignore it.</p>
 
         <h3>7. Crew resource management and physiological factors</h3>
-        <p>Decision-making, fatigue, situational awareness. These questions are often straightforward common sense — but read them carefully. The FAA likes to test judgment scenarios.</p>
+        <p>Decision-making under pressure, recognizing fatigue, situational awareness. The FAA tests this with judgment scenarios: you're tired, visibility is marginal, the client wants the shot anyway — what do you do? Answer like a professional.</p>
 
-        <h2>A 2-week Part 107 study plan</h2>
+        <h2>A realistic 2-week study plan</h2>
 
         <h3>Days 1–3: Regulations</h3>
-        <p>Read Part 107 in full (it's shorter than you think). Then work through practice questions on regulations only. Know the operating limitations cold — altitude, speed, visual line of sight, daylight, and waivers.</p>
+        <p>Read Part 107. Work through practice questions on regulations only. Know the operating limitations well enough that you don't have to think — altitude, speed, visual line of sight, daylight, waivers. This should feel solid before you move on.</p>
 
         <h3>Days 4–6: Airspace and charts</h3>
-        <p>Study the airspace classes. Practice reading sectional charts. Know what a VFR sectional looks like around a Class B, C, D, and E airport. Know how to request LAANC authorization.</p>
+        <p>Learn the airspace classes. Practice reading sectional charts with real questions in front of you — don't just read about charts. Pull up SkyVector and actually identify airspace around a few different airports. Know how LAANC works and when you need it.</p>
 
         <h3>Days 7–9: Weather</h3>
-        <p>Learn to decode a METAR and a TAF. Understand what the minimums mean for drone operations. Know the symbols on weather charts.</p>
+        <p>Decode METARs and TAFs until they feel natural. Learn the Part 107 minimums. Understand how weather conditions translate into go/no-go decisions for drone ops. If you're still confused by METARs after day 9, re-read our <a href="https://faaexaminations.com/blog/how-to-read-a-metar" style={{color:'var(--blue)'}}>METAR decoding guide</a> — it walks through a real example field by field.</p>
 
         <h3>Days 10–14: Everything else + full practice exams</h3>
-        <p>Cover loading/performance, emergency procedures, radio comms, and crew resource management. Then run full 60-question timed practice exams until you're consistently above 80%.</p>
+        <p>Cover loading/performance, emergency procedures, radio comms, and crew resource management. Then run full 60-question timed practice exams. When you're consistently at 80% or above, you're ready. Book the test.</p>
 
-        <h2>What most people get wrong</h2>
-        <p>The biggest mistake is not taking airspace seriously. Most people study the regulations well, then bomb the airspace questions because they didn't practice reading charts. Pull up SkyVector or use sectional chart practice in your question bank — actually look at the charts when answering questions.</p>
-        <p>Weather is the second most common weak spot. If you've never read a METAR, spend extra time here.</p>
+        <h2>The mistake that trips most people up</h2>
+        <p>Airspace. People study the regulations thoroughly and then barely touch the chart-reading section — and they pay for it on exam day. The airspace questions on the Part 107 test require you to look at a sectional chart and interpret it in real time. That's a skill you build through practice, not something you absorb by reading about it. Use a question bank that shows you charts alongside the questions, and actually work through them with the chart in front of you.</p>
 
-        <h2>Ready to start studying?</h2>
-        <p><a href="https://faaexaminations.com/part-107" style={{color:'var(--blue)'}}>FAAExaminations.com</a> has the complete Part 107 question bank with full explanations and a timed exam simulator. No aviation experience needed. Free account, no credit card required.</p>
+        <h2>Ready to start?</h2>
+        <p><a href="https://faaexaminations.com/part-107" style={{color:'var(--blue)'}}>FAAExaminations.com</a> has the complete Part 107 question bank with full explanations and a timed exam simulator. No aviation experience needed. No credit card required to start.</p>
       </>
     ),
   },
@@ -1026,54 +1021,53 @@ const POSTS = {
     related: ['how-to-read-a-metar', 'instrument-rating-knowledge-test-tips', 'instrument-rating-knowledge-test-study-tips'],
     content: (
       <>
-        <p>The FAA Instrument Rating Airman Knowledge Test (IRA) is widely considered the most difficult FAA knowledge exam. It covers IFR procedures, approach charts, en route navigation, weather, and a dense layer of regulations specific to instrument flight.</p>
-        <p>Students who pass it on the first attempt share a common approach: they study systematically, they practice reading charts actively, and they don't skip weather.</p>
-        <p>Here's what works.</p>
+        <p>The IRA has a reputation, and it's earned. Pilots who breezes through the Private Pilot exam and assumed the Instrument Rating would be similar have found out the hard way that it isn't. The IRA covers approach plates, IFR charts, holding patterns, alternate minimums, and instrument meteorology — and it expects you to actually work with charts on the test, not just recall facts about them.</p>
+        <p>The students who pass on their first attempt aren't necessarily the most experienced pilots. They're the ones who studied the right things in the right order and put real time into chart practice. Here's what that looks like.</p>
 
-        <h2>What makes the IRA different from the PAR</h2>
-        <p>The Private Pilot exam tests whether you understand basic VFR flight. The IRA assumes you already know that — and adds instrument procedures, IFR charts, holding patterns, approach minimums, alternate requirements, and instrument meteorology on top.</p>
-        <p>The chart reading component is what trips most people up. You can't pass the IRA by memorizing answers alone. You need to actually be able to read an approach plate and answer questions from it.</p>
+        <h2>What makes the IRA harder than the PAR</h2>
+        <p>The Private Pilot exam tests whether you understand basic VFR operations. The IRA assumes that's already in your head — and stacks instrument procedures, IFR charts, holding patterns, approach minimums, alternate requirements, and IFR-specific weather on top of it.</p>
+        <p>The trap most students fall into: they try to study for the IRA the same way they studied for the PAR — reading, some practice questions, done. That doesn't work here. The chart reading component is different. The FAA will show you an approach plate and ask you specific questions about it. If you've never practiced reading plates, that question is going to take 4 minutes you don't have.</p>
 
-        <h2>The 5 topics that matter most</h2>
+        <h2>The 5 topics that decide whether you pass</h2>
 
         <h3>1. IFR charts and approach procedures</h3>
-        <p>This is the heaviest topic on the IRA. You need to read ILS, VOR, RNAV, and NDB approaches. Know where to find the minimums, the missed approach point, the decision altitude, the visibility requirements, and the missed approach procedure.</p>
-        <p>The FAA will give you an approach plate and ask specific questions. Practice this with real plates from the FAA's digital products. The more plates you read, the faster and more accurate you'll get.</p>
+        <p>This is the heaviest section of the IRA, and the one that trips up the most students. You need to read ILS, VOR, RNAV, and NDB approaches. Know where to find the decision altitude, the minimum descent altitude, the missed approach point, the visibility minimums, and what happens on the missed approach.</p>
+        <p>The only way to get good at this is to read actual approach plates — not descriptions of approach plates. Go to the FAA's digital products library and pull up a real ILS approach. Work through it. Then do another. The layout becomes familiar fast once you've seen it a dozen times.</p>
 
         <h3>2. En route navigation and airways</h3>
-        <p>IFR en route charts (low and high altitude airways), NAVAID identification, MEAs, MORAs, and intersection identification. Know how to read an IFR low en route chart — it looks very different from a VFR sectional.</p>
+        <p>IFR en route charts look nothing like a VFR sectional. Low-altitude airways, NAVAIDs, MEAs, MORAs, intersection identification — you need to be comfortable reading an IFR low en route chart and answering questions from it. Same approach as plates: practice with real charts, not diagrams in a textbook.</p>
 
         <h3>3. Weather and meteorology</h3>
-        <p>The IRA tests weather harder than any other FAA exam. PIREPs, SIGMETs, AIRMETs, icing forecasts, thunderstorm avoidance, and weather chart interpretation are all tested. You also need to understand IFR filing minimums, alternate minimums (the 1-2-3 rule), and how to read weather depiction charts.</p>
-        <p>METARs and TAFs you already know from the PAR — but the IRA goes deeper. Know icing conditions, freezing levels, and turbulence encoding.</p>
+        <p>The IRA goes deeper into weather than any other FAA exam. You're not just reading METARs — you're interpreting PIREPs, SIGMETs, AIRMETs, icing forecasts, thunderstorm avoidance, and weather depiction charts. You need to know the 1-2-3 rule for alternate airports, IFR filing minimums, and how to read freezing level forecasts.</p>
+        <p>Budget more time here than you think you need. Students who rush weather consistently underperform on the IRA.</p>
 
         <h3>4. IFR regulations (Part 91 IFR rules)</h3>
-        <p>Equipment requirements for IFR flight, currency requirements (6 approaches in 6 months), logging IFR time, safety pilot rules, and the regulations around alternate airports. These questions are straightforward if you know Part 91 Subpart B.</p>
+        <p>Equipment requirements for IFR flight (GRABCARD), instrument currency (6 approaches in 6 months with a safety pilot or in an approved sim), logging IFR time, and the alternate airport rules. Once you've read Part 91 Subpart B carefully, these questions are mostly straightforward — but you have to actually read it.</p>
 
         <h3>5. Holding patterns and procedure turns</h3>
-        <p>Hold entries (direct, parallel, teardrop) are tested directly. Know how to determine the correct entry based on your arrival heading. Procedure turns — where required, where prohibited, when you can skip them. These come up repeatedly.</p>
+        <p>Holding entries — direct, parallel, teardrop — are tested directly. The question gives you an arrival heading and asks for the correct entry. If you understand the geometry of why each entry works, you can figure it out without memorizing a diagram. Procedure turns get tested too: when they're required, when they're prohibited (NoPT on the plate), when you can skip them on a radar vector.</p>
 
-        <h2>How to study approach plates</h2>
-        <p>Don't just read about approach plates — read actual approach plates. Go to the FAA's digital products library and pull up an ILS approach to a major airport. Find the decision altitude. Find the missed approach point. Find what happens if you lose one engine on the missed approach.</p>
-        <p>Then do the same for a VOR approach and an RNAV approach. The formats are similar but not identical. The more you practice with real plates, the more familiar the layout becomes.</p>
+        <h2>The right way to study approach plates</h2>
+        <p>Read real plates. Not a description of a plate — an actual plate. Go to the FAA's digital products library (it's free), find an ILS approach to any major airport, and work through it field by field. Find the decision altitude. Find the missed approach holding fix. Find the visibility requirement for Category B. Then do a VOR approach. Then an RNAV. The formats are similar but not identical — the differences matter on the test.</p>
+        <p>Once the layout feels natural, start doing practice questions with a plate in front of you. That's what the real exam looks like.</p>
 
-        <h2>Common mistakes on the IRA</h2>
+        <h2>Three mistakes that cost people the exam</h2>
 
         <h3>Trying to memorize instead of understand</h3>
-        <p>The IRA is too deep to pass by memorization alone. If you understand why a holding entry is direct vs. parallel, you can figure out any entry question without memorizing a diagram. Understanding beats memorization every time.</p>
+        <p>The IRA is too detailed to pass through memorization. If you understand the geometry of a holding entry, you can work out any entry question. If you memorized a diagram instead, you'll second-guess it under pressure. Understanding the principle beats remembering the answer every time.</p>
 
-        <h3>Rushing through weather</h3>
-        <p>Weather accounts for a significant portion of the IRA. Students who rush it pay for it on exam day. Budget at least 6–8 hours for IFR weather topics alone.</p>
+        <h3>Underestimating weather</h3>
+        <p>IFR weather is genuinely harder than VFR weather, and the exam reflects that. Budget at least 6–8 hours specifically for weather topics. Students who treat weather as a quick review section tend to leave points on the table they didn't expect to lose.</p>
 
-        <h3>Not practicing full timed exams</h3>
-        <p>The IRA is 60 questions in 2.5 hours. That's 2.5 minutes per question — tighter than it sounds when some questions require reading a chart. Practice under timed conditions before your exam day.</p>
+        <h3>Not timing practice exams</h3>
+        <p>60 questions in 2.5 hours is 2.5 minutes per question. That's fine for a regulation question. It's tight when you're reading an approach plate and answering three questions from it. Practice under real time pressure before exam day — not just to build speed, but to learn which questions are worth taking extra time on.</p>
 
         <h2>How long does IRA prep take?</h2>
-        <p>With a Private Pilot background and 1–2 hours of daily study, most students are ready in 3–6 weeks. Students with more recent ground school knowledge land closer to 3 weeks. Students who've been flying VFR only for years often need the full 6.</p>
-        <p>The benchmark: score 80%+ on 3 consecutive full practice exams. Then book your test.</p>
+        <p>With a Private Pilot background and 1–2 hours a day, most students are ready in 3–6 weeks. Recent ground school knowledge or an active instrument training schedule puts you at the shorter end. Years of flying VFR with no instrument exposure usually means the full 6 weeks, sometimes more.</p>
+        <p>The benchmark that works: score 80%+ on three consecutive full practice exams. Not one, not two — three in a row. Then book it.</p>
 
         <h2>Start with 821 real IRA questions</h2>
-        <p><a href="https://faaexaminations.com/ira" style={{color:'var(--blue)'}}>FAAExaminations.com</a> has the complete FAA Instrument Rating question bank — 821 questions across all topics, with IFR chart references, full explanations, and a timed exam simulator. Free account, no credit card required.</p>
+        <p><a href="https://faaexaminations.com/ira" style={{color:'var(--blue)'}}>FAAExaminations.com</a> has the complete FAA Instrument Rating question bank — 821 questions with IFR chart references, full explanations on every answer, and a timed exam simulator. No credit card required to start.</p>
       </>
     ),
   },
@@ -1090,26 +1084,26 @@ const POSTS = {
     related: ['how-to-pass-faa-private-pilot-written-exam-first-try', 'how-to-pass-faa-written-exam-first-try', 'faa-written-exam-study-guide'],
     content: (
       <>
-        <p>The short answer: the FAA minimum is 40 flight hours, but the national average is closer to 60–70 hours. From first lesson to certificate in hand, most students take 6–18 months depending on how often they fly and how quickly they complete the written exam.</p>
-        <p>Here's a realistic breakdown of what the timeline actually looks like.</p>
+        <p>The honest answer: the FAA minimum is 40 flight hours. Almost nobody finishes at the minimum. The national average is 60–70 hours, and depending on how often you fly and where you train, it can stretch to 18 months or longer.</p>
+        <p>Here's what the timeline actually looks like — and what makes the difference between students who finish in 6 months and students who take two years.</p>
 
-        <h2>The FAA minimums</h2>
-        <p>Under 14 CFR Part 61, the minimum requirements for a Private Pilot Certificate (airplane single-engine land) are:</p>
+        <h2>The FAA minimums (and why they're almost irrelevant)</h2>
+        <p>Under 14 CFR Part 61, the legal minimums for a Private Pilot Certificate — airplane, single-engine land — are:</p>
         <ul>
           <li>40 total flight hours</li>
           <li>20 hours of flight training with an instructor</li>
           <li>10 hours of solo flight time</li>
-          <li>3 hours of cross-country flight training</li>
-          <li>3 hours of night flight training (including a cross-country of 100+ nautical miles)</li>
-          <li>3 hours of instrument flight training (under the hood)</li>
-          <li>3 hours of flight prep within 60 days of the practical test</li>
+          <li>3 hours of cross-country training</li>
+          <li>3 hours of night flight (including a 100+ nm cross-country)</li>
+          <li>3 hours of instrument training (flying under the hood)</li>
+          <li>3 hours of flight prep within 60 days of the checkride</li>
           <li>5 hours of solo cross-country time</li>
-          <li>1 solo cross-country of 150+ nautical miles with full-stop landings at 3 points</li>
+          <li>1 solo cross-country of 150+ nm with full-stop landings at 3 airports</li>
           <li>3 solo takeoffs and landings at a towered airport</li>
           <li>Pass the FAA knowledge test (written exam)</li>
           <li>Pass the FAA practical test (oral + flight with a DPE)</li>
         </ul>
-        <p>40 hours is the legal minimum. Statistically, only a small percentage of students finish at the minimum. Most finish between 55 and 75 hours.</p>
+        <p>The minimums look achievable. In practice, only a small percentage of students complete at exactly 40 hours. Most finish between 55 and 75. The minimums describe what the FAA requires — not what most students actually need to feel ready for a checkride.</p>
 
         <h2>Realistic timeline by training pace</h2>
         <div style={{ overflowX: 'auto', marginBottom: 20 }}>
@@ -1135,32 +1129,31 @@ const POSTS = {
             </tbody>
           </table>
         </div>
-        <p>Consistency matters more than intensity. A student who flies twice a week builds muscle memory and retains what they learn between lessons. A student who flies once every two weeks spends part of each lesson re-learning what was forgotten.</p>
+        <p>Consistency matters more than pace. A student who flies twice a week builds skills progressively and retains what they learned between lessons. A student who flies once every two weeks spends the first 20 minutes of each lesson getting back to where they were. That adds up to real money and real months.</p>
 
         <h2>What actually slows people down</h2>
 
-        <h3>Weather</h3>
-        <p>In most of the US, weather cancels a meaningful percentage of scheduled lessons. In the Midwest and Northeast, winter training is particularly prone to weather delays. Factor this into your timeline — especially if you're training through fall and winter.</p>
+        <h3>Weather cancellations</h3>
+        <p>This is the big one that surprises new students. Weather cancels flights constantly — especially in the Midwest, the Northeast, and anywhere with distinct seasons. A student training through a Canadian or northern US winter can lose entire weeks to ceilings, icing, and wind. If you're starting training in the fall, factor this in. Summer is the fastest season for most students.</p>
 
         <h3>Aircraft availability</h3>
-        <p>Popular training aircraft at busy flight schools get booked up. If you can only fly on weekends and the school's Cessna 172 is always booked Saturday mornings, your pace slows. Flexible scheduling — including weekday mornings — speeds up training significantly.</p>
+        <p>Popular training aircraft at busy schools get booked up fast. If you can only fly on Saturday mornings and there are 10 students ahead of you on the schedule, you fly once a week at best. Students who have flexibility — weekday afternoons, early mornings — get more flight time and finish faster. It's worth asking a school about their aircraft-to-student ratio before signing up.</p>
 
-        <h3>Delaying the written exam</h3>
-        <p>Many students put off the written exam until they're near the end of their flight training. This is a mistake. The written covers material you're actively learning — weather, regulations, airspace, navigation. Study it early. Pass it early. Your ground knowledge will make you a better student in the airplane and reduce your total flight hours.</p>
+        <h3>Putting off the written exam</h3>
+        <p>This is the most common self-inflicted delay. Students treat the written as something to tackle at the end, after they're "almost ready" for the checkride. That's backwards. The written exam covers exactly what you're learning in the airplane — weather, regulations, airspace, navigation. Studying for it early makes you a better student and a better pilot. Pass it in your first month or two of training. Having it done removes a scheduling constraint and builds confidence going into the checkride.</p>
 
-        <h3>Changing instructors</h3>
-        <p>Switching flight instructors mid-training almost always adds hours. A new instructor needs time to assess where you are, may have different technique preferences, and often re-covers material you've already been signed off on. Find an instructor you work well with and stick with them.</p>
+        <h3>Switching instructors</h3>
+        <p>Changing instructors mid-training almost always adds hours. A new instructor doesn't know where you are, may do things differently, and will often revisit maneuvers your previous instructor already signed you off on. It's not wasted time — but it's extra time. Find someone whose teaching style works for you and stay with them.</p>
 
-        <h2>The written exam — don't put it off</h2>
-        <p>The FAA Private Pilot knowledge test (PAR) is required before you can take your practical test. Most students find it takes 2–4 weeks of focused study to be ready. The test covers 11 subject areas — regulations, weather, airspace, navigation, aerodynamics, and more.</p>
-        <p>The best strategy: start studying for the written in the first month of flight training, while the material is fresh and relevant. Pass it before you solo cross-country. Having the written done removes a scheduling constraint and keeps your momentum going.</p>
+        <h2>The written exam: do it early</h2>
+        <p>The PAR knowledge test is required before your checkride. Most students are exam-ready in 2–4 weeks of focused study. It covers 11 topics: regulations, weather, airspace, navigation, aerodynamics, airport operations, and more.</p>
+        <p>Start studying in your first month of flight training. The ground knowledge compounds with your flight lessons — you'll understand what you're doing in the airplane better, ask better questions, and come into the checkride with stronger fundamentals. And honestly, getting it done early just feels good.</p>
 
-        <h2>After the written: the checkride</h2>
-        <p>The FAA practical test (checkride) is conducted by a Designated Pilot Examiner (DPE). It includes an oral exam and a flight. First-attempt pass rates hover around 80%. The most common reason for failure: the student wasn't fully prepared on a specific knowledge area the DPE focused on during the oral.</p>
-        <p>Good written exam prep correlates directly with checkride performance — the oral exam covers the same material.</p>
+        <h2>The checkride: what to expect</h2>
+        <p>The FAA practical test is conducted by a Designated Pilot Examiner. It starts with an oral exam — typically 1–2 hours — followed by a flight. The national first-attempt pass rate hovers around 80%. The most common reason for failure isn't poor flying; it's being caught flat-footed on a knowledge area during the oral. Strong written exam prep directly correlates with checkride performance — the material overlaps significantly.</p>
 
-        <h2>Start your written exam prep today</h2>
-        <p><a href="https://faaexaminations.com/par" style={{color:'var(--blue)'}}>FAAExaminations.com</a> has 1,469 Private Pilot practice questions across all 11 exam topics, with full explanations and a timed simulator. Free account, no credit card required. Most students pass in 2–4 weeks.</p>
+        <h2>Start your written exam prep now</h2>
+        <p><a href="https://faaexaminations.com/par" style={{color:'var(--blue)'}}>FAAExaminations.com</a> has 1,469 Private Pilot practice questions across all 11 exam topics, full explanations on every answer, and a timed exam simulator. No credit card required. Most students pass in 2–4 weeks.</p>
       </>
     ),
   },
@@ -1177,33 +1170,34 @@ const POSTS = {
     related: ['part-107-study-guide-2026', 'part-107-drone-test-study-guide', 'how-long-to-get-private-pilot-license'],
     content: (
       <>
-        <p>Part 107 and the Private Pilot License (PPL) are both FAA certificates, but they cover completely different things. Part 107 is for drone pilots. The PPL is for manned aircraft pilots. You can't use one in place of the other — but knowing the differences helps you decide which one you actually need.</p>
+        <p>People mix these up more than you'd think. They're both FAA certificates. They both involve a written knowledge test. That's where the similarities end.</p>
+        <p>Part 107 is for drone pilots. The Private Pilot License is for people who want to fly actual aircraft with people in them. You cannot use one in place of the other. Here's what each one actually gets you — and how to figure out which one you need.</p>
 
-        <h2>What is the Part 107 Remote Pilot Certificate?</h2>
-        <p>Part 107 is the FAA certification required to operate a drone (unmanned aircraft system, or UAS) commercially in the United States. "Commercially" means any operation where you receive compensation — money, goods, services, or anything of value.</p>
-        <p>If you're shooting real estate photos, filming weddings, doing infrastructure inspections, or selling aerial footage of any kind, you need a Part 107 certificate. Flying without it is a federal violation with fines up to $11,000 per incident.</p>
-        <p>To get Part 107 you need to:</p>
+        <h2>Part 107: the commercial drone license</h2>
+        <p>Part 107 is the FAA certification required to operate a drone commercially in the US. "Commercially" is defined broadly — it means any operation where you receive compensation, including money, products, services, or anything else of value. Shooting real estate photos for a broker, filming weddings, doing roof inspections, selling footage, mapping land for a developer — all of it requires Part 107.</p>
+        <p>The fine for commercial drone work without it can hit $11,000 per violation. The FAA does enforce this.</p>
+        <p>To get Part 107:</p>
         <ul>
           <li>Be at least 16 years old</li>
-          <li>Pass the FAA Unmanned Aircraft General — Small (UAG) knowledge test</li>
-          <li>Complete the TSA security vetting</li>
+          <li>Pass the FAA UAG knowledge test (60 questions, 70% to pass)</li>
+          <li>Complete TSA security vetting</li>
           <li>Apply through the FAA's IACRA system</li>
         </ul>
-        <p>No flight hours. No medical certificate. No prior aviation experience required.</p>
+        <p>No flight hours. No medical. No aviation background required. Most people study for 2–3 weeks and pass.</p>
 
-        <h2>What is the Private Pilot License?</h2>
-        <p>The FAA Private Pilot Certificate allows you to act as pilot in command of a manned aircraft (typically a small airplane or helicopter) for personal and recreational purposes. You can carry passengers but cannot be compensated for your flights.</p>
-        <p>To get a PPL you need to:</p>
+        <h2>Private Pilot License: the real one</h2>
+        <p>The Private Pilot Certificate lets you fly manned aircraft — small planes, typically — as pilot in command. You can carry passengers. You can fly across the country. What you cannot do is get paid for it (with some narrow exceptions). The PPL is for people who love flying and want to do it legally, not commercially.</p>
+        <p>To get a PPL:</p>
         <ul>
-          <li>Be at least 17 years old (16 for a solo certificate)</li>
-          <li>Hold a valid FAA medical certificate (at least 3rd class)</li>
-          <li>Log at least 40 flight hours (national average is 60–70)</li>
-          <li>Pass the FAA Private Pilot Airman Knowledge Test (PAR)</li>
-          <li>Pass the FAA practical test (oral exam + flight with a DPE)</li>
+          <li>Be at least 17 years old (16 for a solo endorsement)</li>
+          <li>Hold a valid FAA 3rd class medical certificate</li>
+          <li>Log at least 40 flight hours (the national average is 60–70)</li>
+          <li>Pass the FAA PAR knowledge test</li>
+          <li>Pass the FAA practical test — an oral exam plus a flight with a Designated Pilot Examiner</li>
         </ul>
-        <p>The PPL requires months of flight training and significant expense — typically $8,000–$15,000 depending on location and aircraft.</p>
+        <p>Total cost: typically $8,000–$15,000 depending on where you train, what aircraft you fly, and how quickly you progress. Timeline: 6–18 months for most students.</p>
 
-        <h2>Key differences side by side</h2>
+        <h2>Side by side</h2>
         <div style={{ overflowX: 'auto', marginBottom: 20 }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.9rem' }}>
             <thead><tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
@@ -1234,24 +1228,24 @@ const POSTS = {
         </div>
 
         <h2>Can a Private Pilot skip the Part 107 exam?</h2>
-        <p>No — but it's easier. If you already hold a Private Pilot, Commercial, or ATP certificate, you are exempt from the initial Part 107 knowledge test. However, you still need to complete the FAA's free Part 107 online recurrent training course and register your drone before flying commercially.</p>
-        <p>If you only hold a student pilot certificate or sport pilot certificate, you are not exempt — you need to take the UAG exam.</p>
+        <p>Almost. If you hold a Private Pilot, Commercial, or ATP certificate, you're exempt from the initial Part 107 knowledge test. But you're not completely off the hook — you still need to complete the FAA's free Part 107 online recurrent training and register your drone through the FAA DroneZone before flying commercially.</p>
+        <p>Student pilot certificates and sport pilot certificates don't qualify for the exemption. You still need to take the UAG exam.</p>
 
-        <h2>Can a Part 107 pilot fly manned aircraft?</h2>
-        <p>No. Part 107 only certifies you to operate unmanned aircraft commercially. It does not grant any privileges related to manned aircraft. To fly a Cessna, you need a Private Pilot Certificate regardless of your Part 107 status.</p>
+        <h2>Can a Part 107 holder fly manned aircraft?</h2>
+        <p>No. Part 107 certifies you to operate unmanned aircraft commercially. Full stop. It has nothing to do with manned flight. You still need a Private Pilot Certificate to legally fly a Cessna, regardless of what UAV certs you hold.</p>
 
-        <h2>Which one do you need?</h2>
-        <p>If you want to get paid to fly a drone: <strong>Part 107.</strong> It's the fastest, cheapest path to FAA certification and opens up commercial drone work immediately.</p>
-        <p>If you want to fly people in an airplane: <strong>Private Pilot License.</strong> There's no shortcut here — flight training takes time and money, but it's worth it.</p>
-        <p>If you want both: start with Part 107. You can earn income with your drone while working toward your PPL on the side.</p>
+        <h2>So which one do you actually need?</h2>
+        <p>If your goal is commercial drone work — real estate, events, inspections, mapping — <strong>get Part 107 first.</strong> It takes 2–3 weeks to study, costs $175 to test, and lets you start earning legally right away. It's one of the most accessible professional licenses the FAA offers.</p>
+        <p>If you want to fly actual aircraft — carry passengers, travel by air, eventually build toward a commercial pilot certificate — <strong>you need the Private Pilot License.</strong> There's no shortcut. It takes months and real money. But there's nothing else like it.</p>
+        <p>If you want both eventually: start with Part 107. Pass it quickly, start working with your drone, and use that income to fund your flight training. A lot of people take exactly this path.</p>
 
-        <h2>Ready to study?</h2>
-        <p>FAAExaminations.com has practice questions for both exams:</p>
+        <h2>Study for either exam — or both</h2>
+        <p>FAAExaminations.com has complete question banks for both:</p>
         <ul>
-          <li><a href="https://faaexaminations.com/part-107" style={{color:'var(--blue)'}}>Part 107 exam prep</a> — pass in 2–3 weeks</li>
-          <li><a href="https://faaexaminations.com/par" style={{color:'var(--blue)'}}>Private Pilot (PAR) exam prep</a> — 1,469 questions, timed simulator</li>
+          <li><a href="https://faaexaminations.com/part-107" style={{color:'var(--blue)'}}>Part 107 exam prep</a> — full question bank, timed simulator, pass in 2–3 weeks</li>
+          <li><a href="https://faaexaminations.com/par" style={{color:'var(--blue)'}}>Private Pilot (PAR) exam prep</a> — 1,469 questions across all 11 topics, full explanations</li>
         </ul>
-        <p>Free account, no credit card required.</p>
+        <p>No credit card required to start.</p>
       </>
     ),
   },
