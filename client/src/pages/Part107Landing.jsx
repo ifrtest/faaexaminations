@@ -120,7 +120,7 @@ export default function Part107Landing() {
             <div><div className="lp-hs-val">60</div><div className="lp-hs-lbl">Exam Questions</div></div>
             <div><div className="lp-hs-val">2–3</div><div className="lp-hs-lbl">Weeks to Pass</div></div>
             <div><div className="lp-hs-val">AI</div><div className="lp-hs-lbl">Instructor Included</div></div>
-            <div><div className="lp-hs-val">$0</div><div className="lp-hs-lbl">Prior Experience Needed</div></div>
+            <div><div className="lp-hs-val">NONE</div><div className="lp-hs-lbl">Prior Experience Needed</div></div>
           </div>
         </div>
       </section>
