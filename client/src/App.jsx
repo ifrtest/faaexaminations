@@ -31,13 +31,14 @@ import AdminFigures   from './pages/admin/AdminFigures';
 import Blog           from './pages/Blog';
 import BlogPost       from './pages/BlogPost';
 import NotFound       from './pages/NotFound';
+import PARLanding     from './pages/PARLanding';
 
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
 export default function App() {
   const { pathname } = useLocation();
-  const isLanding = pathname === '/';
+  const isLanding = pathname === '/' || pathname === '/par';
 
   return (
     <div className="app-shell">
@@ -46,6 +47,7 @@ export default function App() {
         <Routes>
           {/* Public */}
           <Route path="/"               element={<Landing />} />
+          <Route path="/par"            element={<PARLanding />} />
           <Route path="/login"          element={<Login />} />
           <Route path="/register"       element={<Register />} />
           <Route path="/forgot"         element={<ForgotPassword />} />
