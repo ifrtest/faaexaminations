@@ -17,7 +17,6 @@ router.get('/part107', async (_req, res, next) => {
          AND q.choice_a IS NOT NULL AND q.choice_b IS NOT NULL
          AND q.choice_c IS NOT NULL AND q.choice_d IS NOT NULL
          AND q.correct_answer IS NOT NULL
-         AND q.explanation IS NOT NULL AND q.explanation <> ''
        ORDER BY RANDOM()
        LIMIT 5`
     );
