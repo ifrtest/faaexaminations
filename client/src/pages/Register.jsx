@@ -38,8 +38,8 @@ export default function Register() {
         <meta name="robots" content="noindex, follow" />
       </Helmet>
       <div className="card auth-card">
-        <h2>Get Your Free FAA Access</h2>
-        <p className="sub">No credit card required · Cancel anytime</p>
+        <h2>Create Your Account</h2>
+        <p className="sub">Free to join · No credit card required to register</p>
         <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 20px', display: 'flex', flexDirection: 'column', gap: 8 }}>
           <li style={{ display: 'flex', alignItems: 'center', gap: 9, fontSize: '.92rem', color: 'var(--text2, #cbd5e1)' }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -82,7 +82,7 @@ export default function Register() {
             </div>
           </div>
           <button type="submit" className="btn btn-primary btn-block" disabled={busy}>
-            {busy ? 'Creating…' : 'Get Free Access →'}
+            {busy ? 'Creating…' : 'Create Account →'}
           </button>
         </form>
         <div className="alt">
