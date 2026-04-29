@@ -97,7 +97,7 @@ export default function PARLanding() {
       </nav>
 
       {/* HERO */}
-      <section className="lp-hero" style={{ backgroundImage: 'url(/Cesna_faa_examinations.jpg)', backgroundSize: 'cover', backgroundPosition: 'center center' }}>
+      <section className="lp-hero lp-hero-par" style={{ backgroundImage: 'url(/Cesna_faa_examinations.jpg)', backgroundSize: 'cover', backgroundPosition: 'center 10%' }}>
         <div className="lp-hero-bg" style={{ background: 'linear-gradient(135deg,rgba(5,88,102,0.42) 0%,rgba(8,14,20,0.38) 55%,rgba(8,14,20,0.18) 100%)', position: 'absolute', inset: 0 }} />
         <div className="lp-hero-grid" />
         <div className="lp-hero-content">
