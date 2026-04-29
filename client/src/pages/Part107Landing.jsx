@@ -76,10 +76,10 @@ function Part107Demo() {
             {pct >= 70 ? 'Great start!' : pct >= 50 ? 'Room to improve.' : 'More practice needed.'}
           </div>
           <p style={{ color: 'var(--lp-text2)', fontSize: 16, lineHeight: 1.7, marginBottom: 40 }}>
-            The real Part 107 exam has 166 questions. You need 70% to pass. Get access to the full question bank, timed simulator, and AI instructor.
+            The real Part 107 exam has 60 questions drawn from a 265-question bank. You need 70% to pass. Get access to the full question bank, timed simulator, and AI instructor.
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/register" className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>Get Full Access — $24.99/mo</Link>
+            <Link to="/register" className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>Get Full Access — $37.99</Link>
             <button onClick={load} style={{ background: 'none', border: '1px solid var(--lp-border)', color: 'var(--lp-text2)', padding: '16px 28px', borderRadius: 10, fontSize: 15, cursor: 'pointer' }}>Try 5 More Questions</button>
           </div>
         </div>
@@ -181,8 +181,8 @@ const FAQS = [
     a: 'No. Part 107 is a separate certificate specifically for drone operators. You don\'t need any existing pilot certificates or flight hours. Anyone 16 or older can take the test.',
   },
   {
-    q: 'Can I cancel anytime?',
-    a: 'Yes. No contracts, no commitments. Cancel from your dashboard in one click. Most students are done studying in under 3 weeks.',
+    q: 'Is this a one-time payment?',
+    a: 'Yes. $37.99 one time — no subscription, no recurring charges. Pay once and you have lifetime access to the full question bank, timed simulator, and AI instructor.',
   },
 ];
 
@@ -259,10 +259,10 @@ export default function Part107Landing() {
             <a href="#includes" className="lp-btn-outline">See What's Included</a>
           </div>
           <div style={{ fontSize: 13, color: 'var(--lp-text3)', marginTop: 14, opacity: 0.8, lineHeight: 2 }}>
-            No credit card required to start · Full access from $24.99/month · Cancel anytime
+            265 practice questions · $37.99 one-time · <strong style={{ color: '#f5c842' }}>Lifetime access</strong>
           </div>
           <div className="lp-hero-stats">
-            <div><div className="lp-hs-val">166</div><div className="lp-hs-lbl">Exam Questions</div></div>
+            <div><div className="lp-hs-val">265</div><div className="lp-hs-lbl">Practice Questions</div></div>
             <div><div className="lp-hs-val">2–3</div><div className="lp-hs-lbl">Weeks to Pass</div></div>
             <div><div className="lp-hs-val">AI</div><div className="lp-hs-lbl">Instructor Included</div></div>
             <div><div className="lp-hs-val">NONE</div><div className="lp-hs-lbl">Prior Experience Needed</div></div>
