@@ -304,7 +304,7 @@ export default function ExamList() {
                 onClick={() => startCheckout(EXAM_PLAN[selected])}
                 disabled={checkoutLoading}
                 style={{marginBottom:8}}>
-                {checkoutLoading ? 'Loading…' : `Subscribe to ${selected} — $24.99/month`}
+                {checkoutLoading ? 'Loading…' : selected === 'UAG' ? `Get Part 107 — $37.99 one-time` : `Subscribe to ${selected} — $24.99/month`}
               </button>
               {selected !== 'UAG' && (
                 <button

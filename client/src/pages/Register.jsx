@@ -55,7 +55,7 @@ export default function Register() {
           </li>
           <li style={{ display: 'flex', alignItems: 'center', gap: 9, fontSize: '.92rem', color: 'var(--text2, #cbd5e1)' }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            PAR · IRA · CAX · Part 107 packages from $24.99/mo
+            PAR · IRA · CAX from $24.99/mo · Part 107 $37.99 one-time
           </li>
         </ul>
         {err && <div className="alert alert-err">{err}</div>}

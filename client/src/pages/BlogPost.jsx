@@ -339,7 +339,7 @@ const POSTS = {
 
         <h3>Week 2: Weather and practice questions</h3>
         <p>Learn to read a METAR. Know how to pull ceiling, visibility, and wind from one. Understand density altitude — it matters more for drone performance than most people expect, especially in hot weather or at elevation.</p>
-        <p>Then start practice questions, by topic. At <a href="https://faaexaminations.com" style={{color:'var(--blue)'}}>FAAExaminations.com</a>, all 166 Part 107 questions are sorted by category. Drill the weak areas instead of cycling through what you already know.</p>
+        <p>Then start practice questions, by topic. At <a href="https://faaexaminations.com" style={{color:'var(--blue)'}}>FAAExaminations.com</a>, all 265 Part 107 questions are sorted by category. Drill the weak areas instead of cycling through what you already know.</p>
 
         <h3>Week 3: Full practice exams and booking</h3>
         <p>Run the 60-question timed simulator. Aim for 80%+ before you book. The actual exam gives you 2 hours — most people finish in 45 minutes.</p>

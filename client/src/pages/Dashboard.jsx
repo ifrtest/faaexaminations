@@ -134,7 +134,7 @@ export default function Dashboard() {
               Unlock Full Access →
             </Link>
             <div style={{fontSize:'.78rem',color:'#5d8aaa',textAlign:'center',width:'100%'}}>
-              From $24.99/month · Cancel anytime
+              From $24.99/month · Part 107 $37.99 one-time
             </div>
           </div>
         </div>
