@@ -149,6 +149,135 @@ export default function Part107Landing() {
         </div>
       </section>
 
+      {/* SEE INSIDE */}
+      <section style={{ padding: '90px 40px', background: 'var(--lp-dark)', borderTop: '1px solid var(--lp-border)' }}>
+        <div className="lp-section-inner">
+          <div className="lp-badge">SEE INSIDE</div>
+          <h2>Here's What Studying Actually Looks Like</h2>
+          <p className="lp-section-sub">Real Part 107 questions, full explanations, and a dashboard that shows exactly where you stand.</p>
+
+          <div className="fade-up" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 28, marginTop: 52 }}>
+
+            {/* MOCKUP 1: Question */}
+            <div style={{ background: 'var(--lp-charcoal)', border: '1px solid var(--lp-border)', borderRadius: 16, overflow: 'hidden' }}>
+              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '10px 16px', borderBottom: '1px solid var(--lp-border)', display: 'flex', alignItems: 'center', gap: 8 }}>
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57' }} />
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
+                <span style={{ marginLeft: 8, fontSize: 12, color: 'var(--lp-text3)', fontFamily: 'Share Tech Mono, monospace' }}>Part 107 · Study Mode · Question 14 of 60</span>
+              </div>
+              <div style={{ padding: '24px 24px 28px' }}>
+                <div style={{ display: 'flex', gap: 8, marginBottom: 14, flexWrap: 'wrap' }}>
+                  <span style={{ background: 'var(--lp-blue)', color: '#fff', padding: '3px 10px', borderRadius: 6, fontSize: 11, fontWeight: 700, letterSpacing: 1 }}>PART 107</span>
+                  <span style={{ background: 'rgba(48,172,226,0.12)', color: 'var(--lp-blue)', padding: '3px 10px', borderRadius: 6, fontSize: 11, fontWeight: 600 }}>📘 Airspace Classification</span>
+                </div>
+                <p style={{ color: '#fff', fontSize: 15, fontWeight: 600, lineHeight: 1.6, marginBottom: 20 }}>
+                  What is the maximum altitude at which a small unmanned aircraft may be operated without a waiver, when flying in uncontrolled airspace?
+                </p>
+                {[
+                  { l: 'A', text: '300 feet AGL' },
+                  { l: 'B', text: '400 feet AGL', correct: true },
+                  { l: 'C', text: '500 feet AGL' },
+                  { l: 'D', text: '600 feet MSL' },
+                ].map(({ l, text, correct }) => (
+                  <div key={l} style={{
+                    display: 'flex', alignItems: 'center', gap: 12,
+                    padding: '11px 14px', borderRadius: 8, marginBottom: 8,
+                    border: `1px solid ${correct ? 'rgba(48,172,226,0.5)' : 'var(--lp-border)'}`,
+                    background: correct ? 'rgba(48,172,226,0.08)' : 'rgba(255,255,255,0.03)',
+                    cursor: 'default',
+                  }}>
+                    <span style={{ width: 26, height: 26, borderRadius: '50%', background: correct ? 'var(--lp-blue)' : 'rgba(255,255,255,0.08)', color: correct ? '#fff' : 'var(--lp-text2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{l}</span>
+                    <span style={{ color: correct ? '#fff' : 'var(--lp-text2)', fontSize: 14 }}>{text}</span>
+                    {correct && <span style={{ marginLeft: 'auto', color: 'var(--lp-blue)', fontSize: 13, fontWeight: 700 }}>✓ Correct</span>}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* MOCKUP 2: Explanation */}
+            <div style={{ background: 'var(--lp-charcoal)', border: '1px solid var(--lp-border)', borderRadius: 16, overflow: 'hidden' }}>
+              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '10px 16px', borderBottom: '1px solid var(--lp-border)', display: 'flex', alignItems: 'center', gap: 8 }}>
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57' }} />
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
+                <span style={{ marginLeft: 8, fontSize: 12, color: 'var(--lp-text3)', fontFamily: 'Share Tech Mono, monospace' }}>Full Explanation + AI Instructor</span>
+              </div>
+              <div style={{ padding: '24px' }}>
+                <div style={{ background: 'rgba(48,172,226,0.08)', border: '1px solid rgba(48,172,226,0.25)', borderRadius: 10, padding: '16px 18px', marginBottom: 16 }}>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--lp-blue)', letterSpacing: 1, marginBottom: 8 }}>EXPLANATION</div>
+                  <p style={{ color: 'var(--lp-text)', fontSize: 14, lineHeight: 1.7, margin: 0 }}>
+                    Under 14 CFR Part 107.51, small unmanned aircraft must be flown at or below <strong style={{ color: '#fff' }}>400 feet above ground level (AGL)</strong> in uncontrolled (Class G) airspace. This rule applies unless you have a FAA waiver authorizing operations above that altitude.
+                  </p>
+                </div>
+                <div style={{ background: 'rgba(247,201,72,0.06)', border: '1px solid rgba(247,201,72,0.2)', borderRadius: 10, padding: '16px 18px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+                    <span style={{ fontSize: 16 }}>🤖</span>
+                    <span style={{ fontSize: 12, fontWeight: 700, color: '#F7C948', letterSpacing: 1 }}>AI INSTRUCTOR</span>
+                  </div>
+                  <p style={{ color: 'var(--lp-text2)', fontSize: 14, lineHeight: 1.7, margin: 0 }}>
+                    An easy way to remember this: think of 400 ft as your ceiling in open sky. The only exception is when you're within 400 ft of a structure — then you can go up to 400 ft above that structure's height. This comes up on the real exam frequently.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* MOCKUP 3: Dashboard */}
+            <div style={{ background: 'var(--lp-charcoal)', border: '1px solid var(--lp-border)', borderRadius: 16, overflow: 'hidden' }}>
+              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '10px 16px', borderBottom: '1px solid var(--lp-border)', display: 'flex', alignItems: 'center', gap: 8 }}>
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57' }} />
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
+                <span style={{ marginLeft: 8, fontSize: 12, color: 'var(--lp-text3)', fontFamily: 'Share Tech Mono, monospace' }}>Progress Dashboard</span>
+              </div>
+              <div style={{ padding: '24px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 20 }}>
+                  <div style={{ position: 'relative', width: 80, height: 80, flexShrink: 0 }}>
+                    <svg width="80" height="80" viewBox="0 0 80 80">
+                      <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="8" />
+                      <circle cx="40" cy="40" r="32" fill="none" stroke="#3B82F6" strokeWidth="8" strokeLinecap="round"
+                        strokeDasharray={`${0.78 * 2 * Math.PI * 32} ${2 * Math.PI * 32}`}
+                        transform="rotate(-90 40 40)" />
+                    </svg>
+                    <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                      <span style={{ fontSize: 18, fontWeight: 800, color: '#3B82F6', lineHeight: 1 }}>78</span>
+                      <span style={{ fontSize: 9, color: 'var(--lp-text3)', letterSpacing: 1 }}>READY</span>
+                    </div>
+                  </div>
+                  <div>
+                    <div style={{ color: '#fff', fontWeight: 700, fontSize: 15, marginBottom: 4 }}>Looking good — keep going</div>
+                    <div style={{ color: 'var(--lp-text3)', fontSize: 13 }}>203 questions answered · 14 days streak</div>
+                  </div>
+                </div>
+                <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--lp-text3)', letterSpacing: 1, marginBottom: 10 }}>WEAK TOPICS TO REVIEW</div>
+                {[
+                  { topic: 'Weather & Meteorology', pct: 58 },
+                  { topic: 'Loading & Performance', pct: 63 },
+                  { topic: 'Radio Communications', pct: 71 },
+                ].map(({ topic, pct }) => (
+                  <div key={topic} style={{ marginBottom: 10 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
+                      <span style={{ color: 'var(--lp-text2)', fontSize: 13 }}>{topic}</span>
+                      <span style={{ color: pct < 65 ? '#EF4444' : '#F59E0B', fontSize: 13, fontWeight: 700 }}>{pct}%</span>
+                    </div>
+                    <div style={{ height: 4, background: 'rgba(255,255,255,0.08)', borderRadius: 2 }}>
+                      <div style={{ height: 4, width: `${pct}%`, background: pct < 65 ? '#EF4444' : '#F59E0B', borderRadius: 2 }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: 48 }}>
+            <Link to="/register" className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>
+              Start Studying Free Today →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* TOPICS */}
       <section style={{ padding: '90px 40px', background: 'rgba(5,88,102,0.10)', borderTop: '1px solid var(--lp-border)', borderBottom: '1px solid var(--lp-border)' }} id="topics">
         <div className="lp-section-inner">
