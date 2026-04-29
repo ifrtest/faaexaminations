@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const db      = require('../db');
+const db      = require('../config/db');
 
 // Public — no auth required
 // Returns 3 random Part 107 (UAG) questions with choices, correct answer, explanation
