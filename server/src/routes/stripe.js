@@ -18,6 +18,9 @@ const PRICE_MAP = {
   bundle: process.env.STRIPE_PRICE_BUNDLE,
 };
 
+// Plans that use one-time payment instead of subscription
+const ONE_TIME_PLANS = new Set(['uag']);
+
 // Which exams does each price unlock?
 const PRICE_EXAMS = {
   [process.env.STRIPE_PRICE_PAR]:    [1],
@@ -51,9 +54,10 @@ router.post('/checkout', requireAuth, async (req, res) => {
     }
 
     const capiEventId = crypto.randomUUID();
+    const isOneTime = ONE_TIME_PLANS.has(plan?.toLowerCase());
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
-      mode: 'subscription',
+      mode: isOneTime ? 'payment' : 'subscription',
       payment_method_types: ['card'],
       line_items: [{ price: priceId, quantity: 1 }],
       success_url: `${process.env.CLIENT_URL}/dashboard?subscribed=1&eid=${capiEventId}`,
@@ -86,6 +90,8 @@ router.post('/webhook', async (req, res) => {
         const session = event.data.object;
         if (session.mode === 'subscription') {
           await activateSubscription(session);
+        } else if (session.mode === 'payment') {
+          await activateOneTimePurchase(session);
         }
         break;
       }
@@ -148,6 +154,46 @@ async function activateSubscription(session) {
       allowUnsubscribed: true,
     });
     // Fire CAPI Purchase — server-side so iOS-blocked browsers still report conversions
+    if (capiEventId) {
+      capiPurchase({
+        eventId:   capiEventId,
+        email:     user.email,
+        firstName: user.full_name?.split(' ')[0],
+      });
+    }
+  }
+}
+
+async function activateOneTimePurchase(session) {
+  const customerId  = session.customer;
+  const capiEventId = session.metadata?.capi_event_id;
+  const plan        = session.metadata?.plan;
+
+  // Retrieve line items to get the price ID
+  const lineItems = await stripe.checkout.sessions.listLineItems(session.id, { limit: 1 });
+  const priceId   = lineItems.data[0]?.price?.id;
+
+  // Grant lifetime access — no expiry date
+  await db.query(
+    `UPDATE users SET
+       subscription_status   = 'active',
+       subscription_price_id = $1,
+       subscription_ends_at  = NULL,
+       subscription          = $2
+     WHERE stripe_customer_id = $3`,
+    [priceId, plan, customerId]
+  );
+
+  const userRes = await db.query('SELECT id, email, full_name FROM users WHERE stripe_customer_id = $1', [customerId]);
+  const user = userRes.rows[0];
+  if (user) {
+    sendEmail({
+      to: user.email,
+      subject: 'Your FAAExaminations.com Access is Active ✅',
+      html: subscriptionEmail(user.full_name || user.email.split('@')[0], plan, user.id),
+      userId: user.id,
+      allowUnsubscribed: true,
+    });
     if (capiEventId) {
       capiPurchase({
         eventId:   capiEventId,

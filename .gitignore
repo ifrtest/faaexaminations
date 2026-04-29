@@ -21,3 +21,4 @@ client/public/ira-figures/
 .vscode/
 .idea/
 .DS_Store
+.vercel
