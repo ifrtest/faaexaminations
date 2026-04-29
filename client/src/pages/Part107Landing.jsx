@@ -449,7 +449,7 @@ export default function Part107Landing() {
 
           <div style={{ textAlign: 'center', marginTop: 48 }}>
             <Link to="/register" className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>
-              Start Studying Free Today →
+              Get Full Access — $37.99 →
             </Link>
           </div>
         </div>
@@ -460,7 +460,7 @@ export default function Part107Landing() {
         <div className="lp-section-inner">
           <div className="lp-badge">ALL TOPICS COVERED</div>
           <h2>Every Topic the FAA Tests on Part 107</h2>
-          <p className="lp-section-sub">The Part 107 knowledge test draws from 11 subject areas. We cover every single one.</p>
+          <p className="lp-section-sub">The Part 107 knowledge test draws from these subject areas. We cover every single one.</p>
           <div className="fade-up" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 14, marginTop: 48 }}>
             {TOPICS.map((topic, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, background: 'rgba(48,172,226,0.06)', border: '1px solid var(--lp-border)', borderRadius: 10, padding: '14px 18px' }}>
