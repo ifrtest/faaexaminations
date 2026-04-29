@@ -76,7 +76,7 @@ function Part107Demo() {
             {pct >= 70 ? 'Great start!' : pct >= 50 ? 'Room to improve.' : 'More practice needed.'}
           </div>
           <p style={{ color: 'var(--lp-text2)', fontSize: 16, lineHeight: 1.7, marginBottom: 40 }}>
-            The real Part 107 exam has 60 questions. You need 70% to pass. Get access to the full question bank, timed simulator, and AI instructor.
+            The real Part 107 exam has 166 questions. You need 70% to pass. Get access to the full question bank, timed simulator, and AI instructor.
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/register" className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>Get Full Access — $24.99/mo</Link>
