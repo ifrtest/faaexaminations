@@ -15,7 +15,7 @@ router.get('/part107', async (_req, res, next) => {
        WHERE e.code = 'UAG' AND q.is_active = true
          AND q.question_text IS NOT NULL
          AND q.choice_a IS NOT NULL AND q.choice_b IS NOT NULL
-         AND q.choice_c IS NOT NULL AND q.choice_d IS NOT NULL
+         AND q.choice_c IS NOT NULL
          AND q.correct_answer IS NOT NULL
        ORDER BY RANDOM()
        LIMIT 5`
