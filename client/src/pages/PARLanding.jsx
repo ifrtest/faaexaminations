@@ -138,41 +138,20 @@ export default function PARLanding() {
 
           <div className="fade-up" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24, marginTop: 52 }}>
 
-            <div style={{ background: 'rgba(48,172,226,0.06)', border: '1px solid var(--lp-border)', borderRadius: 14, padding: '32px 28px' }}>
-              <div style={{ fontSize: 32, marginBottom: 16 }}>✈️</div>
-              <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 10 }}>1,469 Practice Questions</div>
-              <div style={{ color: 'var(--lp-text2)', fontSize: 15, lineHeight: 1.7 }}>Built from the FAA's official Airman Knowledge Testing database — the exact same source the real exam draws from. Updated for 2026.</div>
-            </div>
-
-            <div style={{ background: 'rgba(48,172,226,0.06)', border: '1px solid var(--lp-border)', borderRadius: 14, padding: '32px 28px' }}>
-              <div style={{ fontSize: 32, marginBottom: 16 }}>🎯</div>
-              <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 10 }}>Timed Exam Simulator</div>
-              <div style={{ color: 'var(--lp-text2)', fontSize: 15, lineHeight: 1.7 }}>Simulate the real 2.5-hour, 60-question FAA test. Track your score, identify weak topics, and keep testing until you're consistently above 80%.</div>
-            </div>
-
-            <div style={{ background: 'rgba(48,172,226,0.06)', border: '1px solid var(--lp-border)', borderRadius: 14, padding: '32px 28px' }}>
-              <div style={{ fontSize: 32, marginBottom: 16 }}>🤖</div>
-              <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 10 }}>AI Instructor Support</div>
-              <div style={{ color: 'var(--lp-text2)', fontSize: 15, lineHeight: 1.7 }}>Every question includes a full explanation. Get confused on a topic? Ask our AI flight instructor anything — it explains like a real CFI, not a textbook.</div>
-            </div>
-
-            <div style={{ background: 'rgba(48,172,226,0.06)', border: '1px solid var(--lp-border)', borderRadius: 14, padding: '32px 28px' }}>
-              <div style={{ fontSize: 32, marginBottom: 16 }}>📚</div>
-              <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 10 }}>11 Study Modules</div>
-              <div style={{ color: 'var(--lp-text2)', fontSize: 15, lineHeight: 1.7 }}>Every topic the FAA tests organized into focused modules. Study one topic at a time or jump straight to your weak areas. You control the pace.</div>
-            </div>
-
-            <div style={{ background: 'rgba(48,172,226,0.06)', border: '1px solid var(--lp-border)', borderRadius: 14, padding: '32px 28px' }}>
-              <div style={{ fontSize: 32, marginBottom: 16 }}>📖</div>
-              <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 10 }}>Full FAA References</div>
-              <div style={{ color: 'var(--lp-text2)', fontSize: 15, lineHeight: 1.7 }}>PHAK, AIM, 14 CFR, ACS, and all supplemental materials included. No need to hunt down separate PDFs — everything is here.</div>
-            </div>
-
-            <div style={{ background: 'rgba(48,172,226,0.06)', border: '1px solid var(--lp-border)', borderRadius: 14, padding: '32px 28px' }}>
-              <div style={{ fontSize: 32, marginBottom: 16 }}>📱</div>
-              <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 10 }}>Study Anywhere</div>
-              <div style={{ color: 'var(--lp-text2)', fontSize: 15, lineHeight: 1.7 }}>Fully responsive on phone, tablet, and desktop. Study between flights, on your lunch break, or the night before your exam. No app download needed.</div>
-            </div>
+            {[
+              { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>, title: '1,469 Practice Questions', desc: "Built from the FAA's official Airman Knowledge Testing database — the exact same source the real exam draws from. Updated for 2026." },
+              { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>, title: 'Timed Exam Simulator', desc: "Simulate the real 2.5-hour, 60-question FAA test. Track your score, identify weak topics, and keep testing until you're consistently above 80%." },
+              { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>, title: 'AI Instructor Support', desc: "Every question includes a full explanation. Get confused on a topic? Ask our AI flight instructor anything — it explains like a real CFI, not a textbook." },
+              { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>, title: '11 Study Modules', desc: "Every topic the FAA tests organized into focused modules. Study one topic at a time or jump straight to your weak areas. You control the pace." },
+              { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>, title: 'Full FAA References', desc: "PHAK, AIM, 14 CFR, ACS, and all supplemental materials included. No need to hunt down separate PDFs — everything is here." },
+              { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>, title: 'Study Anywhere', desc: "Fully responsive on phone, tablet, and desktop. Study between flights, on your lunch break, or the night before your exam. No app download needed." },
+            ].map((item, i) => (
+              <div key={i} style={{ background: 'rgba(48,172,226,0.06)', border: '1px solid var(--lp-border)', borderRadius: 14, padding: '32px 28px' }}>
+                <span className="lp-feat-icon" style={{ display: 'block', marginBottom: 16 }}>{item.svg}</span>
+                <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 10 }}>{item.title}</div>
+                <div style={{ color: 'var(--lp-text2)', fontSize: 15, lineHeight: 1.7 }}>{item.desc}</div>
+              </div>
+            ))}
 
           </div>
         </div>
