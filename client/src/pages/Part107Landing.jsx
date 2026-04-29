@@ -258,8 +258,8 @@ export default function Part107Landing() {
             </Link>
             <a href="#includes" className="lp-btn-outline">See What's Included</a>
           </div>
-          <div style={{ fontSize: 13, color: 'var(--lp-text3)', marginTop: 14, opacity: 0.8, lineHeight: 2 }}>
-            265 practice questions · $37.99 one-time · <strong style={{ color: '#f5c842' }}>Lifetime access</strong>
+          <div style={{ fontSize: 16, color: '#fff', marginTop: 18, lineHeight: 2, letterSpacing: 0.3 }}>
+            265 practice questions &nbsp;·&nbsp; $37.99 one-time &nbsp;·&nbsp; <strong style={{ color: '#f5c842', fontSize: 17, fontWeight: 800, letterSpacing: 0.5 }}>✦ LIFETIME ACCESS</strong>
           </div>
           <div className="lp-hero-stats">
             <div><div className="lp-hs-val">265</div><div className="lp-hs-lbl">Practice Questions</div></div>
