@@ -3,6 +3,152 @@ import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Helmet } from 'react-helmet-async';
 
+const LETTERS = ['A', 'B', 'C', 'D'];
+
+function Part107Demo() {
+  const [questions, setQuestions] = useState([]);
+  const [idx, setIdx]             = useState(0);
+  const [selected, setSelected]   = useState({});
+  const [revealed, setRevealed]   = useState({});
+  const [loading, setLoading]     = useState(false);
+  const [error, setError]         = useState('');
+  const [started, setStarted]     = useState(false);
+
+  const load = async () => {
+    setLoading(true);
+    setError('');
+    try {
+      const res = await fetch('/api/demo/part107');
+      const data = await res.json();
+      if (!data.questions?.length) throw new Error('No questions returned');
+      setQuestions(data.questions);
+      setIdx(0);
+      setSelected({});
+      setRevealed({});
+      setStarted(true);
+    } catch {
+      setError('Could not load questions. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const q = questions[idx];
+  const total = questions.length;
+  const isRevealed = q && revealed[q.id];
+  const chosen = q && selected[q.id];
+  const score = Object.keys(revealed).filter(id => selected[id] === questions.find(q => q.id === parseInt(id))?.correct_answer).length;
+  const done = started && idx >= total;
+
+  const choose = (letter) => {
+    if (isRevealed) return;
+    setSelected(s => ({ ...s, [q.id]: letter }));
+    setRevealed(r => ({ ...r, [q.id]: true }));
+  };
+
+  const next = () => setIdx(i => i + 1);
+
+  if (!started) {
+    return (
+      <section style={{ padding: '90px 40px', background: 'var(--lp-charcoal)', borderTop: '1px solid var(--lp-border)' }}>
+        <div className="lp-section-inner" style={{ textAlign: 'center' }}>
+          <div className="lp-badge">TRY IT FREE</div>
+          <h2>Test Yourself — No Account Needed</h2>
+          <p className="lp-section-sub" style={{ margin: '0 auto 40px' }}>5 real Part 107 questions from the FAA question bank. See exactly what you'll be studying.</p>
+          <button onClick={load} disabled={loading} className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 44px', border: 'none', cursor: 'pointer' }}>
+            {loading ? 'Loading…' : '▶  Start 5 Free Questions'}
+          </button>
+          {error && <p style={{ color: '#EF4444', marginTop: 16, fontSize: 14 }}>{error}</p>}
+        </div>
+      </section>
+    );
+  }
+
+  if (done) {
+    const pct = Math.round((score / total) * 100);
+    const color = pct >= 70 ? '#22c55e' : pct >= 50 ? '#F59E0B' : '#EF4444';
+    return (
+      <section style={{ padding: '90px 40px', background: 'var(--lp-charcoal)', borderTop: '1px solid var(--lp-border)' }}>
+        <div className="lp-section-inner" style={{ textAlign: 'center', maxWidth: 560 }}>
+          <div className="lp-badge">RESULTS</div>
+          <div style={{ fontSize: 72, fontWeight: 900, color, fontFamily: 'Barlow Condensed, sans-serif', lineHeight: 1, marginBottom: 8 }}>{score}/{total}</div>
+          <div style={{ fontSize: 22, color: '#fff', fontWeight: 700, marginBottom: 16 }}>
+            {pct >= 70 ? 'Great start!' : pct >= 50 ? 'Room to improve.' : 'More practice needed.'}
+          </div>
+          <p style={{ color: 'var(--lp-text2)', fontSize: 16, lineHeight: 1.7, marginBottom: 40 }}>
+            The real Part 107 exam has 60 questions. You need 70% to pass. Get access to the full question bank, timed simulator, and AI instructor.
+          </p>
+          <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link to="/register" className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>Get Full Access — $24.99/mo</Link>
+            <button onClick={load} style={{ background: 'none', border: '1px solid var(--lp-border)', color: 'var(--lp-text2)', padding: '16px 28px', borderRadius: 10, fontSize: 15, cursor: 'pointer' }}>Try 5 More Questions</button>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section style={{ padding: '90px 40px', background: 'var(--lp-charcoal)', borderTop: '1px solid var(--lp-border)' }}>
+      <div className="lp-section-inner" style={{ maxWidth: 720 }}>
+        <div className="lp-badge">TRY IT FREE</div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 28, flexWrap: 'wrap', gap: 12 }}>
+          <h2 style={{ margin: 0 }}>Question {idx + 1} of {total}</h2>
+          <div style={{ height: 6, flex: 1, minWidth: 120, background: 'rgba(255,255,255,0.08)', borderRadius: 3, overflow: 'hidden' }}>
+            <div style={{ height: '100%', width: `${((idx) / total) * 100}%`, background: 'var(--lp-blue)', borderRadius: 3, transition: 'width .3s' }} />
+          </div>
+        </div>
+
+        <div style={{ background: 'rgba(48,172,226,0.06)', border: '1px solid var(--lp-border)', borderRadius: 14, padding: '32px 28px', marginBottom: 16 }}>
+          {q.topic_name && (
+            <span style={{ background: 'rgba(48,172,226,0.12)', color: 'var(--lp-blue)', padding: '3px 10px', borderRadius: 6, fontSize: 11, fontWeight: 600, display: 'inline-block', marginBottom: 16 }}>📘 {q.topic_name}</span>
+          )}
+          <p style={{ color: '#fff', fontSize: 16, fontWeight: 600, lineHeight: 1.6, marginBottom: 24 }} dangerouslySetInnerHTML={{ __html: q.question_text }} />
+
+          {LETTERS.map((l) => {
+            const text = q[`choice_${l.toLowerCase()}`];
+            if (!text) return null;
+            const isCorrect = l === q.correct_answer;
+            const isChosen = chosen === l;
+            let bg = 'rgba(255,255,255,0.03)';
+            let border = 'var(--lp-border)';
+            let labelBg = 'rgba(255,255,255,0.08)';
+            let labelColor = 'var(--lp-text2)';
+            if (isRevealed) {
+              if (isCorrect) { bg = 'rgba(34,197,94,0.1)'; border = 'rgba(34,197,94,0.5)'; labelBg = '#22c55e'; labelColor = '#fff'; }
+              else if (isChosen) { bg = 'rgba(239,68,68,0.1)'; border = 'rgba(239,68,68,0.5)'; labelBg = '#EF4444'; labelColor = '#fff'; }
+            } else if (isChosen) {
+              bg = 'rgba(48,172,226,0.08)'; border = 'rgba(48,172,226,0.5)'; labelBg = 'var(--lp-blue)'; labelColor = '#fff';
+            }
+            return (
+              <div key={l} onClick={() => choose(l)} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px', borderRadius: 8, marginBottom: 8, border: `1px solid ${border}`, background: bg, cursor: isRevealed ? 'default' : 'pointer', transition: 'all .15s' }}>
+                <span style={{ width: 28, height: 28, borderRadius: '50%', background: labelBg, color: labelColor, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{l}</span>
+                <span style={{ color: isRevealed && isCorrect ? '#fff' : 'var(--lp-text)', fontSize: 14, flex: 1 }}>{text}</span>
+                {isRevealed && isCorrect && <span style={{ color: '#22c55e', fontSize: 13, fontWeight: 700 }}>✓ Correct</span>}
+                {isRevealed && isChosen && !isCorrect && <span style={{ color: '#EF4444', fontSize: 13, fontWeight: 700 }}>✗</span>}
+              </div>
+            );
+          })}
+        </div>
+
+        {isRevealed && q.explanation && (
+          <div style={{ background: 'rgba(48,172,226,0.08)', border: '1px solid rgba(48,172,226,0.25)', borderRadius: 10, padding: '16px 18px', marginBottom: 20 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--lp-blue)', letterSpacing: 1, marginBottom: 8 }}>EXPLANATION</div>
+            <p style={{ color: 'var(--lp-text)', fontSize: 14, lineHeight: 1.7, margin: 0 }}>{q.explanation}</p>
+          </div>
+        )}
+
+        {isRevealed && (
+          <div style={{ textAlign: 'right' }}>
+            <button onClick={next} className="lp-btn-hero" style={{ border: 'none', cursor: 'pointer', fontSize: 15, padding: '13px 32px' }}>
+              {idx + 1 < total ? 'Next Question →' : 'See My Results →'}
+            </button>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 const TOPICS = [
   'FAA Regulations (Part 107)',
   'Airspace Classification & Restrictions',
@@ -123,6 +269,9 @@ export default function Part107Landing() {
           </div>
         </div>
       </section>
+
+      {/* FREE DEMO */}
+      <Part107Demo />
 
       {/* WHAT'S INCLUDED */}
       <section style={{ padding: '90px 40px', background: 'var(--lp-charcoal)' }} id="includes">
