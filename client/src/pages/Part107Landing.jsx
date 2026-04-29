@@ -273,6 +273,34 @@ export default function Part107Landing() {
       {/* FREE DEMO */}
       <Part107Demo />
 
+      {/* PRICING */}
+      <section style={{ padding: '90px 40px', background: 'var(--lp-charcoal)', borderTop: '1px solid var(--lp-border)' }} id="pricing">
+        <div className="lp-section-inner" style={{ textAlign: 'center' }}>
+          <div className="lp-badge">PRICING</div>
+          <h2>Simple, Honest Pricing</h2>
+          <p className="lp-section-sub" style={{ margin: '0 auto 52px' }}>One price. Everything included. <strong style={{ color: '#f5c842' }}>Lifetime access.</strong></p>
+          <div className="fade-up" style={{ maxWidth: 440, margin: '0 auto', background: 'rgba(48,172,226,0.06)', border: '2px solid var(--lp-border2)', borderRadius: 20, padding: '48px 40px', position: 'relative' }}>
+            <div style={{ position: 'absolute', top: -16, left: '50%', transform: 'translateX(-50%)', background: 'var(--lp-blue)', color: '#fff', padding: '6px 20px', borderRadius: 20, fontSize: 12, fontWeight: 700, fontFamily: 'Share Tech Mono, monospace', letterSpacing: 1, whiteSpace: 'nowrap' }}>MOST STUDENTS PASS IN 2–3 WEEKS</div>
+            <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 8 }}>Part 107 Package</div>
+            <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 64, fontWeight: 900, color: '#fff', lineHeight: 1 }}>$37.99</div>
+            <div style={{ fontSize: 14, marginBottom: 36 }}>
+              <span style={{ color: 'var(--lp-text3)' }}>one-time · </span>
+              <strong style={{ color: '#f5c842', fontWeight: 800 }}>LIFETIME ACCESS</strong>
+            </div>
+            <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 36px', textAlign: 'left' }}>
+              {['265 practice questions', 'Airspace & LAANC authorization coverage', 'Timed FAA exam simulator', 'Full explanations on every question', 'AI instructor support', 'All FAA Part 107 references included', 'No aviation experience required', 'Pay once — access forever'].map((item, i) => (
+                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14, color: 'var(--lp-text)', fontSize: 15 }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="12" fill="rgba(48,172,226,0.15)" /><path d="M7 12l4 4 6-6" stroke="#30ace2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <Link to="/register" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Start Studying Part 107 Now</Link>
+            <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}>Try the free demo above · Pay once, keep access forever</div>
+          </div>
+        </div>
+      </section>
+
       {/* WHAT'S INCLUDED */}
       <section style={{ padding: '90px 40px', background: 'var(--lp-charcoal)' }} id="includes">
         <div className="lp-section-inner">
@@ -440,34 +468,6 @@ export default function Part107Landing() {
                 <span style={{ color: 'var(--lp-text)', fontSize: 14, fontWeight: 500 }}>{topic}</span>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* PRICING */}
-      <section style={{ padding: '90px 40px', background: 'var(--lp-charcoal)', borderTop: '1px solid var(--lp-border)' }} id="pricing">
-        <div className="lp-section-inner" style={{ textAlign: 'center' }}>
-          <div className="lp-badge">PRICING</div>
-          <h2>Simple, Honest Pricing</h2>
-          <p className="lp-section-sub" style={{ margin: '0 auto 52px' }}>One price. Everything included. <strong style={{ color: '#f5c842' }}>Lifetime access.</strong></p>
-          <div className="fade-up" style={{ maxWidth: 440, margin: '0 auto', background: 'rgba(48,172,226,0.06)', border: '2px solid var(--lp-border2)', borderRadius: 20, padding: '48px 40px', position: 'relative' }}>
-            <div style={{ position: 'absolute', top: -16, left: '50%', transform: 'translateX(-50%)', background: 'var(--lp-blue)', color: '#fff', padding: '6px 20px', borderRadius: 20, fontSize: 12, fontWeight: 700, fontFamily: 'Share Tech Mono, monospace', letterSpacing: 1, whiteSpace: 'nowrap' }}>MOST STUDENTS PASS IN 2–3 WEEKS</div>
-            <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 8 }}>Part 107 Package</div>
-            <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 64, fontWeight: 900, color: '#fff', lineHeight: 1 }}>$37.99</div>
-            <div style={{ fontSize: 14, marginBottom: 36 }}>
-              <span style={{ color: 'var(--lp-text3)' }}>one-time · </span>
-              <strong style={{ color: '#f5c842', fontWeight: 800 }}>LIFETIME ACCESS</strong>
-            </div>
-            <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 36px', textAlign: 'left' }}>
-              {['Part 107-specific practice questions', 'Airspace & LAANC authorization coverage', 'Timed FAA exam simulator', 'Full explanations on every question', 'AI instructor support', 'All FAA Part 107 references included', 'No aviation experience required', 'Pay once — access forever'].map((item, i) => (
-                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14, color: 'var(--lp-text)', fontSize: 15 }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="12" fill="rgba(48,172,226,0.15)" /><path d="M7 12l4 4 6-6" stroke="#30ace2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <Link to="/register" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Start Studying Part 107 Now</Link>
-            <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}>Try the free demo above · Pay once, keep access forever</div>
           </div>
         </div>
       </section>
