@@ -88,7 +88,7 @@ export default function Landing() {
           </div>
           <div style={{ fontSize: 13, color: 'var(--lp-text3)', marginTop: 14, opacity: 0.8, lineHeight: 2 }}>
             Free account includes 10 practice questions · No credit card required<br />
-            Packages from $24.99/month · Cancel anytime
+            Part 107 from $37.99 one-time · Other packages from $24.99/month
           </div>
           <div className="lp-hero-stats">
             <div><div className="lp-hs-val">3,000+</div><div className="lp-hs-lbl">Practice Questions</div></div>
@@ -209,15 +209,15 @@ export default function Landing() {
                 <div className="lp-product-name">Part 107 Remote Pilot Package</div>
                 <div className="lp-product-desc">Complete prep for the FAA Part 107 Remote Pilot knowledge test. Drone regulations, airspace, weather, and operations.</div>
                 <ul className="lp-product-features">
-                  <li>166 Part 107 practice questions</li>
-                  <li>5 categorized study modules</li>
+                  <li>265 Part 107 practice questions</li>
+                  <li>6 categorized study modules</li>
                   <li>Timed 60-question simulator</li>
                   <li>Full regulation references</li>
                   <li>AI Instructor explanations</li>
                   <li>FAA compliant · 2026 updated</li>
                 </ul>
-                <div className="lp-product-price">$24.99</div>
-                <div className="lp-product-price-sub">Per month · Cancel anytime</div>
+                <div className="lp-product-price">$37.99</div>
+                <div className="lp-product-price-sub">One-time · <strong style={{ color: '#f5c842' }}>Lifetime access</strong></div>
                 <Link to="/register" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
               </div>
             </div>
