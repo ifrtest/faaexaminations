@@ -19,7 +19,8 @@ const PRICE_MAP = {
 };
 
 // Plans that use one-time payment instead of subscription
-const ONE_TIME_PLANS = new Set(['uag']);
+// Set to active when Part 107 questions are reviewed and ready
+const ONE_TIME_PLANS = new Set([]);
 
 // Which exams does each price unlock?
 const PRICE_EXAMS = {
