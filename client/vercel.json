@@ -1,11 +1,23 @@
 {
   "redirects": [
+    { "source": "/faa-private-pilot-airplane-par/:path*", "destination": "/par", "permanent": true },
+    { "source": "/faa-private-pilot-airplane-par", "destination": "/par", "permanent": true },
+    { "source": "/faa-commercial-pilot-airplane-cax/:path*", "destination": "/cax", "permanent": true },
+    { "source": "/faa-commercial-pilot-airplane-cax", "destination": "/cax", "permanent": true },
+    { "source": "/faa-instrument-rating/:path*", "destination": "/ira", "permanent": true },
+    { "source": "/faa-instrument-rating", "destination": "/ira", "permanent": true },
+    { "source": "/faa-instrument-rating-airplane-ira/:path*", "destination": "/ira", "permanent": true },
+    { "source": "/faa-part-107/:path*", "destination": "/part-107", "permanent": true },
+    { "source": "/faa-part-107", "destination": "/part-107", "permanent": true },
     { "source": "/delta-air-lines-adds-youtube-to-in-flight-entertainment-offers-free-youtube-premium-trial/", "destination": "/blog", "permanent": true },
     { "source": "/review-american-airlines-new-78p-business-class-chicago-london/", "destination": "/blog", "permanent": true },
     { "source": "/air-canada-adds-free-beer-wine-and-snacks-in-economy/", "destination": "/blog", "permanent": true },
     { "source": "/impressive-my-first-starlink-internet-flight-on-united-airlines/", "destination": "/blog", "permanent": true },
     { "source": "/exit-controls-quietly-expand-at-u-s-airports/", "destination": "/blog", "permanent": true },
     { "source": "/class-e-airspace-starting-at-the-surface/", "destination": "/blog", "permanent": true },
+    { "source": "/top-10-domestic-revenue-routes-for-every-us-airline/", "destination": "/blog", "permanent": true },
+    { "source": "/drunk-on-vodka-at-35000-feet-a-united-flight-attendant-was-10x-over-the-legal-limit/", "destination": "/blog", "permanent": true },
+    { "source": "/southwest-airlines-explores-first-class-lounges-and-europe-flights/", "destination": "/blog", "permanent": true },
     { "source": "/Chart_Supplement_CS_NW_APR_20_2023.pdf", "destination": "/references", "permanent": true },
     { "source": "/Advisory_Circular_ac_00-6b.pdf", "destination": "/references", "permanent": true },
     { "source": "/CFR_PART_14_PDF.pdf", "destination": "/references", "permanent": true }
