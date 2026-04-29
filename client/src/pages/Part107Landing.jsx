@@ -262,7 +262,7 @@ export default function Part107Landing() {
             No credit card required to start · Full access from $24.99/month · Cancel anytime
           </div>
           <div className="lp-hero-stats">
-            <div><div className="lp-hs-val">60</div><div className="lp-hs-lbl">Exam Questions</div></div>
+            <div><div className="lp-hs-val">166</div><div className="lp-hs-lbl">Exam Questions</div></div>
             <div><div className="lp-hs-val">2–3</div><div className="lp-hs-lbl">Weeks to Pass</div></div>
             <div><div className="lp-hs-val">AI</div><div className="lp-hs-lbl">Instructor Included</div></div>
             <div><div className="lp-hs-val">NONE</div><div className="lp-hs-lbl">Prior Experience Needed</div></div>
