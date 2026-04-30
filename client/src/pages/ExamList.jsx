@@ -192,44 +192,6 @@ export default function ExamList() {
           </p>
         </div>
 
-        {/* right: free challenge card — only for non-subscribers */}
-        {!isSubscribed && (
-          <div style={{
-            background: 'linear-gradient(135deg, #92400e 0%, #b45309 40%, #d97706 100%)',
-            borderRadius: 14,
-            padding: '22px 26px',
-            flex: '0 0 auto',
-            maxWidth: 320,
-            width: '100%',
-            boxShadow: '0 8px 32px rgba(217,119,6,.35)',
-            position: 'relative',
-          }}>
-            <div style={{ fontSize: '1.6rem', marginBottom: 6 }}>✈️</div>
-            <div style={{ fontSize: '1.05rem', fontWeight: 800, color: '#fff', marginBottom: 4 }}>
-              10-Question Free Challenge
-            </div>
-            <div style={{ fontSize: '.83rem', color: 'rgba(255,255,255,.8)', marginBottom: 16, lineHeight: 1.4 }}>
-              No account needed. Try real PAR questions in Study Mode and see how you score.
-            </div>
-            <button
-              onClick={startDemo}
-              disabled={starting}
-              style={{
-                width: '100%',
-                background: '#fff',
-                color: '#92400e',
-                border: 'none',
-                borderRadius: 8,
-                padding: '11px 0',
-                fontWeight: 800,
-                fontSize: '.95rem',
-                cursor: 'pointer',
-                letterSpacing: '.01em',
-              }}>
-              {starting ? 'Loading…' : 'Start Free Challenge →'}
-            </button>
-          </div>
-        )}
       </div>
 
       {err && <div className="alert alert-err" style={{ marginBottom: 16 }}>{err}</div>}
@@ -256,6 +218,49 @@ export default function ExamList() {
           <div style={{ fontSize: '.8rem', fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase', color: '#30ace2', marginBottom: 8, paddingLeft: 2 }}>
             Select a certificate
           </div>
+
+          {/* Free challenge card — first in list, only for non-subscribers */}
+          {!isSubscribed && (
+            <div
+              onClick={startDemo}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(ev) => ev.key === 'Enter' && startDemo()}
+              style={{
+                borderRadius: 12,
+                border: '2px solid rgba(250,204,21,.4)',
+                cursor: 'pointer',
+                overflow: 'hidden',
+                position: 'relative',
+                height: 130,
+                background: 'linear-gradient(120deg, #3d2a00 0%, #5c3d00 50%, #7a5200 100%)',
+                boxShadow: '0 0 0 0 transparent',
+                transition: 'border-color .15s, box-shadow .15s',
+              }}
+            >
+              {/* subtle grain/glow */}
+              <div style={{
+                position: 'absolute', inset: 0,
+                background: 'radial-gradient(ellipse at 80% 50%, rgba(250,204,21,.18) 0%, transparent 65%)',
+                pointerEvents: 'none',
+              }} />
+              <div style={{ position: 'relative', padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 14, height: '100%', boxSizing: 'border-box' }}>
+                <div style={{ fontSize: '2rem', lineHeight: 1, flexShrink: 0 }}>✈️</div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+                    <span style={{ background: 'rgba(250,204,21,.25)', color: '#fde68a', borderRadius: 5, padding: '1px 8px', fontSize: '.68rem', fontWeight: 700, letterSpacing: '.05em' }}>FREE</span>
+                    <span style={{ background: 'rgba(250,204,21,.15)', color: '#fcd34d', borderRadius: 5, padding: '1px 8px', fontSize: '.65rem', fontWeight: 700 }}>10 QUESTIONS</span>
+                  </div>
+                  <div style={{ fontWeight: 800, color: '#fef3c7', fontSize: '.95rem' }}>Free Challenge — Try PAR</div>
+                  <div style={{ fontSize: '.75rem', color: 'rgba(253,230,138,.7)', marginTop: 2 }}>No subscription needed · Study Mode</div>
+                </div>
+                <div style={{ flexShrink: 0, background: 'rgba(250,204,21,.2)', borderRadius: 8, padding: '7px 12px', fontSize: '.78rem', fontWeight: 700, color: '#fde68a', whiteSpace: 'nowrap' }}>
+                  {starting ? 'Loading…' : 'Start →'}
+                </div>
+              </div>
+            </div>
+          )}
+
           {allCards.map((e) => {
             const isActive = e.code === selected && !e.comingSoon;
             const meta = EXAM_META[e.code] || {};
