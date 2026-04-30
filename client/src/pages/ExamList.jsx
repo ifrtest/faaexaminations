@@ -56,6 +56,7 @@ export default function ExamList() {
   const [subscription, setSubscription] = useState(null);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [upgrading, setUpgrading] = useState(false);
+  const [justPurchased, setJustPurchased] = useState(false);
   const configRef = useRef(null);
 
   useEffect(() => {
@@ -81,6 +82,17 @@ export default function ExamList() {
     const exam = exams.find((e) => e.code === selected);
     if (exam) setNumQ(Math.min(exam.num_questions, Number(exam.question_count) || exam.num_questions));
   }, [selected, exams]);
+
+  useEffect(() => {
+    if (params.get('subscribed') !== '1') return;
+    setJustPurchased(true);
+    const purchasedPlan = params.get('plan');
+    const eid = params.get('eid');
+    const planPrices = { uag: 37.99, bundle: 39.99 };
+    const value = planPrices[purchasedPlan] ?? 24.99;
+    if (window.fbq) fbq('track', 'Purchase', { value, currency: 'USD' }, eid ? { eventID: eid } : {});
+    if (window.gtag) gtag('event', 'purchase', { currency: 'CAD', value });
+  }, []); // eslint-disable-line
 
   useEffect(() => {
     if (!autoBuyRef.current || subscription === null) return;
@@ -210,6 +222,16 @@ export default function ExamList() {
         </div>
 
       </div>
+
+      {justPurchased && (
+        <div style={{ background: 'linear-gradient(90deg, #064e3b, #065f46)', border: '1px solid #059669', borderRadius: 12, padding: '16px 22px', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 12 }}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#34d399" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <div>
+            <div style={{ color: '#fff', fontWeight: 700, fontSize: '1rem' }}>Payment confirmed — you're all set!</div>
+            <div style={{ color: '#6ee7b7', fontSize: '.88rem', marginTop: 3 }}>Your exam is now unlocked. Click the card below to start practising.</div>
+          </div>
+        </div>
+      )}
 
       {err && <div className="alert alert-err" style={{ marginBottom: 16 }}>{err}</div>}
 
