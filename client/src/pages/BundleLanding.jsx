@@ -6,23 +6,27 @@ import { Helmet } from 'react-helmet-async';
 const FAQS = [
   {
     q: 'What\'s included in the Bundle?',
-    a: 'Private Pilot (PAR), Instrument Rating (IRA), and Commercial Pilot (CAX) — all three pilot certificate exams in one subscription. 2,826 practice questions, all study modules, and AI instructor support across all three exams.',
+    a: 'Private Pilot (PAR), Instrument Rating (IRA), and Commercial Pilot (CAX) — all three pilot certificate exams in one subscription. 2,826 practice questions, all study modules, timed simulators, and AI instructor support across all three exams.',
   },
   {
-    q: 'Do I have to take all four exams?',
-    a: 'No. Subscribe to the bundle and study at your own pace. Most students start with PAR, then move to IRA once they have their private certificate. You get access to everything, and use what you need when you need it.',
+    q: 'Are the practice questions up to date for 2026?',
+    a: 'Yes. The question bank is current for 2026 and reflects the latest FAA Airman Certification Standards (ACS). We update content whenever the FAA revises its testing standards.',
   },
   {
     q: 'Is the bundle cheaper than buying separately?',
-    a: 'Yes. Individual packages are $24.99/month each. PAR + IRA + CAX separately would cost $74.97/month. The bundle gives you all three for $39.99/month — saving you $35/month.',
+    a: 'Yes. Individual packages are $24.99/month each. PAR + IRA + CAX separately would cost $74.97/month. The bundle gives you all three for $39.99/month — saving you $35 every month.',
+  },
+  {
+    q: 'Do I have to take all three exams right away?',
+    a: 'No. Subscribe and study at your own pace. Most students start with PAR, then move to IRA after earning their Private certificate. You get access to everything from day one — use what you need, when you need it.',
+  },
+  {
+    q: 'What if I only need one exam right now?',
+    a: 'If you\'re only focused on one exam, an individual package at $24.99/month is the better value. The bundle makes sense if you\'re working toward multiple certificates or want everything available without switching plans.',
   },
   {
     q: 'Can I cancel anytime?',
     a: 'Yes. No contracts, no commitments. Cancel from your dashboard in one click. Your access continues until the end of your billing period.',
-  },
-  {
-    q: 'What if I only need one exam right now?',
-    a: 'If you\'re only focused on one exam right now, an individual package at $24.99/month is the better value. The bundle makes sense if you\'re working toward multiple certificates or want PAR, IRA, and CAX all available.',
   },
 ];
 
@@ -52,8 +56,19 @@ export default function BundleLanding() {
     <div className="lp">
       <Helmet>
         <title>FAA Pilot Certificate Bundle — PAR, IRA & CAX | FAAExaminations.com</title>
-        <meta name="description" content="Get all three FAA pilot certificate exam packages in one bundle. Private Pilot, Instrument Rating, and Commercial Pilot. 2,826 questions. $39.99/month — save $35/month." />
+        <meta name="description" content="All three FAA pilot certificate exams in one subscription. Private Pilot, Instrument Rating, and Commercial Pilot. 2,826 questions. $39.99/month — save $35/month." />
         <link rel="canonical" href="https://faaexaminations.com/bundle" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://faaexaminations.com/bundle" />
+        <meta property="og:title" content="FAA Pilot Certificate Bundle — PAR + IRA + CAX" />
+        <meta property="og:description" content="All three FAA pilot certificate exams in one subscription. 2,826 practice questions, timed simulators, AI instructor. Save $35/month vs individual." />
+        <meta property="og:image" content="https://faaexaminations.com/plane-bundle.jpg" />
+        <meta property="og:image:width" content="2400" />
+        <meta property="og:image:height" content="1792" />
+        <meta property="og:image:alt" content="FAA Pilot Certificate Bundle — FAAExaminations.com" />
+        <meta property="og:site_name" content="FAAExaminations.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://faaexaminations.com/plane-bundle.jpg" />
       </Helmet>
 
       {/* NAV */}
@@ -78,54 +93,124 @@ export default function BundleLanding() {
       </nav>
 
       {/* HERO */}
-      <section className="lp-hero" style={{ backgroundImage: 'url(/plane-bundle.webp)', backgroundSize: 'cover', backgroundPosition: 'center center' }}>
-        <div className="lp-hero-bg" style={{ background: 'linear-gradient(135deg,rgba(5,88,102,0.42) 0%,rgba(8,14,20,0.38) 55%,rgba(8,14,20,0.18) 100%)', position: 'absolute', inset: 0 }} />
+      <section className="lp-hero lp-hero-bundle" style={{ backgroundImage: 'url(/plane-bundle.jpg)', backgroundSize: 'cover', backgroundPosition: 'center 35%' }}>
+        <div className="lp-hero-bg" style={{ background: 'linear-gradient(135deg,rgba(5,40,80,0.55) 0%,rgba(8,14,20,0.45) 55%,rgba(8,14,20,0.25) 100%)', position: 'absolute', inset: 0 }} />
         <div className="lp-hero-grid" />
-        <div className="lp-hero-content">
-          <div className="lp-hero-badge">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style={{marginRight:5,verticalAlign:'middle'}}><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
-            PILOT CERTIFICATE BUNDLE · PAR + IRA + CAX · 2026
+        <div className="lp-hero-split">
+
+          {/* LEFT — headline + stats */}
+          <div className="lp-hero-content">
+            <div className="lp-hero-badge">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style={{marginRight:5,verticalAlign:'middle'}}><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
+              PILOT CERTIFICATE BUNDLE · PAR + IRA + CAX · 2026
+            </div>
+            <h1>Three FAA Certificates.<br /><span className="lp-accent">One Subscription.</span></h1>
+            <p className="lp-hero-sub">
+              PAR, IRA, and CAX — all in one place. 2,826 practice questions, AI instructor support, and timed simulators for every exam on your path to a Commercial Pilot certificate.
+            </p>
+            <div className="lp-hero-btns">
+              <Link to="/register" className="lp-btn-hero">
+                <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
+                Start Free Today
+              </Link>
+              <a href="#includes" className="lp-btn-outline">See What's Included</a>
+            </div>
+            <div className="lp-hero-stats">
+              <div><div className="lp-hs-val">2,826</div><div className="lp-hs-lbl">Total Questions</div></div>
+              <div><div className="lp-hs-val">3</div><div className="lp-hs-lbl">FAA Exams Covered</div></div>
+              <div><div className="lp-hs-val">$35</div><div className="lp-hs-lbl">Saved vs Individual</div></div>
+              <div><div className="lp-hs-val">AI</div><div className="lp-hs-lbl">Instructor Included</div></div>
+            </div>
           </div>
-          <h1>Three FAA Certificates.<br /><span className="lp-accent">One Subscription.</span></h1>
-          <p className="lp-hero-sub">
-            PAR, IRA, and CAX — all in one place. 2,826 practice questions, AI instructor support, and timed simulators for every exam on your path to a Commercial Pilot certificate.
-          </p>
-          <div className="lp-hero-btns">
-            <Link to="/register" className="lp-btn-hero">
-              <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
-              Start Free Today
-            </Link>
-            <a href="#includes" className="lp-btn-outline">See What's Included</a>
+
+          {/* RIGHT — pricing card (desktop only) */}
+          <div className="lp-hero-pricing-card">
+            <div style={{ position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)', background: '#16a34a', color: '#fff', padding: '5px 18px', borderRadius: 20, fontSize: 11, fontWeight: 700, fontFamily: 'Share Tech Mono, monospace', letterSpacing: 1, whiteSpace: 'nowrap' }}>SAVE $35/MONTH VS INDIVIDUAL</div>
+            <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 18, fontWeight: 700, color: '#fff', marginBottom: 6, textAlign: 'center', marginTop: 8 }}>Pilot Certificate Bundle</div>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, justifyContent: 'center', marginBottom: 4 }}>
+              <span style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 58, fontWeight: 900, color: '#fff', lineHeight: 1 }}>$39.99</span>
+            </div>
+            <div style={{ fontSize: 13, marginBottom: 6, textAlign: 'center', color: 'var(--lp-text3)' }}>per month · Cancel anytime</div>
+            <div style={{ fontSize: 12, marginBottom: 22, textAlign: 'center', color: '#16a34a', fontWeight: 700 }}>
+              <span style={{ textDecoration: 'line-through', color: 'var(--lp-text3)', fontWeight: 400 }}>$74.97</span> if bought separately
+            </div>
+            <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px' }}>
+              {['PAR + IRA + CAX included', '2,826 practice questions', 'AI instructor for all exams', 'All timed exam simulators', 'All FAA references included', 'Questions current for 2026', 'Cancel anytime'].map((item, i) => (
+                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10, color: 'var(--lp-text)', fontSize: 14 }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="12" fill="rgba(48,172,226,0.15)" /><path d="M7 12l4 4 6-6" stroke="#30ace2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <Link to="/register" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Get Bundle Access →</Link>
+            <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>No credit card required to start</div>
           </div>
-          <div style={{ fontSize: 13, color: 'var(--lp-text3)', marginTop: 14, opacity: 0.8, lineHeight: 2 }}>
-            Free account includes 10 practice questions · No credit card required<br />
-            Full bundle access from $39.99/month · Cancel anytime
-          </div>
-          <div className="lp-hero-stats">
-            <div><div className="lp-hs-val">2,826</div><div className="lp-hs-lbl">Total Questions</div></div>
-            <div><div className="lp-hs-val">3</div><div className="lp-hs-lbl">FAA Exams Covered</div></div>
-            <div><div className="lp-hs-val">AI</div><div className="lp-hs-lbl">Instructor Included</div></div>
-            <div><div className="lp-hs-val">$35</div><div className="lp-hs-lbl">Saved vs Individual</div></div>
+
+        </div>
+      </section>
+
+      {/* PRICING — mobile only */}
+      <section style={{ padding: '90px 40px', background: 'var(--lp-charcoal)', borderTop: '1px solid var(--lp-border)' }} id="pricing" className="lp-pricing-section">
+        <div className="lp-section-inner" style={{ textAlign: 'center' }}>
+          <div className="lp-badge">PRICING</div>
+          <h2>Simple, Honest Pricing</h2>
+          <p className="lp-section-sub" style={{ margin: '0 auto 52px' }}>All three exams. One subscription. <strong style={{ color: '#16a34a' }}>Save $35/month.</strong></p>
+          <div className="fade-up" style={{ maxWidth: 440, margin: '0 auto', background: 'rgba(48,172,226,0.06)', border: '2px solid var(--lp-border2)', borderRadius: 20, padding: '48px 40px', position: 'relative' }}>
+            <div style={{ position: 'absolute', top: -16, left: '50%', transform: 'translateX(-50%)', background: '#16a34a', color: '#fff', padding: '6px 20px', borderRadius: 20, fontSize: 12, fontWeight: 700, fontFamily: 'Share Tech Mono, monospace', letterSpacing: 1, whiteSpace: 'nowrap' }}>SAVE $35/MONTH VS INDIVIDUAL</div>
+            <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 8 }}>Pilot Certificate Bundle</div>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, justifyContent: 'center', marginBottom: 4 }}>
+              <span style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 64, fontWeight: 900, color: '#fff', lineHeight: 1 }}>$39.99</span>
+            </div>
+            <div style={{ fontSize: 14, marginBottom: 6 }}>
+              <span style={{ color: 'var(--lp-text3)' }}>per month · </span>
+              <span style={{ color: '#16a34a', fontWeight: 700 }}>Cancel anytime</span>
+            </div>
+            <div style={{ fontSize: 13, color: 'var(--lp-text3)', marginBottom: 32 }}>
+              <span style={{ textDecoration: 'line-through' }}>$74.97</span> if bought separately
+            </div>
+            <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 36px', textAlign: 'left' }}>
+              {['PAR + IRA + CAX included', '2,826 practice questions', 'AI instructor for all exams', 'All timed exam simulators', 'All FAA references included', 'Questions current for 2026', 'Cancel anytime'].map((item, i) => (
+                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14, color: 'var(--lp-text)', fontSize: 15 }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="12" fill="rgba(48,172,226,0.15)" /><path d="M7 12l4 4 6-6" stroke="#30ace2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <Link to="/register" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Get Bundle Access →</Link>
+            <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}>No credit card required to start</div>
           </div>
         </div>
       </section>
 
       {/* WHAT'S INCLUDED */}
-      <section style={{ padding: '90px 40px', background: 'var(--lp-charcoal)' }} id="includes">
+      <section style={{ padding: '90px 40px', background: 'var(--lp-charcoal)', borderTop: '1px solid var(--lp-border)' }} id="includes">
         <div className="lp-section-inner">
           <div className="lp-badge">WHAT'S IN THE BUNDLE</div>
           <h2>All Three Pilot Certificate Exams in One</h2>
-          <p className="lp-section-sub">Every exam on your path from student pilot to Commercial Pilot certificate — fully covered.</p>
+          <p className="lp-section-sub">Every exam on your path from student pilot to Commercial Pilot certificate — fully covered in one subscription.</p>
 
+          {/* Per-exam cards */}
           <div className="fade-up" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 24, marginTop: 52 }}>
             {[
-              { icon: '✈️', badge: 'PAR', title: 'Private Pilot', questions: '1,469 questions', desc: 'Complete prep for the FAA Private Pilot Airman Knowledge Test. 11 modules covering the full FAA syllabus.', url: '/par' },
-              { icon: '🌧️', badge: 'IRA', title: 'Instrument Rating', questions: '821 questions', desc: 'IFR procedures, charts, approach plates, weather, and regulations. The most challenging FAA written.', url: '/ira' },
-              { icon: '🏆', badge: 'CAX', title: 'Commercial Pilot', questions: '536 questions', desc: 'Performance, weight & balance, 14 CFR commercial operations, and advanced flight planning.', url: '/cax' },
+              {
+                svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>,
+                badge: 'PAR', title: 'Private Pilot', questions: '1,469 questions',
+                desc: 'Complete prep for the FAA Private Pilot Airman Knowledge Test. 11 modules covering the full FAA syllabus.', url: '/par',
+              },
+              {
+                svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>,
+                badge: 'IRA', title: 'Instrument Rating', questions: '821 questions',
+                desc: 'IFR procedures, approach charts, weather, and regulations. The most challenging FAA written — mastered here.', url: '/ira',
+              },
+              {
+                svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
+                badge: 'CAX', title: 'Commercial Pilot', questions: '536 questions',
+                desc: 'Performance, weight & balance, 14 CFR commercial operations, and advanced flight planning.', url: '/cax',
+              },
             ].map((pkg, i) => (
               <div key={i} style={{ background: 'rgba(48,172,226,0.06)', border: '1px solid var(--lp-border)', borderRadius: 14, padding: '32px 28px', position: 'relative' }}>
                 <div style={{ position: 'absolute', top: 16, right: 16, background: 'var(--lp-blue)', color: '#fff', padding: '3px 10px', borderRadius: 6, fontSize: 11, fontWeight: 800, fontFamily: 'Share Tech Mono, monospace' }}>{pkg.badge}</div>
-                <div style={{ fontSize: 32, marginBottom: 16 }}>{pkg.icon}</div>
+                <span className="lp-feat-icon" style={{ display: 'block', marginBottom: 16 }}>{pkg.svg}</span>
                 <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 22, fontWeight: 700, color: '#fff', marginBottom: 6 }}>{pkg.title}</div>
                 <div style={{ color: 'var(--lp-blue)', fontSize: 13, fontWeight: 600, marginBottom: 12, fontFamily: 'Share Tech Mono, monospace' }}>{pkg.questions}</div>
                 <div style={{ color: 'var(--lp-text2)', fontSize: 15, lineHeight: 1.7, marginBottom: 16 }}>{pkg.desc}</div>
@@ -134,73 +219,155 @@ export default function BundleLanding() {
             ))}
           </div>
 
-          <div className="fade-up" style={{ marginTop: 48, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 20 }}>
+          {/* Feature grid */}
+          <div className="fade-up" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24, marginTop: 48 }}>
             {[
-              { icon: '🤖', title: 'AI Instructor', desc: 'Ask anything across all four exams — one AI CFII covers everything.' },
-              { icon: '🎯', title: 'Timed Simulators', desc: 'Separate exam simulators for each certificate. Practice the format that matters.' },
-              { icon: '📱', title: 'Study Anywhere', desc: 'Phone, tablet, desktop. No app download. Always up to date.' },
-              { icon: '📚', title: 'All FAA References', desc: 'PHAK, AIM, IFH, 14 CFR, ACS — every reference document included.' },
+              { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>, title: 'One AI Instructor for All Exams', desc: 'Ask anything across PAR, IRA, and CAX. One AI CFII covers every topic — from basic aerodynamics to IFR procedures to commercial regulations.' },
+              { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>, title: 'Three Timed Simulators', desc: 'Separate exam simulators for each certificate, each timed to match the real exam. Practice under real conditions for every test you\'ll take.' },
+              { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>, title: 'Progress Tracking Across All Exams', desc: 'Your dashboard shows readiness scores, weak topics, and exam history for every certificate — all in one place.' },
+              { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>, title: 'All FAA References Included', desc: 'PHAK, AIM, IFH, 14 CFR, and all ACS documents across every exam. No need to hunt down separate PDFs — everything is here.' },
+              { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>, title: 'Study Anywhere', desc: 'Fully responsive on phone, tablet, and desktop. Study between flights, on your lunch break, or the night before your exam. No app download needed.' },
+              { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>, title: 'Best Value for Career Pilots', desc: 'If your goal is a Commercial certificate, you\'ll need all three exams anyway. The bundle saves you $35/month and keeps everything in one subscription.' },
             ].map((item, i) => (
-              <div key={i} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
-                <div style={{ fontSize: 24, flexShrink: 0 }}>{item.icon}</div>
-                <div>
-                  <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 17, fontWeight: 700, color: '#fff', marginBottom: 6 }}>{item.title}</div>
-                  <div style={{ color: 'var(--lp-text2)', fontSize: 14, lineHeight: 1.6 }}>{item.desc}</div>
-                </div>
+              <div key={i} style={{ background: 'rgba(48,172,226,0.06)', border: '1px solid var(--lp-border)', borderRadius: 14, padding: '32px 28px' }}>
+                <span className="lp-feat-icon" style={{ display: 'block', marginBottom: 16 }}>{item.svg}</span>
+                <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 10 }}>{item.title}</div>
+                <div style={{ color: 'var(--lp-text2)', fontSize: 15, lineHeight: 1.7 }}>{item.desc}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* PRICING */}
-      <section style={{ padding: '90px 40px', background: 'rgba(5,88,102,0.10)', borderTop: '1px solid var(--lp-border)', borderBottom: '1px solid var(--lp-border)' }} id="pricing">
-        <div className="lp-section-inner" style={{ textAlign: 'center' }}>
-          <div className="lp-badge">PRICING</div>
-          <h2>Bundle vs Individual</h2>
+      {/* SEE INSIDE */}
+      <section style={{ padding: '90px 40px', background: 'var(--lp-dark)', borderTop: '1px solid var(--lp-border)' }}>
+        <div className="lp-section-inner">
+          <div className="lp-badge">SEE INSIDE</div>
+          <h2>Here's What Studying Actually Looks Like</h2>
+          <p className="lp-section-sub">Real FAA questions, full explanations, and a single dashboard that tracks your progress across all three certificates.</p>
 
-          <div className="fade-up" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24, marginTop: 52, maxWidth: 800, margin: '52px auto 0' }}>
+          <div className="fade-up" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 28, marginTop: 52 }}>
 
-            {/* Individual */}
-            <div style={{ background: 'rgba(48,172,226,0.04)', border: '1px solid var(--lp-border)', borderRadius: 20, padding: '40px 32px', textAlign: 'center' }}>
-              <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 18, fontWeight: 700, color: 'var(--lp-text2)', marginBottom: 8 }}>Individual Packages</div>
-              <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 48, fontWeight: 900, color: 'var(--lp-text2)', lineHeight: 1 }}>$24.99</div>
-              <div style={{ color: 'var(--lp-text3)', fontSize: 14, marginBottom: 24 }}>per exam / per month</div>
-              <div style={{ color: 'var(--lp-text3)', fontSize: 14, marginBottom: 24 }}>All 3 = $74.97/month</div>
-              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 32px', textAlign: 'left' }}>
-                {['Access to 1 exam package', 'All features included', 'Cancel anytime'].map((item, i) => (
-                  <li key={i} style={{ display: 'flex', gap: 10, marginBottom: 12, color: 'var(--lp-text2)', fontSize: 14 }}>
-                    <span style={{ color: 'var(--lp-blue)' }}>✓</span>{item}
-                  </li>
+            {/* MOCKUP 1: PAR Question */}
+            <div style={{ background: 'var(--lp-charcoal)', border: '1px solid var(--lp-border)', borderRadius: 16, overflow: 'hidden' }}>
+              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '10px 16px', borderBottom: '1px solid var(--lp-border)', display: 'flex', alignItems: 'center', gap: 8 }}>
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57' }} />
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
+                <span style={{ marginLeft: 8, fontSize: 12, color: 'var(--lp-text3)', fontFamily: 'Share Tech Mono, monospace' }}>PAR · Study Mode · Question 22 of 60</span>
+              </div>
+              <div style={{ padding: '24px 24px 28px' }}>
+                <div style={{ display: 'flex', gap: 8, marginBottom: 14, flexWrap: 'wrap' }}>
+                  <span style={{ background: 'var(--lp-blue)', color: '#fff', padding: '3px 10px', borderRadius: 6, fontSize: 11, fontWeight: 700, letterSpacing: 1 }}>PAR</span>
+                  <span style={{ background: 'rgba(48,172,226,0.12)', color: 'var(--lp-blue)', padding: '3px 10px', borderRadius: 6, fontSize: 11, fontWeight: 600 }}>✈️ Weather</span>
+                </div>
+                <p style={{ color: '#fff', fontSize: 15, fontWeight: 600, lineHeight: 1.6, marginBottom: 20 }}>
+                  What weather phenomenon is always associated with a thunderstorm?
+                </p>
+                {[
+                  { l: 'A', text: 'Heavy rain at the surface' },
+                  { l: 'B', text: 'Lightning', correct: true },
+                  { l: 'C', text: 'Turbulence above 15,000 ft MSL' },
+                ].map(({ l, text, correct }) => (
+                  <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '11px 14px', borderRadius: 8, marginBottom: 8, border: `1px solid ${correct ? 'rgba(48,172,226,0.5)' : 'var(--lp-border)'}`, background: correct ? 'rgba(48,172,226,0.08)' : 'rgba(255,255,255,0.03)', cursor: 'default' }}>
+                    <span style={{ width: 26, height: 26, borderRadius: '50%', background: correct ? 'var(--lp-blue)' : 'rgba(255,255,255,0.08)', color: correct ? '#fff' : 'var(--lp-text2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{l}</span>
+                    <span style={{ color: correct ? '#fff' : 'var(--lp-text2)', fontSize: 14 }}>{text}</span>
+                    {correct && <span style={{ marginLeft: 'auto', color: 'var(--lp-blue)', fontSize: 13, fontWeight: 700 }}>✓ Correct</span>}
+                  </div>
                 ))}
-              </ul>
-              <Link to="/register" className="lp-btn-outline" style={{ display: 'block', textAlign: 'center' }}>Choose Individual →</Link>
+              </div>
             </div>
 
-            {/* Bundle */}
-            <div style={{ background: 'rgba(48,172,226,0.08)', border: '2px solid var(--lp-border2)', borderRadius: 20, padding: '40px 32px', textAlign: 'center', position: 'relative' }}>
-              <div style={{ position: 'absolute', top: -16, left: '50%', transform: 'translateX(-50%)', background: 'var(--lp-blue)', color: '#fff', padding: '6px 20px', borderRadius: 20, fontSize: 12, fontWeight: 700, fontFamily: 'Share Tech Mono, monospace', letterSpacing: 1, whiteSpace: 'nowrap' }}>BEST VALUE — SAVE $35/MONTH</div>
-              <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 18, fontWeight: 700, color: '#fff', marginBottom: 8 }}>Pilot Certificate Bundle</div>
-              <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 64, fontWeight: 900, color: '#fff', lineHeight: 1 }}>$39.99</div>
-              <div style={{ color: 'var(--lp-text3)', fontSize: 14, marginBottom: 24 }}>PAR + IRA + CAX / per month</div>
-              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 32px', textAlign: 'left' }}>
-                {['PAR + IRA + CAX included', '2,826 practice questions', 'AI instructor for all exams', 'All timed simulators', 'All FAA references', 'Cancel anytime'].map((item, i) => (
-                  <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14, color: 'var(--lp-text)', fontSize: 15 }}>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="12" fill="rgba(48,172,226,0.15)" /><path d="M7 12l4 4 6-6" stroke="#30ace2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                    {item}
-                  </li>
+            {/* MOCKUP 2: IRA Explanation */}
+            <div style={{ background: 'var(--lp-charcoal)', border: '1px solid var(--lp-border)', borderRadius: 16, overflow: 'hidden' }}>
+              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '10px 16px', borderBottom: '1px solid var(--lp-border)', display: 'flex', alignItems: 'center', gap: 8 }}>
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57' }} />
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
+                <span style={{ marginLeft: 8, fontSize: 12, color: 'var(--lp-text3)', fontFamily: 'Share Tech Mono, monospace' }}>IRA · Study Mode · Explanation</span>
+              </div>
+              <div style={{ padding: '24px 24px 28px' }}>
+                <div style={{ display: 'flex', gap: 8, marginBottom: 14 }}>
+                  <span style={{ background: '#16a34a', color: '#fff', padding: '3px 10px', borderRadius: 6, fontSize: 11, fontWeight: 700, letterSpacing: 1 }}>IRA</span>
+                  <span style={{ background: 'rgba(48,172,226,0.12)', color: 'var(--lp-blue)', padding: '3px 10px', borderRadius: 6, fontSize: 11, fontWeight: 600 }}>🌧️ IFR Charts</span>
+                </div>
+                <div style={{ background: 'rgba(22,163,74,0.08)', border: '1px solid rgba(22,163,74,0.3)', borderRadius: 10, padding: '14px 16px', marginBottom: 16 }}>
+                  <div style={{ fontSize: 12, color: '#4ade80', fontWeight: 700, marginBottom: 6, fontFamily: 'Share Tech Mono, monospace' }}>✓ CORRECT — NICE WORK</div>
+                  <div style={{ fontSize: 14, color: 'var(--lp-text2)', lineHeight: 1.6 }}>The DA (Decision Altitude) on a precision approach is the altitude at which you must either see the runway environment or execute the missed approach. It is referenced to MSL, unlike MDA which is used on non-precision approaches.</div>
+                </div>
+                <div style={{ background: 'rgba(48,172,226,0.06)', border: '1px solid var(--lp-border)', borderRadius: 10, padding: '14px 16px' }}>
+                  <div style={{ fontSize: 12, color: 'var(--lp-blue)', fontWeight: 700, marginBottom: 6, fontFamily: 'Share Tech Mono, monospace' }}>🤖 AI INSTRUCTOR</div>
+                  <div style={{ fontSize: 13, color: 'var(--lp-text2)', lineHeight: 1.6 }}>Think of DA as a "go/no-go" decision point on ILS approaches. Once you reach DA, if you can't see the approach lights or runway, you climb immediately on the missed approach procedure.</div>
+                </div>
+              </div>
+            </div>
+
+            {/* MOCKUP 3: Bundle dashboard */}
+            <div style={{ background: 'var(--lp-charcoal)', border: '1px solid var(--lp-border)', borderRadius: 16, overflow: 'hidden' }}>
+              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '10px 16px', borderBottom: '1px solid var(--lp-border)', display: 'flex', alignItems: 'center', gap: 8 }}>
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57' }} />
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
+                <span style={{ marginLeft: 8, fontSize: 12, color: 'var(--lp-text3)', fontFamily: 'Share Tech Mono, monospace' }}>Dashboard · Bundle Progress</span>
+              </div>
+              <div style={{ padding: '24px 24px 28px' }}>
+                <div style={{ fontSize: 13, color: 'var(--lp-text3)', marginBottom: 16, fontFamily: 'Share Tech Mono, monospace' }}>YOUR READINESS SCORES</div>
+                {[
+                  { badge: 'PAR', label: 'Private Pilot', pct: 84, color: '#30ace2' },
+                  { badge: 'IRA', label: 'Instrument Rating', pct: 61, color: '#f5c842' },
+                  { badge: 'CAX', label: 'Commercial Pilot', pct: 23, color: '#94a3b8' },
+                ].map(({ badge, label, pct, color }) => (
+                  <div key={badge} style={{ marginBottom: 18 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                      <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                        <span style={{ background: 'var(--lp-blue)', color: '#fff', padding: '2px 8px', borderRadius: 4, fontSize: 10, fontWeight: 800, fontFamily: 'Share Tech Mono, monospace' }}>{badge}</span>
+                        <span style={{ color: 'var(--lp-text2)', fontSize: 13 }}>{label}</span>
+                      </div>
+                      <span style={{ color, fontSize: 13, fontWeight: 700 }}>{pct}%</span>
+                    </div>
+                    <div style={{ height: 6, background: 'rgba(255,255,255,0.08)', borderRadius: 3 }}>
+                      <div style={{ height: '100%', width: `${pct}%`, background: color, borderRadius: 3 }} />
+                    </div>
+                  </div>
                 ))}
-              </ul>
-              <Link to="/register" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Get Bundle Access</Link>
-              <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}>No credit card required to start</div>
+                <div style={{ marginTop: 20, background: 'rgba(48,172,226,0.06)', border: '1px solid var(--lp-border)', borderRadius: 8, padding: '12px 14px' }}>
+                  <div style={{ fontSize: 12, color: 'var(--lp-blue)', fontWeight: 700, marginBottom: 4 }}>WEAK TOPIC — PAR</div>
+                  <div style={{ fontSize: 13, color: 'var(--lp-text2)' }}>Weather: 58% correct · 12 questions recommended</div>
+                </div>
+              </div>
             </div>
 
           </div>
         </div>
       </section>
 
+      {/* HOW IT WORKS */}
+      <section style={{ padding: '90px 40px', background: 'var(--lp-charcoal)', borderTop: '1px solid var(--lp-border)' }}>
+        <div className="lp-section-inner">
+          <div className="lp-badge">HOW IT WORKS</div>
+          <h2>From Sign-Up to All Three Certificates</h2>
+          <p className="lp-section-sub">One account. Study at your own pace. Pass each exam when you're ready.</p>
+          <div className="lp-steps fade-up" style={{ marginTop: 52 }}>
+            {[
+              { n: '01', title: 'Create Your Free Account', desc: 'Sign up in under a minute — no credit card required. Try 10 free PAR sample questions immediately to see exactly what studying looks like.', img: '/plane-step1.jpg' },
+              { n: '02', title: 'Subscribe to the Bundle', desc: 'Unlock PAR, IRA, and CAX instantly. Start with Private Pilot, work through Instrument Rating, and finish with Commercial — all on your schedule.', img: '/plane-step2.jpg' },
+              { n: '03', title: 'Pass All Three Exams', desc: 'Track your readiness score on the dashboard. When you\'re consistently scoring above 80%, you\'re ready to book the real exam. Most students pass first try.', img: '/plane-step3.jpg' },
+            ].map((s) => (
+              <div key={s.n} className="lp-step">
+                <div className="lp-step-num">{s.n}</div>
+                <div className="lp-step-content">
+                  <div className="lp-step-title">{s.title}</div>
+                  <p className="lp-step-desc">{s.desc}</p>
+                </div>
+                <img src={s.img} alt={s.title} className="lp-step-img" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
-      <section style={{ padding: '90px 40px' }} id="faq">
+      <section style={{ padding: '90px 40px', background: 'var(--lp-dark)', borderTop: '1px solid var(--lp-border)' }} id="faq">
         <div className="lp-section-inner" style={{ maxWidth: 720 }}>
           <div className="lp-badge">FAQ</div>
           <h2>Common Questions</h2>

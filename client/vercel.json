@@ -35,6 +35,7 @@
     { "source": "/part-107", "destination": "/part-107.html" },
     { "source": "/ira", "destination": "/ira.html" },
     { "source": "/cax", "destination": "/cax.html" },
+    { "source": "/bundle", "destination": "/bundle.html" },
     {
       "source": "/(.*)",
       "destination": "/index.html"

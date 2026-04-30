@@ -43,6 +43,16 @@ const pages = {
     imageHeight: '630',
     imageAlt: 'Commercial Pilot FAA exam prep — FAAExaminations.com',
   },
+  'bundle': {
+    pageTitle: 'FAA Pilot Certificate Bundle — PAR, IRA & CAX | FAAExaminations.com',
+    url: 'https://faaexaminations.com/bundle',
+    ogTitle: 'FAA Pilot Certificate Bundle — PAR + IRA + CAX',
+    ogDesc: 'All three FAA pilot certificate exams in one subscription. 2,826 practice questions, timed simulators, AI instructor. Save $35/month vs individual.',
+    image: 'https://faaexaminations.com/plane-bundle.jpg',
+    imageWidth: '2400',
+    imageHeight: '1792',
+    imageAlt: 'FAA Pilot Certificate Bundle — FAAExaminations.com',
+  },
 };
 
 for (const [slug, meta] of Object.entries(pages)) {
