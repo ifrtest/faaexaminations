@@ -294,8 +294,8 @@ export default function Part107Landing() {
       {/* FREE DEMO */}
       <Part107Demo />
 
-      {/* PRICING */}
-      <section style={{ padding: '90px 40px', background: 'var(--lp-charcoal)', borderTop: '1px solid var(--lp-border)' }} id="pricing">
+      {/* PRICING — hidden on desktop (card is in hero), shown on mobile only */}
+      <section style={{ padding: '90px 40px', background: 'var(--lp-charcoal)', borderTop: '1px solid var(--lp-border)' }} id="pricing" className="lp-pricing-section">
         <div className="lp-section-inner" style={{ textAlign: 'center' }}>
           <div className="lp-badge">PRICING</div>
           <h2>Simple, Honest Pricing</h2>
