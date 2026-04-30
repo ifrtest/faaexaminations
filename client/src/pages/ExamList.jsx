@@ -178,11 +178,10 @@ export default function ExamList() {
 
   if (!exams.length && !err) return <div className="container page"><Spinner /></div>;
 
-  // All exam cards including ATP coming-soon
-  const allCards = [
-    ...exams,
-    ...(!exams.find((e) => e.code === 'ATP') ? [{ code: 'ATP', name: 'Airline Transport Pilot (ATP)', question_count: 1496, num_questions: 80, time_limit: 240, passing_score: 70, comingSoon: true }] : []),
-  ];
+  // Fixed display order: Row 1 = PAR, CAX, IRA | Row 2 = UAG, TRUST, ATP
+  const CARD_ORDER = ['PAR', 'CAX', 'IRA', 'UAG', 'TRUST', 'ATP'];
+  const atpPlaceholder = { code: 'ATP', name: 'Airline Transport Pilot (ATP)', question_count: 1496, num_questions: 80, time_limit: 240, passing_score: 70, comingSoon: true };
+  const allCards = CARD_ORDER.map((code) => exams.find((e) => e.code === code) || (code === 'ATP' ? atpPlaceholder : null)).filter(Boolean);
 
   return (
     <div className="container page" style={{ paddingTop: 0 }}>
@@ -243,63 +242,11 @@ export default function ExamList() {
         </div>
       )}
 
-      {/* ── TWO-COLUMN LAYOUT ───────────────────────────────────────── */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.5fr)',
-        gap: 20,
-        alignItems: 'start',
-      }}
-        className="exam-layout"
-      >
-
-        {/* LEFT: exam selector */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <div style={{ fontSize: '.8rem', fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase', color: '#30ace2', marginBottom: 8, paddingLeft: 2 }}>
-            Select a certificate
-          </div>
-
-          {/* Free challenge card — first in list, only for non-subscribers */}
-          {!isSubscribed && (
-            <div
-              onClick={startDemo}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(ev) => ev.key === 'Enter' && startDemo()}
-              style={{
-                borderRadius: 12,
-                border: '2px solid rgba(250,204,21,.4)',
-                cursor: 'pointer',
-                overflow: 'hidden',
-                position: 'relative',
-                height: 130,
-                background: 'linear-gradient(120deg, #3d2a00 0%, #5c3d00 50%, #7a5200 100%)',
-                boxShadow: '0 0 0 0 transparent',
-                transition: 'border-color .15s, box-shadow .15s',
-              }}
-            >
-              {/* subtle grain/glow */}
-              <div style={{
-                position: 'absolute', inset: 0,
-                background: 'radial-gradient(ellipse at 80% 50%, rgba(250,204,21,.18) 0%, transparent 65%)',
-                pointerEvents: 'none',
-              }} />
-              <div style={{ position: 'relative', padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 14, height: '100%', boxSizing: 'border-box' }}>
-                <div style={{ fontSize: '2rem', lineHeight: 1, flexShrink: 0 }}>✈️</div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
-                    <span style={{ background: 'rgba(250,204,21,.25)', color: '#fde68a', borderRadius: 5, padding: '1px 8px', fontSize: '.68rem', fontWeight: 700, letterSpacing: '.05em' }}>FREE</span>
-                    <span style={{ background: 'rgba(250,204,21,.15)', color: '#fcd34d', borderRadius: 5, padding: '1px 8px', fontSize: '.65rem', fontWeight: 700 }}>10 QUESTIONS</span>
-                  </div>
-                  <div style={{ fontWeight: 800, color: '#fef3c7', fontSize: '.95rem' }}>Free Challenge — Try PAR</div>
-                  <div style={{ fontSize: '.75rem', color: 'rgba(253,230,138,.7)', marginTop: 2 }}>No subscription needed · Study Mode</div>
-                </div>
-                <div style={{ flexShrink: 0, background: 'rgba(250,204,21,.2)', borderRadius: 8, padding: '7px 12px', fontSize: '.78rem', fontWeight: 700, color: '#fde68a', whiteSpace: 'nowrap' }}>
-                  {starting ? 'Loading…' : 'Start →'}
-                </div>
-              </div>
-            </div>
-          )}
+      {/* ── CARDS GRID ───────────────────────────────────────────────── */}
+      <div style={{ fontSize: '.8rem', fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase', color: '#30ace2', marginBottom: 12, paddingLeft: 2 }}>
+        Select a certificate
+      </div>
+      <div className="exam-layout" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginBottom: 24 }}>
 
           {allCards.map((e) => {
             const isActive = e.code === selected && !e.comingSoon;
@@ -393,11 +340,11 @@ export default function ExamList() {
               </div>
             );
           })}
-        </div>
+      </div>
 
-        {/* RIGHT: configuration panel */}
-        {current && (
-          <div ref={configRef} className="card" style={{ margin: 0, position: 'sticky', top: 20 }}>
+      {/* ── CONFIG PANEL (below cards) ───────────────────────────────── */}
+      {current && (
+        <div ref={configRef} className="card" style={{ margin: 0 }}>
             <div className="card-header">
               <div>
                 <div className="card-title">Configure your {current.code} session</div>
@@ -472,9 +419,8 @@ export default function ExamList() {
             )}
           </div>
         )}
-      </div>
 
-      {/* mobile responsive override */}
+      {/* mobile: revert to single column — desktop-only change */}
       <style>{`
         @media (max-width: 700px) {
           .exam-layout {
