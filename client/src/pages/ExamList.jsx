@@ -289,8 +289,7 @@ export default function ExamList() {
                 onClick={() => {
                   if (e.comingSoon) return;
                   if (!accessible && !free) {
-                    const loggedIn = !!localStorage.getItem('faa_token');
-                    if (loggedIn && EXAM_PLAN[e.code]) {
+                    if (EXAM_PLAN[e.code]) {
                       startCheckout(EXAM_PLAN[e.code]);
                     } else {
                       navigate(EXAM_LANDING[e.code] || '/exams');
