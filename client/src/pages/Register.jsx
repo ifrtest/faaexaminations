@@ -1,14 +1,19 @@
 // client/src/pages/Register.jsx
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Helmet } from 'react-helmet-async';
 
 export default function Register() {
-  const { register } = useAuth();
+  const { register, user } = useAuth();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const plan = searchParams.get('plan');
+
+  useEffect(() => {
+    if (user && plan) navigate(`/exams?buy=${plan}`, { replace: true });
+    else if (user) navigate('/dashboard', { replace: true });
+  }, [user]); // eslint-disable-line
 
   const [form, setForm] = useState({ full_name: '', email: '', password: '', confirm: '' });
   const [err, setErr] = useState('');

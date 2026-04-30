@@ -91,7 +91,7 @@ function Part107Demo() {
             The real Part 107 exam has 60 questions drawn from a 265-question bank. You need 70% to pass. Get access to the full question bank, timed simulator, and AI instructor.
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/exams?buy=uag" className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>Get Full Access — $37.99</Link>
+            <Link to="/register?plan=uag" className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>Get Full Access — $37.99</Link>
             <button onClick={load} style={{ background: 'none', border: '1px solid var(--lp-border)', color: 'var(--lp-text2)', padding: '16px 28px', borderRadius: 10, fontSize: 15, cursor: 'pointer' }}>Try 5 More Questions</button>
           </div>
         </div>
@@ -312,7 +312,7 @@ export default function Part107Landing() {
                 </li>
               ))}
             </ul>
-            <Link to="/exams?buy=uag" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Get Full Access — $37.99 →</Link>
+            <Link to="/register?plan=uag" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Get Full Access — $37.99 →</Link>
             <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>Try the free demo below · Pay once, keep access forever</div>
           </div>
         </div>
@@ -497,7 +497,7 @@ export default function Part107Landing() {
           </div>
 
           <div style={{ textAlign: 'center', marginTop: 48 }}>
-            <Link to="/exams?buy=uag" className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>
+            <Link to="/register?plan=uag" className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>
               Get Full Access — $37.99 →
             </Link>
           </div>
