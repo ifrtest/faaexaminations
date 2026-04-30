@@ -1,5 +1,5 @@
 // client/src/pages/ExamList.jsx
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { quizzes as quizApi } from '../api/client';
 import { Spinner } from '../components/ProtectedRoute';
@@ -54,6 +54,7 @@ export default function ExamList() {
   const [subscription, setSubscription] = useState(null);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [upgrading, setUpgrading] = useState(false);
+  const configRef = useRef(null);
 
   useEffect(() => {
     quizApi.exams()
@@ -279,10 +280,11 @@ export default function ExamList() {
                 onClick={() => {
                   if (e.comingSoon) return;
                   if (!accessible && !free) {
-                    // redirect to landing/payment page
                     navigate(EXAM_LANDING[e.code] || '/exams');
                   } else {
                     setSelected(e.code);
+                    // on mobile, scroll to config panel after a short delay
+                    setTimeout(() => configRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
                   }
                 }}
                 role={e.comingSoon ? 'presentation' : 'button'}
@@ -290,7 +292,7 @@ export default function ExamList() {
                 onKeyDown={(ev) => {
                   if (ev.key !== 'Enter' || e.comingSoon) return;
                   if (!accessible && !free) navigate(EXAM_LANDING[e.code] || '/exams');
-                  else setSelected(e.code);
+                  else { setSelected(e.code); setTimeout(() => configRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80); }
                 }}
                 style={{
                   borderRadius: 12,
@@ -307,12 +309,12 @@ export default function ExamList() {
                   backgroundPosition: meta.imgPos || 'center',
                 }}
               >
-                {/* dark overlay */}
+                {/* overlay — just enough for text legibility */}
                 <div style={{
                   position: 'absolute', inset: 0,
                   background: isActive
-                    ? 'linear-gradient(90deg, rgba(5,20,45,.75) 0%, rgba(11,40,90,.45) 100%)'
-                    : 'linear-gradient(90deg, rgba(5,15,35,.82) 0%, rgba(5,15,35,.58) 100%)',
+                    ? 'linear-gradient(90deg, rgba(5,20,45,.62) 0%, rgba(11,40,90,.30) 100%)'
+                    : 'linear-gradient(90deg, rgba(5,15,35,.65) 0%, rgba(5,15,35,.38) 100%)',
                   transition: 'background .2s',
                 }} />
 
@@ -359,7 +361,7 @@ export default function ExamList() {
 
         {/* RIGHT: configuration panel */}
         {current && (
-          <div className="card" style={{ margin: 0, position: 'sticky', top: 20 }}>
+          <div ref={configRef} className="card" style={{ margin: 0, position: 'sticky', top: 20 }}>
             <div className="card-header">
               <div>
                 <div className="card-title">Configure your {current.code} session</div>
