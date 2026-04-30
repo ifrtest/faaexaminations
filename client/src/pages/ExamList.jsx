@@ -44,7 +44,7 @@ export default function ExamList() {
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const autoBuyRef = useRef(location.state?.autoBuy || null);
+  const autoBuyRef = useRef(location.state?.autoBuy || params.get('buy') || null);
   const [exams, setExams]       = useState([]);
   const [selected, setSelected] = useState(params.get('exam') || null);
   const [topics, setTopics]     = useState([]);
