@@ -14,7 +14,6 @@ const PLAN_ACCESS = {
   all:    ['PAR', 'IRA', 'CAX', 'UAG', 'ATP'],
 };
 
-// Exams that are always free — no subscription needed
 const FREE_EXAMS = ['TRUST'];
 
 const EXAM_PLAN = {
@@ -25,13 +24,13 @@ const EXAM_PLAN = {
   ATP: 'atp',
 };
 
-const DESCRIPTIONS = {
-  PAR:   'The Private Pilot Airplane knowledge test — your first FAA written exam.',
-  IRA:   'The Instrument Rating knowledge test — required for IFR flying.',
-  CAX:   'The Commercial Pilot Airplane knowledge test — for professional-track pilots.',
-  UAG:   'The FAA Part 107 Remote Pilot knowledge test — required to fly drones commercially.',
-  ATP:   'The Airline Transport Pilot knowledge test — required to fly for the airlines.',
-  TRUST: 'The FAA recreational drone safety test — required for all hobbyist drone flyers. Free!',
+const EXAM_META = {
+  PAR:   { label: 'Private Pilot',        short: 'Your first FAA written exam.',                    color: '#0B3D91' },
+  IRA:   { label: 'Instrument Rating',    short: 'Required for IFR flying.',                        color: '#0e4f8f' },
+  CAX:   { label: 'Commercial Pilot',     short: 'For professional-track pilots.',                  color: '#0a3060' },
+  UAG:   { label: 'Part 107 Drone',       short: 'Required to fly drones commercially.',            color: '#064e3b' },
+  TRUST: { label: 'TRUST Rec. Safety',    short: 'Required for hobbyist drone flyers. Free!',       color: '#1e3a5f' },
+  ATP:   { label: 'Airline Transport',    short: 'Required to fly for the airlines.',               color: '#3b2f5e' },
 };
 
 export default function ExamList() {
@@ -57,7 +56,6 @@ export default function ExamList() {
       })
       .catch((e) => setErr(e.response?.data?.error || 'Could not load exams.'));
 
-    // Fetch subscription status
     fetch('/api/stripe/subscription', {
       headers: { Authorization: `Bearer ${localStorage.getItem('faa_token')}` },
     })
@@ -77,45 +75,35 @@ export default function ExamList() {
   const current = exams.find((e) => e.code === selected);
 
   const hasAccess = (examCode) => {
-    // Free exams are always accessible
     if (FREE_EXAMS.includes(examCode)) return true;
     if (!subscription || subscription.status !== 'active') return false;
     const plan = subscription.plan;
     return plan && PLAN_ACCESS[plan]?.includes(examCode);
   };
 
+  const isSubscribed = subscription?.status === 'active';
+
   const startCheckout = async (plan) => {
     setCheckoutLoading(true);
     try {
-      // If already subscribed, use upgrade endpoint (swap plan, no double-charge)
       const alreadySubscribed = subscription?.status === 'active';
       if (alreadySubscribed) {
         const res = await fetch('/api/stripe/upgrade', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('faa_token')}`,
-          },
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('faa_token')}` },
           body: JSON.stringify({ plan }),
         });
         const data = await res.json();
         if (data.success) {
           setUpgrading(true);
-          // Poll until the webhook has updated the DB to the new plan
           const token = localStorage.getItem('faa_token');
-          const deadline = Date.now() + 30000; // max 30s
+          const deadline = Date.now() + 30000;
           while (Date.now() < deadline) {
             await new Promise((r) => setTimeout(r, 1500));
-            const r = await fetch('/api/stripe/plan', {
-              headers: { Authorization: `Bearer ${token}` },
-            });
+            const r = await fetch('/api/stripe/plan', { headers: { Authorization: `Bearer ${token}` } });
             const d = await r.json();
-            if (d.plan === plan) {
-              window.location.href = '/dashboard?subscribed=1';
-              return;
-            }
+            if (d.plan === plan) { window.location.href = '/dashboard?subscribed=1'; return; }
           }
-          // Webhook took too long — redirect anyway, access likely active
           window.location.href = '/dashboard?subscribed=1';
         } else {
           setErr(data.error || 'Could not upgrade subscription.');
@@ -123,10 +111,7 @@ export default function ExamList() {
       } else {
         const res = await fetch('/api/stripe/checkout', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('faa_token')}`,
-          },
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('faa_token')}` },
           body: JSON.stringify({ plan }),
         });
         const data = await res.json();
@@ -144,12 +129,7 @@ export default function ExamList() {
     if (!selected) return;
     setErr(''); setStarting(true);
     try {
-      const payload = {
-        exam_code: selected, mode,
-        num_questions: numQ,
-        topic_id: topicId || undefined,
-      };
-      const { session } = await quizApi.start(payload);
+      const { session } = await quizApi.start({ exam_code: selected, mode, num_questions: numQ, topic_id: topicId || undefined });
       navigate(`/quiz/${session.id}`);
     } catch (ex) {
       setErr(ex.response?.data?.error || 'Could not start exam.');
@@ -168,156 +148,271 @@ export default function ExamList() {
 
   if (!exams.length && !err) return <div className="container page"><Spinner /></div>;
 
+  // All exam cards including ATP coming-soon
+  const allCards = [
+    ...exams,
+    ...(!exams.find((e) => e.code === 'ATP') ? [{ code: 'ATP', name: 'Airline Transport Pilot (ATP)', question_count: 1496, num_questions: 80, time_limit: 240, passing_score: 70, comingSoon: true }] : []),
+  ];
+
   return (
-    <div className="container page">
-      <h1>Practice Exams</h1>
-      <p style={{color:'var(--muted)'}}>Pick a certificate and a mode to begin.</p>
-      {err && <div className="alert alert-err">{err}</div>}
+    <div className="container page" style={{ paddingTop: 0 }}>
 
-      {/* Upgrade in progress */}
-      {upgrading && (
-        <div style={{background:'#0f1f35',border:'1px solid #1e3a5f',borderRadius:10,padding:'20px 24px',marginBottom:24,textAlign:'center'}}>
-          <div style={{fontSize:'1rem',fontWeight:700,color:'#fff',marginBottom:6}}>Updating your plan…</div>
-          <div style={{fontSize:'.88rem',color:'#94b8d4'}}>Your payment is being confirmed. You'll be redirected in a moment.</div>
-        </div>
-      )}
+      {/* ── HERO BANNER ─────────────────────────────────────────────── */}
+      <div style={{
+        background: 'linear-gradient(135deg, #061529 0%, #0b2545 50%, #0d2e58 100%)',
+        borderRadius: 18,
+        padding: '36px 40px',
+        marginBottom: 28,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: 24,
+        flexWrap: 'wrap',
+        position: 'relative',
+        overflow: 'hidden',
+      }}>
+        {/* background glow */}
+        <div style={{
+          position: 'absolute', top: -60, right: 200,
+          width: 300, height: 300,
+          background: 'radial-gradient(circle, rgba(48,172,226,.12) 0%, transparent 70%)',
+          pointerEvents: 'none',
+        }} />
 
-      {/* Free sample banner — shown to non-subscribers */}
-      {subscription && subscription.status !== 'active' && (
-        <div style={{background:'#fff',border:'2px solid var(--blue)',borderRadius:10,padding:'16px 20px',marginBottom:24,display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:12}}>
-          <div>
-            <div style={{fontWeight:700,color:'var(--navy)',fontSize:'1rem'}}>🎁 Try 10 Free Sample Questions</div>
-            <div style={{fontSize:'.875rem',color:'var(--muted)',marginTop:2}}>No subscription needed — get a feel for the Private Pilot (PAR) exam in Study Mode.</div>
+        {/* left: headline */}
+        <div style={{ flex: '1 1 260px' }}>
+          <div style={{ fontSize: '.72rem', fontWeight: 700, letterSpacing: '.12em', color: '#30ace2', textTransform: 'uppercase', marginBottom: 8 }}>
+            FAA Written Exam Prep
           </div>
-          <button className="btn btn-primary" onClick={startDemo} disabled={starting}
-            style={{whiteSpace:'nowrap',minWidth:160}}>
-            {starting ? 'Loading…' : 'Start Free Sample →'}
-          </button>
+          <h1 style={{ margin: '0 0 10px', fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', fontWeight: 800, color: '#fff', lineHeight: 1.15 }}>
+            Choose Your Exam
+          </h1>
+          <p style={{ margin: 0, color: '#94b8d4', fontSize: '.95rem', maxWidth: 380 }}>
+            Select a certificate below, pick your mode, and start practising. Pass your FAA written exam — first try.
+          </p>
         </div>
-      )}
 
-      {/* Exam type picker */}
-      <div className="exam-cards" style={{marginBottom:24}}>
-        {exams.map((e) => {
-          const isActive = e.code === selected;
-          return (
-            <div key={e.code}
-                 className="exam-card"
-                 style={isActive ? { borderColor: 'var(--navy)', boxShadow: '0 0 0 3px rgba(11,61,145,.12)' } : {}}
-                 onClick={() => setSelected(e.code)}
-                 role="button"
-                 tabIndex={0}>
-              <span className="tag">{e.code}</span>
-              <h3>{e.name}</h3>
-              <p style={{color:'var(--muted)',fontSize:'.9rem',margin:'0 0 14px'}}>
-                {DESCRIPTIONS[e.code] || e.description}
-              </p>
-              <div style={{display:'flex',justifyContent:'space-between',fontSize:'.85rem',color:'var(--muted)'}}>
-                <span>{e.question_count} questions</span>
-                <span>{e.time_limit} min · {e.passing_score}% to pass</span>
-              </div>
+        {/* right: free challenge card — only for non-subscribers */}
+        {!isSubscribed && (
+          <div style={{
+            background: 'linear-gradient(135deg, #92400e 0%, #b45309 40%, #d97706 100%)',
+            borderRadius: 14,
+            padding: '22px 26px',
+            flex: '0 0 auto',
+            maxWidth: 320,
+            width: '100%',
+            boxShadow: '0 8px 32px rgba(217,119,6,.35)',
+            position: 'relative',
+          }}>
+            <div style={{ fontSize: '1.6rem', marginBottom: 6 }}>✈️</div>
+            <div style={{ fontSize: '1.05rem', fontWeight: 800, color: '#fff', marginBottom: 4 }}>
+              10-Question Free Challenge
             </div>
-          );
-        })}
-
-        {/* ATP Coming Soon — shown when ATP is not live for this user */}
-        {!exams.find((e) => e.code === 'ATP') && (
-          <div className="exam-card" style={{opacity:.6,cursor:'default',position:'relative'}}
-               role="presentation">
-            <span className="tag" style={{background:'var(--muted)'}}>ATP</span>
-            <span style={{position:'absolute',top:14,right:14,background:'var(--navy)',color:'#fff',fontSize:'.7rem',fontWeight:700,padding:'3px 9px',borderRadius:20,letterSpacing:'.04em'}}>COMING SOON</span>
-            <h3>Airline Transport Pilot (ATP)</h3>
-            <p style={{color:'var(--muted)',fontSize:'.9rem',margin:'0 0 14px'}}>
-              The Airline Transport Pilot knowledge test — required to fly for the airlines.
-            </p>
-            <div style={{display:'flex',justifyContent:'space-between',fontSize:'.85rem',color:'var(--muted)'}}>
-              <span>1,496 questions</span>
-              <span>240 min · 70% to pass</span>
+            <div style={{ fontSize: '.83rem', color: 'rgba(255,255,255,.8)', marginBottom: 16, lineHeight: 1.4 }}>
+              No account needed. Try real PAR questions in Study Mode and see how you score.
             </div>
+            <button
+              onClick={startDemo}
+              disabled={starting}
+              style={{
+                width: '100%',
+                background: '#fff',
+                color: '#92400e',
+                border: 'none',
+                borderRadius: 8,
+                padding: '11px 0',
+                fontWeight: 800,
+                fontSize: '.95rem',
+                cursor: 'pointer',
+                letterSpacing: '.01em',
+              }}>
+              {starting ? 'Loading…' : 'Start Free Challenge →'}
+            </button>
           </div>
         )}
       </div>
 
-      {/* Mode + configuration */}
-      {current && (
-        <div className="card" style={{maxWidth:720,margin:'0 auto'}}>
-          <div className="card-header">
-            <div>
-              <div className="card-title">Configure your {current.code} session</div>
-              <div className="card-sub">Choose mode, number of questions, and (optionally) a topic.</div>
-            </div>
-          </div>
+      {err && <div className="alert alert-err" style={{ marginBottom: 16 }}>{err}</div>}
 
-          <div className="field">
-            <label>Mode</label>
-            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
-              <ModeOption
-                active={mode === 'study'} onClick={() => setMode('study')}
-                title="Study Mode"
-                desc="Unlimited time. See explanation after every answer."
-                icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>}
-              />
-              <ModeOption
-                active={mode === 'exam'} onClick={() => setMode('exam')}
-                title="Exam Simulation"
-                desc="Timed. Explanations shown at the end. Just like the real thing."
-                icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>}
-              />
-            </div>
-          </div>
-
-          <div className="row-2">
-            <div className="field">
-              <label>Number of questions</label>
-              <input type="number" min="1"
-                     max={Math.max(1, Number(current.question_count) || 100)}
-                     value={numQ} onChange={(e) => setNumQ(parseInt(e.target.value, 10) || 1)} />
-              <div className="hint">
-                Up to {current.question_count} questions available.{' '}
-                Real exam: {current.num_questions}.
-              </div>
-            </div>
-            <div className="field">
-              <label>Topic (optional)</label>
-              <select value={topicId} onChange={(e) => setTopicId(e.target.value)}>
-                <option value="">All topics</option>
-                {topics.map((t) => (
-                  <option key={t.id} value={t.id}>
-                    {t.name} ({t.question_count})
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          {hasAccess(selected) ? (
-            <button className="btn btn-primary btn-block" onClick={start} disabled={starting}>
-              {starting ? 'Preparing…' : `Start ${mode === 'exam' ? 'Exam' : 'Study Session'}`}
-            </button>
-          ) : (
-            <div>
-              <div className="alert" style={{background:'var(--panel2)',border:'1px solid var(--blue)',color:'var(--text2)',marginBottom:12,fontSize:'.9rem'}}>
-                A subscription is required for full access to {selected} practice exams.
-              </div>
-              <button
-                className="btn btn-primary btn-block"
-                onClick={() => startCheckout(EXAM_PLAN[selected])}
-                disabled={checkoutLoading}
-                style={{marginBottom:8}}>
-                {checkoutLoading ? 'Loading…' : selected === 'UAG' ? `Get Part 107 — $37.99 one-time` : `Subscribe to ${selected} — $24.99/month`}
-              </button>
-              {selected !== 'UAG' && (
-                <button
-                  className="btn btn-ghost btn-block"
-                  onClick={() => startCheckout('bundle')}
-                  disabled={checkoutLoading}>
-                  {checkoutLoading ? 'Loading…' : 'Get All 3 Manned Exams (Bundle) — $39.99/month'}
-                </button>
-              )}
-            </div>
-          )}
+      {upgrading && (
+        <div style={{ background: '#0f1f35', border: '1px solid #1e3a5f', borderRadius: 10, padding: '20px 24px', marginBottom: 24, textAlign: 'center' }}>
+          <div style={{ fontSize: '1rem', fontWeight: 700, color: '#fff', marginBottom: 6 }}>Updating your plan…</div>
+          <div style={{ fontSize: '.88rem', color: '#94b8d4' }}>Your payment is being confirmed. You'll be redirected in a moment.</div>
         </div>
       )}
+
+      {/* ── TWO-COLUMN LAYOUT ───────────────────────────────────────── */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.5fr)',
+        gap: 20,
+        alignItems: 'start',
+      }}
+        className="exam-layout"
+      >
+
+        {/* LEFT: exam selector */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <div style={{ fontSize: '.72rem', fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 4, paddingLeft: 4 }}>
+            Select a certificate
+          </div>
+          {allCards.map((e) => {
+            const isActive = e.code === selected && !e.comingSoon;
+            const meta = EXAM_META[e.code] || {};
+            const free = FREE_EXAMS.includes(e.code);
+            const accessible = hasAccess(e.code);
+            return (
+              <div
+                key={e.code}
+                onClick={() => !e.comingSoon && setSelected(e.code)}
+                role={e.comingSoon ? 'presentation' : 'button'}
+                tabIndex={e.comingSoon ? -1 : 0}
+                onKeyDown={(ev) => ev.key === 'Enter' && !e.comingSoon && setSelected(e.code)}
+                style={{
+                  background: isActive
+                    ? 'linear-gradient(135deg, #0b2545 0%, #0d3060 100%)'
+                    : 'var(--surface, #1a2535)',
+                  border: `2px solid ${isActive ? '#30ace2' : 'var(--border, #2a3a50)'}`,
+                  borderRadius: 12,
+                  padding: '14px 16px',
+                  cursor: e.comingSoon ? 'default' : 'pointer',
+                  opacity: e.comingSoon ? 0.55 : 1,
+                  transition: 'border-color .15s, background .15s',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 14,
+                  position: 'relative',
+                }}
+              >
+                {/* colour pill */}
+                <div style={{
+                  width: 6, height: 38, borderRadius: 99,
+                  background: isActive ? '#30ace2' : (meta.color || '#334155'),
+                  flexShrink: 0,
+                }} />
+
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
+                    <span style={{
+                      background: isActive ? '#30ace2' : 'var(--navy, #0B3D91)',
+                      color: '#fff', borderRadius: 5, padding: '1px 8px',
+                      fontSize: '.68rem', fontWeight: 700, letterSpacing: '.05em',
+                    }}>{e.code}</span>
+                    {free && (
+                      <span style={{ background: '#16a34a', color: '#fff', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>FREE</span>
+                    )}
+                    {!free && accessible && (
+                      <span style={{ background: '#0d4f1c', color: '#4ade80', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>UNLOCKED</span>
+                    )}
+                    {e.comingSoon && (
+                      <span style={{ background: '#1e293b', color: '#94a3b8', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>COMING SOON</span>
+                    )}
+                  </div>
+                  <div style={{ fontWeight: 700, color: isActive ? '#fff' : 'var(--ink, #e2e8f0)', fontSize: '.9rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    {meta.label || e.name}
+                  </div>
+                  <div style={{ fontSize: '.78rem', color: isActive ? '#94b8d4' : 'var(--muted)', marginTop: 1 }}>
+                    {e.question_count} questions · {e.time_limit} min · {e.passing_score}% to pass
+                  </div>
+                </div>
+
+                {isActive && (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* RIGHT: configuration panel */}
+        {current && (
+          <div className="card" style={{ margin: 0, position: 'sticky', top: 20 }}>
+            <div className="card-header">
+              <div>
+                <div className="card-title">Configure your {current.code} session</div>
+                <div className="card-sub">Choose mode, number of questions, and (optionally) a topic.</div>
+              </div>
+            </div>
+
+            <div className="field">
+              <label>Mode</label>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                <ModeOption
+                  active={mode === 'study'} onClick={() => setMode('study')}
+                  title="Study Mode"
+                  desc="Unlimited time. See explanation after every answer."
+                  icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>}
+                />
+                <ModeOption
+                  active={mode === 'exam'} onClick={() => setMode('exam')}
+                  title="Exam Simulation"
+                  desc="Timed. Explanations shown at the end. Just like the real thing."
+                  icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>}
+                />
+              </div>
+            </div>
+
+            <div className="row-2">
+              <div className="field">
+                <label>Number of questions</label>
+                <input type="number" min="1"
+                       max={Math.max(1, Number(current.question_count) || 100)}
+                       value={numQ} onChange={(e) => setNumQ(parseInt(e.target.value, 10) || 1)} />
+                <div className="hint">
+                  Up to {current.question_count} questions available. Real exam: {current.num_questions}.
+                </div>
+              </div>
+              <div className="field">
+                <label>Topic (optional)</label>
+                <select value={topicId} onChange={(e) => setTopicId(e.target.value)}>
+                  <option value="">All topics</option>
+                  {topics.map((t) => (
+                    <option key={t.id} value={t.id}>{t.name} ({t.question_count})</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {hasAccess(selected) ? (
+              <button className="btn btn-primary btn-block" onClick={start} disabled={starting}>
+                {starting ? 'Preparing…' : `Start ${mode === 'exam' ? 'Exam' : 'Study Session'}`}
+              </button>
+            ) : (
+              <div>
+                <div className="alert" style={{ background: 'var(--panel2)', border: '1px solid var(--blue)', color: 'var(--text2)', marginBottom: 12, fontSize: '.9rem' }}>
+                  A subscription is required for full access to {selected} practice exams.
+                </div>
+                <button
+                  className="btn btn-primary btn-block"
+                  onClick={() => startCheckout(EXAM_PLAN[selected])}
+                  disabled={checkoutLoading}
+                  style={{ marginBottom: 8 }}>
+                  {checkoutLoading ? 'Loading…' : selected === 'UAG' ? 'Get Part 107 — $37.99 one-time' : `Subscribe to ${selected} — $24.99/month`}
+                </button>
+                {selected !== 'UAG' && (
+                  <button
+                    className="btn btn-ghost btn-block"
+                    onClick={() => startCheckout('bundle')}
+                    disabled={checkoutLoading}>
+                    {checkoutLoading ? 'Loading…' : 'Get All 3 Manned Exams (Bundle) — $39.99/month'}
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* mobile responsive override */}
+      <style>{`
+        @media (max-width: 700px) {
+          .exam-layout {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
@@ -326,10 +421,10 @@ function ModeOption({ active, title, desc, icon, onClick }) {
   return (
     <div className="choice" onClick={onClick}
          style={active ? { borderColor: 'var(--navy)', background: 'var(--sky-light)' } : { cursor: 'pointer' }}>
-      <div className="letter" style={{fontSize:18,background:'transparent',width:32}}>{icon}</div>
+      <div className="letter" style={{ fontSize: 18, background: 'transparent', width: 32 }}>{icon}</div>
       <div className="text">
-        <div style={{fontWeight:700,color:'var(--ink)'}}>{title}</div>
-        <div style={{fontSize:'.85rem',color:'var(--muted)'}}>{desc}</div>
+        <div style={{ fontWeight: 700, color: 'var(--ink)' }}>{title}</div>
+        <div style={{ fontSize: '.85rem', color: 'var(--muted)' }}>{desc}</div>
       </div>
     </div>
   );
