@@ -126,7 +126,7 @@ exports.remove = async (req, res, next) => {
 // GET /api/users/admin/stats  (admin dashboard tiles)
 exports.adminStats = async (_req, res, next) => {
   try {
-    const [users, tests, questions] = await Promise.all([
+    const [users, tests, questions, examStats] = await Promise.all([
       db.query(`SELECT COUNT(*)::int AS total,
                        COUNT(*) FILTER (WHERE created_at > NOW() - INTERVAL '7 days')::int AS new_week,
                        COUNT(*) FILTER (WHERE subscription='pro')::int AS pro
@@ -138,12 +138,21 @@ exports.adminStats = async (_req, res, next) => {
       db.query(`SELECT COUNT(*)::int AS total,
                        COUNT(*) FILTER (WHERE is_active)::int AS active
                   FROM questions`),
+      db.query(`SELECT e.code, e.name,
+                       COUNT(r.id)::int AS total_completed,
+                       COUNT(*) FILTER (WHERE r.passed = true)::int AS total_passed,
+                       COALESCE(ROUND(AVG(r.score)::numeric, 1), 0) AS avg_score
+                  FROM exams e
+                  LEFT JOIN exam_results r ON r.exam_id = e.id
+                  GROUP BY e.id, e.code, e.name
+                  ORDER BY e.id`),
     ]);
 
     res.json({
       users:     users.rows[0],
       tests:     tests.rows[0],
       questions: questions.rows[0],
+      examStats: examStats.rows,
     });
   } catch (err) { next(err); }
 };
