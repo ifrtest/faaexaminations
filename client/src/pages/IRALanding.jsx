@@ -79,6 +79,17 @@ export default function IRALanding() {
         <title>FAA Instrument Rating Written Test Prep — 821 Questions | FAAExaminations.com</title>
         <meta name="description" content="Pass your FAA Instrument Rating knowledge test first try. 821 practice questions, IFR charts, approach procedures, and AI instructor support. $24.99/month. Cancel anytime." />
         <link rel="canonical" href="https://faaexaminations.com/ira" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://faaexaminations.com/ira" />
+        <meta property="og:title" content="FAA Instrument Rating Written Test Prep — Pass First Try" />
+        <meta property="og:description" content="821 IFR practice questions, approach procedures, charts, and AI instructor. Pass your FAA Instrument Rating written exam. $24.99/month." />
+        <meta property="og:image" content="https://faaexaminations.com/plane-ira.jpg" />
+        <meta property="og:image:width" content="2400" />
+        <meta property="og:image:height" content="1792" />
+        <meta property="og:image:alt" content="Instrument Rating FAA exam prep — FAAExaminations.com" />
+        <meta property="og:site_name" content="FAAExaminations.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://faaexaminations.com/plane-ira.jpg" />
       </Helmet>
 
       {/* NAV */}

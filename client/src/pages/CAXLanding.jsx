@@ -79,6 +79,17 @@ export default function CAXLanding() {
         <title>FAA Commercial Pilot Written Test Prep — 536 Questions | FAAExaminations.com</title>
         <meta name="description" content="Pass your FAA Commercial Pilot knowledge test first try. 536 practice questions covering performance, weight & balance, 14 CFR, and advanced operations. $24.99/month." />
         <link rel="canonical" href="https://faaexaminations.com/cax" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://faaexaminations.com/cax" />
+        <meta property="og:title" content="FAA Commercial Pilot Written Test Prep — Pass First Try" />
+        <meta property="og:description" content="536 practice questions covering performance, weight & balance, and advanced operations. Pass your FAA Commercial Pilot written exam. $24.99/month." />
+        <meta property="og:image" content="https://faaexaminations.com/plane-cax-hero.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Commercial Pilot FAA exam prep — FAAExaminations.com" />
+        <meta property="og:site_name" content="FAAExaminations.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://faaexaminations.com/plane-cax-hero.jpg" />
       </Helmet>
 
       {/* NAV */}

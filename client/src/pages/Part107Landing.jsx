@@ -230,6 +230,17 @@ export default function Part107Landing() {
         <title>FAA Part 107 Drone Test Prep — Get Licensed to Fly Commercially | FAAExaminations.com</title>
         <meta name="description" content="Pass your FAA Part 107 Remote Pilot knowledge test and get licensed to fly drones commercially. Practice questions, timed simulator, AI support. $37.99 one-time. Lifetime access." />
         <link rel="canonical" href="https://faaexaminations.com/part-107" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://faaexaminations.com/part-107" />
+        <meta property="og:title" content="FAA Part 107 Drone License Test Prep — Pass First Try" />
+        <meta property="og:description" content="Get your FAA drone license. Practice questions, timed simulator, and AI instructor. $37.99 one-time payment. Lifetime access." />
+        <meta property="og:image" content="https://faaexaminations.com/drone_image_faa_examinations.jpg" />
+        <meta property="og:image:width" content="1440" />
+        <meta property="og:image:height" content="1080" />
+        <meta property="og:image:alt" content="FAA Part 107 drone license exam prep — FAAExaminations.com" />
+        <meta property="og:site_name" content="FAAExaminations.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://faaexaminations.com/drone_image_faa_examinations.jpg" />
       </Helmet>
 
       {/* NAV */}

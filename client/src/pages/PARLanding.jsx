@@ -72,6 +72,17 @@ export default function PARLanding() {
         <title>FAA Private Pilot Written Test Prep — 1,469 Questions | FAAExaminations.com</title>
         <meta name="description" content="Pass your FAA Private Pilot written exam first try. 1,469 practice questions, 11 study modules, timed simulator, and AI instructor support. $24.99/month. Cancel anytime." />
         <link rel="canonical" href="https://faaexaminations.com/par" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://faaexaminations.com/par" />
+        <meta property="og:title" content="FAA Private Pilot Written Test Prep — Pass First Try" />
+        <meta property="og:description" content="1,469 practice questions, timed simulator, and AI instructor. Pass your FAA Private Pilot written exam first try. $24.99/month." />
+        <meta property="og:image" content="https://faaexaminations.com/plane-par-desktop.jpg" />
+        <meta property="og:image:width" content="1920" />
+        <meta property="og:image:height" content="1280" />
+        <meta property="og:image:alt" content="Private Pilot FAA exam prep — FAAExaminations.com" />
+        <meta property="og:site_name" content="FAAExaminations.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://faaexaminations.com/plane-par-desktop.jpg" />
       </Helmet>
 
       {/* NAV */}
