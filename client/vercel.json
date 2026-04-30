@@ -31,6 +31,10 @@
       "source": "/uploads/:path*",
       "destination": "https://faaexaminations-server.onrender.com/uploads/:path*"
     },
+    { "source": "/par", "destination": "/par.html" },
+    { "source": "/part-107", "destination": "/part-107.html" },
+    { "source": "/ira", "destination": "/ira.html" },
+    { "source": "/cax", "destination": "/cax.html" },
     {
       "source": "/(.*)",
       "destination": "/index.html"
