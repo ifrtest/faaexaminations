@@ -103,7 +103,7 @@ function button(href, label) {
 function welcomeEmail(name, userId) {
   return shell('Welcome aboard ✈', `
     <p style="margin:0 0 12px">Hi ${name},</p>
-    <p style="margin:0 0 16px">Your account is ready. Start practising for your FAA written exam with real question banks, timed simulations, and an AI Instructor when you get stuck.</p>
+    <p style="margin:0 0 16px">Your account is ready. Whether you're studying for your Private Pilot, Instrument Rating, Commercial Pilot, or Part 107 drone licence — you'll find real FAA practice questions, timed simulations, and an AI Instructor when you get stuck.</p>
     ${button(`${SITE()}/exams`, 'Start Practising →')}
     <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Questions? Reply to this email or contact <a href="mailto:support@faaexaminations.com" style="color:${ACCENT};text-decoration:none">support@faaexaminations.com</a></p>
   `, userId);
@@ -167,7 +167,7 @@ function nurtureDay7(name, userId) {
     </ul>
     <p style="margin:0 0 20px">FAAExaminations.com is built around that exact workflow — 3,000+ questions organized by topic, full explanations, a timed exam simulator, and an AI Instructor for anything that doesn't click.</p>
     ${button(`${SITE()}/exams`, 'Start Practicing →')}
-    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">PAR · IRA · CAX · Part 107 — packages from $24.99/month. Cancel anytime.</p>
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">PAR · IRA · CAX from $24.99/month · Part 107 $37.99 one-time · Lifetime access.</p>
   `, userId);
 }
 
