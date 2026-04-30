@@ -86,7 +86,7 @@ export default function Landing() {
             <Link to="/register" className="lp-btn-hero"><svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>Start Free Today</Link>
             <a href="#products" className="lp-btn-outline">View Packages</a>
           </div>
-          <div style={{ fontSize: 13, color: 'var(--lp-text3)', marginTop: 14, opacity: 0.8, lineHeight: 2 }}>
+          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', marginTop: 14, lineHeight: 2 }}>
             Free account includes 10 practice questions · No credit card required<br />
             Part 107 from $37.99 one-time · Other packages from $24.99/month
           </div>
