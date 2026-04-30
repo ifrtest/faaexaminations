@@ -70,21 +70,30 @@ const ACCENT = '#30ace2';
 const TEXT = '#e5eef5';
 const MUTED = '#93a5b5';
 
-function shell(headline, bodyHtml, userId) {
+function shell(headline, bodyHtml, userId, bannerUrl = null) {
   const unsubLink = userId
     ? `<a href="${unsubUrl(userId)}" style="color:${MUTED};text-decoration:underline">Unsubscribe</a>`
+    : '';
+  const banner = bannerUrl
+    ? `<img src="${bannerUrl}" alt="" width="560" style="display:block;width:100%;max-height:200px;object-fit:cover;object-position:center" />`
     : '';
   return `
   <div style="background:${BG};padding:32px 16px;font-family:${FONT};color:${TEXT}">
     <div style="max-width:560px;margin:0 auto;background:${PANEL};border:1px solid ${BORDER};border-radius:14px;overflow:hidden">
-      <div style="background:linear-gradient(135deg, #0b1622 0%, #132231 100%);padding:28px 32px;border-bottom:1px solid ${BORDER}">
-        <div style="font-size:22px;font-weight:800;letter-spacing:.2px;margin-bottom:10px">
-          <a href="${SITE()}" style="text-decoration:none;color:${TEXT}">
-            <span style="color:${TEXT};text-decoration:none">FAA</span><span style="color:${ACCENT};text-decoration:none">Examinations</span><span style="color:${MUTED};font-size:0.85em;text-decoration:none">.com</span>
-          </a>
+      <div style="background:linear-gradient(135deg, #0b1622 0%, #132231 100%);padding:24px 32px;border-bottom:1px solid ${BORDER};display:flex;align-items:center;gap:16px">
+        <a href="${SITE()}" style="text-decoration:none;flex-shrink:0">
+          <img src="${SITE()}/faa-logo-email.png" alt="FAAExaminations.com" width="52" height="52" style="display:block;border-radius:8px" />
+        </a>
+        <div>
+          <div style="font-size:20px;font-weight:800;letter-spacing:.2px;margin-bottom:6px">
+            <a href="${SITE()}" style="text-decoration:none;color:${TEXT}">
+              <span style="color:${TEXT}">FAA</span><span style="color:${ACCENT}">Examinations</span><span style="color:${MUTED};font-size:0.8em">.com</span>
+            </a>
+          </div>
+          <h1 style="color:${TEXT};margin:0;font-size:19px;font-weight:700;letter-spacing:-.2px">${headline}</h1>
         </div>
-        <h1 style="color:${TEXT};margin:0;font-size:22px;font-weight:700;letter-spacing:-.3px">${headline}</h1>
       </div>
+      ${banner}
       <div style="padding:32px;color:${TEXT};font-size:15px;line-height:1.6">
         ${bodyHtml}
       </div>
@@ -106,7 +115,7 @@ function welcomeEmail(name, userId) {
     <p style="margin:0 0 16px">Your account is ready. Whether you're studying for your Private Pilot, Instrument Rating, Commercial Pilot, or Part 107 drone licence — you'll find real FAA practice questions, timed simulations, and an AI Instructor when you get stuck.</p>
     ${button(`${SITE()}/exams`, 'Start Practising →')}
     <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Questions? Reply to this email or contact <a href="mailto:support@faaexaminations.com" style="color:${ACCENT};text-decoration:none">support@faaexaminations.com</a></p>
-  `, userId);
+  `, userId, `${SITE()}/email-banner-plane.jpg`);
 }
 
 function subscriptionEmail(name, plan, userId) {
@@ -119,12 +128,13 @@ function subscriptionEmail(name, plan, userId) {
   const intro = isOneTime
     ? `Your Part 107 package is unlocked. This is a <strong style="color:${ACCENT}">one-time payment</strong> — you have lifetime access to all 265 practice questions, timed simulator, and AI Instructor support. No subscription, no renewals.`
     : `You're now subscribed to <strong style="color:${ACCENT}">${planNames[plan] || plan}</strong>. Full access is unlocked: all practice exams, timed simulations, and AI Instructor support.`;
+  const banner = isOneTime ? `${SITE()}/email-banner-drone.jpg` : `${SITE()}/email-banner-plane.jpg`;
   return shell(headline, `
     <p style="margin:0 0 12px">Hi ${name},</p>
     <p style="margin:0 0 16px">${intro}</p>
     ${button(`${SITE()}/exams`, 'Start Your Exam →')}
     <p style="color:${MUTED};font-size:13px;margin:24px 0 0">${footer}</p>
-  `, userId);
+  `, userId, banner);
 }
 
 function cancellationEmail(name, userId) {
@@ -164,7 +174,7 @@ function nurtureDay3(name, userId) {
     <p style="margin:0 0 20px">Practice by topic, track your scores, and run timed mock exams once you're scoring above 80%. Your dashboard shows readiness by category — so you're never guessing where to focus.</p>
     ${button(`${SITE()}/exams`, 'Start Practising →')}
     <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Free account includes 10 Private Pilot sample questions &amp; the full TRUST recreational drone test.</p>
-  `, userId);
+  `, userId, `${SITE()}/email-banner-plane.jpg`);
 }
 
 function nurtureDay7(name, userId) {
@@ -181,7 +191,7 @@ function nurtureDay7(name, userId) {
     <p style="margin:0 0 20px">FAAExaminations.com is built around that exact workflow — questions organized by topic, full explanations on every answer, a timed exam simulator, and an AI Instructor for anything that doesn't click.</p>
     ${button(`${SITE()}/exams`, 'Start Practising →')}
     <p style="color:${MUTED};font-size:13px;margin:24px 0 0">PAR · IRA · CAX from $24.99/month &nbsp;·&nbsp; Part 107 $37.99 one-time lifetime access.</p>
-  `, userId);
+  `, userId, `${SITE()}/email-banner-drone.jpg`);
 }
 
 function nurtureDay14(name, userId) {
@@ -225,7 +235,7 @@ function nurtureDay14(name, userId) {
     </table>
     ${button(`${SITE()}/exams`, 'Unlock Full Access →')}
     <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Questions? Reply to this email — we read every one.</p>
-  `, userId);
+  `, userId, `${SITE()}/email-banner-plane.jpg`);
 }
 
 function bundleUpsellEmail(name, currentPlan, userId) {
