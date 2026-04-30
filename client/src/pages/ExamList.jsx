@@ -309,7 +309,7 @@ export default function ExamList() {
                 }}
                 style={{
                   borderRadius: 12,
-                  border: `2px solid ${isActive ? '#30ace2' : e.code === 'UAG' ? 'rgba(255,255,255,0.25)' : 'transparent'}`,
+                  border: `2px solid ${isActive ? '#30ace2' : (e.code === 'UAG' || e.code === 'IRA') ? 'rgba(255,255,255,0.25)' : 'transparent'}`,
                   cursor: e.comingSoon ? 'default' : 'pointer',
                   opacity: e.comingSoon ? 0.55 : 1,
                   transition: 'border-color .15s, box-shadow .15s',
