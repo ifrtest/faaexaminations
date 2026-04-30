@@ -32,12 +32,12 @@ const EXAM_LANDING = {
 };
 
 const EXAM_META = {
-  PAR:   { label: 'Private Pilot',     short: 'Your first FAA written exam.',           color: '#0B3D91', img: '/plane-par-desktop.jpg',      imgPos: 'center 30%' },
-  IRA:   { label: 'Instrument Rating', short: 'Required for IFR flying.',               color: '#0e4f8f', img: '/plane-ira.jpg',               imgPos: 'center 40%' },
-  CAX:   { label: 'Commercial Pilot',  short: 'For professional-track pilots.',         color: '#0a3060', img: '/plane-cax-hero.jpg',          imgPos: 'center 35%' },
-  UAG:   { label: 'Part 107 Drone',    short: 'Required to fly drones commercially.',   color: '#064e3b', img: '/drone-part107.webp',          imgPos: 'center 50%' },
-  TRUST: { label: 'TRUST Safety Test', short: 'Required for hobbyist drone flyers.',    color: '#1e3a5f', img: '/drone_image_faa_examinations.jpg', imgPos: 'center 50%' },
-  ATP:   { label: 'Airline Transport', short: 'Required to fly for the airlines.',      color: '#3b2f5e', img: '/plane-atp.jpg',               imgPos: 'center 40%' },
+  PAR:   { label: 'Private Pilot',     short: 'Your first FAA written exam.',           color: '#0B3D91', img: '/card-par.jpg',    imgPos: 'center 30%' },
+  IRA:   { label: 'Instrument Rating', short: 'Required for IFR flying.',               color: '#0e4f8f', img: '/card-ira.jpg',    imgPos: 'center 40%' },
+  CAX:   { label: 'Commercial Pilot',  short: 'For professional-track pilots.',         color: '#0a3060', img: '/card-cax.jpg',    imgPos: 'center 35%' },
+  UAG:   { label: 'Part 107 Drone',    short: 'Required to fly drones commercially.',   color: '#064e3b', img: '/card-uag.webp',   imgPos: 'center 50%' },
+  TRUST: { label: 'TRUST Safety Test', short: 'Required for hobbyist drone flyers.',    color: '#1e3a5f', img: '/card-trust.jpg',  imgPos: 'center 50%' },
+  ATP:   { label: 'Airline Transport', short: 'Required to fly for the airlines.',      color: '#3b2f5e', img: '/card-atp.jpg',    imgPos: 'center 40%' },
 };
 
 export default function ExamList() {
