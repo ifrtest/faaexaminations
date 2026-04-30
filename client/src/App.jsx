@@ -46,7 +46,10 @@ export default function App() {
   const isLanding = ['/', '/par', '/ira', '/cax', '/part-107', '/bundle'].includes(pathname);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Don't override hash-based scrolling (e.g. /par#products)
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
   }, [pathname]);
 
   return (

@@ -25,10 +25,10 @@ const EXAM_PLAN = {
 };
 
 const EXAM_LANDING = {
-  PAR: '/par',
-  IRA: '/ira',
-  CAX: '/cax',
-  UAG: '/part-107',
+  PAR: '/par#products',
+  IRA: '/ira#products',
+  CAX: '/cax#products',
+  UAG: '/part-107#products',
 };
 
 const EXAM_META = {
