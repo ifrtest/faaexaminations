@@ -253,7 +253,7 @@ export default function ExamList() {
 
         {/* LEFT: exam selector */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <div style={{ fontSize: '.72rem', fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 4, paddingLeft: 4 }}>
+          <div style={{ fontSize: '.8rem', fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase', color: '#30ace2', marginBottom: 8, paddingLeft: 2 }}>
             Select a certificate
           </div>
           {allCards.map((e) => {
@@ -276,7 +276,7 @@ export default function ExamList() {
                   transition: 'border-color .15s, box-shadow .15s',
                   overflow: 'hidden',
                   position: 'relative',
-                  height: 90,
+                  height: 130,
                   boxShadow: isActive ? '0 0 0 3px rgba(48,172,226,.25)' : 'none',
                 }}
               >
@@ -290,12 +290,12 @@ export default function ExamList() {
                     transition: 'transform .3s ease',
                   }} />
                 )}
-                {/* dark overlay — stronger when not active */}
+                {/* dark overlay */}
                 <div style={{
                   position: 'absolute', inset: 0,
                   background: isActive
-                    ? 'linear-gradient(90deg, rgba(5,20,45,.82) 0%, rgba(11,40,90,.65) 100%)'
-                    : 'linear-gradient(90deg, rgba(5,15,35,.88) 0%, rgba(5,15,35,.72) 100%)',
+                    ? 'linear-gradient(90deg, rgba(5,20,45,.75) 0%, rgba(11,40,90,.45) 100%)'
+                    : 'linear-gradient(90deg, rgba(5,15,35,.80) 0%, rgba(5,15,35,.55) 100%)',
                   transition: 'background .2s',
                 }} />
 
