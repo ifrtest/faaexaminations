@@ -159,6 +159,7 @@ async function activateSubscription(session) {
         eventId:   capiEventId,
         email:     user.email,
         firstName: user.full_name?.split(' ')[0],
+        userId:    user.id,
       });
     }
   }
@@ -199,6 +200,7 @@ async function activateOneTimePurchase(session) {
         eventId:   capiEventId,
         email:     user.email,
         firstName: user.full_name?.split(' ')[0],
+        userId:    user.id,
       });
     }
   }

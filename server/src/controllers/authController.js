@@ -46,6 +46,7 @@ exports.register = async (req, res, next) => {
       eventId:   leadEventId,
       email:     user.email,
       firstName: user.full_name?.split(' ')[0],
+      userId:    user.id,
       userAgent: req.headers['user-agent'],
     });
     res.status(201).json({ user, token, leadEventId });

@@ -41,8 +41,9 @@ async function sendEvent({ eventName, eventId, userData = {}, customData, eventS
   }
 
   const user_data = { client_user_agent: userAgent || 'Mozilla/5.0' };
-  if (userData.email)     user_data.em = sha256(userData.email);
-  if (userData.firstName) user_data.fn = sha256(userData.firstName);
+  if (userData.email)     user_data.em          = sha256(userData.email);
+  if (userData.firstName) user_data.fn          = sha256(userData.firstName);
+  if (userData.userId)    user_data.external_id = sha256(String(userData.userId));
   if (userData.lastName)  user_data.ln = sha256(userData.lastName);
 
   const payload = {
@@ -66,20 +67,20 @@ async function sendEvent({ eventName, eventId, userData = {}, customData, eventS
   }
 }
 
-exports.capiLead = ({ eventId, email, firstName, userAgent }) =>
+exports.capiLead = ({ eventId, email, firstName, userId, userAgent }) =>
   sendEvent({
     eventName:       'Lead',
     eventId,
-    userData:        { email, firstName },
+    userData:        { email, firstName, userId },
     userAgent,
     eventSourceUrl:  'https://faaexaminations.com/register',
   });
 
-exports.capiPurchase = ({ eventId, email, firstName, value = 24.99, currency = 'USD' }) =>
+exports.capiPurchase = ({ eventId, email, firstName, userId, value = 24.99, currency = 'USD' }) =>
   sendEvent({
     eventName:      'Purchase',
     eventId,
-    userData:       { email, firstName },
+    userData:       { email, firstName, userId },
     customData:     { value, currency },
     eventSourceUrl: 'https://faaexaminations.com/dashboard',
   });
