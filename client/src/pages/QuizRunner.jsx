@@ -6,6 +6,26 @@ import { Spinner } from '../components/ProtectedRoute';
 
 const LETTERS = ['A', 'B', 'C', 'D'];
 
+// Deterministic per-question shuffle so choices appear in a different order
+// each session, but consistently within the same session.
+function seededShuffle(arr, seed) {
+  const result = [...arr];
+  let s = seed >>> 0;
+  for (let i = result.length - 1; i > 0; i--) {
+    s = (Math.imul(s, 1664525) + 1013904223) >>> 0;
+    const j = s % (i + 1);
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
+// Returns an array of original DB letters in display order.
+// E.g. ['C','A','D','B'] means display-A shows choice_c, display-B shows choice_a, etc.
+function getChoiceOrder(questionId, sessionId) {
+  const seed = ((questionId * 31) ^ (sessionId * 17)) >>> 0;
+  return seededShuffle(['A', 'B', 'C', 'D'], seed);
+}
+
 export default function QuizRunner() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -148,11 +168,16 @@ export default function QuizRunner() {
     if (!current || aiLoading) return;
     setAiLoading(true);
     try {
+      const choiceOrder = getChoiceOrder(current.id, session?.id || 0);
       const choices = {};
-      LETTERS.forEach((l) => {
-        const t = current[`choice_${l.toLowerCase()}`];
-        if (t) choices[l] = t;
+      LETTERS.forEach((displayLetter, i) => {
+        const origLetter = choiceOrder[i];
+        const t = current[`choice_${origLetter.toLowerCase()}`];
+        if (t) choices[displayLetter] = t;
       });
+      const displayCorrect = LETTERS[choiceOrder.indexOf(current.correct_answer)];
+      const selectedOrig = answers[current.id] || null;
+      const displaySelected = selectedOrig ? LETTERS[choiceOrder.indexOf(selectedOrig)] : null;
       const res = await fetch('/api/ai/explain', {
         method: 'POST',
         headers: {
@@ -162,8 +187,8 @@ export default function QuizRunner() {
         body: JSON.stringify({
           question:        current.question_text,
           choices,
-          correct_answer:  current.correct_answer,
-          selected_answer: answers[current.id] || null,
+          correct_answer:  displayCorrect,
+          selected_answer: displaySelected,
           explanation:     current.explanation || '',
           topic:           current.topic_name || '',
         }),
@@ -185,8 +210,9 @@ export default function QuizRunner() {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
       if (!current) return;
       if (['1','2','3','4'].includes(e.key)) {
-        const letter = LETTERS[parseInt(e.key, 10) - 1];
-        if (current[`choice_${letter.toLowerCase()}`]) choose(letter);
+        const choiceOrder = getChoiceOrder(current.id, session?.id || 0);
+        const origLetter = choiceOrder[parseInt(e.key, 10) - 1];
+        if (origLetter && current[`choice_${origLetter.toLowerCase()}`]) choose(origLetter);
       }
       else if (e.key === 'ArrowRight' || e.key === 'Enter') go(idx + 1);
       else if (e.key === 'ArrowLeft') go(idx - 1);
@@ -362,34 +388,37 @@ export default function QuizRunner() {
               );
             })()}
 
-            {LETTERS.map((letter) => {
-              const text = current[`choice_${letter.toLowerCase()}`];
-              if (!text) return null;
+            {(() => {
+              const choiceOrder = getChoiceOrder(current.id, session?.id || 0);
+              return LETTERS.map((displayLetter, i) => {
+                const origLetter = choiceOrder[i];
+                const text = current[`choice_${origLetter.toLowerCase()}`];
+                if (!text) return null;
 
-              const selected = answers[current.id] === letter;
-              let className = 'choice';
-              if (selected) className += ' selected';
+                const selected = answers[current.id] === origLetter;
+                let className = 'choice';
+                if (selected) className += ' selected';
 
-              // In study mode after reveal, show correctness
-              if (isRevealed) {
-                if (letter === current.correct_answer) className += ' correct';
-                else if (selected) className += ' wrong';
-              }
+                if (isRevealed) {
+                  if (origLetter === current.correct_answer) className += ' correct';
+                  else if (selected) className += ' wrong';
+                }
 
-              return (
-                <div key={letter} className={className} onClick={() => choose(letter)}>
-                  <div className="letter">{letter}</div>
-                  <div className="text" dangerouslySetInnerHTML={{ __html: text }} />
-                </div>
-              );
-            })}
+                return (
+                  <div key={origLetter} className={className} onClick={() => choose(origLetter)}>
+                    <div className="letter">{displayLetter}</div>
+                    <div className="text" dangerouslySetInnerHTML={{ __html: text }} />
+                  </div>
+                );
+              });
+            })()}
 
             {/* Study mode: reveal / explanation */}
             {isStudyMode && (
               isRevealed ? (
                 <div className="explanation">
                   <div style={{marginBottom:8}}>
-                    <strong>Correct answer:</strong> {current.correct_answer}
+                    <strong>Correct answer:</strong> {LETTERS[getChoiceOrder(current.id, session?.id || 0).indexOf(current.correct_answer)]}
                   </div>
                   <div>
                     <strong>Explanation:</strong>{' '}
