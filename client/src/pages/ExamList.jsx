@@ -25,12 +25,12 @@ const EXAM_PLAN = {
 };
 
 const EXAM_META = {
-  PAR:   { label: 'Private Pilot',        short: 'Your first FAA written exam.',                    color: '#0B3D91' },
-  IRA:   { label: 'Instrument Rating',    short: 'Required for IFR flying.',                        color: '#0e4f8f' },
-  CAX:   { label: 'Commercial Pilot',     short: 'For professional-track pilots.',                  color: '#0a3060' },
-  UAG:   { label: 'Part 107 Drone',       short: 'Required to fly drones commercially.',            color: '#064e3b' },
-  TRUST: { label: 'TRUST Rec. Safety',    short: 'Required for hobbyist drone flyers. Free!',       color: '#1e3a5f' },
-  ATP:   { label: 'Airline Transport',    short: 'Required to fly for the airlines.',               color: '#3b2f5e' },
+  PAR:   { label: 'Private Pilot',     short: 'Your first FAA written exam.',           color: '#0B3D91', img: '/plane-par-desktop.jpg',      imgPos: 'center 30%' },
+  IRA:   { label: 'Instrument Rating', short: 'Required for IFR flying.',               color: '#0e4f8f', img: '/plane-ira.jpg',               imgPos: 'center 40%' },
+  CAX:   { label: 'Commercial Pilot',  short: 'For professional-track pilots.',         color: '#0a3060', img: '/plane-cax-hero.jpg',          imgPos: 'center 35%' },
+  UAG:   { label: 'Part 107 Drone',    short: 'Required to fly drones commercially.',   color: '#064e3b', img: '/drone-part107-hero.jpg',      imgPos: 'center 50%' },
+  TRUST: { label: 'TRUST Safety Test', short: 'Required for hobbyist drone flyers.',    color: '#1e3a5f', img: '/drone-trust.png',             imgPos: 'center 50%' },
+  ATP:   { label: 'Airline Transport', short: 'Required to fly for the airlines.',      color: '#3b2f5e', img: '/plane-atp.jpg',               imgPos: 'center 40%' },
 };
 
 export default function ExamList() {
@@ -269,58 +269,69 @@ export default function ExamList() {
                 tabIndex={e.comingSoon ? -1 : 0}
                 onKeyDown={(ev) => ev.key === 'Enter' && !e.comingSoon && setSelected(e.code)}
                 style={{
-                  background: isActive
-                    ? 'linear-gradient(135deg, #0b2545 0%, #0d3060 100%)'
-                    : 'var(--surface, #1a2535)',
-                  border: `2px solid ${isActive ? '#30ace2' : 'var(--border, #2a3a50)'}`,
                   borderRadius: 12,
-                  padding: '14px 16px',
+                  border: `2px solid ${isActive ? '#30ace2' : 'transparent'}`,
                   cursor: e.comingSoon ? 'default' : 'pointer',
                   opacity: e.comingSoon ? 0.55 : 1,
-                  transition: 'border-color .15s, background .15s',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 14,
+                  transition: 'border-color .15s, box-shadow .15s',
+                  overflow: 'hidden',
                   position: 'relative',
+                  height: 90,
+                  boxShadow: isActive ? '0 0 0 3px rgba(48,172,226,.25)' : 'none',
                 }}
               >
-                {/* colour pill */}
+                {/* background image */}
+                {meta.img && (
+                  <div style={{
+                    position: 'absolute', inset: 0,
+                    backgroundImage: `url(${meta.img})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: meta.imgPos || 'center',
+                    transition: 'transform .3s ease',
+                  }} />
+                )}
+                {/* dark overlay — stronger when not active */}
                 <div style={{
-                  width: 6, height: 38, borderRadius: 99,
-                  background: isActive ? '#30ace2' : (meta.color || '#334155'),
-                  flexShrink: 0,
+                  position: 'absolute', inset: 0,
+                  background: isActive
+                    ? 'linear-gradient(90deg, rgba(5,20,45,.82) 0%, rgba(11,40,90,.65) 100%)'
+                    : 'linear-gradient(90deg, rgba(5,15,35,.88) 0%, rgba(5,15,35,.72) 100%)',
+                  transition: 'background .2s',
                 }} />
 
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
-                    <span style={{
-                      background: isActive ? '#30ace2' : 'var(--navy, #0B3D91)',
-                      color: '#fff', borderRadius: 5, padding: '1px 8px',
-                      fontSize: '.68rem', fontWeight: 700, letterSpacing: '.05em',
-                    }}>{e.code}</span>
-                    {free && (
-                      <span style={{ background: '#16a34a', color: '#fff', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>FREE</span>
-                    )}
-                    {!free && accessible && (
-                      <span style={{ background: '#0d4f1c', color: '#4ade80', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>UNLOCKED</span>
-                    )}
-                    {e.comingSoon && (
-                      <span style={{ background: '#1e293b', color: '#94a3b8', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>COMING SOON</span>
-                    )}
+                {/* content */}
+                <div style={{ position: 'relative', padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 12, height: '100%', boxSizing: 'border-box' }}>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+                      <span style={{
+                        background: isActive ? '#30ace2' : 'rgba(255,255,255,.18)',
+                        color: '#fff', borderRadius: 5, padding: '1px 8px',
+                        fontSize: '.68rem', fontWeight: 700, letterSpacing: '.05em',
+                      }}>{e.code}</span>
+                      {free && (
+                        <span style={{ background: '#16a34a', color: '#fff', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>FREE</span>
+                      )}
+                      {!free && accessible && (
+                        <span style={{ background: 'rgba(74,222,128,.18)', color: '#4ade80', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>UNLOCKED</span>
+                      )}
+                      {e.comingSoon && (
+                        <span style={{ background: 'rgba(255,255,255,.12)', color: '#94a3b8', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>SOON</span>
+                      )}
+                    </div>
+                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '.92rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      {meta.label || e.name}
+                    </div>
+                    <div style={{ fontSize: '.75rem', color: 'rgba(255,255,255,.6)', marginTop: 2 }}>
+                      {e.question_count} questions · {e.passing_score}% to pass
+                    </div>
                   </div>
-                  <div style={{ fontWeight: 700, color: isActive ? '#fff' : 'var(--ink, #e2e8f0)', fontSize: '.9rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                    {meta.label || e.name}
-                  </div>
-                  <div style={{ fontSize: '.78rem', color: isActive ? '#94b8d4' : 'var(--muted)', marginTop: 1 }}>
-                    {e.question_count} questions · {e.time_limit} min · {e.passing_score}% to pass
-                  </div>
-                </div>
 
-                {isActive && (
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-                    <polyline points="9 18 15 12 9 6" />
-                  </svg>
-                )}
+                  {isActive && (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                  )}
+                </div>
               </div>
             );
           })}
