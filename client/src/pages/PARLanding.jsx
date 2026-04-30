@@ -100,31 +100,48 @@ export default function PARLanding() {
       <section className="lp-hero lp-hero-par" style={{ backgroundImage: 'url(/Cesna_faa_examinations.jpg)', backgroundSize: 'cover', backgroundPosition: 'center 10%' }}>
         <div className="lp-hero-bg" style={{ background: 'linear-gradient(135deg,rgba(5,88,102,0.42) 0%,rgba(8,14,20,0.38) 55%,rgba(8,14,20,0.18) 100%)', position: 'absolute', inset: 0 }} />
         <div className="lp-hero-grid" />
-        <div className="lp-hero-content">
-          <div className="lp-hero-badge">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style={{marginRight:5,verticalAlign:'middle'}}><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
-            PRIVATE PILOT · FAA KNOWLEDGE TEST PREP · 2026
+        <div className="lp-hero-split">
+          {/* LEFT — headline + stats */}
+          <div className="lp-hero-content">
+            <div className="lp-hero-badge">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style={{marginRight:5,verticalAlign:'middle'}}><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
+              PRIVATE PILOT · FAA KNOWLEDGE TEST PREP · 2026
+            </div>
+            <h1>Pass Your <span className="lp-accent">Private Pilot</span><br />Written Exam<br />First Try</h1>
+            <p className="lp-hero-sub">
+              1,469 authentic FAA practice questions across all 11 exam topics. Timed simulator, full explanations, and an AI flight instructor — everything you need to walk out of the testing center with a passing score.
+            </p>
+            <div className="lp-hero-btns">
+              <Link to="/register" className="lp-btn-hero">
+                <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
+                Start Free Today
+              </Link>
+              <a href="#includes" className="lp-btn-outline">See What's Included</a>
+            </div>
+            <div className="lp-hero-stats">
+              <div><div className="lp-hs-val">1,469</div><div className="lp-hs-lbl">PAR Questions</div></div>
+              <div><div className="lp-hs-val">11</div><div className="lp-hs-lbl">Study Modules</div></div>
+              <div><div className="lp-hs-val">AI</div><div className="lp-hs-lbl">Instructor Included</div></div>
+              <div><div className="lp-hs-val">70%</div><div className="lp-hs-lbl">Passing Score</div></div>
+            </div>
           </div>
-          <h1>Pass Your <span className="lp-accent">Private Pilot</span><br />Written Exam<br />First Try</h1>
-          <p className="lp-hero-sub">
-            1,469 authentic FAA practice questions across all 11 exam topics. Timed simulator, full explanations, and an AI flight instructor — everything you need to walk out of the testing center with a passing score.
-          </p>
-          <div className="lp-hero-btns">
-            <Link to="/register" className="lp-btn-hero">
-              <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
-              Start Free Today
-            </Link>
-            <a href="#includes" className="lp-btn-outline">See What's Included</a>
-          </div>
-          <div style={{ fontSize: 13, color: 'var(--lp-text3)', marginTop: 14, opacity: 0.8, lineHeight: 2 }}>
-            Free account includes 10 practice questions · No credit card required<br />
-            Full access from $24.99/month · Cancel anytime
-          </div>
-          <div className="lp-hero-stats">
-            <div><div className="lp-hs-val">1,469</div><div className="lp-hs-lbl">PAR Questions</div></div>
-            <div><div className="lp-hs-val">11</div><div className="lp-hs-lbl">Study Modules</div></div>
-            <div><div className="lp-hs-val">AI</div><div className="lp-hs-lbl">Instructor Included</div></div>
-            <div><div className="lp-hs-val">70%</div><div className="lp-hs-lbl">Passing Score</div></div>
+
+          {/* RIGHT — pricing card (desktop only) */}
+          <div className="lp-hero-pricing-card">
+            <div style={{ position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)', background: 'var(--lp-blue)', color: '#fff', padding: '5px 18px', borderRadius: 20, fontSize: 11, fontWeight: 700, fontFamily: 'Share Tech Mono, monospace', letterSpacing: 1, whiteSpace: 'nowrap' }}>MOST STUDENTS PASS IN 2–4 WEEKS</div>
+            <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 18, fontWeight: 700, color: '#fff', marginBottom: 6, textAlign: 'center', marginTop: 8 }}>Private Pilot Package</div>
+            <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 58, fontWeight: 900, color: '#fff', lineHeight: 1, textAlign: 'center' }}>$24.99</div>
+            <div style={{ fontSize: 13, marginBottom: 24, textAlign: 'center', color: 'var(--lp-text3)' }}>per month · cancel anytime</div>
+            <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px' }}>
+              {['1,469 Private Pilot practice questions', '11 categorized study modules', 'Timed FAA exam simulator', 'Full explanations on every question', 'AI flight instructor support', 'All FAA references included', 'Access on any device', 'Cancel anytime — no contracts'].map((item, i) => (
+                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10, color: 'var(--lp-text)', fontSize: 14 }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="12" fill="rgba(48,172,226,0.15)" /><path d="M7 12l4 4 6-6" stroke="#30ace2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <Link to="/register" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Start Free — 10 Questions Now →</Link>
+            <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>No credit card required · Upgrade when you're ready</div>
           </div>
         </div>
       </section>
@@ -336,8 +353,8 @@ export default function PARLanding() {
         </div>
       </section>
 
-      {/* PRICING */}
-      <section style={{ padding: '90px 40px', background: 'rgba(5,88,102,0.10)', borderTop: '1px solid var(--lp-border)', borderBottom: '1px solid var(--lp-border)' }} id="pricing">
+      {/* PRICING — hidden on desktop (card is in hero), shown on mobile only */}
+      <section style={{ padding: '90px 40px', background: 'rgba(5,88,102,0.10)', borderTop: '1px solid var(--lp-border)', borderBottom: '1px solid var(--lp-border)' }} id="pricing" className="lp-pricing-section">
         <div className="lp-section-inner" style={{ textAlign: 'center' }}>
           <div className="lp-badge">PRICING</div>
           <h2>Simple, Honest Pricing</h2>
