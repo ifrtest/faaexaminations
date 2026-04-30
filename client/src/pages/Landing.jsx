@@ -121,7 +121,7 @@ export default function Landing() {
               </div>
               <div className="lp-product-body">
                 <div className="lp-product-name">Private Pilot Package</div>
-                <div className="lp-product-desc">Complete preparation for the FAA Private Pilot Airman Knowledge Test (PAR). 11 modules covering the full FAA syllabus.</div>
+                <div className="lp-product-desc">Complete preparation for the FAA Private Pilot Airman Knowledge Test (PAR). 11 modules covering the full FAA syllabus. <Link to="/par" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
                 <ul className="lp-product-features">
                   <li>1,469 Private Pilot questions</li>
                   <li>11 categorized study modules</li>
@@ -143,7 +143,7 @@ export default function Landing() {
               </div>
               <div className="lp-product-body">
                 <div className="lp-product-name">Instrument Rating Package</div>
-                <div className="lp-product-desc">Complete preparation for the FAA Instrument Rating Airman Knowledge Test (IRA). Master IFR procedures, charts, and regulations.</div>
+                <div className="lp-product-desc">Complete preparation for the FAA Instrument Rating Airman Knowledge Test (IRA). Master IFR procedures, charts, and regulations. <Link to="/ira" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
                 <ul className="lp-product-features">
                   <li>821 Instrument Rating questions</li>
                   <li>Categorized study modules</li>
@@ -165,7 +165,7 @@ export default function Landing() {
               </div>
               <div className="lp-product-body">
                 <div className="lp-product-name">Commercial Pilot Package</div>
-                <div className="lp-product-desc">Targeted prep for the FAA Commercial Pilot Airman Knowledge Test (CAX). 14 CFR regulations, performance, and advanced operations.</div>
+                <div className="lp-product-desc">Targeted prep for the FAA Commercial Pilot Airman Knowledge Test (CAX). 14 CFR regulations, performance, and advanced operations. <Link to="/cax" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
                 <ul className="lp-product-features">
                   <li>536 Commercial Pilot questions</li>
                   <li>11 categorized study modules</li>
@@ -214,7 +214,7 @@ export default function Landing() {
               </div>
               <div className="lp-product-body">
                 <div className="lp-product-name">Part 107 Remote Pilot Package</div>
-                <div className="lp-product-desc">Complete prep for the FAA Part 107 Remote Pilot knowledge test. Drone regulations, airspace, weather, and operations.</div>
+                <div className="lp-product-desc">Complete prep for the FAA Part 107 Remote Pilot knowledge test. Drone regulations, airspace, weather, and operations. <Link to="/part-107" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
                 <ul className="lp-product-features">
                   <li>265 Part 107 practice questions</li>
                   <li>6 categorized study modules</li>
