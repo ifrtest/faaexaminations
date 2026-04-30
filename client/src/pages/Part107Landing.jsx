@@ -305,7 +305,7 @@ export default function Part107Landing() {
               <strong style={{ color: '#f5c842', fontWeight: 800 }}>LIFETIME ACCESS</strong>
             </div>
             <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px' }}>
-              {['265 practice questions', 'Airspace & LAANC coverage', 'Timed FAA exam simulator', 'Full explanations on every question', 'AI instructor support', 'All FAA Part 107 references', 'No aviation experience required', 'Pay once — access forever'].map((item, i) => (
+              {['265 practice questions', 'Airspace & LAANC coverage', 'Timed FAA exam simulator', 'Full explanations on every question', 'AI instructor support', 'All FAA Part 107 references', 'TRUST Recreational Safety Test — free', 'No aviation experience required', 'Pay once — access forever'].map((item, i) => (
                 <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10, color: 'var(--lp-text)', fontSize: 14 }}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="12" fill="rgba(48,172,226,0.15)" /><path d="M7 12l4 4 6-6" stroke="#30ace2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                   {item}
@@ -336,7 +336,7 @@ export default function Part107Landing() {
               <strong style={{ color: '#f5c842', fontWeight: 800 }}>LIFETIME ACCESS</strong>
             </div>
             <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 36px', textAlign: 'left' }}>
-              {['265 practice questions', 'Airspace & LAANC authorization coverage', 'Timed FAA exam simulator', 'Full explanations on every question', 'AI instructor support', 'All FAA Part 107 references included', 'No aviation experience required', 'Pay once — access forever'].map((item, i) => (
+              {['265 practice questions', 'Airspace & LAANC authorization coverage', 'Timed FAA exam simulator', 'Full explanations on every question', 'AI instructor support', 'All FAA Part 107 references included', 'TRUST Recreational Safety Test — free', 'No aviation experience required', 'Pay once — access forever'].map((item, i) => (
                 <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14, color: 'var(--lp-text)', fontSize: 15 }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="12" fill="rgba(48,172,226,0.15)" /><path d="M7 12l4 4 6-6" stroke="#30ace2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                   {item}
@@ -363,6 +363,7 @@ export default function Part107Landing() {
               { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>, title: 'Timed Exam Simulator', desc: "Simulate the real 2-hour, 60-question FAA test. Drill by topic or take full practice exams. Keep going until you're consistently above 80%." },
               { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>, title: 'AI Instructor Support', desc: "Ask anything — from airspace rules to weather interpretation. Our AI explains drone regulations in plain English, not FAA legalese." },
               { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>, title: 'Start Earning Faster', desc: "The sooner you pass, the sooner you can legally charge for shoots. Real estate, weddings, inspections — all require Part 107. We get you there fast." },
+              { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>, title: 'TRUST Test — Included Free', desc: "The FAA TRUST Recreational Safety Test is included at no extra charge. Required for all hobbyist drone flyers — knock it out in under 30 minutes." },
             ].map((item, i) => (
               <div key={i} style={{ background: 'rgba(48,172,226,0.06)', border: '1px solid var(--lp-border)', borderRadius: 14, padding: '32px 28px' }}>
                 <span className="lp-feat-icon" style={{ display: 'block', marginBottom: 16 }}>{item.svg}</span>
