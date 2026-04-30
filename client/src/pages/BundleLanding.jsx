@@ -236,7 +236,7 @@ export default function BundleLanding() {
               <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
               Start Free Today
             </Link>
-            <Link to="/" className="lp-btn-outline" style={{ fontSize: 16 }}>View All Packages</Link>
+            <Link to="/#products" className="lp-btn-outline" style={{ fontSize: 16 }}>View All Packages</Link>
           </div>
         </div>
       </section>
