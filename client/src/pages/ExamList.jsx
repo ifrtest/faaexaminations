@@ -88,10 +88,29 @@ export default function ExamList() {
     setJustPurchased(true);
     const purchasedPlan = params.get('plan');
     const eid = params.get('eid');
+    const sid = params.get('sid');
     const planPrices = { uag: 37.99, bundle: 39.99 };
     const value = planPrices[purchasedPlan] ?? 24.99;
     if (window.fbq) fbq('track', 'Purchase', { value, currency: 'USD' }, eid ? { eventID: eid } : {});
     if (window.gtag) gtag('event', 'purchase', { currency: 'CAD', value });
+    // Verify and grant access directly — webhook fallback
+    if (sid) {
+      fetch('/api/stripe/verify-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('faa_token')}` },
+        body: JSON.stringify({ session_id: sid }),
+      })
+        .then((r) => r.json())
+        .then((d) => {
+          if (d.success) {
+            // Refresh subscription so cards unlock immediately
+            fetch('/api/stripe/subscription', {
+              headers: { Authorization: `Bearer ${localStorage.getItem('faa_token')}` },
+            }).then((r) => r.json()).then((d) => setSubscription(d)).catch(() => {});
+          }
+        })
+        .catch(() => {});
+    }
   }, []); // eslint-disable-line
 
   useEffect(() => {

@@ -60,7 +60,7 @@ router.post('/checkout', requireAuth, async (req, res) => {
       mode: isOneTime ? 'payment' : 'subscription',
       payment_method_types: ['card'],
       line_items: [{ price: priceId, quantity: 1 }],
-      success_url: `${process.env.CLIENT_URL}/exams?subscribed=1&plan=${plan}&eid=${capiEventId}`,
+      success_url: `${process.env.CLIENT_URL}/exams?subscribed=1&plan=${plan}&eid=${capiEventId}&sid={CHECKOUT_SESSION_ID}`,
       cancel_url:  `${process.env.CLIENT_URL}/exams`,
       metadata: { user_id: String(user.id), plan, capi_event_id: capiEventId },
     });
@@ -274,6 +274,32 @@ router.post('/upgrade', requireAuth, async (req, res) => {
   } catch (err) {
     console.error('[stripe/upgrade]', err.message);
     res.status(500).json({ error: 'Could not upgrade subscription.' });
+  }
+});
+
+// POST /api/stripe/verify-checkout
+// Called by client after Stripe redirect — verifies session and grants access directly
+router.post('/verify-checkout', requireAuth, async (req, res) => {
+  const { session_id } = req.body;
+  if (!session_id) return res.status(400).json({ error: 'Missing session_id.' });
+  try {
+    const session = await stripe.checkout.sessions.retrieve(session_id);
+    if (session.payment_status !== 'paid') {
+      return res.status(402).json({ error: 'Payment not completed.' });
+    }
+    // Only process if this session belongs to the logged-in user
+    if (String(session.metadata?.user_id) !== String(req.user.id)) {
+      return res.status(403).json({ error: 'Session mismatch.' });
+    }
+    if (session.mode === 'subscription') {
+      await activateSubscription(session);
+    } else if (session.mode === 'payment') {
+      await activateOneTimePurchase(session);
+    }
+    res.json({ success: true });
+  } catch (err) {
+    console.error('[verify-checkout]', err.message);
+    res.status(500).json({ error: 'Could not verify session.' });
   }
 });
 
