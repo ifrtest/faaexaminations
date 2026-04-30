@@ -35,6 +35,16 @@ export default function AdminUsers() {
     load();
   };
 
+  const deleteUser = async (u) => {
+    if (!window.confirm(`Permanently delete ${u.email}? This cannot be undone.`)) return;
+    try {
+      await usersApi.remove(u.id);
+      load();
+    } catch (ex) {
+      setErr(ex.response?.data?.error || 'Could not delete user.');
+    }
+  };
+
   const pages = Math.max(1, Math.ceil(total / pageSize));
 
   return (
@@ -87,6 +97,11 @@ export default function AdminUsers() {
                     <button className="btn btn-ghost btn-sm" style={{marginLeft:6}} onClick={() => toggleActive(u)}>
                       {u.is_active ? 'Disable' : 'Enable'}
                     </button>
+                    {u.role !== 'admin' && (
+                      <button className="btn btn-ghost btn-sm" style={{marginLeft:6, color:'var(--err, #dc2626)'}} onClick={() => deleteUser(u)}>
+                        Delete
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}

@@ -107,6 +107,22 @@ exports.updateMe = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
+// DELETE /api/users/:id  (admin)
+exports.remove = async (req, res, next) => {
+  try {
+    if (String(req.params.id) === String(req.user.id)) {
+      return res.status(400).json({ error: 'You cannot delete your own account.' });
+    }
+    const { rows } = await db.query('SELECT role FROM users WHERE id=$1', [req.params.id]);
+    if (!rows[0]) return res.status(404).json({ error: 'User not found' });
+    if (rows[0].role === 'admin') {
+      return res.status(400).json({ error: 'Cannot delete admin accounts.' });
+    }
+    await db.query('DELETE FROM users WHERE id=$1', [req.params.id]);
+    res.json({ success: true });
+  } catch (err) { next(err); }
+};
+
 // GET /api/users/admin/stats  (admin dashboard tiles)
 exports.adminStats = async (_req, res, next) => {
   try {
