@@ -50,15 +50,27 @@ function Part107Demo() {
 
   if (!started) {
     return (
-      <section style={{ padding: '90px 40px', background: 'var(--lp-charcoal)', borderTop: '1px solid var(--lp-border)' }}>
+      <section style={{ padding: '72px 40px', background: 'var(--lp-charcoal)', borderTop: '1px solid var(--lp-border)' }}>
         <div className="lp-section-inner" style={{ textAlign: 'center' }}>
-          <div className="lp-badge">TRY IT FREE</div>
-          <h2>Test Yourself — No Account Needed</h2>
-          <p className="lp-section-sub" style={{ margin: '0 auto 40px' }}>5 real Part 107 questions from the FAA question bank. See exactly what you'll be studying.</p>
-          <button onClick={load} disabled={loading} className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 44px', border: 'none', cursor: 'pointer' }}>
-            {loading ? 'Loading…' : '▶  Start 5 Free Questions'}
-          </button>
-          {error && <p style={{ color: '#EF4444', marginTop: 16, fontSize: 14 }}>{error}</p>}
+          <div style={{
+            maxWidth: 620, margin: '0 auto',
+            background: 'linear-gradient(135deg, rgba(48,172,226,0.08) 0%, rgba(8,14,20,0.6) 100%)',
+            border: '2px solid rgba(48,172,226,0.4)',
+            borderRadius: 20, padding: '52px 40px',
+            boxShadow: '0 0 40px rgba(48,172,226,0.1)',
+            position: 'relative',
+          }}>
+            {/* Glow top accent */}
+            <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: '60%', height: 2, background: 'linear-gradient(90deg, transparent, var(--lp-blue), transparent)', borderRadius: 2 }} />
+            <div className="lp-badge" style={{ marginBottom: 20 }}>TRY IT FREE</div>
+            <h2 style={{ margin: '0 0 16px' }}>Test Yourself — No Account Needed</h2>
+            <p className="lp-section-sub" style={{ margin: '0 auto 36px', maxWidth: 420 }}>5 real Part 107 questions from the FAA question bank. See exactly what you'll be studying.</p>
+            <button onClick={load} disabled={loading} className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 44px', border: 'none', cursor: 'pointer' }}>
+              {loading ? 'Loading…' : '▶  Start 5 Free Questions'}
+            </button>
+            {error && <p style={{ color: '#EF4444', marginTop: 16, fontSize: 14 }}>{error}</p>}
+            <div style={{ marginTop: 20, fontSize: 13, color: 'var(--lp-text3)' }}>No sign-up required · Takes about 5 minutes</div>
+          </div>
         </div>
       </section>
     );
