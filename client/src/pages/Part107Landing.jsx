@@ -193,6 +193,10 @@ const FAQS = [
     a: 'No. Part 107 is a separate certificate specifically for drone operators. You don\'t need any existing pilot certificates or flight hours. Anyone 16 or older can take the test.',
   },
   {
+    q: 'Are the practice questions up to date?',
+    a: 'Yes. Our question bank is current for 2026 and reflects the latest FAA Part 107 knowledge test content, including updated airspace rules, LAANC, and drone regulations. We review and update questions whenever the FAA revises the test.',
+  },
+  {
     q: 'Is this a one-time payment?',
     a: 'Yes. $37.99 one time — no subscription, no recurring charges. Pay once and you have lifetime access to the full question bank, timed simulator, and AI instructor.',
   },
