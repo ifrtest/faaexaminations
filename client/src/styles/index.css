@@ -288,6 +288,7 @@ table.data td strong { color: var(--text); }
 .lp-hero-pricing-card-hidden { display: none; }
 .lp-pricing-section { display: none; }
 .lp-hero-par { background-image: url(/plane-par-desktop.jpg) !important; background-position: center 30% !important; }
+.lp-hero-part107 { background-position: center 40% !important; }
 .lp-hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(48,172,226,0.12); border: 1px solid var(--lp-border2); border-radius: 20px; padding: 6px 16px; font-size: 12px; color: var(--lp-cyan); font-family: 'Share Tech Mono', monospace; letter-spacing: .5px; margin-bottom: 28px; }
 .lp-hero h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(38px,6vw,66px); font-weight: 900; line-height: 1.02; color: #fff; margin-bottom: 22px; letter-spacing: -.5px; }
 .lp-accent { color: var(--lp-blue); }
@@ -620,6 +621,7 @@ kbd {
   .lp-hero, .lp-products-bg, .lp-how-bg, .lp-cta-section { padding: 60px 20px; }
   .lp-hero { padding: 90px 20px 50px; min-height: 580px; }
   .lp-hero-par { background-image: url(/Cesna_faa_examinations.jpg) !important; background-position: center -120px !important; }
+  .lp-hero-part107 { background-position: center 40% !important; }
   .lp-hero-split { grid-template-columns: 1fr; }
   .lp-hero-pricing-card { display: none; }
   .lp-pricing-section { display: block; }

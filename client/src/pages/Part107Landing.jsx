@@ -251,7 +251,7 @@ export default function Part107Landing() {
       </nav>
 
       {/* HERO */}
-      <section className="lp-hero" style={{ backgroundImage: 'url(/drone_image_faa_examinations.jpg)', backgroundSize: 'cover', backgroundPosition: 'center center' }}>
+      <section className="lp-hero lp-hero-part107" style={{ backgroundImage: 'url(/drone_image_faa_examinations.jpg)', backgroundSize: 'cover', backgroundPosition: 'center 40%' }}>
         <div className="lp-hero-bg" style={{ background: 'linear-gradient(135deg,rgba(5,88,102,0.42) 0%,rgba(8,14,20,0.38) 55%,rgba(8,14,20,0.18) 100%)', position: 'absolute', inset: 0 }} />
         <div className="lp-hero-grid" />
         <div className="lp-hero-split">
