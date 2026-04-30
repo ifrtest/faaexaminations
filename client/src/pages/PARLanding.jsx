@@ -28,7 +28,7 @@ const FAQS = [
   },
   {
     q: 'Are these the actual FAA questions?',
-    a: 'Yes. Our question bank is built from the FAA\'s published Airman Knowledge Testing question database — the same source the real test draws from. We add full explanations and AI instructor support on top.',
+    a: 'Yes. Our question bank is built from the FAA\'s published Airman Knowledge Testing question database — the same source the real test draws from. The bank is current for 2026 and updated whenever the FAA revises the test. We add full explanations and AI instructor support on top.',
   },
   {
     q: 'Do I need a flight instructor endorsement before taking the written?',
