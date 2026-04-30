@@ -1,6 +1,6 @@
 // client/src/pages/ExamList.jsx
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { quizzes as quizApi } from '../api/client';
 import { Spinner } from '../components/ProtectedRoute';
 
@@ -43,6 +43,8 @@ const EXAM_META = {
 export default function ExamList() {
   const [params] = useSearchParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const autoBuyRef = useRef(location.state?.autoBuy || null);
   const [exams, setExams]       = useState([]);
   const [selected, setSelected] = useState(params.get('exam') || null);
   const [topics, setTopics]     = useState([]);
@@ -79,6 +81,13 @@ export default function ExamList() {
     const exam = exams.find((e) => e.code === selected);
     if (exam) setNumQ(Math.min(exam.num_questions, Number(exam.question_count) || exam.num_questions));
   }, [selected, exams]);
+
+  useEffect(() => {
+    if (!autoBuyRef.current || subscription === null) return;
+    const plan = autoBuyRef.current;
+    autoBuyRef.current = null;
+    startCheckout(plan);
+  }, [subscription]); // eslint-disable-line
 
   const current = exams.find((e) => e.code === selected);
 

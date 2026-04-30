@@ -1,12 +1,14 @@
 // client/src/pages/Register.jsx
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Helmet } from 'react-helmet-async';
 
 export default function Register() {
   const { register } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const plan = searchParams.get('plan');
 
   const [form, setForm] = useState({ full_name: '', email: '', password: '', confirm: '' });
   const [err, setErr] = useState('');
@@ -23,7 +25,8 @@ export default function Register() {
     try {
       const data = await register(form.email, form.password, form.full_name);
       if (window.fbq) fbq('track', 'Lead', {}, data?.leadEventId ? { eventID: data.leadEventId } : {});
-      navigate('/dashboard', { replace: true });
+      if (plan) navigate('/exams', { replace: true, state: { autoBuy: plan } });
+      else navigate('/dashboard', { replace: true });
     } catch (ex) {
       setErr(ex.response?.data?.error || 'Could not create account.');
     } finally {
