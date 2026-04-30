@@ -163,6 +163,31 @@ export default function IRALanding() {
         </div>
       </section>
 
+      {/* PRICING — mobile only (desktop sees hero card) */}
+      <section style={{ padding: '90px 40px', background: 'rgba(5,88,102,0.10)', borderTop: '1px solid var(--lp-border)', borderBottom: '1px solid var(--lp-border)' }} id="pricing" className="lp-pricing-section">
+        <div className="lp-section-inner" style={{ textAlign: 'center' }}>
+          <div className="lp-badge">PRICING</div>
+          <h2>Simple, Honest Pricing</h2>
+          <p className="lp-section-sub" style={{ margin: '0 auto 52px' }}>One price. Everything included. Cancel the moment you pass.</p>
+          <div className="fade-up" style={{ maxWidth: 440, margin: '0 auto', background: 'rgba(48,172,226,0.06)', border: '2px solid var(--lp-border2)', borderRadius: 20, padding: '48px 40px', position: 'relative' }}>
+            <div style={{ position: 'absolute', top: -16, left: '50%', transform: 'translateX(-50%)', background: 'var(--lp-blue)', color: '#fff', padding: '6px 20px', borderRadius: 20, fontSize: 12, fontWeight: 700, fontFamily: 'Share Tech Mono, monospace', letterSpacing: 1, whiteSpace: 'nowrap' }}>MOST STUDENTS PASS IN 3–6 WEEKS</div>
+            <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 8 }}>Instrument Rating Package</div>
+            <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 64, fontWeight: 900, color: '#fff', lineHeight: 1 }}>$24.99</div>
+            <div style={{ color: 'var(--lp-text3)', fontSize: 14, marginBottom: 36 }}>per month · cancel anytime</div>
+            <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 36px', textAlign: 'left' }}>
+              {['821 Instrument Rating practice questions', 'IFR charts & approach plate questions', 'Timed FAA exam simulator', 'Full explanations on every question', 'AI CFII instructor support', 'All FAA IFR references included', 'Access on any device', 'Cancel anytime — no contracts'].map((item, i) => (
+                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14, color: 'var(--lp-text)', fontSize: 15 }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="12" fill="rgba(48,172,226,0.15)" /><path d="M7 12l4 4 6-6" stroke="#30ace2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <Link to="/register" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Start Free — Get 10 Questions Now</Link>
+            <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}>No credit card required to start · Upgrade when you're ready</div>
+          </div>
+        </div>
+      </section>
+
       {/* WHAT'S INCLUDED */}
       <section style={{ padding: '90px 40px', background: 'var(--lp-charcoal)' }} id="includes">
         <div className="lp-section-inner">
@@ -339,31 +364,6 @@ export default function IRALanding() {
                 <div style={{ color: 'var(--lp-text2)', fontSize: 15, lineHeight: 1.7 }}>{s.desc}</div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* PRICING — mobile only (desktop sees hero card) */}
-      <section style={{ padding: '90px 40px', background: 'rgba(5,88,102,0.10)', borderTop: '1px solid var(--lp-border)', borderBottom: '1px solid var(--lp-border)' }} id="pricing" className="lp-pricing-section">
-        <div className="lp-section-inner" style={{ textAlign: 'center' }}>
-          <div className="lp-badge">PRICING</div>
-          <h2>Simple, Honest Pricing</h2>
-          <p className="lp-section-sub" style={{ margin: '0 auto 52px' }}>One price. Everything included. Cancel the moment you pass.</p>
-          <div className="fade-up" style={{ maxWidth: 440, margin: '0 auto', background: 'rgba(48,172,226,0.06)', border: '2px solid var(--lp-border2)', borderRadius: 20, padding: '48px 40px', position: 'relative' }}>
-            <div style={{ position: 'absolute', top: -16, left: '50%', transform: 'translateX(-50%)', background: 'var(--lp-blue)', color: '#fff', padding: '6px 20px', borderRadius: 20, fontSize: 12, fontWeight: 700, fontFamily: 'Share Tech Mono, monospace', letterSpacing: 1, whiteSpace: 'nowrap' }}>MOST STUDENTS PASS IN 3–6 WEEKS</div>
-            <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 8 }}>Instrument Rating Package</div>
-            <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 64, fontWeight: 900, color: '#fff', lineHeight: 1 }}>$24.99</div>
-            <div style={{ color: 'var(--lp-text3)', fontSize: 14, marginBottom: 36 }}>per month · cancel anytime</div>
-            <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 36px', textAlign: 'left' }}>
-              {['821 Instrument Rating practice questions', 'IFR charts & approach plate questions', 'Timed FAA exam simulator', 'Full explanations on every question', 'AI CFII instructor support', 'All FAA IFR references included', 'Access on any device', 'Cancel anytime — no contracts'].map((item, i) => (
-                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14, color: 'var(--lp-text)', fontSize: 15 }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="12" fill="rgba(48,172,226,0.15)" /><path d="M7 12l4 4 6-6" stroke="#30ace2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <Link to="/register" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Start Free — Get 10 Questions Now</Link>
-            <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}>No credit card required to start · Upgrade when you're ready</div>
           </div>
         </div>
       </section>
