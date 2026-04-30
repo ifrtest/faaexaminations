@@ -24,6 +24,13 @@ const EXAM_PLAN = {
   ATP: 'atp',
 };
 
+const EXAM_LANDING = {
+  PAR: '/par',
+  IRA: '/ira',
+  CAX: '/cax',
+  UAG: '/part-107',
+};
+
 const EXAM_META = {
   PAR:   { label: 'Private Pilot',     short: 'Your first FAA written exam.',           color: '#0B3D91', img: '/plane-par-desktop.jpg',      imgPos: 'center 30%' },
   IRA:   { label: 'Instrument Rating', short: 'Required for IFR flying.',               color: '#0e4f8f', img: '/plane-ira.jpg',               imgPos: 'center 40%' },
@@ -269,10 +276,22 @@ export default function ExamList() {
             return (
               <div
                 key={e.code}
-                onClick={() => !e.comingSoon && setSelected(e.code)}
+                onClick={() => {
+                  if (e.comingSoon) return;
+                  if (!accessible && !free) {
+                    // redirect to landing/payment page
+                    navigate(EXAM_LANDING[e.code] || '/exams');
+                  } else {
+                    setSelected(e.code);
+                  }
+                }}
                 role={e.comingSoon ? 'presentation' : 'button'}
                 tabIndex={e.comingSoon ? -1 : 0}
-                onKeyDown={(ev) => ev.key === 'Enter' && !e.comingSoon && setSelected(e.code)}
+                onKeyDown={(ev) => {
+                  if (ev.key !== 'Enter' || e.comingSoon) return;
+                  if (!accessible && !free) navigate(EXAM_LANDING[e.code] || '/exams');
+                  else setSelected(e.code);
+                }}
                 style={{
                   borderRadius: 12,
                   border: `2px solid ${isActive ? '#30ace2' : 'transparent'}`,
@@ -283,24 +302,17 @@ export default function ExamList() {
                   position: 'relative',
                   height: 130,
                   boxShadow: isActive ? '0 0 0 3px rgba(48,172,226,.25)' : 'none',
+                  backgroundImage: meta.img ? `url(${meta.img})` : 'none',
+                  backgroundSize: 'cover',
+                  backgroundPosition: meta.imgPos || 'center',
                 }}
               >
-                {/* background image */}
-                {meta.img && (
-                  <div style={{
-                    position: 'absolute', inset: 0,
-                    backgroundImage: `url(${meta.img})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: meta.imgPos || 'center',
-                    transition: 'transform .3s ease',
-                  }} />
-                )}
                 {/* dark overlay */}
                 <div style={{
                   position: 'absolute', inset: 0,
                   background: isActive
                     ? 'linear-gradient(90deg, rgba(5,20,45,.75) 0%, rgba(11,40,90,.45) 100%)'
-                    : 'linear-gradient(90deg, rgba(5,15,35,.80) 0%, rgba(5,15,35,.55) 100%)',
+                    : 'linear-gradient(90deg, rgba(5,15,35,.82) 0%, rgba(5,15,35,.58) 100%)',
                   transition: 'background .2s',
                 }} />
 
@@ -318,6 +330,9 @@ export default function ExamList() {
                       )}
                       {!free && accessible && (
                         <span style={{ background: 'rgba(74,222,128,.18)', color: '#4ade80', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>UNLOCKED</span>
+                      )}
+                      {!free && !accessible && !e.comingSoon && (
+                        <span style={{ background: 'rgba(255,255,255,.12)', color: '#fbbf24', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>🔒 SUBSCRIBE</span>
                       )}
                       {e.comingSoon && (
                         <span style={{ background: 'rgba(255,255,255,.12)', color: '#94a3b8', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>SOON</span>
