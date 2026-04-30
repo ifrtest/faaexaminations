@@ -32,6 +32,13 @@ export default function Landing() {
   }, []);
 
   useEffect(() => {
+    if (window.location.hash) {
+      const el = document.getElementById(window.location.hash.slice(1));
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100);
+    }
+  }, []);
+
+  useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => entries.forEach((e) => {
         if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
