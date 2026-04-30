@@ -36,7 +36,7 @@ const EXAM_META = {
   IRA:   { label: 'Instrument Rating', short: 'Required for IFR flying.',               color: '#0e4f8f', img: '/card-ira.jpg',    imgPos: 'center 40%' },
   CAX:   { label: 'Commercial Pilot',  short: 'For professional-track pilots.',         color: '#0a3060', img: '/card-cax.jpg',    imgPos: 'center 35%' },
   UAG:   { label: 'Part 107 Drone',    short: 'Required to fly drones commercially.',   color: '#064e3b', img: '/card-uag.webp',   imgPos: 'center 50%' },
-  TRUST: { label: 'TRUST Safety Test', short: 'Required for hobbyist drone flyers.',    color: '#1e3a5f', img: '/card-trust.jpg',  imgPos: 'center 50%' },
+  TRUST: { label: 'TRUST Safety Test', short: 'Required for hobbyist drone flyers.',    color: '#1e3a5f', img: '/card-trust.jpg',  imgPos: 'center 60%' },
   ATP:   { label: 'Airline Transport', short: 'Required to fly for the airlines.',      color: '#3b2f5e', img: '/card-atp.jpg',    imgPos: 'center 40%' },
 };
 
