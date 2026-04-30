@@ -115,8 +115,9 @@ export default function ExamList() {
   const startCheckout = async (plan) => {
     setCheckoutLoading(true);
     try {
-      const alreadySubscribed = subscription?.status === 'active';
-      if (alreadySubscribed) {
+      // UAG is a one-time purchase with no stripe_subscription_id — can't use upgrade path
+      const hasActiveSubscription = subscription?.status === 'active' && subscription?.plan !== 'uag';
+      if (hasActiveSubscription) {
         const res = await fetch('/api/stripe/upgrade', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('faa_token')}` },
