@@ -77,7 +77,7 @@ function shell(headline, bodyHtml, userId, bannerUrl = null) {
   const banner = bannerUrl
     ? `<img src="${bannerUrl}" alt="" width="560" style="display:block;width:100%;max-height:200px;object-fit:cover;object-position:center" />`
     : '';
-  return `
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body>
   <div style="background:${BG};padding:32px 16px;font-family:${FONT};color:${TEXT}">
     <div style="max-width:560px;margin:0 auto;background:${PANEL};border:1px solid ${BORDER};border-radius:14px;overflow:hidden">
       <div style="background:linear-gradient(135deg, #0b1622 0%, #132231 100%);padding:24px 32px;border-bottom:1px solid ${BORDER};display:flex;align-items:center;gap:16px">
@@ -102,7 +102,7 @@ function shell(headline, bodyHtml, userId, bannerUrl = null) {
         ${unsubLink ? `<div style="color:${MUTED};font-size:12px">${unsubLink} from marketing emails · <a href="mailto:support@faaexaminations.com" style="color:${MUTED};text-decoration:underline">Contact support</a></div>` : ''}
       </div>
     </div>
-  </div>`;
+  </div></body></html>`;
 }
 
 function button(href, label) {
