@@ -1,4 +1,5 @@
 // client/src/App.jsx
+import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -43,6 +44,10 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 export default function App() {
   const { pathname } = useLocation();
   const isLanding = ['/', '/par', '/ira', '/cax', '/part-107', '/bundle'].includes(pathname);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <div className="app-shell">
