@@ -242,30 +242,51 @@ export default function Part107Landing() {
       <section className="lp-hero" style={{ backgroundImage: 'url(/part-107-drone-license-faa-remote-pilot.jpg)', backgroundSize: 'cover', backgroundPosition: 'center center' }}>
         <div className="lp-hero-bg" style={{ background: 'linear-gradient(135deg,rgba(5,88,102,0.42) 0%,rgba(8,14,20,0.38) 55%,rgba(8,14,20,0.18) 100%)', position: 'absolute', inset: 0 }} />
         <div className="lp-hero-grid" />
-        <div className="lp-hero-content">
-          <div className="lp-hero-badge">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style={{marginRight:5,verticalAlign:'middle'}}><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
-            PART 107 · FAA REMOTE PILOT CERTIFICATION · 2026
+        <div className="lp-hero-split">
+          {/* LEFT — headline + stats */}
+          <div className="lp-hero-content">
+            <div className="lp-hero-badge">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style={{marginRight:5,verticalAlign:'middle'}}><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
+              PART 107 · FAA REMOTE PILOT CERTIFICATION · 2026
+            </div>
+            <h1>Get <span className="lp-accent">Licensed</span> to Fly<br />Your Drone<br />Commercially</h1>
+            <p className="lp-hero-sub">
+              One FAA exam stands between you and legal paid drone work. Practice questions, timed simulator, and AI support — everything you need to pass Part 107 in 2–3 weeks.
+            </p>
+            <div className="lp-hero-btns">
+              <Link to="/register" className="lp-btn-hero">
+                <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
+                Start Free Today
+              </Link>
+              <a href="#includes" className="lp-btn-outline">See What's Included</a>
+            </div>
+            <div className="lp-hero-stats">
+              <div><div className="lp-hs-val">265</div><div className="lp-hs-lbl">Practice Questions</div></div>
+              <div><div className="lp-hs-val">2–3</div><div className="lp-hs-lbl">Weeks to Pass</div></div>
+              <div><div className="lp-hs-val">AI</div><div className="lp-hs-lbl">Instructor Included</div></div>
+              <div><div className="lp-hs-val">NONE</div><div className="lp-hs-lbl">Prior Experience Needed</div></div>
+            </div>
           </div>
-          <h1>Get <span className="lp-accent">Licensed</span> to Fly<br />Your Drone<br />Commercially</h1>
-          <p className="lp-hero-sub">
-            One FAA exam stands between you and legal paid drone work. Practice questions, timed simulator, and AI support — everything you need to pass Part 107 in 2–3 weeks.
-          </p>
-          <div className="lp-hero-btns">
-            <Link to="/register" className="lp-btn-hero">
-              <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
-              Start Free Today
-            </Link>
-            <a href="#includes" className="lp-btn-outline">See What's Included</a>
-          </div>
-          <div style={{ fontSize: 16, color: '#fff', marginTop: 18, lineHeight: 2, letterSpacing: 0.3 }}>
-            265 practice questions &nbsp;·&nbsp; $37.99 one-time &nbsp;·&nbsp; <strong style={{ color: '#f5c842', fontSize: 17, fontWeight: 800, letterSpacing: 0.5 }}>✦ LIFETIME ACCESS</strong>
-          </div>
-          <div className="lp-hero-stats">
-            <div><div className="lp-hs-val">265</div><div className="lp-hs-lbl">Practice Questions</div></div>
-            <div><div className="lp-hs-val">2–3</div><div className="lp-hs-lbl">Weeks to Pass</div></div>
-            <div><div className="lp-hs-val">AI</div><div className="lp-hs-lbl">Instructor Included</div></div>
-            <div><div className="lp-hs-val">NONE</div><div className="lp-hs-lbl">Prior Experience Needed</div></div>
+
+          {/* RIGHT — pricing card (desktop only, hidden on mobile via CSS) */}
+          <div className="lp-hero-pricing-card">
+            <div style={{ position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)', background: 'var(--lp-blue)', color: '#fff', padding: '5px 18px', borderRadius: 20, fontSize: 11, fontWeight: 700, fontFamily: 'Share Tech Mono, monospace', letterSpacing: 1, whiteSpace: 'nowrap' }}>MOST STUDENTS PASS IN 2–3 WEEKS</div>
+            <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 18, fontWeight: 700, color: '#fff', marginBottom: 6, textAlign: 'center', marginTop: 8 }}>Part 107 Package</div>
+            <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 58, fontWeight: 900, color: '#fff', lineHeight: 1, textAlign: 'center' }}>$37.99</div>
+            <div style={{ fontSize: 13, marginBottom: 24, textAlign: 'center' }}>
+              <span style={{ color: 'var(--lp-text3)' }}>one-time · </span>
+              <strong style={{ color: '#f5c842', fontWeight: 800 }}>LIFETIME ACCESS</strong>
+            </div>
+            <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px' }}>
+              {['265 practice questions', 'Airspace & LAANC coverage', 'Timed FAA exam simulator', 'Full explanations on every question', 'AI instructor support', 'All FAA Part 107 references', 'No aviation experience required', 'Pay once — access forever'].map((item, i) => (
+                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10, color: 'var(--lp-text)', fontSize: 14 }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="12" fill="rgba(48,172,226,0.15)" /><path d="M7 12l4 4 6-6" stroke="#30ace2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <Link to="/register" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Get Full Access — $37.99 →</Link>
+            <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>Try the free demo below · Pay once, keep access forever</div>
           </div>
         </div>
       </section>
