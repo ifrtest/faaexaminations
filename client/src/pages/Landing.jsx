@@ -78,7 +78,7 @@ export default function Landing() {
       <section className="lp-hero">
         <div className="lp-hero-bg">
           {HERO_IMAGES.map((src, i) => (
-            <img key={src} src={loadedIdx.has(i) ? src : undefined} alt="" style={{ opacity: i === heroIdx ? 0.75 : 0 }} />
+            <img key={src} src={src} alt="" loading={i === 0 ? 'eager' : 'lazy'} style={{ opacity: i === heroIdx ? 0.75 : 0 }} />
           ))}
         </div>
         <div className="lp-hero-grid" />
