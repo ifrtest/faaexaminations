@@ -110,12 +110,20 @@ function welcomeEmail(name, userId) {
 }
 
 function subscriptionEmail(name, plan, userId) {
-  const planNames = { par: 'Private Pilot (PAR)', ira: 'Instrument Rating (IRA)', cax: 'Commercial Pilot (CAX)', bundle: 'All 3 Exams Bundle' };
-  return shell('Subscription Confirmed ✅', `
+  const planNames = { par: 'Private Pilot (PAR)', ira: 'Instrument Rating (IRA)', cax: 'Commercial Pilot (CAX)', bundle: 'All 3 Exams Bundle', uag: 'Part 107 Remote Pilot' };
+  const isOneTime = plan === 'uag';
+  const headline = isOneTime ? 'Purchase Confirmed ✅' : 'Subscription Confirmed ✅';
+  const footer = isOneTime
+    ? `This is a one-time payment — your access never expires. Questions? Reply to this email.`
+    : `Manage or cancel your subscription anytime at <a href="${SITE()}/cancel-policy" style="color:${ACCENT};text-decoration:none">${SITE()}/cancel-policy</a>`;
+  const intro = isOneTime
+    ? `Your Part 107 package is unlocked. This is a <strong style="color:${ACCENT}">one-time payment</strong> — you have lifetime access to all 265 practice questions, timed simulator, and AI Instructor support. No subscription, no renewals.`
+    : `You're now subscribed to <strong style="color:${ACCENT}">${planNames[plan] || plan}</strong>. Full access is unlocked: all practice exams, timed simulations, and AI Instructor support.`;
+  return shell(headline, `
     <p style="margin:0 0 12px">Hi ${name},</p>
-    <p style="margin:0 0 16px">You're now subscribed to <strong style="color:${ACCENT}">${planNames[plan] || plan}</strong>. Full access is unlocked: all practice exams, timed simulations, and AI Instructor support.</p>
+    <p style="margin:0 0 16px">${intro}</p>
     ${button(`${SITE()}/exams`, 'Start Your Exam →')}
-    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Manage or cancel your subscription anytime at <a href="${SITE()}/cancel-policy" style="color:${ACCENT};text-decoration:none">${SITE()}/cancel-policy</a></p>
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">${footer}</p>
   `, userId);
 }
 
@@ -144,20 +152,25 @@ function passwordResetEmail(name, resetUrl, userId) {
 function nurtureDay3(name, userId) {
   return shell('What the FAA actually tests you on ✈', `
     <p style="margin:0 0 12px">Hi ${name},</p>
-    <p style="margin:0 0 16px">You created your FAAExaminations.com account a few days ago. Here's something useful while you're getting started.</p>
-    <p style="margin:0 0 8px;font-weight:700;color:#fff">The FAA written exam is 60 questions. You need a 70% to pass.</p>
-    <p style="margin:0 0 16px;color:${MUTED}">But the questions aren't random — the FAA tests specific topics in specific proportions. Private Pilot (PAR) covers 11 subject areas, from regulations to weather to navigation. The pilots who fail aren't underprepared overall — they have one or two weak areas that drag them below 70%.</p>
-    <p style="margin:0 0 8px;font-weight:700;color:#fff">That's what our platform is built around.</p>
-    <p style="margin:0 0 20px">Every question is organized by topic. Your dashboard tracks your score per category so you can see exactly where you're strong and where you need work — before you sit the real exam.</p>
-    ${button(`${SITE()}/exams`, 'See Your Practice Questions →')}
-    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Your free account includes 10 Private Pilot questions to get started. Full access from $24.99/month.</p>
+    <p style="margin:0 0 16px">You created your FAAExaminations.com account a few days ago. Here's a quick breakdown of what you're actually preparing for — because every FAA exam is a bit different.</p>
+
+    <p style="margin:0 0 6px;font-weight:700;color:#fff">✈ &nbsp;Student pilot (Private, Instrument, or Commercial)?</p>
+    <p style="margin:0 0 16px;color:${MUTED}">The PAR, IRA, and CAX knowledge tests are each 60 questions drawn from a large question bank. You need 70% to pass. The FAA tests specific topics in fixed proportions — pilots who fail usually have one or two weak areas, not an overall knowledge problem. Our platform shows you exactly where you stand by topic so you can fix the gaps before exam day.</p>
+
+    <p style="margin:0 0 6px;font-weight:700;color:#fff">🚁 &nbsp;Drone pilot (Part 107)?</p>
+    <p style="margin:0 0 16px;color:${MUTED}">The Part 107 Remote Pilot knowledge test is also 60 questions — 70% to pass. It covers airspace, weather, regulations, and safety. No aviation background required. Most people pass in 2–3 weeks of focused study. Our 265-question bank covers the entire FAA question pool.</p>
+
+    <p style="margin:0 0 8px;font-weight:700;color:#fff">Either way, the approach is the same.</p>
+    <p style="margin:0 0 20px">Practice by topic, track your scores, and run timed mock exams once you're scoring above 80%. Your dashboard shows readiness by category — so you're never guessing where to focus.</p>
+    ${button(`${SITE()}/exams`, 'Start Practising →')}
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Free account includes 10 Private Pilot sample questions &amp; the full TRUST recreational drone test.</p>
   `, userId);
 }
 
 function nurtureDay7(name, userId) {
-  return shell('How pilots pass the FAA written first try', `
+  return shell('How to pass your FAA exam first try', `
     <p style="margin:0 0 12px">Hi ${name},</p>
-    <p style="margin:0 0 16px">The pilots who pass the FAA written first try have one thing in common: they didn't just read the handbook. They practiced under exam conditions.</p>
+    <p style="margin:0 0 16px">Whether you're going for your Private Pilot certificate or your Part 107 drone licence — the people who pass first try have one thing in common: they didn't just read the handbook. They practiced under exam conditions.</p>
     <p style="margin:0 0 8px;font-weight:700;color:#fff">Here's what actually works:</p>
     <ul style="margin:0 0 20px;padding-left:20px;color:${MUTED};line-height:2">
       <li>Work through questions by topic first — not in random order</li>
@@ -165,25 +178,51 @@ function nurtureDay7(name, userId) {
       <li>Run timed practice exams once your topic scores are above 80%</li>
       <li>Focus extra time on your weakest two or three categories</li>
     </ul>
-    <p style="margin:0 0 20px">FAAExaminations.com is built around that exact workflow — 3,000+ questions organized by topic, full explanations, a timed exam simulator, and an AI Instructor for anything that doesn't click.</p>
-    ${button(`${SITE()}/exams`, 'Start Practicing →')}
-    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">PAR · IRA · CAX from $24.99/month · Part 107 $37.99 one-time · Lifetime access.</p>
+    <p style="margin:0 0 20px">FAAExaminations.com is built around that exact workflow — questions organized by topic, full explanations on every answer, a timed exam simulator, and an AI Instructor for anything that doesn't click.</p>
+    ${button(`${SITE()}/exams`, 'Start Practising →')}
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">PAR · IRA · CAX from $24.99/month &nbsp;·&nbsp; Part 107 $37.99 one-time lifetime access.</p>
   `, userId);
 }
 
 function nurtureDay14(name, userId) {
-  return shell('Still studying for your FAA written?', `
+  return shell('Ready to unlock full access?', `
     <p style="margin:0 0 12px">Hi ${name},</p>
-    <p style="margin:0 0 16px">You signed up two weeks ago. If you're still in study mode — or about to get serious — this is a good time to unlock the full question bank.</p>
-    <p style="margin:0 0 8px;font-weight:700;color:#fff">What you get with a full subscription:</p>
+    <p style="margin:0 0 16px">You signed up two weeks ago. If you're getting serious about your exam — here's exactly what you get with full access.</p>
+    <p style="margin:0 0 8px;font-weight:700;color:#fff">Every package includes:</p>
     <ul style="margin:0 0 20px;padding-left:20px;color:${MUTED};line-height:2">
-      <li>Complete question bank for your exam (PAR: 1,469 questions · IRA: 821 · CAX: 536)</li>
+      <li>Complete question bank for your exam</li>
       <li>All study modules organized by FAA topic</li>
-      <li>Timed exam simulator — 60 questions, real pass/fail scoring</li>
+      <li>Timed exam simulator — real pass/fail scoring</li>
       <li>AI Instructor for any question you want explained</li>
       <li>Progress dashboard showing readiness by category</li>
     </ul>
-    <p style="margin:0 0 20px">$24.99/month. Cancel anytime from your account — no questions asked.</p>
+    <table style="width:100%;border-collapse:collapse;margin:0 0 24px">
+      <tr style="border-bottom:1px solid ${BORDER}">
+        <td style="padding:10px 0;font-weight:700;color:#fff">Private Pilot (PAR)</td>
+        <td style="padding:10px 0;color:${MUTED};font-size:.88rem">1,469 questions</td>
+        <td style="padding:10px 0;text-align:right;font-weight:700;color:${ACCENT}">$24.99/mo</td>
+      </tr>
+      <tr style="border-bottom:1px solid ${BORDER}">
+        <td style="padding:10px 0;font-weight:700;color:#fff">Instrument Rating (IRA)</td>
+        <td style="padding:10px 0;color:${MUTED};font-size:.88rem">821 questions</td>
+        <td style="padding:10px 0;text-align:right;font-weight:700;color:${ACCENT}">$24.99/mo</td>
+      </tr>
+      <tr style="border-bottom:1px solid ${BORDER}">
+        <td style="padding:10px 0;font-weight:700;color:#fff">Commercial Pilot (CAX)</td>
+        <td style="padding:10px 0;color:${MUTED};font-size:.88rem">536 questions</td>
+        <td style="padding:10px 0;text-align:right;font-weight:700;color:${ACCENT}">$24.99/mo</td>
+      </tr>
+      <tr style="border-bottom:1px solid ${BORDER}">
+        <td style="padding:10px 0;font-weight:700;color:#fff">PAR + IRA + CAX Bundle</td>
+        <td style="padding:10px 0;color:${MUTED};font-size:.88rem">2,826 questions</td>
+        <td style="padding:10px 0;text-align:right;font-weight:700;color:${ACCENT}">$39.99/mo</td>
+      </tr>
+      <tr>
+        <td style="padding:10px 0;font-weight:700;color:#fff">Part 107 Drone Licence</td>
+        <td style="padding:10px 0;color:${MUTED};font-size:.88rem">265 questions</td>
+        <td style="padding:10px 0;text-align:right;font-weight:700;color:#f5c842">$37.99 one-time</td>
+      </tr>
+    </table>
     ${button(`${SITE()}/exams`, 'Unlock Full Access →')}
     <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Questions? Reply to this email — we read every one.</p>
   `, userId);
