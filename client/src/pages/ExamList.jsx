@@ -289,7 +289,12 @@ export default function ExamList() {
                 onClick={() => {
                   if (e.comingSoon) return;
                   if (!accessible && !free) {
-                    navigate(EXAM_LANDING[e.code] || '/exams');
+                    const loggedIn = !!localStorage.getItem('faa_token');
+                    if (loggedIn && EXAM_PLAN[e.code]) {
+                      startCheckout(EXAM_PLAN[e.code]);
+                    } else {
+                      navigate(EXAM_LANDING[e.code] || '/exams');
+                    }
                   } else {
                     setSelected(e.code);
                     // on mobile, scroll to config panel after a short delay
