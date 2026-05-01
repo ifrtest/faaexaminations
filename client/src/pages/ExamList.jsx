@@ -254,13 +254,22 @@ export default function ExamList() {
             <div style={{ color: '#fff', fontWeight: 700, fontSize: '.95rem', marginBottom: 3 }}>You're on a free account</div>
             <div style={{ color: '#94b8d4', fontSize: '.88rem' }}>Unlock all questions, the timed simulator, and AI Instructor — from $24.99/month.</div>
           </div>
-          <button
-            className="btn btn-primary"
-            style={{ whiteSpace: 'nowrap', flexShrink: 0 }}
-            onClick={() => startCheckout('par')}
-            disabled={checkoutLoading}>
-            {checkoutLoading ? 'Loading…' : 'Subscribe from $24.99/month →'}
-          </button>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'flex-end', flexShrink: 0 }}>
+            <button
+              className="btn btn-primary"
+              style={{ whiteSpace: 'nowrap' }}
+              onClick={() => startCheckout('par')}
+              disabled={checkoutLoading}>
+              {checkoutLoading ? 'Loading…' : 'Subscribe from $24.99/month →'}
+            </button>
+            <button
+              className="btn btn-ghost"
+              style={{ whiteSpace: 'nowrap', fontSize: '.82rem', padding: '6px 14px' }}
+              onClick={startDemo}
+              disabled={starting}>
+              {starting ? 'Loading…' : 'Try 10 free PAR questions →'}
+            </button>
+          </div>
         </div>
       )}
 
