@@ -296,12 +296,47 @@ function bundleUpsellEmail(name, currentPlan, userId) {
   `, userId);
 }
 
+function trialStartEmail(name, plan, trialEnd, userId) {
+  const planNames = { par: 'Private Pilot (PAR)', ira: 'Instrument Rating (IRA)', cax: 'Commercial Pilot (CAX)', bundle: 'All 3 Exams Bundle' };
+  const planLabel = planNames[plan] || plan;
+  const endDate = trialEnd.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+  return shell('Your 3-day free trial has started ✅', `
+    <p style="margin:0 0 12px">Hi ${name},</p>
+    <p style="margin:0 0 16px">You have <strong style="color:${ACCENT}">full access</strong> to <strong style="color:${ACCENT}">${planLabel}</strong> — all questions, the timed simulator, and AI Instructor — completely free until <strong style="color:#fff">${endDate}</strong>.</p>
+    <p style="margin:0 0 16px;color:${MUTED}">After your trial, your card will be charged automatically. Cancel anytime before ${endDate} and you won't be charged a cent.</p>
+    ${button(`${SITE()}/exams`, 'Start Practising →')}
+    <p style="margin:24px 0 0;font-weight:700;color:#fff">What to study first</p>
+    <ul style="margin:8px 0 20px;padding-left:20px;color:${MUTED};line-height:2">
+      <li>Start with the topic modules to find your weak areas</li>
+      <li>Use explanations on every question — that's where the learning happens</li>
+      <li>Run a timed mock exam before your trial ends so you know where you stand</li>
+    </ul>
+    <p style="color:${MUTED};font-size:13px;margin:0">Cancel from your account dashboard in one click — no emails, no calls, no hassle. Questions? Reply here.</p>
+  `, userId, `${SITE()}/email-banner-plane.jpg`);
+}
+
+function trialEndingEmail(name, plan, trialEnd, userId) {
+  const planNames = { par: 'Private Pilot (PAR)', ira: 'Instrument Rating (IRA)', cax: 'Commercial Pilot (CAX)', bundle: 'All 3 Exams Bundle' };
+  const planLabel = planNames[plan] || plan;
+  const endDate = trialEnd.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+  return shell('Your free trial ends in 3 days', `
+    <p style="margin:0 0 12px">Hi ${name},</p>
+    <p style="margin:0 0 16px">Your free trial for <strong style="color:${ACCENT}">${planLabel}</strong> ends on <strong style="color:#fff">${endDate}</strong>. After that, your subscription starts automatically.</p>
+    <p style="margin:0 0 20px">If you want to keep access, you don't need to do anything — you're all set.</p>
+    ${button(`${SITE()}/exams`, 'Keep Studying →')}
+    <p style="margin:24px 0 8px;color:${MUTED};font-size:13px">Not ready to subscribe? Cancel before ${endDate} and you won't be charged. Cancel from your account dashboard in one click.</p>
+    <p style="color:${MUTED};font-size:13px;margin:0">Questions? Reply to this email — we read every one.</p>
+  `, userId, `${SITE()}/email-banner-plane.jpg`);
+}
+
 module.exports = {
   sendEmail,
   welcomeEmail,
   subscriptionEmail,
   cancellationEmail,
   passwordResetEmail,
+  trialStartEmail,
+  trialEndingEmail,
   nurtureDay3,
   nurtureDay7,
   nurtureDay14,

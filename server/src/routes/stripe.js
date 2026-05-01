@@ -4,7 +4,7 @@ const express = require('express');
 const Stripe  = require('stripe');
 const db      = require('../config/db');
 const { requireAuth } = require('../middleware/auth');
-const { sendEmail, subscriptionEmail, cancellationEmail } = require('../utils/email');
+const { sendEmail, subscriptionEmail, cancellationEmail, trialStartEmail, trialEndingEmail } = require('../utils/email');
 const { capiPurchase } = require('../utils/metaCapi');
 
 const router = express.Router();
@@ -60,6 +60,7 @@ router.post('/checkout', requireAuth, async (req, res) => {
       mode: isOneTime ? 'payment' : 'subscription',
       payment_method_types: ['card'],
       line_items: [{ price: priceId, quantity: 1 }],
+      ...(isOneTime ? {} : { subscription_data: { trial_period_days: 3 } }),
       success_url: `${process.env.CLIENT_URL}/exams?subscribed=1&plan=${plan}&eid=${capiEventId}&sid={CHECKOUT_SESSION_ID}`,
       cancel_url:  `${process.env.CLIENT_URL}/exams`,
       metadata: { user_id: String(user.id), plan, capi_event_id: capiEventId },
@@ -105,6 +106,25 @@ router.post('/webhook', async (req, res) => {
         await deactivateSubscription(sub.customer);
         break;
       }
+      case 'customer.subscription.trial_will_end': {
+        const sub = event.data.object;
+        const userRes = await db.query(
+          'SELECT id, email, full_name, subscription FROM users WHERE stripe_customer_id = $1',
+          [sub.customer]
+        );
+        const user = userRes.rows[0];
+        if (user) {
+          const trialEnd = new Date(sub.trial_end * 1000);
+          sendEmail({
+            to: user.email,
+            subject: 'Your free trial ends in 3 days — here\'s what happens next',
+            html: trialEndingEmail(user.full_name || user.email.split('@')[0], user.subscription, trialEnd, user.id),
+            userId: user.id,
+            allowUnsubscribed: true,
+          });
+        }
+        break;
+      }
       case 'invoice.payment_failed': {
         const invoice = event.data.object;
         await db.query(
@@ -132,9 +152,14 @@ async function activateSubscription(session) {
   if (subscriptionId) {
     sub = await stripe.subscriptions.retrieve(subscriptionId);
   } else {
-    const list = await stripe.subscriptions.list({ customer: customerId, limit: 1, status: 'active' });
+    // Check active first, then trialing (new trial users won't be active yet)
+    let list = await stripe.subscriptions.list({ customer: customerId, limit: 1, status: 'active' });
     sub = list.data[0];
-    if (!sub) throw new Error('No active subscription found for customer ' + customerId);
+    if (!sub) {
+      list = await stripe.subscriptions.list({ customer: customerId, limit: 1, status: 'trialing' });
+      sub = list.data[0];
+    }
+    if (!sub) throw new Error('No active or trialing subscription found for customer ' + customerId);
   }
 
   const priceId  = sub.items.data[0].price.id;
@@ -162,12 +187,12 @@ async function activateSubscription(session) {
     `UPDATE users SET
        stripe_subscription_id = $1,
        stripe_customer_id     = COALESCE(stripe_customer_id, $6),
-       subscription_status    = 'active',
+       subscription_status    = $7,
        subscription_price_id  = $2,
        subscription_ends_at   = $3,
        subscription           = $4
      WHERE ${whereClause}`,
-    [sub.id, priceId, endsAt, planName, whereValue, customerId]
+    [sub.id, priceId, endsAt, planName, whereValue, customerId, sub.status]
   );
   console.log(`[activateSubscription] updated user ${whereValue} plan=${priceId}`);
 
@@ -179,13 +204,24 @@ async function activateSubscription(session) {
   const user = userRes.rows[0];
   if (user) {
     const plan = getPlanName(priceId);
-    sendEmail({
-      to: user.email,
-      subject: 'Your FAAExaminations.com Subscription is Active ✅',
-      html: subscriptionEmail(user.full_name || user.email.split('@')[0], plan, user.id),
-      userId: user.id,
-      allowUnsubscribed: true,
-    });
+    if (sub.status === 'trialing') {
+      const trialEnd = new Date(sub.trial_end * 1000);
+      sendEmail({
+        to: user.email,
+        subject: 'Your 3-day free trial has started ✅',
+        html: trialStartEmail(user.full_name || user.email.split('@')[0], plan, trialEnd, user.id),
+        userId: user.id,
+        allowUnsubscribed: true,
+      });
+    } else {
+      sendEmail({
+        to: user.email,
+        subject: 'Your FAAExaminations.com Subscription is Active ✅',
+        html: subscriptionEmail(user.full_name || user.email.split('@')[0], plan, user.id),
+        userId: user.id,
+        allowUnsubscribed: true,
+      });
+    }
     // Fire CAPI Purchase — server-side so iOS-blocked browsers still report conversions
     if (capiEventId) {
       capiPurchase({
@@ -330,7 +366,8 @@ router.post('/verify-checkout', async (req, res) => {
   try {
     const session = await stripe.checkout.sessions.retrieve(session_id);
     console.log(`[verify-checkout] payment_status=${session.payment_status} mode=${session.mode} meta_user=${session.metadata?.user_id}`);
-    if (session.payment_status !== 'paid') {
+    // 'no_payment_required' is returned for free trials (card on file, no charge yet)
+    if (session.payment_status !== 'paid' && session.payment_status !== 'no_payment_required') {
       return res.status(402).json({ error: 'Payment not completed.', payment_status: session.payment_status });
     }
     if (!session.metadata?.user_id) {

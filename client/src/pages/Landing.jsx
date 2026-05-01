@@ -93,7 +93,7 @@ export default function Landing() {
             <a href="#products" className="lp-btn-outline">View Packages</a>
           </div>
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', marginTop: 14, lineHeight: 2 }}>
-            No credit card required · Plans from $24.99/month · Cancel the day you pass
+            3-day free trial on all plans · Card required · Cancel anytime
           </div>
           <div className="lp-hero-stats">
             <div><div className="lp-hs-val">3,000+</div><div className="lp-hs-lbl">Practice Questions</div></div>
@@ -129,7 +129,7 @@ export default function Landing() {
                   <li>FAA compliant · 2026 updated</li>
                 </ul>
                 <div className="lp-product-price">$24.99</div>
-                <div className="lp-product-price-sub">Per month · Cancel anytime</div>
+                <div className="lp-product-price-sub">3-day free trial · Cancel anytime</div>
                 <Link to="/register?plan=par" className="lp-btn-product lp-btn-product-secondary">Start Free Sample →</Link>
               </div>
             </div>
@@ -151,7 +151,7 @@ export default function Landing() {
                   <li>FAA compliant · 2026 updated</li>
                 </ul>
                 <div className="lp-product-price">$24.99</div>
-                <div className="lp-product-price-sub">Per month · Cancel anytime</div>
+                <div className="lp-product-price-sub">3-day free trial · Cancel anytime</div>
                 <Link to="/register?plan=ira" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
               </div>
             </div>
@@ -173,7 +173,7 @@ export default function Landing() {
                   <li>FAA compliant · 2026 updated</li>
                 </ul>
                 <div className="lp-product-price">$24.99</div>
-                <div className="lp-product-price-sub">Per month · Cancel anytime</div>
+                <div className="lp-product-price-sub">3-day free trial · Cancel anytime</div>
                 <Link to="/register?plan=cax" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
               </div>
             </div>
@@ -199,7 +199,7 @@ export default function Landing() {
                   $39.99
                   <span style={{ fontSize: 13, fontWeight: 400, color: '#16A34A', background: 'rgba(22,163,74,0.12)', padding: '3px 10px', borderRadius: 20 }}>Save $35/month</span>
                 </div>
-                <div className="lp-product-price-sub">Per month · Cancel anytime</div>
+                <div className="lp-product-price-sub">3-day free trial · Cancel anytime</div>
                 <Link to="/register?plan=bundle" className="lp-btn-product lp-btn-product-primary">Get Bundle Access →</Link>
               </div>
             </div>
