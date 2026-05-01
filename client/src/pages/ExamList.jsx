@@ -93,23 +93,29 @@ export default function ExamList() {
     const value = planPrices[purchasedPlan] ?? 24.99;
     if (window.fbq) fbq('track', 'Purchase', { value, currency: 'USD' }, eid ? { eventID: eid } : {});
     if (window.gtag) gtag('event', 'purchase', { currency: 'CAD', value });
-    // Verify and grant access directly — webhook fallback
+    // Verify and grant access directly — retries for 30s to handle slow deploys
     if (sid) {
-      fetch('/api/stripe/verify-checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('faa_token')}` },
-        body: JSON.stringify({ session_id: sid }),
-      })
-        .then((r) => r.json())
-        .then((d) => {
+      const token = localStorage.getItem('faa_token');
+      const attempt = async (tries) => {
+        if (tries <= 0) return;
+        try {
+          const r = await fetch('/api/stripe/verify-checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+            body: JSON.stringify({ session_id: sid }),
+          });
+          const d = await r.json();
           if (d.success) {
-            // Refresh subscription so cards unlock immediately
-            fetch('/api/stripe/subscription', {
-              headers: { Authorization: `Bearer ${localStorage.getItem('faa_token')}` },
-            }).then((r) => r.json()).then((d) => setSubscription(d)).catch(() => {});
+            const s = await fetch('/api/stripe/subscription', { headers: { Authorization: `Bearer ${token}` } });
+            const sub = await s.json();
+            setSubscription(sub);
+            return;
           }
-        })
-        .catch(() => {});
+        } catch (_) {}
+        await new Promise((res) => setTimeout(res, 3000));
+        attempt(tries - 1);
+      };
+      attempt(10);
     }
   }, []); // eslint-disable-line
 
