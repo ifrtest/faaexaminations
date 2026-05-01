@@ -375,12 +375,14 @@ router.post('/cancel-subscription', requireAuth, async (req, res) => {
       return res.status(400).json({ error: 'No active subscription found.' });
     }
     // Cancel at period end so they keep access until billing period ends
+    const activeSub = await stripe.subscriptions.retrieve(user.stripe_subscription_id);
     await stripe.subscriptions.update(user.stripe_subscription_id, {
       cancel_at_period_end: true,
     });
+    const endsAt = new Date(activeSub.current_period_end * 1000);
     await db.query(
-      "UPDATE users SET subscription_status = 'cancelling' WHERE id = $1",
-      [user.id]
+      "UPDATE users SET subscription_status = 'cancelling', subscription_ends_at = $1 WHERE id = $2",
+      [endsAt, user.id]
     );
     res.json({ success: true, message: 'Subscription will cancel at end of billing period.' });
   } catch (err) {
@@ -400,8 +402,14 @@ router.get('/subscription', requireAuth, async (req, res) => {
     const user = userRes.rows[0];
     // Admins and manually-granted "all" users get full plan access
     const isUnlimited = req.user.role === 'admin' || user.subscription === 'all';
+    let effectiveStatus = isUnlimited ? 'active' : (user.subscription_status || 'inactive');
+    // If cancelling and the billing period has already ended, revoke access now
+    // (handles the case where the subscription.deleted webhook hasn't fired)
+    if (effectiveStatus === 'cancelling' && user.subscription_ends_at && new Date(user.subscription_ends_at) < new Date()) {
+      effectiveStatus = 'inactive';
+    }
     res.json({
-      status:     isUnlimited ? 'active' : (user.subscription_status || 'inactive'),
+      status:     effectiveStatus,
       price_id:   user.subscription_price_id,
       ends_at:    user.subscription_ends_at,
       plan:       isUnlimited ? 'all' : (getPlanName(user.subscription_price_id) || user.subscription || null),

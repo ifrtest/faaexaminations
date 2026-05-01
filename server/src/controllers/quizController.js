@@ -96,7 +96,7 @@ exports.startSession = async (req, res, next) => {
       if (!isUnlimited) {
         // Subscription access check
         const { rows: userRows } = await db.query(
-          'SELECT subscription_status, subscription_price_id, subscription, uag_access FROM users WHERE id=$1',
+          'SELECT subscription_status, subscription_price_id, subscription, uag_access, subscription_ends_at FROM users WHERE id=$1',
           [req.user.id]
         );
         const user = userRows[0];
@@ -113,7 +113,10 @@ exports.startSession = async (req, res, next) => {
             PRICE_EXAMS[user?.subscription_price_id] ||
             PLAN_EXAMS[user?.subscription] ||
             [];
-          if (user?.subscription_status !== 'active' || !allowedExamIds.includes(exam.id)) {
+          const cancellingExpired = user?.subscription_status === 'cancelling' &&
+            user?.subscription_ends_at && new Date(user.subscription_ends_at) < new Date();
+          const hasActiveAccess = (user?.subscription_status === 'active' || user?.subscription_status === 'cancelling') && !cancellingExpired;
+          if (!hasActiveAccess || !allowedExamIds.includes(exam.id)) {
             return res.status(403).json({ error: 'A subscription is required to access this exam.' });
           }
         }
