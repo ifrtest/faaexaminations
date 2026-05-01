@@ -115,7 +115,7 @@ exports.startSession = async (req, res, next) => {
             [];
           const cancellingExpired = user?.subscription_status === 'cancelling' &&
             user?.subscription_ends_at && new Date(user.subscription_ends_at) < new Date();
-          const hasActiveAccess = (user?.subscription_status === 'active' || user?.subscription_status === 'cancelling') && !cancellingExpired;
+          const hasActiveAccess = (user?.subscription_status === 'active' || user?.subscription_status === 'cancelling' || user?.subscription_status === 'trialing') && !cancellingExpired;
           if (!hasActiveAccess || !allowedExamIds.includes(exam.id)) {
             return res.status(403).json({ error: 'A subscription is required to access this exam.' });
           }
