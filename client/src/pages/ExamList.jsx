@@ -260,7 +260,7 @@ export default function ExamList() {
               style={{ whiteSpace: 'nowrap' }}
               onClick={() => startCheckout('par')}
               disabled={checkoutLoading}>
-              {checkoutLoading ? 'Loading…' : 'Subscribe from $24.99/month →'}
+              {checkoutLoading ? 'Loading…' : 'Start 3-Day Free Trial →'}
             </button>
             <button
               className="btn btn-ghost"
@@ -532,14 +532,14 @@ export default function ExamList() {
                   onClick={() => startCheckout(EXAM_PLAN[selected])}
                   disabled={checkoutLoading}
                   style={{ marginBottom: 8 }}>
-                  {checkoutLoading ? 'Loading…' : selected === 'UAG' ? 'Get Part 107 — $37.99 one-time' : `Subscribe to ${selected} — $24.99/month`}
+                  {checkoutLoading ? 'Loading…' : selected === 'UAG' ? 'Get Part 107 — $37.99 one-time' : `Start 3-Day Free Trial — ${selected} — $24.99/month`}
                 </button>
                 {selected !== 'UAG' && (
                   <button
                     className="btn btn-ghost btn-block"
                     onClick={() => startCheckout('bundle')}
                     disabled={checkoutLoading}>
-                    {checkoutLoading ? 'Loading…' : 'Get All 3 Manned Exams (Bundle) — $39.99/month'}
+                    {checkoutLoading ? 'Loading…' : 'Start 3-Day Free Trial — Bundle (PAR + IRA + CAX) — $39.99/month'}
                   </button>
                 )}
                 {selected === 'PAR' && (

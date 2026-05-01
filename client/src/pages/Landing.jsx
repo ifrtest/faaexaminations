@@ -130,7 +130,7 @@ export default function Landing() {
                 </ul>
                 <div className="lp-product-price">$24.99</div>
                 <div className="lp-product-price-sub">3-day free trial · Cancel anytime</div>
-                <Link to="/register?plan=par" className="lp-btn-product lp-btn-product-secondary">Start Free Sample →</Link>
+                <Link to="/register?plan=par" className="lp-btn-product lp-btn-product-secondary">Start 3 Days Free →</Link>
               </div>
             </div>
 
@@ -152,7 +152,7 @@ export default function Landing() {
                 </ul>
                 <div className="lp-product-price">$24.99</div>
                 <div className="lp-product-price-sub">3-day free trial · Cancel anytime</div>
-                <Link to="/register?plan=ira" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
+                <Link to="/register?plan=ira" className="lp-btn-product lp-btn-product-secondary">Start 3 Days Free →</Link>
               </div>
             </div>
 
@@ -174,7 +174,7 @@ export default function Landing() {
                 </ul>
                 <div className="lp-product-price">$24.99</div>
                 <div className="lp-product-price-sub">3-day free trial · Cancel anytime</div>
-                <Link to="/register?plan=cax" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
+                <Link to="/register?plan=cax" className="lp-btn-product lp-btn-product-secondary">Start 3 Days Free →</Link>
               </div>
             </div>
 
@@ -200,7 +200,7 @@ export default function Landing() {
                   <span style={{ fontSize: 13, fontWeight: 400, color: '#16A34A', background: 'rgba(22,163,74,0.12)', padding: '3px 10px', borderRadius: 20 }}>Save $35/month</span>
                 </div>
                 <div className="lp-product-price-sub">3-day free trial · Cancel anytime</div>
-                <Link to="/register?plan=bundle" className="lp-btn-product lp-btn-product-primary">Get Bundle Access →</Link>
+                <Link to="/register?plan=bundle" className="lp-btn-product lp-btn-product-primary">Start 3 Days Free →</Link>
               </div>
             </div>
 
