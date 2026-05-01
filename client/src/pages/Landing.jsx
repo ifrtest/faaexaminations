@@ -86,16 +86,14 @@ export default function Landing() {
           <div className="lp-hero-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style={{marginRight:5,verticalAlign:'middle'}}><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg> FAA KNOWLEDGE TEST PREP · 2026 UPDATED</div>
           <h1>Pass Your <span className="lp-accent">FAA Written</span><br />Exam First Try</h1>
           <p className="lp-hero-sub">
-            3,000+ authentic FAA practice questions for Private Pilot, Instrument Rating, and Commercial Pilot certificates — plus Part 107 Remote Pilot and the free TRUST recreational safety test.
-            Timed exam simulator, full explanations, and AI instructor support — everything you need to pass.
+            Most student pilots study for weeks with the wrong materials and still fail. FAAExaminations.com gives you the exact questions the FAA will ask — with a real explanation for every single one. Pass in 2–4 weeks, not months.
           </p>
           <div className="lp-hero-btns">
             <Link to="/register" className="lp-btn-hero"><svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>Start Free Today</Link>
             <a href="#products" className="lp-btn-outline">View Packages</a>
           </div>
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', marginTop: 14, lineHeight: 2 }}>
-            Free account includes 10 practice questions · No credit card required<br />
-            Part 107 from $37.99 one-time · Other packages from $24.99/month
+            No credit card required · Plans from $24.99/month · Cancel the day you pass
           </div>
           <div className="lp-hero-stats">
             <div><div className="lp-hs-val">3,000+</div><div className="lp-hs-lbl">Practice Questions</div></div>
@@ -132,7 +130,7 @@ export default function Landing() {
                 </ul>
                 <div className="lp-product-price">$24.99</div>
                 <div className="lp-product-price-sub">Per month · Cancel anytime</div>
-                <Link to="/register" className="lp-btn-product lp-btn-product-secondary">Start Free Sample →</Link>
+                <Link to="/register?plan=par" className="lp-btn-product lp-btn-product-secondary">Start Free Sample →</Link>
               </div>
             </div>
 
@@ -154,7 +152,7 @@ export default function Landing() {
                 </ul>
                 <div className="lp-product-price">$24.99</div>
                 <div className="lp-product-price-sub">Per month · Cancel anytime</div>
-                <Link to="/register" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
+                <Link to="/register?plan=ira" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
               </div>
             </div>
 
@@ -176,7 +174,7 @@ export default function Landing() {
                 </ul>
                 <div className="lp-product-price">$24.99</div>
                 <div className="lp-product-price-sub">Per month · Cancel anytime</div>
-                <Link to="/register" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
+                <Link to="/register?plan=cax" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
               </div>
             </div>
 
@@ -202,7 +200,7 @@ export default function Landing() {
                   <span style={{ fontSize: 13, fontWeight: 400, color: '#16A34A', background: 'rgba(22,163,74,0.12)', padding: '3px 10px', borderRadius: 20 }}>Save $35/month</span>
                 </div>
                 <div className="lp-product-price-sub">Per month · Cancel anytime</div>
-                <Link to="/register" className="lp-btn-product lp-btn-product-primary">Get Bundle Access →</Link>
+                <Link to="/register?plan=bundle" className="lp-btn-product lp-btn-product-primary">Get Bundle Access →</Link>
               </div>
             </div>
 
@@ -225,7 +223,7 @@ export default function Landing() {
                 </ul>
                 <div className="lp-product-price">$37.99</div>
                 <div className="lp-product-price-sub">One-time · <strong style={{ color: '#f5c842' }}>Lifetime access</strong></div>
-                <Link to="/register" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
+                <Link to="/register?plan=uag" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
               </div>
             </div>
 
@@ -316,74 +314,6 @@ export default function Landing() {
               <div className="lp-feat-title">Study Anywhere</div>
               <div className="lp-feat-desc">Fully responsive on any device. Study on your phone between flights, on a tablet at the airport, or at your desktop.</div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* INSTALL AS APP */}
-      <section style={{ padding: '90px 40px', background: 'var(--lp-bg2, #0b1520)' }}>
-        <div className="lp-section-inner">
-          <div className="lp-badge">STUDY ANYWHERE</div>
-          <h2>Save It to Your Phone or Desktop</h2>
-          <p className="lp-section-sub">Add FAAExaminations.com to your home screen and it opens like a native app — no app store required, always up to date.</p>
-          <div className="lp-features-grid fade-up" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', marginTop: 48 }}>
-
-            <div className="lp-feat-card" style={{ textAlign: 'left' }}>
-              <div style={{ fontSize: 36, marginBottom: 12 }}>
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="5" y="1" width="14" height="22" rx="2" stroke="#30ace2" strokeWidth="1.8"/>
-                  <circle cx="12" cy="19" r="1" fill="#30ace2"/>
-                </svg>
-              </div>
-              <div className="lp-feat-title">iPhone / iPad</div>
-              <div className="lp-feat-desc" style={{ marginTop: 12 }}>
-                <ol style={{ paddingLeft: 18, margin: 0, lineHeight: 2.1, color: 'var(--lp-text2)' }}>
-                  <li>Open in <strong style={{ color: '#fff' }}>Safari</strong></li>
-                  <li>Tap the <strong style={{ color: '#fff' }}>Share</strong> button <span style={{ fontSize: '1.1em' }}>⎙</span></li>
-                  <li>Tap <strong style={{ color: '#fff' }}>"Add to Home Screen"</strong></li>
-                  <li>Tap <strong style={{ color: '#fff' }}>Add</strong></li>
-                </ol>
-                <div style={{ marginTop: 12, fontSize: '.8rem', color: 'var(--lp-text3)', fontStyle: 'italic' }}>Opens full-screen like a native app</div>
-              </div>
-            </div>
-
-            <div className="lp-feat-card" style={{ textAlign: 'left' }}>
-              <div style={{ fontSize: 36, marginBottom: 12 }}>
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="5" y="1" width="14" height="22" rx="2" stroke="#16a34a" strokeWidth="1.8"/>
-                  <rect x="9" y="19.5" width="6" height="1.5" rx=".75" fill="#16a34a"/>
-                </svg>
-              </div>
-              <div className="lp-feat-title" style={{ color: '#16a34a' }}>Android</div>
-              <div className="lp-feat-desc" style={{ marginTop: 12 }}>
-                <ol style={{ paddingLeft: 18, margin: 0, lineHeight: 2.1, color: 'var(--lp-text2)' }}>
-                  <li>Open in <strong style={{ color: '#fff' }}>Chrome</strong></li>
-                  <li>Tap the <strong style={{ color: '#fff' }}>⋮</strong> menu (top right)</li>
-                  <li>Tap <strong style={{ color: '#fff' }}>"Add to Home Screen"</strong></li>
-                  <li>Tap <strong style={{ color: '#fff' }}>Add</strong></li>
-                </ol>
-                <div style={{ marginTop: 12, fontSize: '.8rem', color: 'var(--lp-text3)', fontStyle: 'italic' }}>An install banner may appear automatically</div>
-              </div>
-            </div>
-
-            <div className="lp-feat-card" style={{ textAlign: 'left' }}>
-              <div style={{ fontSize: 36, marginBottom: 12 }}>
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="2" y="3" width="20" height="14" rx="2" stroke="#f59e0b" strokeWidth="1.8"/>
-                  <path d="M8 21h8M12 17v4" stroke="#f59e0b" strokeWidth="1.8" strokeLinecap="round"/>
-                </svg>
-              </div>
-              <div className="lp-feat-title" style={{ color: '#f59e0b' }}>Desktop (Chrome / Edge)</div>
-              <div className="lp-feat-desc" style={{ marginTop: 12 }}>
-                <ol style={{ paddingLeft: 18, margin: 0, lineHeight: 2.1, color: 'var(--lp-text2)' }}>
-                  <li>Open the site in <strong style={{ color: '#fff' }}>Chrome or Edge</strong></li>
-                  <li>Click the <strong style={{ color: '#fff' }}>install icon</strong> in the address bar</li>
-                  <li>Click <strong style={{ color: '#fff' }}>"Install"</strong></li>
-                </ol>
-                <div style={{ marginTop: 12, fontSize: '.8rem', color: 'var(--lp-text3)', fontStyle: 'italic' }}>Appears in your taskbar or dock like any other app</div>
-              </div>
-            </div>
-
           </div>
         </div>
       </section>

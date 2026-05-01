@@ -101,7 +101,7 @@ export default function PARLanding() {
           ) : (
             <>
               <Link to="/login" className="lp-nav-link">Login</Link>
-              <Link to="/register" className="lp-nav-cta">Start Free →</Link>
+              <Link to="/register?plan=par" className="lp-nav-cta">Start Free →</Link>
             </>
           )}
         </div>
@@ -123,7 +123,7 @@ export default function PARLanding() {
               1,469 authentic FAA practice questions across all 11 exam topics. Timed simulator, full explanations, and an AI flight instructor — everything you need to walk out of the testing center with a passing score.
             </p>
             <div className="lp-hero-btns">
-              <Link to="/register" className="lp-btn-hero">
+              <Link to="/register?plan=par" className="lp-btn-hero">
                 <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
                 Start Free Today
               </Link>
@@ -151,7 +151,7 @@ export default function PARLanding() {
                 </li>
               ))}
             </ul>
-            <Link to="/register" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Start Free — 10 Questions Now →</Link>
+            <Link to="/register?plan=par" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Start Free — 10 Questions Now →</Link>
             <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>No credit card required · Upgrade when you're ready</div>
           </div>
         </div>
@@ -307,7 +307,7 @@ export default function PARLanding() {
           </div>
 
           <div style={{ textAlign: 'center', marginTop: 48 }}>
-            <Link to="/register" className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>
+            <Link to="/register?plan=par" className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>
               Start Studying Free Today →
             </Link>
           </div>
@@ -396,7 +396,7 @@ export default function PARLanding() {
                 </li>
               ))}
             </ul>
-            <Link to="/register" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>
+            <Link to="/register?plan=par" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>
               Start Free — Get 10 Questions Now
             </Link>
             <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}>No credit card required to start · Upgrade when you're ready</div>
@@ -443,7 +443,7 @@ export default function PARLanding() {
             1,469 questions. 11 topics. Everything the FAA will ask you. Start free today — no credit card needed.
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/register" className="lp-btn-hero" style={{ fontSize: 18, padding: '18px 44px' }}>
+            <Link to="/register?plan=par" className="lp-btn-hero" style={{ fontSize: 18, padding: '18px 44px' }}>
               <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
               Start Free Today
             </Link>

@@ -259,7 +259,7 @@ export default function Part107Landing() {
           ) : (
             <>
               <Link to="/login" className="lp-nav-link">Login</Link>
-              <Link to="/register" className="lp-nav-cta">Start Free →</Link>
+              <Link to="/register?plan=uag" className="lp-nav-cta">Start Free →</Link>
             </>
           )}
         </div>
@@ -281,7 +281,7 @@ export default function Part107Landing() {
               One FAA exam stands between you and legal paid drone work. Practice questions, timed simulator, and AI support — everything you need to pass Part 107 in 2–3 weeks.
             </p>
             <div className="lp-hero-btns">
-              <Link to="/register" className="lp-btn-hero">
+              <Link to="/register?plan=uag" className="lp-btn-hero">
                 <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
                 Start Free Today
               </Link>
@@ -343,7 +343,7 @@ export default function Part107Landing() {
                 </li>
               ))}
             </ul>
-            <Link to="/register" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Start Studying Part 107 Now</Link>
+            <Link to="/register?plan=uag" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Start Studying Part 107 Now</Link>
             <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}>Try the free demo above · Pay once, keep access forever</div>
           </div>
         </div>
@@ -554,7 +554,7 @@ export default function Part107Landing() {
             One exam. 2–3 weeks of prep. Fully licensed to charge for every shoot, every contract, every gig.
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/register" className="lp-btn-hero" style={{ fontSize: 18, padding: '18px 44px' }}>
+            <Link to="/register?plan=uag" className="lp-btn-hero" style={{ fontSize: 18, padding: '18px 44px' }}>
               <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
               Start Free Today
             </Link>

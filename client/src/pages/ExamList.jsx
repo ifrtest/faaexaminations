@@ -248,6 +248,22 @@ export default function ExamList() {
 
       </div>
 
+      {subscription !== null && !['active', 'cancelling'].includes(subscription?.status) && !subscription?.uag_access && (
+        <div style={{ background: 'linear-gradient(90deg, #0b1f3a, #0d2849)', border: '1px solid rgba(48,172,226,0.3)', borderRadius: 12, padding: '16px 22px', marginBottom: 20, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
+          <div>
+            <div style={{ color: '#fff', fontWeight: 700, fontSize: '.95rem', marginBottom: 3 }}>You're on a free account</div>
+            <div style={{ color: '#94b8d4', fontSize: '.88rem' }}>Unlock all questions, the timed simulator, and AI Instructor — from $24.99/month.</div>
+          </div>
+          <button
+            className="btn btn-primary"
+            style={{ whiteSpace: 'nowrap', flexShrink: 0 }}
+            onClick={() => startCheckout('par')}
+            disabled={checkoutLoading}>
+            {checkoutLoading ? 'Loading…' : 'Subscribe from $24.99/month →'}
+          </button>
+        </div>
+      )}
+
       {activating && (
         <div style={{ background: '#0f1f35', border: '1px solid #1e3a5f', borderRadius: 12, padding: '16px 22px', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{ width: 20, height: 20, border: '3px solid #30ace2', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.8s linear infinite', flexShrink: 0 }} />

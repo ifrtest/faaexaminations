@@ -86,7 +86,7 @@ export default function BundleLanding() {
           ) : (
             <>
               <Link to="/login" className="lp-nav-link">Login</Link>
-              <Link to="/register" className="lp-nav-cta">Start Free →</Link>
+              <Link to="/register?plan=bundle" className="lp-nav-cta">Start Free →</Link>
             </>
           )}
         </div>
@@ -109,7 +109,7 @@ export default function BundleLanding() {
               PAR, IRA, and CAX — all in one place. 2,826 practice questions, AI instructor support, and timed simulators for every exam on your path to a Commercial Pilot certificate.
             </p>
             <div className="lp-hero-btns">
-              <Link to="/register" className="lp-btn-hero">
+              <Link to="/register?plan=bundle" className="lp-btn-hero">
                 <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
                 Start Free Today
               </Link>
@@ -142,7 +142,7 @@ export default function BundleLanding() {
                 </li>
               ))}
             </ul>
-            <Link to="/register" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Start Free — 10 Questions Now →</Link>
+            <Link to="/register?plan=bundle" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Start Free — 10 Questions Now →</Link>
             <Link to="/register?plan=bundle" style={{ display: 'block', textAlign: 'center', marginTop: 10, padding: '13px 28px', borderRadius: 10, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.18)', color: '#fff', fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>Subscribe Now — $39.99/mo →</Link>
             <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>No credit card required to start</div>
           </div>
@@ -177,7 +177,7 @@ export default function BundleLanding() {
                 </li>
               ))}
             </ul>
-            <Link to="/register" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Start Free — 10 Questions Now →</Link>
+            <Link to="/register?plan=bundle" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Start Free — 10 Questions Now →</Link>
             <Link to="/register?plan=bundle" style={{ display: 'block', textAlign: 'center', marginTop: 12, padding: '15px 40px', borderRadius: 10, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.18)', color: '#fff', fontWeight: 700, fontSize: 16, textDecoration: 'none' }}>Subscribe Now — $39.99/mo →</Link>
             <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}>No credit card required to start</div>
           </div>
@@ -401,7 +401,7 @@ export default function BundleLanding() {
             PAR, IRA, and CAX. Start free today — no credit card needed.
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/register" className="lp-btn-hero" style={{ fontSize: 18, padding: '18px 44px' }}>
+            <Link to="/register?plan=bundle" className="lp-btn-hero" style={{ fontSize: 18, padding: '18px 44px' }}>
               <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
               Start Free Today
             </Link>
