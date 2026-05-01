@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { quizzes as quizApi } from '../api/client';
 import { Spinner } from '../components/ProtectedRoute';
+import { useAuth } from '../context/AuthContext';
 
 const PLAN_ACCESS = {
   par:    ['PAR'],
@@ -32,15 +33,18 @@ const EXAM_LANDING = {
 };
 
 const EXAM_META = {
-  PAR:   { label: 'Private Pilot',     short: 'Your first FAA written exam.',           color: '#0B3D91', img: '/card-par.jpg',    imgPos: 'center 30%' },
-  IRA:   { label: 'Instrument Rating', short: 'Required for IFR flying.',               color: '#0e4f8f', img: '/card-ira.jpg',    imgPos: 'center 40%' },
-  CAX:   { label: 'Commercial Pilot',  short: 'For professional-track pilots.',         color: '#0a3060', img: '/card-cax.jpg',    imgPos: 'center 35%' },
-  UAG:   { label: 'Part 107 Drone',    short: 'Required to fly drones commercially.',   color: '#064e3b', img: '/card-uag.webp',   imgPos: 'center 50%' },
-  TRUST: { label: 'TRUST Safety Test', short: 'Required for hobbyist drone flyers.',    color: '#1e3a5f', img: '/card-trust.jpg',  imgPos: 'center 60%' },
-  ATP:   { label: 'Airline Transport', short: 'Required to fly for the airlines.',      color: '#3b2f5e', img: '/card-atp.jpg',    imgPos: 'center 40%' },
+  PAR:    { label: 'Private Pilot',        short: 'Your first FAA written exam.',          color: '#0B3D91', img: '/card-par.jpg',   imgPos: 'center 30%' },
+  IRA:    { label: 'Instrument Rating',    short: 'Required for IFR flying.',              color: '#0e4f8f', img: '/card-ira.jpg',   imgPos: 'center 40%' },
+  CAX:    { label: 'Commercial Pilot',     short: 'For professional-track pilots.',        color: '#0a3060', img: '/card-cax.jpg',   imgPos: 'center 35%' },
+  UAG:    { label: 'Part 107 Drone',       short: 'Required to fly drones commercially.',  color: '#064e3b', img: '/card-uag.webp',  imgPos: 'center 50%' },
+  TRUST:  { label: 'TRUST Safety Test',   short: 'Required for hobbyist drone flyers.',   color: '#1e3a5f', img: '/card-trust.jpg', imgPos: 'center 60%' },
+  ATP:    { label: 'Airline Transport',    short: 'Required to fly for the airlines.',     color: '#3b2f5e', img: '/card-atp.jpg',   imgPos: 'center 40%' },
+  BUNDLE: { label: 'PAR · IRA · CAX Bundle', short: 'All 3 manned aircraft exams — best value.', color: '#1a3a6b', img: '/card-par.jpg', imgPos: 'center 30%' },
 };
 
 export default function ExamList() {
+  const { user } = useAuth();
+  const isAdmin = user?.role === 'admin';
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -216,10 +220,17 @@ export default function ExamList() {
 
   if (!exams.length && !err) return <div className="container page"><Spinner /></div>;
 
-  // Fixed display order: Row 1 = PAR, CAX, IRA | Row 2 = UAG, TRUST, ATP
-  const CARD_ORDER = ['PAR', 'CAX', 'IRA', 'UAG', 'TRUST', 'ATP'];
-  const atpPlaceholder = { code: 'ATP', name: 'Airline Transport Pilot (ATP)', question_count: 1496, num_questions: 80, time_limit: 240, passing_score: 70, comingSoon: true };
-  const allCards = CARD_ORDER.map((code) => exams.find((e) => e.code === code) || (code === 'ATP' ? atpPlaceholder : null)).filter(Boolean);
+  // Admins see ATP (coming soon); regular users see the Bundle offer instead
+  const CARD_ORDER = isAdmin
+    ? ['PAR', 'CAX', 'IRA', 'UAG', 'TRUST', 'ATP']
+    : ['PAR', 'CAX', 'IRA', 'UAG', 'TRUST', 'BUNDLE'];
+  const atpPlaceholder    = { code: 'ATP',    name: 'Airline Transport Pilot (ATP)',       question_count: 1496, num_questions: 80,  time_limit: 240, passing_score: 70, comingSoon: true };
+  const bundlePlaceholder = { code: 'BUNDLE', name: 'PAR · IRA · CAX Bundle',             question_count: '',   num_questions: null, time_limit: null, passing_score: 70, isBundle: true };
+  const allCards = CARD_ORDER.map((code) => {
+    if (code === 'ATP')    return exams.find((e) => e.code === 'ATP') || atpPlaceholder;
+    if (code === 'BUNDLE') return bundlePlaceholder;
+    return exams.find((e) => e.code === code) || null;
+  }).filter(Boolean);
 
   return (
     <div className="container page" style={{ paddingTop: 0 }}>
@@ -301,15 +312,21 @@ export default function ExamList() {
       <div className="exam-layout" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginBottom: 24 }}>
 
           {allCards.map((e) => {
-            const isActive = e.code === selected && !e.comingSoon;
+            const isActive = e.code === selected && !e.comingSoon && !e.isBundle;
             const meta = EXAM_META[e.code] || {};
             const free = FREE_EXAMS.includes(e.code);
             const accessible = hasAccess(e.code);
+            const bundleOwned = e.isBundle && (subscription?.plan === 'bundle' || subscription?.plan === 'all');
             return (
               <div
                 key={e.code}
                 onClick={() => {
                   if (e.comingSoon) return;
+                  if (e.isBundle) {
+                    const bundleOwned = subscription?.plan === 'bundle' || subscription?.plan === 'all';
+                    if (!bundleOwned) startCheckout('bundle');
+                    return;
+                  }
                   if (!accessible && !free) {
                     if (EXAM_PLAN[e.code]) {
                       startCheckout(EXAM_PLAN[e.code]);
@@ -318,7 +335,6 @@ export default function ExamList() {
                     }
                   } else {
                     setSelected(e.code);
-                    // on mobile, scroll to config panel after a short delay
                     setTimeout(() => configRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
                   }
                 }}
@@ -365,10 +381,16 @@ export default function ExamList() {
                       {free && (
                         <span style={{ background: '#16a34a', color: '#fff', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>FREE</span>
                       )}
-                      {!free && accessible && (
+                      {e.isBundle && bundleOwned && (
+                        <span style={{ background: 'rgba(74,222,128,.18)', color: '#4ade80', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>OWNED</span>
+                      )}
+                      {e.isBundle && !bundleOwned && (
+                        <span style={{ background: 'rgba(247,201,72,.18)', color: '#f7c948', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>BEST VALUE</span>
+                      )}
+                      {!free && !e.isBundle && accessible && (
                         <span style={{ background: 'rgba(74,222,128,.18)', color: '#4ade80', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>UNLOCKED</span>
                       )}
-                      {!free && !accessible && !e.comingSoon && (
+                      {!free && !e.isBundle && !accessible && !e.comingSoon && (
                         <span style={{ background: 'rgba(255,255,255,.12)', color: '#fbbf24', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>🔒 SUBSCRIBE</span>
                       )}
                       {e.comingSoon && (
@@ -379,7 +401,7 @@ export default function ExamList() {
                       {meta.label || e.name}
                     </div>
                     <div style={{ fontSize: '.75rem', color: 'rgba(255,255,255,.6)', marginTop: 2 }}>
-                      {e.question_count} questions · {e.passing_score}% to pass
+                      {e.isBundle ? 'PAR + IRA + CAX · $39.99/month' : `${e.question_count} questions · ${e.passing_score}% to pass`}
                     </div>
                   </div>
 
