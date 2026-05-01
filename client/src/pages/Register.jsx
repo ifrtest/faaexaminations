@@ -30,6 +30,7 @@ export default function Register() {
     try {
       const data = await register(form.email, form.password, form.full_name);
       if (window.fbq) fbq('track', 'Lead', {}, data?.leadEventId ? { eventID: data.leadEventId } : {});
+      if (window.gtag) gtag('event', 'sign_up', { method: 'email' });
       if (plan) navigate('/exams', { replace: true, state: { autoBuy: plan } });
       else navigate('/dashboard', { replace: true });
     } catch (ex) {
