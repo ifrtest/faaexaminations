@@ -305,7 +305,7 @@ export default function ExamList() {
                   if (!accessible && !free) {
                     if (EXAM_PLAN[e.code]) {
                       // Already on an individual plan — select card so upgrade message shows in config panel
-                      const needsUpgradePrompt = isSubscribed && e.code !== 'UAG' && subscription?.plan !== 'bundle' && subscription?.plan !== 'all';
+                      const needsUpgradePrompt = isSubscribed && e.code !== 'UAG' && subscription?.plan !== 'bundle' && subscription?.plan !== 'all' && subscription?.plan !== 'uag';
                       if (needsUpgradePrompt) {
                         setSelected(e.code);
                         setTimeout(() => configRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
@@ -451,7 +451,7 @@ export default function ExamList() {
               <button className="btn btn-primary btn-block" onClick={start} disabled={starting}>
                 {starting ? 'Preparing…' : `Start ${mode === 'exam' ? 'Exam' : 'Study Session'}`}
               </button>
-            ) : (isSubscribed && selected !== 'UAG' && subscription?.plan !== 'bundle' && subscription?.plan !== 'all') ? (
+            ) : (isSubscribed && selected !== 'UAG' && subscription?.plan !== 'bundle' && subscription?.plan !== 'all' && subscription?.plan !== 'uag') ? (
               <div>
                 <div style={{ background: '#0f1f35', border: '1px solid #1e3a5f', borderRadius: 10, padding: '16px 18px', marginBottom: 14 }}>
                   <div style={{ color: '#fff', fontWeight: 700, fontSize: '.95rem', marginBottom: 6 }}>
