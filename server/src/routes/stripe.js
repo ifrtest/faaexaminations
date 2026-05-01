@@ -158,7 +158,10 @@ async function activateSubscription(session) {
   console.log(`[activateSubscription] updated user ${whereValue} plan=${priceId}`);
 
   // Send subscription confirmation email + fire CAPI Purchase
-  const userRes = await db.query('SELECT id, email, full_name FROM users WHERE stripe_customer_id = $1', [customerId]);
+  // Use user_id when available (Stripe Link remaps customer IDs)
+  const userRes = userId
+    ? await db.query('SELECT id, email, full_name FROM users WHERE id = $1', [userId])
+    : await db.query('SELECT id, email, full_name FROM users WHERE stripe_customer_id = $1', [customerId]);
   const user = userRes.rows[0];
   if (user) {
     const plan = getPlanName(priceId);
@@ -206,7 +209,9 @@ async function activateOneTimePurchase(session) {
   );
   console.log(`[activateOneTimePurchase] updated user ${whereValue} plan=${plan}`);
 
-  const userRes = await db.query('SELECT id, email, full_name FROM users WHERE stripe_customer_id = $1', [customerId]);
+  const userRes = userId
+    ? await db.query('SELECT id, email, full_name FROM users WHERE id = $1', [userId])
+    : await db.query('SELECT id, email, full_name FROM users WHERE stripe_customer_id = $1', [customerId]);
   const user = userRes.rows[0];
   if (user) {
     sendEmail({
@@ -228,9 +233,10 @@ async function activateOneTimePurchase(session) {
 }
 
 async function updateSubscription(sub) {
-  const priceId = sub.items.data[0].price.id;
-  const endsAt  = new Date(sub.current_period_end * 1000);
-  const status  = sub.status; // active, past_due, canceled, etc.
+  const priceId  = sub.items.data[0].price.id;
+  const planName = getPlanName(priceId) || priceId;
+  const endsAt   = new Date(sub.current_period_end * 1000);
+  const status   = sub.status; // active, past_due, canceled, etc.
 
   await db.query(
     `UPDATE users SET
@@ -239,7 +245,7 @@ async function updateSubscription(sub) {
        subscription_ends_at  = $3,
        subscription          = $4
      WHERE stripe_subscription_id = $5`,
-    [status, priceId, endsAt, priceId, sub.id]
+    [status, priceId, endsAt, planName, sub.id]
   );
 }
 
