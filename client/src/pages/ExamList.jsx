@@ -155,12 +155,18 @@ export default function ExamList() {
   const isSubscribed = subscription?.status === 'active';
 
   const startCheckout = async (plan) => {
+    // If user already has an active subscription plan (not UAG one-time),
+    // redirect to bundle instead of creating a second subscription
+    const hasActiveSub = subscription?.status === 'active' &&
+      subscription?.plan && subscription.plan !== 'uag' && subscription.plan !== 'bundle' && subscription.plan !== 'all';
+    const targetPlan = (hasActiveSub && plan !== 'bundle' && plan !== 'uag') ? 'bundle' : plan;
+
     setCheckoutLoading(true);
     try {
       const res = await fetch('/api/stripe/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('faa_token')}` },
-        body: JSON.stringify({ plan }),
+        body: JSON.stringify({ plan: targetPlan }),
       });
       const data = await res.json();
       if (data.url) window.location.href = data.url;
