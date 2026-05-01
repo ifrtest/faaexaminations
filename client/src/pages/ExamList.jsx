@@ -157,39 +157,14 @@ export default function ExamList() {
   const startCheckout = async (plan) => {
     setCheckoutLoading(true);
     try {
-      // UAG is a one-time purchase with no stripe_subscription_id — can't use upgrade path
-      const hasActiveSubscription = subscription?.status === 'active' && subscription?.plan !== 'uag';
-      if (hasActiveSubscription) {
-        const res = await fetch('/api/stripe/upgrade', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('faa_token')}` },
-          body: JSON.stringify({ plan }),
-        });
-        const data = await res.json();
-        if (data.success) {
-          setUpgrading(true);
-          const token = localStorage.getItem('faa_token');
-          const deadline = Date.now() + 30000;
-          while (Date.now() < deadline) {
-            await new Promise((r) => setTimeout(r, 1500));
-            const r = await fetch('/api/stripe/plan', { headers: { Authorization: `Bearer ${token}` } });
-            const d = await r.json();
-            if (d.plan === plan) { window.location.href = '/dashboard?subscribed=1'; return; }
-          }
-          window.location.href = '/dashboard?subscribed=1';
-        } else {
-          setErr(data.error || 'Could not upgrade subscription.');
-        }
-      } else {
-        const res = await fetch('/api/stripe/checkout', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('faa_token')}` },
-          body: JSON.stringify({ plan }),
-        });
-        const data = await res.json();
-        if (data.url) window.location.href = data.url;
-        else setErr(data.error || 'Could not start checkout.');
-      }
+      const res = await fetch('/api/stripe/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('faa_token')}` },
+        body: JSON.stringify({ plan }),
+      });
+      const data = await res.json();
+      if (data.url) window.location.href = data.url;
+      else setErr(data.error || 'Could not start checkout.');
     } catch {
       setErr('Could not start checkout.');
     } finally {
