@@ -125,21 +125,37 @@ async function activateSubscription(session) {
   const customerId     = session.customer;
   const subscriptionId = session.subscription;
   const capiEventId    = session.metadata?.capi_event_id;
+  const userId         = session.metadata?.user_id;
 
-  const sub = await stripe.subscriptions.retrieve(subscriptionId);
+  // Retrieve subscription — if not attached to session yet, look up by customer
+  let sub;
+  if (subscriptionId) {
+    sub = await stripe.subscriptions.retrieve(subscriptionId);
+  } else {
+    const list = await stripe.subscriptions.list({ customer: customerId, limit: 1, status: 'active' });
+    sub = list.data[0];
+    if (!sub) throw new Error('No active subscription found for customer ' + customerId);
+  }
+
   const priceId = sub.items.data[0].price.id;
-  const endsAt = new Date(sub.current_period_end * 1000);
+  const endsAt  = new Date(sub.current_period_end * 1000);
 
+  // Update by user ID (most reliable — unaffected by Stripe Link customer remapping)
+  // Fall back to stripe_customer_id for webhook path where metadata may differ
+  const whereClause = userId ? 'id = $5' : 'stripe_customer_id = $5';
+  const whereValue  = userId ? userId : customerId;
   await db.query(
     `UPDATE users SET
        stripe_subscription_id = $1,
+       stripe_customer_id     = COALESCE(stripe_customer_id, $6),
        subscription_status    = 'active',
        subscription_price_id  = $2,
        subscription_ends_at   = $3,
        subscription           = $4
-     WHERE stripe_customer_id = $5`,
-    [subscriptionId, priceId, endsAt, priceId, customerId]
+     WHERE ${whereClause}`,
+    [sub.id, priceId, endsAt, priceId, whereValue, customerId]
   );
+  console.log(`[activateSubscription] updated user ${whereValue} plan=${priceId}`);
 
   // Send subscription confirmation email + fire CAPI Purchase
   const userRes = await db.query('SELECT id, email, full_name FROM users WHERE stripe_customer_id = $1', [customerId]);
@@ -169,21 +185,26 @@ async function activateOneTimePurchase(session) {
   const customerId  = session.customer;
   const capiEventId = session.metadata?.capi_event_id;
   const plan        = session.metadata?.plan;
+  const userId      = session.metadata?.user_id;
 
   // Retrieve line items to get the price ID
   const lineItems = await stripe.checkout.sessions.listLineItems(session.id, { limit: 1 });
   const priceId   = lineItems.data[0]?.price?.id;
 
-  // Grant lifetime access — no expiry date
+  // Update by user ID (most reliable — unaffected by Stripe Link customer remapping)
+  const whereClause = userId ? 'id = $3' : 'stripe_customer_id = $3';
+  const whereValue  = userId ? userId : customerId;
   await db.query(
     `UPDATE users SET
+       stripe_customer_id    = COALESCE(stripe_customer_id, $4),
        subscription_status   = 'active',
        subscription_price_id = $1,
        subscription_ends_at  = NULL,
        subscription          = $2
-     WHERE stripe_customer_id = $3`,
-    [priceId, plan, customerId]
+     WHERE ${whereClause}`,
+    [priceId, plan, whereValue, customerId]
   );
+  console.log(`[activateOneTimePurchase] updated user ${whereValue} plan=${plan}`);
 
   const userRes = await db.query('SELECT id, email, full_name FROM users WHERE stripe_customer_id = $1', [customerId]);
   const user = userRes.rows[0];
