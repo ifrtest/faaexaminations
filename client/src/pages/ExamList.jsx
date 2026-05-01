@@ -505,6 +505,17 @@ export default function ExamList() {
                     {checkoutLoading ? 'Loading…' : 'Get All 3 Manned Exams (Bundle) — $39.99/month'}
                   </button>
                 )}
+                {selected === 'PAR' && (
+                  <div style={{ textAlign: 'center', marginTop: 14 }}>
+                    <button
+                      className="btn btn-ghost btn-block"
+                      onClick={startDemo}
+                      disabled={starting}
+                      style={{ fontSize: '.88rem', opacity: 0.75 }}>
+                      {starting ? 'Loading…' : 'Try 10 free questions first →'}
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>
