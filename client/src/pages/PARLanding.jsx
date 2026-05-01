@@ -36,7 +36,7 @@ const FAQS = [
   },
   {
     q: 'Can I cancel anytime?',
-    a: 'Yes. No contracts, no commitments. Cancel from your account dashboard in one click. Most students are done studying in under a month — you won\'t need to.',
+    a: 'Yes. No contracts, no commitments. Cancel from your account dashboard in one click — you keep full access until the end of your billing period. Most students are done studying in under a month.',
   },
 ];
 
@@ -83,6 +83,37 @@ export default function PARLanding() {
         <meta property="og:site_name" content="FAAExaminations.com" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://faaexaminations.com/plane-par-desktop.jpg" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How many questions are on the real FAA Private Pilot written exam?",
+              "acceptedAnswer": { "@type": "Answer", "text": "60 questions. You need a score of 70% or higher to pass — that means you can miss up to 18 questions. The exam simulator on FAAExaminations.com is built to match the exact format and difficulty of the real test." }
+            },
+            {
+              "@type": "Question",
+              "name": "How long does it take to study for the FAA Private Pilot written exam?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Most students pass in 2–4 weeks of focused study. With 1,469 practice questions across all 11 topics, you'll see every concept the FAA tests before you walk into the testing center." }
+            },
+            {
+              "@type": "Question",
+              "name": "Are these the actual FAA Private Pilot exam questions?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Our question bank is built from the FAA's published Airman Knowledge Testing question database — the same source the real test draws from. The bank is current for 2026 and updated whenever the FAA revises the test." }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I need a flight instructor endorsement before taking the Private Pilot written exam?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes — a CFI must endorse your logbook or provide a sign-off before you can take the official exam. FAAExaminations.com prepares you for the knowledge test itself; your flight instructor handles the endorsement." }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I cancel my Private Pilot exam prep subscription anytime?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes. No contracts, no commitments. Cancel from your account dashboard in one click and you keep full access until the end of your current billing period. Most students are done studying in under a month." }
+            }
+          ]
+        })}</script>
       </Helmet>
 
       {/* NAV */}

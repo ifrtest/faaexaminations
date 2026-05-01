@@ -241,6 +241,37 @@ export default function Part107Landing() {
         <meta property="og:site_name" content="FAAExaminations.com" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://faaexaminations.com/drone_image_faa_examinations.jpg" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is the Part 107 Remote Pilot Certificate?",
+              "acceptedAnswer": { "@type": "Answer", "text": "It's the FAA license required to fly drones commercially. If you're getting paid to fly — shooting real estate, weddings, inspections, events — you legally need a Part 107 certificate. The knowledge test is the only exam required." }
+            },
+            {
+              "@type": "Question",
+              "name": "How many questions are on the Part 107 knowledge test?",
+              "acceptedAnswer": { "@type": "Answer", "text": "60 questions. You need a score of 70% or higher to pass. The test covers airspace, weather, regulations, and drone operations." }
+            },
+            {
+              "@type": "Question",
+              "name": "How long does it take to study for the Part 107 exam?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Most people pass in 2–3 weeks of focused study. You don't need any prior aviation experience. Our 265-question bank walks you through everything from scratch." }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I need a pilot's license to take the Part 107 test?",
+              "acceptedAnswer": { "@type": "Answer", "text": "No. Part 107 is a separate certificate specifically for drone operators. You don't need any existing pilot certificates or flight hours. Anyone 16 or older can take the test." }
+            },
+            {
+              "@type": "Question",
+              "name": "Is the Part 107 practice test a one-time payment?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes. $37.99 one time — no subscription, no recurring charges. Pay once and you have lifetime access to the full 265-question bank, timed simulator, and AI instructor." }
+            }
+          ]
+        })}</script>
       </Helmet>
 
       {/* NAV */}
