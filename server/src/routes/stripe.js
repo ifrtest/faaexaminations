@@ -141,6 +141,20 @@ async function activateSubscription(session) {
   const planName = getPlanName(priceId) || priceId;
   const endsAt   = new Date(sub.current_period_end * 1000);
 
+  // Cancel previous Stripe subscription to prevent double-billing
+  if (userId) {
+    const prevUser = await db.query('SELECT stripe_subscription_id FROM users WHERE id = $1', [userId]);
+    const prevSubId = prevUser.rows[0]?.stripe_subscription_id;
+    if (prevSubId && prevSubId !== sub.id) {
+      try {
+        await stripe.subscriptions.cancel(prevSubId);
+        console.log(`[activateSubscription] cancelled previous subscription ${prevSubId} for user ${userId}`);
+      } catch (cancelErr) {
+        console.warn(`[activateSubscription] could not cancel previous subscription ${prevSubId}:`, cancelErr.message);
+      }
+    }
+  }
+
   // Update by user ID (most reliable — unaffected by Stripe Link customer remapping)
   const whereClause = userId ? 'id = $5' : 'stripe_customer_id = $5';
   const whereValue  = userId ? userId : customerId;

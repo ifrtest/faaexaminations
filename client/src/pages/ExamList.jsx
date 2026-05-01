@@ -304,7 +304,14 @@ export default function ExamList() {
                   }
                   if (!accessible && !free) {
                     if (EXAM_PLAN[e.code]) {
-                      startCheckout(EXAM_PLAN[e.code]);
+                      // Already on an individual plan — select card so upgrade message shows in config panel
+                      const needsUpgradePrompt = isSubscribed && e.code !== 'UAG' && subscription?.plan !== 'bundle' && subscription?.plan !== 'all';
+                      if (needsUpgradePrompt) {
+                        setSelected(e.code);
+                        setTimeout(() => configRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+                      } else {
+                        startCheckout(EXAM_PLAN[e.code]);
+                      }
                     } else {
                       navigate(EXAM_LANDING[e.code] || '/exams');
                     }
@@ -444,6 +451,23 @@ export default function ExamList() {
               <button className="btn btn-primary btn-block" onClick={start} disabled={starting}>
                 {starting ? 'Preparing…' : `Start ${mode === 'exam' ? 'Exam' : 'Study Session'}`}
               </button>
+            ) : (isSubscribed && selected !== 'UAG' && subscription?.plan !== 'bundle' && subscription?.plan !== 'all') ? (
+              <div>
+                <div style={{ background: '#0f1f35', border: '1px solid #1e3a5f', borderRadius: 10, padding: '16px 18px', marginBottom: 14 }}>
+                  <div style={{ color: '#fff', fontWeight: 700, fontSize: '.95rem', marginBottom: 6 }}>
+                    You already have {subscription?.plan?.toUpperCase()} access.
+                  </div>
+                  <div style={{ color: '#94b8d4', fontSize: '.88rem', lineHeight: 1.6 }}>
+                    Instead of paying $24.99/month for each exam separately, the <strong style={{ color: '#fff' }}>Bundle gives you PAR + IRA + CAX for just $39.99/month</strong> — that's less than two individual plans ($49.98/month), and you get all three exams included.
+                  </div>
+                </div>
+                <button
+                  className="btn btn-primary btn-block"
+                  onClick={() => startCheckout('bundle')}
+                  disabled={checkoutLoading}>
+                  {checkoutLoading ? 'Loading…' : 'Upgrade to Bundle — $39.99/month · PAR + IRA + CAX'}
+                </button>
+              </div>
             ) : (
               <div>
                 <div className="alert" style={{ background: 'var(--panel2)', border: '1px solid var(--blue)', color: 'var(--text2)', marginBottom: 12, fontSize: '.9rem' }}>
