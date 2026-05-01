@@ -454,11 +454,11 @@ export default function ExamList() {
               </button>
             ) : (isSubscribed && selected !== 'UAG' && subscription?.plan !== 'bundle' && subscription?.plan !== 'all' && subscription?.plan !== 'uag') ? (
               <div>
-                <div style={{ background: '#0f1f35', border: '1px solid #1e3a5f', borderRadius: 10, padding: '16px 18px', marginBottom: 14 }}>
-                  <div style={{ color: '#fff', fontWeight: 700, fontSize: '.95rem', marginBottom: 6 }}>
+                <div style={{ background: 'rgba(234,179,8,.08)', border: '1px solid rgba(234,179,8,.45)', borderRadius: 10, padding: '16px 18px', marginBottom: 14 }}>
+                  <div style={{ color: '#fde047', fontWeight: 700, fontSize: '.95rem', marginBottom: 6 }}>
                     You already have {subscription?.plan?.toUpperCase()} access.
                   </div>
-                  <div style={{ color: '#94b8d4', fontSize: '.88rem', lineHeight: 1.6 }}>
+                  <div style={{ color: '#fef9c3', fontSize: '.88rem', lineHeight: 1.6, opacity: .9 }}>
                     Instead of paying $24.99/month for each exam separately, the <strong style={{ color: '#fff' }}>Bundle gives you PAR + IRA + CAX for just $39.99/month</strong> — that's less than two individual plans ($49.98/month), and you get all three exams included.
                   </div>
                 </div>
