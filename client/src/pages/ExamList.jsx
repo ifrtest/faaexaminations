@@ -130,7 +130,7 @@ export default function ExamList() {
           console.warn('[verify-checkout] fetch error:', ex.message);
         }
         await new Promise((res) => setTimeout(res, 3000));
-        attempt(tries - 1);
+        await attempt(tries - 1);
       };
       attempt(10);
     }

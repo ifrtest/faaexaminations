@@ -192,7 +192,10 @@ async function activateOneTimePurchase(session) {
 
   // Retrieve line items to get the price ID
   const lineItems = await stripe.checkout.sessions.listLineItems(session.id, { limit: 1 });
-  const priceId   = lineItems.data[0]?.price?.id;
+  const priceId   = lineItems.data[0]?.price?.id || PRICE_MAP[plan] || null;
+  if (!lineItems.data[0]?.price?.id) {
+    console.warn(`[activateOneTimePurchase] listLineItems returned empty for session ${session.id}, falling back to PRICE_MAP[${plan}]=${priceId}`);
+  }
 
   // Update by user ID (most reliable — unaffected by Stripe Link customer remapping)
   const whereClause = userId ? 'id = $3' : 'stripe_customer_id = $3';
@@ -389,7 +392,7 @@ router.get('/subscription', requireAuth, async (req, res) => {
       status:   isUnlimited ? 'active' : (user.subscription_status || 'inactive'),
       price_id: user.subscription_price_id,
       ends_at:  user.subscription_ends_at,
-      plan:     isUnlimited ? 'all' : getPlanName(user.subscription_price_id),
+      plan:     isUnlimited ? 'all' : (getPlanName(user.subscription_price_id) || user.subscription || null),
     });
   } catch (err) {
     res.status(500).json({ error: 'Could not fetch subscription.' });
