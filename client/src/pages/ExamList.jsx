@@ -108,7 +108,7 @@ export default function ExamList() {
         try {
           const r = await fetch('/api/stripe/verify-checkout', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ session_id: sid }),
           });
           const d = await r.json();

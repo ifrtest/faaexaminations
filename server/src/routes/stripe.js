@@ -299,31 +299,28 @@ router.post('/upgrade', requireAuth, async (req, res) => {
 });
 
 // POST /api/stripe/verify-checkout
-// Called by client after Stripe redirect — verifies session and grants access directly
-router.post('/verify-checkout', requireAuth, async (req, res) => {
+// Called by client after Stripe redirect — no auth required.
+// The session_id is proof of payment (60-char unguessable Stripe token).
+// User identity comes from session metadata set at checkout creation.
+router.post('/verify-checkout', async (req, res) => {
   const { session_id } = req.body;
-  console.log(`[verify-checkout] user=${req.user.id} session_id=${session_id}`);
+  console.log(`[verify-checkout] session_id=${session_id}`);
   if (!session_id) return res.status(400).json({ error: 'Missing session_id.' });
   try {
     const session = await stripe.checkout.sessions.retrieve(session_id);
-    console.log(`[verify-checkout] payment_status=${session.payment_status} mode=${session.mode} meta_user=${session.metadata?.user_id} customer=${session.customer}`);
+    console.log(`[verify-checkout] payment_status=${session.payment_status} mode=${session.mode} meta_user=${session.metadata?.user_id}`);
     if (session.payment_status !== 'paid') {
       return res.status(402).json({ error: 'Payment not completed.', payment_status: session.payment_status });
     }
-    // Check session belongs to this user — by metadata OR by customer ID
-    const metaMatch = String(session.metadata?.user_id) === String(req.user.id);
-    const userRes = await db.query('SELECT stripe_customer_id FROM users WHERE id = $1', [req.user.id]);
-    const customerMatch = userRes.rows[0]?.stripe_customer_id === session.customer;
-    console.log(`[verify-checkout] metaMatch=${metaMatch} customerMatch=${customerMatch}`);
-    if (!metaMatch && !customerMatch) {
-      return res.status(403).json({ error: 'Session mismatch.' });
+    if (!session.metadata?.user_id) {
+      return res.status(400).json({ error: 'No user ID in session metadata.' });
     }
     if (session.mode === 'subscription') {
       await activateSubscription(session);
     } else if (session.mode === 'payment') {
       await activateOneTimePurchase(session);
     }
-    console.log(`[verify-checkout] SUCCESS user=${req.user.id}`);
+    console.log(`[verify-checkout] SUCCESS user=${session.metadata.user_id}`);
     res.json({ success: true });
   } catch (err) {
     console.error('[verify-checkout] ERROR:', err.message, err.stack?.split('\n')[1]);
