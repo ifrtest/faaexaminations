@@ -137,11 +137,11 @@ async function activateSubscription(session) {
     if (!sub) throw new Error('No active subscription found for customer ' + customerId);
   }
 
-  const priceId = sub.items.data[0].price.id;
-  const endsAt  = new Date(sub.current_period_end * 1000);
+  const priceId  = sub.items.data[0].price.id;
+  const planName = getPlanName(priceId) || priceId;
+  const endsAt   = new Date(sub.current_period_end * 1000);
 
   // Update by user ID (most reliable — unaffected by Stripe Link customer remapping)
-  // Fall back to stripe_customer_id for webhook path where metadata may differ
   const whereClause = userId ? 'id = $5' : 'stripe_customer_id = $5';
   const whereValue  = userId ? userId : customerId;
   await db.query(
@@ -153,7 +153,7 @@ async function activateSubscription(session) {
        subscription_ends_at   = $3,
        subscription           = $4
      WHERE ${whereClause}`,
-    [sub.id, priceId, endsAt, priceId, whereValue, customerId]
+    [sub.id, priceId, endsAt, planName, whereValue, customerId]
   );
   console.log(`[activateSubscription] updated user ${whereValue} plan=${priceId}`);
 
