@@ -114,6 +114,42 @@ function welcomeEmail(name, userId) {
     <p style="margin:0 0 12px">Hi ${name},</p>
     <p style="margin:0 0 16px">Your account is ready. Whether you're studying for your Private Pilot, Instrument Rating, Commercial Pilot, or Part 107 drone licence — you'll find real FAA practice questions, timed simulations, and an AI Instructor when you get stuck.</p>
     ${button(`${SITE()}/exams`, 'Start Practising →')}
+
+    <div style="margin:32px 0 0;padding:24px;background:#0b1520;border:1px solid ${BORDER};border-radius:10px">
+      <p style="margin:0 0 14px;font-weight:700;color:#fff;font-size:15px">📱 &nbsp;Save it to your phone — study anywhere</p>
+      <p style="margin:0 0 16px;color:${MUTED};font-size:13px">Add FAAExaminations.com to your home screen and it opens like a native app — no app store required.</p>
+      <table style="width:100%;border-collapse:collapse">
+        <tr>
+          <td style="padding:0 12px 0 0;vertical-align:top;width:33%">
+            <div style="font-weight:700;color:${ACCENT};font-size:12px;margin-bottom:6px">iPhone / iPad</div>
+            <ol style="margin:0;padding-left:16px;color:${MUTED};font-size:12px;line-height:2">
+              <li>Open in <strong style="color:${TEXT}">Safari</strong></li>
+              <li>Tap the <strong style="color:${TEXT}">Share</strong> button ⎙</li>
+              <li>Tap <strong style="color:${TEXT}">"Add to Home Screen"</strong></li>
+              <li>Tap <strong style="color:${TEXT}">Add</strong></li>
+            </ol>
+          </td>
+          <td style="padding:0 12px;vertical-align:top;width:33%;border-left:1px solid ${BORDER}">
+            <div style="font-weight:700;color:#16a34a;font-size:12px;margin-bottom:6px">Android</div>
+            <ol style="margin:0;padding-left:16px;color:${MUTED};font-size:12px;line-height:2">
+              <li>Open in <strong style="color:${TEXT}">Chrome</strong></li>
+              <li>Tap the <strong style="color:${TEXT}">⋮</strong> menu</li>
+              <li>Tap <strong style="color:${TEXT}">"Add to Home Screen"</strong></li>
+              <li>Tap <strong style="color:${TEXT}">Add</strong></li>
+            </ol>
+          </td>
+          <td style="padding:0 0 0 12px;vertical-align:top;width:33%;border-left:1px solid ${BORDER}">
+            <div style="font-weight:700;color:#f59e0b;font-size:12px;margin-bottom:6px">Desktop (Chrome / Edge)</div>
+            <ol style="margin:0;padding-left:16px;color:${MUTED};font-size:12px;line-height:2">
+              <li>Open in <strong style="color:${TEXT}">Chrome or Edge</strong></li>
+              <li>Click the <strong style="color:${TEXT}">install icon</strong> in the address bar</li>
+              <li>Click <strong style="color:${TEXT}">"Install"</strong></li>
+            </ol>
+          </td>
+        </tr>
+      </table>
+    </div>
+
     <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Questions? Reply to this email or contact <a href="mailto:support@faaexaminations.com" style="color:${ACCENT};text-decoration:none">support@faaexaminations.com</a></p>
   `, userId, `${SITE()}/email-banner-plane.jpg`);
 }
