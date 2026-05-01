@@ -57,6 +57,8 @@ export default function ExamList() {
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [upgrading, setUpgrading] = useState(false);
   const [justPurchased, setJustPurchased] = useState(false);
+  const [activating, setActivating] = useState(false);
+  const [activateErr, setActivateErr] = useState('');
   const configRef = useRef(null);
 
   useEffect(() => {
@@ -93,11 +95,16 @@ export default function ExamList() {
     const value = planPrices[purchasedPlan] ?? 24.99;
     if (window.fbq) fbq('track', 'Purchase', { value, currency: 'USD' }, eid ? { eventID: eid } : {});
     if (window.gtag) gtag('event', 'purchase', { currency: 'CAD', value });
-    // Verify and grant access directly — retries for 30s to handle slow deploys
+    // Verify and grant access directly — retries for 30s
     if (sid) {
       const token = localStorage.getItem('faa_token');
+      setActivating(true);
       const attempt = async (tries) => {
-        if (tries <= 0) return;
+        if (tries <= 0) {
+          setActivating(false);
+          setActivateErr('Could not activate access automatically. Please contact support or refresh the page.');
+          return;
+        }
         try {
           const r = await fetch('/api/stripe/verify-checkout', {
             method: 'POST',
@@ -105,13 +112,19 @@ export default function ExamList() {
             body: JSON.stringify({ session_id: sid }),
           });
           const d = await r.json();
+          console.log('[verify-checkout] attempt', 11 - tries, d);
           if (d.success) {
             const s = await fetch('/api/stripe/subscription', { headers: { Authorization: `Bearer ${token}` } });
             const sub = await s.json();
             setSubscription(sub);
+            setActivating(false);
             return;
           }
-        } catch (_) {}
+          // Show specific error so we can debug
+          console.warn('[verify-checkout] not success:', d);
+        } catch (ex) {
+          console.warn('[verify-checkout] fetch error:', ex.message);
+        }
         await new Promise((res) => setTimeout(res, 3000));
         attempt(tries - 1);
       };
@@ -248,13 +261,27 @@ export default function ExamList() {
 
       </div>
 
-      {justPurchased && (
+      {activating && (
+        <div style={{ background: '#0f1f35', border: '1px solid #1e3a5f', borderRadius: 12, padding: '16px 22px', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ width: 20, height: 20, border: '3px solid #30ace2', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.8s linear infinite', flexShrink: 0 }} />
+          <div style={{ color: '#94b8d4', fontSize: '.95rem' }}>Activating your access… please wait.</div>
+        </div>
+      )}
+
+      {justPurchased && !activating && !activateErr && (
         <div style={{ background: 'linear-gradient(90deg, #064e3b, #065f46)', border: '1px solid #059669', borderRadius: 12, padding: '16px 22px', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 12 }}>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#34d399" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           <div>
             <div style={{ color: '#fff', fontWeight: 700, fontSize: '1rem' }}>Payment confirmed — you're all set!</div>
             <div style={{ color: '#6ee7b7', fontSize: '.88rem', marginTop: 3 }}>Your exam is now unlocked. Click the card below to start practising.</div>
           </div>
+        </div>
+      )}
+
+      {activateErr && (
+        <div style={{ background: '#1a0a0a', border: '1px solid #7f1d1d', borderRadius: 12, padding: '16px 22px', marginBottom: 20 }}>
+          <div style={{ color: '#fca5a5', fontWeight: 700, marginBottom: 4 }}>Access activation failed</div>
+          <div style={{ color: '#f87171', fontSize: '.88rem' }}>{activateErr}</div>
         </div>
       )}
 
