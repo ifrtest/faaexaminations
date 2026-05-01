@@ -274,6 +274,57 @@ function nurtureDay14(name, userId) {
   `, userId, `${SITE()}/email-banner-plane.jpg`);
 }
 
+// ---------- Subscriber onboarding drip (Day 1 / 3 / 7 after payment) -----
+
+function onboardDay1(name, plan, userId) {
+  const planNames = { par: 'Private Pilot (PAR)', ira: 'Instrument Rating (IRA)', cax: 'Commercial Pilot (CAX)', bundle: 'All 3 Exams Bundle', uag: 'Part 107 Remote Pilot' };
+  const label = planNames[plan] || 'your exam';
+  const examUrl = plan === 'uag' ? `${SITE()}/exams/part-107` : `${SITE()}/exams`;
+  return shell(`Your first study session for ${label}`, `
+    <p style="margin:0 0 12px">Hi ${name},</p>
+    <p style="margin:0 0 16px">You're in. Here's how to make the most of your first session so you don't waste time on the wrong things.</p>
+    <p style="margin:0 0 8px;font-weight:700;color:#fff">Start by topic, not by random mode.</p>
+    <p style="margin:0 0 16px;color:${MUTED}">Pick one FAA subject area and work through all the questions in it. This builds real understanding instead of pattern-matching to memorized answers. Random mode is for later — once you know the material.</p>
+    <p style="margin:0 0 8px;font-weight:700;color:#fff">Read every explanation, even when you get it right.</p>
+    <p style="margin:0 0 16px;color:${MUTED}">The FAA rewords questions constantly. Understanding the concept behind an answer means you'll recognize it even when it's phrased differently on the real exam.</p>
+    <p style="margin:0 0 8px;font-weight:700;color:#fff">Your dashboard tracks topic-by-topic readiness.</p>
+    <p style="margin:0 0 20px;color:${MUTED}">After a few sessions you'll see exactly where you stand. That's where to focus — most people fail because of two or three weak areas, not overall unpreparedness.</p>
+    ${button(examUrl, 'Start Studying →')}
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Reply to this email anytime — we read every one.</p>
+  `, userId, `${SITE()}/email-banner-plane.jpg`);
+}
+
+function onboardDay3(name, plan, userId) {
+  const planNames = { par: 'Private Pilot (PAR)', ira: 'Instrument Rating (IRA)', cax: 'Commercial Pilot (CAX)', bundle: 'All 3 Exams Bundle', uag: 'Part 107 Remote Pilot' };
+  const label = planNames[plan] || 'your exam';
+  const examUrl = plan === 'uag' ? `${SITE()}/exams/part-107` : `${SITE()}/exams`;
+  return shell(`The #1 reason people fail the FAA written`, `
+    <p style="margin:0 0 12px">Hi ${name},</p>
+    <p style="margin:0 0 16px">Three days in — here's the one thing that separates people who pass from people who have to rebook.</p>
+    <p style="margin:0 0 8px;font-weight:700;color:#fff">They stopped studying before they were actually ready.</p>
+    <p style="margin:0 0 16px;color:${MUTED}">It sounds obvious, but a lot of students feel prepared after going through questions once. Then they sit the exam and find a whole category they thought they understood — but didn't. The timed mock exam in your dashboard is the best indicator of actual readiness. Don't book the real thing until you're consistently hitting 80%+ on mock exams.</p>
+    <p style="margin:0 0 8px;font-weight:700;color:#fff">Your AI Instructor is there for anything that doesn't click.</p>
+    <p style="margin:0 0 20px;color:${MUTED}">Weather theory, airspace rules, weight and balance calculations — if an explanation doesn't make sense, ask the AI Instructor directly on that question. It's built specifically for ${label} material, not general aviation trivia.</p>
+    ${button(examUrl, 'Check Your Progress →')}
+  `, userId, `${SITE()}/email-banner-plane.jpg`);
+}
+
+function onboardDay7(name, plan, userId) {
+  const planNames = { par: 'Private Pilot (PAR)', ira: 'Instrument Rating (IRA)', cax: 'Commercial Pilot (CAX)', bundle: 'All 3 Exams Bundle', uag: 'Part 107 Remote Pilot' };
+  const label = planNames[plan] || 'your exam';
+  const examUrl = plan === 'uag' ? `${SITE()}/exams/part-107` : `${SITE()}/exams`;
+  return shell(`One week in — how are you tracking?`, `
+    <p style="margin:0 0 12px">Hi ${name},</p>
+    <p style="margin:0 0 16px">You've had a week with ${label}. Here's a quick checkpoint.</p>
+    <p style="margin:0 0 8px;font-weight:700;color:#fff">Open your dashboard and look at your topic scores.</p>
+    <p style="margin:0 0 16px;color:${MUTED}">Anything below 70% needs focused work before you're ready to run a full mock exam. Pick your two weakest categories this week and work through them question by question — explanations included. Don't move on until you're consistently above 75% in each one.</p>
+    <p style="margin:0 0 8px;font-weight:700;color:#fff">Aim to run your first full timed mock exam this week.</p>
+    <p style="margin:0 0 20px;color:${MUTED}">60 questions, 150 minutes, real pass/fail scoring — just like the actual test. Your score tells you whether you're on track or whether you need another week of topic work. Most people need 2–3 mock exams before they're consistently passing.</p>
+    ${button(examUrl, 'Open Your Dashboard →')}
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Questions about your study plan? Reply to this email.</p>
+  `, userId, `${SITE()}/email-banner-plane.jpg`);
+}
+
 function bundleUpsellEmail(name, currentPlan, userId) {
   const planNames = { par: 'Private Pilot (PAR)', ira: 'Instrument Rating (IRA)', cax: 'Commercial Pilot (CAX)', uag: 'Part 107' };
   const current = planNames[currentPlan] || currentPlan;
@@ -341,6 +392,9 @@ module.exports = {
   nurtureDay7,
   nurtureDay14,
   bundleUpsellEmail,
+  onboardDay1,
+  onboardDay3,
+  onboardDay7,
   unsubToken,
   unsubUrl,
 };

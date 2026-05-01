@@ -185,12 +185,13 @@ async function activateSubscription(session) {
   const whereValue  = userId ? userId : customerId;
   await db.query(
     `UPDATE users SET
-       stripe_subscription_id = $1,
-       stripe_customer_id     = COALESCE(stripe_customer_id, $6),
-       subscription_status    = $7,
-       subscription_price_id  = $2,
-       subscription_ends_at   = $3,
-       subscription           = $4
+       stripe_subscription_id  = $1,
+       stripe_customer_id      = COALESCE(stripe_customer_id, $6),
+       subscription_status     = $7,
+       subscription_price_id   = $2,
+       subscription_ends_at    = $3,
+       subscription            = $4,
+       subscription_activated_at = COALESCE(subscription_activated_at, NOW())
      WHERE ${whereClause}`,
     [sub.id, priceId, endsAt, planName, whereValue, customerId, sub.status]
   );
