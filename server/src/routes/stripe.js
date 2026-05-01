@@ -211,20 +211,18 @@ async function activateOneTimePurchase(session) {
     console.warn(`[activateOneTimePurchase] listLineItems returned empty for session ${session.id}, falling back to PRICE_MAP[${plan}]=${priceId}`);
   }
 
-  // Update by user ID (most reliable — unaffected by Stripe Link customer remapping)
-  const whereClause = userId ? 'id = $3' : 'stripe_customer_id = $3';
+  // UAG is a permanent one-time add-on — set uag_access flag only.
+  // Never overwrite subscription/subscription_status so it can coexist with any plan.
+  const whereClause = userId ? 'id = $2' : 'stripe_customer_id = $2';
   const whereValue  = userId ? userId : customerId;
   await db.query(
     `UPDATE users SET
-       stripe_customer_id    = COALESCE(stripe_customer_id, $4),
-       subscription_status   = 'active',
-       subscription_price_id = $1,
-       subscription_ends_at  = NULL,
-       subscription          = $2
+       stripe_customer_id = COALESCE(stripe_customer_id, $3),
+       uag_access         = TRUE
      WHERE ${whereClause}`,
-    [priceId, plan, whereValue, customerId]
+    [whereValue, customerId]
   );
-  console.log(`[activateOneTimePurchase] updated user ${whereValue} plan=${plan}`);
+  console.log(`[activateOneTimePurchase] set uag_access=true for user ${whereValue}`);
 
   const userRes = userId
     ? await db.query('SELECT id, email, full_name FROM users WHERE id = $1', [userId])
@@ -396,17 +394,18 @@ router.post('/cancel-subscription', requireAuth, async (req, res) => {
 router.get('/subscription', requireAuth, async (req, res) => {
   try {
     const userRes = await db.query(
-      'SELECT subscription, subscription_status, subscription_price_id, subscription_ends_at FROM users WHERE id = $1',
+      'SELECT subscription, subscription_status, subscription_price_id, subscription_ends_at, uag_access FROM users WHERE id = $1',
       [req.user.id]
     );
     const user = userRes.rows[0];
     // Admins and manually-granted "all" users get full plan access
     const isUnlimited = req.user.role === 'admin' || user.subscription === 'all';
     res.json({
-      status:   isUnlimited ? 'active' : (user.subscription_status || 'inactive'),
-      price_id: user.subscription_price_id,
-      ends_at:  user.subscription_ends_at,
-      plan:     isUnlimited ? 'all' : (getPlanName(user.subscription_price_id) || user.subscription || null),
+      status:     isUnlimited ? 'active' : (user.subscription_status || 'inactive'),
+      price_id:   user.subscription_price_id,
+      ends_at:    user.subscription_ends_at,
+      plan:       isUnlimited ? 'all' : (getPlanName(user.subscription_price_id) || user.subscription || null),
+      uag_access: isUnlimited ? true : (user.uag_access || false),
     });
   } catch (err) {
     res.status(500).json({ error: 'Could not fetch subscription.' });

@@ -96,19 +96,26 @@ exports.startSession = async (req, res, next) => {
       if (!isUnlimited) {
         // Subscription access check
         const { rows: userRows } = await db.query(
-          'SELECT subscription_status, subscription_price_id, subscription FROM users WHERE id=$1',
+          'SELECT subscription_status, subscription_price_id, subscription, uag_access FROM users WHERE id=$1',
           [req.user.id]
         );
         const user = userRows[0];
-        const PRICE_EXAMS = require('../routes/stripe').PRICE_EXAMS;
-        // PLAN_EXAMS is the fallback when subscription_price_id is null or stale
-        const PLAN_EXAMS = { par: [1], ira: [2], cax: [3], uag: [4], bundle: [1, 2, 3, 4] };
-        const allowedExamIds =
-          PRICE_EXAMS[user?.subscription_price_id] ||
-          PLAN_EXAMS[user?.subscription] ||
-          [];
-        if (user?.subscription_status !== 'active' || !allowedExamIds.includes(exam.id)) {
-          return res.status(403).json({ error: 'A subscription is required to access this exam.' });
+        // UAG (exam id=4) is a one-time purchase tracked by its own flag
+        if (exam.id === 4) {
+          if (!user?.uag_access) {
+            return res.status(403).json({ error: 'A subscription is required to access this exam.' });
+          }
+        } else {
+          const PRICE_EXAMS = require('../routes/stripe').PRICE_EXAMS;
+          // PLAN_EXAMS is the fallback when subscription_price_id is null or stale
+          const PLAN_EXAMS = { par: [1], ira: [2], cax: [3], bundle: [1, 2, 3, 4] };
+          const allowedExamIds =
+            PRICE_EXAMS[user?.subscription_price_id] ||
+            PLAN_EXAMS[user?.subscription] ||
+            [];
+          if (user?.subscription_status !== 'active' || !allowedExamIds.includes(exam.id)) {
+            return res.status(403).json({ error: 'A subscription is required to access this exam.' });
+          }
         }
       }
     }
