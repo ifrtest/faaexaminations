@@ -132,7 +132,7 @@ export default function IRALanding() {
             <div className="lp-hero-btns">
               <Link to="/register?plan=ira" className="lp-btn-hero">
                 <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
-                Start Free Today
+                Start 3 Days Free
               </Link>
               <a href="#includes" className="lp-btn-outline">See What's Included</a>
             </div>
@@ -157,8 +157,8 @@ export default function IRALanding() {
                 </li>
               ))}
             </ul>
-            <Link to="/register?plan=ira" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Start Free — 10 Questions Now →</Link>
-            <Link to="/register?plan=ira" style={{ display: 'block', textAlign: 'center', marginTop: 10, padding: '13px 28px', borderRadius: 10, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.18)', color: '#fff', fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>Subscribe Now — $24.99/mo →</Link>
+            <Link to="/register?plan=ira" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Start 3 Days Free →</Link>
+            <Link to="/register?plan=ira" style={{ display: 'block', textAlign: 'center', marginTop: 10, padding: '13px 28px', borderRadius: 10, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.18)', color: '#fff', fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>Start 3-Day Free Trial — $24.99/mo →</Link>
             <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>No credit card required · Upgrade when you're ready</div>
           </div>
         </div>
@@ -183,9 +183,9 @@ export default function IRALanding() {
                 </li>
               ))}
             </ul>
-            <Link to="/register?plan=ira" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Start Free — Get 10 Questions Now</Link>
-            <Link to="/register?plan=ira" style={{ display: 'block', textAlign: 'center', marginTop: 12, padding: '15px 40px', borderRadius: 10, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.18)', color: '#fff', fontWeight: 700, fontSize: 16, textDecoration: 'none' }}>Subscribe Now — $24.99/mo →</Link>
-            <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}>No credit card required to start · Upgrade when you're ready</div>
+            <Link to="/register?plan=ira" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Start 3 Days Free →</Link>
+            <Link to="/register?plan=ira" style={{ display: 'block', textAlign: 'center', marginTop: 12, padding: '15px 40px', borderRadius: 10, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.18)', color: '#fff', fontWeight: 700, fontSize: 16, textDecoration: 'none' }}>Start 3-Day Free Trial — $24.99/mo →</Link>
+            <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}>3-day free trial · Card required · Cancel anytime</div>
           </div>
         </div>
       </section>
@@ -327,7 +327,7 @@ export default function IRALanding() {
             </div>
           </div>
           <div style={{ textAlign: 'center', marginTop: 48 }}>
-            <Link to="/register?plan=ira" className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>Start Studying Free Today →</Link>
+            <Link to="/register?plan=ira" className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>Start 3 Days Free →</Link>
           </div>
         </div>
       </section>
@@ -403,7 +403,7 @@ export default function IRALanding() {
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/register?plan=ira" className="lp-btn-hero" style={{ fontSize: 18, padding: '18px 44px' }}>
               <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
-              Start Free Today
+              Start 3 Days Free
             </Link>
             <Link to="/#products" className="lp-btn-outline" style={{ fontSize: 16 }}>View All Packages</Link>
           </div>
