@@ -1080,7 +1080,7 @@ const POSTS = {
     dateISO: '2026-04-28',
     readTime: '6 min read',
     tag: 'Private Pilot',
-    image: '/private-pilot-faa-knowledge-test-prep.jpg',
+    image: '/blog-pilot-aircraft.jpg',
     related: ['how-to-pass-faa-private-pilot-written-exam-first-try', 'how-to-pass-faa-written-exam-first-try', 'faa-written-exam-study-guide'],
     content: (
       <>
@@ -1315,7 +1315,7 @@ const POSTS = {
     dateISO: '2026-05-02',
     readTime: '8 min read',
     tag: 'Instrument Rating',
-    image: '/plane-ira.webp',
+    image: '/blog-garmin-cockpit.jpg',
     related: ['faa-instrument-rating-written-test-study-tips-2026', 'instrument-rating-knowledge-test-tips', 'how-to-read-a-taf'],
     content: (
       <>
@@ -1405,7 +1405,7 @@ const POSTS = {
     dateISO: '2026-05-02',
     readTime: '8 min read',
     tag: 'Private Pilot',
-    image: '/private-pilot-faa-knowledge-test-prep.jpg',
+    image: '/blog-preflight.jpg',
     related: ['how-to-pass-faa-private-pilot-written-exam-first-try', 'how-long-to-get-private-pilot-license', 'faa-medical-certificate-classes-explained'],
     content: (
       <>
@@ -1485,7 +1485,7 @@ const POSTS = {
     dateISO: '2026-05-02',
     readTime: '7 min read',
     tag: 'Study Tips',
-    image: '/plane-step2.jpg',
+    image: '/blog-ga-cockpit.jpg',
     related: ['what-is-density-altitude', 'how-to-pass-faa-private-pilot-written-exam-first-try', 'vfr-cross-country-flight-planning'],
     content: (
       <>
@@ -1715,7 +1715,7 @@ const POSTS = {
     dateISO: '2026-05-02',
     readTime: '7 min read',
     tag: 'Private Pilot',
-    image: '/blog-e6b-computer.jpg',
+    image: '/blog-vfr-flight.jpg',
     related: ['how-to-read-a-metar', 'how-to-read-a-sectional-chart', 'faa-airspace-classes-explained'],
     content: (
       <>
@@ -1791,7 +1791,7 @@ const POSTS = {
     dateISO: '2026-05-02',
     readTime: '6 min read',
     tag: 'Study Tips',
-    image: '/blog-e6b-computer.jpg',
+    image: '/blog-cockpit-gauges.jpg',
     related: ['faa-airspace-classes-explained', 'how-to-read-a-metar', 'how-to-pass-faa-written-exam-first-try'],
     content: (
       <>
@@ -1937,7 +1937,7 @@ const POSTS = {
     dateISO: '2026-05-02',
     readTime: '8 min read',
     tag: 'Study Tips',
-    image: '/plane-step2.jpg',
+    image: '/blog-pilots-flying.jpg',
     related: ['how-to-read-a-metar', 'how-to-pass-faa-written-exam-first-try', 'part-107-drone-test-study-guide'],
     content: (
       <>
@@ -2041,7 +2041,7 @@ const POSTS = {
     dateISO: '2026-05-02',
     readTime: '5 min read',
     tag: 'Study Tips',
-    image: '/plane-step2.jpg',
+    image: '/blog-student-pilot.jpg',
     related: ['faa-written-exam-questions-score-tips', 'how-to-pass-faa-written-exam-first-try', 'how-long-to-study-for-faa-written-exam'],
     content: (
       <>

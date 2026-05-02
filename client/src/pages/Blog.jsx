@@ -10,7 +10,7 @@ const POSTS = [
     date: 'May 2, 2026',
     readTime: '8 min read',
     tag: 'Instrument Rating',
-    image: '/plane-ira.webp',
+    image: '/blog-garmin-cockpit.jpg',
   },
   {
     slug: 'private-pilot-checkride-what-to-expect',
@@ -19,7 +19,7 @@ const POSTS = [
     date: 'May 2, 2026',
     readTime: '8 min read',
     tag: 'Private Pilot',
-    image: '/private-pilot-faa-knowledge-test-prep.jpg',
+    image: '/blog-preflight.jpg',
   },
   {
     slug: 'weight-and-balance-faa-exam',
@@ -28,7 +28,7 @@ const POSTS = [
     date: 'May 2, 2026',
     readTime: '7 min read',
     tag: 'Study Tips',
-    image: '/plane-step2.jpg',
+    image: '/blog-ga-cockpit.jpg',
   },
   {
     slug: 'faa-medical-certificate-classes-explained',
@@ -55,7 +55,7 @@ const POSTS = [
     date: 'May 2, 2026',
     readTime: '7 min read',
     tag: 'Private Pilot',
-    image: '/blog-e6b-computer.jpg',
+    image: '/blog-vfr-flight.jpg',
   },
   {
     slug: 'what-is-density-altitude',
@@ -64,7 +64,7 @@ const POSTS = [
     date: 'May 2, 2026',
     readTime: '6 min read',
     tag: 'Study Tips',
-    image: '/blog-e6b-computer.jpg',
+    image: '/blog-cockpit-gauges.jpg',
   },
   {
     slug: 'how-to-read-a-sectional-chart',
@@ -82,7 +82,7 @@ const POSTS = [
     date: 'May 2, 2026',
     readTime: '8 min read',
     tag: 'Study Tips',
-    image: '/plane-step2.jpg',
+    image: '/blog-pilots-flying.jpg',
   },
   {
     slug: 'how-to-schedule-faa-written-exam',
@@ -91,7 +91,7 @@ const POSTS = [
     date: 'May 2, 2026',
     readTime: '5 min read',
     tag: 'Study Tips',
-    image: '/plane-step2.jpg',
+    image: '/blog-student-pilot.jpg',
   },
   {
     slug: 'how-long-to-study-for-faa-written-exam',
@@ -145,7 +145,7 @@ const POSTS = [
     date: 'April 27, 2026',
     readTime: '6 min read',
     tag: 'Private Pilot',
-    image: '/private-pilot-faa-knowledge-test-prep.jpg',
+    image: '/blog-pilot-aircraft.jpg',
   },
   {
     slug: 'part-107-vs-private-pilot-license',
