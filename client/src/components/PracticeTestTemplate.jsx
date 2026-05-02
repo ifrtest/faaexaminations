@@ -88,17 +88,13 @@ export default function PracticeTestTemplate({
         <meta property="og:title" content={seoTitle} />
         <meta property="og:description" content={seoDescription} />
         <meta property="og:site_name" content="FAAExaminations.com" />
-        {schemaFaqs && (
-          <script type="application/ld+json">{JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: schemaFaqs.map((f) => ({
-              '@type': 'Question',
-              name: f.q,
-              acceptedAnswer: { '@type': 'Answer', text: f.a },
-            })),
-          })}</script>
-        )}
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          name: seoTitle,
+          description: seoDescription,
+          url: `https://faaexaminations.com${canonicalPath}`,
+        })}</script>
       </Helmet>
 
       {/* NAV */}
