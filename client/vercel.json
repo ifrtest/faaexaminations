@@ -36,6 +36,10 @@
     { "source": "/ira", "destination": "/ira.html" },
     { "source": "/cax", "destination": "/cax.html" },
     { "source": "/bundle", "destination": "/bundle.html" },
+    { "source": "/par-practice-test", "destination": "/par-practice-test.html" },
+    { "source": "/ira-practice-test", "destination": "/ira-practice-test.html" },
+    { "source": "/cax-practice-test", "destination": "/cax-practice-test.html" },
+    { "source": "/part-107-practice-test", "destination": "/part-107-practice-test.html" },
     {
       "source": "/(.*)",
       "destination": "/index.html"
