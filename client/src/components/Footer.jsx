@@ -63,6 +63,21 @@ export default function Footer() {
             <text x="4" y="19" fontFamily="Arial,sans-serif" fontWeight="700" fontSize="7" fill="#5F6368">Pay</text>
           </svg>
         </div>
+        {/* Trust signals */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, flexWrap: 'wrap', marginBottom: 10, fontSize: '.78rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+            <svg width="12" height="14" viewBox="0 0 13 15" fill="none"><rect x="1" y="5.5" width="11" height="8.5" rx="1.5" stroke="#34d399" strokeWidth="1.2"/><path d="M4 5.5V3.5a2.5 2.5 0 0 1 5 0v2" stroke="#34d399" strokeWidth="1.2" strokeLinecap="round"/><path d="M6.5 9v2" stroke="#34d399" strokeWidth="1.5" strokeLinecap="round"/><circle cx="6.5" cy="8.5" r=".7" fill="#34d399"/></svg>
+            <span style={{ color: '#34d399', fontWeight: 600 }}>SSL Encrypted</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1L1.5 3.5v4C1.5 10.6 4 13 7 13s5.5-2.4 5.5-5.5v-4L7 1z" stroke="#30ace2" strokeWidth="1.2" strokeLinejoin="round"/><path d="M4.5 7l2 2 3-3" stroke="#30ace2" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <span style={{ color: 'var(--text2)' }}>Powered by <span style={{ color: '#30ace2', fontWeight: 600 }}>Stripe</span></span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 5, color: 'var(--text2)' }}>
+            <svg width="12" height="12" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" strokeWidth="1.2"/><path d="M4 6.5l2 2 3-3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <span>Cancel anytime</span>
+          </div>
+        </div>
         <div>
           © {new Date().getFullYear()} FAAExaminations.com · FAA practice exams for student pilots ·
           Not affiliated with the Federal Aviation Administration
