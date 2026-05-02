@@ -53,6 +53,16 @@ const pages = {
     imageHeight: '1792',
     imageAlt: 'FAA Pilot Certificate Bundle — FAAExaminations.com',
   },
+  'par-cheat-sheet': {
+    pageTitle: 'FAA Private Pilot Exam Cheat Sheet (PAR) — Key Numbers, Rules & Formulas (2026) | FAAExaminations.com',
+    url: 'https://faaexaminations.com/par-cheat-sheet',
+    ogTitle: 'FAA Private Pilot Exam Cheat Sheet — Key Numbers, Rules & Formulas',
+    ogDesc: 'Free FAA Private Pilot (PAR) written exam cheat sheet. FARs, airspace minimums, METAR codes, density altitude, weight & balance, and more. Printable reference.',
+    image: 'https://faaexaminations.com/plane-par-desktop.jpg',
+    imageWidth: '1920',
+    imageHeight: '1280',
+    imageAlt: 'FAA Private Pilot exam cheat sheet — FAAExaminations.com',
+  },
   'par-practice-test': {
     pageTitle: 'FAA Private Pilot Practice Test (PAR) — 30 Free Questions (2026) | FAAExaminations.com',
     url: 'https://faaexaminations.com/par-practice-test',
