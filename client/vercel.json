@@ -45,6 +45,7 @@
     { "source": "/cax-practice-test", "destination": "/cax-practice-test.html" },
     { "source": "/part-107-practice-test", "destination": "/part-107-practice-test.html" },
     { "source": "/par-cheat-sheet", "destination": "/par-cheat-sheet.html" },
+    { "source": "/part-107-cheat-sheet", "destination": "/part-107-cheat-sheet.html" },
     {
       "source": "/(.*)",
       "destination": "/index.html"

@@ -53,6 +53,16 @@ const pages = {
     imageHeight: '1792',
     imageAlt: 'FAA Pilot Certificate Bundle — FAAExaminations.com',
   },
+  'part-107-cheat-sheet': {
+    pageTitle: 'FAA Part 107 Cheat Sheet — Key Rules, Airspace & Numbers (2026) | FAAExaminations.com',
+    url: 'https://faaexaminations.com/part-107-cheat-sheet',
+    ogTitle: 'FAA Part 107 Cheat Sheet — Key Rules, Airspace & Numbers (2026)',
+    ogDesc: 'Free FAA Part 107 drone license exam cheat sheet. Altitude limits, airspace authorization, Remote ID, weather minimums, waivers, and key regulations.',
+    image: 'https://faaexaminations.com/drone_image_faa_examinations.jpg',
+    imageWidth: '1440',
+    imageHeight: '1080',
+    imageAlt: 'FAA Part 107 drone license exam cheat sheet — FAAExaminations.com',
+  },
   'par-cheat-sheet': {
     pageTitle: 'FAA Private Pilot Exam Cheat Sheet (PAR) — Key Numbers, Rules & Formulas (2026) | FAAExaminations.com',
     url: 'https://faaexaminations.com/par-cheat-sheet',
