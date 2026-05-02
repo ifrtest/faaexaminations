@@ -290,7 +290,7 @@ async function activateOneTimePurchase(session) {
 async function updateSubscription(sub) {
   const priceId  = sub.items.data[0].price.id;
   const planName = getPlanName(priceId) || priceId;
-  const endsAt   = new Date(sub.current_period_end * 1000);
+  const endsAt   = sub.current_period_end ? new Date(sub.current_period_end * 1000) : null;
   const status   = sub.status; // active, past_due, canceled, etc.
 
   await db.query(
