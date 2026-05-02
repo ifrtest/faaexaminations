@@ -33,18 +33,22 @@ import AdminFigures   from './pages/admin/AdminFigures';
 import Blog           from './pages/Blog';
 import BlogPost       from './pages/BlogPost';
 import NotFound       from './pages/NotFound';
-import PARLanding     from './pages/PARLanding';
-import IRALanding     from './pages/IRALanding';
-import CAXLanding     from './pages/CAXLanding';
-import Part107Landing from './pages/Part107Landing';
-import BundleLanding  from './pages/BundleLanding';
+import PARLanding        from './pages/PARLanding';
+import IRALanding        from './pages/IRALanding';
+import CAXLanding        from './pages/CAXLanding';
+import Part107Landing    from './pages/Part107Landing';
+import BundleLanding     from './pages/BundleLanding';
+import PARPracticeTest   from './pages/PARPracticeTest';
+import IRAPracticeTest   from './pages/IRAPracticeTest';
+import CAXPracticeTest   from './pages/CAXPracticeTest';
+import Part107PracticeTest from './pages/Part107PracticeTest';
 
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
 export default function App() {
   const { pathname } = useLocation();
-  const isLanding = ['/', '/par', '/ira', '/cax', '/part-107', '/bundle', '/checkout'].includes(pathname);
+  const isLanding = ['/', '/par', '/ira', '/cax', '/part-107', '/bundle', '/checkout', '/par-practice-test', '/ira-practice-test', '/cax-practice-test', '/part-107-practice-test'].includes(pathname);
 
   useEffect(() => {
     // Don't override hash-based scrolling (e.g. /par#products)
@@ -64,7 +68,11 @@ export default function App() {
           <Route path="/ira"            element={<IRALanding />} />
           <Route path="/cax"            element={<CAXLanding />} />
           <Route path="/part-107"       element={<Part107Landing />} />
-          <Route path="/bundle"         element={<BundleLanding />} />
+          <Route path="/bundle"              element={<BundleLanding />} />
+          <Route path="/par-practice-test"   element={<PARPracticeTest />} />
+          <Route path="/ira-practice-test"   element={<IRAPracticeTest />} />
+          <Route path="/cax-practice-test"   element={<CAXPracticeTest />} />
+          <Route path="/part-107-practice-test" element={<Part107PracticeTest />} />
           <Route path="/login"          element={<Login />} />
           <Route path="/register"       element={<Register />} />
           <Route path="/forgot"         element={<ForgotPassword />} />
