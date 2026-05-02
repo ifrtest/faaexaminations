@@ -31,6 +31,38 @@ export default function Footer() {
           <Link to="/terms" style={{ color: 'var(--text2)', fontSize: '.85rem', marginRight: 16 }}>Terms of Service</Link>
           <a href="mailto:support@faaexaminations.com" style={{ color: 'var(--text2)', fontSize: '.85rem' }}>support@faaexaminations.com</a>
         </div>
+        {/* Payment method logos */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, margin: '10px 0', flexWrap: 'wrap' }}>
+          <svg width="34" height="22" viewBox="0 0 38 24" fill="none" style={{ background: '#fff', borderRadius: 3, padding: '2px 4px', opacity: 0.7 }}>
+            <text x="4" y="17" fontFamily="Arial,sans-serif" fontWeight="bold" fontSize="13" fill="#1a1f71">VISA</text>
+          </svg>
+          <svg width="34" height="22" viewBox="0 0 38 24" fill="none" style={{ background: '#fff', borderRadius: 3, opacity: 0.7 }}>
+            <circle cx="14" cy="12" r="7" fill="#EB001B"/>
+            <circle cx="24" cy="12" r="7" fill="#F79E1B"/>
+            <path d="M19 6.8a7 7 0 0 1 0 10.4A7 7 0 0 1 19 6.8z" fill="#FF5F00"/>
+          </svg>
+          <svg width="34" height="22" viewBox="0 0 38 24" fill="none" style={{ background: '#2671b2', borderRadius: 3, padding: '2px 3px', opacity: 0.7 }}>
+            <text x="2" y="16" fontFamily="Arial,sans-serif" fontWeight="bold" fontSize="9" fill="#fff">AMEX</text>
+          </svg>
+          <svg width="34" height="22" viewBox="0 0 38 24" fill="none" style={{ background: '#fff', borderRadius: 3, padding: '2px 3px', opacity: 0.7 }}>
+            <text x="1" y="11" fontFamily="Arial,sans-serif" fontWeight="bold" fontSize="7" fill="#231f20">DISC-</text>
+            <text x="1" y="19" fontFamily="Arial,sans-serif" fontWeight="bold" fontSize="7" fill="#231f20">OVER</text>
+            <circle cx="30" cy="12" r="6" fill="#F76F20"/>
+          </svg>
+          <svg width="34" height="22" viewBox="0 0 38 24" fill="none" style={{ background: '#000', borderRadius: 3, padding: '3px 5px', opacity: 0.7 }}>
+            <text x="4" y="10" fontFamily="Arial,sans-serif" fontWeight="500" fontSize="6" fill="#fff">Apple</text>
+            <text x="4" y="18" fontFamily="Arial,sans-serif" fontWeight="700" fontSize="7" fill="#fff">Pay</text>
+          </svg>
+          <svg width="34" height="22" viewBox="0 0 38 24" fill="none" style={{ background: '#fff', borderRadius: 3, padding: '3px 4px', opacity: 0.7 }}>
+            <text x="1" y="10" fontFamily="Arial,sans-serif" fontWeight="500" fontSize="6" fill="#4285F4">G</text>
+            <text x="7" y="10" fontFamily="Arial,sans-serif" fontWeight="500" fontSize="6" fill="#EA4335">o</text>
+            <text x="12" y="10" fontFamily="Arial,sans-serif" fontWeight="500" fontSize="6" fill="#FBBC05">o</text>
+            <text x="17" y="10" fontFamily="Arial,sans-serif" fontWeight="500" fontSize="6" fill="#34A853">g</text>
+            <text x="22" y="10" fontFamily="Arial,sans-serif" fontWeight="500" fontSize="6" fill="#EA4335">l</text>
+            <text x="25" y="10" fontFamily="Arial,sans-serif" fontWeight="500" fontSize="6" fill="#4285F4">e</text>
+            <text x="4" y="19" fontFamily="Arial,sans-serif" fontWeight="700" fontSize="7" fill="#5F6368">Pay</text>
+          </svg>
+        </div>
         <div>
           © {new Date().getFullYear()} FAAExaminations.com · FAA practice exams for student pilots ·
           Not affiliated with the Federal Aviation Administration
