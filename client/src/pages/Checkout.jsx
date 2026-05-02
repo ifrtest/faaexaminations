@@ -68,6 +68,7 @@ function CheckoutForm({ plan, intentData, onSuccess }) {
         });
         const data = await res.json();
         if (!res.ok) { setErr(data.error || 'Could not activate subscription.'); setBusy(false); return; }
+        if (window.fbq) fbq('track', 'Purchase', { value: 0, currency: 'USD', content_name: plan });
         onSuccess();
       } else {
         const { error, paymentIntent } = await stripe.confirmPayment({
@@ -84,6 +85,7 @@ function CheckoutForm({ plan, intentData, onSuccess }) {
         });
         const data = await res.json();
         if (!res.ok) { setErr(data.error || 'Could not activate access.'); setBusy(false); return; }
+        if (window.fbq) fbq('track', 'Purchase', { value: 37.99, currency: 'USD', content_name: plan });
         onSuccess();
       }
     } catch (ex) {

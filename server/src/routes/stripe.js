@@ -550,6 +550,14 @@ router.post('/embedded/activate', requireAuth, async (req, res) => {
           userId,
           allowUnsubscribed: true,
         });
+        capiPurchase({
+          eventId: crypto.randomUUID(),
+          email: u.rows[0].email,
+          firstName: (u.rows[0].full_name || '').split(' ')[0] || '',
+          userId,
+          value: 37.99,
+          currency: 'USD',
+        });
       }
       return res.json({ success: true });
     }
@@ -585,6 +593,15 @@ router.post('/embedded/activate', requireAuth, async (req, res) => {
         html: trialStartEmail(u.rows[0].full_name || u.rows[0].email.split('@')[0], planName, trialEnd, userId),
         userId,
         allowUnsubscribed: true,
+      });
+      const PLAN_VALUE = { par: 24.99, ira: 24.99, cax: 24.99, bundle: 39.99 };
+      capiPurchase({
+        eventId: crypto.randomUUID(),
+        email: u.rows[0].email,
+        firstName: (u.rows[0].full_name || '').split(' ')[0] || '',
+        userId,
+        value: PLAN_VALUE[planName] || 24.99,
+        currency: 'USD',
       });
     }
 
