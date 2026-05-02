@@ -18,6 +18,7 @@ import Result      from './pages/Result';
 import History     from './pages/History';
 import Profile      from './pages/Profile';
 import CancelPolicy  from './pages/CancelPolicy';
+import Checkout      from './pages/Checkout';
 import References    from './pages/References';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
@@ -77,6 +78,7 @@ export default function App() {
           <Route path="/results"   element={<ProtectedRoute><History /></ProtectedRoute>} />
           <Route path="/profile"        element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path="/cancel-policy"  element={<CancelPolicy />} />
+          <Route path="/checkout"       element={<Checkout />} />
           <Route path="/references"     element={<References />} />
           <Route path="/privacy"        element={<PrivacyPolicy />} />
           <Route path="/terms"          element={<TermsOfService />} />

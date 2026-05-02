@@ -461,6 +461,139 @@ router.get('/subscription', requireAuth, async (req, res) => {
   }
 });
 
+// ── EMBEDDED CHECKOUT ──────────────────────────────────────────────────────
+// POST /api/stripe/embedded/intent
+// Creates a SetupIntent (subscriptions) or PaymentIntent (UAG one-time)
+router.post('/embedded/intent', requireAuth, async (req, res) => {
+  const { plan } = req.body;
+  const userId   = req.user.id;
+  const isOneTime = ONE_TIME_PLANS.has(plan);
+  const priceId   = PRICE_MAP[plan];
+  if (!priceId) return res.status(400).json({ error: 'Invalid plan.' });
+
+  try {
+    const userRes = await db.query('SELECT email, full_name, stripe_customer_id FROM users WHERE id = $1', [userId]);
+    const user = userRes.rows[0];
+    let customerId = user.stripe_customer_id;
+
+    if (!customerId) {
+      const customer = await stripe.customers.create({
+        email: user.email,
+        name:  user.full_name || undefined,
+        metadata: { user_id: String(userId) },
+      });
+      customerId = customer.id;
+      await db.query('UPDATE users SET stripe_customer_id = $1 WHERE id = $2', [customerId, userId]);
+    }
+
+    if (isOneTime) {
+      const pi = await stripe.paymentIntents.create({
+        amount:   3799,
+        currency: 'usd',
+        customer: customerId,
+        metadata: { plan, user_id: String(userId) },
+        automatic_payment_methods: { enabled: true, allow_redirects: 'never' },
+      });
+      return res.json({ type: 'payment', clientSecret: pi.client_secret });
+    }
+
+    // Cancel any existing incomplete subscription for this price to avoid duplicates
+    const existing = await stripe.subscriptions.list({ customer: customerId, status: 'incomplete', limit: 5 });
+    for (const s of existing.data) {
+      if (s.items.data[0]?.price?.id === priceId) await stripe.subscriptions.cancel(s.id);
+    }
+
+    const sub = await stripe.subscriptions.create({
+      customer:         customerId,
+      items:            [{ price: priceId }],
+      trial_period_days: 3,
+      payment_behavior: 'default_incomplete',
+      payment_settings: { save_default_payment_method: 'on_subscription' },
+      expand:           ['pending_setup_intent'],
+      metadata:         { user_id: String(userId), plan },
+    });
+
+    return res.json({
+      type:           'setup',
+      clientSecret:   sub.pending_setup_intent.client_secret,
+      subscriptionId: sub.id,
+    });
+  } catch (err) {
+    console.error('[embedded/intent]', err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// POST /api/stripe/embedded/activate
+// Called after card is confirmed on the frontend — grants access immediately
+router.post('/embedded/activate', requireAuth, async (req, res) => {
+  const { subscriptionId, paymentIntentId, plan } = req.body;
+  const userId = req.user.id;
+
+  try {
+    if (paymentIntentId) {
+      // UAG one-time
+      const pi = await stripe.paymentIntents.retrieve(paymentIntentId);
+      if (pi.status !== 'succeeded') return res.status(402).json({ error: 'Payment not completed.' });
+
+      await db.query(
+        'UPDATE users SET uag_access = TRUE, stripe_customer_id = COALESCE(stripe_customer_id, $1) WHERE id = $2',
+        [pi.customer, userId]
+      );
+      const u = await db.query('SELECT email, full_name FROM users WHERE id = $1', [userId]);
+      if (u.rows[0]) {
+        sendEmail({
+          to: u.rows[0].email,
+          subject: 'Your Part 107 Access is Active ✅',
+          html: subscriptionEmail(u.rows[0].full_name || u.rows[0].email.split('@')[0], 'uag', userId),
+          userId,
+          allowUnsubscribed: true,
+        });
+      }
+      return res.json({ success: true });
+    }
+
+    // Subscription
+    const sub = await stripe.subscriptions.retrieve(subscriptionId);
+    if (!['trialing', 'active'].includes(sub.status)) {
+      return res.status(402).json({ error: 'Subscription not active. Please check your card details.' });
+    }
+
+    const priceId  = sub.items.data[0].price.id;
+    const planName = getPlanName(priceId) || plan;
+    const endsAt   = new Date(sub.current_period_end * 1000);
+
+    await db.query(
+      `UPDATE users SET
+         stripe_subscription_id    = $1,
+         subscription_status       = $2,
+         subscription_price_id     = $3,
+         subscription_ends_at      = $4,
+         subscription              = $5,
+         subscription_activated_at = COALESCE(subscription_activated_at, NOW())
+       WHERE id = $6`,
+      [sub.id, sub.status, priceId, endsAt, planName, userId]
+    );
+
+    const u = await db.query('SELECT email, full_name FROM users WHERE id = $1', [userId]);
+    if (u.rows[0]) {
+      const trialEnd = new Date(sub.trial_end * 1000);
+      sendEmail({
+        to: u.rows[0].email,
+        subject: 'Your 3-day free trial has started ✅',
+        html: trialStartEmail(u.rows[0].full_name || u.rows[0].email.split('@')[0], planName, trialEnd, userId),
+        userId,
+        allowUnsubscribed: true,
+      });
+    }
+
+    return res.json({ success: true, status: sub.status });
+  } catch (err) {
+    console.error('[embedded/activate]', err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 function getPlanName(priceId) {
   if (!priceId) return null;
   if (priceId === process.env.STRIPE_PRICE_PAR)    return 'par';
