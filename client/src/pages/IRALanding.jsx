@@ -140,6 +140,9 @@ export default function IRALanding() {
               </Link>
               <a href="#includes" className="lp-btn-outline">See What's Included</a>
             </div>
+            <div style={{ marginTop: 14 }}>
+              <Link to="/ira-practice-test" style={{ color: 'var(--lp-blue)', fontSize: 14, opacity: 0.85 }}>Try a free 30-question practice test first →</Link>
+            </div>
             <div className="lp-hero-stats">
               <div><div className="lp-hs-val">821</div><div className="lp-hs-lbl">IRA Questions</div></div>
               <div><div className="lp-hs-val">11</div><div className="lp-hs-lbl">Study Modules</div></div>

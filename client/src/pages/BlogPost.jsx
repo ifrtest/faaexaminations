@@ -1332,6 +1332,28 @@ export default function BlogPost() {
         {post.content}
       </div>
 
+      {/* Practice test CTA */}
+      {(() => {
+        const practiceLinks = {
+          'Private Pilot':     { path: '/par-practice-test',    label: 'Free PAR Practice Test',     sub: '30 questions · No login required' },
+          'Instrument Rating': { path: '/ira-practice-test',    label: 'Free IRA Practice Test',     sub: '30 questions · No login required' },
+          'Part 107':          { path: '/part-107-practice-test', label: 'Free Part 107 Practice Test', sub: '30 questions · No login required' },
+          'Study Tips':        { path: '/par-practice-test',    label: 'Free FAA Practice Test',     sub: '30 questions · No login required' },
+        };
+        const pl = practiceLinks[post.tag];
+        if (!pl) return null;
+        return (
+          <div style={{ margin: '48px 0', background: 'var(--card-bg)', border: '1px solid var(--border2)', borderRadius: 12, padding: '28px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20, flexWrap: 'wrap' }}>
+            <div>
+              <div style={{ fontSize: '.75rem', fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text3)', marginBottom: 6 }}>Test your knowledge</div>
+              <div style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--text)', marginBottom: 2 }}>{pl.label}</div>
+              <div style={{ fontSize: '.85rem', color: 'var(--text3)' }}>{pl.sub}</div>
+            </div>
+            <Link to={pl.path} className="btn btn-primary" style={{ whiteSpace: 'nowrap', flexShrink: 0 }}>Take the Test →</Link>
+          </div>
+        );
+      })()}
+
       {/* Related articles */}
       {post.related && post.related.length > 0 && (
         <div style={{ marginTop: 48 }}>

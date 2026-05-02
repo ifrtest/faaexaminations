@@ -322,6 +322,9 @@ export default function Part107Landing() {
               </Link>
               <a href="#includes" className="lp-btn-outline">See What's Included</a>
             </div>
+            <div style={{ marginTop: 14 }}>
+              <Link to="/part-107-practice-test" style={{ color: 'var(--lp-blue)', fontSize: 14, opacity: 0.85 }}>Try a free 30-question practice test first →</Link>
+            </div>
             <div className="lp-hero-stats">
               <div><div className="lp-hs-val">265</div><div className="lp-hs-lbl">Practice Questions</div></div>
               <div><div className="lp-hs-val">2–3</div><div className="lp-hs-lbl">Weeks to Pass</div></div>
