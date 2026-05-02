@@ -133,6 +133,9 @@ router.post('/webhook', async (req, res) => {
         );
         break;
       }
+      default:
+        // Unhandled event type — acknowledge so Stripe doesn't retry
+        break;
     }
     res.json({ received: true });
   } catch (err) {
