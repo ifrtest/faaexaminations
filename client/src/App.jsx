@@ -44,7 +44,7 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 
 export default function App() {
   const { pathname } = useLocation();
-  const isLanding = ['/', '/par', '/ira', '/cax', '/part-107', '/bundle'].includes(pathname);
+  const isLanding = ['/', '/par', '/ira', '/cax', '/part-107', '/bundle', '/checkout'].includes(pathname);
 
   useEffect(() => {
     // Don't override hash-based scrolling (e.g. /par#products)

@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { loadStripe } from '@stripe/stripe-js';
-import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useAuth } from '../context/AuthContext';
 import { Helmet } from 'react-helmet-async';
 
@@ -16,26 +16,30 @@ const PLAN_INFO = {
   uag:    { label: 'Part 107 Remote Pilot',   price: '$37.99 one-time', trial: false, color: '#f5c842' },
 };
 
-const CARD_STYLE = {
-  style: {
-    base: {
-      color: '#e5eef5',
-      fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
-      fontSize: '16px',
-      fontSmoothing: 'antialiased',
-      '::placeholder': { color: '#4a6a85' },
-      iconColor: '#30ace2',
-    },
-    invalid: { color: '#f87171', iconColor: '#f87171' },
+const ELEMENTS_APPEARANCE = {
+  theme: 'night',
+  variables: {
+    colorPrimary: '#30ace2',
+    colorBackground: '#0a121b',
+    colorText: '#e5eef5',
+    colorTextSecondary: '#94b8d4',
+    colorDanger: '#f87171',
+    fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+    borderRadius: '8px',
+    spacingUnit: '4px',
+  },
+  rules: {
+    '.Input': { border: '1px solid #1e2a38', padding: '12px 14px' },
+    '.Input:focus': { border: '1px solid #30ace2', boxShadow: 'none' },
+    '.Label': { color: '#94b8d4', fontSize: '12px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.06em' },
   },
 };
 
 function CheckoutForm({ plan, intentData, onSuccess }) {
   const stripe   = useStripe();
   const elements = useElements();
-  const [busy, setBusy]   = useState(false);
-  const [err, setErr]     = useState('');
-  const [ready, setReady] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [err, setErr]   = useState('');
 
   const info = PLAN_INFO[plan];
   const trialEnd = new Date(Date.now() + 3 * 86400000).toLocaleDateString('en-US', {
@@ -48,12 +52,11 @@ function CheckoutForm({ plan, intentData, onSuccess }) {
     setBusy(true);
     setErr('');
 
-    const card = elements.getElement(CardElement);
-
     try {
       if (intentData.type === 'setup') {
-        const { error, setupIntent } = await stripe.confirmCardSetup(intentData.clientSecret, {
-          payment_method: { card },
+        const { error, setupIntent } = await stripe.confirmSetup({
+          elements,
+          redirect: 'if_required',
         });
         if (error) { setErr(error.message); setBusy(false); return; }
         if (setupIntent.status !== 'succeeded') { setErr('Card setup failed. Please try again.'); setBusy(false); return; }
@@ -67,8 +70,9 @@ function CheckoutForm({ plan, intentData, onSuccess }) {
         if (!res.ok) { setErr(data.error || 'Could not activate subscription.'); setBusy(false); return; }
         onSuccess();
       } else {
-        const { error, paymentIntent } = await stripe.confirmCardPayment(intentData.clientSecret, {
-          payment_method: { card },
+        const { error, paymentIntent } = await stripe.confirmPayment({
+          elements,
+          redirect: 'if_required',
         });
         if (error) { setErr(error.message); setBusy(false); return; }
         if (paymentIntent.status !== 'succeeded') { setErr('Payment failed. Please try again.'); setBusy(false); return; }
@@ -120,20 +124,9 @@ function CheckoutForm({ plan, intentData, onSuccess }) {
         )}
       </div>
 
-      {/* Card input */}
+      {/* Payment input — renders card fields + Apple Pay / Google Pay automatically */}
       <div style={{ marginBottom: 20 }}>
-        <label style={{ display: 'block', color: '#94b8d4', fontSize: '.85rem', fontWeight: 600, marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>
-          Card Details
-        </label>
-        <div style={{
-          background: '#0a121b',
-          border: `1px solid ${ready ? '#30ace2' : '#1e2a38'}`,
-          borderRadius: 10,
-          padding: '14px 16px',
-          transition: 'border-color 0.2s',
-        }}>
-          <CardElement options={CARD_STYLE} onReady={() => setReady(true)} />
-        </div>
+        <PaymentElement options={{ layout: 'tabs' }} />
       </div>
 
       {err && (
@@ -157,6 +150,7 @@ function CheckoutForm({ plan, intentData, onSuccess }) {
           cursor: busy ? 'not-allowed' : 'pointer',
           transition: 'all 0.2s',
           marginBottom: 12,
+          marginTop: 8,
         }}>
         {busy ? 'Processing…' : info.trial ? 'Start 3-Day Free Trial →' : `Pay ${info.price} →`}
       </button>
@@ -170,33 +164,26 @@ function CheckoutForm({ plan, intentData, onSuccess }) {
 
       {/* Trust strip */}
       <div style={{ marginTop: 20, borderTop: '1px solid #1e2a38', paddingTop: 16 }}>
-        {/* Card logos */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginBottom: 14 }}>
-          {/* Visa */}
-          <svg width="38" height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ background: '#fff', borderRadius: 4, padding: '2px 4px' }}>
+          <svg width="38" height="24" viewBox="0 0 38 24" fill="none" style={{ background: '#fff', borderRadius: 4, padding: '2px 4px' }}>
             <text x="4" y="17" fontFamily="Arial,sans-serif" fontWeight="bold" fontSize="13" fill="#1a1f71">VISA</text>
           </svg>
-          {/* Mastercard */}
-          <svg width="38" height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ background: '#fff', borderRadius: 4 }}>
+          <svg width="38" height="24" viewBox="0 0 38 24" fill="none" style={{ background: '#fff', borderRadius: 4 }}>
             <circle cx="14" cy="12" r="7" fill="#EB001B"/>
             <circle cx="24" cy="12" r="7" fill="#F79E1B"/>
             <path d="M19 6.8a7 7 0 0 1 0 10.4A7 7 0 0 1 19 6.8z" fill="#FF5F00"/>
           </svg>
-          {/* Amex */}
-          <svg width="38" height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ background: '#2671b2', borderRadius: 4, padding: '2px 3px' }}>
+          <svg width="38" height="24" viewBox="0 0 38 24" fill="none" style={{ background: '#2671b2', borderRadius: 4, padding: '2px 3px' }}>
             <text x="2" y="16" fontFamily="Arial,sans-serif" fontWeight="bold" fontSize="9" fill="#fff">AMEX</text>
           </svg>
-          {/* Discover */}
-          <svg width="38" height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ background: '#fff', borderRadius: 4, padding: '2px 3px' }}>
+          <svg width="38" height="24" viewBox="0 0 38 24" fill="none" style={{ background: '#fff', borderRadius: 4, padding: '2px 3px' }}>
             <text x="1" y="11" fontFamily="Arial,sans-serif" fontWeight="bold" fontSize="7" fill="#231f20">DISC-</text>
             <text x="1" y="19" fontFamily="Arial,sans-serif" fontWeight="bold" fontSize="7" fill="#231f20">OVER</text>
             <circle cx="30" cy="12" r="6" fill="#F76F20"/>
           </svg>
         </div>
-
-        {/* Security badges */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, flexWrap: 'wrap' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 5, color: '#4a6a85', fontSize: '.78rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: '.78rem' }}>
             <svg width="13" height="15" viewBox="0 0 13 15" fill="none"><rect x="1" y="5.5" width="11" height="8.5" rx="1.5" stroke="#34d399" strokeWidth="1.2"/><path d="M4 5.5V3.5a2.5 2.5 0 0 1 5 0v2" stroke="#34d399" strokeWidth="1.2" strokeLinecap="round"/><path d="M6.5 9v2" stroke="#34d399" strokeWidth="1.5" strokeLinecap="round"/><circle cx="6.5" cy="8.5" r=".7" fill="#34d399"/></svg>
             <span style={{ color: '#34d399', fontWeight: 600 }}>SSL Encrypted</span>
           </div>
@@ -289,7 +276,10 @@ export default function Checkout() {
         )}
 
         {!loading && !err && intentData && (
-          <Elements stripe={stripePromise}>
+          <Elements
+            stripe={stripePromise}
+            options={{ clientSecret: intentData.clientSecret, appearance: ELEMENTS_APPEARANCE }}
+          >
             <CheckoutForm plan={plan} intentData={intentData} onSuccess={onSuccess} />
           </Elements>
         )}
