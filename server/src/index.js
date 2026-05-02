@@ -87,6 +87,8 @@ app.use(errorHandler);
 // -------- startup migrations ----------------------------------------
 db.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS subscription_activated_at TIMESTAMPTZ`)
   .catch(err => console.error('[startup migration] subscription_activated_at:', err.message));
+db.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS cancelled_at TIMESTAMPTZ`)
+  .catch(err => console.error('[startup migration] cancelled_at:', err.message));
 
 // -------- start -----------------------------------------------------
 if (require.main === module) {

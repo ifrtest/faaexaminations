@@ -43,7 +43,7 @@ function htmlToText(html) {
     .trim();
 }
 
-async function sendEmail({ to, subject, html, userId = null, allowUnsubscribed = false }) {
+async function sendEmail({ to, subject, html, userId = null, allowUnsubscribed = false, from = null }) {
   try {
     if (userId && !allowUnsubscribed) {
       const { rows } = await db.query(
@@ -55,7 +55,7 @@ async function sendEmail({ to, subject, html, userId = null, allowUnsubscribed =
         return;
       }
     }
-    await getResend().emails.send({ from: FROM(), to, subject, html, text: htmlToText(html) });
+    await getResend().emails.send({ from: from || FROM(), to, subject, html, text: htmlToText(html) });
   } catch (err) {
     console.error('[email] failed to send:', err.message);
   }
@@ -180,6 +180,17 @@ function cancellationEmail(name, userId) {
     <p style="margin:0 0 16px">Your account and exam history are saved. You can resubscribe anytime.</p>
     ${button(`${SITE()}/exams`, 'Resubscribe →')}
     <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Questions? Contact <a href="mailto:support@faaexaminations.com" style="color:${ACCENT};text-decoration:none">support@faaexaminations.com</a></p>
+  `, userId);
+}
+
+function winBackEmail(name, userId) {
+  return shell('Still working on your pilot certificate?', `
+    <p style="margin:0 0 12px">Hi ${name},</p>
+    <p style="margin:0 0 12px">It's Ash and Leila from FAAExaminations.com. We noticed your subscription ended about a week ago and just wanted to check in.</p>
+    <p style="margin:0 0 12px">Your exam history and progress are still saved — nothing was deleted. If life got in the way and you're ready to get back to studying, you can pick up exactly where you left off.</p>
+    <p style="margin:0 0 16px">And if there was something we could have done better, we genuinely want to know. Just reply to this email — we read every one.</p>
+    ${button(`${SITE()}/exams`, 'Pick Up Where You Left Off →')}
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">— Ash &amp; Leila, FAAExaminations.com</p>
   `, userId);
 }
 
@@ -395,6 +406,7 @@ module.exports = {
   onboardDay1,
   onboardDay3,
   onboardDay7,
+  winBackEmail,
   unsubToken,
   unsubUrl,
 };

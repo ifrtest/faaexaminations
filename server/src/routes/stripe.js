@@ -308,7 +308,8 @@ async function deactivateSubscription(customerId) {
   await db.query(
     `UPDATE users SET
        subscription_status   = 'cancelled',
-       subscription          = NULL
+       subscription          = NULL,
+       cancelled_at          = NOW()
      WHERE stripe_customer_id = $1`,
     [customerId]
   );
