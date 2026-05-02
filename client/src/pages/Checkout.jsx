@@ -164,22 +164,41 @@ function CheckoutForm({ plan, intentData, onSuccess }) {
 
       {/* Trust strip */}
       <div style={{ marginTop: 20, borderTop: '1px solid #1e2a38', paddingTop: 16 }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginBottom: 14 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginBottom: 14, flexWrap: 'wrap' }}>
+          {/* Visa */}
           <svg width="38" height="24" viewBox="0 0 38 24" fill="none" style={{ background: '#fff', borderRadius: 4, padding: '2px 4px' }}>
             <text x="4" y="17" fontFamily="Arial,sans-serif" fontWeight="bold" fontSize="13" fill="#1a1f71">VISA</text>
           </svg>
+          {/* Mastercard */}
           <svg width="38" height="24" viewBox="0 0 38 24" fill="none" style={{ background: '#fff', borderRadius: 4 }}>
             <circle cx="14" cy="12" r="7" fill="#EB001B"/>
             <circle cx="24" cy="12" r="7" fill="#F79E1B"/>
             <path d="M19 6.8a7 7 0 0 1 0 10.4A7 7 0 0 1 19 6.8z" fill="#FF5F00"/>
           </svg>
+          {/* Amex */}
           <svg width="38" height="24" viewBox="0 0 38 24" fill="none" style={{ background: '#2671b2', borderRadius: 4, padding: '2px 3px' }}>
             <text x="2" y="16" fontFamily="Arial,sans-serif" fontWeight="bold" fontSize="9" fill="#fff">AMEX</text>
           </svg>
+          {/* Discover */}
           <svg width="38" height="24" viewBox="0 0 38 24" fill="none" style={{ background: '#fff', borderRadius: 4, padding: '2px 3px' }}>
             <text x="1" y="11" fontFamily="Arial,sans-serif" fontWeight="bold" fontSize="7" fill="#231f20">DISC-</text>
             <text x="1" y="19" fontFamily="Arial,sans-serif" fontWeight="bold" fontSize="7" fill="#231f20">OVER</text>
             <circle cx="30" cy="12" r="6" fill="#F76F20"/>
+          </svg>
+          {/* Apple Pay */}
+          <svg width="38" height="24" viewBox="0 0 38 24" fill="none" style={{ background: '#000', borderRadius: 4, padding: '3px 5px' }}>
+            <text x="4" y="10" fontFamily="Arial,sans-serif" fontWeight="500" fontSize="6" fill="#fff">Apple</text>
+            <text x="4" y="18" fontFamily="Arial,sans-serif" fontWeight="700" fontSize="7" fill="#fff">Pay</text>
+          </svg>
+          {/* Google Pay */}
+          <svg width="38" height="24" viewBox="0 0 38 24" fill="none" style={{ background: '#fff', borderRadius: 4, padding: '3px 4px' }}>
+            <text x="1" y="10" fontFamily="Arial,sans-serif" fontWeight="500" fontSize="6" fill="#4285F4">G</text>
+            <text x="7" y="10" fontFamily="Arial,sans-serif" fontWeight="500" fontSize="6" fill="#EA4335">o</text>
+            <text x="12" y="10" fontFamily="Arial,sans-serif" fontWeight="500" fontSize="6" fill="#FBBC05">o</text>
+            <text x="17" y="10" fontFamily="Arial,sans-serif" fontWeight="500" fontSize="6" fill="#34A853">g</text>
+            <text x="22" y="10" fontFamily="Arial,sans-serif" fontWeight="500" fontSize="6" fill="#EA4335">l</text>
+            <text x="25" y="10" fontFamily="Arial,sans-serif" fontWeight="500" fontSize="6" fill="#4285F4">e</text>
+            <text x="4" y="19" fontFamily="Arial,sans-serif" fontWeight="700" fontSize="7" fill="#5F6368">Pay</text>
           </svg>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, flexWrap: 'wrap' }}>
