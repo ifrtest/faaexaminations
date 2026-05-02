@@ -168,9 +168,47 @@ function CheckoutForm({ plan, intentData, onSuccess }) {
         </p>
       )}
 
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, marginTop: 16, color: '#4a6a85', fontSize: '.8rem' }}>
-        <svg width="12" height="14" viewBox="0 0 12 14" fill="none"><rect x="1" y="5" width="10" height="8" rx="1.5" stroke="#4a6a85" strokeWidth="1.2"/><path d="M3.5 5V3.5a2.5 2.5 0 0 1 5 0V5" stroke="#4a6a85" strokeWidth="1.2" strokeLinecap="round"/></svg>
-        Secured by Stripe · 256-bit SSL encryption
+      {/* Trust strip */}
+      <div style={{ marginTop: 20, borderTop: '1px solid #1e2a38', paddingTop: 16 }}>
+        {/* Card logos */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginBottom: 14 }}>
+          {/* Visa */}
+          <svg width="38" height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ background: '#fff', borderRadius: 4, padding: '2px 4px' }}>
+            <text x="4" y="17" fontFamily="Arial,sans-serif" fontWeight="bold" fontSize="13" fill="#1a1f71">VISA</text>
+          </svg>
+          {/* Mastercard */}
+          <svg width="38" height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ background: '#fff', borderRadius: 4 }}>
+            <circle cx="14" cy="12" r="7" fill="#EB001B"/>
+            <circle cx="24" cy="12" r="7" fill="#F79E1B"/>
+            <path d="M19 6.8a7 7 0 0 1 0 10.4A7 7 0 0 1 19 6.8z" fill="#FF5F00"/>
+          </svg>
+          {/* Amex */}
+          <svg width="38" height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ background: '#2671b2', borderRadius: 4, padding: '2px 3px' }}>
+            <text x="2" y="16" fontFamily="Arial,sans-serif" fontWeight="bold" fontSize="9" fill="#fff">AMEX</text>
+          </svg>
+          {/* Discover */}
+          <svg width="38" height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ background: '#fff', borderRadius: 4, padding: '2px 3px' }}>
+            <text x="1" y="11" fontFamily="Arial,sans-serif" fontWeight="bold" fontSize="7" fill="#231f20">DISC-</text>
+            <text x="1" y="19" fontFamily="Arial,sans-serif" fontWeight="bold" fontSize="7" fill="#231f20">OVER</text>
+            <circle cx="30" cy="12" r="6" fill="#F76F20"/>
+          </svg>
+        </div>
+
+        {/* Security badges */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 5, color: '#4a6a85', fontSize: '.78rem' }}>
+            <svg width="13" height="15" viewBox="0 0 13 15" fill="none"><rect x="1" y="5.5" width="11" height="8.5" rx="1.5" stroke="#34d399" strokeWidth="1.2"/><path d="M4 5.5V3.5a2.5 2.5 0 0 1 5 0v2" stroke="#34d399" strokeWidth="1.2" strokeLinecap="round"/><path d="M6.5 9v2" stroke="#34d399" strokeWidth="1.5" strokeLinecap="round"/><circle cx="6.5" cy="8.5" r=".7" fill="#34d399"/></svg>
+            <span style={{ color: '#34d399', fontWeight: 600 }}>SSL Encrypted</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 5, color: '#4a6a85', fontSize: '.78rem' }}>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L1.5 3.5v4C1.5 10.6 4 13 7 13s5.5-2.4 5.5-5.5v-4L7 1z" stroke="#30ace2" strokeWidth="1.2" strokeLinejoin="round"/><path d="M4.5 7l2 2 3-3" stroke="#30ace2" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <span>Powered by <span style={{ color: '#30ace2', fontWeight: 600 }}>Stripe</span></span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 5, color: '#4a6a85', fontSize: '.78rem' }}>
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="#4a6a85" strokeWidth="1.2"/><path d="M4 6.5l2 2 3-3" stroke="#4a6a85" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <span>Cancel anytime</span>
+          </div>
+        </div>
       </div>
     </form>
   );
