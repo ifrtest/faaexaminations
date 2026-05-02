@@ -1308,6 +1308,176 @@ const POSTS = {
   },
 
   /* ================================================================ */
+  'faa-airspace-classes-explained': {
+    title: 'FAA Airspace Classes Explained: A Plain-English Guide',
+    description: 'Class A through G — what each one means, who can fly there, what you need, and why it matters for the FAA written exam. No jargon, real examples.',
+    date: 'May 2, 2026',
+    dateISO: '2026-05-02',
+    readTime: '8 min read',
+    tag: 'Study Tips',
+    image: '/plane-step2.jpg',
+    related: ['how-to-read-a-metar', 'how-to-pass-faa-written-exam-first-try', 'part-107-drone-test-study-guide'],
+    content: (
+      <>
+        <p>Airspace is one of those topics that looks intimidating on the sectional chart and turns out to be pretty logical once someone explains it clearly. There are seven classes — A through G — and each one has specific rules about who can fly there, what equipment you need, and what kind of clearance or communication is required.</p>
+        <p>This comes up on every FAA knowledge test. Private pilot, instrument rating, commercial, Part 107 — all of them have airspace questions. Here's how it actually works.</p>
+
+        <h2>The basic idea</h2>
+        <p>Airspace exists to separate aircraft and keep everyone safe. The classes are organized roughly by how busy and complex the environment is. Class A is the high-altitude stuff above 18,000 feet where everybody is on instruments. Class G is the loose, uncontrolled airspace close to the ground in rural areas. Everything between them has progressively more structure.</p>
+        <p>Each class has three things that matter: who controls it (ATC or nobody), what you need to enter (clearance, two-way radio, a transponder), and what weather minimums apply (visibility and cloud clearance requirements).</p>
+
+        <h2>Class A — High altitude, IFR only</h2>
+        <p>Class A starts at 18,000 feet MSL and goes up to FL600 (60,000 feet). You cannot fly VFR in Class A. Period. Everyone is on an IFR flight plan, talking to ATC, operating on assigned altitudes. You need an instrument rating, an IFR clearance, and Mode C transponder. There are no VFR weather minimums for Class A because VFR is simply not allowed.</p>
+        <p>Most private pilot students don't spend much time on Class A because they'll never fly there — but the exam expects you to know what it is and what it requires.</p>
+
+        <h2>Class B — The busiest airports</h2>
+        <p>Class B airspace surrounds the nation's busiest airports — places like LAX, JFK, O'Hare, Atlanta. It looks like an upside-down wedding cake on the sectional chart: a series of concentric rings stacked on top of each other, each with defined floor and ceiling altitudes. The inner ring goes all the way to the surface.</p>
+        <p>To enter Class B you need an explicit ATC clearance — "cleared into the Bravo" — not just radio contact. You also need a Mode C transponder and a private pilot certificate (student pilots need a specific endorsement). VFR weather minimums inside Class B are 3 SM visibility and clear of clouds. That last part isn't a typo: inside Class B you just need to stay clear of clouds, not a specific distance away from them.</p>
+
+        <h2>Class C — Busy but not the busiest</h2>
+        <p>Class C surrounds airports with an operating control tower, radar approach control, and a certain level of scheduled airline service. Think mid-size cities — Portland, Providence, Tucson. It's a two-ring structure: the inner circle (5 NM radius, surface to 4,000 AGL) and the outer circle (10 NM radius, 1,200 to 4,000 AGL).</p>
+        <p>To enter Class C, you need two-way radio communication established before entry — you don't need an explicit clearance like Class B, just contact. ATC has to respond with your call sign. If they say "N12345, standby," that counts as contact. If they say "aircraft calling, standby," it doesn't — your call sign wasn't acknowledged. Mode C transponder required. VFR minimums are 3 SM visibility, 500 below / 1,000 above / 2,000 horizontal from clouds.</p>
+
+        <h2>Class D — Towered airports</h2>
+        <p>Class D airspace surrounds airports with an operating control tower that aren't Class B or C. It typically extends from the surface to 2,500 feet AGL and about 4 NM around the airport. The shape on the sectional is a dashed blue circle.</p>
+        <p>To enter Class D, you need two-way radio communication established before entry. Same rule as Class C — your call sign has to be acknowledged. No transponder requirement under Class D alone (though Mode C is required within 30 NM of Class B airports). VFR minimums are 3 SM visibility, 500 below / 1,000 above / 2,000 horizontal from clouds.</p>
+        <p>When the tower closes, Class D airspace either reverts to Class E or Class G depending on the airport. Always check the Chart Supplement for hours.</p>
+
+        <h2>Class E — Controlled but not a specific airport</h2>
+        <p>Class E is the most complicated class to understand because it appears in several different ways. It's controlled airspace that isn't A, B, C, or D. Most of the airspace in the US where IFR traffic operates is Class E.</p>
+        <p>Class E can start at different altitudes depending on where you are:</p>
+        <ul>
+          <li><strong>700 feet AGL</strong> — shown by a magenta vignette (fading circle) on the sectional. This exists around many non-towered airports to protect instrument approaches.</li>
+          <li><strong>1,200 feet AGL</strong> — the default over most of the US where there's no other designation.</li>
+          <li><strong>Surface</strong> — shown by a dashed magenta circle. This exists at airports with instrument approaches but no operating tower.</li>
+          <li><strong>14,500 feet MSL</strong> — Class E starts at 14,500 nationwide where there's no other class above it, up to 18,000 (where Class A begins).</li>
+        </ul>
+        <p>No ATC clearance or radio communication required for VFR flight in Class E. VFR minimums depend on altitude: below 10,000 MSL, it's 3 SM and 500 below / 1,000 above / 2,000 horizontal. At or above 10,000 MSL, minimums jump to 5 SM and 1,000 below / 1,000 above / 1 SM horizontal.</p>
+
+        <h2>Class G — Uncontrolled</h2>
+        <p>Class G is uncontrolled airspace. ATC has no authority here and doesn't provide traffic separation. It exists from the surface up to the floor of Class E above it — typically 700 or 1,200 feet AGL, sometimes higher in remote areas.</p>
+        <p>No communication required, no clearance, no transponder required by the airspace itself. VFR minimums are the most relaxed:</p>
+        <ul>
+          <li>Day, below 1,200 AGL: 1 SM visibility, clear of clouds</li>
+          <li>Night, below 1,200 AGL: 3 SM visibility, 500/1,000/2,000 cloud clearance</li>
+          <li>Above 1,200 AGL but below 10,000 MSL: 1 SM day (clear of clouds), 3 SM night with standard cloud clearances</li>
+        </ul>
+        <p>The "1 SM, clear of clouds" minimums for Class G during the day are the most permissive in the system. That's the specific condition where a private pilot can legally be in 1 SM visibility just staying clear of clouds — no distances required.</p>
+
+        <h2>Special use airspace</h2>
+        <p>Beyond the lettered classes, the sectional shows special use airspace that has its own restrictions:</p>
+        <ul>
+          <li><strong>Prohibited areas</strong> (P-) — flight not permitted. Camp David, the White House airspace. Hard no.</li>
+          <li><strong>Restricted areas</strong> (R-) — flight restricted when active. Often military operations, artillery ranges, missile testing. Check NOTAMs to see if they're "hot."</li>
+          <li><strong>Warning areas</strong> (W-) — similar to restricted but over international waters, so the FAA can't legally prohibit flight. Still dangerous. Avoid unless you know what's there.</li>
+          <li><strong>Military operations areas</strong> (MOAs) — military flight training. VFR pilots can legally fly through, but you're mixing with fast military aircraft doing unpredictable things. Check if it's active first.</li>
+          <li><strong>Alert areas</strong> (A-) — high volume of pilot training or unusual aerial activity. No restrictions but proceed with extreme caution.</li>
+        </ul>
+
+        <h2>The quick reference for the exam</h2>
+        <div style={{ overflowX: 'auto', marginBottom: 20 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.88rem' }}>
+            <thead><tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Class</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Entry requirement</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Transponder</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>VFR visibility</th>
+            </tr></thead>
+            <tbody>
+              {[
+                ['A','IFR clearance required','Mode C','N/A (IFR only)'],
+                ['B','ATC clearance ("cleared into the Bravo")','Mode C','3 SM, clear of clouds'],
+                ['C','Two-way radio contact (call sign acknowledged)','Mode C','3 SM, 500/1,000/2,000'],
+                ['D','Two-way radio contact (call sign acknowledged)','None required','3 SM, 500/1,000/2,000'],
+                ['E','None for VFR','None required (below 10k)','3 SM, 500/1,000/2,000 (below 10k)'],
+                ['G','None','None required','1 SM day (clear of clouds) / 3 SM night'],
+              ].map(([cls,entry,xpdr,vis],i)=>(
+                <tr key={i} style={{ borderBottom:'1px solid var(--border)', background: i%2===0?'var(--card-bg)':'transparent' }}>
+                  <td style={{ padding:'9px 12px', fontWeight:700, color:'var(--text)' }}>{cls}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)', fontSize:'.85rem' }}>{entry}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)', fontSize:'.85rem' }}>{xpdr}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)', fontSize:'.85rem' }}>{vis}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2>The thing that trips people up on the exam</h2>
+        <p>The most common mistake on airspace questions isn't mixing up Class C and D — it's getting the weather minimums wrong for Class G. The "clear of clouds" rule only applies during the day, below 1,200 AGL. At night or above 1,200 AGL, normal cloud distances apply. Read the question carefully for time of day and altitude.</p>
+        <p>The other trap is Class B entry. Students often think radio contact is enough — it isn't. You need an explicit clearance. "N12345 standby" from ATC is contact, not clearance. You cannot enter Class B until they say you're cleared in.</p>
+        <p>Study the sectional chart symbols for each class alongside the rules. The visual and the regulation reinforce each other, and you'll see both on the exam.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'how-to-schedule-faa-written-exam': {
+    title: 'How to Schedule Your FAA Written Exam (Step by Step)',
+    description: "Scheduling the FAA knowledge test is straightforward once you know where to go. Here's exactly how to register, find a testing center, and what to bring on test day.",
+    date: 'May 2, 2026',
+    dateISO: '2026-05-02',
+    readTime: '5 min read',
+    tag: 'Study Tips',
+    image: '/plane-step2.jpg',
+    related: ['faa-written-exam-questions-score-tips', 'how-to-pass-faa-written-exam-first-try', 'how-long-to-study-for-faa-written-exam'],
+    content: (
+      <>
+        <p>The process of actually registering for the FAA Airman Knowledge Test trips people up more than it should. There are a few steps, a couple of gotchas, and one number you need before you can book anything. Here's the exact process.</p>
+
+        <h2>Step 1: Get your IACRA account (if you don't have one)</h2>
+        <p>IACRA stands for Integrated Airman Certification and Rating Application — it's the FAA's online system for pilot applications. You'll eventually use it to apply for your certificate, but you also need a FTN (FAA Tracking Number) from it to register for the knowledge test.</p>
+        <p>Go to <strong>iacra.faa.gov</strong>, create an account, and your FTN is assigned automatically. It's a short alphanumeric code that lives in your profile. Write it down. You'll need it when you book the exam.</p>
+        <p>Important: if you already have an IACRA account from a previous FAA application, use that account — don't create a new one. Duplicate accounts cause headaches.</p>
+
+        <h2>Step 2: Pick a testing provider</h2>
+        <p>The FAA authorizes two testing companies to administer Airman Knowledge Tests:</p>
+        <ul>
+          <li><strong>PSI Exams</strong> — psiexams.com</li>
+          <li><strong>CATS (Computer Assisted Testing Service)</strong> — no longer a separate entity; CATS test centers now operate under PSI</li>
+        </ul>
+        <p>In practice: almost all FAA knowledge tests are scheduled through PSI. Go to <strong>psiexams.com</strong>, search for FAA Airman Knowledge Tests, and find a location near you. There are testing centers across the country — most mid-size cities have at least one, often inside an aviation school, FBO, or a generic PSI testing facility.</p>
+
+        <h2>Step 3: Book and pay</h2>
+        <p>On PSI's site, select the specific exam you're taking. The exam codes are:</p>
+        <ul>
+          <li>PAR — Private Pilot Airplane (Recreational)</li>
+          <li>IRA — Instrument Rating Airplane</li>
+          <li>CAX — Commercial Pilot Airplane</li>
+          <li>UAG — Unmanned Aircraft General (Part 107)</li>
+        </ul>
+        <p>Select your testing center, pick a date and time, and pay. The fee is <strong>$175</strong> for most exams, paid directly to PSI. This is not refundable if you no-show, but you can usually reschedule with enough notice. The fee is the same whether you pass or fail — if you need to retake, you pay again.</p>
+        <p>You'll need your FTN from IACRA to complete the booking. Have it ready.</p>
+
+        <h2>Step 4: Get your instructor endorsement (for most exams)</h2>
+        <p>For the Private Pilot (PAR), Instrument Rating (IRA), and Commercial Pilot (CAX) knowledge tests, you need a <strong>written endorsement from a flight instructor</strong> certifying that you're prepared to take the exam. This is FAA required — the testing center will ask for it.</p>
+        <p>Your CFI signs a logbook entry or provides a separate signed document with specific language. The exact wording is specified in FAA Advisory Circular AC 61-65. Your instructor will know what it needs to say.</p>
+        <p>Part 107 is different: you do <strong>not</strong> need an instructor endorsement for the Part 107 exam. Anyone can walk in and take it. That's one reason it's the most accessible FAA exam for people without a flight training background.</p>
+
+        <h2>What to bring on test day</h2>
+        <ul>
+          <li><strong>Government-issued photo ID</strong> — driver's license, passport, or military ID</li>
+          <li><strong>Your instructor endorsement</strong> — logbook, printed document, or signed paper (not required for Part 107)</li>
+          <li><strong>Your FTN</strong> — the testing center will use this to pull your registration</li>
+        </ul>
+        <p>You don't need to bring a calculator — the testing center provides one on-screen. You will have access to a printed copy of the FAA Airman Knowledge Test Supplement, which includes the sectional chart excerpts, weather charts, and other figures referenced in questions. You don't need to memorize those figures — they'll be right in front of you.</p>
+        <p>Phones, watches, and any personal reference materials stay outside the testing room. You get scratch paper.</p>
+
+        <h2>When you get your score</h2>
+        <p>Results are immediate. When you finish the last question and submit, the screen shows your score. The testing center prints an Airman Knowledge Test Report (AKTR) — this is your official score report. <strong>Do not lose it.</strong> You'll need to present it to your examiner on your checkride. The report shows your overall score and the knowledge areas where you got questions wrong.</p>
+        <p>Passing score is 70% for most exams. Your score report is valid for 24 months from the test date.</p>
+
+        <h2>If you fail</h2>
+        <p>You can retake the exam after a <strong>14-day waiting period</strong>. There's no limit to how many times you can take it, but you pay the full $175 each attempt and need a new instructor endorsement for each retake (for PAR/IRA/CAX). The 14-day wait is mandatory regardless of circumstance.</p>
+        <p>Most people who fail do so because they underestimated a specific topic area — usually weather or airspace. Look at your AKTR, identify the weak areas, and focus study time there before rescheduling.</p>
+
+        <h2>The short version</h2>
+        <p>Create an IACRA account → get your FTN → book on psiexams.com → get your instructor endorsement → show up with ID. That's it. The scheduling process takes about 15 minutes once you have your FTN. The hard part is being ready for the test itself.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
   'how-hard-is-the-part-107-exam': {
     title: 'How Hard Is the FAA Part 107 Exam? (Honest Take)',
     description: "The Part 107 drone license exam isn't as hard as it sounds — if you study the right things. Here's what trips people up, what's actually easy, and what to expect on test day.",

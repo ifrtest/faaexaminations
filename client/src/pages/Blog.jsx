@@ -4,6 +4,24 @@ import { Helmet } from 'react-helmet-async';
 
 const POSTS = [
   {
+    slug: 'faa-airspace-classes-explained',
+    title: 'FAA Airspace Classes Explained: A Plain-English Guide',
+    excerpt: "Class A through G — what each one means, who can fly there, what equipment you need, and what the weather minimums are. Airspace questions show up on every FAA knowledge test.",
+    date: 'May 2, 2026',
+    readTime: '8 min read',
+    tag: 'Study Tips',
+    image: '/plane-step2.jpg',
+  },
+  {
+    slug: 'how-to-schedule-faa-written-exam',
+    title: 'How to Schedule Your FAA Written Exam (Step by Step)',
+    excerpt: "Scheduling the FAA knowledge test is straightforward once you know where to go. Here's exactly how to get your FTN, register on PSI, get your endorsement, and what to bring on test day.",
+    date: 'May 2, 2026',
+    readTime: '5 min read',
+    tag: 'Study Tips',
+    image: '/plane-step2.jpg',
+  },
+  {
     slug: 'how-long-to-study-for-faa-written-exam',
     title: 'How Long Should You Study for the FAA Written Exam?',
     excerpt: 'The "2–4 weeks" answer is technically true but not that useful. Here\'s a more honest breakdown by exam type, study method, and how much time you can actually put in each day.',
