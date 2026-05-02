@@ -1,13 +1,17 @@
 {
   "redirects": [
     { "source": "/faa-private-pilot-airplane-par/:path*", "destination": "/par", "permanent": true },
+    { "source": "/faa-private-pilot-airplane-par-:path*", "destination": "/par", "permanent": true },
     { "source": "/faa-private-pilot-airplane-par", "destination": "/par", "permanent": true },
     { "source": "/faa-commercial-pilot-airplane-cax/:path*", "destination": "/cax", "permanent": true },
+    { "source": "/faa-commercial-pilot-airplane-cax-:path*", "destination": "/cax", "permanent": true },
     { "source": "/faa-commercial-pilot-airplane-cax", "destination": "/cax", "permanent": true },
     { "source": "/faa-instrument-rating/:path*", "destination": "/ira", "permanent": true },
     { "source": "/faa-instrument-rating", "destination": "/ira", "permanent": true },
     { "source": "/faa-instrument-rating-airplane-ira/:path*", "destination": "/ira", "permanent": true },
+    { "source": "/faa-instrument-rating-airplane-ira-:path*", "destination": "/ira", "permanent": true },
     { "source": "/faa-part-107/:path*", "destination": "/part-107", "permanent": true },
+    { "source": "/faa-part-107-:path*", "destination": "/part-107", "permanent": true },
     { "source": "/faa-part-107", "destination": "/part-107", "permanent": true },
     { "source": "/delta-air-lines-adds-youtube-to-in-flight-entertainment-offers-free-youtube-premium-trial/", "destination": "/blog", "permanent": true },
     { "source": "/review-american-airlines-new-78p-business-class-chicago-london/", "destination": "/blog", "permanent": true },
