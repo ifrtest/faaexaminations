@@ -4,6 +4,24 @@ import { Helmet } from 'react-helmet-async';
 
 const POSTS = [
   {
+    slug: 'how-long-to-study-for-faa-written-exam',
+    title: 'How Long Should You Study for the FAA Written Exam?',
+    excerpt: 'The "2–4 weeks" answer is technically true but not that useful. Here\'s a more honest breakdown by exam type, study method, and how much time you can actually put in each day.',
+    date: 'May 2, 2026',
+    readTime: '6 min read',
+    tag: 'Study Tips',
+    image: '/plane-step2.jpg',
+  },
+  {
+    slug: 'how-hard-is-the-part-107-exam',
+    title: 'How Hard Is the FAA Part 107 Exam? (Honest Take)',
+    excerpt: "The Part 107 exam isn't technically hard — but it has a specific trap. It tests aviation knowledge that most drone pilots have never seen. Here's what to actually expect.",
+    date: 'May 2, 2026',
+    readTime: '7 min read',
+    tag: 'Part 107',
+    image: '/blog-part107-drone.jpg',
+  },
+  {
     slug: 'how-to-pass-faa-private-pilot-written-exam-first-try',
     title: 'How to Pass the FAA Private Pilot Written Exam First Try',
     excerpt: 'The PAR knowledge test has 1,400+ questions in the official bank — but the real exam only draws 60. Here\'s how to study smarter, not harder, and pass first try.',

@@ -1250,6 +1250,120 @@ const POSTS = {
     ),
   },
 
+  /* ================================================================ */
+  'how-long-to-study-for-faa-written-exam': {
+    title: 'How Long Should You Study for the FAA Written Exam?',
+    description: 'Realistic study timelines for the FAA Private Pilot, Instrument Rating, Commercial, and Part 107 written exams — based on how most people actually prepare.',
+    date: 'May 2, 2026',
+    dateISO: '2026-05-02',
+    readTime: '6 min read',
+    tag: 'Study Tips',
+    image: '/plane-step2.jpg',
+    related: ['how-to-pass-faa-written-exam-first-try', 'faa-written-exam-study-guide', 'how-to-pass-faa-private-pilot-written-exam-first-try'],
+    content: (
+      <>
+        <p>The most common answer you'll find online is "2–4 weeks." Which is true in the same way "it takes 2–8 hours to drive across a state" is true. Technically correct, not that useful.</p>
+        <p>Here's a more honest breakdown — based on the exam you're taking, how much time you can realistically carve out each day, and what study method you're using.</p>
+
+        <h2>The short version</h2>
+        <p>If you're studying with the actual FAA question bank — not flashcard apps, not YouTube videos alone — and putting in 1.5 to 2 hours a day, here's what to expect:</p>
+        <ul>
+          <li><strong>Private Pilot (PAR):</strong> 3–4 weeks</li>
+          <li><strong>Part 107 (drone license):</strong> 2–3 weeks</li>
+          <li><strong>Instrument Rating (IRA):</strong> 4–6 weeks</li>
+          <li><strong>Commercial Pilot (CAX):</strong> 3–5 weeks</li>
+        </ul>
+        <p>These assume you're a relatively motivated person who doesn't already have an aviation background. If you're a CFI or already have your instrument rating, you can compress significantly. If you're starting from zero and aviation is genuinely new territory, give yourself the longer end.</p>
+
+        <h2>Why most people take longer than they should</h2>
+        <p>The FAA publishes the complete question bank. Every question that could appear on your written exam is in there. Not "questions similar to" or "representative samples of" — the actual questions, word for word.</p>
+        <p>This is kind of remarkable. The test is hard to fail if you've genuinely worked through the bank. And yet people fail, and people spend months studying when they could spend weeks. Usually it's one of a few things:</p>
+
+        <h3>Studying the wrong things</h3>
+        <p>Reading the Pilot's Handbook of Aeronautical Knowledge cover to cover before touching a practice question is the study equivalent of memorizing a dictionary before writing an essay. It feels productive. It mostly isn't. The PHAK is 500 pages. A lot of it won't appear on your test. Some of what will appear on your test requires very specific knowledge that only clicking through questions and reading explanations will build.</p>
+        <p>Use the book as a reference when you don't understand an explanation — not as your starting point.</p>
+
+        <h3>Not tracking weak areas</h3>
+        <p>If you're just cycling through questions without paying attention to which topics you keep getting wrong, you're spinning. Weather Theory, Weight & Balance, and Navigation chart questions are where most private pilot candidates lose points. If you're passing those cold, great. If you're not — that's where your study time should go, not the topics you already have.</p>
+
+        <h3>Stopping too soon</h3>
+        <p>A lot of people feel ready when they're hitting 80–85% on practice tests. That feels good. The real exam needs 70% to pass, so the math seems fine. But the actual test pulls from the full question bank, which means you'll see questions you haven't practiced as much. Aim to be consistently hitting 85–90% on fresh, randomized sets before you book your appointment.</p>
+
+        <h2>A realistic week-by-week framework (PAR example)</h2>
+        <p>Here's roughly how three weeks of focused PAR study looks:</p>
+        <p><strong>Week 1:</strong> Work through questions by topic. Don't worry about your score yet — just get exposure. Read every explanation whether you got the question right or wrong. The goal is to build familiarity with what the exam actually tests, not to feel confident.</p>
+        <p><strong>Week 2:</strong> Start doing timed mixed-topic sessions. Notice where you're consistently weak and spend extra time there. Weather, airspace, and performance tend to trip people up. VFR weather minimums are worth memorizing cold — they show up constantly.</p>
+        <p><strong>Week 3:</strong> Full timed practice exams. Book your real test when you're consistently at 85%+. Don't keep pushing the test date because you feel nervous — by this point you've seen the questions, you know the material, and the nerves are not going to disappear with more study time.</p>
+
+        <h2>Part 107 is faster — but don't underestimate the airspace questions</h2>
+        <p>Part 107 is a narrower exam than the private pilot test. There's no weight and balance, no engine systems, no traffic pattern procedures. What does show up heavily: airspace classification, sectional chart reading, and weather. These are the areas where confident drone pilots with zero aviation background get surprised.</p>
+        <p>If you can read a sectional chart and decode a METAR before you start the exam, you're ahead of most people who show up on test day. If those are genuinely new to you, budget an extra week.</p>
+
+        <h2>The honest minimum</h2>
+        <p>You can pass the PAR in two weeks of hard studying. Some people do it in ten days. I've seen people fail after six weeks of "studying" that was mostly watching YouTube. The time you spend matters less than what you do with it.</p>
+        <p>Work through the question bank. Read every explanation. Track what you're getting wrong. Take timed practice exams. When you're consistently passing those by a comfortable margin, book the test.</p>
+        <p>That's it. There's no secret. The bank is published. Use it.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'how-hard-is-the-part-107-exam': {
+    title: 'How Hard Is the FAA Part 107 Exam? (Honest Take)',
+    description: "The Part 107 drone license exam isn't as hard as it sounds — if you study the right things. Here's what trips people up, what's actually easy, and what to expect on test day.",
+    date: 'May 2, 2026',
+    dateISO: '2026-05-02',
+    readTime: '7 min read',
+    tag: 'Part 107',
+    image: '/blog-part107-drone.jpg',
+    related: ['part-107-study-guide-2026', 'part-107-drone-test-study-guide', 'part-107-vs-private-pilot-license'],
+    content: (
+      <>
+        <p>If you search for "how hard is the Part 107 exam," you'll get two kinds of answers. People who passed it saying it was easy. People who failed it saying it was surprisingly brutal. Both are telling the truth.</p>
+        <p>The Part 107 knowledge test is not technically difficult. The concepts aren't advanced. There's no math more complicated than reading a chart. But it has a specific trap: it tests aviation knowledge — airspace, weather, sectional charts — that drone pilots with no aviation background have never encountered before. If that's you, some of this will feel like learning a new language.</p>
+        <p>Here's an honest breakdown.</p>
+
+        <h2>The basics</h2>
+        <p>The Part 107 Aeronautical Knowledge Test is 60 multiple-choice questions. You have 2 hours to complete it. You need 70% to pass — that's 42 out of 60 correct. The test is administered at PSI testing centers, costs $175, and there's no practical test or flight component whatsoever. It's purely a knowledge exam.</p>
+        <p>The national pass rate is around 85–90%. That sounds high, but it includes people who've taken it multiple times — first-time pass rates are lower. And the people in that 10–15% who fail are almost always people who underestimated the airspace and weather sections.</p>
+
+        <h2>What's actually on the test</h2>
+        <p>The FAA breaks Part 107 into several topic areas. In practice, questions cluster around these:</p>
+        <ul>
+          <li><strong>Airspace classification and entry requirements</strong> — Class A through G, what's controlled, what requires authorization, what doesn't</li>
+          <li><strong>Reading sectional aeronautical charts</strong> — identifying airspace boundaries, obstacles, airports, restricted areas</li>
+          <li><strong>Weather</strong> — reading METARs and TAFs, understanding density altitude, recognizing hazardous conditions</li>
+          <li><strong>Part 107 regulations</strong> — altitude limits, speed limits, VLOS requirements, operating hours, waiver requirements</li>
+          <li><strong>Remote ID and registration</strong></li>
+          <li><strong>Emergency procedures and accident reporting</strong></li>
+          <li><strong>Crew resource management and human factors</strong> — very light coverage</li>
+        </ul>
+        <p>The regulations section is the most straightforward if you study them. The rules are specific and testable: 400 feet AGL, 87 knots max speed, 3 SM visibility, 500 feet below clouds, 2,000 feet horizontal from clouds. Memorize those numbers and you'll get those questions right.</p>
+
+        <h2>Where people actually fail</h2>
+        <p>The hard part — the part nobody warns you about — is that <strong>the FAA expects you to think like a pilot, not like a drone operator.</strong></p>
+        <p>Sectional chart questions are the biggest stumbling block. You'll be shown a portion of a sectional chart and asked to identify what class of airspace you're in, what the altitude limits are, or whether you need authorization to fly there. If you've never read an aeronautical chart, this is genuinely confusing at first. The symbology is dense. Airspace boundaries stack and overlap. A "Class E from 700 AGL" designation looks nothing like a "Class E to the surface" designation on the chart, and the test absolutely expects you to know the difference.</p>
+        <p>Weather is the second area. Reading a METAR isn't hard once you learn the format — but there are a lot of abbreviations, the units aren't always intuitive (cloud heights in hundreds of feet, visibility in statute miles), and the questions can be specific. Knowing that "BKN014" means broken clouds at 1,400 feet AGL, not 14,000 feet, is the kind of detail that trips people up.</p>
+        <p>Density altitude is another one. The concept itself isn't complicated — hot, humid, high-elevation airports have degraded performance — but the exam asks about it from multiple angles and expects you to understand why, not just what.</p>
+
+        <h2>What's easy (if you actually study it)</h2>
+        <p>The Part 107-specific regulations are very learnable. The rules are finite, specific, and clearly written. 400 feet, 87 knots, 55 pounds, 3 SM, 70% to pass — these are just numbers. Flash card them once, see them in practice questions a few times, done.</p>
+        <p>Remote ID rules are newer but not complicated. Registration is straightforward. The waiver system is testable at a surface level — you mostly need to know what requires a waiver, not how to write one.</p>
+        <p>Human factors questions are generally the easiest part of the exam. IMSAFE, the DECIDE model, the five hazardous attitudes — these are accessible and the questions are usually pretty direct.</p>
+
+        <h2>How to prepare without wasting time</h2>
+        <p>Most people who fail put in study time, just the wrong kind. Reading the Part 107 regulations document cover to cover is tedious and not how you learn testable material. Watching YouTube videos gives you a feel for things without building the recall you need under test conditions.</p>
+        <p>What actually works: practice questions from the actual FAA question bank, with explanations for every answer. When you get a sectional chart question wrong, don't just note that you got it wrong — understand exactly why the correct answer is correct, what the chart symbol means, what airspace you're in and why. That's the difference between memorizing and knowing.</p>
+        <p>Spend extra time on weather and charts specifically. Those are the areas where smart people who don't study the right way get burned.</p>
+
+        <h2>The honest bottom line</h2>
+        <p>If you have an aviation background — private pilot certificate, military aviation, anything — Part 107 is probably a week or two of light review. The airspace and weather material is ground you've already covered.</p>
+        <p>If you're coming to this with zero aviation knowledge and your experience is flying a DJI around your neighborhood, expect 2–3 weeks of real study. The regulations are easy. The airspace and weather sections are where you need to put real work in. Don't skip them because they look complicated. They're the exam.</p>
+        <p>The test is passable. Genuinely. But "I know how to fly a drone" doesn't prepare you for it the way studying the actual question bank does.</p>
+      </>
+    ),
+  },
+
 };
 
 /* ─── Shared layout ────────────────────────────────────────────────── */
