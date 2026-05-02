@@ -11,6 +11,7 @@ export default function CancelPolicy() {
   const [cancelled, setCancelled] = useState(false);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState('');
+  const isTrialing = user?.subscription_status === 'trialing';
 
   const handleCancel = async () => {
     setBusy(true);
@@ -85,19 +86,24 @@ export default function CancelPolicy() {
       </div>
 
       {/* Cancel subscription section — only shown to logged-in users */}
-      {user && (
+      {user && user.subscription_status && !['free', 'cancelled'].includes(user.subscription_status) && (
         <div className="card" style={{ borderColor: 'var(--red)', marginBottom: 32 }}>
-          <div className="card-title" style={{ color: 'var(--red)' }}>Cancel My Subscription</div>
+          <div className="card-title" style={{ color: 'var(--red)' }}>
+            {isTrialing ? 'Cancel My Free Trial' : 'Cancel My Subscription'}
+          </div>
 
           {cancelled ? (
             <div className="alert alert-ok">
-              Your subscription has been cancelled. You'll have access until the end of your current billing period.
+              {isTrialing
+                ? 'Your trial has been cancelled. You will not be charged.'
+                : 'Your subscription has been cancelled. You\'ll have access until the end of your current billing period.'}
             </div>
           ) : (
             <>
               <p style={{ color: 'var(--text2)', lineHeight: 1.7, marginBottom: 16 }}>
-                You are currently subscribed. Cancelling will stop future charges — your access
-                continues until the end of your billing period.
+                {isTrialing
+                  ? 'You are currently on a free trial. Cancelling now will end your trial immediately — you will not be charged anything.'
+                  : 'You are currently subscribed. Cancelling will stop future charges — your access continues until the end of your billing period.'}
               </p>
               {err && <div className="alert alert-err" style={{ marginBottom: 12 }}>{err}</div>}
 
@@ -106,7 +112,7 @@ export default function CancelPolicy() {
                   className="btn"
                   style={{ background: 'transparent', border: '1px solid var(--red)', color: 'var(--red)' }}
                   onClick={() => setConfirm(true)}>
-                  Cancel Subscription
+                  {isTrialing ? 'Cancel Trial' : 'Cancel Subscription'}
                 </button>
               ) : (
                 <div style={{ background: 'var(--panel2)', borderRadius: 10, padding: 20 }}>
@@ -114,11 +120,13 @@ export default function CancelPolicy() {
                     Are you sure you want to cancel?
                   </p>
                   <p style={{ color: 'var(--text2)', fontSize: '.9rem', marginBottom: 16 }}>
-                    You'll lose access to all practice exams at the end of your billing period.
+                    {isTrialing
+                      ? 'Your trial will end and you will not be charged.'
+                      : 'You\'ll lose access to all practice exams at the end of your billing period.'}
                   </p>
                   <div style={{ display: 'flex', gap: 10 }}>
                     <button className="btn btn-ghost" onClick={() => setConfirm(false)} disabled={busy}>
-                      Keep my subscription
+                      {isTrialing ? 'Keep my trial' : 'Keep my subscription'}
                     </button>
                     <button
                       className="btn"

@@ -59,6 +59,7 @@ export default function ExamList() {
   const [starting, setStarting] = useState(false);
   const [subscription, setSubscription] = useState(null);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [trialModalPlan, setTrialModalPlan] = useState(null);
   const [upgrading, setUpgrading] = useState(false);
   const [justPurchased, setJustPurchased] = useState(false);
   const [activating, setActivating] = useState(false);
@@ -140,7 +141,8 @@ export default function ExamList() {
     if (!autoBuyRef.current || subscription === null) return;
     const plan = autoBuyRef.current;
     autoBuyRef.current = null;
-    startCheckout(plan);
+    // Show trial confirmation modal instead of immediately redirecting
+    setTrialModalPlan(plan);
   }, [subscription]); // eslint-disable-line
 
   const current = exams.find((e) => e.code === selected);
@@ -208,8 +210,57 @@ export default function ExamList() {
     return exams.find((e) => e.code === code) || null;
   }).filter(Boolean);
 
+  const PLAN_LABELS = { par: 'Private Pilot (PAR)', ira: 'Instrument Rating (IRA)', cax: 'Commercial Pilot (CAX)', bundle: 'All 3 Exams Bundle', uag: 'Part 107 Drone' };
+  const PLAN_PRICES = { par: '$24.99/month', ira: '$24.99/month', cax: '$24.99/month', bundle: '$39.99/month', uag: '$37.99 one-time' };
+  const trialEndDate = new Date(Date.now() + 3 * 86400000).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+
   return (
     <div className="container page" style={{ paddingTop: 0 }}>
+
+      {/* ── TRIAL CONFIRMATION MODAL ────────────────────────────────── */}
+      {trialModalPlan && (
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(4,10,20,0.85)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
+          <div style={{ background: '#0f1822', border: '1px solid #1e2a38', borderRadius: 16, padding: '36px 32px', maxWidth: 460, width: '100%', textAlign: 'center' }}>
+            <div style={{ fontSize: 36, marginBottom: 12 }}>✈️</div>
+            <h2 style={{ color: '#fff', margin: '0 0 8px', fontSize: '1.4rem', fontWeight: 800 }}>Start Your 3-Day Free Trial</h2>
+            <div style={{ color: '#30ace2', fontWeight: 700, fontSize: '1rem', marginBottom: 20 }}>{PLAN_LABELS[trialModalPlan]}</div>
+            <div style={{ background: '#0a121b', borderRadius: 10, padding: '16px 20px', marginBottom: 24, textAlign: 'left' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #1e2a38' }}>
+                <span style={{ color: '#94b8d4' }}>Trial period</span>
+                <span style={{ color: '#fff', fontWeight: 600 }}>3 days free</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #1e2a38' }}>
+                <span style={{ color: '#94b8d4' }}>First charge</span>
+                <span style={{ color: '#fff', fontWeight: 600 }}>{trialEndDate}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #1e2a38' }}>
+                <span style={{ color: '#94b8d4' }}>Price after trial</span>
+                <span style={{ color: '#fff', fontWeight: 600 }}>{PLAN_PRICES[trialModalPlan]}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0' }}>
+                <span style={{ color: '#94b8d4' }}>Cancel</span>
+                <span style={{ color: '#34d399', fontWeight: 600 }}>Anytime — one click</span>
+              </div>
+            </div>
+            <p style={{ color: '#94b8d4', fontSize: '.88rem', marginBottom: 24, lineHeight: 1.6 }}>
+              A card is required to hold your trial. You <strong style={{ color: '#fff' }}>will not be charged</strong> until {trialEndDate}. Cancel before then and you owe nothing.
+            </p>
+            <button
+              className="btn btn-primary btn-block"
+              style={{ fontSize: '1rem', padding: '14px 24px', marginBottom: 12 }}
+              onClick={() => { setTrialModalPlan(null); startCheckout(trialModalPlan); }}
+              disabled={checkoutLoading}>
+              {checkoutLoading ? 'Loading…' : 'Enter Payment Info — Start Free →'}
+            </button>
+            <button
+              className="btn btn-ghost btn-block"
+              style={{ fontSize: '.88rem' }}
+              onClick={() => setTrialModalPlan(null)}>
+              Not right now
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* ── HERO BANNER ─────────────────────────────────────────────── */}
       <div style={{
