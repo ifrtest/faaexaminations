@@ -58,7 +58,7 @@ export default function ExamList() {
   const [err, setErr]           = useState('');
   const [starting, setStarting] = useState(false);
   const [subscription, setSubscription] = useState(null);
-  const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [checkoutLoading] = useState(false);
   const [trialModalPlan, setTrialModalPlan] = useState(null);
   const [upgrading, setUpgrading] = useState(false);
   const [justPurchased, setJustPurchased] = useState(false);
@@ -157,22 +157,8 @@ export default function ExamList() {
 
   const isSubscribed = ['active', 'trialing'].includes(subscription?.status);
 
-  const startCheckout = async (plan) => {
-    setCheckoutLoading(true);
-    try {
-      const res = await fetch('/api/stripe/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('faa_token')}` },
-        body: JSON.stringify({ plan }),
-      });
-      const data = await res.json();
-      if (data.url) window.location.href = data.url;
-      else setErr(data.error || 'Could not start checkout.');
-    } catch {
-      setErr('Could not start checkout.');
-    } finally {
-      setCheckoutLoading(false);
-    }
+  const startCheckout = (plan) => {
+    navigate(`/checkout?plan=${plan}`);
   };
 
   const start = async () => {
