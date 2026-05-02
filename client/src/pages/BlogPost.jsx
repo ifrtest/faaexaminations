@@ -1308,6 +1308,272 @@ const POSTS = {
   },
 
   /* ================================================================ */
+  'ils-approach-explained': {
+    title: 'ILS Approach Explained: How It Works and What the Exam Tests',
+    description: 'The ILS is the most common precision instrument approach. Here\'s how the localizer and glideslope work, what the minimums mean, and exactly what the IRA knowledge test asks about it.',
+    date: 'May 2, 2026',
+    dateISO: '2026-05-02',
+    readTime: '8 min read',
+    tag: 'Instrument Rating',
+    image: '/plane-ira.webp',
+    related: ['faa-instrument-rating-written-test-study-tips-2026', 'instrument-rating-knowledge-test-tips', 'how-to-read-a-taf'],
+    content: (
+      <>
+        <p>The ILS — Instrument Landing System — is the approach you'll encounter most often as an instrument-rated pilot, and it's the one the IRA knowledge test covers most heavily. Understanding it isn't just about memorizing definitions. The exam tests whether you understand how the system works, what the components do, and how to interpret the approach plate. Here's the full picture.</p>
+
+        <h2>What the ILS actually does</h2>
+        <p>An ILS gives you two pieces of guidance simultaneously: horizontal (localizer) and vertical (glideslope). Together they create a precise electronic path to the runway threshold. If you stay on both needles — centered localizer, centered glideslope — you'll arrive at the runway at the right point and the right angle to land.</p>
+        <p>This is what makes the ILS a <strong>precision approach</strong>. Non-precision approaches (VOR, NDB, LNAV) give you lateral guidance but no glideslope. The ILS gives you both, which is why it has lower minimums than non-precision approaches.</p>
+
+        <h2>The localizer</h2>
+        <p>The localizer is a VHF radio signal broadcast from an antenna beyond the far end of the runway, aligned precisely with runway centerline. It operates between 108.10 and 111.95 MHz (the same range as VORs, but on odd-tenths frequencies — that's a testable detail).</p>
+        <p>The localizer creates a course that's approximately 700 feet wide at the threshold and narrows to about 5° total width. That narrow width is important: the CDI (course deviation indicator) is much more sensitive on a localizer than on a VOR. A full-scale deflection on a localizer means you're only about 2.5° off course — on a VOR, full scale is 10°. This sensitivity is why hand-flying an ILS precisely takes practice.</p>
+        <p>The back course (the opposite direction of the localizer signal) is also usable for approaches at some airports, but it requires reversed needle interpretation unless you have a back-course switch. The front course is what ILS approaches use.</p>
+
+        <h2>The glideslope</h2>
+        <p>The glideslope is a UHF signal broadcast from an antenna to the side of the runway, near the touchdown zone. It defines a descent path — typically 3° above horizontal — that takes you from the final approach fix down to the decision altitude.</p>
+        <p>The glideslope receiver and localizer receiver are paired — when you tune the localizer frequency, the glideslope pairs automatically (they're frequency-paired). You don't tune glideslope separately.</p>
+        <p>Glideslope accuracy degrades below the antenna. If you fly through the glideslope and go below it, you may pick up a false glideslope at a steeper angle (typically 6–9°). This is the classic glideslope trap: if you intercept from below, make sure you're picking up the real 3° glideslope, not a false one. On the CDI, the real glideslope needle will show you high (above the path) until you capture it coming down from above — that's the standard way to intercept.</p>
+
+        <h2>The outer marker, middle marker, and inner marker</h2>
+        <p>ILS approaches traditionally used marker beacons — radio transmitters on the ground that trigger audio and visual signals as you fly over them. They defined points along the approach path.</p>
+        <ul>
+          <li><strong>Outer marker (OM)</strong> — typically 4–7 NM from the threshold, at the glideslope intercept altitude. Blue light, continuous dashes (– – –) in Morse. This is where you normally intercept the glideslope.</li>
+          <li><strong>Middle marker (MM)</strong> — approximately 3,500 feet from the threshold, near decision altitude. Amber light, alternating dots and dashes (· – · –).</li>
+          <li><strong>Inner marker (IM)</strong> — very close to the threshold, used on CAT II and III approaches. White light, rapid dots (· · · ·).</li>
+        </ul>
+        <p>Modern GPS has largely replaced marker beacons for defining approach fixes — you'll see fixes named on approach plates instead of just marker references. But the exam still tests marker beacon knowledge.</p>
+
+        <h2>ILS categories and minimums</h2>
+        <p>ILS approaches are categorized by how low you can descend and how much visibility you need:</p>
+        <div style={{ overflowX: 'auto', marginBottom: 20 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.88rem' }}>
+            <thead><tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Category</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Decision Altitude</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>RVR (visibility)</th>
+            </tr></thead>
+            <tbody>
+              {[
+                ['CAT I','200 ft AGL','2,400 ft RVR (1,800 ft with ALSF lighting)'],
+                ['CAT II','100 ft AGL','1,200 ft RVR'],
+                ['CAT IIIa','Less than 100 ft','700 ft RVR'],
+                ['CAT IIIb','Less than 50 ft','150–700 ft RVR'],
+                ['CAT IIIc','0 ft (no ceiling)','No RVR limit'],
+              ].map(([cat,da,rvr],i)=>(
+                <tr key={i} style={{ borderBottom:'1px solid var(--border)', background: i%2===0?'var(--card-bg)':'transparent' }}>
+                  <td style={{ padding:'9px 12px', fontWeight:700, color:'var(--text)' }}>{cat}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)', fontSize:'.85rem' }}>{da}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)', fontSize:'.85rem' }}>{rvr}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>Private pilots and most general aviation operations use CAT I minimums. CAT II and III require special aircraft equipment, crew training, and airport certification. For the IRA exam, know CAT I minimums cold: 200 ft DA, 2,400 ft RVR (or ½ SM visibility).</p>
+
+        <h2>Decision Altitude vs Minimum Descent Altitude</h2>
+        <p>This distinction comes up constantly on the IRA exam. <strong>Decision Altitude (DA)</strong> is used on precision approaches (ILS, LPV). <strong>Minimum Descent Altitude (MDA)</strong> is used on non-precision approaches (VOR, NDB, LNAV).</p>
+        <p>The critical difference: at DA, you must immediately initiate a missed approach if you don't have the required visual references. At MDA, you descend to that altitude and level off, flying toward the runway until you either see the runway environment or reach the missed approach point (MAP). Precision approaches are operationally safer because you're always on a controlled descent path — you never level off and fly in IMC hoping to break out.</p>
+
+        <h2>Required visual references (FAR 91.175)</h2>
+        <p>To continue an approach below DA (or MDA), you must have at least one of these visual references clearly in sight:</p>
+        <ul>
+          <li>Approach light system (ALS) — but you can only descend to 100 ft above TDZE using ALS alone</li>
+          <li>Threshold or threshold markings</li>
+          <li>Threshold lights</li>
+          <li>Runway end identifier lights (REIL)</li>
+          <li>Visual approach slope indicator (VASI or PAPI)</li>
+          <li>Touchdown zone or touchdown zone markings</li>
+          <li>Runway or runway markings</li>
+          <li>Runway lights</li>
+        </ul>
+        <p>If you don't have any of these at DA, you execute the missed approach — immediately, without hesitation. The exam will give you a scenario and ask whether a continued approach is legal. If the pilot doesn't have a listed visual reference, the answer is always missed approach.</p>
+
+        <h2>Reading the approach plate</h2>
+        <p>ILS approach plates (now published in digital format as FAA IAPs) pack a lot of information into a small space. For the exam, focus on: the localizer frequency (top of the plan view), the glideslope angle (typically 3.00°), the decision altitude and height (e.g., 200/18 means 200 ft MSL DA, 18 ft above TDZE), the missed approach procedure, and the aircraft category minimums table at the bottom.</p>
+        <p>Aircraft categories for approach minimums are based on 1.3 × Vso: Cat A is under 91 knots, Cat B is 91–120, Cat C is 121–140, Cat D is 141–165. A Cessna 172 is Cat A. A faster twin might be Cat B. This determines which row of minimums applies to you.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'private-pilot-checkride-what-to-expect': {
+    title: 'Private Pilot Checkride: What to Expect (And How to Prepare)',
+    description: 'The private pilot checkride has two parts: an oral exam and a flight test. Here\'s what examiners actually test, how long it takes, what fails people, and how to prepare properly.',
+    date: 'May 2, 2026',
+    dateISO: '2026-05-02',
+    readTime: '8 min read',
+    tag: 'Private Pilot',
+    image: '/private-pilot-faa-knowledge-test-prep.jpg',
+    related: ['how-to-pass-faa-private-pilot-written-exam-first-try', 'how-long-to-get-private-pilot-license', 'faa-medical-certificate-classes-explained'],
+    content: (
+      <>
+        <p>The private pilot checkride is the practical test you take at the end of flight training. Pass it and you're a licensed pilot. It's administered by an FAA Designated Pilot Examiner (DPE) — a certified flight instructor authorized by the FAA to conduct tests. Here's what the day actually looks like and how to go in prepared.</p>
+
+        <h2>Two parts: oral and flight</h2>
+        <p>The checkride has two distinct sections. The oral exam comes first and typically runs 1.5 to 3 hours. The flight test follows — usually another 1.5 to 2 hours in the air. Total time from arrival to finish can be 4–6 hours, sometimes longer. Plan your whole day around it.</p>
+        <p>The examiner can discontinue the checkride at any point during either portion if you demonstrate unsatisfactory performance. If you fail the oral, you don't fly that day. If you fail during the flight, the oral doesn't need to be repeated — you retest only the failed portions.</p>
+
+        <h2>The oral exam</h2>
+        <p>The oral isn't a quiz of random trivia. Examiners are testing whether you understand the concepts well enough to make safe decisions. The Airman Certification Standards (ACS) — the document that replaced the old PTS — tells you exactly what knowledge areas are tested and to what level. It's public. Read it.</p>
+        <p>Common oral topics:</p>
+        <ul>
+          <li><strong>Documents</strong> — ARROW acronym for aircraft documents (Airworthiness certificate, Registration, Radio station license if applicable, Operating limitations/POH, Weight and balance), plus your pilot logbook and medical</li>
+          <li><strong>Airspace</strong> — class requirements, VFR minimums, special use airspace</li>
+          <li><strong>Weather</strong> — reading METARs and TAFs, interpreting weather for the planned flight, SIGMETs, AIRMETs, PIREPs</li>
+          <li><strong>Cross-country planning</strong> — the examiner will review the flight plan you prepared, ask about fuel, alternates, TFRs, NOTAMs</li>
+          <li><strong>Regulations</strong> — currency requirements, what you can carry as a private pilot, recency of experience</li>
+          <li><strong>Systems</strong> — how your specific aircraft's engine, electrical, and flight systems work</li>
+          <li><strong>Emergency procedures</strong> — engine failures, electrical failures, what you'd do</li>
+        </ul>
+        <p>The examiner will give you a scenario — "you're planning a flight from X to Y tomorrow morning, here's the weather" — and walk through it with you. They're not looking for perfect answers. They're looking for good judgment and the ability to reason through a problem.</p>
+
+        <h2>The flight test</h2>
+        <p>The flight portion tests the maneuvers listed in the ACS. For private pilot, these include:</p>
+        <ul>
+          <li>Preflight inspection (you conduct it, they watch)</li>
+          <li>Normal and crosswind takeoffs and landings</li>
+          <li>Short-field and soft-field takeoffs and landings</li>
+          <li>Cross-country navigation (you fly the planned route for a portion)</li>
+          <li>Diversion to an alternate (the examiner will introduce this in flight)</li>
+          <li>Lost procedures (demonstrates situational awareness)</li>
+          <li>Ground reference maneuvers (turns around a point, S-turns)</li>
+          <li>Slow flight and stalls (power-on and power-off)</li>
+          <li>Emergency procedures (simulated engine failure — the examiner will pull the throttle)</li>
+          <li>Steep turns (45° bank, ±100 ft, ±10 knots, within 10° of rollout heading)</li>
+        </ul>
+        <p>Each maneuver has tolerances. Steep turns: ±100 ft altitude, ±10 knots, roll out within 10° of entry heading. Stalls: proper recognition and recovery before secondary stall. Power-off 180° approach: land within the first third of the runway. Know your tolerances — they're in the ACS.</p>
+
+        <h2>What actually fails people</h2>
+        <p>The most common reasons for a "pink slip" (notice of disapproval):</p>
+        <ul>
+          <li><strong>Checklist discipline</strong> — skipping steps, rushing, not actually verifying items. Examiners watch this carefully.</li>
+          <li><strong>Slow flight too slow</strong> — entering an inadvertent stall during slow flight maneuvers</li>
+          <li><strong>Poor situational awareness during cross-country</strong> — not knowing where you are when the diversion is introduced</li>
+          <li><strong>Steep turn altitude</strong> — busting the ±100 ft tolerance, usually from not adding enough back pressure in the bank</li>
+          <li><strong>Oral exam gaps on regulations</strong> — especially currency requirements and airspace</li>
+          <li><strong>Go-around hesitation</strong> — a bad approach that should be a go-around but the student tries to save it. Examiners want to see the decision made decisively and early.</li>
+        </ul>
+        <p>Examiners are not trying to fail you. They will sometimes do things that seem designed to unsettle you — introduce a distraction, ask a question at an inconvenient moment, be quiet for a long stretch — but the goal is to see how you perform under realistic conditions, not to trick you.</p>
+
+        <h2>Documents to bring</h2>
+        <ul>
+          <li>Government-issued photo ID</li>
+          <li>FAA knowledge test report (your written test score, still valid — 24 months)</li>
+          <li>Logbook with all required endorsements (solo, cross-country, pre-checkride)</li>
+          <li>Medical certificate (valid)</li>
+          <li>Completed IACRA application (8710-1), signed by your instructor</li>
+          <li>Examiner fee (varies by DPE, typically $500–$800)</li>
+        </ul>
+        <p>Your CFI should walk you through all of this before the checkride day. If they haven't, ask explicitly.</p>
+
+        <h2>The morning of</h2>
+        <p>Do a real weather check — not just a glance. Pull the METARs and TAFs for your planned route, check for TFRs, grab a standard briefing from 1800wxbrief.com. The examiner may ask to see it.</p>
+        <p>Complete the cross-country planning you were assigned. Use a nav log. Show your work — the examiner wants to see your process, not just an answer.</p>
+        <p>Get to the airport early. Preflight the aircraft before the examiner arrives. There's no reason to be flustered about the aircraft condition during a checkride — that part should be done and settled before you sit down for the oral.</p>
+        <p>Being well-rested matters more than one more hour of studying the night before. You know the material or you don't at that point. Sleep.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'weight-and-balance-faa-exam': {
+    title: 'Weight and Balance for the FAA Exam: Calculations Explained',
+    description: 'Weight and balance questions appear on the Private Pilot and Commercial Pilot written exams. Here\'s how the math works, what terms mean, and how to solve any W&B problem.',
+    date: 'May 2, 2026',
+    dateISO: '2026-05-02',
+    readTime: '7 min read',
+    tag: 'Study Tips',
+    image: '/plane-step2.jpg',
+    related: ['what-is-density-altitude', 'how-to-pass-faa-private-pilot-written-exam-first-try', 'vfr-cross-country-flight-planning'],
+    content: (
+      <>
+        <p>Weight and balance is one of those topics that sounds more complicated than it is. Once you see the math, it's straightforward. The FAA written exam — both PAR and CAX — will give you a scenario, some numbers, and ask you to calculate whether the aircraft is within limits. Here's the complete framework.</p>
+
+        <h2>Why it matters</h2>
+        <p>An overloaded aircraft is more dangerous than just being over a weight limit. An out-of-balance aircraft can be uncontrollable. The center of gravity (CG) must stay within the limits defined in the aircraft's POH — too far forward and the aircraft becomes difficult to rotate and flare; too far aft and it becomes unstable and can enter an unrecoverable pitch-up.</p>
+        <p>Weight and balance is not just a legal requirement. It's genuinely safety-critical. Accidents attributed to out-of-CG loading happen every year.</p>
+
+        <h2>The key terms</h2>
+        <ul>
+          <li><strong>Datum</strong> — an imaginary vertical reference plane from which all arm measurements are taken. Defined in the POH — often the firewall, the nose of the aircraft, or some other fixed reference. Everything is measured forward (negative) or aft (positive) from the datum.</li>
+          <li><strong>Arm</strong> — the horizontal distance in inches from the datum to a specific item or station. Printed in the POH for each seat, baggage area, and fuel tank.</li>
+          <li><strong>Moment</strong> — weight × arm. Measured in pound-inches (or sometimes hundreds of pound-inches to keep the numbers manageable).</li>
+          <li><strong>Center of gravity (CG)</strong> — the point at which the aircraft balances. Calculated as total moment ÷ total weight.</li>
+          <li><strong>CG envelope</strong> — the range of CG positions (forward limit to aft limit) within which the aircraft must be loaded. Shown on a graph in the POH.</li>
+        </ul>
+
+        <h2>The calculation — step by step</h2>
+        <p>Every weight and balance problem follows the same structure:</p>
+        <ol>
+          <li>List each item (pilot, passengers, baggage, fuel, empty aircraft) with its weight and arm</li>
+          <li>Calculate moment for each item: weight × arm</li>
+          <li>Add all weights to get total weight</li>
+          <li>Add all moments to get total moment</li>
+          <li>Divide total moment by total weight: CG = total moment ÷ total weight</li>
+          <li>Check: is total weight under max gross weight? Is CG within the forward and aft limits?</li>
+        </ol>
+        <p>Example: an aircraft with empty weight 1,500 lbs at arm 82.1", pilot 170 lbs at 85", passenger 150 lbs at 85", fuel 30 gal (180 lbs) at 95", baggage 40 lbs at 140".</p>
+        <div style={{ overflowX: 'auto', marginBottom: 20 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.88rem' }}>
+            <thead><tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Item</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Weight (lbs)</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Arm (in)</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Moment (lb·in)</th>
+            </tr></thead>
+            <tbody>
+              {[
+                ['Empty aircraft','1,500','82.1','123,150'],
+                ['Pilot','170','85','14,450'],
+                ['Passenger','150','85','12,750'],
+                ['Fuel (30 gal)','180','95','17,100'],
+                ['Baggage','40','140','5,600'],
+                ['TOTAL','2,040','—','173,050'],
+              ].map(([item,wt,arm,mom],i)=>(
+                <tr key={i} style={{ borderBottom:'1px solid var(--border)', background: i===5?'var(--blue-dim)': i%2===0?'var(--card-bg)':'transparent', fontWeight: i===5?700:'normal' }}>
+                  <td style={{ padding:'9px 12px', color:'var(--text)' }}>{item}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{wt}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{arm}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{mom}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>CG = 173,050 ÷ 2,040 = <strong>84.8 inches aft of datum</strong>. Then you check: is 2,040 lbs under max gross weight? Is 84.8" within the CG envelope? If both yes, the loading is legal.</p>
+
+        <h2>Fuel weight — memorize this</h2>
+        <p>Avgas (100LL) weighs <strong>6 pounds per gallon</strong>. Jet-A weighs approximately 6.7 lbs/gal. The exam will give you fuel in gallons and expect you to convert to pounds. 30 gallons of avgas = 180 lbs. This is a constant you need to have memorized.</p>
+        <p>Also: fuel burns during flight, which shifts the CG. As fuel burns from a wing tank, the moment changes. POHs include graphs showing CG shift at various fuel loads. The exam may ask about CG at landing, not just takeoff — you need to run the numbers at min fuel too.</p>
+
+        <h2>Using the moment envelope graph</h2>
+        <p>Most POH weight and balance sections include a loading graph and a CG envelope (moment envelope) chart. The exam often provides these as figures. Here's how to use them:</p>
+        <ol>
+          <li>Use the loading graph to look up moment for each item by weight (read moment directly without multiplying)</li>
+          <li>Add up all weights and all moments</li>
+          <li>Plot the point on the moment envelope graph (x-axis = moment, y-axis = weight)</li>
+          <li>If the point falls inside the envelope, loading is acceptable</li>
+        </ol>
+        <p>This graphical method is faster for exam questions that provide charts. Practice reading the axes carefully — they're often in hundreds of pound-inches, not individual pound-inches.</p>
+
+        <h2>Shifting weight to correct CG</h2>
+        <p>If the CG is out of limits, you need to shift weight. The formula for how much weight to move:</p>
+        <p style={{fontFamily:'monospace', background:'var(--card-bg)', padding:'12px 16px', borderRadius:8, fontSize:'.9rem', marginBottom:20, display:'block'}}>
+          Weight to move = (CG shift needed × Total weight) ÷ Distance between stations
+        </p>
+        <p>Example: CG needs to move 2 inches forward. Total weight 2,400 lbs. Moving weight from a station 60 inches aft to one 10 inches aft (50 inches forward): weight to move = (2 × 2,400) ÷ 50 = 96 lbs.</p>
+        <p>The exam occasionally asks this type of question for Commercial Pilot — it's less common on Private Pilot but appears. Know the formula.</p>
+
+        <h2>What the exam actually asks</h2>
+        <p>PAR W&B questions are usually: given this loading table and aircraft limits, what is the CG and is the aircraft within limits? They provide all the numbers. You multiply, add, and divide. Check two things: max weight and CG range.</p>
+        <p>CAX questions go deeper — fuel burn scenarios, CG shift calculations, weight-shifting problems. The math isn't harder, just applied in more situations. If you can do a basic W&B calculation cleanly, the rest is just the same process applied differently.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
   'faa-medical-certificate-classes-explained': {
     title: 'FAA Medical Certificate: Class 1, 2, 3, and BasicMed Explained',
     description: 'Before you start flight training, you need to know if you qualify for an FAA medical certificate. Here\'s what Class 1, 2, and 3 require, who needs what, and how BasicMed works.',

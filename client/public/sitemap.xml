@@ -104,6 +104,24 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://faaexaminations.com/blog/ils-approach-explained</loc>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://faaexaminations.com/blog/private-pilot-checkride-what-to-expect</loc>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://faaexaminations.com/blog/weight-and-balance-faa-exam</loc>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://faaexaminations.com/blog/faa-medical-certificate-classes-explained</loc>
     <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>

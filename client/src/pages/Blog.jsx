@@ -4,6 +4,33 @@ import { Helmet } from 'react-helmet-async';
 
 const POSTS = [
   {
+    slug: 'ils-approach-explained',
+    title: 'ILS Approach Explained: How It Works and What the Exam Tests',
+    excerpt: "The ILS is the most common precision instrument approach. Here's how the localizer and glideslope work, what the minimums mean, and exactly what the IRA knowledge test asks about it.",
+    date: 'May 2, 2026',
+    readTime: '8 min read',
+    tag: 'Instrument Rating',
+    image: '/plane-ira.webp',
+  },
+  {
+    slug: 'private-pilot-checkride-what-to-expect',
+    title: 'Private Pilot Checkride: What to Expect (And How to Prepare)',
+    excerpt: "The private pilot checkride is an oral exam plus a flight test. Here's what examiners actually look for, what fails people, what documents to bring, and how to go in ready.",
+    date: 'May 2, 2026',
+    readTime: '8 min read',
+    tag: 'Private Pilot',
+    image: '/private-pilot-faa-knowledge-test-prep.jpg',
+  },
+  {
+    slug: 'weight-and-balance-faa-exam',
+    title: 'Weight and Balance for the FAA Exam: Calculations Explained',
+    excerpt: "Weight and balance questions are on both the PAR and CAX written exams. Here's the complete calculation framework — datum, arm, moment, CG — with a worked example and the formulas you need.",
+    date: 'May 2, 2026',
+    readTime: '7 min read',
+    tag: 'Study Tips',
+    image: '/plane-step2.jpg',
+  },
+  {
     slug: 'faa-medical-certificate-classes-explained',
     title: 'FAA Medical Certificate: Class 1, 2, 3, and BasicMed Explained',
     excerpt: "Before you start flight training, you need to know if you qualify for an FAA medical. Here's what each class requires, who needs what, and how BasicMed works as an alternative.",
