@@ -233,6 +233,19 @@ export default function Checkout() {
   const [err, setErr]               = useState('');
 
   useEffect(() => {
+    if (plan && PLAN_INFO[plan] && window.fbq) {
+      const PLAN_VALUE = { par: 24.99, ira: 24.99, cax: 24.99, bundle: 39.99, uag: 37.99 };
+      fbq('track', 'InitiateCheckout', {
+        value: PLAN_VALUE[plan] || 24.99,
+        currency: 'USD',
+        content_name: PLAN_INFO[plan].label,
+        content_ids: [plan],
+        num_items: 1,
+      });
+    }
+  }, [plan]); // eslint-disable-line
+
+  useEffect(() => {
     if (!user) {
       navigate(`/register?plan=${plan || 'par'}`, { replace: true });
       return;

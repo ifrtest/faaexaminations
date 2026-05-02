@@ -57,6 +57,10 @@ export default function CAXLanding() {
   const [openFaq, setOpenFaq] = useState(null);
 
   useEffect(() => {
+    if (window.fbq) fbq('track', 'ViewContent', { content_name: 'Commercial Pilot (CAX)', content_ids: ['cax'], content_type: 'product', value: 24.99, currency: 'USD' });
+  }, []);
+
+  useEffect(() => {
     const onScroll = () => {
       if (navRef.current) navRef.current.classList.toggle('scrolled', window.scrollY > 50);
     };

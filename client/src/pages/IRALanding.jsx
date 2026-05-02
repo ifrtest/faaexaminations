@@ -57,6 +57,10 @@ export default function IRALanding() {
   const [openFaq, setOpenFaq] = useState(null);
 
   useEffect(() => {
+    if (window.fbq) fbq('track', 'ViewContent', { content_name: 'Instrument Rating (IRA)', content_ids: ['ira'], content_type: 'product', value: 24.99, currency: 'USD' });
+  }, []);
+
+  useEffect(() => {
     const onScroll = () => {
       if (navRef.current) navRef.current.classList.toggle('scrolled', window.scrollY > 50);
     };

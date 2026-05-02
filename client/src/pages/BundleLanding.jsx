@@ -36,6 +36,10 @@ export default function BundleLanding() {
   const [openFaq, setOpenFaq] = useState(null);
 
   useEffect(() => {
+    if (window.fbq) fbq('track', 'ViewContent', { content_name: 'All 3 Exams Bundle', content_ids: ['bundle'], content_type: 'product', value: 39.99, currency: 'USD' });
+  }, []);
+
+  useEffect(() => {
     const onScroll = () => {
       if (navRef.current) navRef.current.classList.toggle('scrolled', window.scrollY > 50);
     };

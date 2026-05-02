@@ -208,6 +208,10 @@ export default function Part107Landing() {
   const [openFaq, setOpenFaq] = useState(null);
 
   useEffect(() => {
+    if (window.fbq) fbq('track', 'ViewContent', { content_name: 'Part 107 Remote Pilot (UAG)', content_ids: ['uag'], content_type: 'product', value: 37.99, currency: 'USD' });
+  }, []);
+
+  useEffect(() => {
     const onScroll = () => {
       if (navRef.current) navRef.current.classList.toggle('scrolled', window.scrollY > 50);
     };
