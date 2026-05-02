@@ -87,11 +87,32 @@ export default function Profile() {
       <div className="card" style={{ borderColor: 'var(--red)' }}>
         <div className="card-title" style={{ color: 'var(--red)' }}>Subscription</div>
         <p style={{ color: 'var(--text2)', marginBottom: 14 }}>
-          Need to cancel or review our refund policy?
+          Cancel, update your payment method, or view invoices — all from one place.
         </p>
-        <Link to="/cancel-policy" className="btn" style={{ background: 'transparent', border: '1px solid var(--red)', color: 'var(--red)', display: 'inline-block' }}>
-          Cancellation &amp; Refund Policy
-        </Link>
+        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+          <button
+            className="btn"
+            style={{ background: 'transparent', border: '1px solid var(--red)', color: 'var(--red)' }}
+            onClick={async () => {
+              try {
+                const res = await fetch('/api/stripe/portal', {
+                  method: 'POST',
+                  headers: { Authorization: `Bearer ${localStorage.getItem('faa_token')}` },
+                });
+                const data = await res.json();
+                if (data.url) window.location.href = data.url;
+                else alert(data.error || 'Could not open billing portal.');
+              } catch {
+                alert('Something went wrong. Please try again.');
+              }
+            }}
+          >
+            Manage Subscription →
+          </button>
+          <Link to="/cancel-policy" style={{ color: 'var(--text2)', fontSize: '.85rem', alignSelf: 'center' }}>
+            Cancellation &amp; Refund Policy
+          </Link>
+        </div>
       </div>
 
       <div className="card">

@@ -594,6 +594,26 @@ router.post('/embedded/activate', requireAuth, async (req, res) => {
   }
 });
 
+// POST /api/stripe/portal
+// Returns a Stripe Customer Portal URL for the logged-in user
+router.post('/portal', requireAuth, async (req, res) => {
+  const userId = req.user.id;
+  try {
+    const userRes = await db.query('SELECT stripe_customer_id FROM users WHERE id = $1', [userId]);
+    const customerId = userRes.rows[0]?.stripe_customer_id;
+    if (!customerId) return res.status(400).json({ error: 'No billing account found.' });
+
+    const session = await stripe.billingPortal.sessions.create({
+      customer:   customerId,
+      return_url: `${process.env.CLIENT_URL}/profile`,
+    });
+    res.json({ url: session.url });
+  } catch (err) {
+    console.error('[stripe/portal]', err.message);
+    res.status(500).json({ error: 'Could not open billing portal.' });
+  }
+});
+
 function getPlanName(priceId) {
   if (!priceId) return null;
   if (priceId === process.env.STRIPE_PRICE_PAR)    return 'par';
