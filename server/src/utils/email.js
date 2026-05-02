@@ -184,13 +184,17 @@ function cancellationEmail(name, userId) {
 }
 
 function winBackEmail(name, userId) {
-  return shell('Still working on your pilot certificate?', `
+  return shell('Don\'t give up on your dream ✈', `
     <p style="margin:0 0 12px">Hi ${name},</p>
-    <p style="margin:0 0 12px">It's Ash and Leila from FAAExaminations.com. We noticed your subscription ended about a week ago and just wanted to check in.</p>
-    <p style="margin:0 0 12px">Your exam history and progress are still saved — nothing was deleted. If life got in the way and you're ready to get back to studying, you can pick up exactly where you left off.</p>
-    <p style="margin:0 0 16px">And if there was something we could have done better, we genuinely want to know. Just reply to this email — we read every one.</p>
+    <p style="margin:0 0 12px">It's Ash and Leila here. We noticed your subscription ended about a week ago and we just wanted to reach out personally.</p>
+    <p style="margin:0 0 12px">Becoming a pilot is one of the most rewarding things a person can do — and we know life gets in the way sometimes. But your dream doesn't have an expiry date. We're always here when you're ready to pick it back up.</p>
+    <p style="margin:0 0 20px">Your progress and exam history are saved exactly where you left them. Getting back on track takes two minutes.</p>
+    <div style="text-align:center;margin:0 0 24px">
+      <img src="${SITE()}/about-ash-leila.jpg" alt="Ash and Leila" style="width:100%;max-width:420px;border-radius:12px;display:inline-block" />
+      <p style="color:${MUTED};font-size:12px;margin:8px 0 0">Ash &amp; Leila — FAAExaminations.com</p>
+    </div>
     ${button(`${SITE()}/exams`, 'Pick Up Where You Left Off →')}
-    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">— Ash &amp; Leila, FAAExaminations.com</p>
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">If there's anything we could have done better, just reply to this email. We read every single one.</p>
   `, userId);
 }
 
