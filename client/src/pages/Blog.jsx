@@ -4,6 +4,33 @@ import { Helmet } from 'react-helmet-async';
 
 const POSTS = [
   {
+    slug: 'faa-medical-certificate-classes-explained',
+    title: 'FAA Medical Certificate: Class 1, 2, 3, and BasicMed Explained',
+    excerpt: "Before you start flight training, you need to know if you qualify for an FAA medical. Here's what each class requires, who needs what, and how BasicMed works as an alternative.",
+    date: 'May 2, 2026',
+    readTime: '7 min read',
+    tag: 'Private Pilot',
+    image: '/private-pilot-faa-knowledge-test-prep.jpg',
+  },
+  {
+    slug: 'how-to-read-a-taf',
+    title: 'How to Read a TAF (Terminal Aerodrome Forecast)',
+    excerpt: "TAFs are aviation weather forecasts that show up on FAA knowledge tests — especially for instrument rating. Here's how to decode one field by field, with a real example.",
+    date: 'May 2, 2026',
+    readTime: '6 min read',
+    tag: 'Instrument Rating',
+    image: '/blog-metar.webp',
+  },
+  {
+    slug: 'vfr-cross-country-flight-planning',
+    title: 'VFR Cross-Country Flight Planning: What the FAA Expects You to Know',
+    excerpt: "Cross-country planning is a core private pilot skill and a common knowledge test topic. TVMDC, fuel reserves, weather briefings, flight plans — here's what you need to know.",
+    date: 'May 2, 2026',
+    readTime: '7 min read',
+    tag: 'Private Pilot',
+    image: '/private-pilot-faa-knowledge-test-prep.jpg',
+  },
+  {
     slug: 'what-is-density-altitude',
     title: 'What Is Density Altitude? (And Why It Kills Aircraft Performance)',
     excerpt: "Density altitude is one of the most tested concepts on every FAA exam — and one of the most practical. Here's what it means, how to calculate it, and why high density altitude gets pilots into trouble.",

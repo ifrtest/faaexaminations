@@ -1308,6 +1308,216 @@ const POSTS = {
   },
 
   /* ================================================================ */
+  'faa-medical-certificate-classes-explained': {
+    title: 'FAA Medical Certificate: Class 1, 2, 3, and BasicMed Explained',
+    description: 'Before you start flight training, you need to know if you qualify for an FAA medical certificate. Here\'s what Class 1, 2, and 3 require, who needs what, and how BasicMed works.',
+    date: 'May 2, 2026',
+    dateISO: '2026-05-02',
+    readTime: '7 min read',
+    tag: 'Private Pilot',
+    image: '/private-pilot-faa-knowledge-test-prep.jpg',
+    related: ['how-long-to-get-private-pilot-license', 'how-to-pass-faa-private-pilot-written-exam-first-try', 'part-107-vs-private-pilot-license'],
+    content: (
+      <>
+        <p>One of the first things people ask when they decide to start flight training is whether they'll actually be able to get a medical certificate. It's a reasonable question — the FAA has medical standards, and some conditions disqualify pilots or require special issuance. Knowing this early saves you from investing months of time and thousands of dollars before finding out there's a problem.</p>
+        <p>Here's how the FAA medical certificate system works.</p>
+
+        <h2>Why you need a medical certificate</h2>
+        <p>To act as pilot in command of a powered aircraft, you need to hold a valid FAA medical certificate — or qualify under BasicMed (more on that below). The medical ensures you're physically and mentally fit to fly safely. Student pilots need at least a third-class medical before their first solo flight.</p>
+        <p>Drone pilots don't need a medical certificate. The Part 107 Remote Pilot Certificate has no medical requirement whatsoever — that's one of the reasons it's accessible to nearly anyone.</p>
+
+        <h2>The three classes of FAA medical</h2>
+
+        <h3>Third-Class Medical</h3>
+        <p>The third-class medical is what private pilots need. It's the least restrictive class. To exercise private pilot privileges, your third-class medical must be current — it's valid for 60 calendar months if you're under 40 at the time of the exam, and 24 calendar months if you're 40 or older.</p>
+        <p>Requirements include: vision correctable to 20/40 in each eye, no hearing impairment that prevents normal conversations, no untreated disqualifying medical conditions (certain heart conditions, epilepsy, severe mental health diagnoses, substance dependence). Many conditions that people assume are disqualifying — including controlled diabetes, well-managed depression, and some cardiac conditions — can actually qualify with special issuance.</p>
+
+        <h3>Second-Class Medical</h3>
+        <p>Commercial pilots exercising commercial privileges need a second-class medical. It's valid for 12 calendar months for commercial operations, then reverts to third-class privileges for another 12 or 48 months depending on age. Requirements are more stringent than third class — vision must be correctable to 20/20, and near vision standards also apply.</p>
+
+        <h3>First-Class Medical</h3>
+        <p>Airline Transport Pilots (ATP) require a first-class medical. It's valid for 12 calendar months if you're under 40, and 6 calendar months if 40 or older (for ATP operations). First-class has the most stringent requirements: 20/20 distance vision, additional near and intermediate vision standards, EKG requirements after age 35, and stricter cardiovascular standards overall.</p>
+
+        <h2>BasicMed — the alternative for private pilots</h2>
+        <p>In 2017, the FAA introduced BasicMed as a simplified alternative to the third-class medical for private pilots. Under BasicMed, you can fly without a formal FAA medical exam if you meet these conditions:</p>
+        <ul>
+          <li>You held a valid FAA medical certificate at any point after July 14, 2006</li>
+          <li>You have a physical exam with any state-licensed physician and complete the AOPA online course</li>
+          <li>You fly a U.S.-registered, non-pressurized aircraft (under 6,000 lbs, max 6 passengers)</li>
+          <li>You fly within the U.S., below 18,000 feet MSL, at speeds under 250 knots indicated</li>
+          <li>You're not flying for compensation or hire</li>
+        </ul>
+        <p>BasicMed is valid for 48 calendar months and requires a new physician exam and online course each cycle. It's a popular option for recreational private pilots who want to avoid the FAA AME process.</p>
+
+        <h2>How to get your FAA medical</h2>
+        <p>FAA medical exams are conducted by Aviation Medical Examiners (AMEs) — physicians specifically designated by the FAA. You don't go to your regular doctor for this; you find an AME. The FAA has a lookup tool at <strong>medxpress.faa.gov</strong> where you also complete your application before the appointment.</p>
+        <p>The exam itself covers vision, hearing, blood pressure, and a general physical. It's not a full annual physical — AMEs are trained to evaluate aviation-specific concerns. For a third-class medical with no complicated history, it typically takes 20–30 minutes.</p>
+        <p>Common conditions that may require special issuance (SI) include: hypertension on medication, well-controlled Type 2 diabetes (now routinely approved for third-class), history of kidney stones, some psychiatric conditions treated with approved medications, and cardiac conditions. Special issuance takes longer — weeks to months — and requires documentation from treating physicians. But many conditions that disqualified pilots a decade ago are now approvable.</p>
+
+        <h2>The question everyone is afraid to ask</h2>
+        <p>The most common concern is mental health history. The FAA has historically been strict about psychiatric diagnoses and certain medications, which caused many pilots to avoid seeking treatment. Policy has evolved. The FAA now has a pathway for pilots on SSRIs for depression — it requires a period of stability on the medication and FAA review, but it's not an automatic disqualifier.</p>
+        <p>If you have a condition you're unsure about, the right move is to consult with an Aviation Medical Examiner before applying, or contact AOPA's Medical Services team. Going in informed is far better than getting denied and then having to navigate the appeal process.</p>
+
+        <h2>What this means for the FAA written exam</h2>
+        <p>The knowledge test doesn't require a medical certificate — you can study and take the written exam before you have your medical. But you cannot solo (and therefore cannot complete flight training for a private pilot certificate) without one. Sort out the medical early, especially if you have any conditions that might need special issuance. The last thing you want is to be a week from solo and discover a problem that takes six months to resolve.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'how-to-read-a-taf': {
+    title: 'How to Read a TAF (Terminal Aerodrome Forecast)',
+    description: 'TAFs are aviation weather forecasts that show up on FAA knowledge tests — especially for instrument rating. Here\'s how to decode one field by field, with a real example.',
+    date: 'May 2, 2026',
+    dateISO: '2026-05-02',
+    readTime: '6 min read',
+    tag: 'Study Tips',
+    image: '/blog-metar.webp',
+    related: ['how-to-read-a-metar', 'faa-instrument-rating-written-test-study-tips-2026', 'instrument-rating-knowledge-test-tips'],
+    content: (
+      <>
+        <p>If you've already learned to read a METAR, a TAF is the logical next step. METARs tell you current conditions. TAFs tell you what's forecast — and they use very similar language. For the Instrument Rating knowledge test especially, TAF questions are common. Private Pilot and Part 107 exams also touch on them.</p>
+        <p>Here's how to decode a TAF from scratch.</p>
+
+        <h2>What is a TAF?</h2>
+        <p>A TAF is a Terminal Aerodrome Forecast — a weather forecast for conditions within 5 statute miles of a specific airport. TAFs are issued four times daily by the National Weather Service (at 0000, 0600, 1200, and 1800 UTC) and cover a 24- or 30-hour period. They're the official forecast pilots use for flight planning.</p>
+        <p>TAFs are only issued for airports with instrument approaches that have enough traffic to warrant them. Small rural airports may not have a TAF — you rely on METARs and area forecasts instead.</p>
+
+        <h2>A real TAF, decoded</h2>
+        <p style={{fontFamily:'monospace', background:'var(--card-bg)', padding:'12px 16px', borderRadius:8, fontSize:'.85rem', overflowX:'auto', display:'block', marginBottom:20, lineHeight:1.8}}>
+          TAF KDEN 041720Z 041818 27012KT 9999 FEW040 SCT100<br/>
+          TEMPO 1820 27018G28KT 6SM -TSRA SCT030CB BKN080<br/>
+          FM2100 28008KT 9999 SCT060<br/>
+          FM0300 30004KT 9999 SKC
+        </p>
+
+        <h3>TAF KDEN</h3>
+        <p>Report type and station. TAF for Denver International (KDEN).</p>
+
+        <h3>041720Z</h3>
+        <p>Issuance time. Day 04 of the month, issued at 1720 Zulu. Always UTC.</p>
+
+        <h3>041818</h3>
+        <p>Validity period. Day 04 from 1800Z to day 05 at 1800Z — a 24-hour forecast. Written as DDHH/DDHH or just DDHHHH depending on format. The forecast begins at the first time and ends at the second.</p>
+
+        <h3>27012KT 9999 FEW040 SCT100</h3>
+        <p>The initial conditions — wind, visibility, sky. Same format as a METAR. Wind 270° at 12 knots. 9999 = visibility greater than 9 km (or in US TAFs, more than 6 SM — 9999 means unrestricted). FEW clouds at 4,000 ft, scattered at 10,000 ft. These are the forecast conditions at the start of the valid period.</p>
+
+        <h3>TEMPO 1820</h3>
+        <p>TEMPO means temporary — conditions expected to last less than half the time during the specified period and for less than 60 minutes at a time. "1820" means from 1800Z to 2000Z. During that window, temporarily expect: 27018G28KT (wind 270° at 18, gusting 28), 6SM visibility, -TSRA (light thunderstorm with rain), SCT030CB (scattered cumulonimbus at 3,000 ft), BKN080 (broken at 8,000 ft).</p>
+        <p>CB after a cloud layer code always means cumulonimbus — a thunderstorm. That's significant and testable. Cumulonimbus layers are always a ceiling concern and a significant weather flag regardless of coverage.</p>
+
+        <h3>FM2100</h3>
+        <p>FM means "from" — a permanent change in conditions starting at the specified time. FM2100 means at 2100Z, conditions change to: 28008KT (lighter wind), 9999 visibility, SCT060. After 2100Z, the TEMPO conditions are gone and this is the new baseline.</p>
+        <p>FM groups always replace everything before them — wind, visibility, clouds — with the new forecast. They're not temporary or conditional.</p>
+
+        <h3>FM0300</h3>
+        <p>Another "from" group starting at 0300Z (overnight). Wind 300° at 4 knots, unlimited visibility, SKC (sky clear). Nice overnight conditions forecast.</p>
+
+        <h2>The other change indicators</h2>
+        <p>Beyond TEMPO and FM, TAFs use a couple other change group types:</p>
+        <ul>
+          <li><strong>BECMG (becoming)</strong> — a gradual change expected to occur within the specified time window and then persist. Unlike TEMPO, BECMG changes are permanent once they occur.</li>
+          <li><strong>PROB30 / PROB40</strong> — 30% or 40% probability of the conditions listed. PROB30 means there's a 30% chance of the following conditions during that period. PROB40 is more likely. You won't see PROB in most basic exam questions but it appears on instrument rating material.</li>
+        </ul>
+
+        <h2>Visibility in US TAFs</h2>
+        <p>US TAFs use statute miles for visibility, consistent with METARs. International TAFs (ICAO format) use meters — so 9999 means visibility greater than 9,999 meters (essentially unlimited), while US format might write P6SM (plus 6 statute miles). Know which format your exam question is using.</p>
+
+        <h2>What the IRA exam actually asks</h2>
+        <p>Instrument rating TAF questions are usually one of these:</p>
+        <ul>
+          <li>At a given time, what are the forecast conditions? — Find the right FM or TEMPO group that applies at that hour.</li>
+          <li>Is the airport forecast to be above or below alternate minimums at a given time?</li>
+          <li>What does this change group indicator (TEMPO, BECMG, FM) mean?</li>
+          <li>What is the ceiling during this TEMPO period?</li>
+        </ul>
+        <p>The biggest mistake is misreading which time group is active. If a question asks about conditions at 2200Z in the example above, that's after FM2100 — so you use the FM2100 conditions, not the TEMPO 1820 conditions (which ended at 2000Z). Work through the timeline carefully.</p>
+
+        <h2>TAF vs METAR — the key difference</h2>
+        <p>A METAR is observed reality. A TAF is a forecast. Pilots use both: the METAR to see what conditions actually are right now, and the TAF to see what's expected during their flight. For IFR flight planning, the TAF at the destination and alternate airports is required reading before departure.</p>
+        <p>If you can read a METAR, a TAF takes maybe an hour to get comfortable with. The format is similar, the abbreviations are the same, and the main new skill is understanding the change group indicators and how to determine which group applies at any given time.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'vfr-cross-country-flight-planning': {
+    title: 'VFR Cross-Country Flight Planning: What the FAA Expects You to Know',
+    description: 'Cross-country flight planning is a core private pilot skill — and a common knowledge test topic. Here\'s how to plan a VFR cross-country by the book, including fuel, weather, and filing.',
+    date: 'May 2, 2026',
+    dateISO: '2026-05-02',
+    readTime: '7 min read',
+    tag: 'Private Pilot',
+    image: '/private-pilot-faa-knowledge-test-prep.jpg',
+    related: ['how-to-read-a-metar', 'how-to-read-a-sectional-chart', 'faa-airspace-classes-explained'],
+    content: (
+      <>
+        <p>Cross-country flight planning is one of the core skills the FAA expects a private pilot to have. It's tested on the PAR knowledge exam, it's a required training element, and it's a major part of the practical test (checkride). Understanding the planning process isn't just about passing the written — it's foundational to actually flying anywhere beyond the pattern.</p>
+        <p>Here's what cross-country planning involves and what the exam focuses on.</p>
+
+        <h2>What counts as a cross-country flight</h2>
+        <p>For FAA purposes, a cross-country flight is one that includes a point of landing more than 50 nautical miles from the departure airport. This matters for logging time that counts toward certificate requirements. For the solo cross-country required for a private certificate, the route must include a landing more than 50 NM from the departure point.</p>
+        <p>Note that some short cross-countries (any flight to another airport and back, even nearby) can log cross-country time — but only flights exceeding 50 NM count toward the specific requirements in FAR 61.109.</p>
+
+        <h2>Step 1: Route planning</h2>
+        <p>Start with a sectional chart and identify your departure and destination airports. Then plan your route — which may be direct or may follow landmarks, airways, or airspace-friendly corridors depending on what's in the way.</p>
+        <p>VFR pilots navigate using pilotage (visual landmarks), dead reckoning (calculating position based on heading, speed, and time), or GPS. The FAA expects private pilot students to know pilotage and dead reckoning even if they'll use GPS in practice.</p>
+        <p>Draw your course line on the chart. Measure the total distance in nautical miles. Identify checkpoints along the route — identifiable landmarks (roads, rivers, towns, towers) you'll look for at regular intervals to confirm you're on course.</p>
+
+        <h2>Step 2: True course to magnetic heading</h2>
+        <p>The course you drew on the chart is the <strong>true course</strong> — measured from true north. But your compass reads magnetic north, and your aircraft is affected by wind. You need to correct for both.</p>
+        <p>The mnemonic is <strong>TVMDC</strong> — True, Variation, Magnetic, Deviation, Compass:</p>
+        <ol>
+          <li><strong>True course</strong> from the chart</li>
+          <li>Apply <strong>variation</strong> (magnetic declination from the sectional chart isogonic lines). East variation, subtract; West variation, add. "East is least, West is best."</li>
+          <li>Result is your <strong>magnetic course</strong></li>
+          <li>Apply <strong>deviation</strong> (your specific compass error from the compass correction card in your aircraft)</li>
+          <li>Result is your <strong>compass heading</strong></li>
+        </ol>
+        <p>Then apply <strong>wind correction angle (WCA)</strong> to get your actual magnetic heading to fly. Wind pushes the aircraft off course — you crab into the wind to maintain your desired track. The E-6B flight computer calculates this.</p>
+
+        <h2>Step 3: Time en route and fuel</h2>
+        <p>Divide distance by groundspeed (true airspeed corrected for wind) to get time en route. Your E-6B handles this with the wind side.</p>
+        <p>Fuel planning: multiply fuel burn rate (from the POH, in gallons per hour) by time en route. FAR 91.151 requires VFR flights to carry enough fuel to reach the first intended landing plus 30 minutes reserve during the day (45 minutes at night).</p>
+        <p>On the exam, fuel questions often test whether you know the reserve requirements and whether you can calculate whether a given fuel load is legal. Always plan with the actual fuel consumption from cruise performance tables — don't assume a round number.</p>
+
+        <h2>Step 4: Weather</h2>
+        <p>Before any cross-country, you need a proper weather briefing. The official source is <strong>1800wxbrief.com</strong> or calling Flight Service (1-800-WX-BRIEF). A standard briefing covers:</p>
+        <ul>
+          <li>Adverse conditions (TFRs, SIGMETs, AIRMETs, PIREPs)</li>
+          <li>VFR flight not recommended (VNR) advisory if applicable</li>
+          <li>Synopsis (big picture weather)</li>
+          <li>Current conditions (METARs along the route)</li>
+          <li>En route forecast (winds aloft, AIRMETs)</li>
+          <li>Destination forecast (TAF)</li>
+          <li>NOTAMs</li>
+        </ul>
+        <p>VFR minimums in controlled airspace: 3 SM visibility and 500 below / 1,000 above / 2,000 horizontal from clouds. In Class G below 1,200 AGL during the day: 1 SM, clear of clouds. Know these — weather minimums are a staple exam topic.</p>
+
+        <h2>Step 5: Filing a VFR flight plan</h2>
+        <p>VFR flight plans are not required by the FAA — they're voluntary. But they're strongly recommended for cross-country flights because they activate search and rescue if you don't close the plan after landing. File with Flight Service (1800wxbrief.com or by phone).</p>
+        <p>A VFR flight plan includes: aircraft identification, type and equipment, true airspeed, departure airport and time, cruising altitude, route, destination, estimated time en route, remarks, fuel on board, alternate airport, and pilot contact information.</p>
+        <p>Important: if you file a flight plan, you must open it (call Flight Service or activate via radio) after departure, and you must <strong>close it after landing</strong>. Failing to close triggers search and rescue operations. This is testable.</p>
+
+        <h2>The E-6B flight computer</h2>
+        <p>The E-6B — or its electronic equivalent — is the tool that ties everything together for cross-country planning. It calculates:</p>
+        <ul>
+          <li>Wind correction angle and groundspeed (wind triangle)</li>
+          <li>Time, speed, distance conversions</li>
+          <li>Fuel calculations</li>
+          <li>Density altitude</li>
+          <li>True airspeed from indicated airspeed, altitude, and temperature</li>
+        </ul>
+        <p>The FAA written exam allows you to use an E-6B or flight computer — either the physical circular slide rule or an approved electronic version. Know how to use it for wind problems and fuel calculations. Those question types are common and calculator-dependent.</p>
+
+        <h2>What the exam focuses on</h2>
+        <p>PAR cross-country questions typically cover: fuel reserve requirements (30/45 minutes), the TVMDC conversion, reading winds aloft forecasts, whether a given weather briefing supports VFR flight, and flight plan content and procedures. Master those and you'll handle this section of the exam cleanly.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
   'what-is-density-altitude': {
     title: 'What Is Density Altitude? (And Why It Kills Aircraft Performance)',
     description: 'Density altitude is one of the most tested concepts on every FAA knowledge exam. Here\'s what it actually means, how to calculate it, and why it matters for safe flight.',

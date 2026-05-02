@@ -104,6 +104,24 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://faaexaminations.com/blog/faa-medical-certificate-classes-explained</loc>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://faaexaminations.com/blog/how-to-read-a-taf</loc>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://faaexaminations.com/blog/vfr-cross-country-flight-planning</loc>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://faaexaminations.com/blog/what-is-density-altitude</loc>
     <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
