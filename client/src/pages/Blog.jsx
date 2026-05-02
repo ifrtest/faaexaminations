@@ -4,6 +4,24 @@ import { Helmet } from 'react-helmet-async';
 
 const POSTS = [
   {
+    slug: 'what-is-density-altitude',
+    title: 'What Is Density Altitude? (And Why It Kills Aircraft Performance)',
+    excerpt: "Density altitude is one of the most tested concepts on every FAA exam — and one of the most practical. Here's what it means, how to calculate it, and why high density altitude gets pilots into trouble.",
+    date: 'May 2, 2026',
+    readTime: '6 min read',
+    tag: 'Study Tips',
+    image: '/plane-step2.jpg',
+  },
+  {
+    slug: 'how-to-read-a-sectional-chart',
+    title: "How to Read a Sectional Chart: A Pilot's Guide",
+    excerpt: "Sectional chart questions are on every FAA knowledge test. Here's how to decode airspace boundaries, airport data, terrain, obstacles, and navigation aids — with the exact symbols the exam tests.",
+    date: 'May 2, 2026',
+    readTime: '9 min read',
+    tag: 'Study Tips',
+    image: '/plane-step2.jpg',
+  },
+  {
     slug: 'faa-airspace-classes-explained',
     title: 'FAA Airspace Classes Explained: A Plain-English Guide',
     excerpt: "Class A through G — what each one means, who can fly there, what equipment you need, and what the weather minimums are. Airspace questions show up on every FAA knowledge test.",

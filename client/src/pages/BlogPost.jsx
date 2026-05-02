@@ -1308,6 +1308,152 @@ const POSTS = {
   },
 
   /* ================================================================ */
+  'what-is-density-altitude': {
+    title: 'What Is Density Altitude? (And Why It Kills Aircraft Performance)',
+    description: 'Density altitude is one of the most tested concepts on every FAA knowledge exam. Here\'s what it actually means, how to calculate it, and why it matters for safe flight.',
+    date: 'May 2, 2026',
+    dateISO: '2026-05-02',
+    readTime: '6 min read',
+    tag: 'Study Tips',
+    image: '/plane-step2.jpg',
+    related: ['faa-airspace-classes-explained', 'how-to-read-a-metar', 'how-to-pass-faa-written-exam-first-try'],
+    content: (
+      <>
+        <p>Density altitude shows up on the Private Pilot, Commercial Pilot, Instrument Rating, and Part 107 knowledge tests. It's also one of the most practically important concepts in flying — high density altitude has killed pilots who didn't take it seriously. Understanding it is worth your time both for the exam and for actually operating an aircraft.</p>
+
+        <h2>Start with pressure altitude</h2>
+        <p>Before density altitude makes sense, you need pressure altitude. Pressure altitude is what your altimeter reads when you set it to 29.92 in Hg (the standard day sea level pressure). It tells you where you are in the standard atmosphere — not your height above the ground, but your position in the pressure column.</p>
+        <p>An airport at 5,000 feet elevation has a pressure altitude of roughly 5,000 feet on a standard day. But temperature throws everything off.</p>
+
+        <h2>What density altitude actually means</h2>
+        <p>Density altitude is pressure altitude corrected for non-standard temperature. It answers one specific question: <strong>how does the air here perform compared to standard sea-level air?</strong></p>
+        <p>Standard atmosphere at sea level is 59°F (15°C) and 29.92 in Hg. When it's hotter than standard, the air is less dense. When it's colder, the air is denser. Humidity also reduces air density slightly, though temperature is the dominant factor on the exam.</p>
+        <p>If your airport is at 5,000 feet pressure altitude and the temperature is 95°F — a hot summer day in Denver — your density altitude might be 8,000 or 9,000 feet. The air feels like you're at 8,000–9,000 feet to your engine, your propeller, and your wings, even though you're physically at 5,000 feet.</p>
+
+        <h2>Why high density altitude is dangerous</h2>
+        <p>Everything that depends on air density degrades at high density altitude:</p>
+        <ul>
+          <li><strong>Engine power</strong> — naturally aspirated (non-turbocharged) piston engines lose roughly 3% of power per 1,000 feet of density altitude. At 8,000 feet density altitude, you might have only 75% of sea-level power.</li>
+          <li><strong>Propeller efficiency</strong> — the prop is an airfoil generating thrust. Thin air means less thrust for the same RPM.</li>
+          <li><strong>Lift</strong> — wings generate lift by accelerating air. Less dense air means you need more speed to generate the same lift. Takeoff roll gets longer. Climb rate drops.</li>
+        </ul>
+        <p>Put those three together on a short runway on a hot afternoon at a mountain airport, and you have an accident waiting to happen. Density altitude accidents are not rare. Aircraft that perform fine on a cool morning at a sea-level airport have crashed trying to take off from high-elevation strips on hot days, fully loaded.</p>
+
+        <h2>How to calculate density altitude</h2>
+        <p>The FAA exam will either give you a density altitude chart (E-6B or the performance chart in the POH) or ask you to use a rule of thumb. Here's what you need to know:</p>
+        <p><strong>Rule of thumb:</strong> For every 13°C (or roughly 23°F) that temperature exceeds standard, density altitude increases by about 1,000 feet above pressure altitude.</p>
+        <p>Standard temperature decreases 2°C per 1,000 feet as you climb. Standard temp at sea level is 15°C. At 5,000 feet it's 5°C. At 10,000 feet it's -5°C.</p>
+        <p>So if you're at a 5,000-foot airport and the temperature is 30°C, you're 25°C above standard (30 − 5 = 25°C deviation). 25 ÷ 13 ≈ 1.9 — so density altitude is roughly 5,000 + 1,900 = <strong>~6,900 feet</strong>.</p>
+        <p>On the exam, you'll usually be given a density altitude chart or an E-6B flight computer and asked to read the answer directly. The math is just for building intuition.</p>
+
+        <h2>The formula the FAA uses</h2>
+        <p>The formal calculation: <strong>Density Altitude = Pressure Altitude + (120 × (OAT − ISA Temp))</strong></p>
+        <p>Where OAT is outside air temperature in °C and ISA Temp is standard temperature at that altitude (15°C − 2°C per 1,000 ft).</p>
+        <p>Example: pressure altitude 6,000 ft, OAT 25°C. ISA temp at 6,000 ft = 15 − 12 = 3°C. Deviation = 25 − 3 = 22°C. DA = 6,000 + (120 × 22) = 6,000 + 2,640 = <strong>8,640 ft</strong>.</p>
+
+        <h2>What the FAA exam actually asks</h2>
+        <p>Density altitude questions come in a few flavors:</p>
+        <ul>
+          <li>Given conditions (elevation, temp, altimeter setting), what is the density altitude? — Usually solved with a provided chart.</li>
+          <li>Which conditions produce the highest density altitude? — Hot, humid, high elevation. The answer is always the one with the highest temp and elevation.</li>
+          <li>How does density altitude affect performance? — Always negative. Higher DA = longer takeoff roll, lower climb rate, longer landing distance.</li>
+          <li>What is the standard temperature at a given altitude? — Memorize: 15°C at sea level, −2°C per 1,000 ft.</li>
+        </ul>
+        <p>Part 107 questions tend to be conceptual (does density altitude affect drone performance?). Yes — battery efficiency and prop thrust both degrade. Private Pilot and Commercial questions are more likely to involve performance charts.</p>
+
+        <h2>The one thing to remember</h2>
+        <p>Hot + high + humid = high density altitude = poor performance. If you remember nothing else from this topic, remember that. The exam will give you a scenario and ask you to evaluate performance — the answer is always that high density altitude makes everything worse: longer takeoff, lower climb, longer landing.</p>
+        <p>It's also one of the few topics where understanding the concept genuinely makes you a safer pilot, not just a test-passer. The accidents are real and preventable.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'how-to-read-a-sectional-chart': {
+    title: 'How to Read a Sectional Chart: A Pilot\'s Guide',
+    description: 'Sectional aeronautical charts are on every FAA knowledge test. Here\'s how to read the symbols, airspace boundaries, airport data, and terrain features you\'ll actually be tested on.',
+    date: 'May 2, 2026',
+    dateISO: '2026-05-02',
+    readTime: '9 min read',
+    tag: 'Study Tips',
+    image: '/plane-step2.jpg',
+    related: ['faa-airspace-classes-explained', 'how-to-read-a-metar', 'part-107-drone-test-study-guide'],
+    content: (
+      <>
+        <p>Sectional aeronautical charts — "sectionals" — are the road maps of the air. They show terrain, airports, airspace boundaries, navigation aids, obstacles, and a lot more. They're also a significant part of every FAA knowledge test. Private Pilot, Instrument Rating, Commercial, and Part 107 exams all include sectional chart questions.</p>
+        <p>Reading a sectional is a skill, not trivia. Once you understand the symbology, you can decode it quickly. Here's what you need to know for the exam.</p>
+
+        <h2>Scale and what you're looking at</h2>
+        <p>Sectionals are drawn at a scale of 1:500,000 — one inch on the chart equals roughly 8 statute miles on the ground. They're updated every 56 days because airspace changes frequently. Always use a current chart. On the test, charts are provided for you.</p>
+        <p>The chart is dense. The key — the legend — explains every symbol used. Your exam will provide chart supplement excerpts and the legend. Learning the most common symbols means you won't have to look everything up mid-question.</p>
+
+        <h2>Airports</h2>
+        <p>Airports are shown as circles (for non-towered) or circles with a dot in the center (controlled/towered). Color matters:</p>
+        <ul>
+          <li><strong>Blue</strong> — airports with an operating control tower</li>
+          <li><strong>Magenta</strong> — non-towered airports</li>
+        </ul>
+        <p>Next to each airport symbol is a data block. It typically shows: airport name, identifier, field elevation, length of longest runway (in hundreds of feet), and lighting availability. A small "L" means the runway has pilot-controlled lighting available at night. A star means it has a beacon.</p>
+        <p>The tick marks around the circle indicate runway configuration — each tick is a runway. A circle with one horizontal tick is a single runway aligned east-west. Two perpendicular ticks means two runways.</p>
+
+        <h2>Airspace — the most tested part</h2>
+        <p>Airspace is where most exam questions live. Here's how each class looks on the chart:</p>
+        <ul>
+          <li><strong>Class B</strong> — solid blue lines forming concentric rings (the wedding cake). Altitudes written as ceiling/floor (e.g., 100/SFC means from the surface to 10,000 feet MSL).</li>
+          <li><strong>Class C</strong> — solid magenta lines forming two concentric circles. Same altitude notation.</li>
+          <li><strong>Class D</strong> — dashed blue circle around the airport. Extends from the surface to usually 2,500 AGL. If no ceiling is shown, it's the default.</li>
+          <li><strong>Class E starting at 700 AGL</strong> — magenta vignette (fuzzy, shaded circle) around smaller airports. This protects instrument approaches.</li>
+          <li><strong>Class E starting at 1,200 AGL</strong> — no special marking. It's the default over most of the country.</li>
+          <li><strong>Class E to the surface</strong> — dashed magenta circle. Similar to Class D in appearance but no tower.</li>
+        </ul>
+        <p>The difference between a dashed blue circle (Class D) and a dashed magenta circle (Class E to the surface) is one of the most common trick questions on the exam. Blue = controlled, towered airport. Magenta = non-towered with instrument approaches.</p>
+
+        <h2>Special use airspace</h2>
+        <p>Special use airspace is shown with hashed outlines and labeled with a code:</p>
+        <ul>
+          <li><strong>P-</strong> followed by a number = Prohibited area. No flight, period.</li>
+          <li><strong>R-</strong> followed by a number = Restricted area. Check if active before entering.</li>
+          <li><strong>W-</strong> followed by a number = Warning area. Over international waters. Not legally prohibited but dangerous.</li>
+          <li><strong>MOA</strong> — Military Operations Area. Labeled by name. VFR legal but proceed with caution when active.</li>
+          <li><strong>A-</strong> followed by a number = Alert area. High volume of flight training. No ATC service, but expect traffic.</li>
+        </ul>
+        <p>The chart legend in your exam supplement lists all active special use areas with their altitudes and hours of operation. For restricted areas, you look for the notation of whether they're "continuous" (always hot) or have hours, and sometimes an ATC frequency to request entry.</p>
+
+        <h2>Terrain and obstacles</h2>
+        <p>Terrain is shown with contour lines and color shading — warmer browns and reds are higher elevation, greens are lower. Maximum elevation figures (MEFs) are printed in large digits in each latitude/longitude quadrant. They represent the highest obstacle or terrain in that area, rounded up to the next 100 feet. MEF is your quick reference for "what's the highest thing here I need to clear?"</p>
+        <p>Obstacles are shown as symbols with height data next to them:</p>
+        <ul>
+          <li>A small tower symbol with two numbers — the top number is MSL elevation, the bottom (in parentheses) is AGL height</li>
+          <li>Groups of obstacles are shown with a "double tower" symbol</li>
+          <li>High-intensity lights on tall towers are marked with a lightning bolt on the symbol</li>
+        </ul>
+        <p>Under controlled flight, you need to know MSL heights (to compare to your altimeter reading). When operating visually at low altitude, the AGL height is what tells you how far you need to stay away from the top.</p>
+
+        <h2>Navigation aids</h2>
+        <p>VORs (VHF Omnidirectional Range stations) appear as a compass rose with a hexagon at the center. The compass rose shows magnetic north and is oriented to match local magnetic variation. Frequency and identifier are printed next to it. You'll use this to tune your nav radio.</p>
+        <p>NDBs (Non-Directional Beacons) appear as a circle with dots. Less common in modern training but still on the exam.</p>
+        <p>Victor airways — the low-altitude IFR highways — are shown as blue lines connecting VORs. They're identified with a "V" and a number (V23, V105, etc.). MEAs (minimum en route altitudes) are printed along the airways.</p>
+
+        <h2>The numbers game: what exam questions actually ask</h2>
+        <p>Sectional questions on the FAA exam tend to fall into these categories:</p>
+        <ul>
+          <li><strong>What class of airspace is this point in?</strong> — Identify the boundary lines and their colors.</li>
+          <li><strong>What are the altitude limits of this airspace?</strong> — Read the ceiling/floor notation.</li>
+          <li><strong>Do you need a clearance/radio/transponder to fly here?</strong> — Apply the class rules to the airspace identified.</li>
+          <li><strong>What is the MEF in this quadrant?</strong> — Read the large number printed in the grid square.</li>
+          <li><strong>What is the elevation of this airport?</strong> — Read the data block.</li>
+          <li><strong>Is there an operating control tower?</strong> — Blue = yes, magenta = no.</li>
+          <li><strong>What special use airspace is this?</strong> — Identify the hashed boundary and prefix letter.</li>
+        </ul>
+
+        <h2>How to study sectional chart questions</h2>
+        <p>The FAA publishes the actual sectional chart excerpts used in the test supplement. Practice looking at the chart figures in the test supplement and working through sample questions that reference them. The worst way to study this is memorizing abstract descriptions — you need to actually look at charts.</p>
+        <p>Most practice question platforms show the chart excerpt alongside the question so you can see exactly what's being asked. Work through enough of those and the symbology becomes automatic. The goal is to be able to look at any point on a sectional and immediately identify the airspace class, floor, ceiling, and whether you can enter it VFR without calling anyone.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
   'faa-airspace-classes-explained': {
     title: 'FAA Airspace Classes Explained: A Plain-English Guide',
     description: 'Class A through G — what each one means, who can fly there, what you need, and why it matters for the FAA written exam. No jargon, real examples.',
