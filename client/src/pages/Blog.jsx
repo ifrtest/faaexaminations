@@ -10,7 +10,7 @@ const POSTS = [
     date: 'May 2, 2026',
     readTime: '7 min read',
     tag: 'Private Pilot',
-    image: '/private-pilot-faa-knowledge-test-prep.jpg',
+    image: '/blog-faa-medical.jpg',
   },
   {
     slug: 'how-to-read-a-taf',
@@ -19,7 +19,7 @@ const POSTS = [
     date: 'May 2, 2026',
     readTime: '6 min read',
     tag: 'Instrument Rating',
-    image: '/blog-metar.webp',
+    image: '/blog-navigation.jpg',
   },
   {
     slug: 'vfr-cross-country-flight-planning',
@@ -28,7 +28,7 @@ const POSTS = [
     date: 'May 2, 2026',
     readTime: '7 min read',
     tag: 'Private Pilot',
-    image: '/private-pilot-faa-knowledge-test-prep.jpg',
+    image: '/blog-e6b-computer.jpg',
   },
   {
     slug: 'what-is-density-altitude',
@@ -37,7 +37,7 @@ const POSTS = [
     date: 'May 2, 2026',
     readTime: '6 min read',
     tag: 'Study Tips',
-    image: '/plane-step2.jpg',
+    image: '/blog-e6b-computer.jpg',
   },
   {
     slug: 'how-to-read-a-sectional-chart',
@@ -46,7 +46,7 @@ const POSTS = [
     date: 'May 2, 2026',
     readTime: '9 min read',
     tag: 'Study Tips',
-    image: '/plane-step2.jpg',
+    image: '/blog-sectional-chart.jpg',
   },
   {
     slug: 'faa-airspace-classes-explained',

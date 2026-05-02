@@ -1315,7 +1315,7 @@ const POSTS = {
     dateISO: '2026-05-02',
     readTime: '7 min read',
     tag: 'Private Pilot',
-    image: '/private-pilot-faa-knowledge-test-prep.jpg',
+    image: '/blog-faa-medical.jpg',
     related: ['how-long-to-get-private-pilot-license', 'how-to-pass-faa-private-pilot-written-exam-first-try', 'part-107-vs-private-pilot-license'],
     content: (
       <>
@@ -1372,7 +1372,7 @@ const POSTS = {
     dateISO: '2026-05-02',
     readTime: '6 min read',
     tag: 'Study Tips',
-    image: '/blog-metar.webp',
+    image: '/blog-navigation.jpg',
     related: ['how-to-read-a-metar', 'faa-instrument-rating-written-test-study-tips-2026', 'instrument-rating-knowledge-test-tips'],
     content: (
       <>
@@ -1449,7 +1449,7 @@ const POSTS = {
     dateISO: '2026-05-02',
     readTime: '7 min read',
     tag: 'Private Pilot',
-    image: '/private-pilot-faa-knowledge-test-prep.jpg',
+    image: '/blog-e6b-computer.jpg',
     related: ['how-to-read-a-metar', 'how-to-read-a-sectional-chart', 'faa-airspace-classes-explained'],
     content: (
       <>
@@ -1525,7 +1525,7 @@ const POSTS = {
     dateISO: '2026-05-02',
     readTime: '6 min read',
     tag: 'Study Tips',
-    image: '/plane-step2.jpg',
+    image: '/blog-e6b-computer.jpg',
     related: ['faa-airspace-classes-explained', 'how-to-read-a-metar', 'how-to-pass-faa-written-exam-first-try'],
     content: (
       <>
@@ -1586,7 +1586,7 @@ const POSTS = {
     dateISO: '2026-05-02',
     readTime: '9 min read',
     tag: 'Study Tips',
-    image: '/plane-step2.jpg',
+    image: '/blog-sectional-chart.jpg',
     related: ['faa-airspace-classes-explained', 'how-to-read-a-metar', 'part-107-drone-test-study-guide'],
     content: (
       <>
