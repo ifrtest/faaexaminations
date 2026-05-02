@@ -2,13 +2,17 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
-function CheckIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
-      <circle cx="12" cy="12" r="12" fill="rgba(48,172,226,0.15)" />
-      <path d="M7 12l4 4 6-6" stroke="#30ace2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
+function shuffleQuestion(q) {
+  const indices = [0, 1, 2];
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+  return {
+    ...q,
+    options: indices.map((i) => q.options[i]),
+    correct: indices.indexOf(q.correct),
+  };
 }
 
 export default function PracticeTestTemplate({
@@ -30,6 +34,7 @@ export default function PracticeTestTemplate({
   relatedLinks,
   schemaFaqs,
 }) {
+  const [shuffledQuestions] = useState(() => questions.map(shuffleQuestion));
   const [answers, setAnswers] = useState({});
   const navRef = useRef(null);
 
@@ -58,8 +63,8 @@ export default function PracticeTestTemplate({
   }
 
   const answered = Object.keys(answers).length;
-  const correct = Object.entries(answers).filter(([i, a]) => questions[i].correct === a).length;
-  const allDone = answered === questions.length;
+  const correct = Object.entries(answers).filter(([i, a]) => shuffledQuestions[i].correct === a).length;
+  const allDone = answered === shuffledQuestions.length;
 
   function scoreLabel() {
     const pct = answered === 0 ? 0 : Math.round((correct / answered) * 100);
@@ -149,7 +154,7 @@ export default function PracticeTestTemplate({
       <section id="questions" style={{ padding: '60px 24px 80px', background: 'var(--lp-dark)' }}>
         <div style={{ maxWidth: 780, margin: '0 auto' }}>
 
-          {questions.map((q, qi) => {
+          {shuffledQuestions.map((q, qi) => {
             const picked = answers[qi];
             const done = picked !== undefined;
             const isCorrect = picked === q.correct;
