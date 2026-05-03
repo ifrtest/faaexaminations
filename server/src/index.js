@@ -103,6 +103,18 @@ if (require.main === module) {
     runNurture().catch((err) => console.error('[nurture] job failed:', err.message));
   });
   console.log('  Nurture emails: scheduled daily at 10:00 UTC\n');
+
+  // Keep-alive: ping own health endpoint every 10 minutes so Render never
+  // spins down the server due to inactivity.
+  const SELF_URL = process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`;
+  setInterval(() => {
+    require('https').get(`${SELF_URL}/api/health`, (res) => {
+      console.log(`[keep-alive] ping ${res.statusCode}`);
+    }).on('error', (err) => {
+      console.warn('[keep-alive] ping failed:', err.message);
+    });
+  }, 10 * 60 * 1000); // every 10 minutes
+  console.log(`  Keep-alive: pinging ${SELF_URL}/api/health every 10 min\n`);
 }
 
 module.exports = app;
