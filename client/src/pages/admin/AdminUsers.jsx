@@ -1,5 +1,6 @@
 // client/src/pages/admin/AdminUsers.jsx
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { users as usersApi } from '../../api/client';
 import { Spinner } from '../../components/ProtectedRoute';
 
