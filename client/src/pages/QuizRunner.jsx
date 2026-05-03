@@ -20,10 +20,15 @@ function seededShuffle(arr, seed) {
 }
 
 // Returns an array of original DB letters in display order.
-// E.g. ['C','A','D','B'] means display-A shows choice_c, display-B shows choice_a, etc.
-function getChoiceOrder(questionId, sessionId) {
+// Only includes letters that have actual content, so display positions are always
+// sequential (A, B, C) — never A, C, D due to a null slot being shuffled to the middle.
+function getChoiceOrder(questionId, sessionId, question) {
+  const available = ['A', 'B', 'C', 'D'].filter(
+    (l) => question && question[`choice_${l.toLowerCase()}`] != null &&
+           question[`choice_${l.toLowerCase()}`].trim() !== ''
+  );
   const seed = ((questionId * 31) ^ (sessionId * 17)) >>> 0;
-  return seededShuffle(['A', 'B', 'C', 'D'], seed);
+  return seededShuffle(available.length > 0 ? available : ['A', 'B', 'C', 'D'], seed);
 }
 
 export default function QuizRunner() {
@@ -168,12 +173,11 @@ export default function QuizRunner() {
     if (!current || aiLoading) return;
     setAiLoading(true);
     try {
-      const choiceOrder = getChoiceOrder(current.id, session?.id || 0);
+      const choiceOrder = getChoiceOrder(current.id, session?.id || 0, current);
       const choices = {};
-      LETTERS.forEach((displayLetter, i) => {
-        const origLetter = choiceOrder[i];
+      choiceOrder.forEach((origLetter, i) => {
         const t = current[`choice_${origLetter.toLowerCase()}`];
-        if (t) choices[displayLetter] = t;
+        if (t) choices[LETTERS[i]] = t;
       });
       const displayCorrect = LETTERS[choiceOrder.indexOf(current.correct_answer)];
       const selectedOrig = answers[current.id] || null;
@@ -210,9 +214,9 @@ export default function QuizRunner() {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
       if (!current) return;
       if (['1','2','3','4'].includes(e.key)) {
-        const choiceOrder = getChoiceOrder(current.id, session?.id || 0);
+        const choiceOrder = getChoiceOrder(current.id, session?.id || 0, current);
         const origLetter = choiceOrder[parseInt(e.key, 10) - 1];
-        if (origLetter && current[`choice_${origLetter.toLowerCase()}`]) choose(origLetter);
+        if (origLetter) choose(origLetter);
       }
       else if (e.key === 'ArrowRight' || e.key === 'Enter') go(idx + 1);
       else if (e.key === 'ArrowLeft') go(idx - 1);
@@ -389,11 +393,10 @@ export default function QuizRunner() {
             })()}
 
             {(() => {
-              const choiceOrder = getChoiceOrder(current.id, session?.id || 0);
-              return LETTERS.map((displayLetter, i) => {
-                const origLetter = choiceOrder[i];
+              const choiceOrder = getChoiceOrder(current.id, session?.id || 0, current);
+              return choiceOrder.map((origLetter, i) => {
+                const displayLetter = LETTERS[i];
                 const text = current[`choice_${origLetter.toLowerCase()}`];
-                if (!text) return null;
 
                 const selected = answers[current.id] === origLetter;
                 let className = 'choice';
@@ -418,7 +421,7 @@ export default function QuizRunner() {
               isRevealed ? (
                 <div className="explanation">
                   <div style={{marginBottom:8}}>
-                    <strong>Correct answer:</strong> {LETTERS[getChoiceOrder(current.id, session?.id || 0).indexOf(current.correct_answer)]}
+                    <strong>Correct answer:</strong> {LETTERS[getChoiceOrder(current.id, session?.id || 0, current).indexOf(current.correct_answer)]}
                   </div>
                   <div>
                     <strong>Explanation:</strong>{' '}

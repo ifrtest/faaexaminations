@@ -116,6 +116,27 @@ async function resolveTopic(exam_id, topic_name) {
   return ins.rows[0].id;
 }
 
+// Validates that choices are sequential (no gaps) and correct_answer matches a filled choice.
+function validateChoices(choice_a, choice_b, choice_c, choice_d, correct_answer) {
+  const filled = [
+    choice_a && choice_a.trim() ? 'A' : null,
+    choice_b && choice_b.trim() ? 'B' : null,
+    choice_c && choice_c.trim() ? 'C' : null,
+    choice_d && choice_d.trim() ? 'D' : null,
+  ];
+  const presentIdx = filled.map((v, i) => v ? i : -1).filter(i => i >= 0);
+  // Must be contiguous from index 0 (no gaps)
+  if (presentIdx.length === 0) return 'At least two answer choices are required.';
+  if (presentIdx.length < 2)   return 'At least two answer choices are required.';
+  for (let i = 0; i < presentIdx.length; i++) {
+    if (presentIdx[i] !== i) return `Answer choices must be sequential (no gaps). Found content in choice_${filled[presentIdx[i]]?.toLowerCase()} but choice_${['a','b','c','d'][i]} is empty.`;
+  }
+  const ca = (correct_answer || '').toUpperCase();
+  const validLetters = presentIdx.map(i => ['A','B','C','D'][i]);
+  if (!validLetters.includes(ca)) return `correct_answer "${ca}" must match one of the filled choices (${validLetters.join(', ')}).`;
+  return null;
+}
+
 // POST /api/questions
 exports.create = async (req, res, next) => {
   try {
@@ -128,6 +149,8 @@ exports.create = async (req, res, next) => {
     if (!exam_code || !question_text || !correct_answer) {
       return res.status(400).json({ error: 'exam_code, question_text, correct_answer are required' });
     }
+    const choiceErr = validateChoices(choice_a, choice_b, choice_c, choice_d, correct_answer);
+    if (choiceErr) return res.status(400).json({ error: choiceErr });
     const examRes = await db.query('SELECT id FROM exams WHERE code=$1', [exam_code.toUpperCase()]);
     if (!examRes.rows[0]) return res.status(400).json({ error: 'Invalid exam_code' });
     const exam_id  = examRes.rows[0].id;
@@ -170,6 +193,14 @@ exports.update = async (req, res, next) => {
     let topic_id = cur.topic_id;
     if (topic_name !== undefined) topic_id = await resolveTopic(exam_id, topic_name);
 
+    const mergedA = choice_a ?? cur.choice_a;
+    const mergedB = choice_b ?? cur.choice_b;
+    const mergedC = choice_c ?? cur.choice_c;
+    const mergedD = choice_d ?? cur.choice_d;
+    const mergedCorrect = correct_answer || cur.correct_answer;
+    const choiceErr = validateChoices(mergedA, mergedB, mergedC, mergedD, mergedCorrect);
+    if (choiceErr) return res.status(400).json({ error: choiceErr });
+
     const { rows } = await db.query(
       `UPDATE questions SET
          exam_id=$1, topic_id=$2,
@@ -180,9 +211,8 @@ exports.update = async (req, res, next) => {
       [
         exam_id, topic_id,
         question_text ?? cur.question_text,
-        choice_a ?? cur.choice_a, choice_b ?? cur.choice_b,
-        choice_c ?? cur.choice_c, choice_d ?? cur.choice_d,
-        (correct_answer || cur.correct_answer).toUpperCase(),
+        mergedA, mergedB, mergedC, mergedD,
+        mergedCorrect.toUpperCase(),
         explanation ?? cur.explanation,
         image_url   ?? cur.image_url,
         difficulty  ?? cur.difficulty,
