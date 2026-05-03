@@ -6,29 +6,15 @@ import { Spinner } from '../components/ProtectedRoute';
 
 const LETTERS = ['A', 'B', 'C', 'D'];
 
-// Deterministic per-question shuffle so choices appear in a different order
-// each session, but consistently within the same session.
-function seededShuffle(arr, seed) {
-  const result = [...arr];
-  let s = seed >>> 0;
-  for (let i = result.length - 1; i > 0; i--) {
-    s = (Math.imul(s, 1664525) + 1013904223) >>> 0;
-    const j = s % (i + 1);
-    [result[i], result[j]] = [result[j], result[i]];
-  }
-  return result;
-}
-
-// Returns an array of original DB letters in display order.
-// Only includes letters that have actual content, so display positions are always
-// sequential (A, B, C) — never A, C, D due to a null slot being shuffled to the middle.
+// Returns choices in fixed A, B, C, D order (only non-empty letters).
+// Answers are NOT shuffled — explanation text in the DB references A/B/C by their
+// original source labels, so shuffling causes explanations to contradict the display.
+// Question order within each session is already randomised server-side.
 function getChoiceOrder(questionId, sessionId, question) {
-  const available = ['A', 'B', 'C', 'D'].filter(
+  return ['A', 'B', 'C', 'D'].filter(
     (l) => question && question[`choice_${l.toLowerCase()}`] != null &&
            question[`choice_${l.toLowerCase()}`].trim() !== ''
   );
-  const seed = ((questionId * 31) ^ (sessionId * 17)) >>> 0;
-  return seededShuffle(available.length > 0 ? available : ['A', 'B', 'C', 'D'], seed);
 }
 
 export default function QuizRunner() {
