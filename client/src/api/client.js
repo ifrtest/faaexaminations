@@ -77,6 +77,7 @@ export const users = {
   updateMe:   (data) => api.put('/users/me', data).then((r) => r.data),
   adminStats: () => api.get('/users/admin/stats').then((r) => r.data),
   remove:     (id) => api.delete(`/users/${id}`).then((r) => r.data),
+  results:    (id) => api.get(`/users/${id}/results`).then((r) => r.data),
 };
 
 export default api;

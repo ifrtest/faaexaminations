@@ -28,8 +28,9 @@ import AdminLayout    from './pages/admin/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminQuestions from './pages/admin/AdminQuestions';
 import AdminEditor    from './pages/admin/AdminEditor';
-import AdminUsers     from './pages/admin/AdminUsers';
-import AdminFigures   from './pages/admin/AdminFigures';
+import AdminUsers      from './pages/admin/AdminUsers';
+import AdminUserDetail from './pages/admin/AdminUserDetail';
+import AdminFigures    from './pages/admin/AdminFigures';
 import Blog           from './pages/Blog';
 import BlogPost       from './pages/BlogPost';
 import NotFound       from './pages/NotFound';
@@ -111,6 +112,7 @@ export default function App() {
             <Route path="questions/new" element={<AdminEditor />} />
             <Route path="questions/:id" element={<AdminEditor />} />
             <Route path="users"         element={<AdminUsers />} />
+            <Route path="users/:id"     element={<AdminUserDetail />} />
             <Route path="figures"       element={<AdminFigures />} />
           </Route>
 

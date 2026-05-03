@@ -74,6 +74,25 @@ exports.update = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
+// GET /api/users/:id/results  (admin — view any user's test history)
+exports.userResults = async (req, res, next) => {
+  try {
+    const { rows } = await db.query(
+      `SELECT r.id, r.score, r.passed, r.total_questions, r.correct_count,
+              r.created_at, e.code AS exam_code, e.name AS exam_name,
+              s.mode AS session_mode
+         FROM exam_results r
+         JOIN exams e ON e.id = r.exam_id
+         LEFT JOIN exam_sessions s ON s.id = r.session_id
+        WHERE r.user_id = $1
+        ORDER BY r.created_at DESC
+        LIMIT 100`,
+      [req.params.id]
+    );
+    res.json({ results: rows });
+  } catch (err) { next(err); }
+};
+
 // PUT /api/users/me  (update own profile)
 exports.updateMe = async (req, res, next) => {
   try {

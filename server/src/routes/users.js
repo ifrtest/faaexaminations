@@ -10,6 +10,7 @@ router.put('/me', requireAuth, ctrl.updateMe);
 // Admin
 router.get('/admin/stats', requireAuth, requireAdmin, ctrl.adminStats);
 router.get('/',            requireAuth, requireAdmin, ctrl.list);
+router.get('/:id/results', requireAuth, requireAdmin, ctrl.userResults);
 router.get('/:id',         requireAuth, requireAdmin, ctrl.get);
 router.put('/:id',         requireAuth, requireAdmin, ctrl.update);
 router.delete('/:id',      requireAuth, requireAdmin, ctrl.remove);

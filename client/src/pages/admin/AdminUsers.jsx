@@ -104,7 +104,8 @@ export default function AdminUsers() {
                   </td>
                   <td>{new Date(u.created_at).toLocaleDateString()}</td>
                   <td>
-                    <button className="btn btn-ghost btn-sm" onClick={() => toggleRole(u)}>
+                    <Link to={`/admin/users/${u.id}`} className="btn btn-ghost btn-sm">History</Link>
+                    <button className="btn btn-ghost btn-sm" style={{marginLeft:6}} onClick={() => toggleRole(u)}>
                       {u.role === 'admin' ? 'Revoke admin' : 'Make admin'}
                     </button>
                     <button className="btn btn-ghost btn-sm" style={{marginLeft:6}} onClick={() => toggleUag(u)}>
