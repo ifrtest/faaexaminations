@@ -50,6 +50,14 @@ export default function PARCheatSheet() {
         <meta property="og:title" content={SEO_TITLE} />
         <meta property="og:description" content={SEO_DESC} />
         <meta property="og:site_name" content="FAAExaminations.com" />
+        <meta property="og:image" content="https://faaexaminations.com/plane-par-desktop.jpg" />
+        <meta property="og:image:width" content="1920" />
+        <meta property="og:image:height" content="1280" />
+        <meta property="og:image:alt" content="FAA Private Pilot exam cheat sheet — FAAExaminations.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={SEO_TITLE} />
+        <meta name="twitter:description" content={SEO_DESC} />
+        <meta name="twitter:image" content="https://faaexaminations.com/plane-par-desktop.jpg" />
         <script type="application/ld+json">{JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'WebPage',

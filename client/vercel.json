@@ -48,6 +48,7 @@
     { "source": "/part-107-cheat-sheet", "destination": "/part-107-cheat-sheet.html" },
     { "source": "/ira-cheat-sheet", "destination": "/ira-cheat-sheet.html" },
     { "source": "/cax-cheat-sheet", "destination": "/cax-cheat-sheet.html" },
+    { "source": "/blog/:slug", "destination": "/blog/:slug.html" },
     {
       "source": "/(.*)",
       "destination": "/index.html"

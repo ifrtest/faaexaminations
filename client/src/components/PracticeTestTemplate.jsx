@@ -95,6 +95,17 @@ export default function PracticeTestTemplate({
           description: seoDescription,
           url: `https://faaexaminations.com${canonicalPath}`,
         })}</script>
+        {schemaFaqs && schemaFaqs.length > 0 && (
+          <script type="application/ld+json">{JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: schemaFaqs.map(f => ({
+              '@type': 'Question',
+              name: f.q,
+              acceptedAnswer: { '@type': 'Answer', text: f.a },
+            })),
+          })}</script>
+        )}
       </Helmet>
 
       {/* NAV */}

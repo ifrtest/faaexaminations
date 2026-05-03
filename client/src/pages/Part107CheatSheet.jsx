@@ -49,6 +49,14 @@ export default function Part107CheatSheet() {
         <meta property="og:title" content={SEO_TITLE} />
         <meta property="og:description" content={SEO_DESC} />
         <meta property="og:site_name" content="FAAExaminations.com" />
+        <meta property="og:image" content="https://faaexaminations.com/drone_image_faa_examinations.jpg" />
+        <meta property="og:image:width" content="1440" />
+        <meta property="og:image:height" content="1080" />
+        <meta property="og:image:alt" content="FAA Part 107 drone license exam cheat sheet — FAAExaminations.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={SEO_TITLE} />
+        <meta name="twitter:description" content={SEO_DESC} />
+        <meta name="twitter:image" content="https://faaexaminations.com/drone_image_faa_examinations.jpg" />
         <script type="application/ld+json">{JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'WebPage',

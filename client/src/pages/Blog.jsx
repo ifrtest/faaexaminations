@@ -235,6 +235,7 @@ const POSTS = [
     date: 'April 18, 2026',
     readTime: '8 min read',
     tag: 'Private Pilot',
+    image: '/plane-par-desktop.jpg',
   },
   {
     slug: 'faa-written-exam-questions-score-tips',
@@ -243,6 +244,7 @@ const POSTS = [
     date: 'April 15, 2026',
     readTime: '6 min read',
     tag: 'Study Tips',
+    image: '/blog-student-pilot.jpg',
   },
   {
     slug: 'instrument-rating-knowledge-test-study-tips',
@@ -251,6 +253,7 @@ const POSTS = [
     date: 'April 10, 2026',
     readTime: '7 min read',
     tag: 'Instrument Rating',
+    image: '/plane-ira.jpg',
   },
   {
     slug: 'best-faa-test-prep-tools',
@@ -259,6 +262,7 @@ const POSTS = [
     date: 'April 5, 2026',
     readTime: '5 min read',
     tag: 'Resources',
+    image: '/blog-cockpit-gauges.jpg',
   },
   {
     slug: 'common-mistakes-private-pilot-written-exam',
@@ -267,6 +271,7 @@ const POSTS = [
     date: 'March 28, 2026',
     readTime: '6 min read',
     tag: 'Private Pilot',
+    image: '/blog-preflight.jpg',
   },
   {
     slug: 'faa-license-conversion-foreign-pilots',
@@ -275,6 +280,7 @@ const POSTS = [
     date: 'March 20, 2026',
     readTime: '7 min read',
     tag: 'License Conversion',
+    image: '/blog-pilots-flying.jpg',
   },
 ];
 
