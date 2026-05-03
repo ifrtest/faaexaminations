@@ -35,6 +35,13 @@ export default function AdminUsers() {
     load();
   };
 
+  const toggleUag = async (u) => {
+    const grant = !u.uag_access;
+    if (!window.confirm(`${grant ? 'Grant' : 'Revoke'} Part 107 access for ${u.email}?`)) return;
+    await usersApi.update(u.id, { uag_access: grant });
+    load();
+  };
+
   const deleteUser = async (u) => {
     if (!window.confirm(`Permanently delete ${u.email}? This cannot be undone.`)) return;
     try {
@@ -68,6 +75,7 @@ export default function AdminUsers() {
                 <th>Name</th>
                 <th>Role</th>
                 <th>Subscription</th>
+                <th>Part 107</th>
                 <th>Status</th>
                 <th>Joined</th>
                 <th></th>
@@ -83,7 +91,12 @@ export default function AdminUsers() {
                       {u.role}
                     </span>
                   </td>
-                  <td>{u.subscription}</td>
+                  <td>{u.subscription || <em style={{color:'var(--muted)'}}>free</em>}</td>
+                  <td>
+                    <span className={`badge ${u.uag_access ? 'badge-ok' : ''}`}>
+                      {u.uag_access ? '✓ granted' : '—'}
+                    </span>
+                  </td>
                   <td>
                     <span className={`badge ${u.is_active ? 'badge-ok' : 'badge-err'}`}>
                       {u.is_active ? 'Active' : 'Disabled'}
@@ -93,6 +106,9 @@ export default function AdminUsers() {
                   <td>
                     <button className="btn btn-ghost btn-sm" onClick={() => toggleRole(u)}>
                       {u.role === 'admin' ? 'Revoke admin' : 'Make admin'}
+                    </button>
+                    <button className="btn btn-ghost btn-sm" style={{marginLeft:6}} onClick={() => toggleUag(u)}>
+                      {u.uag_access ? 'Revoke 107' : 'Grant 107'}
                     </button>
                     <button className="btn btn-ghost btn-sm" style={{marginLeft:6}} onClick={() => toggleActive(u)}>
                       {u.is_active ? 'Disable' : 'Enable'}

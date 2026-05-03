@@ -21,7 +21,7 @@ exports.list = async (req, res, next) => {
 
     const [list, count] = await Promise.all([
       db.query(
-        `SELECT id, email, full_name, role, subscription, is_active, created_at
+        `SELECT id, email, full_name, role, subscription, uag_access, is_active, created_at
            FROM users ${where}
           ORDER BY created_at DESC
           LIMIT ${pageSize} OFFSET ${offset}`,
@@ -57,16 +57,17 @@ exports.get = async (req, res, next) => {
 // PUT /api/users/:id  (admin - update role/active/subscription)
 exports.update = async (req, res, next) => {
   try {
-    const { role, is_active, subscription } = req.body;
+    const { role, is_active, subscription, uag_access } = req.body;
     const { rows } = await db.query(
       `UPDATE users SET
          role         = COALESCE($1, role),
          is_active    = COALESCE($2, is_active),
          subscription = COALESCE($3, subscription),
+         uag_access   = CASE WHEN $5::boolean IS NOT NULL THEN $5 ELSE uag_access END,
          updated_at   = NOW()
        WHERE id=$4
-       RETURNING id, email, full_name, role, subscription, is_active`,
-      [role, is_active, subscription, req.params.id]
+       RETURNING id, email, full_name, role, subscription, uag_access, is_active`,
+      [role, is_active, subscription, req.params.id, uag_access ?? null]
     );
     if (!rows[0]) return res.status(404).json({ error: 'User not found' });
     res.json({ user: rows[0] });
