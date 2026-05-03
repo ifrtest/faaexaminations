@@ -94,6 +94,14 @@ export default function IRALanding() {
         <meta property="og:site_name" content="FAAExaminations.com" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://faaexaminations.com/plane-ira.jpg" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://faaexaminations.com" },
+            { "@type": "ListItem", "position": 2, "name": "Instrument Rating (IRA)", "item": "https://faaexaminations.com/ira" }
+          ]
+        })}</script>
       </Helmet>
 
       {/* NAV */}

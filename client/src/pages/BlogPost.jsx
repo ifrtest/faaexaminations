@@ -2402,7 +2402,7 @@ export default function BlogPost() {
           "headline": post.title,
           "description": post.description,
           "datePublished": post.dateISO,
-          "author": { "@type": "Organization", "name": "FAAExaminations.com", "url": "https://faaexaminations.com" },
+          "author": { "@type": "Person", "name": "Ash", "url": "https://faaexaminations.com/about" },
           "publisher": { "@type": "Organization", "name": "FAAExaminations.com", "url": "https://faaexaminations.com", "logo": { "@type": "ImageObject", "url": "https://faaexaminations.com/favicon.png" } },
           "mainEntityOfPage": { "@type": "WebPage", "@id": `https://faaexaminations.com/blog/${slug}` },
           ...(post.image ? { "image": `https://faaexaminations.com${post.image}` } : {})
