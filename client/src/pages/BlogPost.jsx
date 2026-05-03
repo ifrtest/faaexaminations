@@ -2443,24 +2443,30 @@ export default function BlogPost() {
         {post.content}
       </div>
 
-      {/* Practice test CTA */}
+      {/* Practice test + cheat sheet CTA */}
       {(() => {
-        const practiceLinks = {
-          'Private Pilot':     { path: '/par-practice-test',    label: 'Free PAR Practice Test',     sub: '30 questions · No login required' },
-          'Instrument Rating': { path: '/ira-practice-test',    label: 'Free IRA Practice Test',     sub: '30 questions · No login required' },
-          'Part 107':          { path: '/part-107-practice-test', label: 'Free Part 107 Practice Test', sub: '30 questions · No login required' },
-          'Study Tips':        { path: '/par-practice-test',    label: 'Free FAA Practice Test',     sub: '30 questions · No login required' },
+        const linkMap = {
+          'Private Pilot':     { practice: '/par-practice-test',     practiceLabel: 'Free PAR Practice Test',      cheat: '/par-cheat-sheet',       cheatLabel: 'PAR Cheat Sheet' },
+          'Instrument Rating': { practice: '/ira-practice-test',     practiceLabel: 'Free IRA Practice Test',      cheat: '/ira-cheat-sheet',       cheatLabel: 'IRA Cheat Sheet' },
+          'Part 107':          { practice: '/part-107-practice-test', practiceLabel: 'Free Part 107 Practice Test', cheat: '/part-107-cheat-sheet',  cheatLabel: 'Part 107 Cheat Sheet' },
+          'Study Tips':        { practice: '/par-practice-test',     practiceLabel: 'Free FAA Practice Test',      cheat: '/par-cheat-sheet',       cheatLabel: 'PAR Cheat Sheet' },
+          'Resources':         { practice: '/par-practice-test',     practiceLabel: 'Free FAA Practice Test',      cheat: '/par-cheat-sheet',       cheatLabel: 'PAR Cheat Sheet' },
+          'License Conversion':{ practice: '/par-practice-test',     practiceLabel: 'Free PAR Practice Test',      cheat: '/par-cheat-sheet',       cheatLabel: 'PAR Cheat Sheet' },
         };
-        const pl = practiceLinks[post.tag];
-        if (!pl) return null;
+        const lm = linkMap[post.tag];
+        if (!lm) return null;
         return (
-          <div style={{ margin: '48px 0', background: 'var(--card-bg)', border: '1px solid var(--border2)', borderRadius: 12, padding: '28px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20, flexWrap: 'wrap' }}>
-            <div>
-              <div style={{ fontSize: '.75rem', fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text3)', marginBottom: 6 }}>Test your knowledge</div>
-              <div style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--text)', marginBottom: 2 }}>{pl.label}</div>
-              <div style={{ fontSize: '.85rem', color: 'var(--text3)' }}>{pl.sub}</div>
+          <div style={{ margin: '48px 0', background: 'var(--card-bg)', border: '1px solid var(--border2)', borderRadius: 12, padding: '24px 28px' }}>
+            <div style={{ fontSize: '.75rem', fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text3)', marginBottom: 16 }}>Free study tools</div>
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              <Link to={lm.practice} className="btn btn-primary" style={{ whiteSpace: 'nowrap' }}>
+                {lm.practiceLabel} →
+              </Link>
+              <Link to={lm.cheat} className="btn" style={{ whiteSpace: 'nowrap', background: 'var(--card-bg)', border: '1px solid var(--border2)', color: 'var(--text)' }}>
+                {lm.cheatLabel} →
+              </Link>
             </div>
-            <Link to={pl.path} className="btn btn-primary" style={{ whiteSpace: 'nowrap', flexShrink: 0 }}>Take the Test →</Link>
+            <div style={{ marginTop: 10, fontSize: '.82rem', color: 'var(--text3)' }}>30 questions · No login required</div>
           </div>
         );
       })()}

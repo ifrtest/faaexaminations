@@ -318,9 +318,30 @@ export default function Blog() {
       </Helmet>
 
       <h1>FAA Exam Tips &amp; Study Guides</h1>
-      <p style={{ color: 'var(--text2)', marginBottom: 40, fontSize: '1.05rem', lineHeight: 1.7 }}>
+      <p style={{ color: 'var(--text2)', marginBottom: 32, fontSize: '1.05rem', lineHeight: 1.7 }}>
         Practical advice to help student pilots pass their FAA Airman Knowledge Tests — first try.
       </p>
+
+      {/* Free tools bar */}
+      <div style={{ marginBottom: 40, background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: 12, padding: '20px 24px' }}>
+        <div style={{ fontSize: '.72rem', fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text3)', marginBottom: 14 }}>Free study tools</div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+          {[
+            { to: '/par-practice-test',     label: 'PAR Practice Test' },
+            { to: '/ira-practice-test',     label: 'IRA Practice Test' },
+            { to: '/cax-practice-test',     label: 'CAX Practice Test' },
+            { to: '/part-107-practice-test',label: 'Part 107 Practice Test' },
+            { to: '/par-cheat-sheet',       label: 'PAR Cheat Sheet' },
+            { to: '/ira-cheat-sheet',       label: 'IRA Cheat Sheet' },
+            { to: '/cax-cheat-sheet',       label: 'CAX Cheat Sheet' },
+            { to: '/part-107-cheat-sheet',  label: 'Part 107 Cheat Sheet' },
+          ].map(({ to, label }) => (
+            <Link key={to} to={to} style={{ fontSize: '.85rem', fontWeight: 600, color: 'var(--blue)', padding: '7px 14px', border: '1px solid rgba(48,172,226,0.3)', borderRadius: 8, textDecoration: 'none', background: 'rgba(48,172,226,0.05)' }}>
+              {label} →
+            </Link>
+          ))}
+        </div>
+      </div>
 
       <div style={{ display: 'grid', gap: 20 }}>
         {POSTS.map((post) => {
