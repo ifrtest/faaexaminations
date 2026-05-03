@@ -4,6 +4,13 @@ const https  = require('https');
 const PIXEL_ID   = '3483672531784182';
 const API_VERSION = 'v19.0';
 
+const TEST_EMAILS = [
+  'websiteWork.ca@gmail.com',
+  'baefreshh@gmail.com',
+  'top10beers@gmail.com',
+  'fff@ff.com',
+].map(e => e.trim().toLowerCase());
+
 function sha256(value) {
   if (!value) return undefined;
   return crypto.createHash('sha256').update(String(value).trim().toLowerCase()).digest('hex');
@@ -37,6 +44,11 @@ async function sendEvent({ eventName, eventId, userData = {}, customData, eventS
   const token = process.env.META_CAPI_TOKEN;
   if (!token) {
     console.warn('[capi] META_CAPI_TOKEN not set — skipping');
+    return;
+  }
+
+  if (userData.email && TEST_EMAILS.includes(userData.email.trim().toLowerCase())) {
+    console.log(`[capi] skipping test email: ${userData.email}`);
     return;
   }
 
