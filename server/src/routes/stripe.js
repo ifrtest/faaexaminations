@@ -493,7 +493,7 @@ router.post('/embedded/intent', requireAuth, async (req, res) => {
         currency: 'usd',
         customer: customerId,
         metadata: { plan, user_id: String(userId) },
-        automatic_payment_methods: { enabled: true, allow_redirects: 'never' },
+        automatic_payment_methods: { enabled: true, allow_redirects: 'always' },
       });
       return res.json({ type: 'payment', clientSecret: pi.client_secret });
     }
