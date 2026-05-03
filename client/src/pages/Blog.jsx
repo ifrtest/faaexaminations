@@ -4,6 +4,33 @@ import { Helmet } from 'react-helmet-async';
 
 const POSTS = [
   {
+    slug: 'how-to-become-a-commercial-pilot',
+    title: 'How to Become a Commercial Pilot: Requirements, Timeline, and Cost',
+    excerpt: "A step-by-step breakdown of what it takes to become a commercial pilot — FAA certificate path, 250-hour requirements, realistic timeline from zero, and what it actually costs.",
+    date: 'May 2, 2026',
+    readTime: '8 min read',
+    tag: 'Study Tips',
+    image: '/blog-throttle-cockpit.jpg',
+  },
+  {
+    slug: 'vor-navigation-explained',
+    title: 'VOR Navigation Explained: How to Use a VOR',
+    excerpt: "VORs are still heavily tested on every FAA knowledge exam. Here's how the system works, how to read the CDI and TO/FROM flag, Victor airways, and the VOR check requirements.",
+    date: 'May 2, 2026',
+    readTime: '7 min read',
+    tag: 'Instrument Rating',
+    image: '/blog-commercial-cockpit.jpg',
+  },
+  {
+    slug: 'night-vfr-requirements',
+    title: 'Night VFR Requirements: What Private Pilots Need to Know',
+    excerpt: "Night flying has different currency requirements, equipment rules, and weather minimums than daytime VFR. Here's what the FAA requires and what the PAR exam specifically tests.",
+    date: 'May 2, 2026',
+    readTime: '6 min read',
+    tag: 'Private Pilot',
+    image: '/blog-pilot-ready.jpg',
+  },
+  {
     slug: 'ils-approach-explained',
     title: 'ILS Approach Explained: How It Works and What the Exam Tests',
     excerpt: "The ILS is the most common precision instrument approach. Here's how the localizer and glideslope work, what the minimums mean, and exactly what the IRA knowledge test asks about it.",

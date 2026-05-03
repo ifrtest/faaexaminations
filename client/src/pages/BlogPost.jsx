@@ -1308,6 +1308,211 @@ const POSTS = {
   },
 
   /* ================================================================ */
+  'how-to-become-a-commercial-pilot': {
+    title: 'How to Become a Commercial Pilot: Requirements, Timeline, and Cost',
+    description: 'A step-by-step breakdown of what it takes to become a commercial pilot — FAA requirements, hour minimums, certificate path, and realistic timelines and costs.',
+    date: 'May 2, 2026',
+    dateISO: '2026-05-02',
+    readTime: '8 min read',
+    tag: 'Study Tips',
+    image: '/blog-throttle-cockpit.jpg',
+    related: ['how-long-to-get-private-pilot-license', 'faa-medical-certificate-classes-explained', 'part-107-vs-private-pilot-license'],
+    content: (
+      <>
+        <p>Becoming a commercial pilot is a defined path with specific FAA requirements — not a vague aspiration. The rules are in FAR Part 61, the hours are fixed minimums, and the certificates stack in a specific order. If you know the path, you can plan for it. Here's the full picture.</p>
+
+        <h2>The certificate stack</h2>
+        <p>You can't jump straight to a commercial certificate. The FAA requires you to build up through a specific sequence:</p>
+        <ol>
+          <li><strong>Student Pilot Certificate</strong> — issued by an FAA-authorized instructor, no written exam required</li>
+          <li><strong>Private Pilot Certificate (PAR)</strong> — the foundation. Minimum 40 hours total time (FAA minimum), 20 with an instructor, 10 solo. Requires the PAR knowledge test and practical test.</li>
+          <li><strong>Instrument Rating (IRA)</strong> — not legally required for commercial, but practically essential if you plan to fly for hire in anything other than clear weather. Requires the IRA knowledge test and a practical test.</li>
+          <li><strong>Commercial Pilot Certificate (CAX)</strong> — the certificate that allows you to be compensated for flying. Requires the CAX knowledge test and practical test.</li>
+        </ol>
+        <p>If you eventually want to fly for an airline, you'll add the Airline Transport Pilot (ATP) certificate, which requires 1,500 total flight hours (reduced to 1,000 with certain college aviation programs or 750 with a military background).</p>
+
+        <h2>Commercial certificate requirements (FAR 61.129)</h2>
+        <p>For a single-engine commercial certificate, the FAA requires:</p>
+        <ul>
+          <li><strong>250 total flight hours</strong></li>
+          <li><strong>100 hours in powered aircraft as PIC</strong></li>
+          <li><strong>50 hours in airplanes as PIC</strong></li>
+          <li><strong>50 hours cross-country flight time</strong> (10 of which must be as PIC in airplanes)</li>
+          <li><strong>10 hours of instrument training</strong> in airplanes (can be from your instrument rating)</li>
+          <li><strong>10 hours in a complex aircraft</strong> (retractable gear, flaps, and controllable-pitch propeller) or turbine-powered aircraft</li>
+          <li><strong>10 hours of night flight</strong> as PIC in airplanes (including a 300 NM cross-country and 5 hours in the traffic pattern)</li>
+          <li><strong>3 hours of training within the 60 days before the checkride</strong></li>
+        </ul>
+        <p>For a multi-engine commercial certificate, the requirements differ slightly and include multi-engine hours. Most pilots get their single-engine commercial first, then add multi-engine.</p>
+
+        <h2>How long does it take?</h2>
+        <p>The honest answer depends on your starting point and how consistently you fly. From zero experience:</p>
+        <ul>
+          <li><strong>Private pilot certificate</strong>: 6–18 months (40–70 hours of flight time)</li>
+          <li><strong>Instrument rating</strong>: 4–12 months (typically 40–60 additional hours)</li>
+          <li><strong>Commercial certificate</strong>: depends entirely on how quickly you build the 250 total hours</li>
+        </ul>
+        <p>The 250-hour minimum is often the bottleneck. After your private and instrument, you might have 80–100 hours. You need to build 150–170 more before you're eligible for the commercial checkride. Some pilots do this through flight instructing (which lets you fly while getting paid), flying skydivers, banner towing, or paying for additional hours themselves.</p>
+        <p>At a Part 141 flight school (a more structured, FAA-approved program), the commercial requirements are reduced — 190 total hours instead of 250 — because the training is more structured and efficient.</p>
+
+        <h2>What does it cost?</h2>
+        <p>Flight training costs are the biggest variable depending on location, aircraft, and school. Rough estimates:</p>
+        <ul>
+          <li>Private pilot: $8,000–$15,000</li>
+          <li>Instrument rating: $7,000–$12,000</li>
+          <li>Building from ~100 to 250 hours (at ~$150–200/hr wet rental): $22,000–$35,000</li>
+          <li>Commercial training and checkride: $3,000–$6,000</li>
+        </ul>
+        <p>Total from zero to commercial: <strong>$40,000–$70,000+</strong> depending on where you train, how efficiently you progress, and whether you can build hours through instructing or other low-cost flying.</p>
+        <p>University aviation programs often bundle all of this into a four-year degree, which can be more economical overall and provides the structured path that qualifies for the reduced ATP minimums.</p>
+
+        <h2>What can you do with a commercial certificate?</h2>
+        <p>A commercial certificate allows you to fly for compensation. Specifically, you can:</p>
+        <ul>
+          <li>Work as a flight instructor (requires a separate CFI certificate)</li>
+          <li>Fly charter operations (Part 135)</li>
+          <li>Fly agricultural operations (crop dusting)</li>
+          <li>Fly banner towing, aerial photography, pipeline patrol</li>
+          <li>Transport skydivers</li>
+          <li>Fly for cargo operators</li>
+        </ul>
+        <p>What you <em>cannot</em> do with just a commercial certificate: fly scheduled airline service. That requires an ATP certificate. But the commercial is the gateway — it opens all the non-airline flying jobs and it's the certificate you need to build the hours toward ATP.</p>
+
+        <h2>The knowledge test</h2>
+        <p>The Commercial Pilot Airplane knowledge test (CAX) is 100 questions, 3.5 hours. It builds on PAR material with deeper emphasis on commercial regulations, complex aircraft operations, performance, weight and balance, and advanced aerodynamics. You need 70% to pass.</p>
+        <p>Most pilots find the CAX harder than the PAR — not because the concepts are dramatically more difficult, but because the question bank is larger and the material assumes you already know everything from the private certificate level. If your private pilot knowledge has faded, refresh it before starting CAX prep.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'vor-navigation-explained': {
+    title: 'VOR Navigation Explained: How to Use a VOR',
+    description: 'VORs are the backbone of IFR navigation and still appear on every FAA knowledge test. Here\'s how the VOR system works, how to read the CDI, and what the exam actually tests.',
+    date: 'May 2, 2026',
+    dateISO: '2026-05-02',
+    readTime: '7 min read',
+    tag: 'Instrument Rating',
+    image: '/blog-commercial-cockpit.jpg',
+    related: ['faa-instrument-rating-written-test-study-tips-2026', 'how-to-read-a-sectional-chart', 'ils-approach-explained'],
+    content: (
+      <>
+        <p>VORs — VHF Omnidirectional Range stations — have been the backbone of instrument navigation in the US since the 1950s. GPS has taken over most of the actual navigation work, but VORs are still in the National Airspace System, still appear on sectional and IFR charts, and are still heavily tested on the Instrument Rating, Private Pilot, and Commercial Pilot knowledge exams. You need to understand how they work.</p>
+
+        <h2>What a VOR does</h2>
+        <p>A VOR station broadcasts a VHF radio signal (108.0–117.95 MHz) from a fixed ground antenna. Your aircraft's VOR receiver picks up this signal and can determine one thing: <strong>what radial you're on</strong> — that is, what magnetic direction from the station you are currently located.</p>
+        <p>A radial is defined as the direction FROM the station TO you. If you're located due east of a VOR, you're on the 090 radial. Due north is the 360 radial. The VOR broadcasts 360 radials, one for each degree of the compass, all measured from magnetic north.</p>
+
+        <h2>The CDI: how you read the VOR</h2>
+        <p>The Course Deviation Indicator (CDI) is the instrument you use to track a VOR course. It has:</p>
+        <ul>
+          <li><strong>OBS (Omni Bearing Selector)</strong> — the knob you rotate to select the course you want to track. The number in the window is your selected course.</li>
+          <li><strong>Needle (course deviation bar)</strong> — deflects left or right to show whether the selected course is to your left or right. Full deflection = 10° off course.</li>
+          <li><strong>TO/FROM indicator</strong> — tells you whether the selected course will take you TO the station or FROM it.</li>
+        </ul>
+        <p>Here's the critical concept: the CDI tells you where the selected course is, not which way to turn. If the needle deflects to the right, the course you selected is to your right — turn right to get on it. This "needle left, turn left; needle right, turn right" rule only works reliably when flying TO the station. Flying FROM a station, the logic can seem reversed — and that's a classic exam trap.</p>
+
+        <h2>TO vs FROM</h2>
+        <p>The TO/FROM flag is one of the most tested VOR concepts. Here's how it works:</p>
+        <ul>
+          <li><strong>TO</strong> — the course you've selected on the OBS would take you toward the station. Flying that course with the needle centered means you'll reach the VOR.</li>
+          <li><strong>FROM</strong> — the course you've selected points away from the station. Flying that course with the needle centered means you're tracking outbound on that radial.</li>
+          <li><strong>OFF (or ambiguous)</strong> — you're flying roughly 90° to the selected course. The receiver can't determine TO or FROM. This happens when you're abeam the station.</li>
+        </ul>
+        <p>Example: you're over a VOR with 090 set in the OBS. The flag shows FROM. You're heading east. This makes sense — you're flying away from the station on the 090 radial (due east). If you had 270 set in the OBS, the flag would show TO — the 270° course points back toward the station from your position.</p>
+
+        <h2>Identifying a VOR</h2>
+        <p>Before you can use a VOR, you must identify it. Every VOR transmits a Morse code identifier — a 2- or 3-letter combination broadcast continuously. You tune the frequency, listen for the identifier, and confirm it matches what's on your chart. If you hear a voice station ID instead of Morse, or nothing at all, the VOR may be out of service or you may be out of range.</p>
+        <p>A VOR that's under maintenance (but still operational) may transmit "TEST" or emit a continuous tone instead of the identifier. This is a signal not to use it for navigation. The FAA tests this — if a VOR is not emitting its Morse identifier normally, it must not be used for instrument navigation.</p>
+
+        <h2>VOR accuracy and the cone of confusion</h2>
+        <p>VORs have a defined service volume — the area within which you can rely on the signal. Standard VORs have a service volume of up to 130 NM at high altitude, less at lower altitudes. Close to the station, you'll experience the <strong>cone of confusion</strong> — a zone directly above the antenna where the signal is unreliable. As you fly directly overhead, the needle may oscillate and the TO/FROM flag may flip erratically. This is normal and brief — you're passing through it.</p>
+
+        <h2>Victor airways</h2>
+        <p>Victor airways are the low-altitude IFR highways of the national airspace. They're built around VORs — each airway connects two or more VORs and is defined by the VOR radials. Victor airways run from 1,200 AGL up to (but not including) 18,000 feet MSL. Each has a MEA (minimum en route altitude) that ensures obstacle clearance and navigation signal reception.</p>
+        <p>On a sectional chart, Victor airways appear as thin blue lines with "V" and a number (V23, V105, etc.). On IFR low-altitude en route charts, they're drawn in blue with detailed altitude and distance information. Knowing how to read airways is part of the IRA exam.</p>
+
+        <h2>What the FAA exam tests</h2>
+        <p>VOR questions on the PAR, IRA, and CAX knowledge tests fall into these categories:</p>
+        <ul>
+          <li><strong>What radial are you on?</strong> — given your position relative to a VOR on a chart, identify your radial</li>
+          <li><strong>CDI interpretation</strong> — given an OBS setting and CDI needle position, determine your position relative to the selected course</li>
+          <li><strong>TO/FROM interpretation</strong> — determine whether a given OBS setting shows TO or FROM based on aircraft position</li>
+          <li><strong>Intercepting a radial</strong> — what heading to fly to intercept a specific radial</li>
+          <li><strong>VOR identification</strong> — when must you identify the station and what does a missing identifier mean</li>
+        </ul>
+        <p>The most common wrong answers on VOR questions involve the TO/FROM flag and CDI needle interpretation when tracking FROM the station. Draw yourself a picture — put the station, your aircraft, and the selected course on paper — when you're stuck. The geometry always makes sense visually.</p>
+
+        <h2>VOR check requirements</h2>
+        <p>For IFR flight, FAR 91.171 requires that the VOR used for navigation has been checked for accuracy within the preceding 30 days. The check must be logged with the date, place, bearing error, and signature. There are several ways to check VOR accuracy — ground checkpoint, airborne checkpoint, VOT (VOR test facility), or dual VOR cross-check — each with different allowable error tolerances (±4° for VOT, ±6° for airborne, ±4° for ground). These specifics are tested on the IRA exam.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'night-vfr-requirements': {
+    title: 'Night VFR Requirements: What Private Pilots Need to Know',
+    description: 'Night flying has different rules than daytime VFR — different currency requirements, equipment, and weather minimums. Here\'s what the FAA requires and what the PAR exam tests.',
+    date: 'May 2, 2026',
+    dateISO: '2026-05-02',
+    readTime: '6 min read',
+    tag: 'Private Pilot',
+    image: '/blog-pilot-ready.jpg',
+    related: ['faa-airspace-classes-explained', 'how-to-pass-faa-private-pilot-written-exam-first-try', 'private-pilot-checkride-what-to-expect'],
+    content: (
+      <>
+        <p>Night VFR is not just daytime VFR after dark. The rules change in several important ways — the weather minimums are higher in some airspace, the equipment requirements are more stringent, and your recency requirements as a pilot are separate from your daytime currency. The FAA written exam, particularly the PAR, tests these differences specifically.</p>
+
+        <h2>How the FAA defines night</h2>
+        <p>For most regulatory purposes, <strong>night is defined as the period beginning one hour after sunset and ending one hour before sunrise</strong> (FAR 1.1). This is civil twilight — there's still some ambient light, but it's dark enough for regulatory purposes.</p>
+        <p>There's a separate, narrower definition used for logging and currency purposes: night time that can be logged is flight between the end of evening civil twilight and the beginning of morning civil twilight. This is slightly different from the operational night definition and matters for your logbook.</p>
+        <p>For passenger-carrying currency, night landings must occur between one hour after sunset and one hour before sunrise.</p>
+
+        <h2>Night currency requirements (FAR 61.57)</h2>
+        <p>To carry passengers at night, you must have made at least <strong>3 takeoffs and 3 landings to a full stop</strong> at night within the preceding 90 days — in the same category and class of aircraft you'll be flying.</p>
+        <p>Note: this is in addition to your daytime currency requirement (3 takeoffs and landings within 90 days to carry passengers). They're tracked separately. You can be current for daytime passengers and not current for nighttime, or vice versa.</p>
+        <p>No separate night rating exists in the US — this is different from many other countries where a night rating is a separate certificate. In the US, night privileges come with the private pilot certificate, but you must maintain separate currency.</p>
+
+        <h2>Equipment required for night flight</h2>
+        <p>FAR 91.205(c) specifies the required instruments and equipment for night VFR. On top of the daytime VFR requirements (ATOMATOFLAMES), night flight requires:</p>
+        <ul>
+          <li><strong>Approved position lights (navigation lights)</strong> — red on the left wingtip, green on the right, white on the tail. These must be on from sunset to sunrise.</li>
+          <li><strong>Approved aviation red or white anti-collision light system</strong> — a rotating beacon or strobe system</li>
+          <li><strong>Landing light</strong> — required if the aircraft is operated for hire. For private operations, it's not required by 91.205, though it's strongly advisable for safety.</li>
+          <li><strong>Adequate source of electrical energy</strong> — to power the above equipment</li>
+          <li><strong>One spare set of fuses</strong> — unless the aircraft has circuit breakers</li>
+        </ul>
+        <p>The mnemonic some students use for night-specific additions: <strong>FLAPS</strong> — Fuses, Landing light (for hire), Anti-collision, Position lights, Source of power.</p>
+
+        <h2>Night VFR weather minimums</h2>
+        <p>This is where it gets nuanced. Night VFR minimums are the same as daytime VFR in controlled airspace (Class B, C, D, and E) — 3 SM visibility with the standard cloud clearances (500 below, 1,000 above, 2,000 horizontal).</p>
+        <p>The difference is in <strong>Class G airspace</strong>. During the day below 1,200 AGL in Class G, the minimum is just 1 SM visibility, clear of clouds. At night, that drops to 3 SM and 500/1,000/2,000 cloud clearances — the same as controlled airspace.</p>
+        <p>In other words, the "clear of clouds / 1 SM" rule only applies during the day. At night, even in Class G, you need 3 SM and proper cloud clearances. This distinction is specifically tested on the PAR knowledge exam.</p>
+
+        <h2>Night flying considerations (not just regulatory)</h2>
+        <p>The exam tests the regulations, but actual night flight has practical considerations worth understanding:</p>
+        <ul>
+          <li><strong>Dark adaptation</strong> — your eyes take 30 minutes to fully adapt to darkness. Avoid white light (including phone screens) before and during night flight. Red cockpit lighting preserves night vision.</li>
+          <li><strong>Off-center vision</strong> — at night, looking slightly off-center (10–15° away from what you're scanning) activates rod cells, which are more sensitive to low light than cone cells. This is the technique for spotting aircraft lights and terrain features.</li>
+          <li><strong>Spatial disorientation risk</strong> — without a visible horizon, attitude instrument flying becomes more important. Illusions like the "black hole approach" (no ground lighting, visual slope distortion) have caused accidents.</li>
+          <li><strong>Lights in relation to runway</strong> — VASI and PAPI systems are especially useful at night. Approach light sequences become more important. Learn the lighting systems for the airports you fly.</li>
+        </ul>
+
+        <h2>What the exam asks</h2>
+        <p>PAR night VFR questions typically cover:</p>
+        <ul>
+          <li>What are the weather minimums at night in Class G airspace? (3 SM, 500/1,000/2,000)</li>
+          <li>What equipment is required for night flight? (position lights, anti-collision, power source, fuses)</li>
+          <li>How many night landings are required to carry passengers? (3 to a full stop in the last 90 days)</li>
+          <li>What is the definition of night for logging purposes vs. operational night?</li>
+          <li>Is a landing light required for night VFR? (Only for hire operations under 91.205 — not for private)</li>
+        </ul>
+        <p>Night questions on the PAR are usually straightforward once you have the numbers memorized. The 3-SM-at-night-in-Class-G rule is the one most students miss — they remember the daytime "1 SM clear of clouds" and forget that it doesn't apply after dark.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
   'ils-approach-explained': {
     title: 'ILS Approach Explained: How It Works and What the Exam Tests',
     description: 'The ILS is the most common precision instrument approach. Here\'s how the localizer and glideslope work, what the minimums mean, and exactly what the IRA knowledge test asks about it.',
