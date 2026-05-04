@@ -35,7 +35,60 @@ const ELEMENTS_APPEARANCE = {
   },
 };
 
-function CheckoutForm({ plan, intentData, onSuccess }) {
+function HelpForm({ email }) {
+  const [open, setOpen]   = useState(false);
+  const [msg, setMsg]     = useState('');
+  const [sent, setSent]   = useState(false);
+  const [busy, setBusy]   = useState(false);
+
+  const send = async () => {
+    if (!msg.trim()) return;
+    setBusy(true);
+    try {
+      await fetch('/api/contact', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ email: email || 'unknown', message: msg }),
+      });
+      setSent(true);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <div style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid #1e2a38', textAlign: 'center' }}>
+      {!open && (
+        <span style={{ color: '#4a6a85', fontSize: '.8rem' }}>
+          Need help?{' '}
+          <button onClick={() => setOpen(true)} style={{ background: 'none', border: 'none', color: '#30ace2', fontSize: '.8rem', cursor: 'pointer', padding: 0 }}>
+            Send us a message →
+          </button>
+        </span>
+      )}
+      {open && !sent && (
+        <div style={{ textAlign: 'left' }}>
+          <textarea
+            value={msg}
+            onChange={e => setMsg(e.target.value)}
+            placeholder="What do you need help with?"
+            rows={3}
+            style={{ width: '100%', background: '#0a121b', border: '1px solid #1e2a38', borderRadius: 8, padding: '10px 12px', color: '#e5eef5', fontSize: '13px', fontFamily: 'inherit', resize: 'none', outline: 'none', marginBottom: 8, boxSizing: 'border-box' }}
+          />
+          <button
+            onClick={send}
+            disabled={busy}
+            style={{ width: '100%', background: 'rgba(48,172,226,0.1)', border: '1px solid rgba(48,172,226,0.25)', borderRadius: 8, padding: 10, color: '#30ace2', fontSize: '13px', fontWeight: 600, cursor: busy ? 'not-allowed' : 'pointer' }}>
+            {busy ? 'Sending…' : 'Send Message'}
+          </button>
+        </div>
+      )}
+      {sent && <p style={{ color: '#34d399', fontSize: '.8rem', margin: 0 }}>Sent! We'll reply within a few hours.</p>}
+    </div>
+  );
+}
+
+function CheckoutForm({ plan, intentData, onSuccess, userEmail }) {
   const stripe   = useStripe();
   const elements = useElements();
   const [busy, setBusy] = useState(false);
@@ -163,6 +216,8 @@ function CheckoutForm({ plan, intentData, onSuccess }) {
           <Link to="/cancel-policy" style={{ color: '#30ace2' }}>faaexaminations.com/cancel-policy</Link>.
         </p>
       )}
+
+      <HelpForm email={userEmail} />
 
       {/* Trust strip */}
       <div style={{ marginTop: 20, borderTop: '1px solid #1e2a38', paddingTop: 16 }}>
@@ -314,7 +369,7 @@ export default function Checkout() {
             stripe={stripePromise}
             options={{ clientSecret: intentData.clientSecret, appearance: ELEMENTS_APPEARANCE }}
           >
-            <CheckoutForm plan={plan} intentData={intentData} onSuccess={onSuccess} />
+            <CheckoutForm plan={plan} intentData={intentData} onSuccess={onSuccess} userEmail={user?.email} />
           </Elements>
         )}
       </div>
