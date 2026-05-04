@@ -100,14 +100,14 @@ export default function ExamList() {
     const value = planPrices[purchasedPlan] ?? 24.99;
     if (window.fbq) fbq('track', 'Purchase', { value, currency: 'USD' }, eid ? { eventID: eid } : {});
     if (window.gtag) gtag('event', 'purchase', { currency: 'CAD', value });
-    // Verify and grant access directly — retries for 30s
+    // Verify and grant access — retries for ~90s to survive a Render cold start
     if (sid) {
       const token = localStorage.getItem('faa_token');
       setActivating(true);
       const attempt = async (tries) => {
         if (tries <= 0) {
           setActivating(false);
-          setActivateErr('Could not activate access automatically. Please contact support or refresh the page.');
+          setActivateErr('Your payment was received — your account will be ready in 1–2 minutes. Please refresh the page. If it still shows no access after refreshing, email us at support@faaexaminations.com and we\'ll sort it out right away.');
           return;
         }
         try {
@@ -117,7 +117,7 @@ export default function ExamList() {
             body: JSON.stringify({ session_id: sid }),
           });
           const d = await r.json();
-          console.log('[verify-checkout] attempt', 11 - tries, d);
+          console.log('[verify-checkout] attempt', 31 - tries, d);
           if (d.success) {
             const s = await fetch('/api/stripe/subscription', { headers: { Authorization: `Bearer ${token}` } });
             const sub = await s.json();
@@ -125,7 +125,6 @@ export default function ExamList() {
             setActivating(false);
             return;
           }
-          // Show specific error so we can debug
           console.warn('[verify-checkout] not success:', d);
         } catch (ex) {
           console.warn('[verify-checkout] fetch error:', ex.message);
@@ -133,7 +132,7 @@ export default function ExamList() {
         await new Promise((res) => setTimeout(res, 3000));
         await attempt(tries - 1);
       };
-      attempt(10);
+      attempt(30); // 30 × 3s = 90 seconds total
     }
   }, []); // eslint-disable-line
 
