@@ -107,22 +107,9 @@ router.post('/webhook', async (req, res) => {
         break;
       }
       case 'customer.subscription.trial_will_end': {
-        const sub = event.data.object;
-        const userRes = await db.query(
-          'SELECT id, email, full_name, subscription FROM users WHERE stripe_customer_id = $1',
-          [sub.customer]
-        );
-        const user = userRes.rows[0];
-        if (user) {
-          const trialEnd = new Date(sub.trial_end * 1000);
-          sendEmail({
-            to: user.email,
-            subject: 'Your free trial ends in 3 days — here\'s what happens next',
-            html: trialEndingEmail(user.full_name || user.email.split('@')[0], user.subscription, trialEnd, user.id),
-            userId: user.id,
-            allowUnsubscribed: true,
-          });
-        }
+        // Stripe fires this exactly 3 days before trial_end — for a 3-day trial that's
+        // the moment of signup, which duplicates the trial-start email. We skip it here
+        // and send a "trial ends tomorrow" reminder via the nurture cron on day 2 instead.
         break;
       }
       case 'invoice.payment_failed': {

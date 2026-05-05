@@ -3,7 +3,7 @@
 // Tracks sent emails in nurture_emails table so nothing sends twice.
 
 const db = require('../config/db');
-const { sendEmail, nurtureDay3, nurtureDay7, nurtureDay14, bundleUpsellEmail, onboardDay1, onboardDay3, onboardDay7, winBackEmail, cheatsheetPreverifiedUrl } = require('./email');
+const { sendEmail, nurtureDay3, nurtureDay7, nurtureDay14, bundleUpsellEmail, onboardDay1, onboardDay3, onboardDay7, winBackEmail, trialEndingEmail, cheatsheetPreverifiedUrl } = require('./email');
 
 // Steps 1–4: free-user nurture + bundle upsell (keyed on created_at)
 // Steps 5–7: subscriber onboarding drip (keyed on subscription_activated_at)
@@ -15,7 +15,8 @@ const STEPS = [
   { step: 5, minDays: 1,  maxDays: 2,  build: onboardDay1,  subject: 'Your first study session for the FAA written', filter: 'paid', needsPlan: true },
   { step: 6, minDays: 3,  maxDays: 5,  build: onboardDay3,  subject: 'The #1 reason people fail the FAA written',    filter: 'paid', needsPlan: true },
   { step: 7, minDays: 7,  maxDays: 10, build: onboardDay7,  subject: 'One week in — how are you tracking?',          filter: 'paid', needsPlan: true },
-  { step: 8, minDays: 7,  maxDays: 10, build: winBackEmail, subject: 'Still working on your pilot certificate?',      filter: 'cancelled' },
+  { step: 8, minDays: 7,  maxDays: 10, build: winBackEmail,      subject: 'Still working on your pilot certificate?',      filter: 'cancelled' },
+  { step: 9, minDays: 2,  maxDays: 3,  build: trialEndingEmail,  subject: 'Your free trial ends tomorrow',                  filter: 'trialing' },
 ];
 
 async function ensureTable() {
@@ -40,7 +41,24 @@ async function runNurture() {
   for (const { step, minDays, maxDays, build, subject, filter, needsPlan } of STEPS) {
     let users;
 
-    if (filter === 'cancelled') {
+    if (filter === 'trialing') {
+      // Trial-ending reminder — keyed on subscription_activated_at, send on day 2
+      const { rows } = await db.query(`
+        SELECT u.id, u.email, u.full_name, u.subscription, u.subscription_ends_at
+        FROM users u
+        WHERE u.subscription_status = 'trialing'
+          AND u.subscription_activated_at IS NOT NULL
+          AND u.subscription_activated_at <= NOW() - INTERVAL '${minDays} days'
+          AND u.subscription_activated_at >= NOW() - INTERVAL '${maxDays} days'
+          AND u.is_active = TRUE
+          AND u.email_unsubscribed = FALSE
+          AND NOT EXISTS (
+            SELECT 1 FROM nurture_emails n
+            WHERE n.user_id = u.id AND n.step = ${step}
+          )
+      `);
+      users = rows;
+    } else if (filter === 'cancelled') {
       const { rows } = await db.query(`
         SELECT u.id, u.email, u.full_name
         FROM users u
@@ -97,7 +115,11 @@ async function runNurture() {
     for (const user of users) {
       const name = user.full_name || user.email.split('@')[0];
       let html;
-      if (step === 4) {
+      if (step === 9) {
+        // Trial ending tomorrow — pass the actual trial end date
+        const trialEnd = user.subscription_ends_at ? new Date(user.subscription_ends_at) : new Date(Date.now() + 86400000);
+        html = build(name, user.subscription, trialEnd, user.id);
+      } else if (step === 4) {
         html = bundleUpsellEmail(name, user.subscription, user.id);
       } else if (needsPlan) {
         html = build(name, user.subscription, user.id);

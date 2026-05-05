@@ -391,9 +391,9 @@ function trialEndingEmail(name, plan, trialEnd, userId) {
   const planNames = { par: 'Private Pilot (PAR)', ira: 'Instrument Rating (IRA)', cax: 'Commercial Pilot (CAX)', bundle: 'All 3 Exams Bundle' };
   const planLabel = planNames[plan] || plan;
   const endDate = trialEnd.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
-  return shell('Your free trial ends in 3 days', `
+  return shell('Your free trial ends tomorrow', `
     <p style="margin:0 0 12px">Hi ${name},</p>
-    <p style="margin:0 0 16px">Your free trial for <strong style="color:${ACCENT}">${planLabel}</strong> ends on <strong style="color:#fff">${endDate}</strong>. After that, your subscription starts automatically.</p>
+    <p style="margin:0 0 16px">Your free trial for <strong style="color:${ACCENT}">${planLabel}</strong> ends <strong style="color:#fff">tomorrow (${endDate})</strong>. After that, your subscription starts automatically.</p>
     <p style="margin:0 0 20px">If you want to keep access, you don't need to do anything — you're all set.</p>
     ${button(`${SITE()}/exams`, 'Keep Studying →')}
     <p style="margin:24px 0 8px;color:${MUTED};font-size:13px">Not ready to subscribe? Cancel before ${endDate} and you won't be charged. Cancel from your account dashboard in one click.</p>
