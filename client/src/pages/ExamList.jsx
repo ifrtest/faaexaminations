@@ -488,6 +488,33 @@ export default function ExamList() {
           })}
       </div>
 
+      {/* ── CHEAT SHEET RESOURCES ───────────────────────────────────── */}
+      {(() => {
+        const sub  = user?.subscription;
+        const uag  = user?.uag_access;
+        const sheets = [];
+        if (['par', 'bundle', 'all', 'pro'].includes(sub))        sheets.push({ label: 'PAR Cheat Sheet',        url: '/par-cheat-sheet' });
+        if (['ira', 'bundle', 'all', 'pro'].includes(sub))        sheets.push({ label: 'IRA Cheat Sheet',        url: '/ira-cheat-sheet' });
+        if (['cax', 'bundle', 'all', 'pro'].includes(sub))        sheets.push({ label: 'CAX Cheat Sheet',        url: '/cax-cheat-sheet' });
+        if (['uag', 'all', 'pro'].includes(sub) || uag)           sheets.push({ label: 'Part 107 Cheat Sheet',   url: '/part-107-cheat-sheet' });
+        if (!sheets.length) return null;
+        return (
+          <div style={{ margin: '0 0 20px', padding: '14px 20px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 12, display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
+            <span style={{ fontSize: '.85rem', color: 'var(--muted)', fontWeight: 600, marginRight: 4 }}>📋 Study References:</span>
+            {sheets.map(s => (
+              <span key={s.url} style={{ display: 'inline-flex', gap: 6 }}>
+                <a href={s.url} target="_blank" rel="noreferrer" style={{ fontSize: '.83rem', color: 'var(--blue)', textDecoration: 'none', padding: '4px 10px', border: '1px solid rgba(48,172,226,0.3)', borderRadius: 6, background: 'rgba(48,172,226,0.06)' }}>
+                  {s.label}
+                </a>
+                <a href={`${s.url}?print=1`} target="_blank" rel="noreferrer" title="Download PDF" style={{ fontSize: '.83rem', color: 'var(--muted)', textDecoration: 'none', padding: '4px 8px', border: '1px solid var(--border)', borderRadius: 6 }}>
+                  PDF
+                </a>
+              </span>
+            ))}
+          </div>
+        );
+      })()}
+
       {/* ── CONFIG PANEL (below cards) ───────────────────────────────── */}
       {current && (
         <div ref={configRef} className="card" style={{ margin: 0 }}>
