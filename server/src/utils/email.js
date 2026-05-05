@@ -252,46 +252,21 @@ function nurtureDay7(name, userId) {
 }
 
 function nurtureDay14(name, userId) {
-  return shell('Ready to unlock full access?', `
+  return shell('Two weeks in — still on the fence?', `
     <p style="margin:0 0 12px">Hi ${name},</p>
-    <p style="margin:0 0 16px">You signed up two weeks ago. If you're getting serious about your exam — here's exactly what you get with full access.</p>
-    <p style="margin:0 0 8px;font-weight:700;color:#fff">Every package includes:</p>
+    <p style="margin:0 0 16px">You signed up two weeks ago. I'm not going to pretend you forgot — you probably just haven't pulled the trigger yet.</p>
+    <p style="margin:0 0 16px">That's fair. Here's the honest pitch:</p>
+    <p style="margin:0 0 16px;padding:16px 20px;background:#0b1622;border-left:3px solid ${ACCENT};border-radius:0 8px 8px 0;font-size:15px;line-height:1.7">The FAA written exam isn't hard if you've seen the questions before. It's brutal if you haven't. Our entire platform is built around that one fact — practice the actual question types, understand why each answer is right, run timed mock exams until 80% feels easy. That's it. Most people are ready in 2–3 weeks.</p>
+    <p style="margin:0 0 8px;font-weight:700;color:#fff">What you unlock:</p>
     <ul style="margin:0 0 20px;padding-left:20px;color:${MUTED};line-height:2">
-      <li>Complete question bank for your exam</li>
-      <li>All study modules organized by FAA topic</li>
-      <li>Timed exam simulator — real pass/fail scoring</li>
-      <li>AI Instructor for any question you want explained</li>
-      <li>Progress dashboard showing readiness by category</li>
+      <li>Full question bank for your exam (1,469 for PAR, 265 for Part 107)</li>
+      <li>Topic-by-topic breakdown — so you know exactly where you're weak</li>
+      <li>Timed exam simulator with real pass/fail scoring</li>
+      <li>AI Instructor that explains any question you get wrong</li>
     </ul>
-    <table style="width:100%;border-collapse:collapse;margin:0 0 24px">
-      <tr style="border-bottom:1px solid ${BORDER}">
-        <td style="padding:10px 0;font-weight:700;color:#fff">Private Pilot (PAR)</td>
-        <td style="padding:10px 0;color:${MUTED};font-size:.88rem">1,469 questions</td>
-        <td style="padding:10px 0;text-align:right;font-weight:700;color:${ACCENT}">$24.99/mo</td>
-      </tr>
-      <tr style="border-bottom:1px solid ${BORDER}">
-        <td style="padding:10px 0;font-weight:700;color:#fff">Instrument Rating (IRA)</td>
-        <td style="padding:10px 0;color:${MUTED};font-size:.88rem">821 questions</td>
-        <td style="padding:10px 0;text-align:right;font-weight:700;color:${ACCENT}">$24.99/mo</td>
-      </tr>
-      <tr style="border-bottom:1px solid ${BORDER}">
-        <td style="padding:10px 0;font-weight:700;color:#fff">Commercial Pilot (CAX)</td>
-        <td style="padding:10px 0;color:${MUTED};font-size:.88rem">536 questions</td>
-        <td style="padding:10px 0;text-align:right;font-weight:700;color:${ACCENT}">$24.99/mo</td>
-      </tr>
-      <tr style="border-bottom:1px solid ${BORDER}">
-        <td style="padding:10px 0;font-weight:700;color:#fff">PAR + IRA + CAX Bundle</td>
-        <td style="padding:10px 0;color:${MUTED};font-size:.88rem">2,826 questions</td>
-        <td style="padding:10px 0;text-align:right;font-weight:700;color:${ACCENT}">$39.99/mo</td>
-      </tr>
-      <tr>
-        <td style="padding:10px 0;font-weight:700;color:#fff">Part 107 Drone Licence</td>
-        <td style="padding:10px 0;color:${MUTED};font-size:.88rem">265 questions</td>
-        <td style="padding:10px 0;text-align:right;font-weight:700;color:#f5c842">$37.99 one-time</td>
-      </tr>
-    </table>
+    <p style="margin:0 0 20px">PAR, IRA, and CAX are $24.99/month. Part 107 is $37.99 one-time, lifetime access. Cancel the subscription anytime — no penalty, no questions asked.</p>
     ${button(`${SITE()}/exams`, 'Unlock Full Access →')}
-    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Questions? Reply to this email — we read every one.</p>
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Still not sure? Reply to this email and tell me which exam you're going for — I'll point you in the right direction.</p>
   `, userId, `${SITE()}/email-banner-plane.jpg`);
 }
 
