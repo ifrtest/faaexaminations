@@ -8,8 +8,9 @@ const ctrl = require('../controllers/userController');
 router.put('/me', requireAuth, ctrl.updateMe);
 
 // Admin
-router.get('/admin/stats', requireAuth, requireAdmin, ctrl.adminStats);
-router.get('/',            requireAuth, requireAdmin, ctrl.list);
+router.get('/admin/stats',        requireAuth, requireAdmin, ctrl.adminStats);
+router.get('/admin/email-export', requireAuth, requireAdmin, ctrl.emailExport);
+router.get('/',                   requireAuth, requireAdmin, ctrl.list);
 router.get('/:id/results', requireAuth, requireAdmin, ctrl.userResults);
 router.get('/:id',         requireAuth, requireAdmin, ctrl.get);
 router.put('/:id',         requireAuth, requireAdmin, ctrl.update);

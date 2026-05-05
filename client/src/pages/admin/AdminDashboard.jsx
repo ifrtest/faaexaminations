@@ -3,14 +3,28 @@ import { useEffect, useState } from 'react';
 import { users } from '../../api/client';
 import { Spinner } from '../../components/ProtectedRoute';
 
+const TARGET = 100; // email blast threshold
+
 export default function AdminDashboard() {
-  const [stats, setStats] = useState(null);
-  const [err, setErr]     = useState('');
+  const [stats,      setStats]      = useState(null);
+  const [emailCount, setEmailCount] = useState(null);
+  const [err,        setErr]        = useState('');
 
   useEffect(() => {
     users.adminStats()
       .then(setStats)
       .catch((ex) => setErr(ex.response?.data?.error || 'Could not load stats.'));
+
+    // Fetch email list count (just peek at the CSV headers)
+    fetch('/api/users/admin/email-export', {
+      headers: { Authorization: `Bearer ${localStorage.getItem('faa_token')}` },
+    })
+      .then(r => r.text())
+      .then(csv => {
+        const lines = csv.trim().split('\n');
+        setEmailCount(Math.max(0, lines.length - 1)); // subtract header row
+      })
+      .catch(() => {});
   }, []);
 
   if (err) return <div className="alert alert-err">{err}</div>;
@@ -40,6 +54,53 @@ export default function AdminDashboard() {
           <div className="label">Questions</div>
           <div className="value">{q.total}</div>
           <div className="sub">{q.active} active</div>
+        </div>
+      </div>
+
+      {/* Email blast tracker */}
+      <div className="card" style={{ marginTop: 24 }}>
+        <div className="card-header">
+          <div>
+            <div className="card-title">Email List</div>
+            <div className="card-sub">Registered users + verified cheat sheet leads (unsubscribed excluded)</div>
+          </div>
+        </div>
+        <div style={{ marginTop: 16 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10, flexWrap: 'wrap', gap: 12 }}>
+            <div>
+              <span style={{ fontSize: '2rem', fontWeight: 800 }}>{emailCount ?? '—'}</span>
+              <span style={{ color: 'var(--muted)', fontSize: '.9rem', marginLeft: 8 }}>/ {TARGET} to blast</span>
+            </div>
+            <a
+              href="/api/users/admin/email-export"
+              download
+              onClick={(e) => {
+                // Inject auth token into the download
+                e.preventDefault();
+                fetch('/api/users/admin/email-export', {
+                  headers: { Authorization: `Bearer ${localStorage.getItem('faa_token')}` },
+                })
+                  .then(r => r.blob())
+                  .then(blob => {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `faaexaminations-emails-${new Date().toISOString().slice(0,10)}.csv`;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                  });
+              }}
+              style={{ background: emailCount >= TARGET ? 'var(--blue)' : 'var(--surface)', border: '1px solid var(--border)', color: emailCount >= TARGET ? '#fff' : 'var(--muted)', padding: '8px 18px', borderRadius: 8, textDecoration: 'none', fontSize: '.88rem', fontWeight: 600, cursor: 'pointer' }}
+            >
+              ⬇ Download CSV
+            </a>
+          </div>
+          <div style={{ background: 'var(--border)', borderRadius: 99, height: 8, overflow: 'hidden' }}>
+            <div style={{ width: `${Math.min(100, ((emailCount || 0) / TARGET) * 100)}%`, height: '100%', background: emailCount >= TARGET ? '#16A34A' : 'var(--blue)', borderRadius: 99, transition: 'width .5s ease' }} />
+          </div>
+          <div style={{ fontSize: '.75rem', color: 'var(--muted)', marginTop: 6 }}>
+            {emailCount >= TARGET ? '🎉 Ready to blast!' : `${TARGET - (emailCount || 0)} more emails until blast-ready`}
+          </div>
         </div>
       </div>
 

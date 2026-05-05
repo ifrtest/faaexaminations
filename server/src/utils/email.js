@@ -210,7 +210,12 @@ function passwordResetEmail(name, resetUrl, userId) {
 
 // ---------- Nurture sequence -----------------------------------------
 
-function nurtureDay3(name, userId) {
+function nurtureDay3(name, userId, cheatsheetUrl) {
+  const csLink = cheatsheetUrl
+    ? `<p style="margin:20px 0 0;padding:16px 20px;background:#0b1622;border:1px solid #1e2d3d;border-radius:10px;font-size:14px">
+        📋 <strong style="color:#fff">Free resource:</strong> <a href="${cheatsheetUrl}" style="color:${ACCENT};text-decoration:none">Download the PAR Cheat Sheet</a> — every key number, rule, and formula for the Private Pilot exam, in one page.
+       </p>`
+    : '';
   return shell('What the FAA actually tests you on ✈', `
     <p style="margin:0 0 12px">Hi ${name},</p>
     <p style="margin:0 0 16px">You created your FAAExaminations.com account a few days ago. Here's a quick breakdown of what you're actually preparing for — because every FAA exam is a bit different.</p>
@@ -224,6 +229,7 @@ function nurtureDay3(name, userId) {
     <p style="margin:0 0 8px;font-weight:700;color:#fff">Either way, the approach is the same.</p>
     <p style="margin:0 0 20px">Practice by topic, track your scores, and run timed mock exams once you're scoring above 80%. Your dashboard shows readiness by category — so you're never guessing where to focus.</p>
     ${button(`${SITE()}/exams`, 'Start Practising →')}
+    ${csLink}
     <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Free account includes 10 Private Pilot sample questions &amp; the full TRUST recreational drone test.</p>
   `, userId, `${SITE()}/email-banner-plane.jpg`);
 }
@@ -468,6 +474,30 @@ function cheatsheetDeliveryEmail(plan) {
   );
 }
 
+// Creates a pre-verified cheatsheet token for a known email (used in nurture emails).
+// Returns the full verify URL so the recipient skips the "enter email" form.
+async function cheatsheetPreverifiedUrl(email, plan) {
+  const SITE_URL = process.env.CLIENT_URL || 'https://faaexaminations.com';
+  const token = crypto.randomBytes(24).toString('hex');
+  const validPlan = ['par','ira','cax','uag'].includes(plan) ? plan : 'par';
+  try {
+    await db.query(
+      `INSERT INTO cheatsheet_leads (email, plan, token, verified, cheatsheet_sent, created_at)
+       VALUES ($1, $2, $3, true, false, NOW())
+       ON CONFLICT (email, plan) DO UPDATE
+         SET token = EXCLUDED.token,
+             verified = true,
+             created_at = NOW()`,
+      [email, validPlan, token]
+    );
+    return `${SITE_URL}/cheatsheet/verify/${token}`;
+  } catch {
+    // Fallback to plain cheat sheet URL if DB fails
+    const urls = { par: '/par-cheat-sheet', ira: '/ira-cheat-sheet', cax: '/cax-cheat-sheet', uag: '/part-107-cheat-sheet' };
+    return `${SITE_URL}${urls[validPlan]}`;
+  }
+}
+
 module.exports = {
   sendEmail,
   welcomeEmail,
@@ -486,6 +516,7 @@ module.exports = {
   winBackEmail,
   cheatsheetVerifyEmail,
   cheatsheetDeliveryEmail,
+  cheatsheetPreverifiedUrl,
   unsubToken,
   unsubUrl,
 };

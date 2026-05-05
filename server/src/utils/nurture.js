@@ -3,7 +3,7 @@
 // Tracks sent emails in nurture_emails table so nothing sends twice.
 
 const db = require('../config/db');
-const { sendEmail, nurtureDay3, nurtureDay7, nurtureDay14, bundleUpsellEmail, onboardDay1, onboardDay3, onboardDay7, winBackEmail } = require('./email');
+const { sendEmail, nurtureDay3, nurtureDay7, nurtureDay14, bundleUpsellEmail, onboardDay1, onboardDay3, onboardDay7, winBackEmail, cheatsheetPreverifiedUrl } = require('./email');
 
 // Steps 1–4: free-user nurture + bundle upsell (keyed on created_at)
 // Steps 5–7: subscriber onboarding drip (keyed on subscription_activated_at)
@@ -101,6 +101,10 @@ async function runNurture() {
         html = bundleUpsellEmail(name, user.subscription, user.id);
       } else if (needsPlan) {
         html = build(name, user.subscription, user.id);
+      } else if (step === 1) {
+        // Day 3 nurture — include a pre-verified cheat sheet link (skips email capture form)
+        const csUrl = await cheatsheetPreverifiedUrl(user.email, 'par');
+        html = build(name, user.id, csUrl);
       } else {
         html = build(name, user.id);
       }

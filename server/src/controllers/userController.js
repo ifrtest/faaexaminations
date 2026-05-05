@@ -176,3 +176,53 @@ exports.adminStats = async (_req, res, next) => {
     });
   } catch (err) { next(err); }
 };
+
+// GET /api/users/admin/email-export  (admin CSV download)
+exports.emailExport = async (_req, res, next) => {
+  try {
+    // Registered users (exclude internal/test accounts by role)
+    const { rows: userRows } = await db.query(`
+      SELECT email,
+             COALESCE(full_name, '') AS name,
+             subscription,
+             subscription_status,
+             COALESCE(to_char(created_at, 'YYYY-MM-DD'), '') AS joined,
+             'registered' AS source
+      FROM users
+      WHERE role != 'admin'
+        AND is_active = TRUE
+        AND email_unsubscribed = FALSE
+      ORDER BY created_at ASC
+    `);
+
+    // Cheat sheet leads (verified only, not already registered)
+    const userEmails = new Set(userRows.map(r => r.email.toLowerCase()));
+    const { rows: leadRows } = await db.query(`
+      SELECT email,
+             '' AS name,
+             plan AS subscription,
+             'lead' AS subscription_status,
+             COALESCE(to_char(created_at, 'YYYY-MM-DD'), '') AS joined,
+             'cheatsheet_lead' AS source
+      FROM cheatsheet_leads
+      WHERE verified = TRUE
+      ORDER BY created_at ASC
+    `);
+
+    // Deduplicate — registered users take priority
+    const leads = leadRows.filter(r => !userEmails.has(r.email.toLowerCase()));
+    const all = [...userRows, ...leads];
+
+    // Build CSV
+    const escape = (v) => `"${String(v || '').replace(/"/g, '""')}"`;
+    const header = ['Email', 'Name', 'Plan', 'Status', 'Joined', 'Source'].map(escape).join(',');
+    const csvRows = all.map(r =>
+      [r.email, r.name, r.subscription, r.subscription_status, r.joined, r.source].map(escape).join(',')
+    );
+    const csv = [header, ...csvRows].join('\n');
+
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', `attachment; filename="faaexaminations-emails-${new Date().toISOString().slice(0,10)}.csv"`);
+    res.send(csv);
+  } catch (err) { next(err); }
+};
