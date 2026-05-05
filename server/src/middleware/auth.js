@@ -19,7 +19,7 @@ async function requireAuth(req, res, next) {
 
     const decoded = jwt.verify(token, JWT_SECRET);
     const { rows } = await db.query(
-      'SELECT id, email, full_name, role, subscription, is_active FROM users WHERE id=$1',
+      'SELECT id, email, full_name, role, subscription, uag_access, is_active FROM users WHERE id=$1',
       [decoded.id]
     );
     if (!rows[0] || !rows[0].is_active) {

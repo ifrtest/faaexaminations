@@ -60,7 +60,7 @@ exports.login = async (req, res, next) => {
       return res.status(400).json({ error: 'Email and password are required' });
     }
     const { rows } = await db.query(
-      'SELECT id, email, full_name, role, subscription, password_hash, is_active FROM users WHERE email=$1',
+      'SELECT id, email, full_name, role, subscription, uag_access, password_hash, is_active FROM users WHERE email=$1',
       [email.toLowerCase()]
     );
     const user = rows[0];
