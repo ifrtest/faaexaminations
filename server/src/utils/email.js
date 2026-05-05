@@ -395,6 +395,79 @@ function trialEndingEmail(name, plan, trialEnd, userId) {
   `, userId, `${SITE()}/email-banner-plane.jpg`);
 }
 
+const CHEATSHEET_META = {
+  par:    { name: 'Private Pilot (PAR)', url: '/par-cheat-sheet' },
+  ira:    { name: 'Instrument Rating (IRA)', url: '/ira-cheat-sheet' },
+  cax:    { name: 'Commercial Pilot (CAX)', url: '/cax-cheat-sheet' },
+  uag:    { name: 'Part 107 Remote Pilot', url: '/part-107-cheat-sheet' },
+};
+
+function cheatsheetVerifyEmail(plan, verifyUrl) {
+  const meta = CHEATSHEET_META[plan] || CHEATSHEET_META.par;
+  return shell(
+    `Confirm your email to get the ${meta.name} Cheat Sheet`,
+    `
+    <p style="margin:0 0 16px">You requested the <strong>${meta.name} Exam Cheat Sheet</strong> from FAAExaminations.com.</p>
+    <p style="margin:0 0 24px;color:${MUTED}">Click the button below to confirm your email and get instant access to the full cheat sheet — key numbers, rules, formulas, and acronyms for the FAA written exam.</p>
+    ${button(verifyUrl, 'Confirm & Get My Cheat Sheet →')}
+    <p style="margin:24px 0 0;font-size:13px;color:${MUTED}">This link expires in 24 hours. If you didn't request this, you can safely ignore this email.</p>
+    `,
+    null
+  );
+}
+
+function cheatsheetDeliveryEmail(plan) {
+  const meta = CHEATSHEET_META[plan] || CHEATSHEET_META.par;
+  const fullUrl = `${SITE()}${meta.url}`;
+  const pdfUrl  = `${SITE()}${meta.url}?print=1`;
+
+  const parContent = plan === 'par' ? `
+    <div style="margin:24px 0;padding:20px;background:#0b1622;border:1px solid #1e2d3d;border-radius:10px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.1em;color:${MUTED};text-transform:uppercase;margin-bottom:14px">Key FAR Numbers</div>
+      <table style="width:100%;border-collapse:collapse;font-size:13px">
+        ${[
+          ['Bottle to throttle','8 hours (FAR 91.17)'],
+          ['Max BAC','0.04% (FAR 91.17)'],
+          ['Passenger currency','3 T&Ls in 90 days (FAR 61.57)'],
+          ['Flight review','Every 24 calendar months (FAR 61.56)'],
+          ['Annual inspection','Every 12 calendar months (FAR 91.409)'],
+          ['VOR check (IFR)','Every 30 days (FAR 91.171)'],
+          ['Transponder check','Every 24 calendar months (FAR 91.413)'],
+          ['Medical – 3rd class, under 40','60 calendar months'],
+          ['Medical – 3rd class, 40 and over','24 calendar months'],
+        ].map(([rule, req], i) => `
+          <tr style="border-bottom:1px solid #1e2d3d">
+            <td style="padding:8px 10px 8px 0;color:#c8d8e8">${rule}</td>
+            <td style="padding:8px 0;color:${ACCENT};text-align:right;white-space:nowrap">${req}</td>
+          </tr>
+        `).join('')}
+      </table>
+    </div>
+    <div style="margin:0 0 24px;padding:20px;background:#0b1622;border:1px solid #1e2d3d;border-radius:10px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.1em;color:${MUTED};text-transform:uppercase;margin-bottom:14px">VFR Day Equipment — ATOMATOFLAMES</div>
+      <div style="font-size:13px;color:#c8d8e8;line-height:1.8">
+        <strong style="color:${ACCENT}">A</strong>irspeed · <strong style="color:${ACCENT}">T</strong>achometer · <strong style="color:${ACCENT}">O</strong>il pressure · <strong style="color:${ACCENT}">M</strong>anifold pressure · <strong style="color:${ACCENT}">A</strong>ltimeter · <strong style="color:${ACCENT}">T</strong>emp gauge · <strong style="color:${ACCENT}">O</strong>il temp · <strong style="color:${ACCENT}">F</strong>uel gauge · <strong style="color:${ACCENT}">L</strong>anding gear indicator · <strong style="color:${ACCENT}">A</strong>nti-collision lights · <strong style="color:${ACCENT}">M</strong>agnetic compass · <strong style="color:${ACCENT}">E</strong>LT · <strong style="color:${ACCENT}">S</strong>afety belts
+      </div>
+    </div>
+  ` : `<p style="color:${MUTED};font-size:14px">The full ${meta.name} cheat sheet is ready — click below to view all sections.</p>`;
+
+  return shell(
+    `Your ${meta.name} Cheat Sheet is ready`,
+    `
+    <p style="margin:0 0 20px">Here's your <strong>${meta.name} Exam Cheat Sheet</strong>. Below is a preview of the key content — click the button to view the complete cheat sheet and save it as a PDF.</p>
+    ${parContent}
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 24px">
+      ${button(fullUrl, 'View Full Cheat Sheet →')}
+    </div>
+    <div style="padding:16px 20px;background:#0b1622;border:1px solid #1e2d3d;border-radius:10px;font-size:13px;color:${MUTED}">
+      💡 <strong style="color:#c8d8e8">Save as PDF:</strong> Open the full cheat sheet, then use your browser's Print menu (Ctrl+P / Cmd+P) and choose "Save as PDF" — or click the Download PDF button at the top of the page.
+    </div>
+    <p style="margin:24px 0 0;font-size:13px;color:${MUTED}">Want to go beyond the cheat sheet? FAAExaminations.com has the full ${meta.name} question bank, timed exam simulator, and AI Instructor — <a href="${SITE()}/register" style="color:${ACCENT}">start free →</a></p>
+    `,
+    null
+  );
+}
+
 module.exports = {
   sendEmail,
   welcomeEmail,
@@ -411,6 +484,8 @@ module.exports = {
   onboardDay3,
   onboardDay7,
   winBackEmail,
+  cheatsheetVerifyEmail,
+  cheatsheetDeliveryEmail,
   unsubToken,
   unsubUrl,
 };

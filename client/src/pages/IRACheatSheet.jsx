@@ -38,6 +38,12 @@ export default function IRACheatSheet() {
     return () => obs.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get('print') === '1') {
+      setTimeout(() => window.print(), 800);
+    }
+  }, []);
+
   return (
     <div className="lp">
       <Helmet>
@@ -90,7 +96,8 @@ export default function IRACheatSheet() {
           </p>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="#content" className="lp-btn-hero">Jump to Cheat Sheet ↓</a>
-            <Link to="/ira-practice-test" className="lp-btn-outline">Free 30-Question Practice Test</Link>
+            <button onClick={() => window.print()} className="lp-btn-outline no-print" style={{ cursor: 'pointer' }}>⬇ Download PDF</button>
+            <Link to="/ira-practice-test" className="lp-btn-outline">Free Practice Test</Link>
           </div>
         </div>
       </section>
@@ -430,6 +437,8 @@ export default function IRACheatSheet() {
               </Card>
               <Card title="IFR Transponder Codes">
                 {[
+                  ['1000', 'IFR — low level airspace (below 18,000 ft ASL)'],
+                  ['2000', 'IFR — high level airspace (at or above 18,000 ft ASL)'],
                   ['1200', 'VFR — general aviation under VFR'],
                   ['7500', 'Hijacking in progress'],
                   ['7600', 'Lost communications (radio failure)'],

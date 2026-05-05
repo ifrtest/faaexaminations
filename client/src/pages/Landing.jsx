@@ -2,6 +2,98 @@ import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
+const CHEATSHEET_PLANS = [
+  { value: 'par', label: 'Private Pilot (PAR)' },
+  { value: 'ira', label: 'Instrument Rating (IRA)' },
+  { value: 'cax', label: 'Commercial Pilot (CAX)' },
+  { value: 'uag', label: 'Part 107 Remote Pilot' },
+];
+
+function CheatSheetCapture() {
+  const [email, setEmail]   = useState('');
+  const [plan,  setPlan]    = useState('par');
+  const [state, setState]   = useState('idle'); // idle | loading | done | error
+  const [errMsg, setErrMsg] = useState('');
+
+  const submit = async (e) => {
+    e.preventDefault();
+    setErrMsg('');
+    setState('loading');
+    try {
+      const res = await fetch('/api/cheatsheet/request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim(), plan }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        setState('done');
+      } else {
+        setErrMsg(data.error || 'Something went wrong.');
+        setState('error');
+      }
+    } catch {
+      setErrMsg('Could not connect. Please try again.');
+      setState('error');
+    }
+  };
+
+  return (
+    <section style={{ padding: '80px 40px', background: 'linear-gradient(135deg, #0d1f30 0%, #0b1622 100%)', borderTop: '1px solid #1e2d3d', borderBottom: '1px solid #1e2d3d' }}>
+      <div style={{ maxWidth: 640, margin: '0 auto', textAlign: 'center' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(48,172,226,0.12)', color: '#30ace2', fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '6px 14px', borderRadius: 20, marginBottom: 20, border: '1px solid rgba(48,172,226,0.25)' }}>
+          FREE DOWNLOAD
+        </div>
+        <h2 style={{ color: '#fff', fontSize: 'clamp(22px, 4vw, 36px)', marginBottom: 14, fontWeight: 800, lineHeight: 1.2 }}>
+          Get Your Free FAA Exam Cheat Sheet
+        </h2>
+        <p style={{ color: '#7a9ab5', fontSize: 16, lineHeight: 1.7, marginBottom: 36, maxWidth: 520, margin: '0 auto 36px' }}>
+          Every key number, rule, formula, and acronym you need for the FAA written — organized by topic. Enter your email and we'll send it to you instantly.
+        </p>
+
+        {state === 'done' ? (
+          <div style={{ background: 'rgba(48,172,226,0.1)', border: '1px solid rgba(48,172,226,0.3)', borderRadius: 12, padding: '28px 32px' }}>
+            <div style={{ fontSize: 36, marginBottom: 12 }}>✉️</div>
+            <div style={{ color: '#fff', fontWeight: 700, fontSize: 18, marginBottom: 8 }}>Check your inbox!</div>
+            <div style={{ color: '#7a9ab5', fontSize: 15 }}>We sent a confirmation link to <strong style={{ color: '#a0c4d8' }}>{email}</strong>. Click it to get your cheat sheet.</div>
+          </div>
+        ) : (
+          <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 12, maxWidth: 480, margin: '0 auto' }}>
+            <select
+              value={plan}
+              onChange={(e) => setPlan(e.target.value)}
+              style={{ padding: '13px 16px', borderRadius: 10, border: '1px solid #2a3f54', background: '#0f1e2e', color: '#fff', fontSize: 15, outline: 'none' }}
+            >
+              {CHEATSHEET_PLANS.map(p => (
+                <option key={p.value} value={p.value}>{p.label}</option>
+              ))}
+            </select>
+            <div style={{ display: 'flex', gap: 10 }}>
+              <input
+                type="email"
+                required
+                placeholder="Your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                style={{ flex: 1, padding: '13px 16px', borderRadius: 10, border: '1px solid #2a3f54', background: '#0f1e2e', color: '#fff', fontSize: 15, outline: 'none' }}
+              />
+              <button
+                type="submit"
+                disabled={state === 'loading'}
+                style={{ padding: '13px 24px', borderRadius: 10, background: '#30ace2', color: '#041018', fontWeight: 700, fontSize: 15, border: 'none', cursor: state === 'loading' ? 'not-allowed' : 'pointer', opacity: state === 'loading' ? 0.7 : 1, whiteSpace: 'nowrap' }}
+              >
+                {state === 'loading' ? 'Sending…' : 'Send My Cheat Sheet →'}
+              </button>
+            </div>
+            {state === 'error' && <div style={{ color: '#f87171', fontSize: 14 }}>{errMsg}</div>}
+            <div style={{ color: '#4a6378', fontSize: 12 }}>No spam. Unsubscribe anytime.</div>
+          </form>
+        )}
+      </div>
+    </section>
+  );
+}
+
 const HERO_IMAGES = ['/plane-hero-4.webp', '/plane-hero-2.webp', '/plane-hero-3.webp', '/plane-hero-5.webp'];
 
 export default function Landing() {
@@ -412,6 +504,9 @@ export default function Landing() {
           </div>
         </div>
       </section>
+
+      {/* CHEAT SHEET EMAIL CAPTURE */}
+      <CheatSheetCapture />
 
       {/* CTA */}
       <section className="lp-cta-section">

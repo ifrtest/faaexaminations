@@ -20,9 +20,10 @@ const userRoutes      = require('./routes/users');
 const resultRoutes    = require('./routes/results');
 const aiRoutes        = require('./routes/ai');
 const stripeRoutes    = require('./routes/stripe');
-const unsubscribeRoutes = require('./routes/unsubscribe');
-const demoRoutes        = require('./routes/demo');
-const contactRoutes     = require('./routes/contact');
+const unsubscribeRoutes  = require('./routes/unsubscribe');
+const demoRoutes         = require('./routes/demo');
+const contactRoutes      = require('./routes/contact');
+const cheatsheetRoutes   = require('./routes/cheatsheet');
 
 const app = express();
 const PORT = parseInt(process.env.PORT, 10) || 5000;
@@ -80,7 +81,8 @@ app.use('/api/ai',         aiRoutes);
 app.use('/api/stripe',     stripeRoutes);
 app.use('/api/unsubscribe', unsubscribeRoutes);
 app.use('/api/demo',       demoRoutes);
-app.use('/api/contact',   contactRoutes);
+app.use('/api/contact',    contactRoutes);
+app.use('/api/cheatsheet', cheatsheetRoutes);
 
 // -------- 404 & error -----------------------------------------------
 app.use(notFound);
@@ -91,6 +93,18 @@ db.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS subscription_activated_at T
   .catch(err => console.error('[startup migration] subscription_activated_at:', err.message));
 db.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS cancelled_at TIMESTAMPTZ`)
   .catch(err => console.error('[startup migration] cancelled_at:', err.message));
+db.query(`
+  CREATE TABLE IF NOT EXISTS cheatsheet_leads (
+    id              SERIAL PRIMARY KEY,
+    email           TEXT NOT NULL,
+    plan            TEXT NOT NULL DEFAULT 'par',
+    token           TEXT NOT NULL UNIQUE,
+    verified        BOOLEAN NOT NULL DEFAULT FALSE,
+    cheatsheet_sent BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    UNIQUE (email, plan)
+  )
+`).catch(err => console.error('[startup migration] cheatsheet_leads:', err.message));
 
 // -------- start -----------------------------------------------------
 if (require.main === module) {

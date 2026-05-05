@@ -277,15 +277,22 @@ function CheckoutForm({ plan, intentData, onSuccess, userEmail }) {
   );
 }
 
+function fetchWithTimeout(url, options, ms) {
+  const ctrl = new AbortController();
+  const id   = setTimeout(() => ctrl.abort(), ms);
+  return fetch(url, { ...options, signal: ctrl.signal }).finally(() => clearTimeout(id));
+}
+
 export default function Checkout() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const { user } = useAuth();
   const plan = searchParams.get('plan')?.toLowerCase();
 
-  const [intentData, setIntentData] = useState(null);
-  const [loading, setLoading]       = useState(true);
-  const [err, setErr]               = useState('');
+  const [intentData,   setIntentData]   = useState(null);
+  const [loading,      setLoading]      = useState(true);
+  const [loadingMsg,   setLoadingMsg]   = useState('Preparing checkout…');
+  const [err,          setErr]          = useState('');
 
   useEffect(() => {
     if (plan && PLAN_INFO[plan] && window.fbq) {
@@ -309,18 +316,43 @@ export default function Checkout() {
       navigate('/exams', { replace: true });
       return;
     }
-    fetch('/api/stripe/embedded/intent', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('faa_token')}` },
-      body: JSON.stringify({ plan }),
-    })
-      .then((r) => r.json())
-      .then((d) => {
-        if (d.error) { setErr(d.error); setLoading(false); return; }
-        setIntentData(d);
+
+    let cancelled = false;
+    const deadline = Date.now() + 90000;
+
+    async function loadIntent() {
+      while (Date.now() < deadline) {
+        try {
+          const r = await fetchWithTimeout(
+            '/api/stripe/embedded/intent',
+            {
+              method:  'POST',
+              headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('faa_token')}` },
+              body:    JSON.stringify({ plan }),
+            },
+            12000,
+          );
+          const d = await r.json();
+          if (cancelled) return;
+          if (d.error) { setErr(d.error); setLoading(false); return; }
+          setIntentData(d);
+          setLoading(false);
+          return;
+        } catch {
+          if (cancelled) return;
+          if (Date.now() >= deadline) break;
+          setLoadingMsg('Starting payment server…');
+          await new Promise(res => setTimeout(res, 3000));
+        }
+      }
+      if (!cancelled) {
+        setErr('Could not connect to payment server. Please refresh and try again.');
         setLoading(false);
-      })
-      .catch(() => { setErr('Could not load checkout. Please try again.'); setLoading(false); });
+      }
+    }
+
+    loadIntent();
+    return () => { cancelled = true; };
   }, []); // eslint-disable-line
 
   const onSuccess = () => {
@@ -354,7 +386,7 @@ export default function Checkout() {
         {loading && (
           <div style={{ textAlign: 'center', padding: '40px 0' }}>
             <div style={{ width: 32, height: 32, border: '3px solid #30ace2', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.8s linear infinite', margin: '0 auto 12px' }} />
-            <div style={{ color: '#94b8d4', fontSize: '.9rem' }}>Preparing checkout…</div>
+            <div style={{ color: '#94b8d4', fontSize: '.9rem' }}>{loadingMsg}</div>
           </div>
         )}
 

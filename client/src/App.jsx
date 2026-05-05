@@ -47,13 +47,14 @@ import PARCheatSheet from './pages/PARCheatSheet';
 import Part107CheatSheet from './pages/Part107CheatSheet';
 import IRACheatSheet from './pages/IRACheatSheet';
 import CAXCheatSheet from './pages/CAXCheatSheet';
+import CheatSheetVerify from './pages/CheatSheetVerify';
 
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
 export default function App() {
   const { pathname } = useLocation();
-  const isLanding = ['/', '/par', '/ira', '/cax', '/part-107', '/bundle', '/checkout', '/par-practice-test', '/ira-practice-test', '/cax-practice-test', '/part-107-practice-test', '/par-cheat-sheet', '/part-107-cheat-sheet', '/ira-cheat-sheet', '/cax-cheat-sheet'].includes(pathname);
+  const isLanding = ['/', '/par', '/ira', '/cax', '/part-107', '/bundle', '/checkout', '/par-practice-test', '/ira-practice-test', '/cax-practice-test', '/part-107-practice-test', '/par-cheat-sheet', '/part-107-cheat-sheet', '/ira-cheat-sheet', '/cax-cheat-sheet'].includes(pathname) || pathname.startsWith('/cheatsheet/');
 
   useEffect(() => {
     // Don't override hash-based scrolling (e.g. /par#products)
@@ -82,6 +83,7 @@ export default function App() {
           <Route path="/part-107-cheat-sheet"    element={<Part107CheatSheet />} />
           <Route path="/ira-cheat-sheet"         element={<IRACheatSheet />} />
           <Route path="/cax-cheat-sheet"         element={<CAXCheatSheet />} />
+          <Route path="/cheatsheet/verify/:token" element={<CheatSheetVerify />} />
           <Route path="/login"          element={<Login />} />
           <Route path="/register"       element={<Register />} />
           <Route path="/forgot"         element={<ForgotPassword />} />

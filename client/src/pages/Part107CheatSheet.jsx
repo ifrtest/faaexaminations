@@ -38,6 +38,12 @@ export default function Part107CheatSheet() {
     return () => obs.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get('print') === '1') {
+      setTimeout(() => window.print(), 800);
+    }
+  }, []);
+
   return (
     <div className="lp">
       <Helmet>
@@ -92,7 +98,8 @@ export default function Part107CheatSheet() {
           </p>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="#content" className="lp-btn-hero">Jump to Cheat Sheet ↓</a>
-            <Link to="/part-107-practice-test" className="lp-btn-outline">Free 30-Question Practice Test</Link>
+            <button onClick={() => window.print()} className="lp-btn-outline no-print" style={{ cursor: 'pointer' }}>⬇ Download PDF</button>
+            <Link to="/part-107-practice-test" className="lp-btn-outline">Free Practice Test</Link>
           </div>
         </div>
       </section>

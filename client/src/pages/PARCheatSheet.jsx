@@ -28,6 +28,13 @@ export default function PARCheatSheet() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // ?print=1 → trigger print dialog automatically (used by email PDF link)
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get('print') === '1') {
+      setTimeout(() => window.print(), 800);
+    }
+  }, []);
+
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => entries.forEach((e) => {
@@ -93,7 +100,8 @@ export default function PARCheatSheet() {
           </p>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="#content" className="lp-btn-hero">Jump to Cheat Sheet ↓</a>
-            <Link to="/par-practice-test" className="lp-btn-outline">Free 30-Question Practice Test</Link>
+            <button onClick={() => window.print()} className="lp-btn-outline no-print" style={{ cursor: 'pointer' }}>⬇ Download PDF</button>
+            <Link to="/par-practice-test" className="lp-btn-outline">Free Practice Test</Link>
           </div>
         </div>
       </section>
