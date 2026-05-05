@@ -38,6 +38,7 @@ export default function Navbar() {
               <NavLink to="/exams" onClick={close}>Practice Exams</NavLink>
               <NavLink to="/results" onClick={close}>History</NavLink>
               <NavLink to="/references" onClick={close}>References</NavLink>
+              <NavLink to="/blog" onClick={close}>Blog</NavLink>
               <NavLink to="/profile" onClick={close}>Profile</NavLink>
               {user.role === 'admin' && <NavLink to="/admin" onClick={close}>Admin</NavLink>}
               <button onClick={handleLogout}>Log out</button>
@@ -48,6 +49,7 @@ export default function Navbar() {
               <a href="/#features" onClick={close} style={{ color: 'var(--text2)', textDecoration: 'none', padding: '6px 10px', borderRadius: 6 }}>Features</a>
               <a href="/#products" onClick={close} style={{ color: 'var(--text2)', textDecoration: 'none', padding: '6px 10px', borderRadius: 6 }}>Pricing</a>
               <NavLink to="/references" onClick={close}>Free References</NavLink>
+              <NavLink to="/blog" onClick={close}>Blog</NavLink>
               <NavLink to="/login" onClick={close}>Login</NavLink>
               <NavLink to="/register" onClick={close}
                 style={{ background: 'var(--blue)', color: '#fff', padding: '8px 16px', borderRadius: 8, fontWeight: 700 }}>
