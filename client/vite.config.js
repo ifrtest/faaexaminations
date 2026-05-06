@@ -13,5 +13,18 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
+    chunkSizeWarningLimit: 600,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Core React runtime — cached forever once loaded
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          // Stripe.js (only needed on checkout)
+          'vendor-stripe': ['@stripe/stripe-js', '@stripe/react-stripe-js'],
+          // Helmet (SEO, used everywhere but small enough to split)
+          'vendor-helmet': ['react-helmet-async'],
+        },
+      },
+    },
   },
 });
