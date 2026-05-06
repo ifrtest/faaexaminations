@@ -240,11 +240,11 @@ async function activateOneTimePurchase(session) {
 
   // UAG is a permanent one-time add-on — set uag_access flag only.
   // Never overwrite subscription/subscription_status so it can coexist with any plan.
-  const whereClause = userId ? 'id = $2' : 'stripe_customer_id = $2';
+  const whereClause = userId ? 'id = $1' : 'stripe_customer_id = $1';
   const whereValue  = userId ? userId : customerId;
   await db.query(
     `UPDATE users SET
-       stripe_customer_id = COALESCE(stripe_customer_id, $3),
+       stripe_customer_id = COALESCE(stripe_customer_id, $2),
        uag_access         = TRUE
      WHERE ${whereClause}`,
     [whereValue, customerId]
