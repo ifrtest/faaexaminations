@@ -188,10 +188,10 @@ export default function Landing() {
             3-day free trial on all plans · Card required · Cancel anytime
           </div>
           <div className="lp-hero-stats">
+            <div><div className="lp-hs-val">Est. 2020</div><div className="lp-hs-lbl">Trusted Since</div></div>
             <div><div className="lp-hs-val">3,000+</div><div className="lp-hs-lbl">Practice Questions</div></div>
             <div><div className="lp-hs-val">5</div><div className="lp-hs-lbl">Exam Types</div></div>
             <div><div className="lp-hs-val">AI</div><div className="lp-hs-lbl">Instructor Included</div></div>
-            <div><div className="lp-hs-val">FAA</div><div className="lp-hs-lbl">Compliant 2026</div></div>
           </div>
         </div>
       </section>
