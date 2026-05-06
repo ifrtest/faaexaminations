@@ -11,6 +11,7 @@ const rateLimit  = require('express-rate-limit');
 const db         = require('./config/db');
 const cron       = require('node-cron');
 const { runNurture } = require('./utils/nurture');
+const { runReconcile } = require('./utils/stripeReconcile');
 const { notFound, errorHandler } = require('./middleware/errorHandler');
 
 const authRoutes      = require('./routes/auth');
@@ -119,6 +120,14 @@ if (require.main === module) {
     runNurture().catch((err) => console.error('[nurture] job failed:', err.message));
   });
   console.log('  Nurture emails: scheduled daily at 10:00 UTC\n');
+
+  // Stripe reconciliation — runs daily at 10:05 AM UTC
+  // Safety net: catches any users whose webhook failed to activate them
+  cron.schedule('5 10 * * *', () => {
+    console.log('[reconcile] daily job starting');
+    runReconcile().catch((err) => console.error('[reconcile] job failed:', err.message));
+  });
+  console.log('  Stripe reconcile: scheduled daily at 10:05 UTC\n');
 
   // Keep-alive: ping own health endpoint every 10 minutes so Render never
   // spins down the server due to inactivity.
