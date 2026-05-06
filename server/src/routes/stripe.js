@@ -245,7 +245,8 @@ async function activateOneTimePurchase(session) {
   await db.query(
     `UPDATE users SET
        stripe_customer_id = COALESCE(stripe_customer_id, $2),
-       uag_access         = TRUE
+       uag_access         = TRUE,
+       subscription       = 'uag'
      WHERE ${whereClause}`,
     [whereValue, customerId]
   );
