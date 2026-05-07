@@ -149,7 +149,7 @@ export default function ExamList() {
   const hasAccess = (examCode) => {
     if (FREE_EXAMS.includes(examCode)) return true;
     if (examCode === 'UAG') return subscription?.uag_access === true || subscription?.plan === 'all';
-    if (!subscription || !['active', 'cancelling', 'trialing'].includes(subscription.status)) return false;
+    if (!subscription || !['active', 'cancelling', 'trialing', 'past_due'].includes(subscription.status)) return false;
     const plan = subscription.plan;
     return plan && PLAN_ACCESS[plan]?.includes(examCode);
   };
