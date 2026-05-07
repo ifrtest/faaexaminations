@@ -59,6 +59,7 @@ router.post('/checkout', requireAuth, async (req, res) => {
       customer: customerId,
       mode: isOneTime ? 'payment' : 'subscription',
       payment_method_types: ['card'],
+      payment_method_collection: 'always',
       line_items: [{ price: priceId, quantity: 1 }],
       ...(isOneTime ? {} : { subscription_data: { trial_period_days: 3 } }),
       success_url: `${process.env.CLIENT_URL}/exams?subscribed=1&plan=${plan}&eid=${capiEventId}&sid={CHECKOUT_SESSION_ID}`,
