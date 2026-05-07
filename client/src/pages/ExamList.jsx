@@ -214,13 +214,15 @@ export default function ExamList() {
                 <span style={{ color: '#94b8d4' }}>Price</span>
                 <span style={{ color: '#fff', fontWeight: 600 }}>{PLAN_PRICES[trialModalPlan]}</span>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #1e2a38' }}>
-                <Link to="/cancel-policy" style={{ color: '#94b8d4', textDecoration: 'underline', opacity: 0.85 }}>Pass guarantee</Link>
-                <span style={{ color: '#34d399', fontWeight: 600 }}>Complete program, fail exam — full refund</span>
-              </div>
+              {trialModalPlan !== 'uag' && (
+                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #1e2a38' }}>
+                  <Link to="/cancel-policy" style={{ color: '#94b8d4', textDecoration: 'underline', opacity: 0.85 }}>Pass guarantee</Link>
+                  <span style={{ color: '#34d399', fontWeight: 600 }}>Complete program, fail exam — full refund</span>
+                </div>
+              )}
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0' }}>
-                <span style={{ color: '#94b8d4' }}>Cancel</span>
-                <span style={{ color: '#34d399', fontWeight: 600 }}>Anytime — one click</span>
+                <span style={{ color: '#94b8d4' }}>{trialModalPlan === 'uag' ? 'Access' : 'Cancel'}</span>
+                <span style={{ color: '#34d399', fontWeight: 600 }}>{trialModalPlan === 'uag' ? 'Lifetime — one-time payment' : 'Anytime — one click'}</span>
               </div>
             </div>
             <button
