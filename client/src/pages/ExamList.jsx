@@ -419,14 +419,19 @@ export default function ExamList() {
                 }}
                 style={{
                   borderRadius: 12,
-                  border: `2px solid ${isActive ? '#30ace2' : (e.code === 'UAG' || e.code === 'IRA') ? 'rgba(255,255,255,0.25)' : 'transparent'}`,
+                  border: e.isBundle
+                    ? `2px solid ${bundleOwned ? 'rgba(74,222,128,.5)' : 'rgba(247,201,72,.7)'}`
+                    : `2px solid ${isActive ? '#30ace2' : (e.code === 'UAG' || e.code === 'IRA') ? 'rgba(255,255,255,0.25)' : 'transparent'}`,
                   cursor: e.comingSoon ? 'default' : 'pointer',
                   opacity: e.comingSoon ? 0.55 : 1,
                   transition: 'border-color .15s, box-shadow .15s',
                   overflow: 'hidden',
                   position: 'relative',
-                  height: 130,
-                  boxShadow: isActive ? '0 0 0 3px rgba(48,172,226,.25)' : 'none',
+                  height: e.isBundle ? 150 : 130,
+                  gridColumn: e.isBundle ? '1 / -1' : undefined,
+                  boxShadow: e.isBundle && !bundleOwned
+                    ? '0 0 0 3px rgba(247,201,72,.18), 0 4px 24px rgba(247,201,72,.12)'
+                    : isActive ? '0 0 0 3px rgba(48,172,226,.25)' : 'none',
                   backgroundImage: meta.img ? `url(${meta.img})` : 'none',
                   backgroundSize: 'cover',
                   backgroundPosition: meta.imgPos || 'center',
@@ -435,9 +440,11 @@ export default function ExamList() {
                 {/* overlay — just enough for text legibility */}
                 <div style={{
                   position: 'absolute', inset: 0,
-                  background: isActive
-                    ? 'linear-gradient(90deg, rgba(5,20,45,.62) 0%, rgba(11,40,90,.30) 100%)'
-                    : 'linear-gradient(90deg, rgba(5,15,35,.65) 0%, rgba(5,15,35,.38) 100%)',
+                  background: e.isBundle
+                    ? 'linear-gradient(90deg, rgba(5,15,35,.78) 0%, rgba(20,10,50,.45) 100%)'
+                    : isActive
+                      ? 'linear-gradient(90deg, rgba(5,20,45,.62) 0%, rgba(11,40,90,.30) 100%)'
+                      : 'linear-gradient(90deg, rgba(5,15,35,.65) 0%, rgba(5,15,35,.38) 100%)',
                   transition: 'background .2s',
                 }} />
 
@@ -457,7 +464,7 @@ export default function ExamList() {
                         <span style={{ background: 'rgba(74,222,128,.18)', color: '#4ade80', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>OWNED</span>
                       )}
                       {e.isBundle && !bundleOwned && (
-                        <span style={{ background: 'rgba(247,201,72,.18)', color: '#f7c948', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>BEST VALUE</span>
+                        <span style={{ background: 'rgba(247,201,72,.25)', color: '#f7c948', borderRadius: 5, padding: '2px 9px', fontSize: '.7rem', fontWeight: 700, letterSpacing: '.04em' }}>🏆 MOST POPULAR</span>
                       )}
                       {!free && !e.isBundle && accessible && (
                         <span style={{ background: 'rgba(74,222,128,.18)', color: '#4ade80', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>UNLOCKED</span>
@@ -469,11 +476,13 @@ export default function ExamList() {
                         <span style={{ background: 'rgba(255,255,255,.12)', color: '#94a3b8', borderRadius: 5, padding: '1px 7px', fontSize: '.65rem', fontWeight: 700 }}>SOON</span>
                       )}
                     </div>
-                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '.92rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    <div style={{ fontWeight: 700, color: '#fff', fontSize: e.isBundle ? '1.05rem' : '.92rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                       {meta.label || e.name}
                     </div>
                     <div style={{ fontSize: '.75rem', color: 'rgba(255,255,255,.6)', marginTop: 2 }}>
-                      {e.isBundle ? 'PAR + IRA + CAX · $39.99/month' : `${e.question_count} questions · ${e.passing_score}% to pass`}
+                      {e.isBundle
+                        ? <span>PAR + IRA + CAX · <span style={{ color: '#f7c948', fontWeight: 600 }}>$39.99/month</span> <span style={{ opacity: .7 }}>· save $35/month vs buying separately</span></span>
+                        : `${e.question_count} questions · ${e.passing_score}% to pass`}
                     </div>
                   </div>
 
