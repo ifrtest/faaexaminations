@@ -293,13 +293,12 @@ export default function ExamList() {
               disabled={checkoutLoading}>
               {checkoutLoading ? 'Loading…' : 'Get Started →'}
             </button>
-            <button
+            <Link
+              to="/par-practice-test"
               className="btn btn-ghost"
-              style={{ whiteSpace: 'nowrap', fontSize: '.82rem', padding: '6px 14px' }}
-              onClick={startDemo}
-              disabled={starting}>
-              {starting ? 'Loading…' : 'Try 30 free PAR questions →'}
-            </button>
+              style={{ whiteSpace: 'nowrap', fontSize: '.82rem', padding: '6px 14px' }}>
+              Try 30 free PAR questions →
+            </Link>
           </div>
         </div>
       )}
@@ -632,15 +631,14 @@ export default function ExamList() {
                     {checkoutLoading ? 'Loading…' : 'Subscribe — Bundle (PAR + IRA + CAX) — $39.99/month'}
                   </button>
                 )}
-                {selected === 'PAR' && (
+                {(selected === 'PAR' || selected === 'UAG') && (
                   <div style={{ textAlign: 'center', marginTop: 14 }}>
-                    <button
+                    <Link
+                      to={selected === 'UAG' ? '/part-107-practice-test' : '/par-practice-test'}
                       className="btn btn-ghost btn-block"
-                      onClick={startDemo}
-                      disabled={starting}
                       style={{ fontSize: '.88rem', opacity: 0.75 }}>
-                      {starting ? 'Loading…' : 'Try 30 free questions first →'}
-                    </button>
+                      Try 30 free questions first →
+                    </Link>
                   </div>
                 )}
               </div>
