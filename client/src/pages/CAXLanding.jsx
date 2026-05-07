@@ -139,7 +139,7 @@ export default function CAXLanding() {
             </div>
             <h1>Pass Your <span className="lp-accent">Commercial Pilot</span><br />Written Exam<br />First Try</h1>
             <p className="lp-hero-sub">
-              536 authentic FAA practice questions covering all commercial pilot topics. Performance, weight & balance, 14 CFR operations, and advanced flight planning — with full explanations and AI instructor support.
+              536 questions covering everything on the CAX — performance, weight & balance, commercial regs, and advanced operations. The hardest of the three written exams. This bank covers all of it, with full explanations and AI instructor support.
             </p>
             <div className="lp-hero-btns">
               <Link to="/register?plan=cax" className="lp-btn-hero">

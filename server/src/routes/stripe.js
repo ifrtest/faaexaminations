@@ -61,7 +61,6 @@ router.post('/checkout', requireAuth, async (req, res) => {
       payment_method_types: ['card'],
       payment_method_collection: 'always',
       line_items: [{ price: priceId, quantity: 1 }],
-      ...(isOneTime ? {} : { subscription_data: { trial_period_days: 3 } }),
       success_url: `${process.env.CLIENT_URL}/exams?subscribed=1&plan=${plan}&eid=${capiEventId}&sid={CHECKOUT_SESSION_ID}`,
       cancel_url:  `${process.env.CLIENT_URL}/exams`,
       metadata: { user_id: String(user.id), plan, capi_event_id: capiEventId },

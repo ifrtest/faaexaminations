@@ -139,7 +139,7 @@ export default function IRALanding() {
             </div>
             <h1>Pass Your <span className="lp-accent">IFR Written</span><br />Exam<br />First Try</h1>
             <p className="lp-hero-sub">
-              821 authentic FAA practice questions across all instrument rating topics. IFR charts, approach procedures, weather, and regulations — with full explanations and AI instructor support.
+              821 questions covering every IFR topic the FAA tests. Built for pilots who already fly and just need the written out of the way — full explanations, timed simulator, and AI instructor support.
             </p>
             <div className="lp-hero-btns">
               <Link to="/register?plan=ira" className="lp-btn-hero">
