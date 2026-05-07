@@ -9,9 +9,11 @@ export default function Register() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const plan = searchParams.get('plan');
+  const next = searchParams.get('next');
 
   useEffect(() => {
     if (user && plan) navigate(`/exams?buy=${plan}`, { replace: true });
+    else if (user && next) navigate(next, { replace: true });
     else if (user) navigate('/dashboard', { replace: true });
   }, [user]); // eslint-disable-line
 
@@ -32,6 +34,7 @@ export default function Register() {
       if (window.fbq) fbq('track', 'Lead', {}, data?.leadEventId ? { eventID: data.leadEventId } : {});
       if (window.gtag) gtag('event', 'sign_up', { method: 'email' });
       if (plan) navigate(`/checkout?plan=${plan}`, { replace: true });
+      else if (next) navigate(next, { replace: true });
       else navigate('/dashboard', { replace: true });
     } catch (ex) {
       setErr(ex.response?.data?.error || 'Could not create account.');
