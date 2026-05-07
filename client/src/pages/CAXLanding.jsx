@@ -155,7 +155,7 @@ export default function CAXLanding() {
               <div><div className="lp-hs-val">536</div><div className="lp-hs-lbl">CAX Questions</div></div>
               <div><div className="lp-hs-val">11</div><div className="lp-hs-lbl">Study Modules</div></div>
               <div><div className="lp-hs-val">AI</div><div className="lp-hs-lbl">Instructor Included</div></div>
-              <div><div className="lp-hs-val">14 CFR</div><div className="lp-hs-lbl">Fully Covered</div></div>
+              <div><div className="lp-hs-val">70%</div><div className="lp-hs-lbl">Passing Score</div></div>
             </div>
           </div>
 
