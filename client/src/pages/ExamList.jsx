@@ -283,44 +283,65 @@ export default function ExamList() {
         <div style={{ background: 'linear-gradient(90deg, #0b1f3a, #0d2849)', border: '1px solid rgba(48,172,226,0.3)', borderRadius: 12, padding: '20px 22px', marginBottom: 20 }}>
           <div style={{ marginBottom: 16 }}>
             <div style={{ color: '#fff', fontWeight: 700, fontSize: '.95rem', marginBottom: 3 }}>You're on a free account</div>
-            <div style={{ color: '#94b8d4', fontSize: '.88rem' }}>Try 30 free questions for any exam below — no credit card needed. Upgrade anytime to unlock everything.</div>
+            <div style={{ color: '#94b8d4', fontSize: '.88rem' }}>Try 30 free questions for any exam, or upgrade to unlock everything.</div>
           </div>
 
-          {/* Free practice test cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: 10, marginBottom: 16 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: 10 }}>
             {[
-              { label: 'Private Pilot (PAR)', sub: '30 free questions', to: '/par-practice-test', color: '#30ace2' },
-              { label: 'Instrument Rating (IRA)', sub: '30 free questions', to: '/ira-practice-test', color: '#a78bfa' },
-              { label: 'Commercial Pilot (CAX)', sub: '30 free questions', to: '/cax-practice-test', color: '#fb923c' },
-              { label: 'Part 107 Drone', sub: '30 free questions', to: '/part-107-practice-test', color: '#34d399' },
-            ].map(({ label, sub, to, color }) => (
-              <Link
-                key={to}
-                to={to}
+              { label: 'Private Pilot (PAR)', to: '/par-practice-test', plan: 'par', color: '#30ace2', price: '$24.99/mo' },
+              { label: 'Instrument Rating (IRA)', to: '/ira-practice-test', plan: 'ira', color: '#a78bfa', price: '$24.99/mo' },
+              { label: 'Commercial Pilot (CAX)', to: '/cax-practice-test', plan: 'cax', color: '#fb923c', price: '$24.99/mo' },
+              { label: 'Part 107 Drone', to: '/part-107-practice-test', plan: 'uag', color: '#34d399', price: '$37.99' },
+            ].map(({ label, to, plan, color, price }) => (
+              <div
+                key={plan}
                 style={{
-                  display: 'block',
                   background: 'rgba(255,255,255,0.05)',
                   border: `1px solid ${color}44`,
                   borderRadius: 10,
                   padding: '12px 14px',
-                  textDecoration: 'none',
-                  transition: 'background 0.15s',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 8,
                 }}>
-                <div style={{ color, fontWeight: 700, fontSize: '.82rem', marginBottom: 2 }}>FREE</div>
-                <div style={{ color: '#fff', fontWeight: 600, fontSize: '.85rem', lineHeight: 1.3 }}>{label}</div>
-                <div style={{ color: '#94b8d4', fontSize: '.78rem', marginTop: 3 }}>{sub} →</div>
-              </Link>
+                <div>
+                  <div style={{ color, fontWeight: 700, fontSize: '.78rem', marginBottom: 2 }}>FREE</div>
+                  <div style={{ color: '#fff', fontWeight: 600, fontSize: '.85rem', lineHeight: 1.3 }}>{label}</div>
+                </div>
+                <Link
+                  to={to}
+                  style={{
+                    display: 'block',
+                    textAlign: 'center',
+                    background: 'rgba(255,255,255,0.07)',
+                    border: `1px solid ${color}55`,
+                    borderRadius: 7,
+                    padding: '7px 10px',
+                    color: '#fff',
+                    fontSize: '.78rem',
+                    fontWeight: 600,
+                    textDecoration: 'none',
+                  }}>
+                  30 free questions →
+                </Link>
+                <button
+                  onClick={() => startCheckout(plan)}
+                  disabled={checkoutLoading}
+                  style={{
+                    background: color,
+                    border: 'none',
+                    borderRadius: 7,
+                    padding: '7px 10px',
+                    color: plan === 'uag' ? '#041018' : '#fff',
+                    fontSize: '.78rem',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    whiteSpace: 'nowrap',
+                  }}>
+                  {checkoutLoading ? '…' : `Subscribe — ${price} →`}
+                </button>
+              </div>
             ))}
-          </div>
-
-          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <button
-              className="btn btn-primary"
-              style={{ whiteSpace: 'nowrap' }}
-              onClick={() => startCheckout('par')}
-              disabled={checkoutLoading}>
-              {checkoutLoading ? 'Loading…' : 'Upgrade — from $24.99/mo →'}
-            </button>
           </div>
         </div>
       )}
