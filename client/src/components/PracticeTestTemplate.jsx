@@ -185,7 +185,9 @@ export default function PracticeTestTemplate({
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <Link to="/login" className="lp-nav-link">Login</Link>
-          <Link to={registerPath} className="lp-btn-hero" style={{ padding: '8px 18px', fontSize: 14 }}>Start Free →</Link>
+          <Link to={registerPath} className="lp-btn-hero" style={{ padding: '8px 18px', fontSize: 14 }}>
+            {planParam === 'uag' ? 'Get Access →' : 'Subscribe →'}
+          </Link>
         </div>
       </nav>
 
@@ -394,14 +396,16 @@ export default function PracticeTestTemplate({
                   </p>
                 )}
 
-                {/* Guarantee badge */}
-                <div className="guarantee-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 14, background: 'rgba(34,197,94,0.08)', border: '1px solid rgba(34,197,94,0.35)', borderRadius: 14, padding: '16px 24px', marginBottom: 28, maxWidth: 480, textAlign: 'left' }}>
-                  <span style={{ fontSize: 28, flexShrink: 0 }}>🛡️</span>
-                  <div>
-                    <div style={{ fontSize: 13, fontWeight: 800, color: '#22c55e', letterSpacing: 1, marginBottom: 3 }}>PASS GUARANTEE</div>
-                    <div style={{ fontSize: 14, color: 'var(--lp-text2)', lineHeight: 1.5 }}>Complete the full program and still fail your real FAA exam — we refund every dollar. <a href="/cancel-policy" style={{ color: 'var(--lp-accent)', textDecoration: 'none' }}>See terms →</a></div>
+                {/* Guarantee badge — PAR/IRA/CAX only, not Part 107 */}
+                {planParam !== 'uag' && (
+                  <div className="guarantee-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 14, background: 'rgba(34,197,94,0.08)', border: '1px solid rgba(34,197,94,0.35)', borderRadius: 14, padding: '16px 24px', marginBottom: 28, maxWidth: 480, textAlign: 'left' }}>
+                    <span style={{ fontSize: 28, flexShrink: 0 }}>🛡️</span>
+                    <div>
+                      <div style={{ fontSize: 13, fontWeight: 800, color: '#22c55e', letterSpacing: 1, marginBottom: 3 }}>PASS GUARANTEE</div>
+                      <div style={{ fontSize: 14, color: 'var(--lp-text2)', lineHeight: 1.5 }}>Complete the full program and still fail your real FAA exam — we refund every dollar. <a href="/cancel-policy" style={{ color: 'var(--lp-accent)', textDecoration: 'none' }}>See terms →</a></div>
+                    </div>
                   </div>
-                </div>
+                )}
 
                 <div style={{ marginBottom: 16 }}>
                   <Link
@@ -413,7 +417,9 @@ export default function PracticeTestTemplate({
                   </Link>
                 </div>
                 <div style={{ fontSize: 13, color: 'var(--lp-text3)' }}>
-                  {price}/month · Less than one flight lesson · Cancel the moment you pass
+                  {planParam === 'uag'
+                    ? `${price} one-time · Lifetime access — no subscription`
+                    : `${price}/month · Less than one flight lesson · Cancel the moment you pass`}
                 </div>
               </div>
             </div>
@@ -429,9 +435,13 @@ export default function PracticeTestTemplate({
                 The real exam draws from {questionCount}+ questions. See every possible question before test day.
               </div>
               <Link to={registerPath} className="lp-btn-hero" style={{ fontSize: 15, padding: '12px 30px' }}>
-                Get Full {questionCount}+ Question Bank — {price}/month →
+                {planParam === 'uag'
+                  ? `Get Full ${questionCount}+ Question Bank — ${price} one-time →`
+                  : `Get Full ${questionCount}+ Question Bank — ${price}/month →`}
               </Link>
-              <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)' }}>Pass guarantee · Cancel anytime</div>
+              <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)' }}>
+                {planParam === 'uag' ? 'Lifetime access — no subscription' : 'Pass guarantee · Cancel anytime'}
+              </div>
             </div>
           )}
         </div>
@@ -462,15 +472,18 @@ export default function PracticeTestTemplate({
           <div className="lp-hero-badge" style={{ display: 'inline-flex', marginBottom: 24 }}>THE REAL EXAM DRAWS FROM {questionCount}+ QUESTIONS</div>
           <h2 style={{ fontSize: 'clamp(28px, 4vw, 46px)', marginBottom: 16 }}>Ready to Study the Full Bank?</h2>
           <p style={{ color: 'var(--lp-text2)', fontSize: 17, lineHeight: 1.7, marginBottom: 36 }}>
-            Every question the FAA can ask — with full explanations, a timed simulator, and AI instructor support. {price}/month. Cancel the moment you pass.
+            Every question the FAA can ask — with full explanations, a timed simulator, and AI instructor support.{' '}
+            {planParam === 'uag' ? `${price} one-time. Lifetime access.` : `${price}/month. Cancel the moment you pass.`}
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 20 }}>
-            <Link to={registerPath} className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>Get Started →</Link>
+            <Link to={registerPath} className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>
+              {planParam === 'uag' ? `Get Full Access — ${price} →` : `Subscribe — ${price}/mo →`}
+            </Link>
             <Link to={productPath} className="lp-btn-outline" style={{ fontSize: 15 }}>See What's Included</Link>
           </div>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#22c55e' }}>
             <span>🛡️</span>
-            <span>Pass guarantee · Cancel anytime</span>
+            <span>{planParam === 'uag' ? 'Lifetime access — no subscription' : 'Pass guarantee · Cancel anytime'}</span>
           </div>
         </div>
       </section>
