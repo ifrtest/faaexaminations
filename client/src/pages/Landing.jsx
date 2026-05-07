@@ -237,7 +237,7 @@ export default function Landing() {
               </div>
               <div className="lp-product-body">
                 <div className="lp-product-name">Private Pilot Package</div>
-                <div className="lp-product-desc">Complete preparation for the FAA Private Pilot Airman Knowledge Test (PAR). 11 modules covering the full FAA syllabus. <Link to="/par" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
+                <div className="lp-product-desc">1,469 questions across 11 topics — every concept the FAA can test you on. Practice by topic, track your weak areas, and run timed mock exams until 70% feels easy. <Link to="/par" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
                 <ul className="lp-product-features">
                   <li>1,469 Private Pilot questions</li>
                   <li>11 categorized study modules</li>
@@ -259,7 +259,7 @@ export default function Landing() {
               </div>
               <div className="lp-product-body">
                 <div className="lp-product-name">Instrument Rating Package</div>
-                <div className="lp-product-desc">Complete preparation for the FAA Instrument Rating Airman Knowledge Test (IRA). Master IFR procedures, charts, and regulations. <Link to="/ira" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
+                <div className="lp-product-desc">900+ questions covering every IFR topic — holds, approaches, weather, charts, and regs. Built for pilots who already fly and need to prove it on paper. <Link to="/ira" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
                 <ul className="lp-product-features">
                   <li>821 Instrument Rating questions</li>
                   <li>Categorized study modules</li>
@@ -281,7 +281,7 @@ export default function Landing() {
               </div>
               <div className="lp-product-body">
                 <div className="lp-product-name">Commercial Pilot Package</div>
-                <div className="lp-product-desc">Targeted prep for the FAA Commercial Pilot Airman Knowledge Test (CAX). 14 CFR regulations, performance, and advanced operations. <Link to="/cax" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
+                <div className="lp-product-desc">1,000+ questions on performance, advanced regs, and commercial operations. The CAX is the hardest of the three — this bank covers everything they'll throw at you. <Link to="/cax" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
                 <ul className="lp-product-features">
                   <li>536 Commercial Pilot questions</li>
                   <li>11 categorized study modules</li>
@@ -303,7 +303,7 @@ export default function Landing() {
               </div>
               <div className="lp-product-body">
                 <div className="lp-product-name">Part 107 Remote Pilot Package</div>
-                <div className="lp-product-desc">Complete prep for the FAA Part 107 Remote Pilot knowledge test. Drone regulations, airspace, weather, and operations. <Link to="/part-107" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
+                <div className="lp-product-desc">265 questions covering everything on the Part 107 test — airspace, weather, regs, and safety. Most people pass in under 2 weeks. One payment, lifetime access. <Link to="/part-107" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
                 <ul className="lp-product-features">
                   <li>265 Part 107 practice questions</li>
                   <li>6 categorized study modules</li>
