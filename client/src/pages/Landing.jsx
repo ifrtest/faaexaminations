@@ -312,9 +312,11 @@ export default function Landing() {
                   <li>AI Instructor explanations</li>
                   <li>FAA compliant · 2026 updated</li>
                 </ul>
-                <div className="lp-product-price">$37.99</div>
-                <div className="lp-product-price-sub">One-time · <strong style={{ color: '#f5c842' }}>Lifetime access</strong></div>
-                <Link to="/register?plan=uag" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
+                <div className="lp-product-price" style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
+                  $37.99 <span style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--lp-text3)', textDecoration: 'line-through' }}>$57.99</span>
+                </div>
+                <div className="lp-product-price-sub">One-time · <strong style={{ color: '#f5c842' }}>Lifetime access</strong> · <span style={{ color: '#a78bfa' }}>Price rises June 1</span></div>
+                <Link to="/register?plan=uag" className="lp-btn-product lp-btn-product-secondary">Lock In $37.99 →</Link>
               </div>
             </div>
 

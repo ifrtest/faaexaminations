@@ -202,10 +202,24 @@ const FAQS = [
   },
 ];
 
+const PROMO_END = new Date('2026-06-01T04:00:00Z'); // June 1 midnight EST
+
+function useCountdown() {
+  const [ms, setMs] = useState(() => Math.max(0, PROMO_END - Date.now()));
+  useEffect(() => {
+    const id = setInterval(() => setMs(Math.max(0, PROMO_END - Date.now())), 60000);
+    return () => clearInterval(id);
+  }, []);
+  const days  = Math.floor(ms / 86400000);
+  const hours = Math.floor((ms % 86400000) / 3600000);
+  return { days, hours, expired: ms === 0 };
+}
+
 export default function Part107Landing() {
   const { user } = useAuth();
   const navRef = useRef(null);
   const [openFaq, setOpenFaq] = useState(null);
+  const { days, hours, expired } = useCountdown();
 
   useEffect(() => {
     if (window.fbq) fbq('track', 'ViewContent', { content_name: 'Part 107 Remote Pilot (UAG)', content_ids: ['uag'], content_type: 'product', value: 37.99, currency: 'USD' });
@@ -308,6 +322,16 @@ export default function Part107Landing() {
         </div>
       </nav>
 
+      {/* INTRO PRICE BANNER */}
+      {!expired && (
+        <div style={{ background: 'linear-gradient(90deg,#7c3aed,#4f46e5)', padding: '10px 20px', textAlign: 'center', fontSize: 14, fontWeight: 600, color: '#fff', letterSpacing: '.02em' }}>
+          🔒 Introductory price — <strong style={{ color: '#fde68a' }}>$37.99 lifetime access</strong>. Increases to $57.99 on June 1. &nbsp;
+          <span style={{ background: 'rgba(255,255,255,0.15)', borderRadius: 6, padding: '2px 10px', fontSize: 13 }}>
+            {days}d {hours}h left
+          </span>
+        </div>
+      )}
+
       {/* HERO */}
       <section className="lp-hero lp-hero-part107" style={{ backgroundImage: 'url(/drone_image_faa_examinations.jpg)', backgroundSize: 'cover', backgroundPosition: 'center 40%' }}>
         <div className="lp-hero-bg" style={{ background: 'linear-gradient(135deg,rgba(5,88,102,0.42) 0%,rgba(8,14,20,0.38) 55%,rgba(8,14,20,0.18) 100%)', position: 'absolute', inset: 0 }} />
@@ -343,12 +367,16 @@ export default function Part107Landing() {
 
           {/* RIGHT — pricing card (desktop only, hidden on mobile via CSS) */}
           <div className="lp-hero-pricing-card">
-            <div style={{ position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)', background: 'var(--lp-blue)', color: '#fff', padding: '5px 18px', borderRadius: 20, fontSize: 11, fontWeight: 700, fontFamily: 'Share Tech Mono, monospace', letterSpacing: 1, whiteSpace: 'nowrap' }}>MOST STUDENTS PASS IN 2–3 WEEKS</div>
+            <div style={{ position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)', background: '#7c3aed', color: '#fff', padding: '5px 18px', borderRadius: 20, fontSize: 11, fontWeight: 700, fontFamily: 'Share Tech Mono, monospace', letterSpacing: 1, whiteSpace: 'nowrap' }}>🔒 INTRODUCTORY PRICE — ENDS JUNE 1</div>
             <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 18, fontWeight: 700, color: '#fff', marginBottom: 6, textAlign: 'center', marginTop: 8 }}>Part 107 Package</div>
-            <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 58, fontWeight: 900, color: '#fff', lineHeight: 1, textAlign: 'center' }}>$37.99</div>
+            <div style={{ textAlign: 'center', marginBottom: 2 }}>
+              <span style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 58, fontWeight: 900, color: '#fff', lineHeight: 1 }}>$37.99</span>
+              <span style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 24, fontWeight: 700, color: 'var(--lp-text3)', textDecoration: 'line-through', marginLeft: 10, verticalAlign: 'middle' }}>$57.99</span>
+            </div>
             <div style={{ fontSize: 13, marginBottom: 24, textAlign: 'center' }}>
               <span style={{ color: 'var(--lp-text3)' }}>one-time · </span>
               <strong style={{ color: '#f5c842', fontWeight: 800 }}>LIFETIME ACCESS</strong>
+              {!expired && <span style={{ color: '#a78bfa', marginLeft: 8, fontSize: 12 }}>· {days}d {hours}h left</span>}
             </div>
             <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px' }}>
               {['265 practice questions', 'Airspace & LAANC coverage', 'Timed FAA exam simulator', 'Full explanations on every question', 'AI instructor support', 'All FAA Part 107 references', 'TRUST Recreational Safety Test — free', 'No aviation experience required', 'Pay once — access forever'].map((item, i) => (
@@ -358,8 +386,8 @@ export default function Part107Landing() {
                 </li>
               ))}
             </ul>
-            <Link to="/register?plan=uag" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Get Full Access — $37.99 →</Link>
-            <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>Try the free demo below · Pay once, keep access forever</div>
+            <Link to="/register?plan=uag" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Lock In $37.99 Before June 1 →</Link>
+            <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>Rises to $57.99 on June 1 · Pay once, keep access forever</div>
           </div>
         </div>
       </section>
@@ -374,12 +402,16 @@ export default function Part107Landing() {
           <h2>Simple, Honest Pricing</h2>
           <p className="lp-section-sub" style={{ margin: '0 auto 52px' }}>One price. Everything included. <strong style={{ color: '#f5c842' }}>Lifetime access.</strong></p>
           <div className="fade-up" style={{ maxWidth: 440, margin: '0 auto', background: 'rgba(48,172,226,0.06)', border: '2px solid var(--lp-border2)', borderRadius: 20, padding: '48px 40px', position: 'relative' }}>
-            <div style={{ position: 'absolute', top: -16, left: '50%', transform: 'translateX(-50%)', background: 'var(--lp-blue)', color: '#fff', padding: '6px 20px', borderRadius: 20, fontSize: 12, fontWeight: 700, fontFamily: 'Share Tech Mono, monospace', letterSpacing: 1, whiteSpace: 'nowrap' }}>MOST STUDENTS PASS IN 2–3 WEEKS</div>
+            <div style={{ position: 'absolute', top: -16, left: '50%', transform: 'translateX(-50%)', background: '#7c3aed', color: '#fff', padding: '6px 20px', borderRadius: 20, fontSize: 12, fontWeight: 700, fontFamily: 'Share Tech Mono, monospace', letterSpacing: 1, whiteSpace: 'nowrap' }}>🔒 INTRODUCTORY PRICE — ENDS JUNE 1</div>
             <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 8 }}>Part 107 Package</div>
-            <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 64, fontWeight: 900, color: '#fff', lineHeight: 1 }}>$37.99</div>
+            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 12, marginBottom: 4 }}>
+              <span style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 64, fontWeight: 900, color: '#fff', lineHeight: 1 }}>$37.99</span>
+              <span style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 28, fontWeight: 700, color: 'var(--lp-text3)', textDecoration: 'line-through' }}>$57.99</span>
+            </div>
             <div style={{ fontSize: 14, marginBottom: 36 }}>
               <span style={{ color: 'var(--lp-text3)' }}>one-time · </span>
               <strong style={{ color: '#f5c842', fontWeight: 800 }}>LIFETIME ACCESS</strong>
+              {!expired && <span style={{ color: '#a78bfa', marginLeft: 8, fontSize: 13 }}>· {days}d {hours}h left</span>}
             </div>
             <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 36px', textAlign: 'left' }}>
               {['265 practice questions', 'Airspace & LAANC authorization coverage', 'Timed FAA exam simulator', 'Full explanations on every question', 'AI instructor support', 'All FAA Part 107 references included', 'TRUST Recreational Safety Test — free', 'No aviation experience required', 'Pay once — access forever'].map((item, i) => (
@@ -389,8 +421,8 @@ export default function Part107Landing() {
                 </li>
               ))}
             </ul>
-            <Link to="/register?plan=uag" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Start Studying Part 107 Now</Link>
-            <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}>Try the free demo above · Pay once, keep access forever</div>
+            <Link to="/register?plan=uag" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Lock In $37.99 Before June 1 →</Link>
+            <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}>Rises to $57.99 on June 1 · Pay once, keep access forever</div>
           </div>
         </div>
       </section>

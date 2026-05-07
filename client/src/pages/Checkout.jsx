@@ -359,6 +359,11 @@ export default function Checkout() {
             {info.price.includes('one-time') ? 'One-Time Purchase' : 'Monthly Subscription'}
           </div>
           <h1 style={{ color: '#fff', margin: 0, fontSize: '1.5rem', fontWeight: 800 }}>{info.label}</h1>
+          {info.price.includes('one-time') && (
+            <div style={{ marginTop: 10, background: 'rgba(124,58,237,0.15)', border: '1px solid rgba(124,58,237,0.4)', borderRadius: 8, padding: '8px 14px', fontSize: 13, color: '#c4b5fd' }}>
+              🔒 Introductory price — rises to $57.99 on June 1. Lock it in now.
+            </div>
+          )}
         </div>
 
         {loading && (
