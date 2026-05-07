@@ -204,6 +204,7 @@ export default function Landing() {
           <p className="lp-section-sub">Expertly crafted modules for Private and Commercial certificates. All FAA references included — no textbooks needed.</p>
           <div className="lp-products-grid fade-up">
 
+            {/* 1 — BUNDLE (featured) */}
             <div className="lp-product-card lp-featured lp-product-bundle">
               <div className="lp-product-img">
                 <img src="/plane-bundle.webp" alt="Pilot Certificate Bundle — PAR, IRA, and CAX exam prep combined" />
@@ -230,6 +231,34 @@ export default function Landing() {
               </div>
             </div>
 
+            {/* 2 — PART 107 (intro pricing) */}
+            <div className="lp-product-card" style={{ position: 'relative' }}>
+              <div style={{ position: 'absolute', top: 14, right: 14, zIndex: 2, background: 'linear-gradient(90deg,#7c3aed,#4f46e5)', color: '#fff', fontSize: 11, fontWeight: 800, padding: '4px 12px', borderRadius: 20, letterSpacing: '.06em' }}>🔒 INTRO PRICE · ENDS JUNE 1</div>
+              <div className="lp-product-img">
+                <img src="/drone-part107.webp" alt="Part 107 Remote Pilot" />
+                <div className="lp-product-img-overlay" />
+              </div>
+              <div className="lp-product-body">
+                <div className="lp-product-name">Part 107 Remote Pilot Package</div>
+                <div className="lp-product-desc">265 questions covering everything on the Part 107 test — airspace, weather, regs, and safety. Most people pass in under 2 weeks. One payment, lifetime access. <Link to="/part-107" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
+                <ul className="lp-product-features">
+                  <li>265 Part 107 practice questions</li>
+                  <li>6 categorized study modules</li>
+                  <li>Timed 60-question simulator</li>
+                  <li>Full regulation references</li>
+                  <li>AI Instructor explanations</li>
+                  <li>FAA compliant · 2026 updated</li>
+                </ul>
+                <div className="lp-product-price" style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
+                  $37.99
+                  <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#f87171', textDecoration: 'line-through' }}>$57.99</span>
+                </div>
+                <div className="lp-product-price-sub">One-time · <strong style={{ color: '#f5c842' }}>Lifetime access</strong> · <span style={{ color: '#c4b5fd', fontWeight: 600 }}>↑ $57.99 on June 1</span></div>
+                <Link to="/register?plan=uag" className="lp-btn-product lp-btn-product-secondary">Lock In $37.99 →</Link>
+              </div>
+            </div>
+
+            {/* 3 — PAR */}
             <div className="lp-product-card">
               <div className="lp-product-img">
                 <img src="/plane-par.webp" alt="Private Pilot — FAA Private Pilot Airman Knowledge Test prep" />
@@ -252,6 +281,7 @@ export default function Landing() {
               </div>
             </div>
 
+            {/* 4 — IRA */}
             <div className="lp-product-card">
               <div className="lp-product-img">
                 <img src="/plane-ira.webp" alt="Instrument Rating — FAA IRA Airman Knowledge Test prep" />
@@ -274,6 +304,7 @@ export default function Landing() {
               </div>
             </div>
 
+            {/* 5 — CAX */}
             <div className="lp-product-card">
               <div className="lp-product-img">
                 <img src="/plane-cax.webp" alt="Commercial Pilot — FAA CAX Airman Knowledge Test prep" />
@@ -293,30 +324,6 @@ export default function Landing() {
                 <div className="lp-product-price">$24.99</div>
                 <div className="lp-product-price-sub"><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>Pass guarantee</Link> · Cancel anytime</div>
                 <Link to="/register?plan=cax" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
-              </div>
-            </div>
-
-            <div className="lp-product-card">
-              <div className="lp-product-img">
-                <img src="/drone-part107.webp" alt="Part 107 Remote Pilot" />
-                <div className="lp-product-img-overlay" />
-              </div>
-              <div className="lp-product-body">
-                <div className="lp-product-name">Part 107 Remote Pilot Package</div>
-                <div className="lp-product-desc">265 questions covering everything on the Part 107 test — airspace, weather, regs, and safety. Most people pass in under 2 weeks. One payment, lifetime access. <Link to="/part-107" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
-                <ul className="lp-product-features">
-                  <li>265 Part 107 practice questions</li>
-                  <li>6 categorized study modules</li>
-                  <li>Timed 60-question simulator</li>
-                  <li>Full regulation references</li>
-                  <li>AI Instructor explanations</li>
-                  <li>FAA compliant · 2026 updated</li>
-                </ul>
-                <div className="lp-product-price" style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
-                  $37.99 <span style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--lp-text3)', textDecoration: 'line-through' }}>$57.99</span>
-                </div>
-                <div className="lp-product-price-sub">One-time · <strong style={{ color: '#f5c842' }}>Lifetime access</strong> · <span style={{ color: '#a78bfa' }}>Price rises June 1</span></div>
-                <Link to="/register?plan=uag" className="lp-btn-product lp-btn-product-secondary">Lock In $37.99 →</Link>
               </div>
             </div>
 
