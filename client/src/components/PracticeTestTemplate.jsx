@@ -124,7 +124,7 @@ export default function PracticeTestTemplate({
         .radar-ring {
           position: absolute;
           border-radius: 50%;
-          border: 1px solid rgba(48,172,226,0.25);
+          border: 2px solid rgba(48,172,226,0.5);
           animation: radarRing 4s ease-out infinite;
           pointer-events: none;
         }
@@ -201,7 +201,7 @@ export default function PracticeTestTemplate({
               width: size,
               height: size,
               borderRadius: '50%',
-              border: '1px solid rgba(48,172,226,0.07)',
+              border: '1px solid rgba(48,172,226,0.22)',
             }} />
           ))}
           {/* Animated pulse rings */}
