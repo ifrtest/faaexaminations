@@ -1,4 +1,5 @@
 // client/src/pages/ExamList.jsx
+const UAG_PROMO_ACTIVE = Date.now() < new Date('2026-06-01T04:00:00Z').getTime();
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { quizzes as quizApi } from '../api/client';
@@ -495,7 +496,9 @@ export default function ExamList() {
                     <div style={{ fontSize: '.75rem', color: 'rgba(255,255,255,.6)', marginTop: 2 }}>
                       {e.isBundle
                         ? <span>PAR + IRA + CAX · <span style={{ color: '#f7c948', fontWeight: 600 }}>$39.99/month</span> <span style={{ opacity: .7 }}>· save $35/month vs buying separately</span></span>
-                        : `${e.question_count} questions · ${e.passing_score}% to pass`}
+                        : e.code === 'UAG' && UAG_PROMO_ACTIVE
+                          ? <span>{e.question_count} questions · <span style={{ color: '#fff', fontWeight: 700 }}>$37.99</span> <span style={{ textDecoration: 'line-through', opacity: .5 }}>$57.99</span> · <span style={{ color: '#a78bfa', fontWeight: 600 }}>intro price · rises June 1</span></span>
+                          : `${e.question_count} questions · ${e.passing_score}% to pass`}
                     </div>
                   </div>
 
@@ -617,7 +620,7 @@ export default function ExamList() {
                   onClick={() => startCheckout(EXAM_PLAN[selected])}
                   disabled={checkoutLoading}
                   style={{ marginBottom: 8 }}>
-                  {checkoutLoading ? 'Loading…' : selected === 'UAG' ? 'Get Part 107 — $37.99 one-time' : `Subscribe — ${selected} — $24.99/month`}
+                  {checkoutLoading ? 'Loading…' : selected === 'UAG' ? `Get Part 107 — $37.99 one-time${UAG_PROMO_ACTIVE ? ' · rises June 1' : ''}` : `Subscribe — ${selected} — $24.99/month`}
                 </button>
                 {selected !== 'UAG' && (
                   <button
