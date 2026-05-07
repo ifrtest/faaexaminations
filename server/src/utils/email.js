@@ -449,6 +449,130 @@ function cheatsheetDeliveryEmail(plan) {
   );
 }
 
+// ---------- Cheatsheet lead nurture (non-registered leads) ---------------
+
+const CHEATSHEET_NURTURE_META = {
+  par: { label: 'Private Pilot (PAR)',     qcount: '1,469', price: '$24.99/month',    registerUrl: '/register?plan=par', practiceUrl: '/par-practice-test',       examName: 'PAR written',       banner: 'email-banner-plane.jpg' },
+  ira: { label: 'Instrument Rating (IRA)', qcount: '900+',  price: '$24.99/month',    registerUrl: '/register?plan=ira', practiceUrl: '/ira-practice-test',       examName: 'IRA written',       banner: 'email-banner-plane.jpg' },
+  cax: { label: 'Commercial Pilot (CAX)',  qcount: '1,000+',price: '$24.99/month',    registerUrl: '/register?plan=cax', practiceUrl: '/cax-practice-test',       examName: 'CAX written',       banner: 'email-banner-plane.jpg' },
+  uag: { label: 'Part 107 Remote Pilot',   qcount: '265',   price: '$37.99 one-time', registerUrl: '/register?plan=uag', practiceUrl: '/part-107-practice-test',  examName: 'Part 107 written',  banner: 'email-banner-drone.jpg' },
+};
+
+function cheatsheetNurtureDay2(email, plan) {
+  const m = CHEATSHEET_NURTURE_META[plan] || CHEATSHEET_NURTURE_META.par;
+  const site = SITE();
+  const scenarioLine = plan === 'uag'
+    ? `The FAA doesn't ask <em>"what's the maximum altitude for a Part 107 flight?"</em> — they put you in a controlled airspace scenario with a LAANC authorization question and four near-identical answer choices. Knowing the limit is step one. Applying it correctly under pressure is the actual exam.`
+    : plan === 'ira'
+    ? `The FAA doesn't ask <em>"what's the VOR check interval?"</em> — they embed it in a cross-country IFR planning scenario with four near-identical answers. Knowing the rule is step one. Applying it in context is the actual exam.`
+    : plan === 'cax'
+    ? `The FAA doesn't ask <em>"define complex aircraft"</em> — they put you in a scenario with a specific aircraft and ask which regulations apply. Knowing the definition is step one. Applying it correctly is the actual exam.`
+    : `The FAA doesn't ask <em>"what's the bottle-to-throttle rule?"</em> — they describe a PIC, a 1 PM departure, two drinks at 9 AM, and ask which FAR applies. Knowing the number is step one. Applying it under pressure with four plausible choices is the actual exam.`;
+
+  return shell(`The cheat sheet won't pass you. This will.`, `
+    <p style="margin:0 0 16px">You downloaded the ${m.label} cheat sheet. Good start.</p>
+    <p style="margin:0 0 16px">Here's what nobody says out loud:</p>
+    <p style="margin:0 0 20px;padding:16px 20px;background:#0b1622;border-left:3px solid ${ACCENT};border-radius:0 8px 8px 0;font-size:15px;line-height:1.7;color:#e5eef5"><strong style="color:#fff">The cheat sheet tells you the rules. The exam tests whether you can apply them.</strong></p>
+    <p style="margin:0 0 20px">${scenarioLine}</p>
+    <p style="margin:0 0 8px;font-weight:700;color:#fff">The math:</p>
+    <ul style="margin:0 0 20px;padding-left:20px;color:${MUTED};line-height:2.2">
+      <li>The ${m.examName} draws <strong style="color:#fff">60 questions</strong> from a bank of <strong style="color:#fff">${m.qcount} possible questions</strong></li>
+      <li>You need <strong style="color:#fff">70% to pass</strong> — that's 42 right answers</li>
+      <li>Most people who fail miss by <strong style="color:#fff">3–5 questions in one weak topic area</strong> — not overall unpreparedness</li>
+    </ul>
+    <p style="margin:0 0 20px">The gap between the cheat sheet and a passing score is practice. Try the free test below — no account, no card. See exactly where you stand by topic.</p>
+    ${button(`${site}${m.practiceUrl}`, 'Take the Free Practice Test →')}
+    <p style="color:${MUTED};font-size:13px;margin:20px 0 4px">30 free questions · no signup required · instant topic-by-topic scoring</p>
+    <p style="color:${MUTED};font-size:12px;margin:0">Reply "unsubscribe" to stop receiving these emails.</p>
+  `, null, `${site}/${m.banner}`);
+}
+
+function cheatsheetNurtureDay4(email, plan) {
+  const m = CHEATSHEET_NURTURE_META[plan] || CHEATSHEET_NURTURE_META.par;
+  const site = SITE();
+  const isUag = plan === 'uag';
+  const offerLine = isUag
+    ? `<p style="margin:0 0 20px">Part 107 full access is <strong style="color:${ACCENT}">$37.99 — one payment, no subscription, lifetime access.</strong> That's less than one hour with an aviation ground instructor.</p>`
+    : `<p style="margin:0 0 20px">${m.label} full access is <strong style="color:${ACCENT}">$24.99/month — cancel anytime, no penalty.</strong> Most people are exam-ready in 2–3 weeks.</p>`;
+
+  return shell(`How many of the question bank have you seen?`, `
+    <p style="margin:0 0 16px">The FAA writes every knowledge test from a fixed question bank.</p>
+    <p style="margin:0 0 16px">For the ${m.examName}: <strong style="color:#fff">${m.qcount} questions in the pool. 60 on your exam. 2.5 hours to answer them.</strong></p>
+    <p style="margin:0 0 16px;color:${MUTED}">Every question you haven't seen before costs you 10–30 seconds of extra reading. Enough unfamiliar phrasing and you're rushing the last 15. That's how people with solid knowledge still fail — not because they didn't know the material, but because they ran out of runway.</p>
+    <p style="margin:0 0 8px;font-weight:700;color:#fff">Exposure is the strategy.</p>
+    <p style="margin:0 0 24px;color:${MUTED}">The more questions you've worked through before exam day, the fewer surprises on the real one. Our platform gives you the full bank — sorted by topic, with explanations — so nothing catches you cold.</p>
+    <div style="margin:0 0 24px;padding:20px;background:#0b1622;border:1px solid #1e2d3d;border-radius:10px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.08em;color:${MUTED};text-transform:uppercase;margin-bottom:14px">What's included</div>
+      <table style="width:100%;border-collapse:collapse;font-size:14px">
+        ${[
+          [`Full ${m.qcount}-question bank`,                        '✅'],
+          ['Questions sorted by FAA topic area',                    '✅'],
+          ['Timed mock exam simulator (60 q · 2.5 hrs)',            '✅'],
+          ['Detailed explanations on every answer',                 '✅'],
+          ['AI Instructor for anything that doesn\'t click',        '✅'],
+          ['Topic-by-topic readiness dashboard',                    '✅'],
+        ].map(([feat, check]) => `
+          <tr style="border-bottom:1px solid #1e2d3d">
+            <td style="padding:9px 10px 9px 0;color:#c8d8e8">${feat}</td>
+            <td style="padding:9px 0;text-align:right;color:#22c55e;font-weight:700">${check}</td>
+          </tr>
+        `).join('')}
+      </table>
+    </div>
+    ${offerLine}
+    <p style="margin:0 0 20px;padding:14px 18px;background:#0b1520;border:1px solid #1e2d3d;border-radius:8px;font-size:13px;color:${MUTED}">
+      🛡️ <strong style="color:#fff">Pass Guarantee:</strong> Score 80%+ on a mock exam or we refund every dollar. No fine print.
+    </p>
+    ${button(`${site}${m.registerUrl}`, `Get Started — ${isUag ? '$37.99 Lifetime' : '$24.99/month'} →`)}
+    <p style="color:${MUTED};font-size:12px;margin:20px 0 0">Reply "unsubscribe" to stop receiving these emails.</p>
+  `, null, `${site}/${m.banner}`);
+}
+
+function cheatsheetNurtureDay7(email, plan) {
+  const m = CHEATSHEET_NURTURE_META[plan] || CHEATSHEET_NURTURE_META.par;
+  const site = SITE();
+  const isUag = plan === 'uag';
+  const priceDetail = isUag ? '$37.99 one-time · lifetime access · no subscription.' : `$24.99/month · cancel the month you pass.`;
+
+  return shell(`Score 80%+ or we refund every dollar.`, `
+    <p style="margin:0 0 16px">One week since you grabbed the cheat sheet. Let me make this simple.</p>
+    <p style="margin:0 0 24px;padding:20px 24px;background:#0b1622;border:2px solid ${ACCENT};border-radius:10px;font-size:16px;line-height:1.7;color:#fff">
+      If you use FAAExaminations.com and don't score <strong style="color:${ACCENT}">80% or higher on a mock exam</strong>, we refund you in full. No questions asked. No forms to fill out.
+    </p>
+    <p style="margin:0 0 16px;color:${MUTED}">We can make that guarantee because the method works when you use it: practice by topic, read the explanations, run mock exams until 80% feels automatic. That's it. Two to three weeks of 30–45 minutes a day.</p>
+    <p style="margin:0 0 8px;font-weight:700;color:#fff">What you get:</p>
+    <ul style="margin:0 0 20px;padding-left:20px;color:${MUTED};line-height:2.2">
+      <li><strong style="color:#fff">${m.qcount} questions</strong> — the full ${m.examName} bank</li>
+      <li><strong style="color:#fff">Topic scores</strong> — pinpoint exactly where you're weak</li>
+      <li><strong style="color:#fff">Timed mock exams</strong> — real conditions before the real thing</li>
+      <li><strong style="color:#fff">AI Instructor</strong> — explains every wrong answer in plain English</li>
+    </ul>
+    <p style="margin:0 0 20px;color:${MUTED};font-size:14px">${priceDetail}</p>
+    ${button(`${site}${m.registerUrl}`, 'Start — Pass Guarantee Included →')}
+    <p style="color:${MUTED};font-size:12px;margin:20px 0 0">Reply "unsubscribe" to stop receiving these emails.</p>
+  `, null, `${site}/${m.banner}`);
+}
+
+function cheatsheetNurtureDay10(email, plan) {
+  const m = CHEATSHEET_NURTURE_META[plan] || CHEATSHEET_NURTURE_META.par;
+  const site = SITE();
+  const isUag = plan === 'uag';
+  const closeLine = isUag
+    ? `<strong style="color:#fff">265 questions. Timed simulator. AI Instructor. $37.99 once — lifetime access.</strong> Score 80%+ on a mock exam or a full refund.`
+    : `<strong style="color:#fff">${m.qcount} questions. Timed simulator. AI Instructor. $24.99/month — cancel the month you pass.</strong> Score 80%+ on a mock exam or a full refund.`;
+
+  return shell(`Last one. Then I'll leave you alone.`, `
+    <p style="margin:0 0 16px">Ten days ago you grabbed the ${m.label} cheat sheet.</p>
+    <p style="margin:0 0 16px;color:${MUTED}">Either you've already passed — in which case, congratulations, go fly — or you're still working toward it.</p>
+    <p style="margin:0 0 20px;color:${MUTED}">This is the last email either way.</p>
+    <p style="margin:0 0 24px;padding:16px 20px;background:#0b1622;border-left:3px solid #22c55e;border-radius:0 8px 8px 0;font-size:15px;line-height:1.7">${closeLine}</p>
+    <p style="margin:0 0 16px;color:${MUTED}">The FAA written exam date is set by you. Most people are ready in 2–3 weeks of focused study. The only thing between you and a passing score is starting.</p>
+    ${button(`${site}${m.registerUrl}`, 'Start Today →')}
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Questions? Reply to this email — we read every one.</p>
+    <p style="color:${MUTED};font-size:12px;margin:12px 0 0">This is the last nurture email from us. Reply "unsubscribe" if you'd like to opt out of any future emails.</p>
+  `, null, `${site}/${m.banner}`);
+}
+
 // Creates a pre-verified cheatsheet token for a known email (used in nurture emails).
 // Returns the full verify URL so the recipient skips the "enter email" form.
 async function cheatsheetPreverifiedUrl(email, plan) {
@@ -492,6 +616,10 @@ module.exports = {
   cheatsheetVerifyEmail,
   cheatsheetDeliveryEmail,
   cheatsheetPreverifiedUrl,
+  cheatsheetNurtureDay2,
+  cheatsheetNurtureDay4,
+  cheatsheetNurtureDay7,
+  cheatsheetNurtureDay10,
   unsubToken,
   unsubUrl,
 };

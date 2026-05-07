@@ -3,7 +3,7 @@
 // Tracks sent emails in nurture_emails table so nothing sends twice.
 
 const db = require('../config/db');
-const { sendEmail, nurtureDay3, nurtureDay7, nurtureDay14, bundleUpsellEmail, onboardDay1, onboardDay3, onboardDay7, winBackEmail, trialEndingEmail, cheatsheetPreverifiedUrl } = require('./email');
+const { sendEmail, nurtureDay3, nurtureDay7, nurtureDay14, bundleUpsellEmail, onboardDay1, onboardDay3, onboardDay7, winBackEmail, trialEndingEmail, cheatsheetPreverifiedUrl, cheatsheetNurtureDay2, cheatsheetNurtureDay4, cheatsheetNurtureDay7, cheatsheetNurtureDay10 } = require('./email');
 
 // Steps 1–4: free-user nurture + bundle upsell (keyed on created_at)
 // Steps 5–7: subscriber onboarding drip (keyed on subscription_activated_at)
@@ -146,4 +146,60 @@ async function runNurture() {
   }
 }
 
-module.exports = { runNurture };
+// ---------- Cheatsheet lead nurture (non-registered) ---------------------
+// Steps keyed on cheatsheet_leads.created_at (when lead verified their email).
+// Tracking table: cheatsheet_nurture_emails (email, plan, step) — unique per trio.
+
+const CHEATSHEET_STEPS = [
+  { step: 1, minDays: 2,  maxDays: 4,  build: cheatsheetNurtureDay2,  subject: 'The cheat sheet won\'t pass you. This will.' },
+  { step: 2, minDays: 4,  maxDays: 7,  build: cheatsheetNurtureDay4,  subject: 'How many of the question bank have you seen?' },
+  { step: 3, minDays: 7,  maxDays: 10, build: cheatsheetNurtureDay7,  subject: 'Score 80%+ or we refund every dollar.' },
+  { step: 4, minDays: 10, maxDays: 15, build: cheatsheetNurtureDay10, subject: 'Last one. Then I\'ll leave you alone.' },
+];
+
+async function runCheatsheetNurture() {
+  // Ensure tracking table exists
+  await db.query(`
+    CREATE TABLE IF NOT EXISTS cheatsheet_nurture_emails (
+      id       SERIAL PRIMARY KEY,
+      email    TEXT NOT NULL,
+      plan     TEXT NOT NULL,
+      step     INTEGER NOT NULL,
+      sent_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+      UNIQUE (email, plan, step)
+    )
+  `);
+  // Add unsubscribe column to cheatsheet_leads if not present
+  await db.query(`
+    ALTER TABLE cheatsheet_leads ADD COLUMN IF NOT EXISTS email_unsubscribed BOOLEAN DEFAULT FALSE
+  `);
+
+  for (const { step, minDays, maxDays, build, subject } of CHEATSHEET_STEPS) {
+    const { rows } = await db.query(`
+      SELECT cl.email, cl.plan
+      FROM cheatsheet_leads cl
+      WHERE cl.verified = TRUE
+        AND cl.email_unsubscribed = FALSE
+        AND cl.created_at <= NOW() - INTERVAL '${minDays} days'
+        AND cl.created_at >= NOW() - INTERVAL '${maxDays} days'
+        AND NOT EXISTS (
+          SELECT 1 FROM cheatsheet_nurture_emails n
+          WHERE n.email = cl.email AND n.plan = cl.plan AND n.step = ${step}
+        )
+    `);
+
+    for (const lead of rows) {
+      const html = build(lead.email, lead.plan);
+      await sendEmail({ to: lead.email, subject, html });
+      await db.query(
+        'INSERT INTO cheatsheet_nurture_emails (email, plan, step) VALUES ($1, $2, $3) ON CONFLICT DO NOTHING',
+        [lead.email, lead.plan, step]
+      );
+      console.log(`[cs-nurture] step ${step} → ${lead.email} (${lead.plan})`);
+    }
+
+    console.log(`[cs-nurture] step ${step}: ${rows.length} email(s) sent`);
+  }
+}
+
+module.exports = { runNurture, runCheatsheetNurture };
