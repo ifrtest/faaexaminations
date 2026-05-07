@@ -200,7 +200,7 @@ export default function CAXLanding() {
             </ul>
             <Link to="/register?plan=cax" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Get Started →</Link>
             <Link to="/register?plan=cax" style={{ display: 'block', textAlign: 'center', marginTop: 12, padding: '15px 40px', borderRadius: 10, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.18)', color: '#fff', fontWeight: 700, fontSize: 16, textDecoration: 'none' }}>Subscribe — $24.99/mo →</Link>
-            <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}>Pass guarantee · Cancel anytime</div>
+            <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>Pass guarantee</Link> · Cancel anytime</div>
           </div>
         </div>
       </section>

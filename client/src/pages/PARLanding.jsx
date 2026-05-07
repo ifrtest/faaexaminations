@@ -445,7 +445,7 @@ export default function PARLanding() {
             <Link to="/register?plan=par" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>
               Get Started →
             </Link>
-            <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}>Pass guarantee · Cancel anytime</div>
+            <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>Pass guarantee</Link> · Cancel anytime</div>
           </div>
         </div>
       </section>
