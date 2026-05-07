@@ -56,7 +56,7 @@ export default function Register() {
           </li>
           <li style={{ display: 'flex', alignItems: 'center', gap: 9, fontSize: '.92rem', color: 'var(--text2, #cbd5e1)' }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            10 Private Pilot practice questions — free
+            30 free practice questions — no credit card needed
           </li>
           <li style={{ display: 'flex', alignItems: 'center', gap: 9, fontSize: '.92rem', color: 'var(--text2, #cbd5e1)' }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
