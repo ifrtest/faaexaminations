@@ -283,16 +283,16 @@ export default function ExamList() {
         <div style={{ background: 'linear-gradient(90deg, #0b1f3a, #0d2849)', border: '1px solid rgba(48,172,226,0.3)', borderRadius: 12, padding: '20px 22px', marginBottom: 20 }}>
           <div style={{ marginBottom: 16 }}>
             <div style={{ color: '#fff', fontWeight: 700, fontSize: '.95rem', marginBottom: 3 }}>You're on a free account</div>
-            <div style={{ color: '#94b8d4', fontSize: '.88rem' }}>Try 10 free questions for any exam below — no credit card needed. Upgrade anytime to unlock everything.</div>
+            <div style={{ color: '#94b8d4', fontSize: '.88rem' }}>Try 30 free questions for any exam below — no credit card needed. Upgrade anytime to unlock everything.</div>
           </div>
 
           {/* Free practice test cards */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: 10, marginBottom: 16 }}>
             {[
-              { label: 'Private Pilot (PAR)', sub: '10 free questions', to: '/par-practice-test', color: '#30ace2' },
-              { label: 'Instrument Rating (IRA)', sub: '10 free questions', to: '/ira-practice-test', color: '#a78bfa' },
-              { label: 'Commercial Pilot (CAX)', sub: '10 free questions', to: '/cax-practice-test', color: '#fb923c' },
-              { label: 'Part 107 Drone', sub: '10 free questions', to: '/part-107-practice-test', color: '#34d399' },
+              { label: 'Private Pilot (PAR)', sub: '30 free questions', to: '/par-practice-test', color: '#30ace2' },
+              { label: 'Instrument Rating (IRA)', sub: '30 free questions', to: '/ira-practice-test', color: '#a78bfa' },
+              { label: 'Commercial Pilot (CAX)', sub: '30 free questions', to: '/cax-practice-test', color: '#fb923c' },
+              { label: 'Part 107 Drone', sub: '30 free questions', to: '/part-107-practice-test', color: '#34d399' },
             ].map(({ label, sub, to, color }) => (
               <Link
                 key={to}
