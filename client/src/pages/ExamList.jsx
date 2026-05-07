@@ -186,7 +186,7 @@ export default function ExamList() {
   // Admins see ATP (coming soon); regular users see the Bundle offer instead
   const CARD_ORDER = isAdmin
     ? ['PAR', 'CAX', 'IRA', 'UAG', 'TRUST', 'ATP']
-    : ['PAR', 'CAX', 'IRA', 'UAG', 'TRUST', 'BUNDLE'];
+    : ['BUNDLE', 'PAR', 'CAX', 'IRA', 'UAG', 'TRUST'];
   const atpPlaceholder    = { code: 'ATP',    name: 'Airline Transport Pilot (ATP)',       question_count: 1496, num_questions: 80,  time_limit: 240, passing_score: 70, comingSoon: true };
   const bundlePlaceholder = { code: 'BUNDLE', name: 'PAR · IRA · CAX Bundle',             question_count: '',   num_questions: null, time_limit: null, passing_score: 70, isBundle: true };
   const allCards = CARD_ORDER.map((code) => {
