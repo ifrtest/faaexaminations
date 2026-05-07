@@ -211,7 +211,7 @@ export default function Landing() {
               </div>
               <div className="lp-product-body">
                 <div className="lp-product-name">Pilot Certificate Bundle — PAR + IRA + CAX</div>
-                <div className="lp-product-desc">Full access to all three pilot certificate exams. Perfect for instructors, license converters, and career-track pilots. <Link to="/bundle" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
+                <div className="lp-product-desc">2,826 questions across PAR, IRA, and CAX — one subscription, all three exams. The fastest path from student pilot to commercial certificate. <Link to="/bundle" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
                 <ul className="lp-product-features">
                   <li>2,826 PAR + IRA + CAX questions</li>
                   <li>All PAR, IRA &amp; CAX modules</li>
