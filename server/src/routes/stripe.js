@@ -195,24 +195,13 @@ async function activateSubscription(session) {
   const user = userRes.rows[0];
   if (user) {
     const plan = getPlanName(priceId);
-    if (sub.status === 'trialing') {
-      const trialEnd = new Date(sub.trial_end * 1000);
-      sendEmail({
-        to: user.email,
-        subject: 'Your 3-day free trial has started ✅',
-        html: trialStartEmail(user.full_name || user.email.split('@')[0], plan, trialEnd, user.id),
-        userId: user.id,
-        allowUnsubscribed: true,
-      });
-    } else {
-      sendEmail({
-        to: user.email,
-        subject: 'Your FAAExaminations.com Subscription is Active ✅',
-        html: subscriptionEmail(user.full_name || user.email.split('@')[0], plan, user.id),
-        userId: user.id,
-        allowUnsubscribed: true,
-      });
-    }
+    sendEmail({
+      to: user.email,
+      subject: 'Your FAAExaminations.com Subscription is Active ✅',
+      html: subscriptionEmail(user.full_name || user.email.split('@')[0], plan, user.id),
+      userId: user.id,
+      allowUnsubscribed: true,
+    });
     // Fire CAPI Purchase — server-side so iOS-blocked browsers still report conversions
     if (capiEventId) {
       capiPurchase({
@@ -495,7 +484,6 @@ router.post('/embedded/intent', requireAuth, async (req, res) => {
     const sub = await stripe.subscriptions.create({
       customer:         customerId,
       items:            [{ price: priceId }],
-      trial_period_days: 3,
       payment_behavior: 'default_incomplete',
       payment_settings: { save_default_payment_method: 'on_subscription' },
       expand:           ['pending_setup_intent'],
@@ -574,11 +562,10 @@ router.post('/embedded/activate', requireAuth, async (req, res) => {
 
     const u = await db.query('SELECT email, full_name FROM users WHERE id = $1', [userId]);
     if (u.rows[0]) {
-      const trialEnd = new Date(sub.trial_end * 1000);
       sendEmail({
         to: u.rows[0].email,
-        subject: 'Your 3-day free trial has started ✅',
-        html: trialStartEmail(u.rows[0].full_name || u.rows[0].email.split('@')[0], planName, trialEnd, userId),
+        subject: 'Your FAAExaminations.com Subscription is Active ✅',
+        html: subscriptionEmail(u.rows[0].full_name || u.rows[0].email.split('@')[0], planName, userId),
         userId,
         allowUnsubscribed: true,
       });

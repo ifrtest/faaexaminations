@@ -250,7 +250,7 @@ export default function PracticeTestTemplate({
             {[
               { value: counts.questions.toLocaleString(), label: 'Total Questions' },
               { value: counts.topics, label: 'Official Topics' },
-              { value: '80%+', label: 'Pass Guarantee' },
+              { value: 'Full Refund', label: 'Pass Guarantee' },
             ].map((stat, i) => (
               <div key={i} className="hero-stat" style={{
                 flex: '1 1 160px',
