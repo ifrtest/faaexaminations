@@ -392,6 +392,20 @@ export default function Part107Landing() {
         </div>
       </section>
 
+      {/* FREE PRACTICE TEST BANNER */}
+      <section style={{ background: 'linear-gradient(135deg, #0d2a1f 0%, #0a1f2e 100%)', borderTop: '1px solid rgba(52,211,153,0.25)', borderBottom: '1px solid rgba(52,211,153,0.25)', padding: '36px 24px' }}>
+        <div style={{ maxWidth: 820, margin: '0 auto', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+              <div style={{ background: 'rgba(52,211,153,0.15)', border: '1px solid rgba(52,211,153,0.4)', borderRadius: 20, padding: '3px 14px', fontSize: 11, fontWeight: 700, color: '#34d399', letterSpacing: 1, fontFamily: 'Share Tech Mono, monospace' }}>FREE — NO ACCOUNT NEEDED</div>
+            </div>
+            <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 26, fontWeight: 800, color: '#fff', lineHeight: 1.2 }}>Not ready to commit? Try 30 real Part 107 questions first.</div>
+            <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Same questions, same format as the real FAA exam — free, instant, no credit card.</div>
+          </div>
+          <Link to="/part-107-practice-test" style={{ background: '#34d399', color: '#041018', fontWeight: 800, fontSize: 15, padding: '14px 28px', borderRadius: 10, textDecoration: 'none', whiteSpace: 'nowrap', fontFamily: 'Barlow Condensed, sans-serif', letterSpacing: 0.5 }}>Start Free Practice Test →</Link>
+        </div>
+      </section>
+
       {/* FREE DEMO */}
       <Part107Demo />
 
