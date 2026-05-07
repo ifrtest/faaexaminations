@@ -215,7 +215,7 @@ export default function ExamList() {
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #1e2a38' }}>
                 <span style={{ color: '#94b8d4' }}>Pass guarantee</span>
-                <span style={{ color: '#34d399', fontWeight: 600 }}>Score 80%+ or refund</span>
+                <span style={{ color: '#34d399', fontWeight: 600 }}>Complete program, fail exam — full refund</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0' }}>
                 <span style={{ color: '#94b8d4' }}>Cancel</span>
