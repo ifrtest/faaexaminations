@@ -280,25 +280,47 @@ export default function ExamList() {
       </div>
 
       {subscription !== null && !['active', 'cancelling', 'trialing'].includes(subscription?.status) && !subscription?.uag_access && (
-        <div style={{ background: 'linear-gradient(90deg, #0b1f3a, #0d2849)', border: '1px solid rgba(48,172,226,0.3)', borderRadius: 12, padding: '16px 22px', marginBottom: 20, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
-          <div>
+        <div style={{ background: 'linear-gradient(90deg, #0b1f3a, #0d2849)', border: '1px solid rgba(48,172,226,0.3)', borderRadius: 12, padding: '20px 22px', marginBottom: 20 }}>
+          <div style={{ marginBottom: 16 }}>
             <div style={{ color: '#fff', fontWeight: 700, fontSize: '.95rem', marginBottom: 3 }}>You're on a free account</div>
-            <div style={{ color: '#94b8d4', fontSize: '.88rem' }}>Unlock all questions, the timed simulator, and AI Instructor — from $24.99/month.</div>
+            <div style={{ color: '#94b8d4', fontSize: '.88rem' }}>Try 10 free questions for any exam below — no credit card needed. Upgrade anytime to unlock everything.</div>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'flex-end', flexShrink: 0 }}>
+
+          {/* Free practice test cards */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: 10, marginBottom: 16 }}>
+            {[
+              { label: 'Private Pilot (PAR)', sub: '10 free questions', to: '/par-practice-test', color: '#30ace2' },
+              { label: 'Instrument Rating (IRA)', sub: '10 free questions', to: '/ira-practice-test', color: '#a78bfa' },
+              { label: 'Commercial Pilot (CAX)', sub: '10 free questions', to: '/cax-practice-test', color: '#fb923c' },
+              { label: 'Part 107 Drone', sub: '10 free questions', to: '/part-107-practice-test', color: '#34d399' },
+            ].map(({ label, sub, to, color }) => (
+              <Link
+                key={to}
+                to={to}
+                style={{
+                  display: 'block',
+                  background: 'rgba(255,255,255,0.05)',
+                  border: `1px solid ${color}44`,
+                  borderRadius: 10,
+                  padding: '12px 14px',
+                  textDecoration: 'none',
+                  transition: 'background 0.15s',
+                }}>
+                <div style={{ color, fontWeight: 700, fontSize: '.82rem', marginBottom: 2 }}>FREE</div>
+                <div style={{ color: '#fff', fontWeight: 600, fontSize: '.85rem', lineHeight: 1.3 }}>{label}</div>
+                <div style={{ color: '#94b8d4', fontSize: '.78rem', marginTop: 3 }}>{sub} →</div>
+              </Link>
+            ))}
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <button
               className="btn btn-primary"
               style={{ whiteSpace: 'nowrap' }}
               onClick={() => startCheckout('par')}
               disabled={checkoutLoading}>
-              {checkoutLoading ? 'Loading…' : 'Get Started →'}
+              {checkoutLoading ? 'Loading…' : 'Upgrade — from $24.99/mo →'}
             </button>
-            <Link
-              to="/par-practice-test"
-              className="btn btn-ghost"
-              style={{ whiteSpace: 'nowrap', fontSize: '.82rem', padding: '6px 14px' }}>
-              Try 30 free PAR questions →
-            </Link>
           </div>
         </div>
       )}
