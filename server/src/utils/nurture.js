@@ -153,7 +153,7 @@ async function runNurture() {
 const CHEATSHEET_STEPS = [
   { step: 1, minDays: 2,  maxDays: 4,  build: cheatsheetNurtureDay2,  subject: 'The cheat sheet won\'t pass you. This will.' },
   { step: 2, minDays: 4,  maxDays: 7,  build: cheatsheetNurtureDay4,  subject: 'How many of the question bank have you seen?' },
-  { step: 3, minDays: 7,  maxDays: 10, build: cheatsheetNurtureDay7,  subject: 'Score 80%+ or we refund every dollar.' },
+  { step: 3, minDays: 7,  maxDays: 10, build: cheatsheetNurtureDay7,  subject: 'Complete the program. Fail the exam. Full refund.' },
   { step: 4, minDays: 10, maxDays: 15, build: cheatsheetNurtureDay10, subject: 'Last one. Then I\'ll leave you alone.' },
 ];
 

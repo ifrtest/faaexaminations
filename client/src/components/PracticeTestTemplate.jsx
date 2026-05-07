@@ -399,7 +399,7 @@ export default function PracticeTestTemplate({
                   <span style={{ fontSize: 28, flexShrink: 0 }}>🛡️</span>
                   <div>
                     <div style={{ fontSize: 13, fontWeight: 800, color: '#22c55e', letterSpacing: 1, marginBottom: 3 }}>PASS GUARANTEE</div>
-                    <div style={{ fontSize: 14, color: 'var(--lp-text2)', lineHeight: 1.5 }}>Score 80%+ on your written exam or we refund every dollar. No questions asked.</div>
+                    <div style={{ fontSize: 14, color: 'var(--lp-text2)', lineHeight: 1.5 }}>Complete the full program and still fail your real FAA exam — we refund every dollar. <a href="/cancel-policy" style={{ color: 'var(--lp-accent)', textDecoration: 'none' }}>See terms →</a></div>
                   </div>
                 </div>
 
@@ -470,7 +470,7 @@ export default function PracticeTestTemplate({
           </div>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#22c55e' }}>
             <span>🛡️</span>
-            <span>Pass guarantee — score 80%+ or full refund · Cancel anytime</span>
+            <span>Pass guarantee · Cancel anytime</span>
           </div>
         </div>
       </section>

@@ -521,7 +521,7 @@ function cheatsheetNurtureDay4(email, plan) {
     </div>
     ${offerLine}
     <p style="margin:0 0 20px;padding:14px 18px;background:#0b1520;border:1px solid #1e2d3d;border-radius:8px;font-size:13px;color:${MUTED}">
-      🛡️ <strong style="color:#fff">Pass Guarantee:</strong> Score 80%+ on a mock exam or we refund every dollar. No fine print.
+      🛡️ <strong style="color:#fff">Pass Guarantee:</strong> Complete the full program and still fail your real FAA exam — we refund every dollar. <a href="${site}/cancel-policy" style="color:${ACCENT};text-decoration:none">See terms →</a>
     </p>
     ${button(`${site}${m.registerUrl}`, `Get Started — ${isUag ? '$37.99 Lifetime' : '$24.99/month'} →`)}
     <p style="color:${MUTED};font-size:12px;margin:20px 0 0">Reply "unsubscribe" to stop receiving these emails.</p>
@@ -534,12 +534,12 @@ function cheatsheetNurtureDay7(email, plan) {
   const isUag = plan === 'uag';
   const priceDetail = isUag ? '$37.99 one-time · lifetime access · no subscription.' : `$24.99/month · cancel the month you pass.`;
 
-  return shell(`Score 80%+ or we refund every dollar.`, `
+  return shell(`Complete the program. Fail the exam. Full refund.`, `
     <p style="margin:0 0 16px">One week since you grabbed the cheat sheet. Let me make this simple.</p>
     <p style="margin:0 0 24px;padding:20px 24px;background:#0b1622;border:2px solid ${ACCENT};border-radius:10px;font-size:16px;line-height:1.7;color:#fff">
-      If you use FAAExaminations.com and don't score <strong style="color:${ACCENT}">80% or higher on a mock exam</strong>, we refund you in full. No questions asked. No forms to fill out.
+      Complete every topic module, finish 10 full mock exams scoring 70%+, and if you still fail your real FAA exam — we refund every dollar. No questions asked.
     </p>
-    <p style="margin:0 0 16px;color:${MUTED}">We can make that guarantee because the method works when you use it: practice by topic, read the explanations, run mock exams until 80% feels automatic. That's it. Two to three weeks of 30–45 minutes a day.</p>
+    <p style="margin:0 0 16px;color:${MUTED}">We can make that guarantee because the method works when you use it: practice by topic, read the explanations, run mock exams until you're consistently passing. Anyone who puts in the work passes. That's the whole bet.</p>
     <p style="margin:0 0 8px;font-weight:700;color:#fff">What you get:</p>
     <ul style="margin:0 0 20px;padding-left:20px;color:${MUTED};line-height:2.2">
       <li><strong style="color:#fff">${m.qcount} questions</strong> — the full ${m.examName} bank</li>
@@ -547,7 +547,8 @@ function cheatsheetNurtureDay7(email, plan) {
       <li><strong style="color:#fff">Timed mock exams</strong> — real conditions before the real thing</li>
       <li><strong style="color:#fff">AI Instructor</strong> — explains every wrong answer in plain English</li>
     </ul>
-    <p style="margin:0 0 20px;color:${MUTED};font-size:14px">${priceDetail}</p>
+    <p style="margin:0 0 8px;color:${MUTED};font-size:14px">${priceDetail}</p>
+    <p style="margin:0 0 20px;font-size:13px;color:${MUTED}"><a href="${site}/cancel-policy" style="color:${ACCENT};text-decoration:none">See pass guarantee terms →</a></p>
     ${button(`${site}${m.registerUrl}`, 'Start — Pass Guarantee Included →')}
     <p style="color:${MUTED};font-size:12px;margin:20px 0 0">Reply "unsubscribe" to stop receiving these emails.</p>
   `, null, `${site}/${m.banner}`);
@@ -558,8 +559,8 @@ function cheatsheetNurtureDay10(email, plan) {
   const site = SITE();
   const isUag = plan === 'uag';
   const closeLine = isUag
-    ? `<strong style="color:#fff">265 questions. Timed simulator. AI Instructor. $37.99 once — lifetime access.</strong> Score 80%+ on a mock exam or a full refund.`
-    : `<strong style="color:#fff">${m.qcount} questions. Timed simulator. AI Instructor. $24.99/month — cancel the month you pass.</strong> Score 80%+ on a mock exam or a full refund.`;
+    ? `<strong style="color:#fff">265 questions. Timed simulator. AI Instructor. $37.99 once — lifetime access.</strong> Complete the program and still fail your real exam — full refund.`
+    : `<strong style="color:#fff">${m.qcount} questions. Timed simulator. AI Instructor. $24.99/month — cancel the month you pass.</strong> Complete the program and still fail your real exam — full refund.`;
 
   return shell(`Last one. Then I'll leave you alone.`, `
     <p style="margin:0 0 16px">Ten days ago you grabbed the ${m.label} cheat sheet.</p>
