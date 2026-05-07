@@ -149,7 +149,7 @@ exports.adminStats = async (_req, res, next) => {
     const [users, tests, questions, examStats] = await Promise.all([
       db.query(`SELECT COUNT(*)::int AS total,
                        COUNT(*) FILTER (WHERE created_at > NOW() - INTERVAL '7 days')::int AS new_week,
-                       COUNT(*) FILTER (WHERE subscription='pro')::int AS pro
+                       COUNT(*) FILTER (WHERE subscription_status IN ('active','trialing','past_due') AND subscription IN ('par','ira','cax','bundle','uag'))::int AS pro
                   FROM users`),
       db.query(`SELECT COUNT(*)::int AS total,
                        COUNT(*) FILTER (WHERE passed)::int AS passed,
