@@ -185,7 +185,7 @@ export default function Landing() {
             <a href="#products" className="lp-btn-outline">View Packages</a>
           </div>
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', marginTop: 14, lineHeight: 2 }}>
-            3-day free trial on all plans · Card required · Cancel anytime
+            Pass guarantee · Cancel anytime
           </div>
           <div className="lp-hero-stats">
             <div><div className="lp-hs-val">Est. 2020</div><div className="lp-hs-lbl">Trusted Since</div></div>
@@ -225,8 +225,8 @@ export default function Landing() {
                   $39.99
                   <span style={{ fontSize: 13, fontWeight: 400, color: '#16A34A', background: 'rgba(22,163,74,0.12)', padding: '3px 10px', borderRadius: 20 }}>Save $35/month</span>
                 </div>
-                <div className="lp-product-price-sub">3-day free trial · Cancel anytime</div>
-                <Link to="/register?plan=bundle" className="lp-btn-product lp-btn-product-primary">Start 3 Days Free →</Link>
+                <div className="lp-product-price-sub">Pass guarantee · Cancel anytime</div>
+                <Link to="/register?plan=bundle" className="lp-btn-product lp-btn-product-primary">Get Started →</Link>
               </div>
             </div>
 
@@ -247,8 +247,8 @@ export default function Landing() {
                   <li>FAA compliant · 2026 updated</li>
                 </ul>
                 <div className="lp-product-price">$24.99</div>
-                <div className="lp-product-price-sub">3-day free trial · Cancel anytime</div>
-                <Link to="/register?plan=par" className="lp-btn-product lp-btn-product-secondary">Start 3 Days Free →</Link>
+                <div className="lp-product-price-sub">Pass guarantee · Cancel anytime</div>
+                <Link to="/register?plan=par" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
               </div>
             </div>
 
@@ -269,8 +269,8 @@ export default function Landing() {
                   <li>FAA compliant · 2026 updated</li>
                 </ul>
                 <div className="lp-product-price">$24.99</div>
-                <div className="lp-product-price-sub">3-day free trial · Cancel anytime</div>
-                <Link to="/register?plan=ira" className="lp-btn-product lp-btn-product-secondary">Start 3 Days Free →</Link>
+                <div className="lp-product-price-sub">Pass guarantee · Cancel anytime</div>
+                <Link to="/register?plan=ira" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
               </div>
             </div>
 
@@ -291,8 +291,8 @@ export default function Landing() {
                   <li>FAA compliant · 2026 updated</li>
                 </ul>
                 <div className="lp-product-price">$24.99</div>
-                <div className="lp-product-price-sub">3-day free trial · Cancel anytime</div>
-                <Link to="/register?plan=cax" className="lp-btn-product lp-btn-product-secondary">Start 3 Days Free →</Link>
+                <div className="lp-product-price-sub">Pass guarantee · Cancel anytime</div>
+                <Link to="/register?plan=cax" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
               </div>
             </div>
 

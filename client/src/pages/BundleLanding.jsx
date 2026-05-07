@@ -115,7 +115,7 @@ export default function BundleLanding() {
             <div className="lp-hero-btns">
               <Link to="/register?plan=bundle" className="lp-btn-hero">
                 <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
-                Start 3 Days Free
+                Get Started
               </Link>
               <a href="#includes" className="lp-btn-outline">See What's Included</a>
             </div>
@@ -146,9 +146,9 @@ export default function BundleLanding() {
                 </li>
               ))}
             </ul>
-            <Link to="/register?plan=bundle" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Start 3 Days Free →</Link>
-            <Link to="/register?plan=bundle" style={{ display: 'block', textAlign: 'center', marginTop: 10, padding: '13px 28px', borderRadius: 10, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.18)', color: '#fff', fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>Start 3-Day Free Trial — $39.99/mo →</Link>
-            <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>3-day free trial · Card required · Cancel anytime</div>
+            <Link to="/register?plan=bundle" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Get Started →</Link>
+            <Link to="/register?plan=bundle" style={{ display: 'block', textAlign: 'center', marginTop: 10, padding: '13px 28px', borderRadius: 10, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.18)', color: '#fff', fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>Subscribe — $39.99/mo →</Link>
+            <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>Pass guarantee · Cancel anytime</div>
           </div>
 
         </div>
@@ -181,9 +181,9 @@ export default function BundleLanding() {
                 </li>
               ))}
             </ul>
-            <Link to="/register?plan=bundle" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Start 3 Days Free →</Link>
-            <Link to="/register?plan=bundle" style={{ display: 'block', textAlign: 'center', marginTop: 12, padding: '15px 40px', borderRadius: 10, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.18)', color: '#fff', fontWeight: 700, fontSize: 16, textDecoration: 'none' }}>Start 3-Day Free Trial — $39.99/mo →</Link>
-            <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}>3-day free trial · Card required · Cancel anytime</div>
+            <Link to="/register?plan=bundle" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Get Started →</Link>
+            <Link to="/register?plan=bundle" style={{ display: 'block', textAlign: 'center', marginTop: 12, padding: '15px 40px', borderRadius: 10, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.18)', color: '#fff', fontWeight: 700, fontSize: 16, textDecoration: 'none' }}>Subscribe — $39.99/mo →</Link>
+            <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}>Pass guarantee · Cancel anytime</div>
           </div>
         </div>
       </section>
@@ -407,7 +407,7 @@ export default function BundleLanding() {
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/register?plan=bundle" className="lp-btn-hero" style={{ fontSize: 18, padding: '18px 44px' }}>
               <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
-              Start 3 Days Free
+              Get Started
             </Link>
             <Link to="/#products" className="lp-btn-outline" style={{ fontSize: 16 }}>View All Packages</Link>
           </div>

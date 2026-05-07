@@ -250,7 +250,7 @@ export default function PracticeTestTemplate({
                     The real exam draws from {questionCount}+ questions — you need to have seen them all. Get the full bank with explanations for every question.
                   </p>
                   <Link to={registerPath} className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 36px' }}>Get Full {questionCount}+ Question Bank →</Link>
-                  <div style={{ marginTop: 12, fontSize: 13, color: 'var(--lp-text3)' }}>3-day free trial · {price}/month · Cancel anytime</div>
+                  <div style={{ marginTop: 12, fontSize: 13, color: 'var(--lp-text3)' }}>Pass guarantee · {price}/month · Cancel anytime</div>
                 </>
               ) : (
                 <>
@@ -258,7 +258,7 @@ export default function PracticeTestTemplate({
                     Solid start. But this was 30 questions — the real exam draws from {questionCount}+. Make sure you've seen every question in the bank.
                   </p>
                   <Link to={registerPath} className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 36px' }}>See the Full Question Bank →</Link>
-                  <div style={{ marginTop: 12, fontSize: 13, color: 'var(--lp-text3)' }}>3-day free trial · {price}/month · Cancel anytime</div>
+                  <div style={{ marginTop: 12, fontSize: 13, color: 'var(--lp-text3)' }}>Pass guarantee · {price}/month · Cancel anytime</div>
                 </>
               )}
             </div>
@@ -302,10 +302,10 @@ export default function PracticeTestTemplate({
             Every question the FAA can ask — with full explanations, a timed simulator, and AI instructor support. {price}/month. Cancel the moment you pass.
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to={registerPath} className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>Start 3 Days Free →</Link>
+            <Link to={registerPath} className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>Get Started →</Link>
             <Link to={productPath} className="lp-btn-outline" style={{ fontSize: 15 }}>See What's Included</Link>
           </div>
-          <div style={{ marginTop: 14, fontSize: 13, color: 'var(--lp-text3)' }}>No credit card required for free trial</div>
+          <div style={{ marginTop: 14, fontSize: 13, color: 'var(--lp-text3)' }}>Pass guarantee · Cancel anytime</div>
         </div>
       </section>
 

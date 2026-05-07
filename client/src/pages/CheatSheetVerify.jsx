@@ -63,7 +63,7 @@ export default function CheatSheetVerify() {
             </a>
             <p style={{ color: '#6b8299', fontSize: 13 }}>
               Want to go further?{' '}
-              <Link to="/register" style={{ color: '#30ace2' }}>Start your free trial →</Link>
+              <Link to="/register" style={{ color: '#30ace2' }}>Get started →</Link>
             </p>
           </>
         )}

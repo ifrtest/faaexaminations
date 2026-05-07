@@ -197,45 +197,37 @@ export default function ExamList() {
 
   const PLAN_LABELS = { par: 'Private Pilot (PAR)', ira: 'Instrument Rating (IRA)', cax: 'Commercial Pilot (CAX)', bundle: 'All 3 Exams Bundle', uag: 'Part 107 Drone' };
   const PLAN_PRICES = { par: '$24.99/month', ira: '$24.99/month', cax: '$24.99/month', bundle: '$39.99/month', uag: '$37.99 one-time' };
-  const trialEndDate = new Date(Date.now() + 3 * 86400000).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
 
   return (
     <div className="container page" style={{ paddingTop: 0 }}>
 
-      {/* ── TRIAL CONFIRMATION MODAL ────────────────────────────────── */}
+      {/* ── SUBSCRIPTION CONFIRMATION MODAL ─────────────────────────── */}
       {trialModalPlan && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(4,10,20,0.85)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
           <div style={{ background: '#0f1822', border: '1px solid #1e2a38', borderRadius: 16, padding: '36px 32px', maxWidth: 460, width: '100%', textAlign: 'center' }}>
             <div style={{ fontSize: 36, marginBottom: 12 }}>✈️</div>
-            <h2 style={{ color: '#fff', margin: '0 0 8px', fontSize: '1.4rem', fontWeight: 800 }}>Start Your 3-Day Free Trial</h2>
+            <h2 style={{ color: '#fff', margin: '0 0 8px', fontSize: '1.4rem', fontWeight: 800 }}>Get Full Access</h2>
             <div style={{ color: '#30ace2', fontWeight: 700, fontSize: '1rem', marginBottom: 20 }}>{PLAN_LABELS[trialModalPlan]}</div>
             <div style={{ background: '#0a121b', borderRadius: 10, padding: '16px 20px', marginBottom: 24, textAlign: 'left' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #1e2a38' }}>
-                <span style={{ color: '#94b8d4' }}>Trial period</span>
-                <span style={{ color: '#fff', fontWeight: 600 }}>3 days free</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #1e2a38' }}>
-                <span style={{ color: '#94b8d4' }}>First charge</span>
-                <span style={{ color: '#fff', fontWeight: 600 }}>{trialEndDate}</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #1e2a38' }}>
-                <span style={{ color: '#94b8d4' }}>Price after trial</span>
+                <span style={{ color: '#94b8d4' }}>Price</span>
                 <span style={{ color: '#fff', fontWeight: 600 }}>{PLAN_PRICES[trialModalPlan]}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #1e2a38' }}>
+                <span style={{ color: '#94b8d4' }}>Pass guarantee</span>
+                <span style={{ color: '#34d399', fontWeight: 600 }}>Score 80%+ or refund</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0' }}>
                 <span style={{ color: '#94b8d4' }}>Cancel</span>
                 <span style={{ color: '#34d399', fontWeight: 600 }}>Anytime — one click</span>
               </div>
             </div>
-            <p style={{ color: '#94b8d4', fontSize: '.88rem', marginBottom: 24, lineHeight: 1.6 }}>
-              A card is required to hold your trial. You <strong style={{ color: '#fff' }}>will not be charged</strong> until {trialEndDate}. Cancel before then and you owe nothing.
-            </p>
             <button
               className="btn btn-primary btn-block"
               style={{ fontSize: '1rem', padding: '14px 24px', marginBottom: 12 }}
               onClick={() => { setTrialModalPlan(null); startCheckout(trialModalPlan); }}
               disabled={checkoutLoading}>
-              {checkoutLoading ? 'Loading…' : 'Enter Payment Info — Start Free →'}
+              {checkoutLoading ? 'Loading…' : 'Enter Payment Info →'}
             </button>
             <button
               className="btn btn-ghost btn-block"
@@ -296,7 +288,7 @@ export default function ExamList() {
               style={{ whiteSpace: 'nowrap' }}
               onClick={() => startCheckout('par')}
               disabled={checkoutLoading}>
-              {checkoutLoading ? 'Loading…' : 'Start 3-Day Free Trial →'}
+              {checkoutLoading ? 'Loading…' : 'Get Started →'}
             </button>
             <button
               className="btn btn-ghost"
@@ -341,8 +333,8 @@ export default function ExamList() {
           <div>
             {subscription?.status === 'trialing' ? (
               <>
-                <div style={{ color: '#fff', fontWeight: 700, fontSize: '1rem' }}>Your 3-day free trial is active!</div>
-                <div style={{ color: '#6ee7b7', fontSize: '.88rem', marginTop: 3 }}>Full access unlocked — no charge until your trial ends. Start studying below.</div>
+                <div style={{ color: '#fff', fontWeight: 700, fontSize: '1rem' }}>You're all set — full access unlocked!</div>
+                <div style={{ color: '#6ee7b7', fontSize: '.88rem', marginTop: 3 }}>Start studying below. Cancel anytime from your account settings.</div>
               </>
             ) : (
               <>
@@ -604,14 +596,14 @@ export default function ExamList() {
                   onClick={() => startCheckout(EXAM_PLAN[selected])}
                   disabled={checkoutLoading}
                   style={{ marginBottom: 8 }}>
-                  {checkoutLoading ? 'Loading…' : selected === 'UAG' ? 'Get Part 107 — $37.99 one-time' : `Start 3-Day Free Trial — ${selected} — $24.99/month`}
+                  {checkoutLoading ? 'Loading…' : selected === 'UAG' ? 'Get Part 107 — $37.99 one-time' : `Subscribe — ${selected} — $24.99/month`}
                 </button>
                 {selected !== 'UAG' && (
                   <button
                     className="btn btn-ghost btn-block"
                     onClick={() => startCheckout('bundle')}
                     disabled={checkoutLoading}>
-                    {checkoutLoading ? 'Loading…' : 'Start 3-Day Free Trial — Bundle (PAR + IRA + CAX) — $39.99/month'}
+                    {checkoutLoading ? 'Loading…' : 'Subscribe — Bundle (PAR + IRA + CAX) — $39.99/month'}
                   </button>
                 )}
                 {selected === 'PAR' && (

@@ -9,10 +9,10 @@ import { Helmet } from 'react-helmet-async';
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const PLAN_INFO = {
-  par:    { label: 'Private Pilot (PAR)',     price: '$24.99/month', trial: true,  color: '#30ace2' },
-  ira:    { label: 'Instrument Rating (IRA)', price: '$24.99/month', trial: true,  color: '#30ace2' },
-  cax:    { label: 'Commercial Pilot (CAX)',  price: '$24.99/month', trial: true,  color: '#30ace2' },
-  bundle: { label: 'All 3 Exams Bundle',      price: '$39.99/month', trial: true,  color: '#30ace2' },
+  par:    { label: 'Private Pilot (PAR)',     price: '$24.99/month', trial: false, color: '#30ace2' },
+  ira:    { label: 'Instrument Rating (IRA)', price: '$24.99/month', trial: false, color: '#30ace2' },
+  cax:    { label: 'Commercial Pilot (CAX)',  price: '$24.99/month', trial: false, color: '#30ace2' },
+  bundle: { label: 'All 3 Exams Bundle',      price: '$39.99/month', trial: false, color: '#30ace2' },
   uag:    { label: 'Part 107 Remote Pilot',   price: '$37.99 one-time', trial: false, color: '#f5c842' },
 };
 
@@ -95,10 +95,6 @@ function CheckoutForm({ plan, intentData, onSuccess, userEmail }) {
   const [err, setErr]   = useState('');
 
   const info = PLAN_INFO[plan];
-  const trialEnd = new Date(Date.now() + 3 * 86400000).toLocaleDateString('en-US', {
-    weekday: 'long', month: 'long', day: 'numeric',
-  });
-
   const submit = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) return;
@@ -155,22 +151,6 @@ function CheckoutForm({ plan, intentData, onSuccess, userEmail }) {
           <div style={{ color: '#fff', fontWeight: 700, fontSize: '1rem' }}>{info.label}</div>
           <div style={{ color: info.color, fontWeight: 700, fontSize: '1rem' }}>{info.price}</div>
         </div>
-        {info.trial && (
-          <>
-            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px solid #1e2a38' }}>
-              <span style={{ color: '#94b8d4', fontSize: '.88rem' }}>Trial period</span>
-              <span style={{ color: '#34d399', fontWeight: 600, fontSize: '.88rem' }}>3 days free</span>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px solid #1e2a38' }}>
-              <span style={{ color: '#94b8d4', fontSize: '.88rem' }}>First charge</span>
-              <span style={{ color: '#fff', fontSize: '.88rem' }}>{trialEnd}</span>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px solid #1e2a38' }}>
-              <span style={{ color: '#94b8d4', fontSize: '.88rem' }}>Today's charge</span>
-              <span style={{ color: '#34d399', fontWeight: 700, fontSize: '.88rem' }}>$0.00</span>
-            </div>
-          </>
-        )}
         {!info.trial && (
           <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px solid #1e2a38' }}>
             <span style={{ color: '#94b8d4', fontSize: '.88rem' }}>Lifetime access</span>
@@ -207,15 +187,13 @@ function CheckoutForm({ plan, intentData, onSuccess, userEmail }) {
           marginBottom: 12,
           marginTop: 8,
         }}>
-        {busy ? 'Processing…' : info.trial ? 'Start 3-Day Free Trial →' : `Pay ${info.price} →`}
+        {busy ? 'Processing…' : info.price.includes('one-time') ? `Pay ${info.price.replace(' one-time', '')} →` : `Subscribe — ${info.price} →`}
       </button>
 
-      {info.trial && (
-        <p style={{ color: '#4a6a85', fontSize: '.8rem', textAlign: 'center', margin: 0, lineHeight: 1.5 }}>
-          No charge until {trialEnd}. Cancel anytime at{' '}
-          <Link to="/cancel-policy" style={{ color: '#30ace2' }}>faaexaminations.com/cancel-policy</Link>.
-        </p>
-      )}
+      <p style={{ color: '#4a6a85', fontSize: '.8rem', textAlign: 'center', margin: 0, lineHeight: 1.5 }}>
+        Pass guarantee · Cancel anytime at{' '}
+        <Link to="/cancel-policy" style={{ color: '#30ace2' }}>faaexaminations.com/cancel-policy</Link>.
+      </p>
 
       <HelpForm email={userEmail} />
 
@@ -378,7 +356,7 @@ export default function Checkout() {
       <div style={{ width: '100%', maxWidth: 480, background: '#0f1822', border: '1px solid #1e2a38', borderRadius: 16, padding: '36px 32px' }}>
         <div style={{ marginBottom: 28, textAlign: 'center' }}>
           <div style={{ color: info.color, fontWeight: 700, fontSize: '.8rem', letterSpacing: '.1em', textTransform: 'uppercase', marginBottom: 8 }}>
-            {info.trial ? '3-Day Free Trial' : 'One-Time Purchase'}
+            {info.price.includes('one-time') ? 'One-Time Purchase' : 'Monthly Subscription'}
           </div>
           <h1 style={{ color: '#fff', margin: 0, fontSize: '1.5rem', fontWeight: 800 }}>{info.label}</h1>
         </div>

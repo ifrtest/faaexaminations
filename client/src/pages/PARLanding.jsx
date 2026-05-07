@@ -168,7 +168,7 @@ export default function PARLanding() {
             <div className="lp-hero-btns">
               <Link to="/register?plan=par" className="lp-btn-hero">
                 <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
-                Start 3 Days Free
+                Get Started
               </Link>
               <a href="#includes" className="lp-btn-outline">See What's Included</a>
             </div>
@@ -197,7 +197,7 @@ export default function PARLanding() {
                 </li>
               ))}
             </ul>
-            <Link to="/register?plan=par" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Start 3 Days Free →</Link>
+            <Link to="/register?plan=par" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Get Started →</Link>
             <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>No credit card required · Upgrade when you're ready</div>
           </div>
         </div>
@@ -354,7 +354,7 @@ export default function PARLanding() {
 
           <div style={{ textAlign: 'center', marginTop: 48 }}>
             <Link to="/register?plan=par" className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>
-              Start 3 Days Free →
+              Get Started →
             </Link>
           </div>
         </div>
@@ -443,9 +443,9 @@ export default function PARLanding() {
               ))}
             </ul>
             <Link to="/register?plan=par" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>
-              Start 3 Days Free →
+              Get Started →
             </Link>
-            <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}>3-day free trial · Card required · Cancel anytime</div>
+            <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}>Pass guarantee · Cancel anytime</div>
           </div>
         </div>
       </section>
@@ -491,7 +491,7 @@ export default function PARLanding() {
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/register?plan=par" className="lp-btn-hero" style={{ fontSize: 18, padding: '18px 44px' }}>
               <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
-              Start 3 Days Free
+              Get Started
             </Link>
             <Link to="/#products" className="lp-btn-outline" style={{ fontSize: 16 }}>View All Packages</Link>
           </div>
