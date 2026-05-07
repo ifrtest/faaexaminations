@@ -173,7 +173,7 @@ export default function PARLanding() {
               <a href="#includes" className="lp-btn-outline">See What's Included</a>
             </div>
             <div style={{ marginTop: 14 }}>
-              <Link to="/par-practice-test" style={{ color: 'var(--lp-blue)', fontSize: 14, opacity: 0.85 }}>Try a free 30-question practice test first →</Link>
+              <Link to="/par-practice-test" style={{ color: 'var(--lp-blue)', fontSize: 15, fontWeight: 600 }}>✓ Try 30 questions free — no account needed →</Link>
             </div>
             <div className="lp-hero-stats">
               <div><div className="lp-hs-val">1,469</div><div className="lp-hs-lbl">PAR Questions</div></div>
@@ -391,7 +391,7 @@ export default function PARLanding() {
             <div style={{ textAlign: 'center', padding: '0 20px' }}>
               <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'rgba(48,172,226,0.12)', border: '2px solid var(--lp-border2)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px', fontFamily: 'Barlow Condensed, sans-serif', fontSize: 28, fontWeight: 800, color: 'var(--lp-blue)' }}>1</div>
               <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 12 }}>Create Your Free Account</div>
-              <div style={{ color: 'var(--lp-text2)', fontSize: 15, lineHeight: 1.7 }}>Sign up in 30 seconds. Get 10 free practice questions instantly — no credit card required. See exactly how the platform works before you commit.</div>
+              <div style={{ color: 'var(--lp-text2)', fontSize: 15, lineHeight: 1.7 }}>Sign up in 30 seconds — no credit card required. Or try 30 free questions right now without even creating an account.</div>
             </div>
 
             <div style={{ textAlign: 'center', padding: '0 20px' }}>
