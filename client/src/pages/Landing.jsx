@@ -204,6 +204,32 @@ export default function Landing() {
           <p className="lp-section-sub">Expertly crafted modules for Private and Commercial certificates. All FAA references included — no textbooks needed.</p>
           <div className="lp-products-grid fade-up">
 
+            <div className="lp-product-card lp-featured lp-product-bundle">
+              <div className="lp-product-img">
+                <img src="/plane-bundle.webp" alt="Pilot Certificate Bundle — PAR, IRA, and CAX exam prep combined" />
+                <div className="lp-product-img-overlay" />
+              </div>
+              <div className="lp-product-body">
+                <div className="lp-product-name">Pilot Certificate Bundle — PAR + IRA + CAX</div>
+                <div className="lp-product-desc">Full access to all three pilot certificate exams. Perfect for instructors, license converters, and career-track pilots. <Link to="/bundle" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
+                <ul className="lp-product-features">
+                  <li>2,826 PAR + IRA + CAX questions</li>
+                  <li>All PAR, IRA &amp; CAX modules</li>
+                  <li>AI Instructor explanations</li>
+                  <li>Timed exam simulator</li>
+                  <li>Progress dashboard &amp; tracking</li>
+                  <li>Best value — save vs. individual</li>
+                </ul>
+                <div className="lp-product-price" style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+                  <span style={{ textDecoration: 'line-through', opacity: 0.45, fontSize: '1.2rem' }}>$74.97</span>
+                  $39.99
+                  <span style={{ fontSize: 13, fontWeight: 400, color: '#16A34A', background: 'rgba(22,163,74,0.12)', padding: '3px 10px', borderRadius: 20 }}>Save $35/month</span>
+                </div>
+                <div className="lp-product-price-sub">3-day free trial · Cancel anytime</div>
+                <Link to="/register?plan=bundle" className="lp-btn-product lp-btn-product-primary">Start 3 Days Free →</Link>
+              </div>
+            </div>
+
             <div className="lp-product-card">
               <div className="lp-product-img">
                 <img src="/plane-par.webp" alt="Private Pilot — FAA Private Pilot Airman Knowledge Test prep" />
@@ -269,33 +295,6 @@ export default function Landing() {
                 <Link to="/register?plan=cax" className="lp-btn-product lp-btn-product-secondary">Start 3 Days Free →</Link>
               </div>
             </div>
-
-            <div className="lp-product-card lp-featured lp-product-bundle">
-              <div className="lp-product-img">
-                <img src="/plane-bundle.webp" alt="Pilot Certificate Bundle — PAR, IRA, and CAX exam prep combined" />
-                <div className="lp-product-img-overlay" />
-              </div>
-              <div className="lp-product-body">
-                <div className="lp-product-name">Pilot Certificate Bundle — PAR + IRA + CAX</div>
-                <div className="lp-product-desc">Full access to all three pilot certificate exams. Perfect for instructors, license converters, and career-track pilots. <Link to="/bundle" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
-                <ul className="lp-product-features">
-                  <li>2,826 PAR + IRA + CAX questions</li>
-                  <li>All PAR, IRA &amp; CAX modules</li>
-                  <li>AI Instructor explanations</li>
-                  <li>Timed exam simulator</li>
-                  <li>Progress dashboard &amp; tracking</li>
-                  <li>Best value — save vs. individual</li>
-                </ul>
-                <div className="lp-product-price" style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
-                  <span style={{ textDecoration: 'line-through', opacity: 0.45, fontSize: '1.2rem' }}>$74.97</span>
-                  $39.99
-                  <span style={{ fontSize: 13, fontWeight: 400, color: '#16A34A', background: 'rgba(22,163,74,0.12)', padding: '3px 10px', borderRadius: 20 }}>Save $35/month</span>
-                </div>
-                <div className="lp-product-price-sub">3-day free trial · Cancel anytime</div>
-                <Link to="/register?plan=bundle" className="lp-btn-product lp-btn-product-primary">Start 3 Days Free →</Link>
-              </div>
-            </div>
-
 
             <div className="lp-product-card">
               <div className="lp-product-img">
