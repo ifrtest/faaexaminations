@@ -486,7 +486,7 @@ export default function PARLanding() {
             Your <span className="lp-accent">Private Pilot Certificate</span> Starts Here
           </h2>
           <p style={{ color: 'var(--lp-text2)', fontSize: 18, maxWidth: 500, margin: '0 auto 40px', lineHeight: 1.7 }}>
-            1,469 questions. 11 topics. Everything the FAA will ask you. Start free today — no credit card needed.
+            1,469 questions. 11 topics. Everything the FAA will ask you. Try 30 questions free — no credit card needed.
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/register?plan=par" className="lp-btn-hero" style={{ fontSize: 18, padding: '18px 44px' }}>
