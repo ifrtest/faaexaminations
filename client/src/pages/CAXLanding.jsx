@@ -414,7 +414,7 @@ export default function CAXLanding() {
           <h2 style={{ fontSize: 'clamp(32px, 5vw, 54px)', maxWidth: 620, margin: '0 auto 20px' }}>
             Your <span className="lp-accent">Commercial Certificate</span> Starts Here
           </h2>
-          <p style={{ color: 'var(--lp-text2)', fontSize: 18, maxWidth: 500, margin: '0 auto 40px', lineHeight: 1.7 }}>536 questions. Every CAX topic. Everything the FAA will ask you. Start free today — no credit card needed.</p>
+          <p style={{ color: 'var(--lp-text2)', fontSize: 18, maxWidth: 500, margin: '0 auto 40px', lineHeight: 1.7 }}>536 questions. Every CAX topic. Everything the FAA will ask you. Try 30 free questions first — subscribe when ready.</p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/register?plan=cax" className="lp-btn-hero" style={{ fontSize: 18, padding: '18px 44px' }}>
               <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>

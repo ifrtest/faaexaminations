@@ -402,7 +402,7 @@ export default function BundleLanding() {
             Every Written. <span className="lp-accent">One Subscription.</span>
           </h2>
           <p style={{ color: 'var(--lp-text2)', fontSize: 18, maxWidth: 520, margin: '0 auto 40px', lineHeight: 1.7 }}>
-            PAR, IRA, and CAX. Start free today — no credit card needed.
+            PAR, IRA, and CAX. Try 30 free questions first — subscribe when ready.
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/register?plan=bundle" className="lp-btn-hero" style={{ fontSize: 18, padding: '18px 44px' }}>
