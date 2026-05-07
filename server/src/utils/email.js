@@ -343,6 +343,36 @@ function bundleUpsellEmail(name, currentPlan, userId) {
   `, userId);
 }
 
+function bundleProgressUpsellEmail(name, currentPlan, userId) {
+  const planNames = { par: 'Private Pilot (PAR)', ira: 'Instrument Rating (IRA)', cax: 'Commercial Pilot (CAX)' };
+  const nextPlan  = { par: 'IRA (Instrument Rating)', ira: 'CAX (Commercial Pilot)', cax: 'IRA (Instrument Rating)' };
+  const current   = planNames[currentPlan] || currentPlan;
+  const next      = nextPlan[currentPlan] || 'the next certificate';
+  return shell(`You're 2 weeks in — here's the smarter move`, `
+    <p style="margin:0 0 12px">Hi ${name},</p>
+    <p style="margin:0 0 16px">You've been on <strong style="color:${ACCENT}">${current}</strong> for two weeks. If you're on track, you're close — and most pilots who finish PAR go straight for ${next}.</p>
+    <p style="margin:0 0 16px">Here's what doesn't make sense: paying $24.99/month for each exam separately.</p>
+    <table style="width:100%;border-collapse:collapse;margin:0 0 20px;font-size:.95rem">
+      <tr style="border-bottom:1px solid ${BORDER}">
+        <td style="padding:10px 0;color:${MUTED}">PAR + IRA + CAX individually</td>
+        <td style="padding:10px 0;text-align:right;text-decoration:line-through;color:${MUTED}">$74.97/month</td>
+      </tr>
+      <tr>
+        <td style="padding:12px 0;font-weight:700;color:#fff">Pilot Certificate Bundle — all three</td>
+        <td style="padding:12px 0;text-align:right;font-weight:700;color:${ACCENT};font-size:1.15rem">$39.99/month</td>
+      </tr>
+      <tr style="border-top:1px solid ${BORDER}">
+        <td style="padding:8px 0;color:#4ade80;font-size:.88rem">You save</td>
+        <td style="padding:8px 0;text-align:right;color:#4ade80;font-weight:700;font-size:.88rem">$35/month</td>
+      </tr>
+    </table>
+    <p style="margin:0 0 20px;color:${MUTED}">2,826 questions across PAR, IRA, and CAX. All modules, all timed simulators, AI Instructor for every exam. One subscription, all three certificates.</p>
+    <p style="margin:0 0 16px;padding:16px 20px;background:#0b1622;border-left:3px solid ${ACCENT};border-radius:0 8px 8px 0;font-size:15px;line-height:1.7;color:${TEXT}">Upgrade now and your current plan is replaced — not added. You keep everything you have and unlock the rest. No price increase until you cancel.</p>
+    ${button(`${SITE()}/exams`, 'Upgrade to Bundle — $39.99/month →')}
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Complete the full program and still fail your real FAA exam — we refund every dollar. <a href="${SITE()}/cancel-policy" style="color:${ACCENT}">See terms →</a></p>
+  `, userId, `${SITE()}/email-banner-plane.jpg`);
+}
+
 function trialStartEmail(name, plan, _trialEnd, userId) {
   // Trial removed — function kept for legacy; routes now call subscriptionEmail directly
   return subscriptionEmail(name, plan, userId);
@@ -596,6 +626,7 @@ module.exports = {
   nurtureDay7,
   nurtureDay14,
   bundleUpsellEmail,
+  bundleProgressUpsellEmail,
   onboardDay1,
   onboardDay3,
   onboardDay7,

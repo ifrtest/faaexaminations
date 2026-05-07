@@ -320,6 +320,27 @@ export default function ExamList() {
         );
       })()}
 
+      {/* Bundle upsell banner — single-plan paid users only */}
+      {isSubscribed && ['par','ira','cax'].includes(subscription?.plan) && subscription?.status !== 'trialing' && (
+        <div style={{ background: 'linear-gradient(90deg,#0a1a2e,#0c2240)', border: '1px solid rgba(48,172,226,0.35)', borderRadius: 12, padding: '16px 22px', marginBottom: 20, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
+          <div>
+            <div style={{ color: '#30ace2', fontWeight: 700, fontSize: '.95rem', marginBottom: 3 }}>
+              Save $35/month — upgrade to the Pilot Certificate Bundle
+            </div>
+            <div style={{ color: '#94b8d4', fontSize: '.88rem', lineHeight: 1.5 }}>
+              You're on {subscription?.plan?.toUpperCase()}. PAR + IRA + CAX together is $39.99/month — less than two individual plans. Your current access carries over.
+            </div>
+          </div>
+          <button
+            className="btn btn-primary"
+            style={{ flexShrink: 0, padding: '10px 20px', fontSize: '.9rem', whiteSpace: 'nowrap' }}
+            onClick={() => startCheckout('bundle')}
+            disabled={checkoutLoading}>
+            {checkoutLoading ? 'Loading…' : 'Upgrade to Bundle →'}
+          </button>
+        </div>
+      )}
+
       {activating && (
         <div style={{ background: '#0f1f35', border: '1px solid #1e3a5f', borderRadius: 12, padding: '16px 22px', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{ width: 20, height: 20, border: '3px solid #30ace2', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.8s linear infinite', flexShrink: 0 }} />

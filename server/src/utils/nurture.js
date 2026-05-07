@@ -3,7 +3,7 @@
 // Tracks sent emails in nurture_emails table so nothing sends twice.
 
 const db = require('../config/db');
-const { sendEmail, nurtureDay3, nurtureDay7, nurtureDay14, bundleUpsellEmail, onboardDay1, onboardDay3, onboardDay7, winBackEmail, trialEndingEmail, cheatsheetPreverifiedUrl, cheatsheetNurtureDay2, cheatsheetNurtureDay4, cheatsheetNurtureDay7, cheatsheetNurtureDay10 } = require('./email');
+const { sendEmail, nurtureDay3, nurtureDay7, nurtureDay14, bundleUpsellEmail, bundleProgressUpsellEmail, onboardDay1, onboardDay3, onboardDay7, winBackEmail, trialEndingEmail, cheatsheetPreverifiedUrl, cheatsheetNurtureDay2, cheatsheetNurtureDay4, cheatsheetNurtureDay7, cheatsheetNurtureDay10 } = require('./email');
 
 // Steps 1–4: free-user nurture + bundle upsell (keyed on created_at)
 // Steps 5–7: subscriber onboarding drip (keyed on subscription_activated_at)
@@ -15,8 +15,9 @@ const STEPS = [
   { step: 5, minDays: 1,  maxDays: 2,  build: onboardDay1,  subject: 'Your first study session for the FAA written', filter: 'paid', needsPlan: true },
   { step: 6, minDays: 3,  maxDays: 5,  build: onboardDay3,  subject: 'The #1 reason people fail the FAA written',    filter: 'paid', needsPlan: true },
   { step: 7, minDays: 7,  maxDays: 10, build: onboardDay7,  subject: 'One week in — how are you tracking?',          filter: 'paid', needsPlan: true },
-  { step: 8, minDays: 7,  maxDays: 10, build: winBackEmail,      subject: 'Still working on your pilot certificate?',      filter: 'cancelled' },
-  { step: 9, minDays: 2,  maxDays: 3,  build: trialEndingEmail,  subject: 'Your free trial ends tomorrow',                  filter: 'trialing' },
+  { step: 8,  minDays: 7,  maxDays: 10, build: winBackEmail,             subject: 'Still working on your pilot certificate?',           filter: 'cancelled' },
+  { step: 9,  minDays: 2,  maxDays: 3,  build: trialEndingEmail,         subject: 'Your free trial ends tomorrow',                       filter: 'trialing' },
+  { step: 10, minDays: 14, maxDays: 21, build: bundleProgressUpsellEmail, subject: "You're 2 weeks in — here's the smarter move",         filter: 'single_paid', needsPlan: true },
 ];
 
 async function ensureTable() {
@@ -82,6 +83,23 @@ async function runNurture() {
         WHERE u.subscription_status IN ('active', 'trialing', 'cancelling')
           AND u.subscription IS NOT NULL
           AND u.subscription != 'free'
+          AND u.is_active = TRUE
+          AND u.subscription_activated_at IS NOT NULL
+          AND u.subscription_activated_at <= NOW() - INTERVAL '${minDays} days'
+          AND u.subscription_activated_at >= NOW() - INTERVAL '${maxDays} days'
+          AND NOT EXISTS (
+            SELECT 1 FROM nurture_emails n
+            WHERE n.user_id = u.id AND n.step = ${step}
+          )
+      `);
+      users = rows;
+    } else if (filter === 'single_paid') {
+      // Bundle upsell — paid single-plan users (not bundle/uag), keyed on subscription_activated_at
+      const { rows } = await db.query(`
+        SELECT u.id, u.email, u.full_name, u.subscription
+        FROM users u
+        WHERE u.subscription IN ('par','ira','cax')
+          AND u.subscription_status IN ('active', 'cancelling')
           AND u.is_active = TRUE
           AND u.subscription_activated_at IS NOT NULL
           AND u.subscription_activated_at <= NOW() - INTERVAL '${minDays} days'
