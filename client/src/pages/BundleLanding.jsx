@@ -355,7 +355,7 @@ export default function BundleLanding() {
           <p className="lp-section-sub">One account. Study at your own pace. Pass each exam when you're ready.</p>
           <div className="lp-steps fade-up" style={{ marginTop: 52 }}>
             {[
-              { n: '01', title: 'Create Your Free Account', desc: 'Sign up in under a minute — no credit card required. Try 10 free PAR sample questions immediately to see exactly what studying looks like.', img: '/plane-step1.jpg' },
+              { n: '01', title: 'Create Your Free Account', desc: 'Sign up in under a minute — no credit card required. Try 30 free PAR practice questions immediately to see exactly what studying looks like.', img: '/plane-step1.jpg' },
               { n: '02', title: 'Subscribe to the Bundle', desc: 'Unlock PAR, IRA, and CAX instantly. Start with Private Pilot, work through Instrument Rating, and finish with Commercial — all on your schedule.', img: '/plane-step2.jpg' },
               { n: '03', title: 'Pass All Three Exams', desc: 'Track your readiness score on the dashboard. When you\'re consistently scoring above 80%, you\'re ready to book the real exam. Most students pass first try.', img: '/plane-step3.jpg' },
             ].map((s) => (

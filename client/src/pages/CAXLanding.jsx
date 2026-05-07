@@ -371,7 +371,7 @@ export default function CAXLanding() {
           <h2>Pass in 3 Simple Steps</h2>
           <div className="fade-up" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 32, marginTop: 52 }}>
             {[
-              { n: '1', title: 'Create Your Free Account', desc: 'Sign up in 30 seconds. Get 10 free CAX practice questions instantly — no credit card required. See exactly how the platform works before you commit.' },
+              { n: '1', title: 'Create Your Free Account', desc: 'Sign up in 30 seconds. Try 30 free CAX practice questions instantly — no credit card required. See exactly how the platform works before you commit.' },
               { n: '2', title: 'Work Through the Modules', desc: 'Study topic by topic — performance charts, W&B, regulations, advanced operations. Every wrong answer has a full explanation. Ask the AI instructor anything you don\'t understand.' },
               { n: '3', title: 'Pass Your CAX Written', desc: 'When you\'re consistently scoring above 80% on our 100-question simulator, you\'re ready. Walk into your testing appointment confident — you\'ve already seen everything they\'ll ask.' },
             ].map((s, i) => (

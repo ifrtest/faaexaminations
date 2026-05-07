@@ -298,7 +298,7 @@ export default function ExamList() {
               style={{ whiteSpace: 'nowrap', fontSize: '.82rem', padding: '6px 14px' }}
               onClick={startDemo}
               disabled={starting}>
-              {starting ? 'Loading…' : 'Try 10 free PAR questions →'}
+              {starting ? 'Loading…' : 'Try 30 free PAR questions →'}
             </button>
           </div>
         </div>
@@ -639,7 +639,7 @@ export default function ExamList() {
                       onClick={startDemo}
                       disabled={starting}
                       style={{ fontSize: '.88rem', opacity: 0.75 }}>
-                      {starting ? 'Loading…' : 'Try 10 free questions first →'}
+                      {starting ? 'Loading…' : 'Try 30 free questions first →'}
                     </button>
                   </div>
                 )}

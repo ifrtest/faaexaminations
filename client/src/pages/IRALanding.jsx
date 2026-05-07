@@ -371,7 +371,7 @@ export default function IRALanding() {
           <h2>Pass in 3 Simple Steps</h2>
           <div className="fade-up" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 32, marginTop: 52 }}>
             {[
-              { n: '1', title: 'Create Your Free Account', desc: 'Sign up in 30 seconds. Get 10 free IRA practice questions instantly — no credit card required. See exactly how the platform works before you commit.' },
+              { n: '1', title: 'Create Your Free Account', desc: 'Sign up in 30 seconds. Try 30 free IRA practice questions instantly — no credit card required. See exactly how the platform works before you commit.' },
               { n: '2', title: 'Work Through the Modules', desc: 'Study topic by topic — IFR charts, weather, regulations, approaches. Every wrong answer has a full explanation. Ask the AI CFII anything you don\'t understand.' },
               { n: '3', title: 'Pass Your IRA Written', desc: 'When you\'re consistently scoring above 80% on our simulator, you\'re ready. Walk into your testing appointment confident — you\'ve already seen everything they\'ll ask.' },
             ].map((s, i) => (
