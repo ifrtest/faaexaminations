@@ -486,13 +486,23 @@ router.post('/embedded/intent', requireAuth, async (req, res) => {
       items:            [{ price: priceId }],
       payment_behavior: 'default_incomplete',
       payment_settings: { save_default_payment_method: 'on_subscription' },
-      expand:           ['pending_setup_intent'],
+      expand:           ['pending_setup_intent', 'latest_invoice.payment_intent'],
       metadata:         { user_id: String(userId), plan },
     });
 
+    // pending_setup_intent can be null — fall back to latest_invoice payment_intent or create one
+    let clientSecret = sub.pending_setup_intent?.client_secret;
+    if (!clientSecret) {
+      clientSecret = sub.latest_invoice?.payment_intent?.client_secret;
+    }
+    if (!clientSecret) {
+      const si = await stripe.setupIntents.create({ customer: customerId, metadata: { subscription_id: sub.id, user_id: String(userId), plan } });
+      clientSecret = si.client_secret;
+    }
+
     return res.json({
       type:           'setup',
-      clientSecret:   sub.pending_setup_intent.client_secret,
+      clientSecret,
       subscriptionId: sub.id,
     });
   } catch (err) {
