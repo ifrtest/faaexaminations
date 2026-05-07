@@ -300,6 +300,16 @@ export default function Part107Landing() {
         })}</script>
       </Helmet>
 
+      {/* INTRO PRICE BANNER */}
+      {!expired && (
+        <div style={{ background: 'linear-gradient(90deg,#7c3aed,#4f46e5)', padding: '10px 20px', textAlign: 'center', fontSize: 14, fontWeight: 600, color: '#fff', letterSpacing: '.02em' }}>
+          🔒 Introductory price — <strong style={{ color: '#fde68a' }}>$37.99 lifetime access</strong>. Increases to $57.99 on June 1. &nbsp;
+          <span style={{ background: 'rgba(255,255,255,0.15)', borderRadius: 6, padding: '2px 10px', fontSize: 13 }}>
+            {days}d {hours}h left
+          </span>
+        </div>
+      )}
+
       {/* NAV */}
       <nav className="lp-nav" id="lp-nav" ref={navRef}>
         <Link to="/" className="lp-nav-logo">FAA<span>Examinations</span>.com</Link>
@@ -321,16 +331,6 @@ export default function Part107Landing() {
           )}
         </div>
       </nav>
-
-      {/* INTRO PRICE BANNER */}
-      {!expired && (
-        <div style={{ background: 'linear-gradient(90deg,#7c3aed,#4f46e5)', padding: '10px 20px', textAlign: 'center', fontSize: 14, fontWeight: 600, color: '#fff', letterSpacing: '.02em' }}>
-          🔒 Introductory price — <strong style={{ color: '#fde68a' }}>$37.99 lifetime access</strong>. Increases to $57.99 on June 1. &nbsp;
-          <span style={{ background: 'rgba(255,255,255,0.15)', borderRadius: 6, padding: '2px 10px', fontSize: 13 }}>
-            {days}d {hours}h left
-          </span>
-        </div>
-      )}
 
       {/* HERO */}
       <section className="lp-hero lp-hero-part107" style={{ backgroundImage: 'url(/drone_image_faa_examinations.jpg)', backgroundSize: 'cover', backgroundPosition: 'center 40%' }}>
