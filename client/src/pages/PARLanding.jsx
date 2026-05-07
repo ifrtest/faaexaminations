@@ -144,7 +144,7 @@ export default function PARLanding() {
           ) : (
             <>
               <Link to="/login" className="lp-nav-link">Login</Link>
-              <Link to="/register?plan=par" className="lp-nav-cta">Start Free →</Link>
+              <Link to="/register?plan=par" className="lp-nav-cta">Subscribe →</Link>
             </>
           )}
         </div>
@@ -168,9 +168,12 @@ export default function PARLanding() {
             <div className="lp-hero-btns">
               <Link to="/register?plan=par" className="lp-btn-hero">
                 <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
-                Get Started
+                Subscribe — $24.99/mo
               </Link>
               <a href="#includes" className="lp-btn-outline">See What's Included</a>
+            </div>
+            <div style={{ marginTop: 14 }}>
+              <Link to="/par-practice-test" style={{ color: 'var(--lp-blue)', fontSize: 14, opacity: 0.85 }}>Try 30 free questions first — no account needed →</Link>
             </div>
             <div className="lp-hero-stats">
               <div><div className="lp-hs-val">1,469</div><div className="lp-hs-lbl">PAR Questions</div></div>
@@ -194,8 +197,8 @@ export default function PARLanding() {
                 </li>
               ))}
             </ul>
-            <Link to="/register?plan=par" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Get Started →</Link>
-            <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>No credit card required · Upgrade when you're ready</div>
+            <Link to="/register?plan=par" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Subscribe — $24.99/mo →</Link>
+            <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>Or <Link to="/par-practice-test" style={{ color: 'var(--lp-blue)', textDecoration: 'underline' }}>try 30 free questions</Link> — no account needed</div>
           </div>
         </div>
       </section>
@@ -365,7 +368,7 @@ export default function PARLanding() {
 
           <div style={{ textAlign: 'center', marginTop: 48 }}>
             <Link to="/register?plan=par" className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>
-              Get Started →
+              Subscribe — $24.99/mo →
             </Link>
           </div>
         </div>
@@ -454,9 +457,10 @@ export default function PARLanding() {
               ))}
             </ul>
             <Link to="/register?plan=par" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>
-              Get Started →
+              Subscribe — $24.99/mo →
             </Link>
-            <div style={{ marginTop: 16, fontSize: 13, color: 'var(--lp-text3)' }}><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>Pass guarantee</Link> · Cancel anytime</div>
+            <Link to="/par-practice-test" style={{ display: 'block', textAlign: 'center', marginTop: 12, color: 'var(--lp-blue)', fontSize: 14, textDecoration: 'underline' }}>Try 30 free questions first — no account needed</Link>
+            <div style={{ marginTop: 12, fontSize: 13, color: 'var(--lp-text3)' }}><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>Pass guarantee</Link> · Cancel anytime</div>
           </div>
         </div>
       </section>
@@ -502,9 +506,9 @@ export default function PARLanding() {
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/register?plan=par" className="lp-btn-hero" style={{ fontSize: 18, padding: '18px 44px' }}>
               <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
-              Get Started
+              Subscribe — $24.99/mo
             </Link>
-            <Link to="/#products" className="lp-btn-outline" style={{ fontSize: 16 }}>View All Packages</Link>
+            <Link to="/par-practice-test" style={{ background: '#34d399', color: '#041018', fontWeight: 800, fontSize: 15, padding: '14px 28px', borderRadius: 10, textDecoration: 'none', whiteSpace: 'nowrap', fontFamily: 'Barlow Condensed, sans-serif', letterSpacing: 0.5 }}>Try 30 Free Questions →</Link>
           </div>
         </div>
       </section>
