@@ -172,9 +172,6 @@ export default function PARLanding() {
               </Link>
               <a href="#includes" className="lp-btn-outline">See What's Included</a>
             </div>
-            <div style={{ marginTop: 14 }}>
-              <Link to="/par-practice-test" style={{ color: 'var(--lp-blue)', fontSize: 15, fontWeight: 600 }}>✓ Try 30 questions free — no account needed →</Link>
-            </div>
             <div className="lp-hero-stats">
               <div><div className="lp-hs-val">1,469</div><div className="lp-hs-lbl">PAR Questions</div></div>
               <div><div className="lp-hs-val">11</div><div className="lp-hs-lbl">Study Modules</div></div>
@@ -200,6 +197,20 @@ export default function PARLanding() {
             <Link to="/register?plan=par" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Get Started →</Link>
             <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>No credit card required · Upgrade when you're ready</div>
           </div>
+        </div>
+      </section>
+
+      {/* FREE PRACTICE TEST BANNER */}
+      <section style={{ background: 'linear-gradient(135deg, #0d2a1f 0%, #0a1f2e 100%)', borderTop: '1px solid rgba(52,211,153,0.25)', borderBottom: '1px solid rgba(52,211,153,0.25)', padding: '36px 24px' }}>
+        <div style={{ maxWidth: 820, margin: '0 auto', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+              <div style={{ background: 'rgba(52,211,153,0.15)', border: '1px solid rgba(52,211,153,0.4)', borderRadius: 20, padding: '3px 14px', fontSize: 11, fontWeight: 700, color: '#34d399', letterSpacing: 1, fontFamily: 'Share Tech Mono, monospace' }}>FREE — NO ACCOUNT NEEDED</div>
+            </div>
+            <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 26, fontWeight: 800, color: '#fff', lineHeight: 1.2 }}>Not ready to commit? Try 30 real PAR questions first.</div>
+            <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Same questions, same format as the real FAA exam — free, instant, no credit card.</div>
+          </div>
+          <Link to="/par-practice-test" style={{ background: '#34d399', color: '#041018', fontWeight: 800, fontSize: 15, padding: '14px 28px', borderRadius: 10, textDecoration: 'none', whiteSpace: 'nowrap', fontFamily: 'Barlow Condensed, sans-serif', letterSpacing: 0.5 }}>Start Free Practice Test →</Link>
         </div>
       </section>
 
