@@ -1,5 +1,6 @@
 {
   "redirects": [
+    { "source": "/:path*", "has": [{ "type": "host", "value": "www.faaexaminations.com" }], "destination": "https://faaexaminations.com/:path*", "permanent": true },
     { "source": "/faa-private-pilot-airplane-par/:path*", "destination": "/par", "permanent": true },
     { "source": "/faa-private-pilot-airplane-par-:path*", "destination": "/par", "permanent": true },
     { "source": "/faa-private-pilot-airplane-par", "destination": "/par", "permanent": true },
