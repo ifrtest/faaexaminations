@@ -28,7 +28,8 @@
     { "source": "/southwest-airlines-explores-first-class-lounges-and-europe-flights/", "destination": "/blog", "permanent": true },
     { "source": "/Chart_Supplement_CS_NW_APR_20_2023.pdf", "destination": "/references", "permanent": true },
     { "source": "/Advisory_Circular_ac_00-6b.pdf", "destination": "/references", "permanent": true },
-    { "source": "/CFR_PART_14_PDF.pdf", "destination": "/references", "permanent": true }
+    { "source": "/CFR_PART_14_PDF.pdf", "destination": "/references", "permanent": true },
+    { "source": "/:slug([a-z0-9][a-z0-9-]*[a-z0-9])/", "destination": "/blog", "permanent": true }
   ],
   "rewrites": [
     {
