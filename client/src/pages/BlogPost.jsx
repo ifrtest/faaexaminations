@@ -2361,6 +2361,569 @@ const POSTS = {
     ),
   },
 
+  /* ================================================================ */
+  'ifr-holding-patterns-explained': {
+    title: 'IFR Holding Patterns Explained: Entries, Timing, and What the FAA Tests',
+    description: 'Holding patterns are one of the most tested IFR topics. Learn the three entry types, timing rules, wind correction, and exactly what the FAA expects on the IRA knowledge test.',
+    date: 'May 8, 2026',
+    dateISO: '2026-05-08',
+    readTime: '8 min read',
+    tag: 'Instrument Rating',
+    image: '/blog-ifr-cockpit-instruments.jpg',
+    related: ['ils-approach-explained', 'ifr-alternate-airport-requirements', 'faa-instrument-rating-written-test-study-tips-2026'],
+    schemaFaqs: [
+      { q: 'What are the three holding pattern entries?', a: 'Direct entry, teardrop entry, and parallel entry. Which one you use depends on your heading relative to the holding fix and which side of the inbound course you are on.' },
+      { q: 'How long are holding pattern legs?', a: 'One minute inbound below 14,000 feet MSL, 1.5 minutes inbound at or above 14,000 feet MSL. You adjust the outbound leg to achieve the correct inbound timing.' },
+      { q: 'How do you correct for wind in a holding pattern?', a: 'Triple the wind correction angle on the outbound leg and apply the same correction angle inbound. This compensates for wind drift during the outbound turn.' },
+    ],
+    content: (
+      <>
+        <h2>Why holding patterns trip people up</h2>
+        <p>Holding patterns are one of those IFR topics that seem harder than they are. The concept is simple — fly an oval racetrack pattern while you wait. The complication is the entry. There are three types, and the FAA will absolutely test which one applies based on your heading relative to the fix.</p>
+        <p>Get the entry wrong on the knowledge test and you lose points. Get it wrong in actual IMC and you could fly outside the protected airspace. It's worth understanding this properly, not just memorizing a diagram.</p>
+
+        <h2>The holding pattern itself</h2>
+        <p>A standard holding pattern is right-hand turns unless otherwise specified in the clearance. You fly inbound to the fix, cross the fix, turn outbound (right), fly outbound, turn right again, and fly inbound. Repeat until ATC clears you to continue.</p>
+        <p>The inbound leg is what you time. Below 14,000 feet MSL: one minute. At or above 14,000 feet MSL: 1.5 minutes. You adjust your outbound leg time to hit that target inbound leg length.</p>
+
+        <h2>The three entries</h2>
+        <p>When you arrive at the fix, you need to enter the hold in a way that keeps you within the protected airspace. The correct entry depends on what sector your inbound heading puts you in. There are three sectors around the fix — think of it as a pie cut into three slices.</p>
+
+        <h3>Direct entry</h3>
+        <p>This is the simplest. You cross the fix and turn immediately to the outbound heading. It works when your heading puts you in the sector on the holding side of the pattern (roughly 180 degrees of arc on the same side as the turns).</p>
+
+        <h3>Teardrop entry</h3>
+        <p>Cross the fix, turn to a heading 30 degrees toward the non-holding side of the outbound course, fly outbound for the appropriate time, then turn in the direction of the holds to intercept the inbound course. This one applies when you're coming in from roughly the non-holding side at a heading that would take you through the pattern awkwardly.</p>
+
+        <h3>Parallel entry</h3>
+        <p>Cross the fix, turn to a heading parallel to the inbound course but in the outbound direction, fly outbound for the appropriate time, then turn more than 180 degrees in the direction of the hold to intercept the inbound course. This is used when you arrive at the fix from a direction that's close to the outbound heading.</p>
+
+        <h2>How to figure out which entry to use</h2>
+        <p>The easiest method: draw the holding pattern on your chart or plate. Draw a line extending from the fix in the inbound direction. Now divide the space around the fix into three sectors. If your arrival heading falls in the holding-side sector: direct. Non-holding side but close to the fix: teardrop. Opposite side of the outbound: parallel.</p>
+        <p>There's a mental picture method that works well in the cockpit — imagine you're at the fix looking inbound. The holding turns are on one side of that line. Anything on that side, or roughly opposite where you'd exit into a direct entry: direct. Coming from slightly behind and above the pattern: teardrop. Coming in parallel to the outbound leg from the non-holding side: parallel.</p>
+
+        <h2>Wind correction in the hold</h2>
+        <p>Wind makes the oval drift. The standard technique: triple the wind correction angle on the outbound leg and apply the same correction inbound. So if you need 5 degrees of wind correction inbound, you apply 15 degrees on the outbound leg. This is an approximation, but it keeps you close to the protected airspace boundary.</p>
+        <p>You also adjust outbound time based on what happened inbound. If your inbound leg was long (wind pushed you in too fast), shorten the outbound leg. If the inbound was short, lengthen outbound. After a couple of loops you should stabilize on close to the correct timing.</p>
+
+        <h2>What the IRA written test actually asks</h2>
+        <p>The knowledge test loves entry type questions. You'll be given a scenario — "you are approaching the holding fix on a heading of 210°, the hold is on the 090° radial, standard turns" — and asked which entry to use. Draw it. Don't try to do it in your head from a memorized rule.</p>
+        <p>Timing questions are also common. Know the difference between 1 minute and 1.5 minutes and when each applies. Know that the inbound leg is what you time, not the outbound. And know that EFC (expect further clearance) time is important — if you lose comms in the hold, you depart the fix at the EFC time.</p>
+
+        <h2>The bottom line</h2>
+        <p>Holding patterns look complicated in the textbook but make complete sense once you see the geometry. Spend 20 minutes drawing out the three entry scenarios on paper, then practice identifying them from a given heading. That exercise alone will answer most of the holding pattern questions you'll see on the IRA exam.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'how-to-read-instrument-approach-plate': {
+    title: 'How to Read an Instrument Approach Plate (IAP): A Pilot\'s Guide',
+    description: 'Instrument approach plates pack a lot into one page. Here\'s how to read every section — plan view, profile view, minimums, and the airport diagram — and what the IRA exam tests.',
+    date: 'May 8, 2026',
+    dateISO: '2026-05-08',
+    readTime: '9 min read',
+    tag: 'Instrument Rating',
+    image: '/blog-ifr-student-stressed.jpg',
+    related: ['ils-approach-explained', 'ifr-holding-patterns-explained', 'vor-navigation-explained'],
+    schemaFaqs: [
+      { q: 'What is a Decision Altitude (DA) vs Minimum Descent Altitude (MDA)?', a: 'DA is used on precision approaches (ILS, LPV). You must initiate a missed approach if you reach DA without the required visual references. MDA is used on non-precision approaches — you cannot descend below it but continue to the MAP before executing the missed approach.' },
+      { q: 'What does "NA" mean on an approach plate?', a: 'NA means the approach is not authorized for use as an alternate, usually because the navaid is not monitored or weather service is not available. It can also indicate that the approach is not authorized under certain conditions.' },
+      { q: 'What are the required visual references to continue below DA or MDA?', a: 'Per FAR 91.175, you need to see the runway environment clearly enough to make a normal landing — runway lights, threshold markings, touchdown zone, approach lights, or the runway itself.' },
+    ],
+    content: (
+      <>
+        <h2>What you're looking at</h2>
+        <p>An instrument approach plate is a one-page chart that tells you everything about how to fly a specific approach to a specific runway. It shows you how to get to the approach, how to descend to the runway, where the missed approach point is, and what the minimums are. Once you understand the layout, you can read any plate in about a minute.</p>
+        <p>Every FAA approach plate follows the same structure. There are minor differences between Jeppesen and NACO (government) charts in terms of layout, but the information is the same. The IRA written test uses NACO charts — the government ones.</p>
+
+        <h2>The briefing strip (top of the chart)</h2>
+        <p>The top of every plate has the airport name, city, state, approach name, and the communications frequencies you need: ATIS, approach control, tower, and ground. The approach frequency and course are also listed here.</p>
+        <p>Look at the top right corner. You'll see the approach identification (ILS RWY 28L, VOR RWY 14, etc.) and the airport's ICAO identifier. This section is your quick-reference before you ever fly the approach.</p>
+
+        <h2>The plan view (middle — the oval bird's-eye view)</h2>
+        <p>This is the top-down view of the approach. It shows the initial approach fix (IAF), any intermediate fixes, the final approach fix (FAF), and the missed approach point (MAP). You can see the course, any procedure turns or holds, and obstacles depicted as spot elevations.</p>
+        <p>The MSA circle (Minimum Safe Altitude) is the big dashed circle in the plan view. It gives you sector altitudes that provide 1,000 feet of obstacle clearance within 25 NM of the center fix — useful for emergencies, not for normal operations.</p>
+        <p>The ring around the approach shows terrain and obstacles. Any obstacle higher than the approach altitude is depicted. If you see a lot of terrain symbols in the plan view, pay attention.</p>
+
+        <h2>The profile view (below the plan view)</h2>
+        <p>The profile view shows the approach from the side. You can see the glideslope angle (for precision approaches) or the step-down structure (for non-precision). Each fix has an altitude you cannot go below until you reach the next fix.</p>
+        <p>The FAF is usually depicted with a maltese cross symbol on a non-precision approach. That's where you start timing if you're using time instead of distance to find the MAP. On a precision approach, the FAF is where you intercept the glideslope — from that point, you follow the slope down to DA.</p>
+        <p>The profile view also shows the touchdown zone elevation (TDZE) and the airport elevation, which you need for calculating your visual descent point and minimum descent altitudes.</p>
+
+        <h2>DA vs MDA — the most important distinction</h2>
+        <p>Precision approaches (ILS, LPV) give you a Decision Altitude. You fly down to DA and at that exact point, you must either see the runway environment well enough to land or begin the missed approach. You don't level off at DA. You either land or climb.</p>
+        <p>Non-precision approaches (VOR, NDB, RNAV/LNAV) give you a Minimum Descent Altitude. You descend to the MDA and level off. You continue flying level at MDA until you reach the missed approach point, then either land if you have the runway in sight or execute the missed approach. The MAP might be a fix, a DME distance, or a time calculated from the FAF at a specific groundspeed.</p>
+
+        <h2>The minimums section</h2>
+        <p>The minimums box is in the bottom third of the plate. It shows the approach minimums — altitude and visibility — for different categories of aircraft (A, B, C, D). Category is based on 1.3 times your aircraft's stall speed in landing configuration: Cat A is under 91 knots, Cat B is 91–120, Cat C is 121–140, Cat D is 141–165.</p>
+        <p>The minimums are listed as ceiling/visibility pairs. S-ILS 28L 200 (½) means decision altitude 200 feet HAT (height above touchdown) with ½ statute mile visibility. HAT is not MSL — add the TDZE to get the actual DA in MSL.</p>
+        <p>Circling minimums are also in this section. They're always higher than straight-in because you're maneuvering around the airport, not aligned with the runway.</p>
+
+        <h2>The airport diagram (bottom right)</h2>
+        <p>A small diagram of the airport shows runway layout, displaced thresholds, and the take-off and landing zones. This helps you orient yourself on the airport after landing in low visibility — which runway did you land on, where's the taxiway, which direction is the ramp.</p>
+
+        <h2>What the IRA exam tests about approach plates</h2>
+        <p>The written test will give you a plate and ask specific questions. Common ones: what is the DA or MDA? What is the missed approach procedure? What visibility is required? What is the FAF? What does a specific symbol mean?</p>
+        <p>The trick is reading the minimums section carefully. Heights given in the minimums box are HAT (height above touchdown) on some approaches and HAA (height above airport) on circling approaches. Know which is which. And know that if an approach is "NA" as an alternate, you cannot file it as your alternate weather minimum.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'ifr-alternate-airport-requirements': {
+    title: 'IFR Alternate Airport Requirements: The 1-2-3 Rule Explained',
+    description: 'When do you need an alternate on an IFR flight plan? The 1-2-3 rule tells you — and the IRA knowledge test will ask you about it. Here\'s exactly how it works.',
+    date: 'May 8, 2026',
+    dateISO: '2026-05-08',
+    readTime: '7 min read',
+    tag: 'Instrument Rating',
+    image: '/blog-ifr-weather-storm.jpg',
+    related: ['ifr-holding-patterns-explained', 'how-to-read-instrument-approach-plate', 'ils-approach-explained'],
+    schemaFaqs: [
+      { q: 'What is the 1-2-3 rule for IFR alternates?', a: 'If the destination airport is forecast to have a ceiling below 2,000 feet or visibility below 3 statute miles from 1 hour before to 1 hour after your estimated arrival time, you must file an alternate airport on your IFR flight plan.' },
+      { q: 'What weather is required at an alternate airport?', a: 'For a precision approach alternate: forecast ceiling at least 600 feet and visibility at least 2 statute miles. For a non-precision approach alternate: ceiling at least 800 feet and visibility at least 2 statute miles.' },
+      { q: 'What does "Alternate NA" mean on an approach plate?', a: 'It means the airport cannot be used as an IFR alternate, usually because the navaid is unmonitored or weather reporting is unavailable. You must find another alternate airport.' },
+    ],
+    content: (
+      <>
+        <h2>Why alternates matter</h2>
+        <p>When you file an IFR flight plan, you're committing to a destination. But weather changes. If you arrive and the weather is below minimums, you need somewhere else to go. That's the alternate — your backup plan, filed before you ever leave the ground.</p>
+        <p>The alternate requirement exists so you never find yourself airborne with nowhere to land legally. It's one of those rules that feels bureaucratic until you actually need it.</p>
+
+        <h2>The 1-2-3 rule</h2>
+        <p>The rule that determines whether you need an alternate is straightforward. If the destination airport's forecast calls for a ceiling below 2,000 feet or visibility below 3 statute miles during a window from 1 hour before to 1 hour after your estimated time of arrival — you must file an alternate.</p>
+        <p>Written another way: ±1 hour of ETA, ceiling below 2,000, visibility below 3SM → file an alternate. That's it. The rule comes from 14 CFR 91.169.</p>
+        <p>Note the forecast requirement. You're looking at the TAF for your destination. If the TAF shows the ceiling dropping below 2,000 or visibility dropping below 3SM at any point in that 2-hour window, you need an alternate regardless of what conditions are actually like when you land.</p>
+
+        <h2>What if there's no TAF?</h2>
+        <p>Some airports don't have a TAF. If there's no weather forecast available for your destination, you must file an alternate. No forecast means no way to determine the weather will be above the 1-2-3 threshold, so the FAA defaults to requiring a backup.</p>
+
+        <h2>Choosing the alternate</h2>
+        <p>You can't just pick any airport as your alternate. The alternate has to have an approach, and that approach has to have forecast weather that meets alternate minimums — which are different from approach minimums.</p>
+
+        <h3>Standard alternate minimums</h3>
+        <p>For a <strong>precision approach</strong> alternate (ILS, PAR, LPV): the forecast ceiling must be at least 600 feet and visibility at least 2 statute miles at the alternate during the time you'd use it.</p>
+        <p>For a <strong>non-precision approach</strong> alternate (VOR, NDB, RNAV/LNAV): ceiling at least 800 feet and visibility at least 2 statute miles.</p>
+        <p>These are the standard minimums. Some airports publish different alternate minimums — higher or occasionally lower — on their approach plates. If you see a triangle with an A on the approach plate, the airport has non-standard alternate minimums. You need to look up what they are in the front of the terminal procedures book.</p>
+
+        <h2>Alternate NA — when an airport can't be your alternate</h2>
+        <p>Some approach plates show "Alternate NA" in the remarks. This means you cannot file this airport as an alternate, period. Common reasons: the navaid is not continuously monitored, weather reporting is not available, or there are other operational restrictions.</p>
+        <p>If the only approach at an airport is marked Alternate NA, you cannot use that airport as your alternate no matter how good the weather is forecast to be.</p>
+
+        <h2>Fuel requirements when filing an alternate</h2>
+        <p>When you file an alternate, your fuel requirement changes. You need enough fuel to fly to the destination, fly the missed approach, fly to the alternate, and then fly 45 minutes more at normal cruise power. This is the Part 91 IFR fuel requirement — it's fuel to fly the full alternate scenario, not just to get to the destination.</p>
+
+        <h2>What the IRA exam tests</h2>
+        <p>Expect questions that give you a TAF and ask whether you need an alternate. Read the TAF carefully — the ceiling or visibility only needs to be below the threshold at some point in the ±1 hour window to trigger the requirement. It doesn't have to be below at your exact ETA.</p>
+        <p>You'll also see questions about what weather is required at the alternate. Know 600-2 for precision, 800-2 for non-precision. And know that non-standard alternate minimums are flagged by the triangle-A symbol.</p>
+        <p>One common trick question: an airport with no instrument approach cannot be filed as an alternate unless the forecast indicates you'll be able to descend from the MEA and land under VFR conditions. Know that rule too.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'ifr-weather-minimums': {
+    title: 'IFR Weather Minimums: Takeoff, En Route, and Approach',
+    description: 'IFR weather minimums govern when and where you can legally fly in instrument conditions. Here\'s what the FAA requires for takeoff, en route, and approach — and what the IRA exam asks.',
+    date: 'May 8, 2026',
+    dateISO: '2026-05-08',
+    readTime: '7 min read',
+    tag: 'Instrument Rating',
+    image: '/blog-ifr-clouds-flight.jpg',
+    related: ['ifr-alternate-airport-requirements', 'how-to-read-instrument-approach-plate', 'how-to-read-a-metar'],
+    schemaFaqs: [
+      { q: 'What are the IFR takeoff minimums for Part 91?', a: 'Under Part 91, there are no published takeoff minimums — you can take off in zero-zero if you choose. However, you must be able to return and land if something goes wrong, so practically speaking most pilots use 1 SM visibility as a minimum. Part 121 and 135 operators have published takeoff minimums.' },
+      { q: 'What ceiling and visibility do you need to file IFR?', a: 'There is no weather minimum required to file IFR. You can file and fly IFR in any weather condition as long as you meet the approach minimums at your destination. The 1-2-3 rule determines whether you need an alternate.' },
+      { q: 'What is MVFR vs IFR vs LIFR?', a: 'MVFR (Marginal VFR) is ceiling 1,000–3,000 feet or visibility 3–5 SM. IFR is ceiling 500–999 feet or visibility 1–3 SM. LIFR (Low IFR) is ceiling below 500 feet or visibility below 1 SM.' },
+    ],
+    content: (
+      <>
+        <h2>Minimums aren't one number</h2>
+        <p>When pilots talk about "IFR minimums" they usually mean the approach minimums on the plate. But there are actually three separate sets of weather minimums that apply to IFR operations: takeoff minimums, en route minimums, and approach minimums. They're different numbers and they apply at different phases of flight.</p>
+
+        <h2>Takeoff minimums</h2>
+        <p>Under Part 91 (which covers most private flying), there are no FAA-published takeoff minimums. You can legally take off in zero visibility, zero ceiling. That's not a typo. The FAA doesn't tell Part 91 pilots they can't depart in zero-zero.</p>
+        <p>In practice, this is where good judgment has to substitute for regulation. If you take off in zero-zero and your engine fails, where are you going? You can't return to land. Most IFR pilots use 1 SM visibility as a personal minimum for single-engine operations, and many use the approach minimums for their airport as their takeoff minimums — if you can't get back in, don't go.</p>
+        <p>Part 121 (airlines) and Part 135 (charter) operators do have published takeoff minimums. These are listed in the front of the terminal procedures book for specific airports. IFR exam questions sometimes ask about these differences between Part 91 and Part 135.</p>
+
+        <h2>En route minimums — MEA, MOCA, and MRA</h2>
+        <p>Once you're airborne, the Minimum En Route Altitude (MEA) is the floor for IFR flight on a given airway segment. The MEA guarantees obstacle clearance and VOR reception along the entire segment. On a Victor airway, obstacle clearance is 1,000 feet in non-mountainous areas and 2,000 feet in designated mountainous areas.</p>
+        <p>The MOCA (Minimum Obstruction Clearance Altitude) provides obstacle clearance but only guarantees VOR reception within 22 NM of the VOR. You can fly the MOCA if you need to descend for fuel efficiency or weather avoidance, but you might lose navaid reception between fixes.</p>
+        <p>The MRA (Minimum Reception Altitude) is the lowest altitude at which you can receive a specific fix — an off-airway VOR or NDB used to define a waypoint. If you can't receive the fix, you can't confirm your position there.</p>
+
+        <h2>Approach minimums — DA and MDA</h2>
+        <p>This is what most pilots think of when they say "minimums." The approach plate tells you the lowest you can go and the minimum visibility required to continue to landing. These are published for each approach at each runway.</p>
+        <p>Precision approaches (ILS, LPV) give you a Decision Altitude — HAT (height above touchdown). Non-precision approaches (VOR, RNAV/LNAV) give you an MDA — typically HAA (height above airport) for circling, HAT for straight-in.</p>
+        <p>The visibility minimums on approaches are in statute miles or RVR (runway visual range in feet). 1/2 SM equals 2,400 RVR. The FAA exam loves converting between these two — know that 1 SM = 4,800 RVR, 3/4 SM = 3,600 RVR, 1/2 SM = 2,400 RVR.</p>
+
+        <h2>Flight categories: A, B, C, D</h2>
+        <p>Aircraft are assigned to categories based on Vso (stall speed in landing config) times 1.3. Category A is under 91 knots, B is 91–120, C is 121–140, D is 141–165. Your category determines which column of minimums applies to you on the approach plate. A Cessna 172 is Category A. Most light twins are A or B. Jets are typically C or D.</p>
+        <p>This matters because circling minimums in particular vary significantly between categories. A Category D aircraft circling in low visibility needs more room — the protected airspace radius is larger, and the minimums are higher.</p>
+
+        <h2>What counts as the "runway environment"</h2>
+        <p>To continue below DA or MDA, you must have the runway environment in sight. The FAA defines this specifically in 91.175 — it's not just "I can see something." You need to see approach lights, the threshold, the touchdown zone, the runway edge lights, or the runway itself. If you only see glow from the approach lighting system but not the lights themselves, that only allows you to continue to 100 feet above TDZE, not all the way to landing.</p>
+
+        <h2>IRA exam focus areas</h2>
+        <p>Know the difference between DA and MDA and when each applies. Know the RVR to visibility conversions. Know MEA vs MOCA and what each guarantees. Know that Part 91 has no takeoff minimums and why that matters. These are all recurring topics on the IRA written test.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'rnav-gps-approaches-explained': {
+    title: 'RNAV and GPS Approaches Explained: LNAV, LPV, and What They Mean',
+    description: 'RNAV approaches are now the most common instrument approaches in the US. Here\'s what LNAV, LNAV/VNAV, LPV, and LP mean — and what the IRA exam asks about GPS approaches.',
+    date: 'May 8, 2026',
+    dateISO: '2026-05-08',
+    readTime: '8 min read',
+    tag: 'Instrument Rating',
+    image: '/blog-ifr-cockpit-approach.jpg',
+    related: ['ils-approach-explained', 'how-to-read-instrument-approach-plate', 'vor-navigation-explained'],
+    schemaFaqs: [
+      { q: 'What is the difference between LNAV and LPV?', a: 'LNAV is a non-precision GPS approach with lateral guidance only — you step down to an MDA like a VOR approach. LPV (Localizer Performance with Vertical guidance) is a precision-like approach using WAAS that provides both lateral and vertical guidance to a Decision Altitude, similar to an ILS.' },
+      { q: 'Do you need WAAS for a GPS approach?', a: 'You need WAAS for LPV and LNAV/VNAV approaches, which provide vertical guidance. For basic LNAV approaches (lateral only), you can use non-WAAS GPS, but you need to verify RAIM availability. Most modern certified GPS units are WAAS-enabled.' },
+      { q: 'What is RAIM and why does it matter for IFR?', a: 'RAIM (Receiver Autonomous Integrity Monitoring) is a GPS self-check that verifies enough satellites are visible for accurate navigation. If RAIM is unavailable before departing the FAF on an approach, you must use an alternate means of navigation or go to your alternate.' },
+    ],
+    content: (
+      <>
+        <h2>GPS approaches have taken over</h2>
+        <p>There are more RNAV (GPS) approaches published in the US today than ILS approaches. The FAA has been adding them to airports that never had instrument approaches before, giving pilots options in places that used to be VFR-only destinations. Understanding GPS approaches is no longer optional for instrument pilots — they're everywhere.</p>
+        <p>The alphabet soup on the minimums line (LNAV, LNAV/VNAV, LPV, LP) confuses a lot of people. Here's what each one means and what equipment you need.</p>
+
+        <h2>The approach types, from least to most precise</h2>
+
+        <h3>LNAV (Lateral Navigation)</h3>
+        <p>LNAV is the most basic GPS approach. You get lateral guidance — the GPS keeps you on the centerline — but no vertical guidance. You fly step-down fixes, level off at the MDA, and time to the MAP just like a VOR approach. The minimums are typically similar to a VOR approach at the same airport.</p>
+        <p>You can fly LNAV with non-WAAS GPS if you have confirmed RAIM availability. Most older panel-mounted GPS units are LNAV-capable.</p>
+
+        <h3>LNAV/VNAV (Lateral and Vertical Navigation)</h3>
+        <p>LNAV/VNAV adds barometric vertical navigation to the lateral guidance. The GPS tells you what altitude you should be at throughout the approach, and your flight management system commands pitch to keep you on the vertical path. You get a Decision Altitude instead of an MDA.</p>
+        <p>LNAV/VNAV requires WAAS GPS or a baro-VNAV-certified FMS. The minimums are lower than plain LNAV. However — and this matters — LNAV/VNAV does not provide the same precision as LPV or ILS. It's still subject to cold temperature errors in barometric altimetry.</p>
+
+        <h3>LPV (Localizer Performance with Vertical Guidance)</h3>
+        <p>LPV is the best RNAV approach type. It uses WAAS (Wide Area Augmentation System) satellite signals to provide both lateral and vertical guidance with ILS-like precision. Many LPV approaches have minimums as low as 200 feet HAT and 1/2 SM visibility — identical to a Category I ILS.</p>
+        <p>To fly LPV you need a WAAS-certified GPS receiver. Most modern Garmin units (430W, 750, G1000) are WAAS-capable. If your GPS is WAAS-certified and the approach is LPV, you can fly to LPV minimums.</p>
+
+        <h3>LP (Localizer Performance — no vertical)</h3>
+        <p>LP is the lateral-only WAAS approach. It provides more precise lateral guidance than LNAV (similar to a localizer) but no vertical guidance. You fly to an MDA. LP approaches are published at airports where obstacles prevent LPV from being designed but where the WAAS lateral accuracy improves over plain LNAV.</p>
+
+        <h2>WAAS — what it is and why it matters</h2>
+        <p>Standard GPS is accurate to about 10–15 meters. That's fine for navigation but not precise enough for an approach in low visibility. WAAS is a network of ground stations across North America that monitor GPS signals and broadcast corrections through two geostationary satellites. With WAAS, GPS accuracy drops to under 1 meter horizontally and 1.5 meters vertically.</p>
+        <p>That level of accuracy is what enables LPV approaches to have ILS-like minimums. The WAAS signal is free — no subscription required. If your GPS receiver is certified to use WAAS, it automatically uses it whenever the signal is available.</p>
+
+        <h2>RAIM — the GPS integrity check</h2>
+        <p>RAIM (Receiver Autonomous Integrity Monitoring) is the GPS's way of checking itself. It requires at least five satellites in view and uses the geometry to verify the position solution is reliable. If RAIM is unavailable, your GPS can't guarantee its accuracy — and you can't use it for an IFR approach.</p>
+        <p>You're required to check RAIM availability before conducting a GPS approach. RAIM can be predicted using the FAA's RAIM prediction tool or through your avionics. If RAIM will be unavailable at your destination, you need an alternate means of navigation or a different destination.</p>
+        <p>WAAS-equipped receivers don't rely on RAIM in the same way because the WAAS signal itself provides integrity monitoring. If WAAS is available and the GPS shows "LPV" on the approach, RAIM prediction is not required.</p>
+
+        <h2>What to fly when</h2>
+        <p>Always fly the most precise approach available that your aircraft is equipped for. If the GPS shows LPV and you have WAAS, fly LPV minimums. If it shows LNAV+V (advisory vertical guidance, not a certified LNAV/VNAV), fly LNAV minimums — the +V is just a visual aid, not a certified approach type.</p>
+
+        <h2>IRA exam topics for GPS approaches</h2>
+        <p>Know the difference between LNAV (non-precision, MDA), LNAV/VNAV (precision-like, DA with baro-VNAV), and LPV (precision-like, DA with WAAS). Know that LPV can have minimums as low as a CAT I ILS. Know what RAIM is and when it's required. And know that WAAS receivers don't need separate RAIM prediction in the same way non-WAAS units do. These are all testable topics on the IRA knowledge exam.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'aircraft-icing-ifr-flying': {
+    title: 'Aircraft Icing and IFR Flying: What Instrument Pilots Need to Know',
+    description: 'Structural icing is one of the most serious hazards in IFR flying. Here\'s what causes it, how to recognize it, and what the FAA requires — including what the IRA exam tests.',
+    date: 'May 8, 2026',
+    dateISO: '2026-05-08',
+    readTime: '8 min read',
+    tag: 'Instrument Rating',
+    image: '/blog-ifr-woman-pilot.jpg',
+    related: ['ifr-weather-minimums', 'how-to-read-a-taf', 'how-to-read-a-metar'],
+    schemaFaqs: [
+      { q: 'What temperature range produces structural icing?', a: 'Structural icing occurs when visible moisture (clouds, freezing rain, freezing drizzle) combines with temperatures between approximately +2°C and -20°C (35°F to -4°F). The most severe icing typically occurs between 0°C and -10°C.' },
+      { q: 'What is the difference between rime ice and clear ice?', a: 'Rime ice forms from small supercooled water droplets that freeze instantly on contact, creating a rough, milky white deposit. Clear ice forms from large droplets that flow back before freezing, creating a smooth, dense, heavy coating that is more aerodynamically damaging.' },
+      { q: 'Can a Part 91 pilot fly into known icing conditions?', a: 'Not unless the aircraft is certificated for flight into known icing conditions. Entering IMC where icing is forecast or reported is not the same as "known icing" — known icing means you encounter actual ice. But deliberately flying into conditions where ice is certain is considered reckless.' },
+    ],
+    content: (
+      <>
+        <h2>Why icing kills instrument pilots</h2>
+        <p>Structural icing is one of the few weather hazards that can incapacitate an aircraft faster than a pilot can respond. Ice on the wings changes the airfoil shape, increasing stall speed and reducing lift. Ice on the tail can cause a tail stall that's nearly impossible to recover from in a light aircraft. Ice on the propeller creates vibration and reduces thrust. And all of this can happen in minutes.</p>
+        <p>The IFR environment puts you in clouds where icing can form. Understanding what causes icing, how to recognize it, and what the regulations require is not just test material — it's survival information.</p>
+
+        <h2>What causes structural icing</h2>
+        <p>Two things have to be present simultaneously: visible moisture and freezing temperatures. Visible moisture means you're in a cloud, in freezing rain, or in freezing drizzle. Clear air — even very cold clear air — doesn't produce structural icing. Temperature must be at or below freezing at the aircraft's surface, which is typically between +2°C and -20°C (the droplets need to still be liquid when they hit the aircraft).</p>
+        <p>The most dangerous icing occurs when large supercooled water droplets hit the aircraft at temperatures just below freezing (0°C to -10°C). At these temperatures, the water is liquid but freezes on contact. Because the droplets are large, they run back along the wing before freezing, creating clear ice — the most damaging type.</p>
+        <p>Very cold temperatures (-20°C and below) actually produce less dangerous icing because the droplets are smaller and freeze almost instantly into rime ice, which is less dense and less aerodynamically disruptive.</p>
+
+        <h2>Types of ice</h2>
+
+        <h3>Rime ice</h3>
+        <p>Rime ice is rough, milky white, and opaque. It forms from small supercooled droplets that freeze on contact. It looks like frost and has a granular texture. While rime ice increases drag, its irregular shape doesn't conform closely to the wing, which means it disrupts the boundary layer but doesn't change the wing profile as severely as clear ice.</p>
+
+        <h3>Clear ice</h3>
+        <p>Clear ice is smooth, dense, and heavy. It forms from large droplets that flow back along the wing before freezing. Because it conforms to the wing shape, it can be hard to see — it's transparent. Clear ice adds significant weight, disrupts airflow at critical leading-edge areas, and is the most aerodynamically destructive type. This is the ice that kills airplanes.</p>
+
+        <h3>Mixed ice</h3>
+        <p>A combination of rime and clear, typically from flying through an area where droplet sizes vary. It's rough and heavy — the worst of both types.</p>
+
+        <h2>Where icing is most likely</h2>
+        <p>The base of cumulus clouds where droplets are large and temperatures are marginal. Freezing rain layers — which can extend above the freezing level because rain falls from warmer air above. Freezing drizzle from stratus layers, which produces massive supercooled droplets. And the tops of stratus clouds, especially in winter.</p>
+        <p>Freezing rain is particularly dangerous because the ice can form faster than most aircraft's deicing systems can handle. If you're penetrating a freezing rain layer, get through it quickly or get out of it.</p>
+
+        <h2>How to get icing information</h2>
+        <p>PIREPs (Pilot Reports) are the most current source. A PIREP reporting moderate icing at 8,000 feet was filed by a pilot who was actually in that ice — it doesn't get more real-time than that. Look for recent PIREPs along your route.</p>
+        <p>AIRMETs are the standard forecast tool. AIRMET Sierra covers IFR conditions and mountain obscuration. AIRMET Zulu covers icing. A Zulu AIRMET tells you where icing is expected, at what altitudes, and during what time period. It's a forecast, not a pilot report, but it's the primary planning tool.</p>
+        <p>SIGMETs can also address severe icing — particularly freezing rain — which rises to the level of a hazard requiring a SIGMET rather than just an AIRMET.</p>
+
+        <h2>Regulations: known icing</h2>
+        <p>A Part 91 pilot cannot fly into "known icing conditions" unless the aircraft is certificated for flight in known icing (FIKI — Flight Into Known Icing). The regulatory definition of known icing is nuanced. Flying into a cloud where icing is possible is not the same as known icing. But flying into a cloud where icing is certain — where PIREPs confirm ice is there right now — is a different matter.</p>
+        <p>Most light training aircraft are not FIKI certified. If you encounter ice in one of these aircraft, get out of it: change altitude, reverse course, divert. Don't try to press through hoping conditions improve.</p>
+
+        <h2>What the IRA exam asks</h2>
+        <p>Know the temperature range for structural icing (visible moisture plus +2°C to -20°C). Know the difference between rime (small droplets, white, rough) and clear ice (large droplets, transparent, heavy, most dangerous). Know where to find icing information: PIREPs for current conditions, AIRMET Zulu for forecasts. And know that FIKI certification is required to legally fly into known icing conditions.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'ifr-departure-procedures-odps-sids': {
+    title: 'IFR Departure Procedures: ODPs, SIDs, and Climb Gradients',
+    description: 'Obstacle Departure Procedures and SIDs protect you during the most vulnerable phase of IFR flight. Here\'s what they are, when you must use them, and what the IRA exam tests.',
+    date: 'May 8, 2026',
+    dateISO: '2026-05-08',
+    readTime: '7 min read',
+    tag: 'Instrument Rating',
+    image: '/blog-ifr-cockpit-night.jpg',
+    related: ['ifr-weather-minimums', 'ifr-alternate-airport-requirements', 'faa-instrument-rating-written-test-study-tips-2026'],
+    schemaFaqs: [
+      { q: 'What is the difference between an ODP and a SID?', a: 'An ODP (Obstacle Departure Procedure) is a standard departure procedure designed only to provide obstacle clearance. It\'s optional for Part 91 operations but provides a known safe path. A SID (Standard Instrument Departure) is an ATC-assigned procedure that also provides obstacle clearance but includes ATC communication and routing requirements — you need a clearance to fly a SID.' },
+      { q: 'What is the standard IFR climb gradient?', a: 'The standard climb gradient is 200 feet per nautical mile, which equates to approximately a 3.3% climb. This provides the 48-foot per mile obstacle clearance buffer required for IFR departure.' },
+      { q: 'Do Part 91 pilots have to fly ODPs?', a: 'No — ODPs are optional for Part 91 operators. However, if you don\'t fly the ODP and something goes wrong during departure, you have no guarantee of obstacle clearance. Most instrument-rated pilots fly ODPs as a matter of safety even though they\'re not required.' },
+    ],
+    content: (
+      <>
+        <h2>Departure: the most dangerous phase of IFR flight</h2>
+        <p>The approach gets all the attention in IFR training, but the departure is where a lot of accidents happen. You've just left the ground, you're accelerating, you're transitioning to instruments, and there may be terrain or obstacles very close to the airport. If the weather is low, you might be in the clouds within seconds of rotation.</p>
+        <p>Departure procedures exist to give you a known safe path through that environment. They're charted, obstacle-cleared routes that keep you away from things that would ruin your day. Understanding them — and when to use them — is essential IFR knowledge.</p>
+
+        <h2>Standard climb gradient</h2>
+        <p>The foundation of IFR departures is a standard climb gradient of 200 feet per nautical mile. This means for every nautical mile you travel after departure, you should be at least 200 feet higher than when you started. At a typical light aircraft climb speed of around 90 knots, 200 ft/NM works out to roughly 300 feet per minute of climb — within reach of most singles and twins.</p>
+        <p>The 200 ft/NM standard provides 48 feet per nautical mile of obstacle clearance buffer above any obstacles along the departure path. It sounds like a thin margin, but the procedure designers work backwards from obstacle heights to verify clearance at this gradient.</p>
+        <p>When obstacles are too high to clear at 200 ft/NM, the published departure procedure will specify a higher climb gradient — sometimes 300, 400, or even 500 ft/NM. If your aircraft can't make that gradient on a given day (high density altitude, heavy weight, engine failure), you can't safely fly that departure.</p>
+
+        <h2>Obstacle Departure Procedures (ODPs)</h2>
+        <p>An ODP is a textually or graphically depicted procedure for departing an airport that provides obstacle clearance. The word "obstacle" is the key — ODPs exist purely for obstacle clearance. They don't do anything for ATC separation or routing. They just keep you away from the rocks.</p>
+        <p>ODPs are published in two places: as text in the front of the terminal procedures book (or digital equivalent), or as a graphic chart alongside the approach plates for the airport. Text ODPs look like "climbing left turn to 3,000 MSL on the 340° radial of the ODF VOR, then direct..." Graphic ODPs look like departure plates.</p>
+        <p>For Part 91 operations, ODPs are recommended but not required. ATC will not automatically give you an ODP clearance — they'll give you a SID if one exists, or clear you direct to a fix. If the airport has a published ODP and no SID, you have to ask for the ODP or decide to fly it on your own. Most experienced instrument pilots fly the ODP whenever one exists.</p>
+
+        <h2>Standard Instrument Departures (SIDs)</h2>
+        <p>A SID serves the same obstacle clearance purpose as an ODP, but it's an ATC tool. SIDs are published at busy airports to standardize departures, reduce pilot-controller workload, and provide efficient routing to the en route structure. You get a SID clearance from ATC — "cleared for the HANAH SIX departure" — and you fly the procedure as charted.</p>
+        <p>SIDs include routing and altitude constraints, not just obstacle clearance. They'll tell you which heading to fly, when to turn, which VOR or fix to proceed to, and what altitude to climb to. If you receive a SID clearance, you must be able to accept it or request a different departure routing.</p>
+        <p>Unlike ODPs, SIDs require an explicit ATC clearance. You can't just decide to fly a SID on your own at a towered airport — you need the clearance. At non-towered airports with SIDs, you file it in your flight plan.</p>
+
+        <h2>What to do when there's no departure procedure</h2>
+        <p>Some airports have no published ODP or SID. In that case, the standard is: climb on the runway heading to 400 feet AGL before turning, and climb at the standard 200 ft/NM gradient. This keeps you in a known-safe corridor for the shortest practical time before you can navigate.</p>
+        <p>At airports with no procedure, terrain awareness becomes your responsibility. Brief the departure, know the MSA, and have a plan if you need to abort the climb.</p>
+
+        <h2>Climb gradient in practice</h2>
+        <p>The IRA exam will give you a scenario with a required climb gradient (say, 340 ft/NM) and ask whether your aircraft can meet it given a certain groundspeed and rate of climb. The formula: multiply the required gradient (ft/NM) by your groundspeed in NM per minute. So 340 ft/NM × 1.5 NM/min (90 knots) = 510 fpm required. Can your aircraft do that? Check the performance charts.</p>
+        <p>This is worth practicing. Aircraft performance varies enormously with temperature, altitude, and weight. A climb gradient that's easy at sea level on a cold day might be marginal on a hot summer afternoon at a high-elevation airport.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'vor-approach-explained': {
+    title: 'VOR Approach Explained: How It Works and What the FAA Tests',
+    description: 'VOR approaches are non-precision approaches that show up on every IRA exam. Here\'s how to fly one, what step-down fixes mean, and when a circling approach is required.',
+    date: 'May 8, 2026',
+    dateISO: '2026-05-08',
+    readTime: '7 min read',
+    tag: 'Instrument Rating',
+    image: '/blog-ifr-cockpit-gauges.jpg',
+    related: ['ils-approach-explained', 'rnav-gps-approaches-explained', 'how-to-read-instrument-approach-plate'],
+    schemaFaqs: [
+      { q: 'What is the difference between a VOR approach and an ILS approach?', a: 'An ILS is a precision approach with both lateral and vertical guidance — you follow a glideslope to a Decision Altitude. A VOR approach is a non-precision approach with lateral guidance only — you step down to a Minimum Descent Altitude (MDA) and fly level until the missed approach point.' },
+      { q: 'What is a step-down fix on a VOR approach?', a: 'A step-down fix is an intermediate fix between the FAF and the MAP where you can descend to a lower altitude once you\'ve passed it. Each step-down fix confirms you\'ve cleared an obstacle, allowing a lower descent.' },
+      { q: 'When is a circling approach required on a VOR?', a: 'A circling approach is required when the final approach course is more than 30 degrees offset from the runway alignment, or when straight-in landing minimums are not published for the runway.' },
+    ],
+    content: (
+      <>
+        <h2>VOR approaches are still everywhere</h2>
+        <p>GPS has taken over as the primary IFR navigation tool, but VOR approaches are still published at thousands of airports and they're heavily tested on the IRA written exam. More importantly, understanding the VOR approach teaches you the fundamentals of all non-precision approaches — the concepts apply to NDB, LOC, and RNAV/LNAV approaches too.</p>
+
+        <h2>The basic structure</h2>
+        <p>A VOR approach uses a VOR radial as the final approach course. You track inbound on that radial from the FAF to the MAP. Unlike the ILS, there's no glideslope — you descend in steps using altitude crossing restrictions at each fix, then level off at the MDA and fly it out until you either see the runway or reach the MAP and execute the missed approach.</p>
+        <p>Most VOR approaches have a procedure turn or holding-in-lieu-of-procedure-turn (HILPT) to allow aircraft arriving from the en route structure to reverse course and align with the final approach course. If you're radar-vectored to final by ATC, you skip the procedure turn — ATC is doing that work for you.</p>
+
+        <h2>The course reversal</h2>
+        <p>If a procedure turn or HILPT is depicted on the plate, you must fly it unless ATC tells you otherwise (radar vectors, "cleared straight-in approach," or you're arriving from a holding pattern). The procedure turn is typically depicted as a barbed arrow showing the turn direction. You have 10 NM from the PT fix to complete the maneuver unless a different distance is specified.</p>
+        <p>If a "NoPT" annotation appears along a feeder route, aircraft approaching from that direction are cleared to proceed straight in without the procedure turn. Know which route you're arriving on.</p>
+
+        <h2>Step-down fixes</h2>
+        <p>Many VOR approaches have step-down fixes between the FAF and the MAP. These are points — typically defined by a crossing radial or DME distance — that confirm you've cleared an obstacle. Once you cross the step-down fix, you can descend to the lower altitude listed for that segment.</p>
+        <p>If your aircraft doesn't have the equipment to identify a step-down fix (no DME, no crossing radial), you must use the higher MDA for the entire approach, not just the first segment. You can only descend to lower MDAs if you can positively identify the fix that authorizes that descent.</p>
+
+        <h2>The missed approach point</h2>
+        <p>On VOR approaches, the MAP is typically at the VOR itself (if the approach is to a VOR on the field) or at a specific time/distance from the FAF. If the MAP is time-based, the plate will have a timing table showing how many minutes to the MAP based on your groundspeed. Know your groundspeed, find the time, start the clock when you cross the FAF.</p>
+        <p>You cannot descend below the MDA after the MAP. If you reach the MAP without visual contact, you must begin the missed approach immediately, even if you're right at the MDA and the runway might be close.</p>
+
+        <h2>Straight-in vs circling</h2>
+        <p>If the final approach course is within 30 degrees of the runway heading and descent gradient requirements are met, straight-in minimums will be published. You can land straight ahead if you have the runway in sight.</p>
+        <p>If the course is offset more than 30 degrees, or if only circling minimums are published, you need to circle to the runway. Circling means you fly a visual traffic pattern around the airport at the circling MDA until you're aligned with the runway you want to land on. Circling has higher minimums than straight-in because you're maneuvering visually with less obstacle protection.</p>
+        <p>Circling minimums increase as you go up the aircraft category chart. A Category A aircraft can circle with a lower ceiling than a Category D aircraft because the Cat A pattern is smaller and slower.</p>
+
+        <h2>What the IRA exam tests</h2>
+        <p>VOR approach questions on the IRA written usually involve reading a plate and answering specific questions: What is the MDA? When is the procedure turn required? If my groundspeed is 90 knots, how long do I fly from the FAF to the MAP? What equipment do I need to use the lower MDA at the step-down fix?</p>
+        <p>Practice reading the minimums section of several VOR approach plates. Know how to find the straight-in vs circling minimums, how to identify your aircraft category, and how to convert HAT/HAA to MSL altitudes.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'ifr-currency-requirements': {
+    title: 'IFR Currency Requirements: What Keeps You Legal to Fly IMC',
+    description: 'IFR currency is separate from your instrument rating. Here\'s exactly what you need to stay current, what lapses if you don\'t, and how to get current again legally.',
+    date: 'May 8, 2026',
+    dateISO: '2026-05-08',
+    readTime: '6 min read',
+    tag: 'Instrument Rating',
+    image: '/blog-ifr-pilot-training.jpg',
+    related: ['faa-instrument-rating-written-test-study-tips-2026', 'ifr-weather-minimums', 'ifr-alternate-airport-requirements'],
+    schemaFaqs: [
+      { q: 'What are the IFR currency requirements under 14 CFR 61.57?', a: 'Within the preceding 6 months, you must have logged 6 instrument approaches, holding procedures, and intercepting/tracking courses using navigation systems. These can be done in actual IMC, a flight simulator, or a flight training device.' },
+      { q: 'What happens if your IFR currency lapses?', a: 'If your currency lapses, you can still log approaches and holds in actual IMC to regain currency, but you cannot act as PIC of an IFR flight in IMC. To become current again, you must complete the required tasks within 6 months of your lapse date.' },
+      { q: 'Can you use a simulator to maintain IFR currency?', a: 'Yes — an approved flight simulator or flight training device can be used to log instrument approaches, holding procedures, and intercepting/tracking for currency purposes, as long as it\'s approved and a CFII is present.' },
+    ],
+    content: (
+      <>
+        <h2>Your instrument rating never expires — your currency does</h2>
+        <p>This is one of the most misunderstood distinctions in aviation regulations. Once you earn your instrument rating, you have it for life. The FAA doesn't take it away if you stop flying IFR. But your currency — your legal ability to act as PIC of an IFR flight in IMC — can absolutely lapse, and it lapses quietly without any notification from the FAA.</p>
+        <p>Every instrument pilot needs to understand 14 CFR 61.57(c). It's the regulation that governs IFR currency, and it's also an IRA exam topic.</p>
+
+        <h2>What currency requires</h2>
+        <p>To act as PIC under IFR, you must have performed the following within the preceding 6 calendar months:</p>
+        <ul>
+          <li>6 instrument approaches</li>
+          <li>Holding procedures and entries</li>
+          <li>Intercepting and tracking courses using navigation systems</li>
+        </ul>
+        <p>All three of these must be done within the same 6-month window. Six approaches logged in month 1 through 6, but no holding — not current. Holding and approaches but no tracking — not current. All three must be done together in that 6-month period.</p>
+        <p>These can be done in actual IMC or in simulated instrument conditions — wearing a view-limiting device (foggles or a hood) with a safety pilot, or in an approved simulator or FTD. The actual conditions don't matter; the logged experience does.</p>
+
+        <h2>The 6-month rolling window</h2>
+        <p>Currency is based on the preceding 6 calendar months, not a fixed renewal date. If you log your 6th approach on March 15, your currency window for that approach extends through September 30 (the end of the 6th calendar month). Miss one approach in that window and your window resets around the new most-recent approach date.</p>
+        <p>Calendar months are key. A "calendar month" in FAA terms ends at the last day of the month. If your last approach was February 3, your 6-calendar-month window extends through August 31, not August 3.</p>
+
+        <h2>What happens when currency lapses</h2>
+        <p>If 6 calendar months pass without logging the required tasks, you're no longer current for IFR. You cannot act as PIC under IFR in IMC. You can still fly IFR in VMC (visual conditions under an IFR clearance), but the moment you enter IMC you're operating illegally as PIC.</p>
+        <p>Within the next 6 months (the 7th through 12th calendar months after the lapse begins), you can regain currency by logging the required tasks without a flight review or checkride — just log the approaches and holds. Fly with a safety pilot or in a simulator and get it done.</p>
+        <p>If 12 months pass without logging the requirements, you need an Instrument Proficiency Check (IPC) from a CFII. The IPC is essentially a mini-checkride — the instructor evaluates you against the instrument ACS standards and signs you off as current. This is not a retesting of your rating, just a proficiency check.</p>
+
+        <h2>Safety pilot requirements</h2>
+        <p>When flying in simulated instrument conditions wearing a view-limiting device, you need a safety pilot. The safety pilot must hold at least a private pilot certificate for the category and class of aircraft, have a current medical, and act as a required crew member. The safety pilot must be qualified to act as PIC for the aircraft being flown.</p>
+        <p>Important: the safety pilot logs the flight as PIC (they're the required crew member) and you log it as PIC (you're the acting PIC, flying under the hood). Both pilots can log PIC time for the same flight. The safety pilot logs it because they're the required crew member maintaining visual lookout; you log it because you're manipulating the controls.</p>
+
+        <h2>IRA exam questions on currency</h2>
+        <p>Know the 6-approach, holding, tracking requirement. Know it's 6 calendar months, not 180 days. Know what happens at the 6-month and 12-month lapse points. And know the safety pilot requirements — particularly that the safety pilot must be qualified to act as PIC for the aircraft. These are recurring IRA written test topics.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'instrument-approach-missed-approach': {
+    title: 'Executing the Missed Approach: When to Go, What to Do, and Common Mistakes',
+    description: 'The missed approach is the most critical maneuver in IFR flying — and the one most often done wrong. Here\'s when to execute it, the correct procedure, and what the IRA exam tests.',
+    date: 'May 8, 2026',
+    dateISO: '2026-05-08',
+    readTime: '7 min read',
+    tag: 'Instrument Rating',
+    image: '/blog-ifr-approach-runway.jpg',
+    related: ['ils-approach-explained', 'how-to-read-instrument-approach-plate', 'ifr-holding-patterns-explained'],
+    schemaFaqs: [
+      { q: 'When must you execute a missed approach?', a: 'You must execute a missed approach when you reach the Decision Altitude (DA) on a precision approach or the Missed Approach Point (MAP) on a non-precision approach without having the required visual references to land. You must also go missed if you lose visual contact after descending below DA/MDA.' },
+      { q: 'Can you descend below MDA if you have the runway in sight?', a: 'Yes — if you have the required visual references (runway environment in sight) and can make a normal descent to landing, you may descend below the MDA to land. But you must maintain those visual references continuously.' },
+      { q: 'What does "climb via the missed approach" mean?', a: 'It means fly the published missed approach procedure as charted — including all turns, fixes, and altitudes. If ATC gives you a different clearance, follow ATC\'s instructions instead of the published procedure.' },
+    ],
+    content: (
+      <>
+        <h2>The decision that can't wait</h2>
+        <p>At Decision Altitude on an ILS, you have a fraction of a second to decide: do you have the runway in sight well enough to land, or do you go missed? At 200 feet above the ground, in the soup, at approach speed — that decision has to be made and executed immediately. Hesitating costs you altitude and options.</p>
+        <p>Most instrument training focuses on flying to minimums. Less time gets spent on what happens when you get there and can't land. That's a gap, because the missed approach is where bad things happen. Pilots who delay the decision, who duck below minimums hoping to catch a glimpse, or who fly the missed approach incorrectly cause accidents.</p>
+
+        <h2>When you must go missed</h2>
+        <p>On a precision approach (ILS, LPV): if you reach the Decision Altitude without the required visual references, you must immediately initiate the missed approach. You don't level off at DA. You don't continue to descend hoping to break out. DA is the decision point — you either have what you need to land, or you climb.</p>
+        <p>On a non-precision approach (VOR, RNAV/LNAV): you level off at the MDA and fly it out to the MAP. At the MAP — whether that's a fix, a DME distance, or a time — if you don't have visual contact with the runway environment, you execute the missed approach. You also go missed if you reach the MDA and don't have the runway in sight before you start the descent that would put you on a normal glidepath to the threshold.</p>
+        <p>You must also go missed if you had visual contact and then lose it. If you broke out at 300 feet, saw the runway, and then the fog rolled back in — go missed. Don't try to find the runway again visually while descending through it.</p>
+
+        <h2>What counts as "visual references"</h2>
+        <p>Per FAR 91.175, you need to see the runway environment — not just a glow, not just a general area of light. Specifically: approach lights, runway threshold, touchdown zone, runway edge lights, or the runway surface itself. If you can see the approach lighting system but it's just a glow (you can't identify the individual lights), you may continue to 100 feet above TDZE — but no lower.</p>
+        <p>This is the regulation that catches pilots who "saw something" and continued descending. Seeing a glow is not seeing the runway environment. If you can't positively identify the approach or runway, you're not legal to continue.</p>
+
+        <h2>Flying the missed approach correctly</h2>
+        <p>The missed approach procedure is printed on every approach plate. When you go missed, you fly it — unless ATC gives you different instructions. The procedure will tell you: climb to X altitude, turn to X heading or proceed to X fix, then do X (usually hold, fly to an IAF, or proceed to the alternate).</p>
+        <p>Fly the procedure as published until you're established in a climb and have time to coordinate with ATC. Don't start improvising a new routing in the first seconds of a missed approach — fly the plate, get the power in, establish a positive rate of climb, get the gear and flaps up, then talk to ATC.</p>
+        <p>One common mistake: not going to full power immediately. At 200 feet AGL in IMC, there's no room for a leisurely power increase. Max power, establish climb attitude, then handle the secondary items (gear, flaps). Altitude is your priority.</p>
+
+        <h2>Missed approach altitude and holding</h2>
+        <p>The missed approach procedure will specify a climb altitude and usually direct you to a holding fix to wait for further clearance. You climb to that altitude and hold there until ATC clears you for another approach, vectors you to another airport, or clears you to your alternate.</p>
+        <p>Have the alternate weather and your fuel state in mind before you fly the approach. If you know you're going to need an alternate, brief the alternate approach before you start the primary one. Don't figure out the alternate routing for the first time when you're in a missed approach climb in IMC.</p>
+
+        <h2>IRA exam questions</h2>
+        <p>Know when the missed approach must be initiated — at DA for precision, at MAP for non-precision. Know that losing visual contact after breaking out also requires the missed approach. Know what counts as required visual references under 91.175. And know that the published missed approach procedure must be flown unless ATC provides different instructions. These are all tested on the IRA knowledge exam.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'ifr-flight-planning-fuel-requirements': {
+    title: 'IFR Flight Planning: Fuel Requirements, Alternates, and Filing',
+    description: 'IFR flight planning has specific fuel and alternate requirements that differ from VFR. Here\'s what the FAA requires under Part 91 and what the IRA written exam tests.',
+    date: 'May 8, 2026',
+    dateISO: '2026-05-08',
+    readTime: '7 min read',
+    tag: 'Instrument Rating',
+    image: '/blog-ifr-cockpit-approach.jpg',
+    related: ['ifr-alternate-airport-requirements', 'ifr-weather-minimums', 'faa-instrument-rating-written-test-study-tips-2026'],
+    schemaFaqs: [
+      { q: 'How much fuel is required for an IFR flight under Part 91?', a: 'Enough fuel to fly to the destination, then to the alternate (if required), and then for 45 minutes at normal cruise power. If no alternate is required, you need fuel to reach the destination and then 45 minutes at normal cruise.' },
+      { q: 'What is a void time clearance?', a: 'At non-towered airports without a clearance delivery frequency, you call ATC by radio or phone and receive a clearance with a void time — you must be airborne before that time or the clearance is invalid. If you aren\'t airborne, you must notify ATC.' },
+      { q: 'What goes in a standard IFR flight plan?', a: 'Aircraft type and equipment suffix, departure airport, proposed departure time, cruise altitude, route, destination, estimated time en route, alternate (if required), and fuel on board. Equipment suffixes tell ATC what navigation and communication equipment you have.' },
+    ],
+    content: (
+      <>
+        <h2>IFR planning is different from VFR</h2>
+        <p>Filing VFR, you mostly worry about getting there safely and landing before dark. Filing IFR, there are specific regulatory requirements for fuel, alternates, and routing that you need to meet before you ever start the engine. The IRA written exam tests these requirements because they're things instrument pilots encounter on every single flight.</p>
+
+        <h2>IFR fuel requirements</h2>
+        <p>Under 14 CFR 91.167, an IFR flight must carry enough fuel to:</p>
+        <ul>
+          <li>Complete the flight to the first airport of intended landing</li>
+          <li>Fly from there to the alternate airport (if one is required)</li>
+          <li>Then fly for 45 minutes at normal cruising speed</li>
+        </ul>
+        <p>If no alternate is required (destination weather is forecast above the 1-2-3 threshold), you still need destination fuel plus 45 minutes. The 45-minute reserve is calculated at normal cruising speed, not at max endurance. This is different from the VFR 30-minute night reserve — IFR is 45 minutes regardless of time of day.</p>
+        <p>Fuel planning for IFR also needs to account for holding time. If you expect to hold for 30 minutes at your destination, add that to your fuel calculation. Your 45-minute reserve should remain untouched after the approach — it's not a "use this if you hold" buffer.</p>
+
+        <h2>Filing the IFR flight plan</h2>
+        <p>An IFR flight plan requires more information than VFR. The key fields:</p>
+        <p><strong>Aircraft type and equipment suffix:</strong> The equipment suffix tells ATC what navigation equipment you have. /G means GPS. /A means DME but no transponder (rare). /U means no transponder. These suffixes affect your route assignment and ATC handling.</p>
+        <p><strong>Route:</strong> Your IFR route must connect airways, direct segments (if GPS-equipped), or be clearance-request format. At lower altitudes, Victor airways (V-routes) are common. Above FL180, Jet routes (J-routes). With GPS, many routes are filed as direct using waypoints.</p>
+        <p><strong>Cruise altitude:</strong> Must be at or above the MEA along your route. For Part 91 IFR, you use the hemispheric altitude rule: eastbound flights (0°–179° magnetic) fly at odd thousands (3,000, 5,000, 7,000...); westbound (180°–359°) fly at even thousands (4,000, 6,000, 8,000...). Add 500 feet for IFR (3,500, 5,500, etc.).</p>
+        <p><strong>Alternate:</strong> Required if destination weather is forecast below 2,000 and 3 SM in the ±1 hour window around ETA. The alternate must have an approach with forecast weather meeting alternate minimums.</p>
+
+        <h2>Getting your clearance</h2>
+        <p>At a towered airport with ATIS and Clearance Delivery, you contact clearance before taxiing. You get an ATC clearance (CRAFT: Clearance limit, Route, Altitude, Frequency, Transponder code) and read it back. When you're ready to taxi, contact Ground.</p>
+        <p>At a non-towered airport, you call the AFSS or local approach/center frequency by radio (or phone) to get your clearance before departure. You'll receive either a clearance with a release time (you must depart by that time) or a clearance with a void time.</p>
+        <p>A void time clearance means your clearance is valid only if you depart before the stated time. If you're not airborne by the void time, the clearance is no longer valid — you cannot depart under that clearance. You must contact ATC and get a new one. If you cannot reach ATC, you stay on the ground and try again.</p>
+
+        <h2>En route altitude rules</h2>
+        <p>The MEA guarantees obstacle clearance and VOR reception for the entire airway segment. The MOCA provides obstacle clearance only — navaid reception is only guaranteed within 22 NM. You can file at the MEA or higher. You can use the MOCA if ATC clears you to a lower altitude, but you accept reduced navaid reception.</p>
+        <p>At the MEA on a Victor airway, your obstacle clearance is 1,000 feet in non-mountainous areas, 2,000 feet in mountainous areas (as defined in FAR Part 95). These aren't the MEA numbers themselves — they're the clearance built into how the MEA was calculated.</p>
+
+        <h2>IRA exam focus</h2>
+        <p>Know the fuel requirement: destination + alternate (if required) + 45 minutes. Know the hemispheric altitude rule for IFR. Know MEA vs MOCA. Know what a void time clearance means and what you must do if you can't depart before the void time. These are all standard IRA written test topics, and they're practical knowledge you'll use on every IFR flight.</p>
+      </>
+    ),
+  },
+
 };
 
 /* ─── Shared layout ────────────────────────────────────────────────── */
