@@ -68,27 +68,41 @@ exports.startSession = async (req, res, next) => {
     const exam = examRows[0];
     if (!exam) return res.status(404).json({ error: 'Exam not found' });
 
-    // Demo mode: free users get 30 questions per exam in exam mode — no subscription needed
+    // Demo mode: free users get exactly 30 fixed questions per exam, one session ever.
+    // Same questions every time regardless of account — no benefit to creating multiple accounts.
     if (demo) {
+      // Fixed question IDs — these never change. One account = one demo, same questions for everyone.
       const DEMO_IDS = {
-        PAR: [5,23,41,80,146,281,299,353,370,392,394,408,434,535,551,563,603,664,798,847,887,889,901,1071,1684,1839,1855,2016,2061,2066],
-        IRA: [2074,2083,2122,2170,2210,2261,2266,2330,2331,2353,2358,2362,2365,2376,2448,2452,2495,2496,2528,2618,2628,2685,2701,2710,2744,2818,2828,2858,2863,2920],
-        CAX: [1126,1206,1208,1263,1268,1279,1331,1451,1452,1543,1544,1545,1552,1971,3088,3097,3120,3171,3217,3243,3260,3283,3305,3334,3335,3358,3384,3417,3419,3431],
-        UAG: [3467,3471,3490,3520,3539,3541,3546,3552,3560,3578,3589,3590,3596,3607,3612,3613,3617,3618,5181,5203,5214,5220,5221,5232,5242,5247,5248,5252,5254,5265],
+        PAR: [41,112,193,281,353,392,434,535,563,664,798,887,1071,1684,1839,23,80,146,299,370,408,551,603,847,889,901,1855,2016,2061,2066],
+        IRA: [2074,2083,2122,2170,2210,2261,2330,2353,2362,2376,2452,2496,2528,2628,2685,2744,2818,2858,2920,2266,2331,2358,2365,2448,2495,2618,2701,2710,2828,2863],
+        CAX: [1126,1208,1268,1331,1452,1543,1545,1971,3088,3120,3217,3260,3305,3358,3419,1206,1263,1279,1451,1544,1552,3097,3171,3243,3283,3334,3335,3384,3417,3431],
+        UAG: [3467,3490,3539,3546,3560,3589,3596,3612,3617,5181,5214,5221,5242,5248,5254,3471,3520,3541,3552,3578,3590,3607,3613,3618,5203,5220,5232,5247,5252,5265],
       };
       const ids = DEMO_IDS[exam.code];
       if (!ids) {
         return res.status(403).json({ error: 'Free sample is not available for this exam.' });
       }
-      const { rows: demoPool } = await db.query(
-        `SELECT id FROM questions WHERE id = ANY($1::int[]) AND is_active ORDER BY array_position($1::int[], id)`,
-        [ids]
+
+      // Ensure is_demo column exists (safe to run on every deploy)
+      await db.query(`ALTER TABLE exam_sessions ADD COLUMN IF NOT EXISTS is_demo BOOLEAN NOT NULL DEFAULT FALSE`);
+
+      // One demo per user per exam — return existing session if already created.
+      // No benefit to making another account: same questions every time.
+      const { rows: existing } = await db.query(
+        `SELECT id, status FROM exam_sessions
+         WHERE user_id = $1 AND exam_id = $2 AND is_demo = TRUE
+         ORDER BY created_at ASC LIMIT 1`,
+        [req.user.id, exam.id]
       );
-      if (!demoPool.length) return res.status(400).json({ error: 'No questions available' });
+      if (existing.length) {
+        // If already completed, send them to results; otherwise resume
+        return res.status(200).json({ session: existing[0] });
+      }
+
       const { rows: sessRows } = await db.query(
-        `INSERT INTO exam_sessions (user_id, exam_id, mode, question_ids, time_limit)
-         VALUES ($1,$2,'exam',$3,0) RETURNING *`,
-        [req.user.id, exam.id, demoPool.map((r) => r.id)]
+        `INSERT INTO exam_sessions (user_id, exam_id, mode, question_ids, time_limit, is_demo)
+         VALUES ($1,$2,'exam',$3,0,TRUE) RETURNING *`,
+        [req.user.id, exam.id, ids]
       );
       return res.status(201).json({ session: sessRows[0] });
     }
