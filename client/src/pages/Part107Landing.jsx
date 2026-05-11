@@ -357,7 +357,7 @@ export default function Part107Landing() {
               <a href="#includes" className="lp-btn-outline">See What's Included</a>
             </div>
             <div style={{ marginTop: 14 }}>
-              <Link to="/register" style={{ color: 'var(--lp-blue)', fontSize: 14, opacity: 0.85 }}>Try 30 free questions — just enter your email →</Link>
+              <Link to="/part-107-practice-test" style={{ color: 'var(--lp-blue)', fontSize: 14, opacity: 0.85 }}>Try 30 free questions — no account needed →</Link>
             </div>
             <div className="lp-hero-stats">
               <div><div className="lp-hs-val">265</div><div className="lp-hs-lbl">Practice Questions</div></div>
@@ -423,7 +423,7 @@ export default function Part107Landing() {
             <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 26, fontWeight: 800, color: '#fff', lineHeight: 1.2 }}>Not ready to commit? Try 30 real Part 107 questions first.</div>
             <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Same questions, same format as the real FAA exam — free, instant, no credit card.</div>
           </div>
-          <Link to="/register" style={{ background: '#34d399', color: '#041018', fontWeight: 800, fontSize: 15, padding: '14px 28px', borderRadius: 10, textDecoration: 'none', whiteSpace: 'nowrap', fontFamily: 'Barlow Condensed, sans-serif', letterSpacing: 0.5 }}>Start Free Practice Test →</Link>
+          <Link to="/part-107-practice-test" style={{ background: '#34d399', color: '#041018', fontWeight: 800, fontSize: 15, padding: '14px 28px', borderRadius: 10, textDecoration: 'none', whiteSpace: 'nowrap', fontFamily: 'Barlow Condensed, sans-serif', letterSpacing: 0.5 }}>Start Free Practice Test →</Link>
         </div>
       </section>
 
@@ -709,7 +709,7 @@ export default function Part107Landing() {
               <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
               Get Full Access — $37.99
             </Link>
-            <Link to="/register" style={{ background: '#34d399', color: '#041018', fontWeight: 800, fontSize: 15, padding: '14px 28px', borderRadius: 10, textDecoration: 'none', whiteSpace: 'nowrap', fontFamily: 'Barlow Condensed, sans-serif', letterSpacing: 0.5 }}>Try 30 Free Questions →</Link>
+            <Link to="/part-107-practice-test" style={{ background: '#34d399', color: '#041018', fontWeight: 800, fontSize: 15, padding: '14px 28px', borderRadius: 10, textDecoration: 'none', whiteSpace: 'nowrap', fontFamily: 'Barlow Condensed, sans-serif', letterSpacing: 0.5 }}>Try 30 Free Questions →</Link>
           </div>
         </div>
       </section>
