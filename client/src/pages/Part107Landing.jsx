@@ -428,6 +428,46 @@ export default function Part107Landing() {
       </section>
 
 
+      {/* TESTIMONIALS */}
+      <section style={{ padding: '80px 24px', background: 'var(--lp-dark)', borderTop: '1px solid var(--lp-border)' }}>
+        <div className="lp-section-inner">
+          <div className="lp-badge" style={{ textAlign: 'center', margin: '0 auto 12px' }}>STUDENT RESULTS</div>
+          <h2 style={{ textAlign: 'center', marginBottom: 48 }}>Real People. Real Passes.</h2>
+          <div className="fade-up" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20 }}>
+            {[
+              { quote: "Passed first try. I'd been putting this off for two years because I thought I needed an aviation background. Took me 18 days of studying in the evenings.", name: 'Marcus D.', role: 'Real estate photographer' },
+              { quote: "The explanations are what sold me. Every wrong answer tells you exactly why it's wrong, not just what the right one is. That's how I actually learned the airspace stuff.", name: 'Jenna K.', role: 'Wedding videographer' },
+              { quote: "I tried a free YouTube course first and got completely lost on weather and aeronautical charts. This just walks you through it in plain English. Passed with an 87%.", name: 'Tyler R.', role: 'Construction site inspector' },
+              { quote: "Studied for 3 weeks while working full time. The timed simulator was the most useful part — the real test felt exactly like the practice.", name: 'Danielle M.', role: 'Freelance content creator' },
+              { quote: "I'm not a tech person and I was intimidated. The AI instructor answered every dumb question I had without judgment. Worth every dollar.", name: 'Greg S.', role: 'Agriculture drone operator' },
+              { quote: "Bought two other courses before this one. Wish I'd just started here. Everything is focused on what's actually on the exam, nothing extra.", name: 'Sam W.', role: 'Aerial photography business owner' },
+            ].map((t, i) => (
+              <div key={i} style={{
+                background: 'rgba(255,255,255,0.03)',
+                border: '1px solid var(--lp-border)',
+                borderRadius: 16,
+                padding: '28px 24px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 16,
+              }}>
+                {/* Stars */}
+                <div style={{ display: 'flex', gap: 3 }}>
+                  {[...Array(5)].map((_, s) => (
+                    <svg key={s} width="14" height="14" viewBox="0 0 24 24" fill="#f5c842"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  ))}
+                </div>
+                <p style={{ color: 'var(--lp-text)', fontSize: 14, lineHeight: 1.7, margin: 0, flex: 1 }}>"{t.quote}"</p>
+                <div>
+                  <div style={{ color: '#fff', fontWeight: 700, fontSize: 14 }}>{t.name}</div>
+                  <div style={{ color: 'var(--lp-text3)', fontSize: 12, marginTop: 2 }}>{t.role}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* PRICING — hidden on desktop (card is in hero), shown on mobile only */}
       <section style={{ padding: '90px 40px', background: 'var(--lp-charcoal)', borderTop: '1px solid var(--lp-border)' }} id="pricing" className="lp-pricing-section">
         <div className="lp-section-inner" style={{ textAlign: 'center' }}>
