@@ -102,10 +102,11 @@ export default function Dashboard() {
 
       {/* ---------- upgrade banner (free users only) ---------- */}
       {user?.subscription === 'free' && (
+        <>
         <div style={{
           background:'linear-gradient(135deg,#0b1e36 0%,#0d2a4a 100%)',
           border:'1px solid #1e3a5f',borderRadius:14,padding:'24px 28px',
-          marginBottom:24,display:'flex',alignItems:'center',
+          marginBottom:16,display:'flex',alignItems:'center',
           justifyContent:'space-between',flexWrap:'wrap',gap:20,
         }}>
           <div style={{flex:1,minWidth:260}}>
@@ -138,6 +139,43 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
+
+        {/* ---------- free practice test shortcuts ---------- */}
+        <div style={{
+          background:'rgba(255,255,255,0.02)',
+          border:'1px solid #1e2a38',
+          borderRadius:14,padding:'20px 24px',
+          marginBottom:24,
+        }}>
+          <div style={{fontSize:'.78rem',fontWeight:700,letterSpacing:'.1em',color:'#5d8aaa',textTransform:'uppercase',marginBottom:14}}>
+            Or try 30 free questions — no payment needed
+          </div>
+          <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(160px,1fr))',gap:10}}>
+            {[
+              { label:'Private Pilot', sub:'PAR', to:'/par-practice-test', color:'#30ace2' },
+              { label:'Instrument Rating', sub:'IRA', to:'/ira-practice-test', color:'#a78bfa' },
+              { label:'Commercial Pilot', sub:'CAX', to:'/cax-practice-test', color:'#fb923c' },
+              { label:'Part 107 Drone', sub:'UAG', to:'/part-107-practice-test', color:'#34d399' },
+            ].map(({ label, sub, to, color }) => (
+              <Link key={sub} to={to} style={{
+                display:'flex',flexDirection:'column',gap:4,
+                background:'rgba(255,255,255,0.03)',
+                border:`1px solid ${color}33`,
+                borderRadius:10,padding:'14px 16px',
+                textDecoration:'none',
+                transition:'background .15s, border-color .15s',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.background=`${color}10`; e.currentTarget.style.borderColor=`${color}66`; }}
+              onMouseLeave={e => { e.currentTarget.style.background='rgba(255,255,255,0.03)'; e.currentTarget.style.borderColor=`${color}33`; }}
+              >
+                <span style={{color,fontSize:'.7rem',fontWeight:700,letterSpacing:'.08em',textTransform:'uppercase'}}>{sub}</span>
+                <span style={{color:'#fff',fontWeight:600,fontSize:'.9rem'}}>{label}</span>
+                <span style={{color:'#5d8aaa',fontSize:'.78rem'}}>30 free questions →</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+        </>
       )}
 
       {resume && (
