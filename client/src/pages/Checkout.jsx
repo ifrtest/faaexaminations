@@ -165,8 +165,8 @@ function CheckoutForm({ plan, intentData, onSuccess, userEmail }) {
               <span style={{ color: '#34d399', fontWeight: 600, fontSize: '.88rem' }}>One-time payment</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px solid #1e2a38' }}>
-              <Link to="/cancel-policy" style={{ color: '#94b8d4', fontSize: '.88rem', textDecoration: 'underline', opacity: 0.85 }}>Pass guarantee</Link>
-              <span style={{ color: '#34d399', fontWeight: 600, fontSize: '.88rem' }}>Refund if you fail</span>
+              <span style={{ color: '#94b8d4', fontSize: '.88rem' }}>Access</span>
+              <span style={{ color: '#34d399', fontWeight: 600, fontSize: '.88rem' }}>Pay once — keep forever</span>
             </div>
           </>
         ) : (
