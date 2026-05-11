@@ -279,7 +279,9 @@ export default function PracticeTestTemplate({
             {[
               { value: counts.questions.toLocaleString(), label: 'Total Questions' },
               { value: counts.topics, label: 'Official Topics' },
-              { value: 'Full Refund', label: 'Pass Guarantee' },
+              planParam === 'uag'
+                ? { value: 'Lifetime', label: 'One-Time Payment' }
+                : { value: 'Full Refund', label: 'Pass Guarantee' },
             ].map((stat, i) => (
               <div key={i} className="hero-stat" style={{
                 flex: '1 1 160px',
