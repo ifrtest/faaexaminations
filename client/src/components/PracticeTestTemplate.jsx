@@ -95,8 +95,7 @@ export default function PracticeTestTemplate({
   }
   const label = scoreLabel();
 
-  // demo param drops new signups straight into the real QuizRunner
-  const registerPath = `/register?demo=${planParam}`;
+  const registerPath = `/register?plan=${planParam}`;
 
   return (
     <div className="lp">
