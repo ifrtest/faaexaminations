@@ -4,17 +4,33 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Helmet } from 'react-helmet-async';
 
+// Maps the demo param (exam code, lowercase) to the exam code used by the API
+const DEMO_EXAM_MAP = { par: 'PAR', ira: 'IRA', cax: 'CAX', uag: 'UAG' };
+
+async function startDemoSession(token, examCode) {
+  const res = await fetch('/api/quiz/sessions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ exam_code: examCode, demo: true }),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || 'Could not start demo session');
+  return data.session.id;
+}
+
 export default function Register() {
   const { register, user } = useAuth();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const plan = searchParams.get('plan');
+  const demo = searchParams.get('demo');   // e.g. "par", "ira", "cax", "uag"
   const next = searchParams.get('next');
 
   useEffect(() => {
-    if (user && plan) navigate(`/exams?buy=${plan}`, { replace: true });
-    else if (user && next) navigate(next, { replace: true });
-    else if (user) navigate('/dashboard', { replace: true });
+    if (!user) return;
+    if (plan) navigate(`/exams?buy=${plan}`, { replace: true });
+    else if (next) navigate(next, { replace: true });
+    else navigate('/dashboard', { replace: true });
   }, [user]); // eslint-disable-line
 
   const [form, setForm] = useState({ full_name: '', email: '', password: '', confirm: '' });
@@ -33,6 +49,20 @@ export default function Register() {
       const data = await register(form.email, form.password, form.full_name);
       if (window.fbq) fbq('track', 'Lead', {}, data?.leadEventId ? { eventID: data.leadEventId } : {});
       if (window.gtag) gtag('event', 'sign_up', { method: 'email' });
+
+      // Demo flow: start a real quiz session so they experience the product immediately
+      const examCode = demo && DEMO_EXAM_MAP[demo.toLowerCase()];
+      if (examCode) {
+        try {
+          const token = localStorage.getItem('faa_token');
+          const sessionId = await startDemoSession(token, examCode);
+          navigate(`/quiz/${sessionId}`, { replace: true });
+          return;
+        } catch {
+          // Demo session failed — fall through to plan/dashboard
+        }
+      }
+
       if (plan) navigate(`/checkout?plan=${plan}`, { replace: true });
       else if (next) navigate(next, { replace: true });
       else navigate('/dashboard', { replace: true });

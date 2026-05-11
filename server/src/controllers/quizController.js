@@ -68,21 +68,26 @@ exports.startSession = async (req, res, next) => {
     const exam = examRows[0];
     if (!exam) return res.status(404).json({ error: 'Exam not found' });
 
-    // Demo mode: free users get 10 PAR questions in study mode, no subscription needed
+    // Demo mode: free users get 30 questions per exam in exam mode — no subscription needed
     if (demo) {
-      if (exam.code !== 'PAR') {
-        return res.status(403).json({ error: 'Free sample is only available for the PAR exam.' });
+      const DEMO_IDS = {
+        PAR: [5,23,41,80,146,281,299,353,370,392,394,408,434,535,551,563,603,664,798,847,887,889,901,1071,1684,1839,1855,2016,2061,2066],
+        IRA: [2074,2083,2122,2170,2210,2261,2266,2330,2331,2353,2358,2362,2365,2376,2448,2452,2495,2496,2528,2618,2628,2685,2701,2710,2744,2818,2828,2858,2863,2920],
+        CAX: [1126,1206,1208,1263,1268,1279,1331,1451,1452,1543,1544,1545,1552,1971,3088,3097,3120,3171,3217,3243,3260,3283,3305,3334,3335,3358,3384,3417,3419,3431],
+        UAG: [3467,3471,3490,3520,3539,3541,3546,3552,3560,3578,3589,3590,3596,3607,3612,3613,3617,3618,5181,5203,5214,5220,5221,5232,5242,5247,5248,5252,5254,5265],
+      };
+      const ids = DEMO_IDS[exam.code];
+      if (!ids) {
+        return res.status(403).json({ error: 'Free sample is not available for this exam.' });
       }
-      // One question from each of the 10 PAR topics (fixed — change via admin if needed)
-      const DEMO_QUESTION_IDS = [975, 471, 361, 112, 193, 41, 1, 465, 12, 218];
       const { rows: demoPool } = await db.query(
         `SELECT id FROM questions WHERE id = ANY($1::int[]) AND is_active ORDER BY array_position($1::int[], id)`,
-        [DEMO_QUESTION_IDS]
+        [ids]
       );
       if (!demoPool.length) return res.status(400).json({ error: 'No questions available' });
       const { rows: sessRows } = await db.query(
         `INSERT INTO exam_sessions (user_id, exam_id, mode, question_ids, time_limit)
-         VALUES ($1,$2,'study',$3,0) RETURNING *`,
+         VALUES ($1,$2,'exam',$3,0) RETURNING *`,
         [req.user.id, exam.id, demoPool.map((r) => r.id)]
       );
       return res.status(201).json({ session: sessRows[0] });
