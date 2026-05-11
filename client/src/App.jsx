@@ -11,6 +11,13 @@ import Login          from './pages/Login';
 import Register       from './pages/Register';
 
 // ── Everything else: lazy-loaded (only fetched when user navigates there) ──
+// Pre-warm chunks users land on right after login so Suspense is invisible
+const _preload = () => {
+  import('./pages/Dashboard');
+  import('./pages/ExamList');
+};
+if (typeof window !== 'undefined') setTimeout(_preload, 2000);
+
 const ForgotPassword   = lazy(() => import('./pages/ForgotPassword'));
 const ResetPassword    = lazy(() => import('./pages/ResetPassword'));
 const Dashboard        = lazy(() => import('./pages/Dashboard'));
@@ -68,7 +75,11 @@ export default function App() {
     <div className="app-shell">
       {!isLanding && <Navbar />}
       <main style={{ flex: 1 }}>
-        <Suspense fallback={<Spinner />}>
+        <Suspense fallback={
+          <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Spinner />
+          </div>
+        }>
           <Routes>
             {/* Public */}
             <Route path="/"               element={<Landing />} />
