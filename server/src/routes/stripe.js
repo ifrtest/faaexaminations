@@ -10,24 +10,35 @@ const { capiPurchase } = require('../utils/metaCapi');
 const router = express.Router();
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
+// Part 107 intro promo ($37.99) ends 2026-06-01 00:00 EST.
+// After that date, new buyers are charged $57.99 via STRIPE_PRICE_UAG_FULL.
+// Existing $37.99 buyers (STRIPE_PRICE_UAG) keep access forever — see PRICE_EXAMS + getPlanName.
+const UAG_PROMO_END_MS = new Date('2026-06-01T04:00:00Z').getTime();
+const isUagPromoActive = () => Date.now() < UAG_PROMO_END_MS;
+
 const PRICE_MAP = {
   par:    process.env.STRIPE_PRICE_PAR,
   ira:    process.env.STRIPE_PRICE_IRA,
   cax:    process.env.STRIPE_PRICE_CAX,
-  uag:    process.env.STRIPE_PRICE_UAG,
   bundle: process.env.STRIPE_PRICE_BUNDLE,
 };
+Object.defineProperty(PRICE_MAP, 'uag', {
+  get() { return isUagPromoActive() ? process.env.STRIPE_PRICE_UAG : process.env.STRIPE_PRICE_UAG_FULL; },
+  enumerable: true,
+});
 
 // Plans that use one-time payment instead of subscription
 const ONE_TIME_PLANS = new Set(['uag']);
 
 // Which exams does each price unlock?
+// Both UAG price IDs (intro + full) map to exam 4 so legacy buyers keep access.
 const PRICE_EXAMS = {
-  [process.env.STRIPE_PRICE_PAR]:    [1],
-  [process.env.STRIPE_PRICE_IRA]:    [2],
-  [process.env.STRIPE_PRICE_CAX]:    [3],
-  [process.env.STRIPE_PRICE_UAG]:    [4],
-  [process.env.STRIPE_PRICE_BUNDLE]: [1, 2, 3, 4],
+  [process.env.STRIPE_PRICE_PAR]:      [1],
+  [process.env.STRIPE_PRICE_IRA]:      [2],
+  [process.env.STRIPE_PRICE_CAX]:      [3],
+  [process.env.STRIPE_PRICE_UAG]:      [4],
+  [process.env.STRIPE_PRICE_UAG_FULL]: [4],
+  [process.env.STRIPE_PRICE_BUNDLE]:   [1, 2, 3, 4],
 };
 
 // POST /api/stripe/checkout
@@ -558,6 +569,18 @@ router.post('/embedded/activate', requireAuth, async (req, res) => {
     const planName = getPlanName(priceId) || plan;
     const endsAt   = new Date(sub.current_period_end * 1000);
 
+    // Cancel any previous subscription so the customer isn't double-billed
+    const prevUser = await db.query('SELECT stripe_subscription_id FROM users WHERE id = $1', [userId]);
+    const prevSubId = prevUser.rows[0]?.stripe_subscription_id;
+    if (prevSubId && prevSubId !== sub.id) {
+      try {
+        await stripe.subscriptions.cancel(prevSubId);
+        console.log(`[embedded/activate] cancelled previous subscription ${prevSubId} for user ${userId}`);
+      } catch (cancelErr) {
+        console.warn(`[embedded/activate] could not cancel previous subscription ${prevSubId}:`, cancelErr.message);
+      }
+    }
+
     await db.query(
       `UPDATE users SET
          stripe_subscription_id    = $1,
@@ -622,7 +645,8 @@ function getPlanName(priceId) {
   if (priceId === process.env.STRIPE_PRICE_PAR)    return 'par';
   if (priceId === process.env.STRIPE_PRICE_IRA)    return 'ira';
   if (priceId === process.env.STRIPE_PRICE_CAX)    return 'cax';
-  if (priceId === process.env.STRIPE_PRICE_UAG)    return 'uag';
+  if (priceId === process.env.STRIPE_PRICE_UAG)      return 'uag';
+  if (priceId === process.env.STRIPE_PRICE_UAG_FULL) return 'uag';
   if (priceId === process.env.STRIPE_PRICE_BUNDLE) return 'bundle';
   return null;
 }
