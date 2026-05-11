@@ -657,3 +657,8 @@ kbd {
 .blog-body table { width: 100%; border-collapse: collapse; margin-bottom: 1.4em; font-size: .9rem; }
 .blog-body th    { text-align: left; padding: 9px 12px; color: var(--text); border-bottom: 2px solid var(--border); }
 .blog-body td    { padding: 9px 12px; color: var(--text2); border-bottom: 1px solid var(--border); }
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(74,222,128,0.25); }
+  50%       { box-shadow: 0 0 0 6px rgba(74,222,128,0); }
+}

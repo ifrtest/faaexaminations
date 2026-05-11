@@ -95,6 +95,7 @@ function CheatSheetCapture() {
 }
 
 const HERO_IMAGES = ['/plane-hero-4.webp', '/plane-hero-2.webp', '/plane-hero-3.webp', '/plane-hero-5.webp'];
+const UAG_PROMO_ACTIVE = Date.now() < new Date('2026-06-01T04:00:00Z').getTime();
 
 export default function Landing() {
   const { user } = useAuth();
@@ -181,11 +182,15 @@ export default function Landing() {
             Most student pilots study for weeks with the wrong materials and still fail. FAAExaminations.com gives you the exact questions the FAA will ask — with a real explanation for every single one. Pass in 2–4 weeks, not months.
           </p>
           <div className="lp-hero-btns">
-            <Link to="/register" className="lp-btn-hero"><svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>Start Free Today</Link>
+            <Link to="/register" className="lp-btn-hero"><svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>Start Your Free Trial</Link>
             <a href="#products" className="lp-btn-outline">View Packages</a>
           </div>
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', marginTop: 14, lineHeight: 2 }}>
-            <Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>Pass guarantee</Link> · Cancel anytime
+            🔒 3-day free trial · No credit card commitment · Cancel anytime
+          </div>
+          <div style={{ marginTop: 14, display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 99, padding: '6px 14px' }}>
+            <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#4ade80', display: 'inline-block', boxShadow: '0 0 0 3px rgba(74,222,128,0.25)', animation: 'pulse 2s infinite' }} />
+            <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.8)', fontWeight: 500 }}>Pilots studying right now — join them</span>
           </div>
           <div className="lp-hero-stats">
             <div><div className="lp-hs-val">Est. 2020</div><div className="lp-hs-lbl">Trusted Since</div></div>
@@ -227,13 +232,16 @@ export default function Landing() {
                   <span style={{ fontSize: 13, fontWeight: 400, color: '#16A34A', background: 'rgba(22,163,74,0.12)', padding: '3px 10px', borderRadius: 20 }}>Save $35/month</span>
                 </div>
                 <div className="lp-product-price-sub"><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>Pass guarantee</Link> · Cancel anytime</div>
-                <Link to="/register?plan=bundle" className="lp-btn-product lp-btn-product-primary">Get Started →</Link>
+                <Link to="/register?plan=bundle" className="lp-btn-product lp-btn-product-primary">Start 3-Day Free Trial →</Link>
+                <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--lp-muted)', marginTop: 8 }}>No charge for 3 days · Cancel before and pay nothing</div>
               </div>
             </div>
 
             {/* 2 — PART 107 (intro pricing) */}
             <div className="lp-product-card" style={{ position: 'relative' }}>
-              <div style={{ position: 'absolute', top: 14, right: 14, zIndex: 2, background: 'linear-gradient(90deg,#7c3aed,#4f46e5)', color: '#fff', fontSize: 11, fontWeight: 800, padding: '4px 12px', borderRadius: 20, letterSpacing: '.06em' }}>🔒 INTRO PRICE · ENDS JUNE 1</div>
+              {UAG_PROMO_ACTIVE && (
+                <div style={{ position: 'absolute', top: 14, right: 14, zIndex: 2, background: 'linear-gradient(90deg,#7c3aed,#4f46e5)', color: '#fff', fontSize: 11, fontWeight: 800, padding: '4px 12px', borderRadius: 20, letterSpacing: '.06em' }}>🔒 INTRO PRICE · ENDS JUNE 1</div>
+              )}
               <div className="lp-product-img">
                 <img src="/drone-part107.webp" alt="Part 107 Remote Pilot" />
                 <div className="lp-product-img-overlay" />
@@ -250,11 +258,16 @@ export default function Landing() {
                   <li>FAA compliant · 2026 updated</li>
                 </ul>
                 <div className="lp-product-price" style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
-                  $37.99
-                  <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#f87171', textDecoration: 'line-through' }}>$57.99</span>
+                  {UAG_PROMO_ACTIVE ? '$37.99' : '$57.99'}
+                  {UAG_PROMO_ACTIVE && (
+                    <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#f87171', textDecoration: 'line-through' }}>$57.99</span>
+                  )}
                 </div>
-                <div className="lp-product-price-sub">One-time · <strong style={{ color: '#f5c842' }}>Lifetime access</strong> · <span style={{ color: '#c4b5fd', fontWeight: 600 }}>↑ $57.99 on June 1</span></div>
-                <Link to="/register?plan=uag" className="lp-btn-product lp-btn-product-secondary">Lock In $37.99 →</Link>
+                <div className="lp-product-price-sub">
+                  One-time · <strong style={{ color: '#f5c842' }}>Lifetime access</strong>
+                  {UAG_PROMO_ACTIVE && <> · <span style={{ color: '#c4b5fd', fontWeight: 600 }}>↑ $57.99 on June 1</span></>}
+                </div>
+                <Link to="/register?plan=uag" className="lp-btn-product lp-btn-product-secondary">{UAG_PROMO_ACTIVE ? 'Lock In $37.99 →' : 'Get Started →'}</Link>
               </div>
             </div>
 
@@ -277,7 +290,8 @@ export default function Landing() {
                 </ul>
                 <div className="lp-product-price">$24.99</div>
                 <div className="lp-product-price-sub"><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>Pass guarantee</Link> · Cancel anytime</div>
-                <Link to="/register?plan=par" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
+                <Link to="/register?plan=par" className="lp-btn-product lp-btn-product-secondary">Start 3-Day Free Trial →</Link>
+                <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--lp-muted)', marginTop: 8 }}>No charge for 3 days · Cancel before and pay nothing</div>
               </div>
             </div>
 
@@ -289,7 +303,7 @@ export default function Landing() {
               </div>
               <div className="lp-product-body">
                 <div className="lp-product-name">Instrument Rating Package</div>
-                <div className="lp-product-desc">900+ questions covering every IFR topic — holds, approaches, weather, charts, and regs. Built for pilots who already fly and need to prove it on paper. <Link to="/ira" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
+                <div className="lp-product-desc">821 questions covering every IFR topic — holds, approaches, weather, charts, and regs. Built for pilots who already fly and need to prove it on paper. <Link to="/ira" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
                 <ul className="lp-product-features">
                   <li>821 Instrument Rating questions</li>
                   <li>Categorized study modules</li>
@@ -300,7 +314,8 @@ export default function Landing() {
                 </ul>
                 <div className="lp-product-price">$24.99</div>
                 <div className="lp-product-price-sub"><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>Pass guarantee</Link> · Cancel anytime</div>
-                <Link to="/register?plan=ira" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
+                <Link to="/register?plan=ira" className="lp-btn-product lp-btn-product-secondary">Start 3-Day Free Trial →</Link>
+                <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--lp-muted)', marginTop: 8 }}>No charge for 3 days · Cancel before and pay nothing</div>
               </div>
             </div>
 
@@ -312,7 +327,7 @@ export default function Landing() {
               </div>
               <div className="lp-product-body">
                 <div className="lp-product-name">Commercial Pilot Package</div>
-                <div className="lp-product-desc">1,000+ questions on performance, advanced regs, and commercial operations. The CAX is the hardest of the three — this bank covers everything they'll throw at you. <Link to="/cax" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
+                <div className="lp-product-desc">536 questions on performance, advanced regs, and commercial operations. The CAX is the hardest of the three — this bank covers everything they'll throw at you. <Link to="/cax" style={{ color: 'var(--lp-blue)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>Learn more →</Link></div>
                 <ul className="lp-product-features">
                   <li>536 Commercial Pilot questions</li>
                   <li>11 categorized study modules</li>
@@ -323,7 +338,8 @@ export default function Landing() {
                 </ul>
                 <div className="lp-product-price">$24.99</div>
                 <div className="lp-product-price-sub"><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>Pass guarantee</Link> · Cancel anytime</div>
-                <Link to="/register?plan=cax" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
+                <Link to="/register?plan=cax" className="lp-btn-product lp-btn-product-secondary">Start 3-Day Free Trial →</Link>
+                <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--lp-muted)', marginTop: 8 }}>No charge for 3 days · Cancel before and pay nothing</div>
               </div>
             </div>
 
