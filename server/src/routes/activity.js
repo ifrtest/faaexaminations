@@ -22,12 +22,18 @@ router.post('/practice', async (req, res) => {
     const examCode = (req.body.exam_code || '').toUpperCase();
     if (!['PAR','IRA','CAX','UAG'].includes(examCode)) return res.sendStatus(204);
 
+    const score = req.body.score != null ? Number(req.body.score) : null; // 0–100 or null
+
+    // Store exam + timestamp. If a score is provided, append it to the exam label so
+    // admin shows e.g. "PAR 20%" once they finish all 30 questions.
+    const label = score != null ? `${examCode} ${score}%` : examCode;
+
     await db.query(
       `UPDATE users
           SET last_practice_at   = NOW(),
               last_practice_exam = $1
         WHERE id = $2`,
-      [examCode, decoded.id]
+      [label, decoded.id]
     );
     res.sendStatus(204);
   } catch (err) {

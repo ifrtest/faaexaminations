@@ -109,7 +109,7 @@ export default function AdminUsers() {
                       ? <span style={{ color: 'var(--ok, #16a34a)', fontWeight: 600 }}>✓ {u.session_count} quiz{u.session_count !== 1 ? 'zes' : ''}</span>
                       : u.last_practice_at
                         ? <span style={{ color: 'var(--blue, #30ace2)' }}>
-                            {u.last_practice_exam} practice · {Math.floor((Date.now() - new Date(u.last_practice_at)) / 86400000)}d ago
+                            {u.last_practice_exam} · {Math.floor((Date.now() - new Date(u.last_practice_at)) / 86400000)}d ago
                           </span>
                         : <em style={{ color: 'var(--muted)' }}>no activity</em>
                     }

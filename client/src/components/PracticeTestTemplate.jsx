@@ -100,6 +100,20 @@ export default function PracticeTestTemplate({
   const allDone = answered === shuffledQuestions.length;
   const scorePct = answered === 0 ? 0 : Math.round((correct / answered) * 100);
 
+  // Fire score ping when all questions are answered
+  const scoreFired = useRef(false);
+  if (allDone && !scoreFired.current) {
+    scoreFired.current = true;
+    const token = localStorage.getItem('faa_token');
+    if (token) {
+      fetch('/api/activity/practice', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ exam_code: planParam.toUpperCase(), score: scorePct }),
+      }).catch(() => {});
+    }
+  }
+
   function scoreLabel() {
     if (answered === 0) return null;
     if (scorePct >= 80) return { text: 'Strong — keep it up', color: '#22c55e' };
