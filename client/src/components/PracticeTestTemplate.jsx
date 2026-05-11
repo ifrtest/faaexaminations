@@ -37,6 +37,7 @@ export default function PracticeTestTemplate({
   const [shuffledQuestions] = useState(() => questions.map(shuffleQuestion));
   const [answers, setAnswers] = useState({});
   const [counts, setCounts] = useState({ questions: 0, topics: 0 });
+  const activityFired = useRef(false);
   const navRef = useRef(null);
 
   useEffect(() => {
@@ -80,6 +81,18 @@ export default function PracticeTestTemplate({
   function pick(qIndex, optIndex) {
     if (answers[qIndex] !== undefined) return;
     setAnswers((prev) => ({ ...prev, [qIndex]: optIndex }));
+    // Fire activity ping on first answer — silent, never blocks the UI
+    if (!activityFired.current) {
+      activityFired.current = true;
+      const token = localStorage.getItem('faa_token');
+      if (token) {
+        fetch('/api/activity/practice', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ exam_code: planParam.toUpperCase() }),
+        }).catch(() => {});
+      }
+    }
   }
 
   const answered = Object.keys(answers).length;

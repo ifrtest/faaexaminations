@@ -78,6 +78,7 @@ export default function AdminUsers() {
                 <th>Subscription</th>
                 <th>Part 107</th>
                 <th>Status</th>
+                <th>Activity</th>
                 <th>Joined</th>
                 <th></th>
               </tr>
@@ -102,6 +103,16 @@ export default function AdminUsers() {
                     <span className={`badge ${u.is_active ? 'badge-ok' : 'badge-err'}`}>
                       {u.is_active ? 'Active' : 'Disabled'}
                     </span>
+                  </td>
+                  <td style={{ fontSize: '.8rem', whiteSpace: 'nowrap' }}>
+                    {u.session_count > 0
+                      ? <span style={{ color: 'var(--ok, #16a34a)', fontWeight: 600 }}>✓ {u.session_count} quiz{u.session_count !== 1 ? 'zes' : ''}</span>
+                      : u.last_practice_at
+                        ? <span style={{ color: 'var(--blue, #30ace2)' }}>
+                            {u.last_practice_exam} practice · {Math.floor((Date.now() - new Date(u.last_practice_at)) / 86400000)}d ago
+                          </span>
+                        : <em style={{ color: 'var(--muted)' }}>no activity</em>
+                    }
                   </td>
                   <td>{new Date(u.created_at).toLocaleDateString()}</td>
                   <td>

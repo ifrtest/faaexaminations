@@ -25,6 +25,7 @@ const unsubscribeRoutes  = require('./routes/unsubscribe');
 const demoRoutes         = require('./routes/demo');
 const contactRoutes      = require('./routes/contact');
 const cheatsheetRoutes   = require('./routes/cheatsheet');
+const activityRoutes     = require('./routes/activity');
 
 const app = express();
 const PORT = parseInt(process.env.PORT, 10) || 5000;
@@ -84,6 +85,7 @@ app.use('/api/unsubscribe', unsubscribeRoutes);
 app.use('/api/demo',       demoRoutes);
 app.use('/api/contact',    contactRoutes);
 app.use('/api/cheatsheet', cheatsheetRoutes);
+app.use('/api/activity',  activityRoutes);
 
 // -------- 404 & error -----------------------------------------------
 app.use(notFound);
@@ -92,6 +94,10 @@ app.use(errorHandler);
 // -------- startup migrations ----------------------------------------
 db.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS subscription_activated_at TIMESTAMPTZ`)
   .catch(err => console.error('[startup migration] subscription_activated_at:', err.message));
+db.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS last_practice_at TIMESTAMPTZ`)
+  .catch(err => console.error('[startup migration] last_practice_at:', err.message));
+db.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS last_practice_exam TEXT`)
+  .catch(err => console.error('[startup migration] last_practice_exam:', err.message));
 db.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS cancelled_at TIMESTAMPTZ`)
   .catch(err => console.error('[startup migration] cancelled_at:', err.message));
 db.query(`

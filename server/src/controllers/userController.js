@@ -21,7 +21,9 @@ exports.list = async (req, res, next) => {
 
     const [list, count] = await Promise.all([
       db.query(
-        `SELECT id, email, full_name, role, subscription, uag_access, is_active, created_at
+        `SELECT id, email, full_name, role, subscription, uag_access, is_active, created_at,
+                last_practice_at, last_practice_exam,
+                (SELECT COUNT(*)::int FROM exam_sessions es WHERE es.user_id = users.id AND es.is_demo IS NOT TRUE) AS session_count
            FROM users ${where}
           ORDER BY created_at DESC
           LIMIT ${pageSize} OFFSET ${offset}`,
