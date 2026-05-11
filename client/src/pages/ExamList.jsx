@@ -279,6 +279,95 @@ export default function ExamList() {
 
       </div>
 
+      {/* ── FREE PRACTICE TESTS (free/unsubscribed accounts only) ────── */}
+      {subscription !== null && !['active', 'cancelling', 'trialing'].includes(subscription?.status) && !subscription?.uag_access && (
+        <div style={{
+          background: 'linear-gradient(135deg, #071a2e 0%, #0d2849 60%, #071e38 100%)',
+          border: '2px solid rgba(48,172,226,0.55)',
+          borderRadius: 16,
+          padding: '24px 26px',
+          marginBottom: 24,
+          boxShadow: '0 0 32px rgba(48,172,226,0.12)',
+          position: 'relative',
+          overflow: 'hidden',
+        }}>
+          {/* glow accent */}
+          <div style={{ position: 'absolute', top: -40, right: -40, width: 220, height: 220, background: 'radial-gradient(circle, rgba(48,172,226,.15) 0%, transparent 70%)', pointerEvents: 'none' }} />
+
+          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap', marginBottom: 18 }}>
+            <div>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(48,172,226,0.18)', border: '1px solid rgba(48,172,226,0.45)', borderRadius: 20, padding: '3px 12px', fontSize: '.72rem', fontWeight: 700, color: '#30ace2', letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: 10 }}>
+                ✈ No credit card needed
+              </div>
+              <div style={{ color: '#fff', fontWeight: 800, fontSize: 'clamp(1.1rem, 2.5vw, 1.35rem)', lineHeight: 1.2, marginBottom: 6 }}>
+                Try 30 free questions — right now
+              </div>
+              <div style={{ color: '#94b8d4', fontSize: '.9rem', lineHeight: 1.5 }}>
+                Sample any exam before you subscribe. No account upgrades, no billing info.
+              </div>
+            </div>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(175px, 1fr))', gap: 10 }}>
+            {[
+              { label: 'Private Pilot (PAR)', to: '/par-practice-test', plan: 'par', color: '#30ace2', price: '$24.99/mo' },
+              { label: 'Instrument Rating (IRA)', to: '/ira-practice-test', plan: 'ira', color: '#a78bfa', price: '$24.99/mo' },
+              { label: 'Commercial Pilot (CAX)', to: '/cax-practice-test', plan: 'cax', color: '#fb923c', price: '$24.99/mo' },
+              { label: 'Part 107 Drone', to: '/part-107-practice-test', plan: 'uag', color: '#34d399', price: '$37.99' },
+            ].map(({ label, to, plan, color, price }) => (
+              <div
+                key={plan}
+                style={{
+                  background: 'rgba(255,255,255,0.06)',
+                  border: `1px solid ${color}55`,
+                  borderRadius: 12,
+                  padding: '14px 16px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 10,
+                }}>
+                <div>
+                  <div style={{ color, fontWeight: 700, fontSize: '.72rem', letterSpacing: '.06em', textTransform: 'uppercase', marginBottom: 3 }}>Free — 30 questions</div>
+                  <div style={{ color: '#fff', fontWeight: 700, fontSize: '.9rem', lineHeight: 1.3 }}>{label}</div>
+                </div>
+                <Link
+                  to={to}
+                  style={{
+                    display: 'block',
+                    textAlign: 'center',
+                    background: `${color}22`,
+                    border: `1px solid ${color}88`,
+                    borderRadius: 8,
+                    padding: '9px 10px',
+                    color: '#fff',
+                    fontSize: '.82rem',
+                    fontWeight: 700,
+                    textDecoration: 'none',
+                  }}>
+                  Start free →
+                </Link>
+                <button
+                  onClick={() => startCheckout(plan)}
+                  disabled={checkoutLoading}
+                  style={{
+                    background: color,
+                    border: 'none',
+                    borderRadius: 8,
+                    padding: '9px 10px',
+                    color: plan === 'uag' ? '#041018' : '#fff',
+                    fontSize: '.82rem',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    whiteSpace: 'nowrap',
+                  }}>
+                  {checkoutLoading ? '…' : `Subscribe — ${price}`}
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {subscription?.status === 'active' && subscription?.ends_at && (() => {
         const renewDate = new Date(subscription.ends_at);
         const endLabel = renewDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
@@ -613,74 +702,6 @@ export default function ExamList() {
             )}
           </div>
         )}
-
-      {/* ── FREE PRACTICE TESTS (free accounts only) ────────────────── */}
-      {subscription !== null && !['active', 'cancelling', 'trialing'].includes(subscription?.status) && !subscription?.uag_access && (
-        <div style={{ background: 'linear-gradient(90deg, #0b1f3a, #0d2849)', border: '1px solid rgba(48,172,226,0.3)', borderRadius: 12, padding: '20px 22px', marginTop: 24 }}>
-          <div style={{ marginBottom: 16 }}>
-            <div style={{ color: '#fff', fontWeight: 700, fontSize: '.95rem', marginBottom: 3 }}>Try before you subscribe</div>
-            <div style={{ color: '#94b8d4', fontSize: '.88rem' }}>30 free questions for any exam — no credit card needed.</div>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: 10 }}>
-            {[
-              { label: 'Private Pilot (PAR)', to: '/par-practice-test', plan: 'par', color: '#30ace2', price: '$24.99/mo' },
-              { label: 'Instrument Rating (IRA)', to: '/ira-practice-test', plan: 'ira', color: '#a78bfa', price: '$24.99/mo' },
-              { label: 'Commercial Pilot (CAX)', to: '/cax-practice-test', plan: 'cax', color: '#fb923c', price: '$24.99/mo' },
-              { label: 'Part 107 Drone', to: '/part-107-practice-test', plan: 'uag', color: '#34d399', price: '$37.99' },
-            ].map(({ label, to, plan, color, price }) => (
-              <div
-                key={plan}
-                style={{
-                  background: 'rgba(255,255,255,0.05)',
-                  border: `1px solid ${color}44`,
-                  borderRadius: 10,
-                  padding: '12px 14px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 8,
-                }}>
-                <div>
-                  <div style={{ color, fontWeight: 700, fontSize: '.78rem', marginBottom: 2 }}>FREE</div>
-                  <div style={{ color: '#fff', fontWeight: 600, fontSize: '.85rem', lineHeight: 1.3 }}>{label}</div>
-                </div>
-                <Link
-                  to={to}
-                  style={{
-                    display: 'block',
-                    textAlign: 'center',
-                    background: 'rgba(255,255,255,0.07)',
-                    border: `1px solid ${color}55`,
-                    borderRadius: 7,
-                    padding: '7px 10px',
-                    color: '#fff',
-                    fontSize: '.78rem',
-                    fontWeight: 600,
-                    textDecoration: 'none',
-                  }}>
-                  30 free questions →
-                </Link>
-                <button
-                  onClick={() => startCheckout(plan)}
-                  disabled={checkoutLoading}
-                  style={{
-                    background: color,
-                    border: 'none',
-                    borderRadius: 7,
-                    padding: '7px 10px',
-                    color: plan === 'uag' ? '#041018' : '#fff',
-                    fontSize: '.78rem',
-                    fontWeight: 700,
-                    cursor: 'pointer',
-                    whiteSpace: 'nowrap',
-                  }}>
-                  {checkoutLoading ? '…' : `Subscribe — ${price} →`}
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
 
       {/* mobile: revert to single column — desktop-only change */}
       <style>{`
