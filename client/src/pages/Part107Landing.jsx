@@ -336,8 +336,7 @@ export default function Part107Landing() {
       </div>{/* end sticky header wrapper */}
 
       {/* HERO */}
-      <section className="lp-hero lp-hero-part107" style={{ backgroundImage: 'url(/drone_image_faa_examinations.jpg)', backgroundSize: 'cover', backgroundPosition: 'center 40%' }}>
-        <div className="lp-hero-bg" style={{ background: 'linear-gradient(135deg,rgba(5,88,102,0.42) 0%,rgba(8,14,20,0.38) 55%,rgba(8,14,20,0.18) 100%)', position: 'absolute', inset: 0 }} />
+      <section className="lp-hero lp-hero-part107" style={{ background: 'var(--lp-dark)' }}>
         <div className="lp-hero-grid" />
         <div className="lp-hero-split">
           {/* LEFT — headline + stats */}
@@ -368,7 +367,24 @@ export default function Part107Landing() {
             </div>
           </div>
 
-          {/* RIGHT — pricing card (desktop only, hidden on mobile via CSS) */}
+          {/* RIGHT — drone image + pricing card */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 28 }}>
+
+          {/* Drone hero image */}
+          <div style={{
+            width: '100%', maxWidth: 460,
+            borderRadius: 20,
+            overflow: 'hidden',
+            boxShadow: '0 8px 48px rgba(48,172,226,0.22), 0 2px 12px rgba(0,0,0,0.5)',
+            border: '1px solid rgba(48,172,226,0.2)',
+          }}>
+            <img
+              src="/drone-part107-hero.jpg"
+              alt="Drone operator flying commercially with FAA Part 107 license"
+              style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
+            />
+          </div>
+
           <div className="lp-hero-pricing-card">
             <div style={{ position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)', background: '#7c3aed', color: '#fff', padding: '5px 18px', borderRadius: 20, fontSize: 11, fontWeight: 700, fontFamily: 'Share Tech Mono, monospace', letterSpacing: 1, whiteSpace: 'nowrap' }}>🔒 INTRODUCTORY PRICE — ENDS JUNE 1</div>
             <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 18, fontWeight: 700, color: '#fff', marginBottom: 6, textAlign: 'center', marginTop: 8 }}>Part 107 Package</div>
@@ -392,6 +408,8 @@ export default function Part107Landing() {
             <Link to="/register?plan=uag" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Lock In $37.99 Before June 1 →</Link>
             <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>Rises to $57.99 on June 1 · Pay once, keep access forever</div>
           </div>
+
+          </div>{/* end right column wrapper */}
         </div>
       </section>
 
