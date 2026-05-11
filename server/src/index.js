@@ -98,6 +98,8 @@ db.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS last_practice_at TIMESTAMPT
   .catch(err => console.error('[startup migration] last_practice_at:', err.message));
 db.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS last_practice_exam TEXT`)
   .catch(err => console.error('[startup migration] last_practice_exam:', err.message));
+db.query(`ALTER TABLE exam_sessions ADD COLUMN IF NOT EXISTS is_demo BOOLEAN NOT NULL DEFAULT FALSE`)
+  .catch(err => console.error('[startup migration] exam_sessions.is_demo:', err.message));
 db.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS cancelled_at TIMESTAMPTZ`)
   .catch(err => console.error('[startup migration] cancelled_at:', err.message));
 db.query(`
