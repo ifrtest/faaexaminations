@@ -570,11 +570,11 @@ export default function PARCheatSheet() {
             <div style={{ fontFamily: 'Share Tech Mono, monospace', fontSize: 12, color: 'var(--lp-text3)', letterSpacing: 1, marginBottom: 10 }}>READY TO TEST YOURSELF?</div>
             <h2 style={{ fontSize: 28, fontWeight: 800, color: '#fff', marginBottom: 12 }}>Put the cheat sheet to the test</h2>
             <p style={{ color: 'var(--lp-text2)', fontSize: 16, lineHeight: 1.7, maxWidth: 520, margin: '0 auto 28px' }}>
-              Try 30 free PAR practice questions — or get the full 1,400+ question bank with timed simulator and AI instructor.
+              Try 30 free PAR practice questions — or get the full 1,469 question bank with timed simulator and AI instructor.
             </p>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link to="/par-practice-test" className="lp-btn-outline">Free 30-Question Test</Link>
-              <Link to="/register?plan=par" className="lp-btn-hero" style={{ fontSize: 17, padding: '14px 32px' }}>Get Full 1,400+ Question Bank →</Link>
+              <Link to="/register?plan=par" className="lp-btn-hero" style={{ fontSize: 17, padding: '14px 32px' }}>Get Full 1,469 Question Bank →</Link>
             </div>
             <div style={{ marginTop: 12, fontSize: 13, color: 'var(--lp-text3)' }}><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>Pass guarantee</Link> · $24.99/month · Cancel anytime</div>
           </div>

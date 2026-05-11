@@ -11,7 +11,7 @@ export default function CancelPolicy() {
   const [cancelled, setCancelled] = useState(false);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState('');
-  const isTrialing = user?.subscription_status === 'trialing';
+  const isTrialing = false; // trials removed — all subscribers are billed immediately
 
   const handleCancel = async () => {
     setBusy(true);
@@ -78,13 +78,13 @@ export default function CancelPolicy() {
       <div className="card" style={{ marginBottom: 20, borderColor: 'rgba(48,172,226,0.35)' }}>
         <div className="card-title">🛡️ Pass Guarantee</div>
         <p style={{ color: 'var(--text2)', lineHeight: 1.7, marginBottom: 16 }}>
-          If you complete our full program and still fail your FAA knowledge test, we'll refund your subscription in full.
+          Pass your FAA written exam — or your money back. Score 80%+ on our practice exams and we guarantee you'll pass the real thing. Submit your failed exam result within 30 days for a full refund.
         </p>
         <p style={{ color: 'var(--text)', fontWeight: 600, marginBottom: 8 }}>To qualify for a refund, you must:</p>
         <ul style={{ color: 'var(--text2)', lineHeight: 2.2, paddingLeft: 20, marginBottom: 16 }}>
           <li>Have completed every topic module for your exam (all topics marked complete in your dashboard)</li>
-          <li>Have completed at least <strong style={{ color: 'var(--text)' }}>10 full 60-question timed mock exams</strong></li>
-          <li>Have scored <strong style={{ color: 'var(--text)' }}>70% or higher on each of those mock exams</strong></li>
+          <li>Have completed at least <strong style={{ color: 'var(--text)' }}>10 full timed mock exams</strong></li>
+          <li>Have scored <strong style={{ color: 'var(--text)' }}>80% or higher on each of those mock exams</strong></li>
           <li>Have scored below 70% on the official FAA knowledge test</li>
           <li>Submit your claim within <strong style={{ color: 'var(--text)' }}>30 days</strong> of your test date</li>
           <li>Provide a copy of your official FAA score report</li>

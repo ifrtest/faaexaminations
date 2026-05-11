@@ -8,12 +8,16 @@ import { Helmet } from 'react-helmet-async';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
+const UAG_PROMO_ACTIVE = Date.now() < new Date('2026-06-01T04:00:00Z').getTime();
+const UAG_PRICE_NUM    = UAG_PROMO_ACTIVE ? 37.99 : 57.99;
+const UAG_PRICE_LABEL  = `$${UAG_PRICE_NUM} one-time`;
+
 const PLAN_INFO = {
   par:    { label: 'Private Pilot (PAR)',     price: '$24.99/month', trial: false, color: '#30ace2' },
   ira:    { label: 'Instrument Rating (IRA)', price: '$24.99/month', trial: false, color: '#30ace2' },
   cax:    { label: 'Commercial Pilot (CAX)',  price: '$24.99/month', trial: false, color: '#30ace2' },
   bundle: { label: 'All 3 Exams Bundle',      price: '$39.99/month', trial: false, color: '#30ace2' },
-  uag:    { label: 'Part 107 Remote Pilot',   price: '$37.99 one-time', trial: false, color: '#f5c842' },
+  uag:    { label: 'Part 107 Remote Pilot',   price: UAG_PRICE_LABEL,  trial: false, color: '#f5c842' },
 };
 
 const ELEMENTS_APPEARANCE = {
@@ -136,8 +140,8 @@ function CheckoutForm({ plan, intentData, onSuccess, userEmail }) {
         });
         const data = await res.json();
         if (!res.ok) { setErr(data.error || 'Could not activate access.'); setBusy(false); return; }
-        if (window.fbq) fbq('track', 'Purchase', { value: 37.99, currency: 'USD', content_name: plan });
-        if (window.gtag) gtag('event', 'purchase', { transaction_id: paymentIntent.id, value: 37.99, currency: 'CAD', items: [{ item_id: plan, item_name: PLAN_INFO[plan].label, price: 37.99, quantity: 1 }] });
+        if (window.fbq) fbq('track', 'Purchase', { value: UAG_PRICE_NUM, currency: 'USD', content_name: plan });
+        if (window.gtag) gtag('event', 'purchase', { transaction_id: paymentIntent.id, value: UAG_PRICE_NUM, currency: 'CAD', items: [{ item_id: plan, item_name: PLAN_INFO[plan].label, price: UAG_PRICE_NUM, quantity: 1 }] });
         onSuccess();
       }
     } catch (ex) {
@@ -154,11 +158,32 @@ function CheckoutForm({ plan, intentData, onSuccess, userEmail }) {
           <div style={{ color: '#fff', fontWeight: 700, fontSize: '1rem' }}>{info.label}</div>
           <div style={{ color: info.color, fontWeight: 700, fontSize: '1rem' }}>{info.price}</div>
         </div>
-        {!info.trial && (
-          <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px solid #1e2a38' }}>
-            <span style={{ color: '#94b8d4', fontSize: '.88rem' }}>Lifetime access</span>
-            <span style={{ color: '#34d399', fontWeight: 600, fontSize: '.88rem' }}>No subscription</span>
-          </div>
+        {plan === 'uag' ? (
+          <>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px solid #1e2a38' }}>
+              <span style={{ color: '#94b8d4', fontSize: '.88rem' }}>Lifetime access</span>
+              <span style={{ color: '#34d399', fontWeight: 600, fontSize: '.88rem' }}>One-time payment</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px solid #1e2a38' }}>
+              <Link to="/cancel-policy" style={{ color: '#94b8d4', fontSize: '.88rem', textDecoration: 'underline', opacity: 0.85 }}>Pass guarantee</Link>
+              <span style={{ color: '#34d399', fontWeight: 600, fontSize: '.88rem' }}>Refund if you fail</span>
+            </div>
+          </>
+        ) : (
+          <>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px solid #1e2a38' }}>
+              <span style={{ color: '#94b8d4', fontSize: '.88rem' }}>Billed</span>
+              <span style={{ color: '#fff', fontWeight: 600, fontSize: '.88rem' }}>{info.price}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px solid #1e2a38' }}>
+              <span style={{ color: '#94b8d4', fontSize: '.88rem' }}>Cancel</span>
+              <span style={{ color: '#34d399', fontWeight: 600, fontSize: '.88rem' }}>Anytime — one click</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px solid #1e2a38' }}>
+              <Link to="/cancel-policy" style={{ color: '#94b8d4', fontSize: '.88rem', textDecoration: 'underline', opacity: 0.85 }}>Pass guarantee</Link>
+              <span style={{ color: '#34d399', fontWeight: 600, fontSize: '.88rem' }}>Refund if you fail the real exam</span>
+            </div>
+          </>
         )}
       </div>
 
@@ -362,7 +387,7 @@ export default function Checkout() {
             {info.price.includes('one-time') ? 'One-Time Purchase' : 'Monthly Subscription'}
           </div>
           <h1 style={{ color: '#fff', margin: 0, fontSize: '1.5rem', fontWeight: 800 }}>{info.label}</h1>
-          {info.price.includes('one-time') && (
+          {info.price.includes('one-time') && UAG_PROMO_ACTIVE && (
             <div style={{ marginTop: 10, background: 'rgba(124,58,237,0.15)', border: '1px solid rgba(124,58,237,0.4)', borderRadius: 8, padding: '8px 14px', fontSize: 13, color: '#c4b5fd' }}>
               🔒 Introductory price — rises to $57.99 on June 1. Lock it in now.
             </div>

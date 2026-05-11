@@ -224,11 +224,11 @@ const FAQS = [
   },
   {
     q: 'How long should I study for the Private Pilot written exam?',
-    a: 'Most students pass in 2–4 weeks of focused study (1–2 hours per day). The key is practicing with the full question bank — the real exam draws from 1,426+ questions, so exposure to the full bank dramatically improves your score.',
+    a: 'Most students pass in 2–4 weeks of focused study (1–2 hours per day). The key is practicing with the full question bank — the real exam draws from 1,469 questions, so exposure to the full bank dramatically improves your score.',
   },
   {
     q: 'Are these the actual FAA questions?',
-    a: 'This free test uses representative questions based on the FAA\'s Airman Knowledge Testing database. The full 1,426-question bank on FAAExaminations.com is built directly from the official FAA source — the same questions the real exam draws from.',
+    a: 'This free test uses representative questions based on the FAA\'s Airman Knowledge Testing database. The full 1,469-question bank on FAAExaminations.com is built directly from the official FAA source — the same questions the real exam draws from.',
   },
 ];
 
@@ -243,11 +243,11 @@ export default function PARPracticeTest() {
       h1Line1="FAA Private Pilot"
       h1Accent="Practice Test"
       h1Line2="30 Free Questions — No Login Required"
-      heroSub="The real PAR exam has 60 questions drawn from a bank of 1,426. This free test covers all 11 official topics — regulations, weather, airspace, navigation, aerodynamics, and more. Find your weak areas before test day."
+      heroSub="The real PAR exam has 60 questions drawn from a bank of 1,469. This free test covers all 11 official topics — regulations, weather, airspace, navigation, aerodynamics, and more. Find your weak areas before test day."
       productPath="/par"
       planParam="par"
       price="$24.99"
-      questionCount="1,426"
+      questionCount="1,469"
       questions={QUESTIONS}
       faqs={FAQS}
       relatedLinks={[
@@ -256,7 +256,7 @@ export default function PARPracticeTest() {
         { path: '/part-107-practice-test', label: 'Part 107 Practice Test (Free)' },
         { path: '/blog/how-to-pass-faa-private-pilot-written-exam-first-try', label: 'How to Pass the PAR First Try' },
         { path: '/blog/faa-written-exam-study-guide', label: 'FAA Written Exam Study Guide' },
-        { path: '/par', label: 'Full PAR Package — 1,426 Questions' },
+        { path: '/par', label: 'Full PAR Package — 1,469 Questions' },
       ]}
       schemaFaqs={FAQS}
     />

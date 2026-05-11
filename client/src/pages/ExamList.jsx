@@ -155,7 +155,7 @@ export default function ExamList() {
     return plan && PLAN_ACCESS[plan]?.includes(examCode);
   };
 
-  const isSubscribed = ['active', 'trialing'].includes(subscription?.status);
+  const isSubscribed = ['active', 'cancelling'].includes(subscription?.status);
 
   const startCheckout = (plan) => {
     navigate(`/checkout?plan=${plan}`);
@@ -197,7 +197,7 @@ export default function ExamList() {
   }).filter(Boolean);
 
   const PLAN_LABELS = { par: 'Private Pilot (PAR)', ira: 'Instrument Rating (IRA)', cax: 'Commercial Pilot (CAX)', bundle: 'All 3 Exams Bundle', uag: 'Part 107 Drone' };
-  const PLAN_PRICES = { par: '$24.99/month', ira: '$24.99/month', cax: '$24.99/month', bundle: '$39.99/month', uag: '$37.99 one-time' };
+  const PLAN_PRICES = { par: '$24.99/month', ira: '$24.99/month', cax: '$24.99/month', bundle: '$39.99/month', uag: UAG_PROMO_ACTIVE ? '$37.99 one-time' : '$57.99 one-time' };
 
   return (
     <div className="container page" style={{ paddingTop: 0 }}>
@@ -279,18 +279,17 @@ export default function ExamList() {
 
       </div>
 
-      {subscription?.status === 'trialing' && subscription?.ends_at && (() => {
-        const trialEnd = new Date(subscription.ends_at);
-        const daysLeft = Math.max(0, Math.ceil((trialEnd - Date.now()) / 86400000));
-        const endLabel = trialEnd.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+      {subscription?.status === 'active' && subscription?.ends_at && (() => {
+        const renewDate = new Date(subscription.ends_at);
+        const endLabel = renewDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
         return (
           <div style={{ background: 'linear-gradient(90deg, #0c2a1a, #0d3520)', border: '1px solid rgba(52,211,153,0.35)', borderRadius: 12, padding: '16px 22px', marginBottom: 20, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
             <div>
               <div style={{ color: '#34d399', fontWeight: 700, fontSize: '.95rem', marginBottom: 3 }}>
-                Free trial active — {daysLeft} day{daysLeft !== 1 ? 's' : ''} left
+                Subscription active
               </div>
               <div style={{ color: '#6ee7b7', fontSize: '.88rem' }}>
-                Full access until <strong style={{ color: '#fff' }}>{endLabel}</strong>. Your card won't be charged until then.
+                Full access through <strong style={{ color: '#fff' }}>{endLabel}</strong>.
               </div>
             </div>
             <div style={{ fontSize: '.82rem', color: '#6ee7b7', flexShrink: 0 }}>Cancel from your account anytime →</div>
@@ -330,17 +329,10 @@ export default function ExamList() {
         <div style={{ background: 'linear-gradient(90deg, #064e3b, #065f46)', border: '1px solid #059669', borderRadius: 12, padding: '16px 22px', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 12 }}>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#34d399" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           <div>
-            {subscription?.status === 'trialing' ? (
-              <>
-                <div style={{ color: '#fff', fontWeight: 700, fontSize: '1rem' }}>You're all set — full access unlocked!</div>
-                <div style={{ color: '#6ee7b7', fontSize: '.88rem', marginTop: 3 }}>Start studying below. Cancel anytime from your account settings.</div>
-              </>
-            ) : (
-              <>
-                <div style={{ color: '#fff', fontWeight: 700, fontSize: '1rem' }}>Payment confirmed — you're all set!</div>
-                <div style={{ color: '#6ee7b7', fontSize: '.88rem', marginTop: 3 }}>Your exam is now unlocked. Click the card below to start practising.</div>
-              </>
-            )}
+            <>
+              <div style={{ color: '#fff', fontWeight: 700, fontSize: '1rem' }}>Payment confirmed — you're all set!</div>
+              <div style={{ color: '#6ee7b7', fontSize: '.88rem', marginTop: 3 }}>Your exam is now unlocked. Click the card below to start practising.</div>
+            </>
           </div>
         </div>
       )}
@@ -597,7 +589,7 @@ export default function ExamList() {
                   onClick={() => startCheckout(EXAM_PLAN[selected])}
                   disabled={checkoutLoading}
                   style={{ marginBottom: 8 }}>
-                  {checkoutLoading ? 'Loading…' : selected === 'UAG' ? `Get Part 107 — $37.99 one-time${UAG_PROMO_ACTIVE ? ' · rises June 1' : ''}` : `Subscribe — ${selected} — $24.99/month`}
+                  {checkoutLoading ? 'Loading…' : selected === 'UAG' ? `Get Part 107 — ${UAG_PROMO_ACTIVE ? '$37.99' : '$57.99'} one-time${UAG_PROMO_ACTIVE ? ' · rises June 1' : ''}` : `Subscribe — ${selected} — $24.99/month`}
                 </button>
                 {selected !== 'UAG' && (
                   <button

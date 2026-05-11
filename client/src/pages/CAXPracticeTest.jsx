@@ -247,7 +247,7 @@ export default function CAXPracticeTest() {
       productPath="/cax"
       planParam="cax"
       price="$24.99"
-      questionCount="939"
+      questionCount="536"
       questions={QUESTIONS}
       faqs={FAQS}
       relatedLinks={[
@@ -255,7 +255,7 @@ export default function CAXPracticeTest() {
         { path: '/ira-practice-test', label: 'IRA Practice Test (Free)' },
         { path: '/part-107-practice-test', label: 'Part 107 Practice Test (Free)' },
         { path: '/blog/faa-written-exam-study-guide', label: 'FAA Written Exam Study Guide' },
-        { path: '/cax', label: 'Full CAX Package — 939 Questions' },
+        { path: '/cax', label: 'Full CAX Package — 536 Questions' },
       ]}
       schemaFaqs={FAQS}
     />
