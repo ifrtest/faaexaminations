@@ -21,6 +21,11 @@ export default function Login() {
     setErr(''); setBusy(true);
     try {
       await login(email, password);
+      // Pre-load the destination chunk before navigating so Suspense never flashes a black screen
+      await Promise.all([
+        import('./Dashboard'),
+        import('./ExamList'),
+      ]).catch(() => {});
       navigate(from, { replace: true });
     } catch (ex) {
       setErr(ex.response?.data?.error || 'Login failed. Please try again.');
