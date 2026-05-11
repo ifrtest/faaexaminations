@@ -192,6 +192,30 @@ export default function IRALanding() {
         </div>
       </section>
 
+      {/* TESTIMONIALS */}
+      <section style={{ padding: '80px 24px', background: 'var(--lp-dark)', borderTop: '1px solid var(--lp-border)' }}>
+        <div className="lp-section-inner">
+          <div className="lp-badge" style={{ textAlign: 'center', margin: '0 auto 12px' }}>STUDENT RESULTS</div>
+          <h2 style={{ textAlign: 'center', marginBottom: 48 }}>Real People. Real Passes.</h2>
+          <div className="fade-up" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20 }}>
+            {[
+              { quote: "The IRA written is no joke. I'd tried studying with books and kept losing track. This question bank forced me to actually understand the material. Passed with a 79%.", name: 'Chris M.', role: 'Instrument-rated pilot, Ontario' },
+              { quote: "Hold entries, approach plates, weather minimums — it's a lot. The topic breakdown let me drill exactly what I was weak on instead of redoing everything.", name: 'Sarah K.', role: 'IFR student pilot' },
+              { quote: "Passed first try. The timed simulator made the real 2.5 hour exam feel familiar. I wasn't stressed because I'd already done it a dozen times.", name: 'Nathan B.', role: 'Commercial student, BC' },
+              { quote: "I'm not naturally good at the chart and plate reading stuff. The AI instructor walked me through the tricky questions step by step. That's what got me over the line.", name: 'Fatima R.', role: 'Student pilot, Alberta' },
+              { quote: "Failed my first attempt at the IRA written elsewhere. Found this, focused on my weak areas for two weeks, passed with an 84%. Night and day difference.", name: 'Tyler J.', role: 'Instrument-rated pilot' },
+              { quote: "Worth every dollar. I'm building hours toward a commercial certificate and this gave me a rock-solid foundation on IFR regulations and procedures.", name: 'Marcus D.', role: 'Commercial pilot candidate' },
+            ].map((t, i) => (
+              <div key={i} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--lp-border)', borderRadius: 16, padding: '28px 24px', display: 'flex', flexDirection: 'column', gap: 16 }}>
+                <div style={{ display: 'flex', gap: 3 }}>{[...Array(5)].map((_, s) => <svg key={s} width="14" height="14" viewBox="0 0 24 24" fill="#f5c842"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>)}</div>
+                <p style={{ color: 'var(--lp-text)', fontSize: 14, lineHeight: 1.7, margin: 0, flex: 1 }}>"{t.quote}"</p>
+                <div><div style={{ color: '#fff', fontWeight: 700, fontSize: 14 }}>{t.name}</div><div style={{ color: 'var(--lp-text3)', fontSize: 12, marginTop: 2 }}>{t.role}</div></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* PRICING — mobile only (desktop sees hero card) */}
       <section style={{ padding: '90px 40px', background: 'rgba(5,88,102,0.10)', borderTop: '1px solid var(--lp-border)', borderBottom: '1px solid var(--lp-border)' }} id="pricing" className="lp-pricing-section">
         <div className="lp-section-inner" style={{ textAlign: 'center' }}>
