@@ -286,16 +286,45 @@ export default function PracticeTestTemplate({
 
       {/* SCORE BAR */}
       {answered > 0 && (
-        <div style={{ position: 'sticky', top: 0, zIndex: 100, background: 'rgba(10,14,22,0.97)', borderBottom: '1px solid var(--lp-border)', padding: '12px 32px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 24, flexWrap: 'wrap' }}>
-          <span style={{ fontFamily: 'Share Tech Mono, monospace', fontSize: 14, color: 'var(--lp-text3)' }}>
-            {answered}/{questions.length} answered
-          </span>
-          <span style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 22, fontWeight: 800, color: label.color }}>
+        <div style={{
+          position: 'sticky', top: 0, zIndex: 100,
+          background: label ? `linear-gradient(135deg, ${label.color}22 0%, rgba(10,14,22,0.98) 60%)` : 'rgba(10,14,22,0.98)',
+          borderBottom: `2px solid ${label ? label.color : 'var(--lp-border)'}`,
+          boxShadow: label ? `0 2px 20px ${label.color}30` : 'none',
+          padding: '14px 32px',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 28, flexWrap: 'wrap',
+        }}>
+          {/* Progress track */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div style={{ width: 80, height: 6, background: 'rgba(255,255,255,0.1)', borderRadius: 3, overflow: 'hidden' }}>
+              <div style={{ height: '100%', width: `${(answered / questions.length) * 100}%`, background: 'rgba(255,255,255,0.4)', borderRadius: 3, transition: 'width 0.3s' }} />
+            </div>
+            <span style={{ fontFamily: 'Share Tech Mono, monospace', fontSize: 13, color: 'var(--lp-text3)', whiteSpace: 'nowrap' }}>
+              {answered}/{questions.length}
+            </span>
+          </div>
+
+          <div style={{ width: 1, height: 28, background: 'rgba(255,255,255,0.12)' }} />
+
+          <span style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 28, fontWeight: 900, color: label ? label.color : '#fff', letterSpacing: '.02em' }}>
             {correct}/{answered} correct
           </span>
+
           {label && (
-            <span style={{ fontSize: 13, color: label.color, background: `${label.color}18`, padding: '3px 10px', borderRadius: 20, fontWeight: 600 }}>
+            <span style={{
+              fontSize: 13, fontWeight: 700, color: label.color,
+              background: `${label.color}22`,
+              border: `1px solid ${label.color}55`,
+              padding: '5px 14px', borderRadius: 20,
+              whiteSpace: 'nowrap',
+            }}>
               {label.text}
+            </span>
+          )}
+
+          {allDone && (
+            <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', fontWeight: 600 }}>
+              ↓ See full results below
             </span>
           )}
         </div>
