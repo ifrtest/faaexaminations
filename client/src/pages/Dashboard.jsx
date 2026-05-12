@@ -66,6 +66,15 @@ export default function Dashboard() {
     }
   }, []);
 
+  // Pre-load practice test chunks immediately on dashboard mount
+  // so free users never hit a blank page when clicking the shortcut cards
+  useEffect(() => {
+    import('../pages/PARPracticeTest').catch(() => {});
+    import('../pages/IRAPracticeTest').catch(() => {});
+    import('../pages/CAXPracticeTest').catch(() => {});
+    import('../pages/Part107PracticeTest').catch(() => {});
+  }, []);
+
   useEffect(() => {
     (async () => {
       try {
