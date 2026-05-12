@@ -39,6 +39,7 @@ export default function PracticeTestTemplate({
   const [counts, setCounts] = useState({ questions: 0, topics: 0 });
   const activityFired = useRef(false);
   const navRef = useRef(null);
+  const scoreRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -99,6 +100,15 @@ export default function PracticeTestTemplate({
   const correct = Object.entries(answers).filter(([i, a]) => shuffledQuestions[i].correct === a).length;
   const allDone = answered === shuffledQuestions.length;
   const scorePct = answered === 0 ? 0 : Math.round((correct / answered) * 100);
+
+  // Auto-scroll to results the moment the last question is answered
+  useEffect(() => {
+    if (allDone && scoreRef.current) {
+      setTimeout(() => {
+        scoreRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 150);
+    }
+  }, [allDone]);
 
   // Fire score ping when all questions are answered
   const scoreFired = useRef(false);
@@ -339,9 +349,12 @@ export default function PracticeTestTemplate({
           )}
 
           {allDone && (
-            <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', fontWeight: 600 }}>
-              ↓ See full results below
-            </span>
+            <button
+              onClick={() => scoreRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+              style={{ fontSize: 12, color: '#30ace2', fontWeight: 700, background: 'rgba(48,172,226,0.1)', border: '1px solid rgba(48,172,226,0.3)', borderRadius: 6, padding: '4px 12px', cursor: 'pointer' }}
+            >
+              ↓ See my results
+            </button>
           )}
         </div>
       )}
@@ -418,7 +431,7 @@ export default function PracticeTestTemplate({
 
           {/* FINAL SCORE */}
           {allDone && (
-            <div className="fade-up" style={{ borderRadius: 20, overflow: 'hidden', marginTop: 16 }}>
+            <div ref={scoreRef} className="fade-up" style={{ borderRadius: 20, overflow: 'hidden', marginTop: 16 }}>
 
               {/* Score header */}
               <div style={{ background: scorePct >= 80 ? 'rgba(34,197,94,0.08)' : 'rgba(239,68,68,0.08)', border: `1px solid ${scorePct >= 80 ? 'rgba(34,197,94,0.3)' : 'rgba(239,68,68,0.3)'}`, borderBottom: 'none', borderRadius: '20px 20px 0 0', padding: '40px 32px 32px', textAlign: 'center' }}>
