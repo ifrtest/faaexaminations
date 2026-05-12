@@ -224,12 +224,12 @@ export default function PARLanding() {
           <h2 style={{ textAlign: 'center', marginBottom: 48 }}>Real People. Real Passes.</h2>
           <div className="fade-up" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20 }}>
             {[
-              { quote: "Passed on my first attempt. I was working full time and studied 45 minutes a night for three weeks. The explanations made the weather and airspace stuff actually click.", name: 'Ryan T.', role: 'Student pilot, Ontario' },
+              { quote: "Passed on my first attempt. I was working full time and studied 45 minutes a night for three weeks. The explanations made the weather and airspace stuff actually click.", name: 'Ryan T.', role: 'Student pilot, Texas' },
               { quote: "I failed my written with another course. Switched here, drilled the weak topics, passed with an 82%. The topic breakdown is what made the difference.", name: 'Melissa C.', role: 'Private pilot candidate' },
               { quote: "The timed simulator is exactly like the real test. I walked into the exam and nothing surprised me. Done in under an hour.", name: 'Jordan H.', role: 'New private pilot' },
               { quote: "I had zero aviation background and was intimidated. This starts from the basics and builds up. The AI instructor answered every question I had.", name: 'Priya S.', role: 'First-time student pilot' },
-              { quote: "Way cheaper than the ground school I was about to sign up for, and honestly more useful for the written. I passed — that's all that matters.", name: 'Derek W.', role: 'Private pilot, Alberta' },
-              { quote: "Scored 91% on my PAR. I wasn't expecting that. The question bank covers every topic thoroughly and the explanations stick with you.", name: 'Amir L.', role: 'Student pilot, BC' },
+              { quote: "Way cheaper than the ground school I was about to sign up for, and honestly more useful for the written. I passed — that's all that matters.", name: 'Derek W.', role: 'Private pilot, Florida' },
+              { quote: "Scored 91% on my PAR. I wasn't expecting that. The question bank covers every topic thoroughly and the explanations stick with you.", name: 'Amir L.', role: 'Student pilot, California' },
             ].map((t, i) => (
               <div key={i} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--lp-border)', borderRadius: 16, padding: '28px 24px', display: 'flex', flexDirection: 'column', gap: 16 }}>
                 <div style={{ display: 'flex', gap: 3 }}>{[...Array(5)].map((_, s) => <svg key={s} width="14" height="14" viewBox="0 0 24 24" fill="#f5c842"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>)}</div>
