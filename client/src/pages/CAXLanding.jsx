@@ -200,11 +200,8 @@ export default function CAXLanding() {
           <div className="fade-up" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20 }}>
             {[
               { quote: "CAX is the hardest written I've done. Performance calculations, weight and balance, complex airspace — this covered every corner of it. Passed with an 83%.", name: 'James R.', role: 'Commercial pilot, Ohio' },
-              { quote: "I was a week out from my exam and still shaky on the performance charts. The explanations here are better than anything in the textbooks. Scored an 88%.", name: 'Vanessa T.', role: 'Commercial student pilot' },
-              { quote: "Already had my PAR and IRA. The CAX written is a different level of detail. This question bank is exactly what I needed to bridge the gap.", name: 'Ben H.', role: 'Multi-engine commercial pilot' },
-              { quote: "Drilled weak topics every morning for two weeks before my exam date. The timed simulator made the real test feel routine. First try pass.", name: 'Olivia P.', role: 'Commercial pilot candidate, Colorado' },
-              { quote: "The AI instructor is genuinely useful. I asked about a confusing performance chart question and got a clear step-by-step walkthrough. Saved me hours.", name: 'Liam C.', role: 'Flight instructor candidate' },
-              { quote: "I've been instructing for two years and decided to finally knock out the commercial written. This made it painless. Wish it had existed when I was a student.", name: 'Daniel M.', role: 'Flight instructor, Tennessee' },
+              { quote: "I was a week out from my exam and still shaky on the performance charts. The explanations here are better than anything in the textbooks. Scored an 88%.", name: 'Vanessa T.', role: 'Commercial student pilot, Colorado' },
+              { quote: "Already had my PAR and IRA. The CAX written is a different level of detail. This question bank is exactly what I needed to bridge the gap.", name: 'Ben H.', role: 'Multi-engine commercial pilot, Tennessee' },
             ].map((t, i) => (
               <div key={i} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--lp-border)', borderRadius: 16, padding: '28px 24px', display: 'flex', flexDirection: 'column', gap: 16 }}>
                 <div style={{ display: 'flex', gap: 3 }}>{[...Array(5)].map((_, s) => <svg key={s} width="14" height="14" viewBox="0 0 24 24" fill="#f5c842"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>)}</div>
