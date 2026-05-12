@@ -59,6 +59,7 @@ export default function CAXLanding() {
   useEffect(() => {
     if (window.fbq) fbq('track', 'ViewContent', { content_name: 'Commercial Pilot (CAX)', content_ids: ['cax'], content_type: 'product', value: 24.99, currency: 'USD' });
     import('./CAXPracticeTest').catch(() => {});
+    import('./Checkout').catch(() => {});
   }, []);
 
   useEffect(() => {

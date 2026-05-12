@@ -59,6 +59,7 @@ export default function IRALanding() {
   useEffect(() => {
     if (window.fbq) fbq('track', 'ViewContent', { content_name: 'Instrument Rating (IRA)', content_ids: ['ira'], content_type: 'product', value: 24.99, currency: 'USD' });
     import('./IRAPracticeTest').catch(() => {});
+    import('./Checkout').catch(() => {});
   }, []);
 
   useEffect(() => {

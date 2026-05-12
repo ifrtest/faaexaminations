@@ -15,6 +15,7 @@ import Register       from './pages/Register';
 const _preload = () => {
   import('./pages/Dashboard');
   import('./pages/ExamList');
+  import('./pages/Checkout');
 };
 if (typeof window !== 'undefined') setTimeout(_preload, 2000);
 

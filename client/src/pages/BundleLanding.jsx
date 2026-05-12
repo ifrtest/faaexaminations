@@ -37,6 +37,7 @@ export default function BundleLanding() {
 
   useEffect(() => {
     if (window.fbq) fbq('track', 'ViewContent', { content_name: 'All 3 Exams Bundle', content_ids: ['bundle'], content_type: 'product', value: 39.99, currency: 'USD' });
+    import('./Checkout').catch(() => {});
   }, []);
 
   useEffect(() => {

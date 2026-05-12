@@ -47,8 +47,9 @@ export default function PARLanding() {
 
   useEffect(() => {
     if (window.fbq) fbq('track', 'ViewContent', { content_name: 'Private Pilot (PAR)', content_ids: ['par'], content_type: 'product', value: 24.99, currency: 'USD' });
-    // Pre-load practice test chunk while visitor reads the page
+    // Pre-load practice test and checkout chunks while visitor reads the page
     import('./PARPracticeTest').catch(() => {});
+    import('./Checkout').catch(() => {});
   }, []);
 
   useEffect(() => {
