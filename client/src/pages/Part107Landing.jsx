@@ -223,6 +223,7 @@ export default function Part107Landing() {
 
   useEffect(() => {
     if (window.fbq) fbq('track', 'ViewContent', { content_name: 'Part 107 Remote Pilot (UAG)', content_ids: ['uag'], content_type: 'product', value: 37.99, currency: 'USD' });
+    import('./Part107PracticeTest').catch(() => {});
   }, []);
 
   useEffect(() => {

@@ -76,8 +76,9 @@ export default function App() {
       {!isLanding && <Navbar />}
       <main style={{ flex: 1 }}>
         <Suspense fallback={
-          <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg, #080e14)' }}>
+          <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'var(--bg, #080e14)', gap: 16 }}>
             <Spinner />
+            <div style={{ color: '#94b8d4', fontSize: 14 }}>Loading… if this takes too long, please refresh the page.</div>
           </div>
         }>
           <Routes>
