@@ -45,7 +45,7 @@ export default function PracticeTestTemplate({
   useEffect(() => {
     const onScroll = () => {
       if (navRef.current) navRef.current.classList.toggle('scrolled', window.scrollY > 50);
-      setShowScrollTop(window.scrollY > 600);
+      setShowScrollTop(window.scrollY > 300);
     };
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
