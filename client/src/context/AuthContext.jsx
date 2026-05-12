@@ -20,7 +20,12 @@ export function AuthProvider({ children }) {
     const timeout = setTimeout(() => setLoading(false), 15000);
 
     authApi.me()
-      .then((d) => setUser(d.user))
+      .then((d) => {
+        setUser(d.user);
+        // Pre-load the chunks the user will land on so Suspense never flashes black
+        import('../pages/Dashboard').catch(() => {});
+        import('../pages/ExamList').catch(() => {});
+      })
       .catch(() => { localStorage.removeItem('faa_token'); setUser(null); })
       .finally(() => { clearTimeout(timeout); setLoading(false); });
   }, []);
