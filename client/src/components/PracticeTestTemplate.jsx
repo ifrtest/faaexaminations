@@ -37,6 +37,7 @@ export default function PracticeTestTemplate({
   const [shuffledQuestions] = useState(() => questions.map(shuffleQuestion));
   const [answers, setAnswers] = useState({});
   const [counts, setCounts] = useState({ questions: 0, topics: 0 });
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const activityFired = useRef(false);
   const navRef = useRef(null);
   const scoreRef = useRef(null);
@@ -44,6 +45,7 @@ export default function PracticeTestTemplate({
   useEffect(() => {
     const onScroll = () => {
       if (navRef.current) navRef.current.classList.toggle('scrolled', window.scrollY > 50);
+      setShowScrollTop(window.scrollY > 600);
     };
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
@@ -575,6 +577,25 @@ export default function PracticeTestTemplate({
         </div>
         <div style={{ color: 'var(--lp-text3)', fontSize: 12 }}>© 2026 FAAExaminations.com · All rights reserved</div>
       </footer>
+
+      {/* SCROLL TO TOP BUTTON */}
+      {showScrollTop && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          style={{
+            position: 'fixed', bottom: 28, right: 28, zIndex: 999,
+            width: 48, height: 48, borderRadius: '50%',
+            background: '#30ace2', border: 'none', cursor: 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            boxShadow: '0 4px 20px rgba(48,172,226,0.4)',
+          }}
+          aria-label="Scroll to top"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="18 15 12 9 6 15"/>
+          </svg>
+        </button>
+      )}
     </div>
   );
 }
