@@ -431,7 +431,7 @@ export default function PracticeTestTemplate({
 
           {/* FINAL SCORE */}
           {allDone && (
-            <div ref={scoreRef} className="fade-up" style={{ borderRadius: 20, overflow: 'hidden', marginTop: 16 }}>
+            <div ref={scoreRef} style={{ borderRadius: 20, overflow: 'hidden', marginTop: 16 }}>
 
               {/* Score header */}
               <div style={{ background: scorePct >= 80 ? 'rgba(34,197,94,0.08)' : 'rgba(239,68,68,0.08)', border: `1px solid ${scorePct >= 80 ? 'rgba(34,197,94,0.3)' : 'rgba(239,68,68,0.3)'}`, borderBottom: 'none', borderRadius: '20px 20px 0 0', padding: '40px 32px 32px', textAlign: 'center' }}>
