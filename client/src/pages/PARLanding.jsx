@@ -171,7 +171,7 @@ export default function PARLanding() {
             <div className="lp-hero-btns">
               <Link to="/register?plan=par" className="lp-btn-hero">
                 <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
-                Subscribe — $24.99/mo
+                Start 3 Days Free
               </Link>
               <a href="#includes" className="lp-btn-outline">See What's Included</a>
             </div>
@@ -200,7 +200,7 @@ export default function PARLanding() {
                 </li>
               ))}
             </ul>
-            <Link to="/register?plan=par" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Subscribe — $24.99/mo →</Link>
+            <Link to="/register?plan=par" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Start 3 Days Free →</Link>
             <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>Or <Link to="/register" style={{ color: 'var(--lp-blue)', textDecoration: 'underline' }}>try 30 free questions</Link> — just enter your email</div>
           </div>
         </div>
@@ -395,7 +395,7 @@ export default function PARLanding() {
 
           <div style={{ textAlign: 'center', marginTop: 48 }}>
             <Link to="/register?plan=par" className="lp-btn-hero" style={{ fontSize: 17, padding: '16px 40px' }}>
-              Subscribe — $24.99/mo →
+              Start 3 Days Free →
             </Link>
           </div>
         </div>
@@ -484,10 +484,10 @@ export default function PARLanding() {
               ))}
             </ul>
             <Link to="/register?plan=par" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>
-              Subscribe — $24.99/mo →
+              Start 3 Days Free →
             </Link>
             <Link to="/register" style={{ display: 'block', textAlign: 'center', marginTop: 12, color: 'var(--lp-blue)', fontSize: 14, textDecoration: 'underline' }}>Try 30 free questions — just enter your email</Link>
-            <div style={{ marginTop: 12, fontSize: 13, color: 'var(--lp-text3)' }}><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>Pass guarantee</Link> · Cancel anytime</div>
+            <div style={{ marginTop: 12, fontSize: 13, color: 'var(--lp-text3)' }}>3-day free trial · Card required · Cancel anytime</div>
           </div>
         </div>
       </section>
@@ -533,7 +533,7 @@ export default function PARLanding() {
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/register?plan=par" className="lp-btn-hero" style={{ fontSize: 18, padding: '18px 44px' }}>
               <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
-              Subscribe — $24.99/mo
+              Start 3 Days Free
             </Link>
             <Link to="/register" style={{ background: '#34d399', color: '#041018', fontWeight: 800, fontSize: 15, padding: '14px 28px', borderRadius: 10, textDecoration: 'none', whiteSpace: 'nowrap', fontFamily: 'Barlow Condensed, sans-serif', letterSpacing: 0.5 }}>Try 30 Free Questions →</Link>
           </div>

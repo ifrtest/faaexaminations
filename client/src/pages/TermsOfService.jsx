@@ -25,6 +25,7 @@ export default function TermsOfService() {
       <section style={{ marginBottom: 36 }}>
         <h2 style={{ fontSize: '1.15rem', marginBottom: 12 }}>3. Subscriptions and Billing</h2>
         <ul style={{ paddingLeft: 20, lineHeight: 2, color: 'var(--text2)' }}>
+          <li>New subscribers receive a 3-day free trial. A valid payment method is required at sign-up. Your card will not be charged during the trial. Your first charge occurs automatically at the end of the 3-day trial unless you cancel before then.</li>
           <li>Subscriptions are billed monthly and renew automatically until cancelled.</li>
           <li>Payment is processed securely through Stripe. We do not store your payment details.</li>
           <li>You may cancel your subscription at any time from the <a href="/cancel-policy" style={{ color: 'var(--blue)' }}>Cancellation &amp; Refund Policy</a> page. Access continues until the end of the current billing period.</li>

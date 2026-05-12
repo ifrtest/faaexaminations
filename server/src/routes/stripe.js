@@ -72,6 +72,7 @@ router.post('/checkout', requireAuth, async (req, res) => {
       payment_method_types: ['card'],
       payment_method_collection: 'always',
       line_items: [{ price: priceId, quantity: 1 }],
+      ...(isOneTime ? {} : { subscription_data: { trial_period_days: 3 } }),
       success_url: `${process.env.CLIENT_URL}/exams?subscribed=1&plan=${plan}&eid=${capiEventId}&sid={CHECKOUT_SESSION_ID}`,
       cancel_url:  `${process.env.CLIENT_URL}/exams`,
       metadata: { user_id: String(user.id), plan, capi_event_id: capiEventId },
@@ -206,13 +207,24 @@ async function activateSubscription(session) {
   const user = userRes.rows[0];
   if (user) {
     const plan = getPlanName(priceId);
-    sendEmail({
-      to: user.email,
-      subject: 'Your FAAExaminations.com Subscription is Active ✅',
-      html: subscriptionEmail(user.full_name || user.email.split('@')[0], plan, user.id),
-      userId: user.id,
-      allowUnsubscribed: true,
-    });
+    if (sub.status === 'trialing') {
+      const trialEnd = new Date(sub.trial_end * 1000);
+      sendEmail({
+        to: user.email,
+        subject: 'Your 3-day free trial has started ✅',
+        html: trialStartEmail(user.full_name || user.email.split('@')[0], plan, trialEnd, user.id),
+        userId: user.id,
+        allowUnsubscribed: true,
+      });
+    } else {
+      sendEmail({
+        to: user.email,
+        subject: 'Your FAAExaminations.com Subscription is Active ✅',
+        html: subscriptionEmail(user.full_name || user.email.split('@')[0], plan, user.id),
+        userId: user.id,
+        allowUnsubscribed: true,
+      });
+    }
     // Fire CAPI Purchase — server-side so iOS-blocked browsers still report conversions
     if (capiEventId) {
       capiPurchase({
@@ -495,6 +507,7 @@ router.post('/embedded/intent', requireAuth, async (req, res) => {
     const sub = await stripe.subscriptions.create({
       customer:         customerId,
       items:            [{ price: priceId }],
+      trial_period_days: 3,
       payment_behavior: 'default_incomplete',
       payment_settings: { save_default_payment_method: 'on_subscription' },
       expand:           ['pending_setup_intent', 'latest_invoice.payment_intent'],
@@ -595,13 +608,24 @@ router.post('/embedded/activate', requireAuth, async (req, res) => {
 
     const u = await db.query('SELECT email, full_name FROM users WHERE id = $1', [userId]);
     if (u.rows[0]) {
-      sendEmail({
-        to: u.rows[0].email,
-        subject: 'Your FAAExaminations.com Subscription is Active ✅',
-        html: subscriptionEmail(u.rows[0].full_name || u.rows[0].email.split('@')[0], planName, userId),
-        userId,
-        allowUnsubscribed: true,
-      });
+      if (sub.status === 'trialing') {
+        const trialEnd = new Date(sub.trial_end * 1000);
+        sendEmail({
+          to: u.rows[0].email,
+          subject: 'Your 3-day free trial has started ✅',
+          html: trialStartEmail(u.rows[0].full_name || u.rows[0].email.split('@')[0], planName, trialEnd, userId),
+          userId,
+          allowUnsubscribed: true,
+        });
+      } else {
+        sendEmail({
+          to: u.rows[0].email,
+          subject: 'Your FAAExaminations.com Subscription is Active ✅',
+          html: subscriptionEmail(u.rows[0].full_name || u.rows[0].email.split('@')[0], planName, userId),
+          userId,
+          allowUnsubscribed: true,
+        });
+      }
       const PLAN_VALUE = { par: 24.99, ira: 24.99, cax: 24.99, bundle: 39.99 };
       capiPurchase({
         eventId: crypto.randomUUID(),

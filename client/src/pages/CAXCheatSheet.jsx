@@ -473,7 +473,7 @@ export default function CAXCheatSheet() {
               <Link to="/cax-practice-test" className="lp-btn-outline">Free 30-Question Test</Link>
               <Link to="/register?plan=cax" className="lp-btn-hero" style={{ fontSize: 17, padding: '14px 32px' }}>Get Full 536-Question Bank →</Link>
             </div>
-            <div style={{ marginTop: 12, fontSize: 13, color: 'var(--lp-text3)' }}><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>Pass guarantee</Link> · $24.99/month · Cancel anytime</div>
+            <div style={{ marginTop: 12, fontSize: 13, color: 'var(--lp-text3)' }}>3-day free trial · $24.99/month · Cancel anytime</div>
           </div>
 
         </div>

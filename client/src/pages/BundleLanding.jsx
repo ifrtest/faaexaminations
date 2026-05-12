@@ -116,7 +116,7 @@ export default function BundleLanding() {
             <div className="lp-hero-btns">
               <Link to="/register?plan=bundle" className="lp-btn-hero">
                 <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
-                Subscribe — $39.99/mo
+                Start 3 Days Free
               </Link>
               <a href="#includes" className="lp-btn-outline">See What's Included</a>
             </div>
@@ -150,9 +150,9 @@ export default function BundleLanding() {
                 </li>
               ))}
             </ul>
-            <Link to="/register?plan=bundle" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Subscribe — $39.99/mo →</Link>
+            <Link to="/register?plan=bundle" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Start 3 Days Free →</Link>
             <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>Or <Link to="/register" style={{ color: 'var(--lp-blue)', textDecoration: 'underline' }}>try 30 free questions</Link> — just enter your email</div>
-            <div style={{ marginTop: 8, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>Pass guarantee</Link> · Cancel anytime</div>
+            <div style={{ marginTop: 8, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>3-day free trial · Card required · Cancel anytime</div>
           </div>
 
         </div>
@@ -181,7 +181,7 @@ export default function BundleLanding() {
             {[
               { quote: "Got all three done in four months. PAR, IRA, CAX — one subscription the whole way through. Way cheaper than buying them separately and the question banks are excellent.", name: 'Kevin A.', role: 'Commercial pilot, Virginia' },
               { quote: "The bundle made sense for me because I knew I was going all the way to commercial. Knocked out PAR first, then kept the subscription going. Passed all three first try.", name: 'Sophie L.', role: 'Commercial student pilot' },
-              { quote: "I compared every prep course out there. This was the most focused on the actual exams and by far the best value. The pass guarantee sealed it.", name: 'Tom B.', role: 'Flight school student, Washington' },
+              { quote: "I compared every prep course out there. This was the most focused on the actual exams and by far the best value. The 3-day free trial sealed it.", name: 'Tom B.', role: 'Flight school student, Washington' },
               { quote: "Studied PAR for 3 weeks, took a month break, came back for IRA. The subscription just kept running and everything was still there. No hassle at all.", name: 'Isabelle R.', role: 'Instrument-rated pilot' },
               { quote: "The AI instructor alone is worth the price. I'd hit a confusing question, ask it to explain, and get a clear answer in seconds. That saved me a ton of time over 3 exams.", name: 'Noah P.', role: 'Commercial pilot candidate' },
               { quote: "Failed PAR once before finding this. Switched, passed PAR, then went straight through IRA and CAX without ever switching platforms. Best decision I made.", name: 'Chloe W.', role: 'Commercial student, Michigan' },
@@ -223,9 +223,9 @@ export default function BundleLanding() {
                 </li>
               ))}
             </ul>
-            <Link to="/register?plan=bundle" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Subscribe — $39.99/mo →</Link>
+            <Link to="/register?plan=bundle" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Start 3 Days Free →</Link>
             <Link to="/register" style={{ display: 'block', textAlign: 'center', marginTop: 12, color: 'var(--lp-blue)', fontSize: 14, textDecoration: 'underline' }}>Try 30 free questions — just enter your email</Link>
-            <div style={{ marginTop: 12, fontSize: 13, color: 'var(--lp-text3)' }}><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>Pass guarantee</Link> · Cancel anytime</div>
+            <div style={{ marginTop: 12, fontSize: 13, color: 'var(--lp-text3)' }}>3-day free trial · Card required · Cancel anytime</div>
           </div>
         </div>
       </section>
@@ -449,7 +449,7 @@ export default function BundleLanding() {
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/register?plan=bundle" className="lp-btn-hero" style={{ fontSize: 18, padding: '18px 44px' }}>
               <svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>
-              Subscribe — $39.99/mo
+              Start 3 Days Free
             </Link>
             <Link to="/register" style={{ background: '#34d399', color: '#041018', fontWeight: 800, fontSize: 15, padding: '14px 28px', borderRadius: 10, textDecoration: 'none', whiteSpace: 'nowrap', fontFamily: 'Barlow Condensed, sans-serif', letterSpacing: 0.5 }}>Try 30 Free Questions →</Link>
           </div>

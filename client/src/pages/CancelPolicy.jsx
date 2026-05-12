@@ -11,7 +11,7 @@ export default function CancelPolicy() {
   const [cancelled, setCancelled] = useState(false);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState('');
-  const isTrialing = false; // trials removed — all subscribers are billed immediately
+  const isTrialing = user?.subscription_status === 'trialing';
 
   const handleCancel = async () => {
     setBusy(true);
@@ -73,26 +73,6 @@ export default function CancelPolicy() {
           <li>No further charges will be made to your card</li>
           <li>Your account and exam history are saved — you can resubscribe anytime</li>
         </ul>
-      </div>
-
-      <div className="card" style={{ marginBottom: 20, borderColor: 'rgba(48,172,226,0.35)' }}>
-        <div className="card-title">🛡️ Pass Guarantee</div>
-        <p style={{ color: 'var(--text2)', lineHeight: 1.7, marginBottom: 16 }}>
-          Pass your FAA written exam — or your money back. Score 80%+ on our practice exams and we guarantee you'll pass the real thing. Submit your failed exam result within 30 days for a full refund.
-        </p>
-        <p style={{ color: 'var(--text)', fontWeight: 600, marginBottom: 8 }}>To qualify for a refund, you must:</p>
-        <ul style={{ color: 'var(--text2)', lineHeight: 2.2, paddingLeft: 20, marginBottom: 16 }}>
-          <li>Have completed every topic module for your exam (all topics marked complete in your dashboard)</li>
-          <li>Have completed at least <strong style={{ color: 'var(--text)' }}>10 full timed mock exams</strong></li>
-          <li>Have scored <strong style={{ color: 'var(--text)' }}>80% or higher on each of those mock exams</strong></li>
-          <li>Have scored below 70% on the official FAA knowledge test</li>
-          <li>Submit your claim within <strong style={{ color: 'var(--text)' }}>30 days</strong> of your test date</li>
-          <li>Provide a copy of your official FAA score report</li>
-          <li>Be a first-time subscriber to FAAExaminations.com</li>
-        </ul>
-        <p style={{ color: 'var(--text2)', lineHeight: 1.7, fontSize: 14 }}>
-          To claim: email <a href="mailto:support@faaexaminations.com" style={{ color: 'var(--blue)' }}>support@faaexaminations.com</a> with your FAA score report. We'll verify your completion in our system and process your refund within 5 business days.
-        </p>
       </div>
 
       <div className="card" style={{ marginBottom: 32 }}>

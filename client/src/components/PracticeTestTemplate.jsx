@@ -294,7 +294,7 @@ export default function PracticeTestTemplate({
               { value: counts.topics, label: 'Official Topics' },
               planParam === 'uag'
                 ? { value: 'Lifetime', label: 'One-Time Payment' }
-                : { value: 'Full Refund', label: 'Pass Guarantee' },
+                : { value: '3 Days', label: 'Free Trial' },
             ].map((stat, i) => (
               <div key={i} className="hero-stat" style={{
                 flex: '1 1 160px',
@@ -473,13 +473,13 @@ export default function PracticeTestTemplate({
                   </p>
                 )}
 
-                {/* Guarantee badge — PAR/IRA/CAX only, not Part 107 */}
+                {/* 3-day free trial badge — PAR/IRA/CAX only, not Part 107 */}
                 {planParam !== 'uag' && (
                   <div className="guarantee-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 14, background: 'rgba(34,197,94,0.08)', border: '1px solid rgba(34,197,94,0.35)', borderRadius: 14, padding: '16px 24px', marginBottom: 28, maxWidth: 480, textAlign: 'left' }}>
-                    <span style={{ fontSize: 28, flexShrink: 0 }}>🛡️</span>
+                    <span style={{ fontSize: 28, flexShrink: 0 }}>🆓</span>
                     <div>
-                      <div style={{ fontSize: 13, fontWeight: 800, color: '#22c55e', letterSpacing: 1, marginBottom: 3 }}>PASS GUARANTEE</div>
-                      <div style={{ fontSize: 14, color: 'var(--lp-text2)', lineHeight: 1.5 }}>Complete the full program and still fail your real FAA exam — we refund every dollar. <a href="/cancel-policy" style={{ color: 'var(--lp-accent)', textDecoration: 'none' }}>See terms →</a></div>
+                      <div style={{ fontSize: 13, fontWeight: 800, color: '#22c55e', letterSpacing: 1, marginBottom: 3 }}>3-DAY FREE TRIAL</div>
+                      <div style={{ fontSize: 14, color: 'var(--lp-text2)', lineHeight: 1.5 }}>Full access for 3 days — no charge until your trial ends. Cancel anytime before then and pay nothing.</div>
                     </div>
                   </div>
                 )}
@@ -517,7 +517,7 @@ export default function PracticeTestTemplate({
                   : `Get Full ${questionCount}+ Question Bank — ${price}/month →`}
               </Link>
               <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)' }}>
-                {planParam === 'uag' ? 'Lifetime access — no subscription' : 'Pass guarantee · Cancel anytime'}
+                {planParam === 'uag' ? 'Lifetime access — no subscription' : '3-day free trial · Cancel anytime'}
               </div>
             </div>
           )}
@@ -559,8 +559,8 @@ export default function PracticeTestTemplate({
             <Link to={productPath} className="lp-btn-outline" style={{ fontSize: 15 }}>See What's Included</Link>
           </div>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#22c55e' }}>
-            <span>🛡️</span>
-            <span>{planParam === 'uag' ? 'Lifetime access — no subscription' : 'Pass guarantee · Cancel anytime'}</span>
+            <span>🆓</span>
+            <span>{planParam === 'uag' ? 'Lifetime access — no subscription' : '3-day free trial · Cancel anytime'}</span>
           </div>
         </div>
       </section>

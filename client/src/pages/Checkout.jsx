@@ -13,10 +13,10 @@ const UAG_PRICE_NUM    = UAG_PROMO_ACTIVE ? 37.99 : 57.99;
 const UAG_PRICE_LABEL  = `$${UAG_PRICE_NUM} one-time`;
 
 const PLAN_INFO = {
-  par:    { label: 'Private Pilot (PAR)',     price: '$24.99/month', trial: false, color: '#30ace2' },
-  ira:    { label: 'Instrument Rating (IRA)', price: '$24.99/month', trial: false, color: '#30ace2' },
-  cax:    { label: 'Commercial Pilot (CAX)',  price: '$24.99/month', trial: false, color: '#30ace2' },
-  bundle: { label: 'All 3 Exams Bundle',      price: '$39.99/month', trial: false, color: '#30ace2' },
+  par:    { label: 'Private Pilot (PAR)',     price: '$24.99/month', trial: true,  color: '#30ace2' },
+  ira:    { label: 'Instrument Rating (IRA)', price: '$24.99/month', trial: true,  color: '#30ace2' },
+  cax:    { label: 'Commercial Pilot (CAX)',  price: '$24.99/month', trial: true,  color: '#30ace2' },
+  bundle: { label: 'All 3 Exams Bundle',      price: '$39.99/month', trial: true,  color: '#30ace2' },
   uag:    { label: 'Part 107 Remote Pilot',   price: UAG_PRICE_LABEL,  trial: false, color: '#f5c842' },
 };
 
@@ -172,16 +172,12 @@ function CheckoutForm({ plan, intentData, onSuccess, userEmail }) {
         ) : (
           <>
             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px solid #1e2a38' }}>
-              <span style={{ color: '#94b8d4', fontSize: '.88rem' }}>Billed</span>
-              <span style={{ color: '#fff', fontWeight: 600, fontSize: '.88rem' }}>{info.price}</span>
+              <span style={{ color: '#94b8d4', fontSize: '.88rem' }}>3-day free trial</span>
+              <span style={{ color: '#34d399', fontWeight: 600, fontSize: '.88rem' }}>No charge for 3 days</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px solid #1e2a38' }}>
               <span style={{ color: '#94b8d4', fontSize: '.88rem' }}>Cancel</span>
               <span style={{ color: '#34d399', fontWeight: 600, fontSize: '.88rem' }}>Anytime — one click</span>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px solid #1e2a38' }}>
-              <Link to="/cancel-policy" style={{ color: '#94b8d4', fontSize: '.88rem', textDecoration: 'underline', opacity: 0.85 }}>Pass guarantee</Link>
-              <span style={{ color: '#34d399', fontWeight: 600, fontSize: '.88rem' }}>Refund if you fail the real exam</span>
             </div>
           </>
         )}
@@ -221,7 +217,7 @@ function CheckoutForm({ plan, intentData, onSuccess, userEmail }) {
       <p style={{ color: '#4a6a85', fontSize: '.8rem', textAlign: 'center', margin: 0, lineHeight: 1.5 }}>
         {plan === 'uag'
           ? 'One-time payment · Lifetime access'
-          : <>Pass guarantee · Cancel anytime at{' '}<Link to="/cancel-policy" style={{ color: '#30ace2' }}>faaexaminations.com/cancel-policy</Link>.</>
+          : <>3-day free trial · Cancel anytime at{' '}<Link to="/cancel-policy" style={{ color: '#30ace2' }}>faaexaminations.com/cancel-policy</Link>.</>
         }
       </p>
 

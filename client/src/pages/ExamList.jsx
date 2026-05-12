@@ -155,7 +155,7 @@ export default function ExamList() {
     return plan && PLAN_ACCESS[plan]?.includes(examCode);
   };
 
-  const isSubscribed = ['active', 'cancelling'].includes(subscription?.status);
+  const isSubscribed = ['active', 'trialing'].includes(subscription?.status);
 
   const startCheckout = (plan) => {
     navigate(`/checkout?plan=${plan}`);
@@ -216,8 +216,8 @@ export default function ExamList() {
               </div>
               {trialModalPlan !== 'uag' && (
                 <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #1e2a38' }}>
-                  <Link to="/cancel-policy" style={{ color: '#94b8d4', textDecoration: 'underline', opacity: 0.85 }}>Pass guarantee</Link>
-                  <span style={{ color: '#34d399', fontWeight: 600 }}>Complete program, fail exam — full refund</span>
+                  <span style={{ color: '#94b8d4' }}>3-day free trial</span>
+                  <span style={{ color: '#34d399', fontWeight: 600 }}>No charge for 3 days</span>
                 </div>
               )}
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0' }}>
@@ -368,17 +368,18 @@ export default function ExamList() {
         </div>
       )}
 
-      {subscription?.status === 'active' && subscription?.ends_at && (() => {
-        const renewDate = new Date(subscription.ends_at);
-        const endLabel = renewDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+      {subscription?.status === 'trialing' && subscription?.ends_at && (() => {
+        const trialEnd = new Date(subscription.ends_at);
+        const daysLeft = Math.max(0, Math.ceil((trialEnd - Date.now()) / 86400000));
+        const endLabel = trialEnd.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
         return (
           <div style={{ background: 'linear-gradient(90deg, #0c2a1a, #0d3520)', border: '1px solid rgba(52,211,153,0.35)', borderRadius: 12, padding: '16px 22px', marginBottom: 20, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
             <div>
               <div style={{ color: '#34d399', fontWeight: 700, fontSize: '.95rem', marginBottom: 3 }}>
-                Subscription active
+                Free trial active — {daysLeft} day{daysLeft !== 1 ? 's' : ''} left
               </div>
               <div style={{ color: '#6ee7b7', fontSize: '.88rem' }}>
-                Full access through <strong style={{ color: '#fff' }}>{endLabel}</strong>.
+                Full access until <strong style={{ color: '#fff' }}>{endLabel}</strong>. Your card won't be charged until then.
               </div>
             </div>
             <div style={{ fontSize: '.82rem', color: '#6ee7b7', flexShrink: 0 }}>Cancel from your account anytime →</div>
@@ -418,10 +419,17 @@ export default function ExamList() {
         <div style={{ background: 'linear-gradient(90deg, #064e3b, #065f46)', border: '1px solid #059669', borderRadius: 12, padding: '16px 22px', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 12 }}>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#34d399" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           <div>
-            <>
-              <div style={{ color: '#fff', fontWeight: 700, fontSize: '1rem' }}>Payment confirmed — you're all set!</div>
-              <div style={{ color: '#6ee7b7', fontSize: '.88rem', marginTop: 3 }}>Your exam is now unlocked. Click the card below to start practising.</div>
-            </>
+            {subscription?.status === 'trialing' ? (
+              <>
+                <div style={{ color: '#fff', fontWeight: 700, fontSize: '1rem' }}>You're all set — full access unlocked!</div>
+                <div style={{ color: '#6ee7b7', fontSize: '.88rem', marginTop: 3 }}>Start studying below. Cancel anytime from your account settings.</div>
+              </>
+            ) : (
+              <>
+                <div style={{ color: '#fff', fontWeight: 700, fontSize: '1rem' }}>Payment confirmed — you're all set!</div>
+                <div style={{ color: '#6ee7b7', fontSize: '.88rem', marginTop: 3 }}>Your exam is now unlocked. Click the card below to start practising.</div>
+              </>
+            )}
           </div>
         </div>
       )}

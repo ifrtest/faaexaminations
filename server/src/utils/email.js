@@ -369,13 +369,27 @@ function bundleProgressUpsellEmail(name, currentPlan, userId) {
     <p style="margin:0 0 20px;color:${MUTED}">2,826 questions across PAR, IRA, and CAX. All modules, all timed simulators, AI Instructor for every exam. One subscription, all three certificates.</p>
     <p style="margin:0 0 16px;padding:16px 20px;background:#0b1622;border-left:3px solid ${ACCENT};border-radius:0 8px 8px 0;font-size:15px;line-height:1.7;color:${TEXT}">Upgrade now and your current plan is replaced — not added. You keep everything you have and unlock the rest. No price increase until you cancel.</p>
     ${button(`${SITE()}/exams`, 'Upgrade to Bundle — $39.99/month →')}
-    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Complete the full program and still fail your real FAA exam — we refund every dollar. <a href="${SITE()}/cancel-policy" style="color:${ACCENT}">See terms →</a></p>
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">3-day free trial · Cancel anytime · <a href="${SITE()}/cancel-policy" style="color:${ACCENT}">See terms →</a></p>
   `, userId, `${SITE()}/email-banner-plane.jpg`);
 }
 
-function trialStartEmail(name, plan, _trialEnd, userId) {
-  // Trial removed — function kept for legacy; routes now call subscriptionEmail directly
-  return subscriptionEmail(name, plan, userId);
+function trialStartEmail(name, plan, trialEnd, userId) {
+  const planNames = { par: 'Private Pilot (PAR)', ira: 'Instrument Rating (IRA)', cax: 'Commercial Pilot (CAX)', bundle: 'All 3 Exams Bundle' };
+  const planLabel = planNames[plan] || plan;
+  const endDate = trialEnd.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+  return shell('Your 3-day free trial has started ✅', `
+    <p style="margin:0 0 12px">Hi ${name},</p>
+    <p style="margin:0 0 16px">You have <strong style="color:${ACCENT}">full access</strong> to <strong style="color:${ACCENT}">${planLabel}</strong> — all questions, the timed simulator, and AI Instructor — completely free until <strong style="color:#fff">${endDate}</strong>.</p>
+    <p style="margin:0 0 16px;color:${MUTED}">After your trial, your card will be charged automatically. Cancel anytime before ${endDate} and you won't be charged a cent.</p>
+    ${button(`${SITE()}/exams`, 'Start Practising →')}
+    <p style="margin:24px 0 0;font-weight:700;color:#fff">What to study first</p>
+    <ul style="margin:8px 0 20px;padding-left:20px;color:${MUTED};line-height:2">
+      <li>Start with the topic modules to find your weak areas</li>
+      <li>Use explanations on every question — that's where the learning happens</li>
+      <li>Run a timed mock exam before your trial ends so you know where you stand</li>
+    </ul>
+    <p style="color:${MUTED};font-size:13px;margin:0">Cancel from your account dashboard in one click — no emails, no calls, no hassle. Questions? Reply here.</p>
+  `, userId, `${SITE()}/email-banner-plane.jpg`);
 }
 
 function trialEndingEmail(name, plan, trialEnd, userId) {
@@ -537,7 +551,7 @@ function cheatsheetNurtureDay4(email, plan) {
     </div>
     ${offerLine}
     <p style="margin:0 0 20px;padding:14px 18px;background:#0b1520;border:1px solid #1e2d3d;border-radius:8px;font-size:13px;color:${MUTED}">
-      🛡️ <strong style="color:#fff">Pass Guarantee:</strong> Complete the full program and still fail your real FAA exam — we refund every dollar. <a href="${site}/cancel-policy" style="color:${ACCENT};text-decoration:none">See terms →</a>
+      🆓 <strong style="color:#fff">3-Day Free Trial:</strong> Full access for 3 days — no charge until your trial ends. Cancel anytime before then and pay nothing. <a href="${site}/cancel-policy" style="color:${ACCENT};text-decoration:none">See terms →</a>
     </p>
     ${button(`${site}${m.registerUrl}`, `Get Started — ${isUag ? '$37.99 Lifetime' : '$24.99/month'} →`)}
     <p style="color:${MUTED};font-size:12px;margin:20px 0 0">Reply "unsubscribe" to stop receiving these emails.</p>
@@ -550,12 +564,12 @@ function cheatsheetNurtureDay7(email, plan) {
   const isUag = plan === 'uag';
   const priceDetail = isUag ? '$37.99 one-time · lifetime access · no subscription.' : `$24.99/month · cancel the month you pass.`;
 
-  return shell(`Complete the program. Fail the exam. Full refund.`, `
+  return shell(`Try it free for 3 days — no charge.`, `
     <p style="margin:0 0 16px">One week since you grabbed the cheat sheet. Let me make this simple.</p>
     <p style="margin:0 0 24px;padding:20px 24px;background:#0b1622;border:2px solid ${ACCENT};border-radius:10px;font-size:16px;line-height:1.7;color:#fff">
-      Complete every topic module, finish 10 full mock exams scoring 70%+, and if you still fail your real FAA exam — we refund every dollar. No questions asked.
+      Try the full program free for 3 days. Practice by topic, run timed mock exams, use the AI Instructor on anything that's still fuzzy. Cancel anytime before day 3 and you pay nothing.
     </p>
-    <p style="margin:0 0 16px;color:${MUTED}">We can make that guarantee because the method works when you use it: practice by topic, read the explanations, run mock exams until you're consistently passing. Anyone who puts in the work passes. That's the whole bet.</p>
+    <p style="margin:0 0 16px;color:${MUTED}">The method works when you use it: practice by topic, read the explanations, run mock exams until you're consistently passing. Anyone who puts in the work passes.</p>
     <p style="margin:0 0 8px;font-weight:700;color:#fff">What you get:</p>
     <ul style="margin:0 0 20px;padding-left:20px;color:${MUTED};line-height:2.2">
       <li><strong style="color:#fff">${m.qcount} questions</strong> — the full ${m.examName} bank</li>
@@ -564,8 +578,8 @@ function cheatsheetNurtureDay7(email, plan) {
       <li><strong style="color:#fff">AI Instructor</strong> — explains every wrong answer in plain English</li>
     </ul>
     <p style="margin:0 0 8px;color:${MUTED};font-size:14px">${priceDetail}</p>
-    <p style="margin:0 0 20px;font-size:13px;color:${MUTED}"><a href="${site}/cancel-policy" style="color:${ACCENT};text-decoration:none">See pass guarantee terms →</a></p>
-    ${button(`${site}${m.registerUrl}`, 'Start — Pass Guarantee Included →')}
+    <p style="margin:0 0 20px;font-size:13px;color:${MUTED}"><a href="${site}/cancel-policy" style="color:${ACCENT};text-decoration:none">Cancellation policy →</a></p>
+    ${button(`${site}${m.registerUrl}`, 'Start 3-Day Free Trial →')}
     <p style="color:${MUTED};font-size:12px;margin:20px 0 0">Reply "unsubscribe" to stop receiving these emails.</p>
   `, null, `${site}/${m.banner}`);
 }
@@ -575,8 +589,8 @@ function cheatsheetNurtureDay10(email, plan) {
   const site = SITE();
   const isUag = plan === 'uag';
   const closeLine = isUag
-    ? `<strong style="color:#fff">265 questions. Timed simulator. AI Instructor. $37.99 once — lifetime access.</strong> Complete the program and still fail your real exam — full refund.`
-    : `<strong style="color:#fff">${m.qcount} questions. Timed simulator. AI Instructor. $24.99/month — cancel the month you pass.</strong> Complete the program and still fail your real exam — full refund.`;
+    ? `<strong style="color:#fff">265 questions. Timed simulator. AI Instructor. $37.99 once — lifetime access.</strong> One-time payment, no subscription.`
+    : `<strong style="color:#fff">${m.qcount} questions. Timed simulator. AI Instructor. $24.99/month — cancel the month you pass.</strong> 3-day free trial — no charge until day 3.`;
 
   return shell(`Last one. Then I'll leave you alone.`, `
     <p style="margin:0 0 16px">Ten days ago you grabbed the ${m.label} cheat sheet.</p>

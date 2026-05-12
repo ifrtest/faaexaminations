@@ -182,11 +182,11 @@ export default function Landing() {
             Most student pilots study for weeks with the wrong materials and still fail. FAAExaminations.com gives you the exact questions the FAA will ask — with a real explanation for every single one. Pass in 2–4 weeks, not months.
           </p>
           <div className="lp-hero-btns">
-            <Link to="/register" className="lp-btn-hero"><svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>Get Started →</Link>
+            <Link to="/register" className="lp-btn-hero"><svg width="13" height="14" viewBox="0 0 13 14" fill="white" style={{marginRight:7,verticalAlign:'middle',display:'inline-block'}}><polygon points="0,0 13,7 0,14"/></svg>Start Your Free Trial</Link>
             <a href="#products" className="lp-btn-outline">View Packages</a>
           </div>
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', marginTop: 14, lineHeight: 2 }}>
-            🔒 Pass guarantee · Cancel anytime · No hidden fees
+            🔒 3-day free trial · No credit card commitment · Cancel anytime
           </div>
           <div style={{ marginTop: 14, display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 99, padding: '6px 14px' }}>
             <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#4ade80', display: 'inline-block', boxShadow: '0 0 0 3px rgba(74,222,128,0.25)', animation: 'pulse 2s infinite' }} />
@@ -231,9 +231,9 @@ export default function Landing() {
                   $39.99
                   <span style={{ fontSize: 13, fontWeight: 400, color: '#16A34A', background: 'rgba(22,163,74,0.12)', padding: '3px 10px', borderRadius: 20 }}>Save $35/month</span>
                 </div>
-                <div className="lp-product-price-sub"><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>Pass guarantee</Link> · Cancel anytime</div>
-                <Link to="/register?plan=bundle" className="lp-btn-product lp-btn-product-primary">Get Started →</Link>
-                <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--lp-muted)', marginTop: 8 }}>Pass guarantee · Cancel anytime</div>
+                <div className="lp-product-price-sub"><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>3-day free trial</Link> · Cancel anytime</div>
+                <Link to="/register?plan=bundle" className="lp-btn-product lp-btn-product-primary">Start 3-Day Free Trial →</Link>
+                <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--lp-muted)', marginTop: 8 }}>No charge for 3 days · Cancel before and pay nothing</div>
               </div>
             </div>
 
@@ -289,9 +289,9 @@ export default function Landing() {
                   <li>FAA compliant · 2026 updated</li>
                 </ul>
                 <div className="lp-product-price">$24.99</div>
-                <div className="lp-product-price-sub"><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>Pass guarantee</Link> · Cancel anytime</div>
-                <Link to="/register?plan=par" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
-                <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--lp-muted)', marginTop: 8 }}>Pass guarantee · Cancel anytime</div>
+                <div className="lp-product-price-sub"><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>3-day free trial</Link> · Cancel anytime</div>
+                <Link to="/register?plan=par" className="lp-btn-product lp-btn-product-secondary">Start 3-Day Free Trial →</Link>
+                <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--lp-muted)', marginTop: 8 }}>No charge for 3 days · Cancel before and pay nothing</div>
               </div>
             </div>
 
@@ -313,9 +313,9 @@ export default function Landing() {
                   <li>FAA compliant · 2026 updated</li>
                 </ul>
                 <div className="lp-product-price">$24.99</div>
-                <div className="lp-product-price-sub"><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>Pass guarantee</Link> · Cancel anytime</div>
-                <Link to="/register?plan=ira" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
-                <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--lp-muted)', marginTop: 8 }}>Pass guarantee · Cancel anytime</div>
+                <div className="lp-product-price-sub"><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>3-day free trial</Link> · Cancel anytime</div>
+                <Link to="/register?plan=ira" className="lp-btn-product lp-btn-product-secondary">Start 3-Day Free Trial →</Link>
+                <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--lp-muted)', marginTop: 8 }}>No charge for 3 days · Cancel before and pay nothing</div>
               </div>
             </div>
 
@@ -337,9 +337,9 @@ export default function Landing() {
                   <li>FAA compliant · 2026 updated</li>
                 </ul>
                 <div className="lp-product-price">$24.99</div>
-                <div className="lp-product-price-sub"><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>Pass guarantee</Link> · Cancel anytime</div>
-                <Link to="/register?plan=cax" className="lp-btn-product lp-btn-product-secondary">Get Started →</Link>
-                <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--lp-muted)', marginTop: 8 }}>Pass guarantee · Cancel anytime</div>
+                <div className="lp-product-price-sub"><Link to="/cancel-policy" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.75 }}>3-day free trial</Link> · Cancel anytime</div>
+                <Link to="/register?plan=cax" className="lp-btn-product lp-btn-product-secondary">Start 3-Day Free Trial →</Link>
+                <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--lp-muted)', marginTop: 8 }}>No charge for 3 days · Cancel before and pay nothing</div>
               </div>
             </div>
 
@@ -386,14 +386,6 @@ export default function Landing() {
               </div>
             </div>
 
-          </div>
-          {/* PASS GUARANTEE BADGE */}
-          <div style={{ marginTop: 36, marginBottom: 8, background: 'linear-gradient(135deg, rgba(22,163,74,0.1) 0%, rgba(22,163,74,0.06) 100%)', border: '1px solid rgba(22,163,74,0.35)', borderRadius: 14, padding: '20px 28px', display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap', justifyContent: 'center', textAlign: 'center', maxWidth: 700, marginLeft: 'auto', marginRight: 'auto' }}>
-            <div style={{ fontSize: 28 }}>✅</div>
-            <div>
-              <div style={{ color: '#4ade80', fontWeight: 800, fontSize: '1rem', marginBottom: 4 }}>Pass Guarantee</div>
-              <div style={{ color: '#a0c4b0', fontSize: '.88rem', lineHeight: 1.6 }}>Score 80%+ on our practice exams and we guarantee you pass the real thing. Submit your failed exam result within 30 days for a full refund.</div>
-            </div>
           </div>
           <div style={{ textAlign: 'center', marginTop: 22, fontSize: 14, color: 'var(--lp-text3)' }}>
             Questions about a package? <a href="mailto:support@faaexaminations.com" style={{ color: 'var(--lp-blue)', textDecoration: 'none' }}>Contact us</a>
