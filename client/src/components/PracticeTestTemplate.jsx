@@ -105,8 +105,9 @@ export default function PracticeTestTemplate({
   useEffect(() => {
     if (allDone && scoreRef.current) {
       setTimeout(() => {
-        scoreRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 150);
+        const top = scoreRef.current.getBoundingClientRect().top + window.scrollY - 20;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }, 400);
     }
   }, [allDone]);
 
@@ -350,10 +351,13 @@ export default function PracticeTestTemplate({
 
           {allDone && (
             <button
-              onClick={() => scoreRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-              style={{ fontSize: 12, color: '#30ace2', fontWeight: 700, background: 'rgba(48,172,226,0.1)', border: '1px solid rgba(48,172,226,0.3)', borderRadius: 6, padding: '4px 12px', cursor: 'pointer' }}
+              onClick={() => {
+                const top = scoreRef.current.getBoundingClientRect().top + window.scrollY - 20;
+                window.scrollTo({ top, behavior: 'smooth' });
+              }}
+              style={{ fontSize: 14, color: '#fff', fontWeight: 800, background: '#22c55e', border: 'none', borderRadius: 8, padding: '8px 20px', cursor: 'pointer', letterSpacing: '.03em' }}
             >
-              ↓ See my results
+              🏁 See Your Score ↓
             </button>
           )}
         </div>
