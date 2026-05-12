@@ -37,7 +37,7 @@ export default function PracticeTestTemplate({
   const [shuffledQuestions] = useState(() => questions.map(shuffleQuestion));
   const [answers, setAnswers] = useState({});
   const [counts, setCounts] = useState({ questions: 0, topics: 0 });
-  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(true);
   const activityFired = useRef(false);
   const navRef = useRef(null);
   const scoreRef = useRef(null);
@@ -45,7 +45,7 @@ export default function PracticeTestTemplate({
   useEffect(() => {
     const onScroll = () => {
       if (navRef.current) navRef.current.classList.toggle('scrolled', window.scrollY > 50);
-      setShowScrollTop(window.scrollY > 300);
+      setShowScrollTop(window.scrollY > 100);
     };
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
