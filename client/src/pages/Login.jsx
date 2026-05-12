@@ -21,10 +21,14 @@ export default function Login() {
     setErr(''); setBusy(true);
     try {
       await login(email, password);
-      // Pre-load the destination chunk before navigating so Suspense never flashes a black screen
+      // Pre-load the destination chunks before navigating so Suspense never flashes a black screen
       await Promise.all([
         import('./Dashboard'),
         import('./ExamList'),
+        import('./PARPracticeTest'),
+        import('./IRAPracticeTest'),
+        import('./CAXPracticeTest'),
+        import('./Part107PracticeTest'),
       ]).catch(() => {});
       navigate(from, { replace: true });
     } catch (ex) {

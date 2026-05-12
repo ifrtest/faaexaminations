@@ -76,7 +76,7 @@ export default function App() {
       {!isLanding && <Navbar />}
       <main style={{ flex: 1 }}>
         <Suspense fallback={
-          <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg, #080e14)' }}>
             <Spinner />
           </div>
         }>

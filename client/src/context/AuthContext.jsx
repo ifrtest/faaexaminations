@@ -25,6 +25,10 @@ export function AuthProvider({ children }) {
         // Pre-load the chunks the user will land on so Suspense never flashes black
         import('../pages/Dashboard').catch(() => {});
         import('../pages/ExamList').catch(() => {});
+        import('../pages/PARPracticeTest').catch(() => {});
+        import('../pages/IRAPracticeTest').catch(() => {});
+        import('../pages/CAXPracticeTest').catch(() => {});
+        import('../pages/Part107PracticeTest').catch(() => {});
       })
       .catch(() => { localStorage.removeItem('faa_token'); setUser(null); })
       .finally(() => { clearTimeout(timeout); setLoading(false); });
