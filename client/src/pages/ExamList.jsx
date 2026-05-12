@@ -100,7 +100,7 @@ export default function ExamList() {
     const planPrices = { uag: 37.99, bundle: 39.99 };
     const value = planPrices[purchasedPlan] ?? 24.99;
     if (window.fbq) fbq('track', 'Purchase', { value, currency: 'USD', content_name: purchasedPlan || 'unknown', content_ids: [purchasedPlan || 'unknown'], content_type: 'product' }, eid ? { eventID: eid } : {});
-    if (window.gtag) gtag('event', 'purchase', { currency: 'CAD', value });
+    if (window.gtag) gtag('event', 'purchase', { currency: 'USD', value });
     // Verify and grant access — retries for ~90s to survive a Render cold start
     if (sid) {
       const token = localStorage.getItem('faa_token');

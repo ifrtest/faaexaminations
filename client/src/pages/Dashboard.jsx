@@ -61,7 +61,7 @@ export default function Dashboard() {
         fbq('track', 'Purchase', { value: 24.99, currency: 'USD' }, eid ? { eventID: eid } : {});
       }
       if (window.gtag) {
-        gtag('event', 'purchase', { currency: 'CAD', value: 24.99 });
+        gtag('event', 'purchase', { currency: 'USD', value: 24.99 });
       }
     }
   }, []);

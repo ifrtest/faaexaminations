@@ -123,7 +123,7 @@ function CheckoutForm({ plan, intentData, onSuccess, userEmail }) {
         if (!res.ok) { setErr(data.error || 'Could not activate subscription.'); setBusy(false); return; }
         if (window.fbq) fbq('track', 'Purchase', { value: 0, currency: 'USD', content_name: plan });
         const PLAN_VALUE = { par: 24.99, ira: 24.99, cax: 24.99, bundle: 39.99, uag: 37.99 };
-        if (window.gtag) gtag('event', 'purchase', { transaction_id: intentData.subscriptionId, value: PLAN_VALUE[plan] || 24.99, currency: 'CAD', items: [{ item_id: plan, item_name: PLAN_INFO[plan].label, price: PLAN_VALUE[plan] || 24.99, quantity: 1 }] });
+        if (window.gtag) gtag('event', 'purchase', { transaction_id: intentData.subscriptionId, value: PLAN_VALUE[plan] || 24.99, currency: 'USD', items: [{ item_id: plan, item_name: PLAN_INFO[plan].label, price: PLAN_VALUE[plan] || 24.99, quantity: 1 }] });
         onSuccess();
       } else {
         const { error, paymentIntent } = await stripe.confirmPayment({
@@ -141,7 +141,7 @@ function CheckoutForm({ plan, intentData, onSuccess, userEmail }) {
         const data = await res.json();
         if (!res.ok) { setErr(data.error || 'Could not activate access.'); setBusy(false); return; }
         if (window.fbq) fbq('track', 'Purchase', { value: UAG_PRICE_NUM, currency: 'USD', content_name: plan });
-        if (window.gtag) gtag('event', 'purchase', { transaction_id: paymentIntent.id, value: UAG_PRICE_NUM, currency: 'CAD', items: [{ item_id: plan, item_name: PLAN_INFO[plan].label, price: UAG_PRICE_NUM, quantity: 1 }] });
+        if (window.gtag) gtag('event', 'purchase', { transaction_id: paymentIntent.id, value: UAG_PRICE_NUM, currency: 'USD', items: [{ item_id: plan, item_name: PLAN_INFO[plan].label, price: UAG_PRICE_NUM, quantity: 1 }] });
         onSuccess();
       }
     } catch (ex) {
@@ -219,8 +219,10 @@ function CheckoutForm({ plan, intentData, onSuccess, userEmail }) {
       </button>
 
       <p style={{ color: '#4a6a85', fontSize: '.8rem', textAlign: 'center', margin: 0, lineHeight: 1.5 }}>
-        Pass guarantee · Cancel anytime at{' '}
-        <Link to="/cancel-policy" style={{ color: '#30ace2' }}>faaexaminations.com/cancel-policy</Link>.
+        {plan === 'uag'
+          ? 'One-time payment · Lifetime access'
+          : <>Pass guarantee · Cancel anytime at{' '}<Link to="/cancel-policy" style={{ color: '#30ace2' }}>faaexaminations.com/cancel-policy</Link>.</>
+        }
       </p>
 
       <HelpForm email={userEmail} />
