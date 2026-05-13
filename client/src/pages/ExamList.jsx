@@ -165,7 +165,7 @@ export default function ExamList() {
     if (!selected) return;
     setErr(''); setStarting(true);
     try {
-      const { session } = await quizApi.start({ exam_code: selected, mode, num_questions: numQ, topic_id: topicId || undefined });
+      const { session } = await quizApi.start({ exam_code: selected, mode, num_questions: numQ, topic_id: mode === 'exam' ? undefined : (topicId || undefined) });
       navigate(`/quiz/${session.id}`);
     } catch (ex) {
       setErr(ex.response?.data?.error || 'Could not start exam.');
@@ -644,15 +644,17 @@ export default function ExamList() {
                   Up to {current.question_count} questions available. Real exam: {current.num_questions}.
                 </div>
               </div>
-              <div className="field">
-                <label>Topic (optional)</label>
-                <select value={topicId} onChange={(e) => setTopicId(e.target.value)}>
-                  <option value="">All topics</option>
-                  {topics.map((t) => (
-                    <option key={t.id} value={t.id}>{t.name} ({t.question_count})</option>
-                  ))}
-                </select>
-              </div>
+              {mode === 'study' && (
+                <div className="field">
+                  <label>Topic (optional)</label>
+                  <select value={topicId} onChange={(e) => setTopicId(e.target.value)}>
+                    <option value="">All topics</option>
+                    {topics.map((t) => (
+                      <option key={t.id} value={t.id}>{t.name} ({t.question_count})</option>
+                    ))}
+                  </select>
+                </div>
+              )}
             </div>
 
             {hasAccess(selected) ? (
