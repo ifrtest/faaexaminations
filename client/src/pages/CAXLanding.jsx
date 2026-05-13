@@ -20,7 +20,7 @@ const TOPICS = [
 const FAQS = [
   {
     q: 'How many questions are on the FAA Commercial Pilot written exam?',
-    a: '100 questions. You need a score of 70% or higher to pass. The CAX covers advanced topics like aircraft performance, weight & balance, and complex flight operations.',
+    a: '105 questions (100 scored + 5 unscored validation questions), with a 2.5-hour time limit. You need a score of 70% or higher to pass. The CAX covers advanced topics like aircraft performance, weight & balance, and complex flight operations.',
   },
   {
     q: 'Do I need my Instrument Rating before taking the CAX written?',
@@ -252,7 +252,7 @@ export default function CAXLanding() {
               { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>, title: '536 CAX Practice Questions', desc: "Built from the FAA's official Airman Knowledge Testing database. Every question the real exam can draw from, with full explanations. Current for 2026." },
               { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>, title: 'Performance & Weight/Balance', desc: "The CAX is heavy on aircraft performance and W&B calculations. We walk you through every chart, table, and formula the FAA tests." },
               { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>, title: '14 CFR Commercial Regulations', desc: "Deep coverage of Part 61, Part 91, and commercial operating rules. Know exactly what you can and can't do as a commercial pilot." },
-              { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>, title: 'Timed Exam Simulator', desc: "Simulate the real 3-hour, 100-question FAA test. Track your score by topic and drill your weak areas until you're consistently above 80%." },
+              { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>, title: 'Timed Exam Simulator', desc: "Simulate the real 2.5-hour, 105-question FAA test. Track your score by topic and drill your weak areas until you're consistently above 80%." },
               { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>, title: 'AI Instructor Support', desc: "Ask our AI flight instructor anything — from complex performance charts to night VFR rules. It explains clearly, not like a regulation." },
               { svg: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#30ace2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>, title: 'Study Anywhere', desc: "Fully responsive on phone, tablet, and desktop. Study between flights, in the FBO, or the night before your exam." },
             ].map((item, i) => (
@@ -280,7 +280,7 @@ export default function CAXLanding() {
                 <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57' }} />
                 <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
                 <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
-                <span style={{ marginLeft: 8, fontSize: 12, color: 'var(--lp-text3)', fontFamily: 'Share Tech Mono, monospace' }}>CAX · Study Mode · Question 31 of 100</span>
+                <span style={{ marginLeft: 8, fontSize: 12, color: 'var(--lp-text3)', fontFamily: 'Share Tech Mono, monospace' }}>CAX · Study Mode · Question 31 of 105</span>
               </div>
               <div style={{ padding: '24px 24px 28px' }}>
                 <div style={{ display: 'flex', gap: 8, marginBottom: 14, flexWrap: 'wrap' }}>
@@ -409,7 +409,7 @@ export default function CAXLanding() {
             {[
               { n: '1', title: 'Create Your Free Account', desc: 'Sign up in 30 seconds. Try 30 free CAX practice questions instantly — no credit card required. See exactly how the platform works before you commit.' },
               { n: '2', title: 'Work Through the Modules', desc: 'Study topic by topic — performance charts, W&B, regulations, advanced operations. Every wrong answer has a full explanation. Ask the AI instructor anything you don\'t understand.' },
-              { n: '3', title: 'Pass Your CAX Written', desc: 'When you\'re consistently scoring above 80% on our 100-question simulator, you\'re ready. Walk into your testing appointment confident — you\'ve already seen everything they\'ll ask.' },
+              { n: '3', title: 'Pass Your CAX Written', desc: 'When you\'re consistently scoring above 80% on our 105-question simulator, you\'re ready. Walk into your testing appointment confident — you\'ve already seen everything they\'ll ask.' },
             ].map((s, i) => (
               <div key={i} style={{ textAlign: 'center', padding: '0 20px' }}>
                 <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'rgba(48,172,226,0.12)', border: '2px solid var(--lp-border2)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px', fontFamily: 'Barlow Condensed, sans-serif', fontSize: 28, fontWeight: 800, color: 'var(--lp-blue)' }}>{s.n}</div>

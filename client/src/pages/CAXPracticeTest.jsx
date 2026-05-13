@@ -216,7 +216,7 @@ const QUESTIONS = [
 const FAQS = [
   {
     q: 'How many questions are on the FAA Commercial Pilot written exam (CAX)?',
-    a: '100 questions drawn from the FAA\'s Airman Knowledge Testing database. You need a score of 70% or higher to pass. The CAX covers a broader range of topics than the PAR — including advanced aerodynamics, performance, weight and balance, and commercial operations.',
+    a: '105 questions drawn from the FAA\'s Airman Knowledge Testing database (100 scored + 5 unscored validation questions), with a 2.5-hour time limit. You need a score of 70% or higher to pass. The CAX covers a broader range of topics than the PAR — including advanced aerodynamics, performance, weight and balance, and commercial operations.',
   },
   {
     q: 'What is the minimum experience required for a commercial pilot certificate?',
@@ -228,7 +228,7 @@ const FAQS = [
   },
   {
     q: 'How is the CAX exam different from the PAR?',
-    a: 'The CAX is longer (100 questions vs. 60 for PAR) and covers more advanced topics: commercial regulations, multi-engine aerodynamics (VMC), advanced performance, physiological factors at high altitude, weight and balance, and commercial operating requirements.',
+    a: 'The CAX is longer (105 questions vs. 65 for PAR) and covers more advanced topics: commercial regulations, multi-engine aerodynamics (VMC), advanced performance, physiological factors at high altitude, weight and balance, and commercial operating requirements.',
   },
 ];
 
@@ -243,7 +243,7 @@ export default function CAXPracticeTest() {
       h1Line1="FAA Commercial Pilot"
       h1Accent="Practice Test"
       h1Line2="30 Free Questions — No Login Required"
-      heroSub="The CAX knowledge test is 100 questions covering commercial regulations, advanced aerodynamics, multi-engine operations, aircraft performance, and physiological factors. This free test spans all major topics."
+      heroSub="The CAX knowledge test is 105 questions covering commercial regulations, advanced aerodynamics, multi-engine operations, aircraft performance, and physiological factors. This free test spans all major topics."
       productPath="/cax"
       planParam="cax"
       price="$24.99"

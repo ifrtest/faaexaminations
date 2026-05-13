@@ -152,4 +152,4 @@ INSERT INTO exams (code, name, description, time_limit, num_questions, passing_s
    150, 60, 70),
   ('CAX', 'Commercial Pilot Airplane (CAX)',
    'FAA written knowledge exam for the Commercial Pilot certificate.',
-   180, 100, 70);
+   150, 105, 70);

@@ -395,7 +395,7 @@ const POSTS = {
 
         <h2>Understand what the FAA is actually testing</h2>
         <p>The FAA isn't trying to trick you. The test covers the fundamentals of safe flight: regulations, weather, navigation, performance, airspace. Stuff you need to know anyway.</p>
-        <p>The numbers: Private Pilot (PAR) is 65 questions, 70% to pass. Instrument Rating (IRA) is 60. Commercial Pilot (CAX) is 100. Part 107 is 60.</p>
+        <p>The numbers: Private Pilot (PAR) is 65 questions, 70% to pass. Instrument Rating (IRA) is 60. Commercial Pilot (CAX) is 105. Part 107 is 60.</p>
         <p>The FAA draws from a published test bank. Practice the questions, understand the answers, show up.</p>
 
         <h2>Step 1: Learn the material before you touch practice questions</h2>
@@ -588,7 +588,7 @@ const POSTS = {
               {[
                 ['Private Pilot — Airplane (PAR)', '65', '2 hrs', '70%'],
                 ['Instrument Rating — Airplane (IRA)', '60', '2.5 hrs', '70%'],
-                ['Commercial Pilot — Airplane (CAX)', '100', '3 hrs', '70%'],
+                ['Commercial Pilot — Airplane (CAX)', '105', '2.5 hrs', '70%'],
                 ['Airline Transport Pilot (ATM)', '125', '3 hrs', '70%'],
                 ['Flight Instructor — Airplane (FOI + FIA)', '100 + 50', '3 hrs each', '70%'],
                 ['Sport Pilot (SPT)', '40', '2 hrs', '70%'],
@@ -626,7 +626,7 @@ const POSTS = {
         <p>FAA knowledge tests are administered through PSI Services at testing centres across the country. Book at faa.psiexams.com. You'll need a valid government-issued photo ID and your instructor's endorsement — either a logbook entry or a separate signed document. You cannot walk in without the endorsement.</p>
 
         <h2>One thing worth knowing about the time limit</h2>
-        <p>The time limits listed above are generous. Most students finish the Private Pilot or Instrument Rating exam in 45–60 minutes. The Commercial takes a bit longer because there are 100 questions. You won't be racing the clock — but that doesn't mean you should rush. Slow down on performance charts and E6B questions. Those are where mistakes happen when you're moving too fast.</p>
+        <p>The time limits listed above are generous. Most students finish the Private Pilot or Instrument Rating exam in 45–60 minutes. The Commercial takes a bit longer because there are 105 questions. You won't be racing the clock — but that doesn't mean you should rush. Slow down on performance charts and E6B questions. Those are where mistakes happen when you're moving too fast.</p>
       </>
     ),
   },
@@ -826,7 +826,7 @@ const POSTS = {
             <tbody>
               {[
                 ['Private Pilot — Airplane', 'PAR', '65 questions / 70% / 2 hrs'],
-                ['Commercial Pilot — Airplane', 'CAX', '100 questions / 70% / 3 hrs'],
+                ['Commercial Pilot — Airplane', 'CAX', '105 questions / 70% / 2.5 hrs'],
                 ['Instrument Rating — Airplane', 'IRA', '60 questions / 70% / 2.5 hrs'],
                 ['Airline Transport Pilot', 'ATM', '125 questions / 70% / 3 hrs'],
               ].map(([cert, test, nums], i) => (
@@ -1379,7 +1379,7 @@ const POSTS = {
         <p>What you <em>cannot</em> do with just a commercial certificate: fly scheduled airline service. That requires an ATP certificate. But the commercial is the gateway — it opens all the non-airline flying jobs and it's the certificate you need to build the hours toward ATP.</p>
 
         <h2>The knowledge test</h2>
-        <p>The Commercial Pilot Airplane knowledge test (CAX) is 100 questions, 3.5 hours. It builds on PAR material with deeper emphasis on commercial regulations, complex aircraft operations, performance, weight and balance, and advanced aerodynamics. You need 70% to pass.</p>
+        <p>The Commercial Pilot Airplane knowledge test (CAX) is 105 questions (100 scored + 5 unscored validation), 2.5 hours. It builds on PAR material with deeper emphasis on commercial regulations, complex aircraft operations, performance, weight and balance, and advanced aerodynamics. You need 70% to pass.</p>
         <p>Most pilots find the CAX harder than the PAR — not because the concepts are dramatically more difficult, but because the question bank is larger and the material assumes you already know everything from the private certificate level. If your private pilot knowledge has faded, refresh it before starting CAX prep.</p>
       </>
     ),
