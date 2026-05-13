@@ -395,7 +395,7 @@ const POSTS = {
 
         <h2>Understand what the FAA is actually testing</h2>
         <p>The FAA isn't trying to trick you. The test covers the fundamentals of safe flight: regulations, weather, navigation, performance, airspace. Stuff you need to know anyway.</p>
-        <p>The numbers: Private Pilot (PAR) is 60 questions, 70% to pass. Instrument Rating (IRA) is 60. Commercial Pilot (CAX) is 100. Part 107 is 60.</p>
+        <p>The numbers: Private Pilot (PAR) is 65 questions, 70% to pass. Instrument Rating (IRA) is 60. Commercial Pilot (CAX) is 100. Part 107 is 60.</p>
         <p>The FAA draws from a published test bank. Practice the questions, understand the answers, show up.</p>
 
         <h2>Step 1: Learn the material before you touch practice questions</h2>
@@ -478,7 +478,7 @@ const POSTS = {
         <h2>FAQ</h2>
 
         <h3>How many questions are on the FAA private pilot written exam?</h3>
-        <p>60 questions. You need 42 correct (70%) to pass.</p>
+        <p>65 questions (60 scored + 5 unscored validation). You need 70% to pass — that's 42 of the 60 scored questions correct. Time limit: 2 hours.</p>
 
         <h3>Can I use a calculator?</h3>
         <p>Yes. Bring an approved aviation calculator — and practice with it beforehand. Don't figure out the buttons on test day.</p>
@@ -506,14 +506,14 @@ const POSTS = {
     related: ['how-to-pass-faa-written-exam-first-try', 'common-mistakes-private-pilot-written-exam', 'faa-written-exam-study-guide'],
     content: (
       <>
-        <p>The FAA Private Pilot written exam — officially the PAR, or Airman Knowledge Test — is the one written hurdle every student pilot faces before the checkride. It's 60 questions, 2.5 hours, and you need a 70% to pass. Sounds manageable. And it is, if you actually prepare for it.</p>
+        <p>The FAA Private Pilot written exam — officially the PAR, or Airman Knowledge Test — is the one written hurdle every student pilot faces before the checkride. It's 65 questions, 2 hours, and you need a 70% to pass. Sounds manageable. And it is, if you actually prepare for it.</p>
 
         <p>The students who struggle aren't the ones who lack the intelligence. They're the ones who studied the wrong things, trusted that skimming the Pilot's Handbook would be enough, or who just memorized answers without understanding what they were memorizing. That last group sometimes passes, then freezes when their DPE asks a follow-up during the oral.</p>
 
         <p>Here's what the exam actually tests and how to be genuinely ready for it.</p>
 
         <h2>The numbers</h2>
-        <p>You'll get 60 questions drawn randomly from the FAA's published question bank. You have 2 hours and 30 minutes — that's plenty of time, most people finish in under an hour. Passing score is 70%, which means you can miss 18 questions and still walk out with a pass. The result is valid for 24 calendar months from the day you test.</p>
+        <p>You'll get 65 questions drawn randomly from the FAA's published question bank — 60 are scored and 5 are unscored validation questions you won't be able to identify. You have 2 hours, which is plenty of time; most people finish in under an hour. Passing score is 70%, which means you can miss up to 18 of the 60 scored questions and still walk out with a pass. The result is valid for 24 calendar months from the day you test.</p>
         <p>Miss 70%? You wait 14 days minimum, get a new instructor endorsement, and rebook. The test fee (typically $150–175 depending on the centre) applies every attempt.</p>
 
         <h2>What they're actually testing</h2>
@@ -540,7 +540,7 @@ const POSTS = {
 
         <p>Then study by subject area, focused on your weakest spots first. As you work through questions, read every explanation — not just for the questions you got wrong, but for the ones where you guessed correctly. Understanding why an answer is right is what protects you when the question is worded differently.</p>
 
-        <p>In the final week before your test, take several full timed practice exams. 60 questions, 2.5-hour clock running, no notes. Target 85% or better before you book the real thing. If you're consistently hitting 85+ on timed practice, the actual exam will feel easy.</p>
+        <p>In the final week before your test, take several full timed practice exams. 65 questions, 2-hour clock running, no notes. Target 85% or better before you book the real thing. If you're consistently hitting 85+ on timed practice, the actual exam will feel easy.</p>
 
         <h2>How long does it actually take?</h2>
         <p>Most students are genuinely ready after 15–25 hours of focused prep. That's 3–4 weeks at an hour a day, or about a week of serious concentrated study. An accelerated ground school can get you there in 5–7 days if you're fully committed to it.</p>
@@ -586,7 +586,7 @@ const POSTS = {
             </thead>
             <tbody>
               {[
-                ['Private Pilot — Airplane (PAR)', '60', '2.5 hrs', '70%'],
+                ['Private Pilot — Airplane (PAR)', '65', '2 hrs', '70%'],
                 ['Instrument Rating — Airplane (IRA)', '60', '2.5 hrs', '70%'],
                 ['Commercial Pilot — Airplane (CAX)', '100', '3 hrs', '70%'],
                 ['Airline Transport Pilot (ATM)', '125', '3 hrs', '70%'],
@@ -825,7 +825,7 @@ const POSTS = {
             </thead>
             <tbody>
               {[
-                ['Private Pilot — Airplane', 'PAR', '60 questions / 70% / 2.5 hrs'],
+                ['Private Pilot — Airplane', 'PAR', '65 questions / 70% / 2 hrs'],
                 ['Commercial Pilot — Airplane', 'CAX', '100 questions / 70% / 3 hrs'],
                 ['Instrument Rating — Airplane', 'IRA', '60 questions / 70% / 2.5 hrs'],
                 ['Airline Transport Pilot', 'ATM', '125 questions / 70% / 3 hrs'],
@@ -885,7 +885,7 @@ const POSTS = {
     related: ['faa-written-exam-study-guide', 'common-mistakes-private-pilot-written-exam', 'how-to-pass-faa-written-exam-first-try'],
     content: (
       <>
-        <p>The FAA Private Pilot Airman Knowledge Test has 60 questions and a 70% passing score. You can miss up to 18. That sounds forgiving — and for most topics, it is. But students fail this test every day, and almost never because it was too hard. They fail because they spent three weeks studying the wrong things and walked in underprepared on weather and airspace, which together make up roughly half the exam.</p>
+        <p>The FAA Private Pilot Airman Knowledge Test has 65 questions (60 scored + 5 unscored validation) and a 70% passing score. You can miss up to 18 of the scored questions. That sounds forgiving — and for most topics, it is. But students fail this test every day, and almost never because it was too hard. They fail because they spent three weeks studying the wrong things and walked in underprepared on weather and airspace, which together make up roughly half the exam.</p>
         <p>Here's what a study plan that actually works looks like.</p>
 
         <h2>What the PAR actually tests</h2>
@@ -934,7 +934,7 @@ const POSTS = {
         <p>Don't start with random mode. Go topic by topic — study regulations, then do 40–50 regulation questions before moving on. Check your score. Review what you missed. Repeat with each topic. In your final week, switch to full 60-question timed exams with no pausing and no looking things up. Real conditions. If you score 80%+ three times running, book the test.</p>
 
         <h2>The day before</h2>
-        <p>One practice exam in the morning. Review your weakest topic in the afternoon. Do not cram new material the night before — that doesn't work and it adds anxiety you don't need. Sleep. The exam is 2.5 hours. You need to be sharp, not wired.</p>
+        <p>One practice exam in the morning. Review your weakest topic in the afternoon. Do not cram new material the night before — that doesn't work and it adds anxiety you don't need. Sleep. The exam is 2 hours. You need to be sharp, not wired.</p>
 
         <h2>Start with 1,469 real PAR questions</h2>
         <p><a href="https://faaexaminations.com/par" style={{color:'var(--blue)'}}>FAAExaminations.com</a> has the complete FAA Private Pilot question bank — 1,469 questions across all 11 topics, with full explanations on every answer and a timed exam simulator. No credit card required to start.</p>
@@ -1211,7 +1211,7 @@ const POSTS = {
                 ['Minimum age', '16', '17'],
                 ['Medical required', 'No', 'Yes (3rd class)'],
                 ['Flight hours required', 'None', '40 minimum (avg 60–70)'],
-                ['Written exam', 'UAG (60 questions)', 'PAR (60 questions)'],
+                ['Written exam', 'UAG (60 questions)', 'PAR (65 questions)'],
                 ['Practical test', 'None', 'Yes (oral + flight)'],
                 ['Paid work allowed', 'Yes (commercial drone ops)', 'No (private use only)'],
                 ['Typical cost', '$175 exam fee', '$8,000–$15,000+'],
