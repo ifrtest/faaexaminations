@@ -146,7 +146,7 @@ CREATE INDEX idx_answers_question ON exam_answers(question_id);
 INSERT INTO exams (code, name, description, time_limit, num_questions, passing_score) VALUES
   ('PAR', 'Private Pilot Airplane (PAR)',
    'FAA written knowledge exam for the Private Pilot Airplane certificate.',
-   150, 60, 70),
+   120, 65, 70),
   ('IRA', 'Instrument Rating Airplane (IRA)',
    'FAA written knowledge exam for the Instrument Rating.',
    150, 60, 70),

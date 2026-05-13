@@ -20,7 +20,7 @@ const TOPICS = [
 const FAQS = [
   {
     q: 'How many questions are on the real FAA Private Pilot written exam?',
-    a: '60 questions. You need a score of 70% or higher to pass — that means you can miss up to 18 questions. Our simulator is built to match the exact format and difficulty of the real test.',
+    a: '65 questions (60 scored + 5 unscored validation questions), with a 2-hour time limit. You need a score of 70% or higher to pass. Our simulator is built to match the exact format and difficulty of the real test.',
   },
   {
     q: 'How long does it take to study for the PAR?',
@@ -97,7 +97,7 @@ export default function PARLanding() {
             {
               "@type": "Question",
               "name": "How many questions are on the real FAA Private Pilot written exam?",
-              "acceptedAnswer": { "@type": "Answer", "text": "60 questions. You need a score of 70% or higher to pass — that means you can miss up to 18 questions. The exam simulator on FAAExaminations.com is built to match the exact format and difficulty of the real test." }
+              "acceptedAnswer": { "@type": "Answer", "text": "65 questions (60 scored + 5 unscored validation questions), with a 2-hour time limit. You need a score of 70% or higher to pass. The exam simulator on FAAExaminations.com is built to match the exact format and difficulty of the real test." }
             },
             {
               "@type": "Question",

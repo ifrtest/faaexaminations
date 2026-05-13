@@ -216,7 +216,7 @@ const QUESTIONS = [
 const FAQS = [
   {
     q: 'How many questions are on the real FAA Private Pilot written exam?',
-    a: '60 questions drawn from the FAA\'s published Airman Knowledge Testing database. You need a score of 70% or higher (42 correct) to pass. You can miss up to 18 questions.',
+    a: '65 questions drawn from the FAA\'s published Airman Knowledge Testing database (60 scored + 5 unscored validation questions), with a 2-hour time limit. You need a score of 70% or higher to pass.',
   },
   {
     q: 'Do I need an instructor endorsement before taking the PAR?',
@@ -243,7 +243,7 @@ export default function PARPracticeTest() {
       h1Line1="FAA Private Pilot"
       h1Accent="Practice Test"
       h1Line2="30 Free Questions — No Login Required"
-      heroSub="The real PAR exam has 60 questions drawn from a bank of 1,469. This free test covers all 11 official topics — regulations, weather, airspace, navigation, aerodynamics, and more. Find your weak areas before test day."
+      heroSub="The real PAR exam has 65 questions drawn from a bank of 1,469, with a 2-hour time limit. This free test covers all 11 official topics — regulations, weather, airspace, navigation, aerodynamics, and more. Find your weak areas before test day."
       productPath="/par"
       planParam="par"
       price="$24.99"
