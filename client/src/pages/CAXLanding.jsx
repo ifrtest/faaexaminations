@@ -236,7 +236,7 @@ export default function CAXLanding() {
             </ul>
             <Link to="/register?plan=cax" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Start 3 Days Free →</Link>
             <Link to="/register" style={{ display: 'block', textAlign: 'center', marginTop: 12, color: 'var(--lp-blue)', fontSize: 14, textDecoration: 'underline' }}>Try 30 free questions — just enter your email</Link>
-            <div style={{ marginTop: 12, fontSize: 13, color: 'var(--lp-text3)' }}>3-day free trial · Card required · Cancel anytime</div>
+            <div style={{ marginTop: 12, fontSize: 13, color: 'var(--lp-text3)' }}>3 Days Free Before Credit Card Gets Charged</div>
           </div>
         </div>
       </section>

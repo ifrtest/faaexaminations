@@ -152,7 +152,7 @@ export default function BundleLanding() {
             </ul>
             <Link to="/register?plan=bundle" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 16, padding: '15px 28px' }}>Start 3 Days Free →</Link>
             <div style={{ marginTop: 10, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>Or <Link to="/register" style={{ color: 'var(--lp-blue)', textDecoration: 'underline' }}>try 30 free questions</Link> — just enter your email</div>
-            <div style={{ marginTop: 8, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>3-day free trial · Card required · Cancel anytime</div>
+            <div style={{ marginTop: 8, fontSize: 12, color: 'var(--lp-text3)', textAlign: 'center' }}>3 Days Free Before Credit Card Gets Charged</div>
           </div>
 
         </div>
@@ -225,7 +225,7 @@ export default function BundleLanding() {
             </ul>
             <Link to="/register?plan=bundle" className="lp-btn-hero" style={{ display: 'block', textAlign: 'center', fontSize: 18, padding: '18px 40px' }}>Start 3 Days Free →</Link>
             <Link to="/register" style={{ display: 'block', textAlign: 'center', marginTop: 12, color: 'var(--lp-blue)', fontSize: 14, textDecoration: 'underline' }}>Try 30 free questions — just enter your email</Link>
-            <div style={{ marginTop: 12, fontSize: 13, color: 'var(--lp-text3)' }}>3-day free trial · Card required · Cancel anytime</div>
+            <div style={{ marginTop: 12, fontSize: 13, color: 'var(--lp-text3)' }}>3 Days Free Before Credit Card Gets Charged</div>
           </div>
         </div>
       </section>
