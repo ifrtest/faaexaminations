@@ -186,7 +186,7 @@ export default function Landing() {
             <a href="#products" className="lp-btn-outline">View Packages</a>
           </div>
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', marginTop: 14, lineHeight: 2 }}>
-            🔒 3-day free trial · No credit card commitment · Cancel anytime
+            🔒 3-day free trial · Card required · Cancel anytime
           </div>
           <div style={{ marginTop: 14, display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 99, padding: '6px 14px' }}>
             <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#4ade80', display: 'inline-block', boxShadow: '0 0 0 3px rgba(74,222,128,0.25)', animation: 'pulse 2s infinite' }} />
