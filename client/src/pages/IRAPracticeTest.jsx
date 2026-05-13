@@ -216,7 +216,7 @@ const QUESTIONS = [
 const FAQS = [
   {
     q: 'How many questions are on the FAA Instrument Rating written exam?',
-    a: '60 questions drawn from the FAA\'s Airman Knowledge Testing database. You need a score of 70% or higher to pass. The IRA is widely considered harder than the PAR — it covers IFR procedures, weather, approach charts, and more advanced topics.',
+    a: '65 questions drawn from the FAA\'s Airman Knowledge Testing database (60 scored + 5 unscored validation questions), with a 2-hour time limit. You need a score of 70% or higher to pass. The IRA is widely considered harder than the PAR — it covers IFR procedures, weather, approach charts, and more advanced topics.',
   },
   {
     q: 'What topics does the IRA knowledge test cover?',

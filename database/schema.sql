@@ -149,7 +149,7 @@ INSERT INTO exams (code, name, description, time_limit, num_questions, passing_s
    120, 65, 70),
   ('IRA', 'Instrument Rating Airplane (IRA)',
    'FAA written knowledge exam for the Instrument Rating.',
-   150, 60, 70),
+   120, 65, 70),
   ('CAX', 'Commercial Pilot Airplane (CAX)',
    'FAA written knowledge exam for the Commercial Pilot certificate.',
    150, 105, 70);

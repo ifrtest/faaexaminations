@@ -395,7 +395,7 @@ const POSTS = {
 
         <h2>Understand what the FAA is actually testing</h2>
         <p>The FAA isn't trying to trick you. The test covers the fundamentals of safe flight: regulations, weather, navigation, performance, airspace. Stuff you need to know anyway.</p>
-        <p>The numbers: Private Pilot (PAR) is 65 questions, 70% to pass. Instrument Rating (IRA) is 60. Commercial Pilot (CAX) is 105. Part 107 is 60.</p>
+        <p>The numbers: Private Pilot (PAR) is 65 questions, 70% to pass. Instrument Rating (IRA) is 65. Commercial Pilot (CAX) is 105. Part 107 is 60.</p>
         <p>The FAA draws from a published test bank. Practice the questions, understand the answers, show up.</p>
 
         <h2>Step 1: Learn the material before you touch practice questions</h2>
@@ -438,7 +438,7 @@ const POSTS = {
 
         <h2>Step 4: Simulate the real exam before you book it</h2>
         <p>Two weeks out, start running full timed practice exams — not to study, but to get comfortable with the format.</p>
-        <p>You want to know how the time pressure feels, how to keep moving when you're unsure, and how long you can realistically spend per question. Most exams give you about 2.5 hours.</p>
+        <p>You want to know how the time pressure feels, how to keep moving when you're unsure, and how long you can realistically spend per question. Most exams give you about 2 hours.</p>
         <p>Hit 80%+ consistently before you book. At 85%, go book it. Stuck below 75%, don't.</p>
 
         <h3>Stuck below 75%?</h3>
@@ -587,7 +587,7 @@ const POSTS = {
             <tbody>
               {[
                 ['Private Pilot — Airplane (PAR)', '65', '2 hrs', '70%'],
-                ['Instrument Rating — Airplane (IRA)', '60', '2.5 hrs', '70%'],
+                ['Instrument Rating — Airplane (IRA)', '65', '2 hrs', '70%'],
                 ['Commercial Pilot — Airplane (CAX)', '105', '2.5 hrs', '70%'],
                 ['Airline Transport Pilot (ATM)', '125', '3 hrs', '70%'],
                 ['Flight Instructor — Airplane (FOI + FIA)', '100 + 50', '3 hrs each', '70%'],
@@ -680,7 +680,7 @@ const POSTS = {
         <h2>Realistic benchmarks</h2>
         <p>Plan for 25–40 hours of study depending on how much IFR flying you've done alongside your written prep. If you're in the plane flying actual approaches every week, the concepts will click faster. If you're purely studying the written in isolation, allow the higher end of that range.</p>
 
-        <p>Target 85%+ on full timed 60-question practice exams before you book. If you're plateauing in the low-to-mid 70s, it almost always means one or two subject areas are dragging everything down. Look at your results by category — it'll tell you exactly where to spend the next few sessions.</p>
+        <p>Target 85%+ on full timed 65-question practice exams before you book. If you're plateauing in the low-to-mid 70s, it almost always means one or two subject areas are dragging everything down. Look at your results by category — it'll tell you exactly where to spend the next few sessions.</p>
       </>
     ),
   },
@@ -827,7 +827,7 @@ const POSTS = {
               {[
                 ['Private Pilot — Airplane', 'PAR', '65 questions / 70% / 2 hrs'],
                 ['Commercial Pilot — Airplane', 'CAX', '105 questions / 70% / 2.5 hrs'],
-                ['Instrument Rating — Airplane', 'IRA', '60 questions / 70% / 2.5 hrs'],
+                ['Instrument Rating — Airplane', 'IRA', '65 questions / 70% / 2 hrs'],
                 ['Airline Transport Pilot', 'ATM', '125 questions / 70% / 3 hrs'],
               ].map(([cert, test, nums], i) => (
                 <tr key={i} style={{ borderBottom: '1px solid var(--border)', background: i % 2 === 0 ? 'var(--card-bg)' : 'transparent' }}>
@@ -917,7 +917,7 @@ const POSTS = {
 
         <h3>Week 3 — Aerodynamics, systems, and full practice exams</h3>
         <p>Aerodynamics on the PAR is lighter than most students expect — angle of attack, load factors, stall characteristics. Aircraft systems covers engines, fuel, electrical, and pitot-static instruments. Aeromedical covers hypoxia, spatial disorientation, and the alcohol rules (more tested than people think).</p>
-        <p>By Friday of week 3, you should be running full 60-question timed practice exams and consistently scoring above 80%. When you hit that three times in a row, you're ready to book.</p>
+        <p>By Friday of week 3, you should be running full 65-question timed practice exams and consistently scoring above 80%. When you hit that three times in a row, you're ready to book.</p>
 
         <h2>The mistakes that actually cause failures</h2>
 
@@ -931,7 +931,7 @@ const POSTS = {
         <p>Every wrong answer is worth stopping for. Read the explanation. Figure out where your thinking went wrong. That's where the real learning happens — not in the questions you already knew.</p>
 
         <h2>How to actually use practice questions</h2>
-        <p>Don't start with random mode. Go topic by topic — study regulations, then do 40–50 regulation questions before moving on. Check your score. Review what you missed. Repeat with each topic. In your final week, switch to full 60-question timed exams with no pausing and no looking things up. Real conditions. If you score 80%+ three times running, book the test.</p>
+        <p>Don't start with random mode. Go topic by topic — study regulations, then do 40–50 regulation questions before moving on. Check your score. Review what you missed. Repeat with each topic. In your final week, switch to full 65-question timed exams with no pausing and no looking things up. Real conditions. If you score 80%+ three times running, book the test.</p>
 
         <h2>The day before</h2>
         <p>One practice exam in the morning. Review your weakest topic in the afternoon. Do not cram new material the night before — that doesn't work and it adds anxiety you don't need. Sleep. The exam is 2 hours. You need to be sharp, not wired.</p>
@@ -1060,7 +1060,7 @@ const POSTS = {
         <p>IFR weather is genuinely harder than VFR weather, and the exam reflects that. Budget at least 6–8 hours specifically for weather topics. Students who treat weather as a quick review section tend to leave points on the table they didn't expect to lose.</p>
 
         <h3>Not timing practice exams</h3>
-        <p>60 questions in 2.5 hours is 2.5 minutes per question. That's fine for a regulation question. It's tight when you're reading an approach plate and answering three questions from it. Practice under real time pressure before exam day — not just to build speed, but to learn which questions are worth taking extra time on.</p>
+        <p>65 questions in 2 hours is just under 2 minutes per question. That's fine for a regulation question. It's tight when you're reading an approach plate and answering three questions from it. Practice under real time pressure before exam day — not just to build speed, but to learn which questions are worth taking extra time on.</p>
 
         <h2>How long does IRA prep take?</h2>
         <p>With a Private Pilot background and 1–2 hours a day, most students are ready in 3–6 weeks. Recent ground school knowledge or an active instrument training schedule puts you at the shorter end. Years of flying VFR with no instrument exposure usually means the full 6 weeks, sometimes more.</p>
