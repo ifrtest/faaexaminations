@@ -166,7 +166,7 @@ export default function PARLanding() {
             </div>
             <h1>Pass Your <span className="lp-accent">Private Pilot</span><br />Written Exam<br />First Try</h1>
             <p className="lp-hero-sub">
-              1,469 questions across all 11 PAR topics — every concept the FAA can put in front of you. Study by topic, run timed mock exams, and get full explanations on every question. Most students are ready in 2–3 weeks.
+              1,469 FAA written exam practice test questions across all 11 PAR topics — every concept the FAA can put in front of you. Study by topic, run timed mock exams, and get full explanations on every question. Most students are ready in 2–3 weeks.
             </p>
             <div className="lp-hero-btns">
               <Link to="/register?plan=par" className="lp-btn-hero">
