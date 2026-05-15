@@ -2924,6 +2924,857 @@ const POSTS = {
     ),
   },
 
+  /* ================================================================ */
+  'lnav-vs-vnav-explained': {
+    title: 'LNAV vs VNAV: What\'s the Difference? (And Why the FAA Tests Both)',
+    description: 'A clear breakdown of LNAV, VNAV, LNAV+V, LP, and LPV approach types — what each provides, which gives the lowest minimums, and exactly what the IRA written exam tests.',
+    date: 'May 15, 2026',
+    dateISO: '2026-05-15',
+    readTime: '7 min read',
+    tag: 'Instrument Rating',
+    image: '/blog-garmin-cockpit.jpg',
+    related: ['lpv-approach-explained', 'ira-written-exam-topics', 'ils-approach-explained'],
+    content: (
+      <>
+        <h2>Why This Topic Trips Up So Many IRA Candidates</h2>
+        <p>Most pilots preparing for the IRA written understand ILS approaches fine. The confusion starts the moment RNAV enters the picture — suddenly you've got LNAV, VNAV, LNAV+V, LP, and LPV all sitting on the same approach chart, each behaving differently. The FAA knows this is confusing, which is exactly why they test it.</p>
+
+        <h2>LNAV: Lateral Navigation Only</h2>
+        <p>LNAV stands for Lateral Navigation. That's all it does — it tracks you left and right along the final approach course using GPS. There is no vertical guidance from the system. You fly a non-precision approach, descending to an MDA and then leveling off until you see the runway or reach the missed approach point.</p>
+        <p>Think of it like a GPS-driven VOR approach. You know exactly where you are laterally, but the vertical profile is entirely your responsibility. LNAV is available on almost every RNAV approach and requires only a basic IFR-approved GPS — no WAAS needed.</p>
+
+        <h2>VNAV: Adding the Vertical Dimension</h2>
+        <p>VNAV adds a computed glidepath to the lateral guidance. Instead of descending to an MDA and leveling off, you follow a continuous descent to a Decision Altitude — much more like an ILS in feel.</p>
+        <p>Important for the exam: VNAV uses a barometrically-computed glidepath, not a WAAS signal. The vertical path is calculated using your altimeter setting and is advisory in nature. It's not a precision approach under ICAO definitions, even though it functions like one. The FAA calls approaches with VNAV "APV" — Approach with Vertical guidance.</p>
+
+        <h2>LNAV+V: The One That Confuses Everyone</h2>
+        <p>LNAV+V is not a separate line of minima on the approach plate. It's an advisory glidepath your GPS generates on an LNAV approach when it has enough capability. You're still flying to LNAV minimums — the MDA doesn't change. The "+V" just means your navigator is showing you a suggested vertical profile as a convenience.</p>
+        <p>The trap: LNAV+V looks like VNAV on the cockpit display, but legally you are flying an LNAV approach. If the "+V" disappears, nothing changes — you were always responsible for your own vertical profile.</p>
+
+        <h2>LP: Localizer Performance (No Vertical)</h2>
+        <p>LP approaches use WAAS to provide tighter lateral accuracy than standard LNAV — comparable to a localizer. They exist where the geometry doesn't support a safe vertical glidepath. LP gives you lower lateral minimums than LNAV but still no vertical guidance. You fly to an MDA. LP requires WAAS.</p>
+
+        <h2>LPV: The One With ILS-Like Minimums</h2>
+        <p>LPV (Localizer Performance with Vertical guidance) uses WAAS to provide both precise lateral guidance and a geometric vertical glidepath down to a Decision Altitude. Minimums can go as low as 200 feet HAT and ½ mile visibility — identical to a Category I ILS. Requires WAAS and avionics certified for LPV operations.</p>
+
+        <h2>Approach Type Comparison</h2>
+        <div style={{ overflowX: 'auto', marginBottom: 20 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.9rem' }}>
+            <thead><tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Type</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Vertical?</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Altitude Ref</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>WAAS?</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Typical Min.</th>
+            </tr></thead>
+            <tbody>
+              {[
+                ['LNAV','No','MDA','No','300–400 ft'],
+                ['LNAV+V','Advisory only','MDA','No (advisory V may need WAAS)','300–400 ft'],
+                ['LP','No','MDA','Yes','250–350 ft'],
+                ['LNAV/VNAV','Yes (baro)','DA','Yes or baro-VNAV','250–350 ft'],
+                ['LPV','Yes (WAAS geometric)','DA','Yes','200 ft+'],
+                ['ILS','Yes (radio)','DA','No (ground equipment)','200 ft+'],
+              ].map(([a,b,c,d,e],i)=>(
+                <tr key={i} style={{ borderBottom:'1px solid var(--border)', background: i%2===0?'var(--card-bg)':'transparent' }}>
+                  <td style={{ padding:'9px 12px', color:'var(--text)', fontWeight: 600 }}>{a}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{b}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{c}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{d}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{e}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2>What the IRA Exam Actually Tests</h2>
+        <p>Expect questions like: Which approach type provides the lowest minimums without an ILS? (LPV.) What does LNAV+V provide that LNAV does not? (Advisory vertical guidance only — minimums unchanged.) What equipment is required for LPV? (WAAS-certified GPS.) What is the difference between MDA and DA? (MDA = level off and look; DA = decision point on a continuous descent.)</p>
+        <p>If you understand that LNAV is lateral-only, LPV adds a real WAAS vertical path, and LNAV+V is just advisory, you'll get these right every time.</p>
+
+        <p><a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>Practice IRA approach questions at FAAExaminations.com</a> — our question bank is built directly from the FAA's actual test pool.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'lpv-approach-explained': {
+    title: 'LPV Approach Explained: What It Is and What the FAA Exam Tests',
+    description: 'LPV approaches use WAAS GPS to deliver ILS-like vertical guidance without any ground equipment. Here\'s the full breakdown — how LPV works, how it compares to ILS and LNAV, and what the IRA exam tests.',
+    date: 'May 15, 2026',
+    dateISO: '2026-05-15',
+    readTime: '6 min read',
+    tag: 'Instrument Rating',
+    image: '/blog-navigation.jpg',
+    related: ['lnav-vs-vnav-explained', 'ira-written-exam-topics', 'ils-approach-explained'],
+    content: (
+      <>
+        <h2>The Short Version First</h2>
+        <p>LPV stands for Localizer Performance with Vertical guidance. It's a GPS-based approach that uses the Wide Area Augmentation System (WAAS) to provide both precise lateral tracking and a continuous vertical glidepath — all without a single piece of ground-based equipment at the airport. Minimums can go as low as 200 feet decision height and ½ statute mile visibility. That's Category I ILS territory, available at thousands of airports that will never have an ILS.</p>
+
+        <h2>What WAAS Is and Why It Matters</h2>
+        <p>Standard GPS has an inherent accuracy limitation — good enough to get you close, but not precise enough for instrument approaches to low minimums. WAAS fixes this using a network of precisely surveyed ground reference stations that continuously compare their known position to what GPS is reporting. Corrections are uplinked to WAAS satellites and broadcast to your receiver in real time.</p>
+        <p>The result: WAAS-corrected GPS accuracy is typically better than 1 meter horizontally and 1.5 meters vertically — precise enough to fly a stabilized glidepath to 200-foot decision heights. Standard GPS without WAAS cannot do this.</p>
+
+        <h2>How LPV Works</h2>
+        <p>On an LPV approach, your WAAS GPS provides two things simultaneously: lateral guidance comparable to a localizer in sensitivity and accuracy, and a geometric vertical glidepath (typically 3°) computed using WAAS satellite geometry — not your altimeter.</p>
+        <p>This is important: LPV vertical guidance is geometric, not barometric. Unlike LNAV/VNAV (which uses baro-VNAV and can be unreliable in non-standard temperature conditions), LPV's glidepath is based on actual satellite-computed altitude. You fly LPV to a Decision Altitude, not an MDA. Same discipline as an ILS.</p>
+
+        <h2>LPV vs ILS: Key Differences the Exam Tests</h2>
+        <div style={{ overflowX: 'auto', marginBottom: 20 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.9rem' }}>
+            <thead><tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Feature</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>ILS</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>LPV</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>LNAV</th>
+            </tr></thead>
+            <tbody>
+              {[
+                ['Signal source','Ground transmitter','WAAS satellite','GPS'],
+                ['Vertical guidance','Glideslope (radio)','WAAS geometric','None'],
+                ['Altitude reference','DA','DA','MDA'],
+                ['Ground equipment needed?','Yes','No','No'],
+                ['WAAS required?','No','Yes','No'],
+                ['Typical minimums','200 ft','200 ft','300–400 ft'],
+                ['Classification','Precision','APV','Non-precision'],
+              ].map(([a,b,c,d],i)=>(
+                <tr key={i} style={{ borderBottom:'1px solid var(--border)', background: i%2===0?'var(--card-bg)':'transparent' }}>
+                  <td style={{ padding:'9px 12px', color:'var(--text)', fontWeight: 600 }}>{a}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{b}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{c}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{d}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2>What the IRA Written Exam Tests About LPV</h2>
+        <ul>
+          <li><strong>Classification:</strong> LPV is technically APV (Approach with Vertical guidance), not a precision approach under ICAO definitions — even though minimums can match precision. The exam may ask this specifically.</li>
+          <li><strong>Equipment:</strong> LPV requires a WAAS-certified GPS receiver. A non-WAAS IFR GPS cannot fly LPV.</li>
+          <li><strong>Minimums structure:</strong> LPV uses a DA, not an MDA.</li>
+          <li><strong>No ground equipment:</strong> Unlike ILS, LPV needs nothing at the airport. This is the main operational advantage.</li>
+        </ul>
+
+        <h2>One More Thing Most Study Guides Miss</h2>
+        <p>WAAS continuously monitors signal quality and will remove an approach from your navigator's available list if it can't guarantee the required accuracy. You might plan an LPV approach in preflight, then find it downgraded to LNAV on arrival. The exam won't test the mechanics deeply, but knowing it exists shows you understand how WAAS actually works.</p>
+
+        <p><a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>Try IRA practice questions at FAAExaminations.com</a> — our question bank covers every approach type the exam tests.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'par-written-exam-topics': {
+    title: 'PAR Written Exam: Every Topic That Appears and How Much It\'s Worth',
+    description: 'A complete breakdown of every subject tested on the FAA Private Pilot Airplane (PAR) written exam — with question counts, difficulty ratings, and study priorities for each topic area.',
+    date: 'May 15, 2026',
+    dateISO: '2026-05-15',
+    readTime: '8 min read',
+    tag: 'Private Pilot',
+    image: '/blog-preflight.jpg',
+    related: ['vfr-weather-minimums-explained', 'what-happens-if-you-fail-faa-written-exam', 'faa-written-exam-day-tips'],
+    content: (
+      <>
+        <h2>What You're Actually Walking Into</h2>
+        <p>The PAR written exam is 65 questions, 2 hours, and you need a 70% to pass — which means you can miss about 19 questions and still walk out with a passing score. That sounds forgiving. It isn't, because the questions aren't evenly distributed across topics, and a few subject areas tend to take down otherwise well-prepared candidates.</p>
+        <p>The biggest mistake people make is studying everything equally. Some topics show up 8–10 times. Some show up twice. Knowing the difference is worth several percentage points on test day.</p>
+
+        <h2>Topic Priority Table</h2>
+        <div style={{ overflowX: 'auto', marginBottom: 20 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.9rem' }}>
+            <thead><tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Topic Area</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Approx. Questions</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Difficulty</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Priority</th>
+            </tr></thead>
+            <tbody>
+              {[
+                ['Weather & METARs / TAFs','10–12','High','#1'],
+                ['Regulations (FAR 61/91)','9–11','Medium','#2'],
+                ['Airspace','7–9','Medium','#3'],
+                ['Navigation (charts, VOR)','7–9','Medium-High','#4'],
+                ['Performance & W&B','6–8','High','#5'],
+                ['Aerodynamics','5–7','Medium','#6'],
+                ['Aircraft Systems','4–5','Low-Medium','#7'],
+                ['Flight Planning','4–5','Medium','#8'],
+                ['Airport Operations','3–4','Low','#9'],
+                ['Emergency Procedures','2–3','Low','#10'],
+              ].map(([a,b,c,d],i)=>(
+                <tr key={i} style={{ borderBottom:'1px solid var(--border)', background: i%2===0?'var(--card-bg)':'transparent' }}>
+                  <td style={{ padding:'9px 12px', color:'var(--text)', fontWeight: 600 }}>{a}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{b}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{c}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)', fontWeight: 600 }}>{d}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Weather: Your Highest-Return Study Area</h2>
+        <p>Weather is the single largest topic on the PAR exam and the one most candidates under-study. The exam tests all of this: decoding METARs and TAFs, reading PIREPs and understanding icing/turbulence reports, interpreting weather depiction charts, thunderstorm structure and avoidance, fronts and what weather each produces, density altitude, and wind shear on approach.</p>
+        <p>The hardest sub-topic is prog chart interpretation. Most students blow past it. Don't.</p>
+
+        <h2>Regulations: Memorize the Numbers</h2>
+        <p>FAR Part 61 and 91 questions are often exact memory tests. Key numbers to know: medical certificate validity, currency requirements (3 takeoffs/landings in 90 days for passengers), night currency (full-stop landings), aircraft inspection intervals (annual, 100-hour, ELT battery), and fuel reserves (VFR day 30 min, VFR night 45 min).</p>
+
+        <h2>Airspace: Three Questions Per Class</h2>
+        <p>Almost every airspace question asks one of three things: what are the dimensions, what are the VFR weather minimums, or what equipment/clearance is required. Learn those three things for Class A through G and you'll clean up this section.</p>
+        <p>The most common trap: Class B requires ATC clearance. Class C requires two-way comms established (not clearance). Class D requires two-way comms established before entering. The exam loves the difference between "clearance" and "established communications."</p>
+
+        <h2>Navigation: Chart-Reading Skills Pay Off</h2>
+        <p>Expect questions on sectional chart symbols, VOR TO/FROM and CDI interpretation, calculating magnetic course from true course (variation and deviation), time/speed/distance problems, and fuel burn calculations. If you haven't spent time with an actual sectional chart, the symbol questions will feel foreign. That's fixable in an afternoon.</p>
+
+        <h2>Performance and Weight & Balance: Do the Math</h2>
+        <p>These questions require calculation using the charts provided in the test. Common scenarios: density altitude calculation, takeoff distance over a 50-foot obstacle, weight and balance CG check, and fuel load vs. endurance. The math is simple. The trap is misreading the chart. Read the conditions column before the performance column, every single time.</p>
+
+        <p><a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>Start practicing PAR questions at FAAExaminations.com</a> — organized by topic so you can drill weak areas first.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'ira-written-exam-topics': {
+    title: 'IRA Written Exam Topics: The Complete Breakdown (With Study Priority)',
+    description: 'Every subject tested on the FAA Instrument Rating Airplane (IRA) written exam — with question counts, difficulty ratings, and a prioritized study plan for passing on your first attempt.',
+    date: 'May 15, 2026',
+    dateISO: '2026-05-15',
+    readTime: '8 min read',
+    tag: 'Instrument Rating',
+    image: '/blog-throttle-cockpit.jpg',
+    related: ['lnav-vs-vnav-explained', 'lpv-approach-explained', 'ifr-holding-patterns-explained'],
+    content: (
+      <>
+        <h2>The IRA Is Harder Than People Expect</h2>
+        <p>Most pilots who've passed the PAR approach the IRA written with misplaced confidence. The format is the same — 65 questions, 2 hours, 70% to pass — but the subject matter is meaningfully more technical and the wrong-answer traps are better hidden. Where the PAR often rewards memorization, the IRA rewards understanding.</p>
+        <p>The good news: the question pool is known and finite. If you practice the actual test questions with real explanations, you will pass.</p>
+
+        <h2>IRA Topic Priority Table</h2>
+        <div style={{ overflowX: 'auto', marginBottom: 20 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.9rem' }}>
+            <thead><tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Topic Area</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Approx. Questions</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Difficulty</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Priority</th>
+            </tr></thead>
+            <tbody>
+              {[
+                ['IFR Weather (AIRMETs, SIGMETs, icing, wx mins)','11–13','High','#1'],
+                ['Approach Procedures (ILS, RNAV, VOR)','10–12','High','#2'],
+                ['IFR Regulations (FAR 91 IFR)','8–10','Medium','#3'],
+                ['En Route Navigation & Charts','7–9','Medium','#4'],
+                ['Holding Procedures','4–6','Medium-High','#5'],
+                ['Flight Instruments & Gyros','4–5','Medium','#6'],
+                ['Alternate Requirements','3–5','Medium','#7'],
+                ['ATC Procedures & Clearances','3–4','Low-Medium','#8'],
+              ].map(([a,b,c,d],i)=>(
+                <tr key={i} style={{ borderBottom:'1px solid var(--border)', background: i%2===0?'var(--card-bg)':'transparent' }}>
+                  <td style={{ padding:'9px 12px', color:'var(--text)', fontWeight: 600 }}>{a}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{b}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{c}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)', fontWeight: 600 }}>{d}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2>#1: IFR Weather</h2>
+        <p>Weather is where the IRA exam lives. AIRMET Sierra (IFR conditions), Tango (turbulence), Zulu (icing). SIGMETs are for severe or extreme conditions. Structural icing types: rime, clear, mixed. TAFs, area forecasts, winds aloft forecasts — reading and applying them to IFR planning. IFR weather minimums: takeoff minimums, landing minimums, visibility requirements by approach type.</p>
+
+        <h2>#2: Approach Procedures</h2>
+        <p>The exam tests what each component provides, what the minimums mean, and when you can descend. ILS components (localizer, glideslope, marker beacons). RNAV/GPS approaches (LNAV, LNAV/VNAV, LP, LPV — differences in guidance, minimums, equipment). VOR approaches (course reversal requirements, step-down fixes, timing to MAP). Circling approaches. Missed approach — when to execute, what the published procedure requires.</p>
+
+        <h2>#3: IFR Regulations</h2>
+        <p>IFR currency: 6 approaches, holding, intercepting/tracking within 6 months. VOR check within 30 days. IFR fuel reserve: 45 minutes at normal cruise. Clearance limit and what to do without further clearance.</p>
+
+        <h2>#4: En Route Navigation</h2>
+        <p>Read IFR low enroute charts (L-charts). Know MEA (obstacle clearance + navaid reception), MOCA (obstacle clearance only, navaid guaranteed within 22nm only), MRA (minimum altitude to receive a specific fix), and MAA (upper limit for reliable signal). These four get tested directly.</p>
+
+        <h2>#5: Holding Procedures</h2>
+        <p>The exam gives you a hold with a specific entry situation and asks which entry — direct, teardrop, or parallel. Draw it out every time. Also: hold timing (1-minute legs at or below 14,000 MSL, 1.5 minutes above), wind correction in the hold, and EFC time requirements.</p>
+
+        <h2>Alternate Requirements — A Classic Trap</h2>
+        <p>The 1-2-3 rule: if within 1 hour before or after your ETA the weather at destination is forecast below 2,000-foot ceiling or 3SM visibility, you need an alternate. Alternate minimums: 600-2 for precision, 800-2 for non-precision. Know both.</p>
+
+        <p><a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>Practice IRA exam questions at FAAExaminations.com</a> — every question explained, organized by topic.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'what-happens-if-you-fail-faa-written-exam': {
+    title: 'What Happens If You Fail the FAA Written Exam?',
+    description: 'Failed the FAA written exam? Here\'s exactly what happens next — the retake process, instructor endorsement requirements, how to read your score report, and the smarter study strategy for your second attempt.',
+    date: 'May 15, 2026',
+    dateISO: '2026-05-15',
+    readTime: '5 min read',
+    tag: 'Study Tips',
+    image: '/blog-pilot-ready.jpg',
+    related: ['par-written-exam-topics', 'ira-written-exam-topics', 'faa-written-exam-day-tips'],
+    content: (
+      <>
+        <h2>First: You're Not Done</h2>
+        <p>There is no limit on how many times you can retake an FAA written exam. No probation period, no record that "counts against" your certificate application, no long-term penalty. A failed written exam is a setback, not a disqualification — and with the right retake strategy, most people pass on their second attempt.</p>
+
+        <h2>What the FAA Requires Before You Retake</h2>
+        <p>You cannot simply walk back in and sit again. Before retaking, you must get a new instructor endorsement — your CFI must review the areas you missed, provide additional instruction, and sign off that you're prepared to test again. The endorsement requirement exists because the FAA wants a qualified instructor to confirm you've actually addressed your weak areas, not just memorized slightly more questions.</p>
+
+        <h2>Your Score Is Valid for 24 Months</h2>
+        <p>Once you pass, the score is valid for 24 calendar months. You must complete your practical test within that window, or you'll need to retest. Plan your timeline accordingly.</p>
+
+        <h2>Read Your Score Report — It's a Map</h2>
+        <p>When you fail, the testing center gives you a score report broken down by subject area code (PLT codes). It doesn't show which specific questions you got wrong, but it tells you which knowledge areas were weak. That score report is your retake plan. Don't re-study everything — drill the specific areas the report flagged.</p>
+
+        <h2>Why Most People Failed the First Time</h2>
+        <p>Almost always one of three things: they studied concepts but not the actual question bank (the FAA releases the complete pool publicly); they underestimated weather topics (the largest single section and the hardest to cram); or they ran short on time (2 hours for 65 questions is fine if you're confident, a problem if you spend 8 minutes on one weight and balance problem).</p>
+
+        <h2>The Smart Retake Strategy</h2>
+        <div style={{ overflowX: 'auto', marginBottom: 20 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.9rem' }}>
+            <thead><tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Step</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>What to Do</th>
+            </tr></thead>
+            <tbody>
+              {[
+                ['1. Read your score report','Identify weak subject areas by PLT code'],
+                ['2. Focus','80% of study time on flagged areas only'],
+                ['3. Practice the actual question bank','Use questions from FAA source material, not summaries'],
+                ['4. Get instructor review','CFI must review weak areas and sign off before retesting'],
+                ['5. Time yourself','Do timed full-length practice tests before you go back'],
+                ['6. Schedule promptly','Test while the material is fresh'],
+              ].map(([a,b],i)=>(
+                <tr key={i} style={{ borderBottom:'1px solid var(--border)', background: i%2===0?'var(--card-bg)':'transparent' }}>
+                  <td style={{ padding:'9px 12px', color:'var(--text)', fontWeight: 600 }}>{a}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{b}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p>Failing is discouraging. But the FAA written is not a test of your potential as a pilot — it's a test of your preparation for a specific question bank on a specific day. Preparation is a solvable problem.</p>
+
+        <p><a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>Start practicing with FAAExaminations.com</a> — questions from the actual FAA test pool with full explanations for every answer.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'vfr-weather-minimums-explained': {
+    title: 'VFR Weather Minimums Explained: What the FAA Exam Always Tests',
+    description: 'A complete guide to VFR weather minimums by airspace class — with the full table, ceiling vs. sky condition definitions, special VFR rules, and every exam trap clearly flagged.',
+    date: 'May 15, 2026',
+    dateISO: '2026-05-15',
+    readTime: '7 min read',
+    tag: 'Private Pilot',
+    image: '/blog-ga-cockpit.jpg',
+    related: ['par-written-exam-topics', 'faa-airspace-classes-explained', 'how-to-read-a-metar'],
+    content: (
+      <>
+        <h2>Why This Section Is Worth Your Full Attention</h2>
+        <p>VFR weather minimums are one of the most reliable point sources on the PAR exam. The FAA has asked variations of these questions for decades. Candidates who memorize the table — really memorize it — pick up 5 to 8 questions others leave on the table. Here's the complete table plus every trap the exam uses.</p>
+
+        <h2>The Complete VFR Minimums Table</h2>
+        <div style={{ overflowX: 'auto', marginBottom: 20 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.9rem' }}>
+            <thead><tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Airspace</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Flight Visibility</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Cloud Clearance</th>
+            </tr></thead>
+            <tbody>
+              {[
+                ['Class A','N/A (IFR only)','N/A'],
+                ['Class B','3 SM','Clear of clouds'],
+                ['Class C','3 SM','500 below / 1,000 above / 2,000 horiz'],
+                ['Class D','3 SM','500 below / 1,000 above / 2,000 horiz'],
+                ['Class E below 10,000 MSL','3 SM','500 below / 1,000 above / 2,000 horiz'],
+                ['Class E at/above 10,000 MSL','5 SM','1,000 below / 1,000 above / 1 SM horiz'],
+                ['Class G ≤1,200 AGL — Day','1 SM','Clear of clouds'],
+                ['Class G ≤1,200 AGL — Night','3 SM','500 below / 1,000 above / 2,000 horiz'],
+                ['Class G >1,200 AGL, <10,000 MSL — Day','1 SM','500 below / 1,000 above / 2,000 horiz'],
+                ['Class G >1,200 AGL, <10,000 MSL — Night','3 SM','500 below / 1,000 above / 2,000 horiz'],
+                ['Class G at/above 10,000 MSL','5 SM','1,000 below / 1,000 above / 1 SM horiz'],
+              ].map(([a,b,c],i)=>(
+                <tr key={i} style={{ borderBottom:'1px solid var(--border)', background: i%2===0?'var(--card-bg)':'transparent' }}>
+                  <td style={{ padding:'9px 12px', color:'var(--text)', fontWeight: 600 }}>{a}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{b}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{c}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2>The Exam Traps — Flagged</h2>
+        <h3>Trap 1: Class B Is NOT 500-1,000-2,000</h3>
+        <p>Class B requires 3 SM visibility and "clear of clouds" — no specific distances. Class B is positive controlled airspace; ATC separates everyone. You don't need cloud clearance buffers because the system handles separation. Applying the 500/1,000/2,000 rule to Class B is wrong and the exam knows you'll try it.</p>
+
+        <h3>Trap 2: Class G Day Low-Altitude Is 1 SM, Clear of Clouds</h3>
+        <p>In Class G airspace at or below 1,200 feet AGL during the day, the minimums are 1 SM visibility and clear of clouds — no cloud clearance distances required. This is the most permissive VFR minimum in the system and it's easily confused with the standard 500/1,000/2,000.</p>
+
+        <h3>Trap 3: Night Changes Class G</h3>
+        <p>At night in Class G at or below 1,200 AGL, minimums jump to 3 SM with full 500/1,000/2,000 cloud clearance. The exam will give you a night scenario in Class G and offer "1 SM, clear of clouds" as a tempting wrong answer.</p>
+
+        <h3>Trap 4: Above 10,000 MSL Is Different</h3>
+        <p>At or above 10,000 feet MSL, visibility jumps to 5 SM and horizontal cloud clearance expands to 1 statute mile. This applies in both Class E and Class G above 10,000 MSL.</p>
+
+        <h2>Ceiling vs. Sky Condition — Not the Same Thing</h2>
+        <p>A ceiling is the lowest broken or overcast layer — BKN or OVC. Scattered clouds (SCT) do not create a ceiling. VFR flight rules and Special VFR thresholds reference ceiling specifically. A METAR showing SCT015 is not a 1,500-foot ceiling. BKN015 is.</p>
+
+        <h2>Special VFR</h2>
+        <p>SVFR is an ATC clearance that allows operation in Class B, C, D, or surface E airspace in conditions as low as 1 SM visibility and clear of clouds. At night, both pilot and aircraft must be instrument-rated and equipped. An unrated VFR pilot cannot get an SVFR clearance at night. Some airports have "No SVFR" notation on sectional charts — those airports cannot issue SVFR clearances.</p>
+
+        <p><a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>Practice PAR weather and airspace questions at FAAExaminations.com</a> — the exact topics the exam tests, with explanations for every answer.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'cax-commercial-written-exam-topics': {
+    title: 'CAX Written Exam: Every Topic on the Commercial Pilot Knowledge Test',
+    description: 'Full topic breakdown of the FAA Commercial Pilot Airplane (CAX) written exam — from advanced aerodynamics to turbine engines. Know what to study and in what order.',
+    date: 'May 15, 2026',
+    dateISO: '2026-05-15',
+    readTime: '10 min read',
+    tag: 'Resources',
+    image: '/blog-commercial-cockpit.jpg',
+    related: ['v-speeds-faa-exam', 'stalls-aerodynamics-faa-exam', 'faa-written-exam-day-tips'],
+    content: (
+      <>
+        <h2>The CAX Is Not Just a Harder Private Pilot Test</h2>
+        <p>A lot of commercial students treat the CAX like an extension of the PAR — study the same stuff, just more of it. That's the wrong approach, and it's why some people fail on the first attempt despite having hundreds of hours in the cockpit.</p>
+        <p>The Commercial Pilot knowledge test (CAX) has 105 questions and you need a 70% to pass. It pulls from a broader, deeper ACS than the private, and it assumes you already know the basics.</p>
+
+        <h2>CAX Topic Priority Table</h2>
+        <div style={{ overflowX: 'auto', marginBottom: 20 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.9rem' }}>
+            <thead><tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Topic Area</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Est. % of Test</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Priority</th>
+            </tr></thead>
+            <tbody>
+              {[
+                ['FAR Part 61 / 91 / 119 Regulations','15–18%','Highest'],
+                ['Advanced Aerodynamics (P-factor, torque, precession)','10–13%','Highest'],
+                ['Weather & Weather Products','12–15%','High'],
+                ['Weight & Balance','8–10%','High'],
+                ['Navigation & Flight Planning','10–12%','Medium'],
+                ['Aircraft Systems (complex/high-performance)','8–10%','Medium'],
+                ['Turbine Engine Overview','5–7%','Medium'],
+                ['Mountain Flying','4–6%','Medium'],
+                ['Airport Operations & ATC','5–7%','Lower'],
+                ['Human Factors / Physiology','3–5%','Lower'],
+              ].map(([a,b,c],i)=>(
+                <tr key={i} style={{ borderBottom:'1px solid var(--border)', background: i%2===0?'var(--card-bg)':'transparent' }}>
+                  <td style={{ padding:'9px 12px', color:'var(--text)', fontWeight: 600 }}>{a}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{b}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{c}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Regulatory Foundation: FAR Part 61.129</h2>
+        <p>Know this regulation cold. Part 61.129 outlines the aeronautical experience requirements — total time, PIC time, cross-country requirements, night requirements, instrument time. Also brush up on Part 91 commercial operating rules and Part 119 — what operations require an Air Carrier Certificate vs. what a commercial pilot can do without one.</p>
+
+        <h2>Advanced Aerodynamics</h2>
+        <p><strong>P-Factor:</strong> At high angles of attack, the descending blade on the right side has a higher effective AoA than the ascending left blade. Result: asymmetric thrust, aircraft yaws left. Most pronounced at high AoA and high power.</p>
+        <p><strong>Torque:</strong> If the prop rotates clockwise, the aircraft wants to rotate counterclockwise — a left-rolling tendency. Most pronounced at low airspeed, high power.</p>
+        <p><strong>Gyroscopic Precession:</strong> The spinning propeller acts as a gyroscope. Force applied to a gyroscope takes effect 90° later in the direction of rotation. On a tailwheel airplane during tail-rise takeoff, the prop disk tilts, creating a left-yawing force.</p>
+        <p><strong>Spiraling Slipstream:</strong> Propwash rotates rearward. At low speeds, it strikes the left side of the vertical stabilizer, creating a left-yawing tendency.</p>
+
+        <h2>Complex and High-Performance Aircraft</h2>
+        <p>Expect questions on constant-speed propeller operation — what the governor does, what happens when you move the prop control forward vs. aft, and the correct sequence for power changes. Also know hydraulic and electrical systems for gear operation.</p>
+
+        <h2>Turbine Engine Overview</h2>
+        <p>The CAX includes turbine questions even though you're testing for a piston certificate. Know the four sections (inlet, compressor, combustion, turbine/exhaust), difference between turboprop and turbojet, and terms like TIT, EPR, and N1/N2 speed indicators.</p>
+
+        <h2>Mountain Flying</h2>
+        <p>Know density altitude effects, mountain wave characteristics, the danger of attempting to outclimb terrain on the downwind side of a ridge, and the correct approach for crossing a mountain ridge — at a 45-degree angle so you can turn downhill quickly if performance is inadequate.</p>
+
+        <p><a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>Practice CAX questions at FAAExaminations.com</a> — organized by topic so you know exactly where you stand.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'v-speeds-faa-exam': {
+    title: 'V-Speeds Explained: Every One the FAA Tests on the Written Exam',
+    description: 'Complete guide to V-speeds for the FAA written exam — definitions, ASI color coding, how they\'re tested, and the Va weight trap that catches students off guard.',
+    date: 'May 15, 2026',
+    dateISO: '2026-05-15',
+    readTime: '8 min read',
+    tag: 'Private Pilot',
+    image: '/blog-ga-cockpit.jpg',
+    related: ['stalls-aerodynamics-faa-exam', 'faa-written-exam-day-tips', 'par-written-exam-topics'],
+    content: (
+      <>
+        <h2>Memorize the Definitions, Understand the Logic</h2>
+        <p>Most students try to brute-force memorize a list of abbreviations and definitions. That works until the FAA asks a question that requires you to understand why a speed exists, not just what it's called. The better approach: learn the definition, picture where it sits on the ASI, and understand what exceeding it costs you.</p>
+
+        <h2>The Full V-Speed Reference Table</h2>
+        <div style={{ overflowX: 'auto', marginBottom: 20 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.9rem' }}>
+            <thead><tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Speed</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Name</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Definition</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>ASI Color</th>
+            </tr></thead>
+            <tbody>
+              {[
+                ['Vs0','Stall speed (landing config)','Stall speed in the landing configuration (full flaps, gear down)','Bottom of white arc'],
+                ['Vs1','Stall speed (clean)','Stall speed in the clean configuration','Bottom of green arc'],
+                ['Vx','Best angle of climb','Greatest altitude gain per unit of distance — clears obstacles','Not marked on ASI'],
+                ['Vy','Best rate of climb','Greatest altitude gain per unit of time','Blue arc top (multi) / unmarked (single)'],
+                ['Va','Maneuvering speed','Maximum speed for full control deflection without structural damage','Not marked — in POH'],
+                ['Vfe','Max flap extended speed','Maximum speed with flaps extended','Top of white arc'],
+                ['Vno','Max structural cruising speed','Max speed in smooth air — do not exceed in turbulence','Top of green arc'],
+                ['Vne','Never exceed speed','Maximum speed — structural failure risk above this','Red line on ASI'],
+                ['Vmc','Minimum control speed (multi)','Min speed with one engine failed at full power, directional control possible','Red radial line (multi)'],
+              ].map(([a,b,c,d],i)=>(
+                <tr key={i} style={{ borderBottom:'1px solid var(--border)', background: i%2===0?'var(--card-bg)':'transparent' }}>
+                  <td style={{ padding:'9px 12px', color:'var(--text)', fontWeight: 600 }}>{a}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{b}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{c}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{d}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Reading the ASI: What the Colors Mean</h2>
+        <ul>
+          <li><strong>White arc:</strong> Flap operating range. Bottom = Vs0, Top = Vfe.</li>
+          <li><strong>Green arc:</strong> Normal operating range. Bottom = Vs1, Top = Vno.</li>
+          <li><strong>Yellow arc:</strong> Caution — smooth air only. Between Vno and Vne.</li>
+          <li><strong>Red line:</strong> Vne. Never exceed. Structural failure possible above this speed.</li>
+        </ul>
+
+        <h2>The Va Weight Trap — Most Missed Question</h2>
+        <p>Va is not a fixed speed. It changes with weight. The published Va in the POH is for maximum gross weight. At lighter weights, Va is lower — because at lighter weights the aircraft reaches its critical angle of attack (and stalls) at a lower airspeed, before structural damage can occur.</p>
+        <p>The exam asks: "If an aircraft's gross weight decreases, what happens to maneuvering speed?" Answer: Va decreases. If you fly light at the published (max gross) Va, you could overstress the airframe.</p>
+
+        <h2>Vx vs. Vy: The Practical Difference</h2>
+        <p>Use Vx when you have an obstacle to clear right after takeoff — it gives maximum altitude in minimum horizontal distance. Use Vy for everything else — it gives the best altitude gain per minute. Vx and Vy converge at the aircraft's absolute ceiling.</p>
+
+        <p><a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>Try 30 free questions at FAAExaminations.com</a> — our question bank includes every V-speed scenario the FAA tests.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'magnetic-compass-errors-faa-exam': {
+    title: 'Magnetic Compass Errors: ANDS, OSUN, and What the FAA Tests',
+    description: 'Why magnetic compasses give incorrect readings during acceleration and turns — the physics behind ANDS and OSUN, plus exactly how the PAR and IRA test these errors.',
+    date: 'May 15, 2026',
+    dateISO: '2026-05-15',
+    readTime: '7 min read',
+    tag: 'Study Tips',
+    image: '/blog-preflight.jpg',
+    related: ['v-speeds-faa-exam', 'faa-written-exam-day-tips', 'par-written-exam-topics'],
+    content: (
+      <>
+        <h2>Why the Magnetic Compass Is Both Essential and Misleading</h2>
+        <p>The magnetic compass is the oldest, most reliable instrument in the cockpit — no electrical power required, no gyros to precess, no software to crash. It's also the most misleading instrument under anything other than straight, level, unaccelerated flight. The FAA tests these errors on both the PAR and the IRA. On the IRA, the questions get more specific — they'll give you a heading and ask what the compass will indicate during a turn or acceleration.</p>
+
+        <h2>Variation vs. Deviation</h2>
+        <p><strong>Variation</strong> is the angular difference between true north and magnetic north at your location. East variation: magnetic north is east of true north, subtract it (East is Least). West variation: add it (West is Best).</p>
+        <p><strong>Deviation</strong> is the error caused by the aircraft's own magnetic fields — from the engine, avionics, airframe. It varies by heading. The deviation card mounted near the compass shows the correction for each heading. Both are tested directly.</p>
+
+        <h2>Why Compass Errors Happen: Magnetic Dip</h2>
+        <p>Earth's magnetic field lines don't run parallel to the surface — they dip into the Earth at an angle that increases toward the poles. The compass float assembly tilts to follow these dipping field lines. Engineers add a counterweight to keep the card level, but this only works perfectly in straight, level, unaccelerated flight. Any bank or acceleration tilts the card, and the compass reads incorrectly.</p>
+
+        <h2>ANDS: Acceleration Errors</h2>
+        <p><strong>Accelerate North, Decelerate South.</strong></p>
+        <p>When you accelerate on an easterly or westerly heading, the compass indicates a turn toward north. When you decelerate, it indicates south. This error is most pronounced on east and west headings and zero on north or south.</p>
+        <p>The FAA asks: "An aircraft heading 090° accelerates. What does the compass indicate?" Answer: a turn toward north.</p>
+
+        <h2>OSUN: Turning Errors</h2>
+        <p><strong>Overshoot South, Undershoot North.</strong></p>
+        <p>When turning to a southerly heading, the compass leads — roll out before it reaches south. When turning to a northerly heading, the compass lags — roll out after it reaches north. Errors are greatest at north and south headings, least at east and west.</p>
+
+        <h2>Summary Table</h2>
+        <div style={{ overflowX: 'auto', marginBottom: 20 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.9rem' }}>
+            <thead><tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Error</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Greatest On</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Least On</th>
+            </tr></thead>
+            <tbody>
+              {[
+                ['Acceleration (ANDS)','East / West headings','North / South headings'],
+                ['Turning (OSUN)','North / South headings','East / West headings'],
+              ].map(([a,b,c],i)=>(
+                <tr key={i} style={{ borderBottom:'1px solid var(--border)', background: i%2===0?'var(--card-bg)':'transparent' }}>
+                  <td style={{ padding:'9px 12px', color:'var(--text)', fontWeight: 600 }}>{a}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{b}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{c}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p>On the PAR, expect conceptual questions: what causes the error, what mnemonic applies, which heading has the greatest error. On the IRA, expect scenario-based questions with specific numbers. If you understand the dip angle physics, the mnemonics become logical rather than arbitrary.</p>
+
+        <p><a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>Try 30 free questions at FAAExaminations.com</a> — our PAR and IRA banks include every compass error scenario the FAA uses.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'faa-written-exam-day-tips': {
+    title: 'FAA Written Exam Day: What to Bring, What to Expect, and How to Finish Strong',
+    description: 'Everything you need to know about FAA written exam day — required documents, allowed items, the computer-based testing format, time strategy, and what your score report means.',
+    date: 'May 15, 2026',
+    dateISO: '2026-05-15',
+    readTime: '6 min read',
+    tag: 'Study Tips',
+    image: '/blog-pilot-ready.jpg',
+    related: ['what-happens-if-you-fail-faa-written-exam', 'par-written-exam-topics', 'part-107-topics-breakdown'],
+    content: (
+      <>
+        <h2>The Exam Won't Surprise You — If You Know What to Expect</h2>
+        <p>A lot of test anxiety comes from uncertainty about the format, not the material. Once you know exactly what the testing center looks like, what you're allowed to bring, and how the computer interface works, you can focus entirely on answering questions correctly.</p>
+
+        <h2>What to Bring</h2>
+        <p>Two things are required, no exceptions: a <strong>government-issued photo ID</strong> (driver's license, passport, or military ID — name must match your registration) and your <strong>instructor endorsement</strong>. Your CFI must endorse your logbook and provide a sign-off that you're prepared to test. No endorsement, no test.</p>
+
+        <h2>What You're Allowed to Use</h2>
+        <div style={{ overflowX: 'auto', marginBottom: 20 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.9rem' }}>
+            <thead><tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Item</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Allowed?</th>
+            </tr></thead>
+            <tbody>
+              {[
+                ['Plotter','Yes'],
+                ['E6B flight computer (manual)','Yes'],
+                ['Electronic E6B / basic aviation calculator','Yes, with restrictions — must not store alphanumeric data'],
+                ['Smartphone','No'],
+                ['Notes or books','No'],
+                ['Scratch paper','Yes — provided by test center'],
+                ['Aeronautical charts','Provided on-screen in test software'],
+              ].map(([a,b],i)=>(
+                <tr key={i} style={{ borderBottom:'1px solid var(--border)', background: i%2===0?'var(--card-bg)':'transparent' }}>
+                  <td style={{ padding:'9px 12px', color:'var(--text)' }}>{a}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{b}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2>The Computer-Based Testing Format</h2>
+        <p>There is no paper exam. All FAA knowledge tests are administered on computer at approved CATS or PSI testing centers. One question on screen at a time, four multiple-choice answers, a flag button for review, and a navigation panel showing all questions. Supplemental materials (charts, figures) are built into the software — the same figures from the FAA test supplement you've been studying.</p>
+
+        <h2>Exam Time Limits</h2>
+        <div style={{ overflowX: 'auto', marginBottom: 20 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.9rem' }}>
+            <thead><tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Exam</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Questions</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Time</th>
+            </tr></thead>
+            <tbody>
+              {[
+                ['PAR (Private Pilot)','65','2 hours'],
+                ['IRA (Instrument Rating)','65','2 hours'],
+                ['CAX (Commercial Pilot)','105','2.5 hours'],
+                ['Part 107 (Remote Pilot)','60','2 hours'],
+              ].map(([a,b,c],i)=>(
+                <tr key={i} style={{ borderBottom:'1px solid var(--border)', background: i%2===0?'var(--card-bg)':'transparent' }}>
+                  <td style={{ padding:'9px 12px', color:'var(--text)', fontWeight: 600 }}>{a}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{b}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{c}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Time Strategy: Don't Get Stuck</h2>
+        <p>Answer every question on the first pass, even if uncertain. Flag anything you're unsure about. Keep moving. Questions aren't ordered by difficulty — a tricky weight-and-balance problem near the beginning shouldn't eat 10 minutes while easy questions wait at the end. First pass through everything, second pass on flagged questions only.</p>
+        <p>For calculations: write out the work on your scratch paper. Under test pressure, students try to do math in their heads and make arithmetic errors on problems they know how to solve.</p>
+
+        <h2>Common Test-Day Mistakes</h2>
+        <ul>
+          <li>Misreading the question — "What is NOT a characteristic of..." is different from "What IS a characteristic of..."</li>
+          <li>Using the wrong figure — if the question says "refer to Figure 22," open Figure 22</li>
+          <li>Second-guessing good answers — first instincts on multiple-choice are usually right without a specific reason to change</li>
+          <li>Not eating beforehand — two hours of focused attention on an empty stomach makes everything harder</li>
+        </ul>
+
+        <h2>After You Pass</h2>
+        <p>Your score report is valid for 24 calendar months for use toward a practical test. Keep it — the examiner will want to see it at your checkride. The learning statement codes for any topics you missed will come up during your oral exam.</p>
+
+        <p><a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>Try 30 free questions at FAAExaminations.com</a> — simulate the real exam format with timed practice tests before your test day.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'part-107-topics-breakdown': {
+    title: 'Part 107 Exam Topics: What\'s Actually on the Test (With Study Priority)',
+    description: 'Full breakdown of the FAA Part 107 knowledge test — regulations, airspace, weather, and what catches most drone pilots off guard. Includes a study priority table.',
+    date: 'May 15, 2026',
+    dateISO: '2026-05-15',
+    readTime: '9 min read',
+    tag: 'Part 107',
+    image: '/blog-throttle-cockpit.jpg',
+    related: ['faa-written-exam-day-tips', 'what-happens-if-you-fail-faa-written-exam', 'how-to-read-a-metar'],
+    content: (
+      <>
+        <h2>Let's Be Honest About the Part 107 Exam</h2>
+        <p>You'll find plenty of guides describing Part 107 as "not that hard" and suggesting you can pass with a weekend of casual study. Some people do pass that way — and some fail that way too. The test has 60 questions and requires 70% (42 correct). The airspace and weather sections are genuinely technical, and the regulations section has traps that catch people who memorized the wrong details.</p>
+
+        <h2>Part 107 Study Priority Table</h2>
+        <div style={{ overflowX: 'auto', marginBottom: 20 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.9rem' }}>
+            <thead><tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Topic</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Est. % of Test</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Priority</th>
+            </tr></thead>
+            <tbody>
+              {[
+                ['Part 107 Regulations','20–25%','Highest'],
+                ['Airspace Classification','15–20%','Highest'],
+                ['Weather / METAR Decoding','15–18%','High'],
+                ['Airport Operations','8–12%','High'],
+                ['Human Factors / Physiology','8–10%','Medium'],
+                ['Crew Resource Management','5–8%','Medium'],
+                ['Emergency Procedures','5–8%','Medium'],
+                ['Radio Communications','4–6%','Lower'],
+                ['Loading & Performance','4–6%','Lower'],
+              ].map(([a,b,c],i)=>(
+                <tr key={i} style={{ borderBottom:'1px solid var(--border)', background: i%2===0?'var(--card-bg)':'transparent' }}>
+                  <td style={{ padding:'9px 12px', color:'var(--text)', fontWeight: 600 }}>{a}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{b}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{c}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Part 107 Regulations: Know These Cold</h2>
+        <ul>
+          <li>Maximum altitude: 400 feet AGL (or within 400 feet of a structure)</li>
+          <li>Maximum groundspeed: 100 mph (87 knots)</li>
+          <li>Daylight and civil twilight operations (anti-collision lights required for twilight)</li>
+          <li>Visual line of sight (VLOS) requirement</li>
+          <li>Operating over people: categories 1, 2, 3, 4 and what each requires</li>
+          <li>Alcohol rules: 8 hours bottle to throttle, 0.04 BAC</li>
+          <li>Remote ID requirements</li>
+          <li>Waiver process — what can be waived and who issues waivers</li>
+        </ul>
+
+        <h2>Airspace: Where Most Drone Pilots Lose Points</h2>
+        <p>The airspace questions assume you know the manned aviation airspace system. You need to know dimensions of Class B, C, D, E, and G, who controls what, what authorization is required, and the difference between Class E starting at the surface vs. at 700 feet AGL. LAANC and DroneZone authorization — when each is used. TFRs — types and how to check for them. Reading sectional chart symbols for airspace boundaries.</p>
+        <p>Sectional chart reading catches people. The test provides chart excerpts and asks you to identify airspace type, floor, and ceiling from the symbols. Practice reading actual sectionals.</p>
+
+        <h2>Weather: METAR Decoding</h2>
+        <p>You need to decode a METAR and a TAF. The test will give you a real METAR and ask about visibility, cloud ceiling, and weather phenomena codes. Beyond decoding, know how weather affects drone operations: gusty conditions, density altitude effects on battery performance and lift, thunderstorm avoidance, and the Part 107 visibility minimum (3 statute miles).</p>
+
+        <h2>Human Factors</h2>
+        <p>IMSAFE checklist (Illness, Medication, Stress, Alcohol, Fatigue, Eating) appears on Part 107 even though it was developed for manned aviation. Know it. Also know basic fatigue, hypoxia awareness, and how stress affects decision-making.</p>
+
+        <h2>What Actually Trips People Up</h2>
+        <p>The regulations section: students memorize general rules but miss edge cases. The airspace section: people study descriptions but haven't practiced reading a sectional chart. The weather section: METARs use abbreviations that look like noise until you've decoded a few dozen. The pilots who fail are almost always the ones who underestimated the airspace and weather sections.</p>
+
+        <p><a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>Try 30 free Part 107 questions at FAAExaminations.com</a> — our question bank includes full METAR decoding practice and airspace scenario questions.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'stalls-aerodynamics-faa-exam': {
+    title: 'Stalls and Aerodynamics: What Every FAA Written Exam Tests',
+    description: 'The FAA\'s approach to stalls, load factor, and aerodynamics on the PAR and CAX written exams — critical AoA, accelerated stalls, spin recovery, and the Vg diagram explained.',
+    date: 'May 15, 2026',
+    dateISO: '2026-05-15',
+    readTime: '9 min read',
+    tag: 'Private Pilot',
+    image: '/blog-garmin-cockpit.jpg',
+    related: ['v-speeds-faa-exam', 'cax-commercial-written-exam-topics', 'par-written-exam-topics'],
+    content: (
+      <>
+        <h2>The Single Most Important Thing to Know About Stalls</h2>
+        <p>A stall is not caused by low airspeed. A stall is caused by exceeding the critical angle of attack. This distinction is the foundation of every stall question on the FAA written exam, and it's why stalls can happen at any airspeed and any attitude. The critical AoA is fixed for a given wing — typically around 15–18 degrees for most general aviation aircraft. When you exceed it, airflow over the top of the wing separates, lift drops, and the wing stalls.</p>
+
+        <h2>Load Factor and Accelerated Stalls</h2>
+        <p>Load factor is the ratio of lift produced to the aircraft's weight. In straight and level flight: 1G. In a 60° banked turn: 2G. Stall speed increases with the square root of the load factor.</p>
+        <p><strong>Formula: Vs (loaded) = Vs (1G) × √(load factor)</strong></p>
+        <p>In a 60° bank, stall speed increases by about 41% (√2 ≈ 1.41). An aircraft stalling at 50 knots in level flight stalls at approximately 70 knots in a 60° bank. The FAA tests this calculation directly.</p>
+
+        <h2>Load Factor Table by Bank Angle</h2>
+        <div style={{ overflowX: 'auto', marginBottom: 20 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.9rem' }}>
+            <thead><tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Bank Angle</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Load Factor</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Stall Speed Increase</th>
+              <th style={{ padding: '10px 12px', color: 'var(--text)' }}>Example (Vs1 = 50 kts)</th>
+            </tr></thead>
+            <tbody>
+              {[
+                ['0°','1.0 G','0%','50 kts'],
+                ['30°','1.15 G','+7%','54 kts'],
+                ['45°','1.41 G','+19%','60 kts'],
+                ['60°','2.0 G','+41%','71 kts'],
+                ['75°','3.86 G','+96%','98 kts'],
+              ].map(([a,b,c,d],i)=>(
+                <tr key={i} style={{ borderBottom:'1px solid var(--border)', background: i%2===0?'var(--card-bg)':'transparent' }}>
+                  <td style={{ padding:'9px 12px', color:'var(--text)' }}>{a}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{b}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{c}</td>
+                  <td style={{ padding:'9px 12px', color:'var(--text2)' }}>{d}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Types of Stalls: What's Tested</h2>
+        <p><strong>Power-off stall:</strong> Simulates approach to landing — flaps extended, power idle, decelerating. Recovery: reduce back pressure, add power, accelerate to flying speed.</p>
+        <p><strong>Power-on stall:</strong> Simulates takeoff/initial climb — full power, climbing attitude. More aggressive than power-off due to torque and P-factor. Higher pitch attitude means more altitude loss in recovery.</p>
+        <p><strong>Accelerated stall:</strong> Occurs at higher-than-normal airspeeds due to elevated load factor — typically in steep turns or abrupt pull-ups. Recovery: reduce AoA (release back pressure).</p>
+        <p><strong>Secondary stall:</strong> Occurs immediately after recovery from a first stall — caused by climbing too steeply before airspeed is adequate. The fix: fly through recovery more smoothly.</p>
+        <p><strong>Cross-controlled stall:</strong> One of the most dangerous. Aileron and rudder inputs oppose each other — typically in a skidding base-to-final turn. The lowered wing stalls first, the aircraft rolls suddenly. This is the classic "base-to-final" accident scenario. Know it cold.</p>
+
+        <h2>Spin Recovery: PARE</h2>
+        <p>A spin is an aggravated stall combined with autorotation. PARE is the standard recovery:</p>
+        <ul>
+          <li><strong>P — Power:</strong> Reduce to idle</li>
+          <li><strong>A — Ailerons:</strong> Neutralize</li>
+          <li><strong>R — Rudder:</strong> Full opposite rudder (opposite to rotation direction)</li>
+          <li><strong>E — Elevator:</strong> Forward pressure to break the stall (after rotation stops)</li>
+        </ul>
+        <p>The sequence matters. Opposite rudder stops rotation; forward elevator breaks the stall. Pulling back before stopping rotation makes things worse.</p>
+
+        <h2>The Vg Diagram</h2>
+        <p>The Vg diagram plots structural and aerodynamic limits on one graph. The curved lines on the left are stall boundaries at various load factors. The vertical line on the right is Vne. The horizontal lines are structural G limits. Va sits at the intersection of the stall boundary and the positive structural limit — the highest speed at which full control deflection stalls the wing before exceeding structural limits. This is why it's called maneuvering speed.</p>
+
+        <p><a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>Try 30 free questions at FAAExaminations.com</a> — our PAR and CAX banks include every stall and aerodynamics scenario in the FAA's test pool.</p>
+      </>
+    ),
+  },
+
 };
 
 /* ─── Shared layout ────────────────────────────────────────────────── */
