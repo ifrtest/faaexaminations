@@ -38,6 +38,13 @@ export default function PracticeTestTemplate({
   const [answers, setAnswers] = useState({});
   const [counts, setCounts] = useState({ questions: 0, topics: 0 });
   const [showScrollTop, setShowScrollTop] = useState(true);
+  const [aiResponses, setAiResponses] = useState({});   // { [qIndex]: "AI response text" }
+  const [aiLoading, setAiLoading] = useState({});       // { [qIndex]: true }
+  const [aiUsesLeft, setAiUsesLeft] = useState(() => {
+    // 3 free AI calls per session, persisted across page navigation within the same tab
+    const stored = typeof window !== 'undefined' ? sessionStorage.getItem('faa_free_ai_uses_left') : null;
+    return stored !== null ? Math.max(0, parseInt(stored, 10) || 0) : 3;
+  });
   const activityFired = useRef(false);
   const navRef = useRef(null);
   const scoreRef = useRef(null);
@@ -80,6 +87,45 @@ export default function PracticeTestTemplate({
     }, 25);
     return () => clearInterval(timer);
   }, [questionCount]);
+
+  async function askAI(qIndex) {
+    if (aiResponses[qIndex] || aiLoading[qIndex] || aiUsesLeft <= 0) return;
+    const q = shuffledQuestions[qIndex];
+    const picked = answers[qIndex];
+    setAiLoading((prev) => ({ ...prev, [qIndex]: true }));
+    try {
+      // Convert to letter-keyed choices for the API
+      const choices = {};
+      q.options.forEach((opt, i) => { choices[String.fromCharCode(65 + i)] = opt; });
+      const correctLetter = String.fromCharCode(65 + q.correct);
+      const selectedLetter = picked !== undefined ? String.fromCharCode(65 + picked) : null;
+      const res = await fetch('/api/ai/explain-free', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          question:        q.q,
+          choices,
+          correct_answer:  correctLetter,
+          selected_answer: selectedLetter,
+          explanation:     q.explanation || '',
+          topic:           q.topic || '',
+        }),
+      });
+      const data = await res.json();
+      if (data.response) {
+        setAiResponses((prev) => ({ ...prev, [qIndex]: data.response }));
+        const newCount = Math.max(0, aiUsesLeft - 1);
+        setAiUsesLeft(newCount);
+        try { sessionStorage.setItem('faa_free_ai_uses_left', String(newCount)); } catch {}
+      } else {
+        setAiResponses((prev) => ({ ...prev, [qIndex]: data.error || 'Could not reach AI Instructor right now. Try again.' }));
+      }
+    } catch {
+      setAiResponses((prev) => ({ ...prev, [qIndex]: 'Could not reach AI Instructor right now. Try again.' }));
+    } finally {
+      setAiLoading((prev) => ({ ...prev, [qIndex]: false }));
+    }
+  }
 
   function pick(qIndex, optIndex) {
     if (answers[qIndex] !== undefined) return;
@@ -429,6 +475,62 @@ export default function PracticeTestTemplate({
                   <div style={{ margin: '0 20px 20px', background: 'rgba(48,172,226,0.06)', border: '1px solid rgba(48,172,226,0.2)', borderRadius: 9, padding: '14px 18px' }}>
                     <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--lp-blue)', letterSpacing: 1, marginBottom: 7 }}>EXPLANATION</div>
                     <p style={{ color: 'var(--lp-text)', fontSize: 14, lineHeight: 1.75, margin: 0 }}>{q.explanation}</p>
+
+                    {/* AI Instructor */}
+                    <div style={{ marginTop: 14, paddingTop: 14, borderTop: '1px solid rgba(48,172,226,0.15)' }}>
+                      {!aiResponses[qi] && aiUsesLeft > 0 && (
+                        <button
+                          onClick={() => askAI(qi)}
+                          disabled={!!aiLoading[qi]}
+                          style={{
+                            display: 'inline-flex', alignItems: 'center', gap: 8,
+                            background: 'transparent', border: '1px solid var(--lp-blue)',
+                            color: 'var(--lp-blue)', borderRadius: 8, padding: '8px 16px',
+                            cursor: aiLoading[qi] ? 'default' : 'pointer',
+                            fontSize: 13, fontWeight: 600,
+                            opacity: aiLoading[qi] ? 0.6 : 1,
+                          }}
+                        >
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                          {aiLoading[qi] ? 'Thinking…' : `Ask AI Instructor${aiUsesLeft < 3 ? ` (${aiUsesLeft} free left)` : ''}`}
+                        </button>
+                      )}
+
+                      {!aiResponses[qi] && aiUsesLeft <= 0 && (
+                        <Link
+                          to={`/register?plan=${planParam}`}
+                          style={{
+                            display: 'inline-flex', alignItems: 'center', gap: 8,
+                            background: 'rgba(48,172,226,0.12)', border: '1px solid var(--lp-blue)',
+                            color: 'var(--lp-blue)', borderRadius: 8, padding: '8px 16px',
+                            fontSize: 13, fontWeight: 600, textDecoration: 'none',
+                          }}
+                        >
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                          Sign up for unlimited AI Instructor →
+                        </Link>
+                      )}
+
+                      {aiResponses[qi] && (
+                        <div style={{ background: 'rgba(48,172,226,0.06)', borderLeft: '3px solid var(--lp-blue)', borderRadius: '0 8px 8px 0', padding: '12px 16px' }}>
+                          <strong style={{ color: 'var(--lp-blue)', fontSize: 12, display: 'flex', alignItems: 'center', gap: 6, letterSpacing: 0.5 }}>
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            AI INSTRUCTOR
+                          </strong>
+                          <p style={{ margin: '8px 0 0', color: 'var(--lp-text)', lineHeight: 1.65, fontSize: 14 }}>
+                            {aiResponses[qi]}
+                          </p>
+                          {aiUsesLeft <= 0 && (
+                            <div style={{ marginTop: 12, paddingTop: 10, borderTop: '1px solid rgba(48,172,226,0.15)', fontSize: 12, color: 'var(--lp-text2)' }}>
+                              You've used your 3 free AI Instructor responses.{' '}
+                              <Link to={`/register?plan=${planParam}`} style={{ color: 'var(--lp-blue)', fontWeight: 600 }}>
+                                Sign up for unlimited →
+                              </Link>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 )}
               </div>
