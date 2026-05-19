@@ -40,9 +40,10 @@ export default function PracticeTestTemplate({
   const [showScrollTop, setShowScrollTop] = useState(true);
   const [aiResponses, setAiResponses] = useState({});   // { [qIndex]: "AI response text" }
   const [aiLoading, setAiLoading] = useState({});       // { [qIndex]: true }
+  const aiStorageKey = `faa_free_ai_uses_left_${planParam}`;
   const [aiUsesLeft, setAiUsesLeft] = useState(() => {
-    // 3 free AI calls per session, persisted across page navigation within the same tab
-    const stored = typeof window !== 'undefined' ? sessionStorage.getItem('faa_free_ai_uses_left') : null;
+    // 3 free AI calls per exam per session, persisted across page navigation within the same tab
+    const stored = typeof window !== 'undefined' ? sessionStorage.getItem(aiStorageKey) : null;
     return stored !== null ? Math.max(0, parseInt(stored, 10) || 0) : 3;
   });
   const activityFired = useRef(false);
@@ -116,7 +117,7 @@ export default function PracticeTestTemplate({
         setAiResponses((prev) => ({ ...prev, [qIndex]: data.response }));
         const newCount = Math.max(0, aiUsesLeft - 1);
         setAiUsesLeft(newCount);
-        try { sessionStorage.setItem('faa_free_ai_uses_left', String(newCount)); } catch {}
+        try { sessionStorage.setItem(aiStorageKey, String(newCount)); } catch {}
       } else {
         setAiResponses((prev) => ({ ...prev, [qIndex]: data.error || 'Could not reach AI Instructor right now. Try again.' }));
       }
