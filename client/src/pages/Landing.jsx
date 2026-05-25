@@ -170,9 +170,24 @@ export default function Landing() {
       {/* HERO */}
       <section className="lp-hero">
         <div className="lp-hero-bg">
-          {HERO_IMAGES.map((src, i) => (
-            <img key={src} src={src} alt="" loading={i === 0 ? 'eager' : 'lazy'} fetchPriority={i === 0 ? 'high' : 'low'} decoding={i === 0 ? 'sync' : 'async'} style={{ opacity: i === heroIdx ? 0.75 : 0 }} />
-          ))}
+          {HERO_IMAGES.map((src, i) => {
+            const mobileSrc = src.replace('.webp', '-mobile.webp');
+            return (
+              <img
+                key={src}
+                src={src}
+                srcSet={`${mobileSrc} 800w, ${src} 1600w`}
+                sizes="100vw"
+                width="1600"
+                height="900"
+                alt=""
+                loading={i === 0 ? 'eager' : 'lazy'}
+                fetchPriority={i === 0 ? 'high' : 'low'}
+                decoding={i === 0 ? 'sync' : 'async'}
+                style={{ opacity: i === heroIdx ? 0.75 : 0 }}
+              />
+            );
+          })}
         </div>
         <div className="lp-hero-grid" />
         <div className="lp-hero-content">
