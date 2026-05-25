@@ -1,4 +1,18 @@
 {
+  "headers": [
+    {
+      "source": "/(.*)\\.(jpg|jpeg|png|webp|ico|svg|avif)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ],
   "redirects": [
     { "source": "/faa-private-pilot-airplane-par/:path*", "destination": "/par", "permanent": true },
     { "source": "/faa-private-pilot-airplane-par-:path*", "destination": "/par", "permanent": true },
