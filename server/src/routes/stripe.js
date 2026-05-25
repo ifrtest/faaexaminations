@@ -115,7 +115,7 @@ router.post('/webhook', async (req, res) => {
       }
       case 'customer.subscription.deleted': {
         const sub = event.data.object;
-        await deactivateSubscription(sub.customer);
+        await deactivateSubscription(sub.customer, sub.id);
         break;
       }
       case 'customer.subscription.trial_will_end': {
@@ -126,10 +126,18 @@ router.post('/webhook', async (req, res) => {
       }
       case 'invoice.payment_failed': {
         const invoice = event.data.object;
-        await db.query(
-          "UPDATE users SET subscription_status = 'past_due' WHERE stripe_customer_id = $1",
-          [invoice.customer]
-        );
+        const failedSubId = invoice.subscription;
+        // Only mark past_due if the failed invoice belongs to the user's CURRENT
+        // tracked subscription. Otherwise it is an orphan (e.g. failed upgrade attempt)
+        // and we must not touch the user's active subscription.
+        if (failedSubId) {
+          await db.query(
+            `UPDATE users SET subscription_status = 'past_due'
+             WHERE stripe_customer_id = $1
+               AND stripe_subscription_id = $2`,
+            [invoice.customer, failedSubId]
+          );
+        }
         break;
       }
       default:
@@ -304,15 +312,23 @@ async function updateSubscription(sub) {
   );
 }
 
-async function deactivateSubscription(customerId) {
-  await db.query(
+async function deactivateSubscription(customerId, deletedSubId) {
+  // Only deactivate if the deleted subscription is the user's CURRENT tracked sub.
+  // Stripe also fires subscription.deleted for orphan failed-upgrade attempts that
+  // share the same customer_id — those must NOT wipe the user's active sub.
+  const result = await db.query(
     `UPDATE users SET
        subscription_status   = 'cancelled',
        subscription          = NULL,
        cancelled_at          = NOW()
-     WHERE stripe_customer_id = $1`,
-    [customerId]
+     WHERE stripe_customer_id = $1
+       AND stripe_subscription_id = $2`,
+    [customerId, deletedSubId]
   );
+  if (result.rowCount === 0) {
+    // Orphan subscription deletion (e.g. failed upgrade attempt) — do nothing.
+    return;
+  }
 
   // Send cancellation email
   const userRes = await db.query('SELECT id, email, full_name FROM users WHERE stripe_customer_id = $1', [customerId]);
