@@ -50,6 +50,7 @@ const Part107CheatSheet    = lazy(() => import('./pages/Part107CheatSheet'));
 const IRACheatSheet        = lazy(() => import('./pages/IRACheatSheet'));
 const CAXCheatSheet        = lazy(() => import('./pages/CAXCheatSheet'));
 const CheatSheetVerify     = lazy(() => import('./pages/CheatSheetVerify'));
+const ComparisonPage       = lazy(() => import('./pages/ComparisonPage'));
 const AdminLayout          = lazy(() => import('./pages/admin/AdminLayout'));
 const AdminDashboard       = lazy(() => import('./pages/admin/AdminDashboard'));
 const AdminQuestions       = lazy(() => import('./pages/admin/AdminQuestions'));
@@ -117,6 +118,7 @@ export default function App() {
             <Route path="/privacy"        element={<PrivacyPolicy />} />
             <Route path="/terms"          element={<TermsOfService />} />
             <Route path="/about"          element={<About />} />
+            <Route path="/faa-exam-prep-comparison" element={<ComparisonPage />} />
             <Route path="/blog"           element={<Blog />} />
             <Route path="/blog/:slug"     element={<BlogPost />} />
 
