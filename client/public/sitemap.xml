@@ -340,6 +340,36 @@
 
   <!-- Newly indexed blog posts -->
   <url>
+    <loc>https://faaexaminations.com/blog/how-to-register-a-drone-with-the-faa</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://faaexaminations.com/blog/how-to-use-an-e6b-flight-computer</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://faaexaminations.com/blog/aircraft-right-of-way-rules</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://faaexaminations.com/blog/special-use-airspace-explained</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://faaexaminations.com/blog/how-laanc-works</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://faaexaminations.com/blog/faa-remote-id-rules</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>

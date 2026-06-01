@@ -14,6 +14,201 @@ const tagColors = {
 const POSTS = {
 
   /* ================================================================ */
+  'how-to-register-a-drone-with-the-faa': {
+    title: 'How to Register a Drone with the FAA (2026)',
+    description: 'FAA drone registration costs $5, takes five minutes on FAADroneZone, and lasts three years. Here\'s who has to register, the 250-gram rule, and how recreational and Part 107 registration differ.',
+    date: 'June 1, 2026',
+    dateISO: '2026-06-01',
+    readTime: '4 min read',
+    tag: 'Study Tips',
+    image: '/blog-part107-drone.jpg',
+    related: ['faa-remote-id-rules', 'part-107-recurrent-training', 'part-107-study-guide-2026'],
+    content: (
+      <>
+        <h2>The basics: $5, five minutes, three years</h2>
+        <p>You register at <a href="https://faadronezone-access.faa.gov" target="_blank" rel="noopener noreferrer" style={{color:'var(--blue)'}}>FAADroneZone</a> — the FAA's official portal. It costs $5, takes about five minutes, and the registration is valid for three years. Anyone charging you more than $5 to "register your drone" is selling you a service you don't need.</p>
+
+        <h2>Do you even have to register?</h2>
+        <p>Here's the rule that confuses people. If you fly <strong>recreationally</strong> and your drone weighs 0.55 lbs (250 grams) or less, you don't have to register it. The moment it's heavier than that — or the moment you fly <strong>any</strong> drone commercially under Part 107 — registration is required, even for a sub-250g drone. So a 249-gram drone flown for a paid job still needs a number.</p>
+
+        <h2>Recreational vs. Part 107 registration are not the same</h2>
+        <p>This trips up new commercial pilots constantly:</p>
+        <ul>
+          <li><strong>Recreational (Exception for Limited Recreational Operations):</strong> one registration number covers every drone you own.</li>
+          <li><strong>Part 107:</strong> each individual aircraft gets its own unique registration number.</li>
+        </ul>
+        <p>And they don't cross over. A drone registered under the recreational exception cannot legally be flown under Part 107, and vice versa. If you're getting your Part 107 to start doing paid work, register your aircraft under Part 107 — not recreationally.</p>
+
+        <h2>Put the number on the drone</h2>
+        <p>Once registered, you have to mark the registration number on the exterior of the aircraft, readable without tools. A label or paint pen is fine. "It's in the app" is not compliance.</p>
+
+        <h2>Studying for your Part 107?</h2>
+        <p>Registration is a five-minute errand. Passing the knowledge test is the real step to flying commercially. <a href="https://faaexaminations.com/part-107" style={{color:'var(--blue)'}}>FAAExaminations.com</a> has the full Part 107 question bank with a referenced explanation for every question and a timed simulator. One-time payment, lifetime access.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'how-to-use-an-e6b-flight-computer': {
+    title: 'How to Use an E6B Flight Computer (Beginner’s Guide)',
+    description: 'The E6B looks intimidating but does a handful of jobs: time-speed-distance, fuel burn, true airspeed, density altitude, and wind correction. Here\'s what each side does and why it still matters on the FAA exam.',
+    date: 'June 1, 2026',
+    dateISO: '2026-06-01',
+    readTime: '5 min read',
+    tag: 'Study Tips',
+    image: '/blog-e6b-computer.jpg',
+    related: ['vfr-cross-country-flight-planning', 'what-is-density-altitude', 'faa-written-exam-study-guide'],
+    content: (
+      <>
+        <h2>Why a circular slide rule still exists in 2026</h2>
+        <p>The E6B has been around since the 1930s, and student pilots still learn it because the FAA knowledge test still expects it. You can use a manual or electronic E6B on the test (see <a href="https://faaexaminations.com/blog/what-to-bring-to-the-faa-written-exam" style={{color:'var(--blue)'}}>what to bring to the exam</a> for the rules). Once you understand what it's doing, it stops being scary. It only does a handful of jobs.</p>
+
+        <h2>The two sides</h2>
+        <p>A manual E6B has two faces:</p>
+        <ul>
+          <li><strong>The calculator side</strong> — a circular slide rule. This handles anything that's a ratio: time-speed-distance, fuel burn, true airspeed, density altitude, and unit conversions (gallons to pounds, nautical to statute miles).</li>
+          <li><strong>The wind side</strong> — a sliding grid with a rotating disc. This solves the wind triangle: given a wind, your true course, and true airspeed, it gives you wind correction angle and groundspeed.</li>
+        </ul>
+
+        <h2>The calculator side: it's all proportions</h2>
+        <p>The core trick is that the inner and outer rings move together as a ratio. Line up a known pair — say, distance over time — and you can read speed directly, or read distance for any other time. Same mechanism solves fuel burn (gallons over time) and true airspeed (with a temperature/altitude window). You're not memorizing formulas; you're lining up numbers and reading the answer.</p>
+
+        <h2>The wind side: solving the wind triangle</h2>
+        <p>Set the wind direction and speed as a dot above the grid, rotate to your true course, slide to your true airspeed, and the dot now tells you your wind correction angle and groundspeed. This is the part that wins points on cross-country planning questions — and the part most students rush. Slow down on it.</p>
+
+        <h2>The mistake that costs exam points</h2>
+        <p>Students who only practice the E6B the night before almost always fumble the wind side under time pressure. It's muscle memory. Work ten wind problems and ten time-speed-distance problems and it clicks — then it's free points on test day.</p>
+
+        <h2>Practice the calculations that show up on the exam</h2>
+        <p><a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>FAAExaminations.com</a> includes E6B-style performance and navigation questions across the Private, Instrument, and Commercial banks, each with a worked explanation. Free account, no credit card.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'aircraft-right-of-way-rules': {
+    title: 'Aircraft Right-of-Way Rules Explained (FAR 91.113)',
+    description: 'Who yields to whom in the air? The FAA right-of-way hierarchy under 14 CFR 91.113 — distress, the category pecking order, and the converging, head-on, and overtaking rules tested on the FAA exam.',
+    date: 'June 1, 2026',
+    dateISO: '2026-06-01',
+    readTime: '4 min read',
+    tag: 'Private Pilot',
+    image: '/blog-pilots-flying.jpg',
+    related: ['faa-airspace-classes-explained', 'night-vfr-requirements', 'faa-written-exam-study-guide'],
+    content: (
+      <>
+        <h2>There's a pecking order, and the exam tests it</h2>
+        <p>Right-of-way questions show up on the Private and Commercial written tests because they're a safety fundamental. The rules live in <strong>14 CFR 91.113</strong>. Learn the order once and the questions become free points.</p>
+
+        <h2>Rule zero: distress beats everything</h2>
+        <p>An aircraft in distress has the right-of-way over all other traffic. No exceptions. If someone has an emergency, everyone else gets out of the way.</p>
+
+        <h2>The category hierarchy (least maneuverable wins)</h2>
+        <p>The logic is simple once you see it: the aircraft with the <em>least</em> ability to maneuver gets the right-of-way. From highest priority down:</p>
+        <ul>
+          <li>Balloon (can only go up and down — yields to no one)</li>
+          <li>Glider</li>
+          <li>Airship</li>
+          <li>Aircraft towing or refueling other aircraft</li>
+          <li>Powered aircraft (everything else — lowest priority)</li>
+        </ul>
+        <p>A handy way to remember it: <strong>balloons, gliders, then everyone working hard to stay up.</strong> A powered airplane yields to all of them.</p>
+
+        <h2>The three encounters you'll be tested on</h2>
+        <ul>
+          <li><strong>Converging</strong> (same category, roughly same altitude): the aircraft to the <em>other's right</em> has the right-of-way. Think of it like a four-way stop — yield to the right.</li>
+          <li><strong>Head-on</strong> (or nearly so): <em>both</em> pilots alter course to the right. Nobody has the right-of-way; you both break right.</li>
+          <li><strong>Overtaking:</strong> the aircraft being overtaken has the right-of-way. The faster aircraft passes well clear to the <em>right</em>.</li>
+        </ul>
+        <p>Notice the pattern — almost everything resolves to the <strong>right</strong>. That's the memory hook.</p>
+
+        <h2>One more the test likes</h2>
+        <p>When two aircraft are approaching to land, the one at the <em>lower</em> altitude has the right-of-way — but you can't use that rule to cut in front of someone on final. The exam will try to bait you on that.</p>
+
+        <h2>Lock in the regs before test day</h2>
+        <p><a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>FAAExaminations.com</a> covers 14 CFR right-of-way and the rest of the regulations across the Private and Commercial banks, with a referenced explanation for every question. Free account, no credit card.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'special-use-airspace-explained': {
+    title: 'Special Use Airspace Explained: MOAs, Restricted, and Prohibited Areas',
+    description: 'Special use airspace — MOAs, restricted, prohibited, warning, and alert areas — is separate from the Class A–G airspace system. Here\'s what each one means, whether you can fly through it, and how the FAA exam tests it.',
+    date: 'June 1, 2026',
+    dateISO: '2026-06-01',
+    readTime: '5 min read',
+    tag: 'Private Pilot',
+    image: '/blog-sectional-chart.jpg',
+    related: ['faa-airspace-classes-explained', 'how-to-read-a-sectional-chart', 'vfr-cross-country-flight-planning'],
+    content: (
+      <>
+        <h2>This is not the same as airspace classes</h2>
+        <p>Students mix this up constantly. The Class A through G system describes the <em>structure</em> of airspace. <strong>Special use airspace</strong> sits on top of that and flags areas where activity is happening that you need to know about or avoid. The two are tested as separate topics — don't blur them. (If you need the classes, see <a href="https://faaexaminations.com/blog/faa-airspace-classes-explained" style={{color:'var(--blue)'}}>FAA airspace classes explained</a>.)</p>
+
+        <h2>Prohibited areas (P)</h2>
+        <p>No flight allowed, period. These protect places like the White House and Camp David. You don't request access — you stay out.</p>
+
+        <h2>Restricted areas (R)</h2>
+        <p>Flight is not prohibited outright, but it's <em>restricted</em> because of hazards like artillery fire, aerial gunnery, or guided missiles. When the area is "hot" (active), you need permission from the controlling agency to enter. When it's "cold," you may transit. The trap on the exam: restricted ≠ prohibited. You <em>can</em> sometimes fly through a restricted area.</p>
+
+        <h2>Military Operations Areas (MOAs)</h2>
+        <p>MOAs separate military training (think practice dogfights, formation flying) from IFR traffic. Here's the part people get wrong: as a VFR pilot, you are <strong>not prohibited</strong> from flying through an active MOA. It's legal. It's also a bad idea without talking to ATC first — there could be a fighter doing 400 knots in there. Exercise caution and get a traffic advisory.</p>
+
+        <h2>Warning and alert areas</h2>
+        <ul>
+          <li><strong>Warning areas (W):</strong> same kind of hazards as restricted areas, but they start 3 nautical miles off the coast, over international waters — so the U.S. can't legally "prohibit" them. Treat them like restricted areas.</li>
+          <li><strong>Alert areas (A):</strong> high volume of pilot training or unusual activity. No special permission needed — both you and the participating pilots are responsible for collision avoidance. Just be alert.</li>
+        </ul>
+
+        <h2>How to remember which is which</h2>
+        <p>Prohibited = stay out. Restricted = ask if hot. MOA = legal but use caution. Warning = restricted, but offshore. Alert = just pay attention. The exam loves to ask "can a VFR pilot fly through ___?" — and the answer is yes for MOAs and alert areas, conditional for restricted and warning, never for prohibited.</p>
+
+        <h2>See these on real sectional questions</h2>
+        <p><a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>FAAExaminations.com</a> includes airspace and sectional-chart questions across the Private, Instrument, and Commercial banks, each with a referenced explanation. Free account, no credit card.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
+  'how-laanc-works': {
+    title: 'How LAANC Works: Instant Drone Airspace Authorization (2026)',
+    description: 'LAANC gives drone pilots near-instant authorization to fly in controlled airspace under 400 feet. Here\'s how it works, which apps provide it, and how it applies to both Part 107 and recreational flyers.',
+    date: 'June 1, 2026',
+    dateISO: '2026-06-01',
+    readTime: '4 min read',
+    tag: 'Study Tips',
+    image: '/blog-navigation.jpg',
+    related: ['faa-remote-id-rules', 'part-107-study-guide-2026', 'special-use-airspace-explained'],
+    content: (
+      <>
+        <h2>What LAANC actually is</h2>
+        <p>LAANC — Low Altitude Authorization and Notification Capability — is the system that lets drone pilots get authorization to fly in <strong>controlled airspace</strong> in near-real time, instead of waiting weeks for a manual FAA approval. It's a partnership between the FAA and approved private companies, and it covers roughly 740 air traffic facilities — most of the controlled airspace in the country.</p>
+
+        <h2>Why you need it</h2>
+        <p>You can't just take off in controlled airspace (Class B, C, D, or surface-level E) around an airport. Both Part 107 pilots and recreational flyers need authorization first. Before LAANC, that meant a paperwork request and a long wait. Now, for operations under 400 feet, it's usually instant.</p>
+
+        <h2>How it works, step by step</h2>
+        <ul>
+          <li>You open an approved LAANC app and drop your flight area on the map.</li>
+          <li>The app checks the <strong>UAS Facility Map</strong> — a grid the FAA publishes showing the maximum altitude pre-approved for drones in each spot near an airport (0, 100, 200, 300, or 400 feet).</li>
+          <li>If your requested altitude is at or below the grid ceiling, you're <strong>approved automatically, in seconds.</strong></li>
+          <li>Request more than the grid allows, and it goes to the FAA for manual review (the slow path).</li>
+        </ul>
+
+        <h2>The apps that provide it</h2>
+        <p>You don't go to the FAA directly — you use an approved UAS Service Supplier (USS). Common ones include AutoPylot, Aloft, and others. They're free to use for basic authorizations. Pick one, make an account, and keep it on your phone.</p>
+
+        <h2>The catch on those grid numbers</h2>
+        <p>A "0" on the facility map means no automatic authorization there at any altitude — you'll need a manual waiver. New pilots see a 0-grid near a busy airport, request 200 feet anyway, get denied, and assume LAANC is broken. It isn't. The grid is telling you that spot is too sensitive for instant approval.</p>
+
+        <h2>This is testable Part 107 material</h2>
+        <p><a href="https://faaexaminations.com/part-107" style={{color:'var(--blue)'}}>FAAExaminations.com</a> covers airspace authorization, sectional reading, and LAANC concepts in the Part 107 bank, with a referenced explanation for every question and a timed simulator. One-time payment, lifetime access.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
   'faa-remote-id-rules': {
     title: 'FAA Remote ID Rules: What Drone Pilots Must Do in 2026',
     description: 'Remote ID is now fully enforced. Every drone that needs FAA registration must comply one of three ways: a Standard Remote ID drone, a broadcast module, or flying in a FRIA. Here\'s how each works.',
