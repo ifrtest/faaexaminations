@@ -10,11 +10,15 @@ const { capiPurchase } = require('../utils/metaCapi');
 const router = express.Router();
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
-// Part 107 intro promo ($37.99) ends 2026-06-01 00:00 EST.
-// After that date, new buyers are charged $57.99 via STRIPE_PRICE_UAG_FULL.
+// Part 107 intro promo ($37.99) ended 2026-06-01 00:00 EST.
+// After that date, new buyers are charged $57.99.
+// The $57.99 price ID is hardcoded as a fallback so this works WITHOUT needing
+// a Render env var. (Stripe price IDs are not secrets — only the secret key is.)
+// If STRIPE_PRICE_UAG_FULL is ever set in the env, it takes precedence.
 // Existing $37.99 buyers (STRIPE_PRICE_UAG) keep access forever — see PRICE_EXAMS + getPlanName.
 const UAG_PROMO_END_MS = new Date('2026-06-01T04:00:00Z').getTime();
 const isUagPromoActive = () => Date.now() < UAG_PROMO_END_MS;
+const UAG_FULL_PRICE_ID = process.env.STRIPE_PRICE_UAG_FULL || 'price_1TUZDEK2naFISAThGXJSS8H1';
 
 const PRICE_MAP = {
   par:    process.env.STRIPE_PRICE_PAR,
@@ -23,10 +27,8 @@ const PRICE_MAP = {
   bundle: process.env.STRIPE_PRICE_BUNDLE,
 };
 Object.defineProperty(PRICE_MAP, 'uag', {
-  // Promo over -> use the $57.99 price. SAFETY NET: if STRIPE_PRICE_UAG_FULL
-  // isn't set yet, fall back to the old $37.99 price so checkout still works
-  // (a working sale beats a broken one). Auto-corrects once the env var is added.
-  get() { return isUagPromoActive() ? process.env.STRIPE_PRICE_UAG : (process.env.STRIPE_PRICE_UAG_FULL || process.env.STRIPE_PRICE_UAG); },
+  // Promo active -> $37.99 (STRIPE_PRICE_UAG). Promo over -> $57.99 (UAG_FULL_PRICE_ID).
+  get() { return isUagPromoActive() ? process.env.STRIPE_PRICE_UAG : UAG_FULL_PRICE_ID; },
   enumerable: true,
 });
 
@@ -40,7 +42,7 @@ const PRICE_EXAMS = {
   [process.env.STRIPE_PRICE_IRA]:      [2],
   [process.env.STRIPE_PRICE_CAX]:      [3],
   [process.env.STRIPE_PRICE_UAG]:      [4],
-  [process.env.STRIPE_PRICE_UAG_FULL]: [4],
+  [UAG_FULL_PRICE_ID]:                 [4],
   [process.env.STRIPE_PRICE_BUNDLE]:   [1, 2, 3, 4],
 };
 
@@ -689,7 +691,7 @@ function getPlanName(priceId) {
   if (priceId === process.env.STRIPE_PRICE_IRA)    return 'ira';
   if (priceId === process.env.STRIPE_PRICE_CAX)    return 'cax';
   if (priceId === process.env.STRIPE_PRICE_UAG)      return 'uag';
-  if (priceId === process.env.STRIPE_PRICE_UAG_FULL) return 'uag';
+  if (priceId === UAG_FULL_PRICE_ID)                 return 'uag';
   if (priceId === process.env.STRIPE_PRICE_BUNDLE) return 'bundle';
   return null;
 }
