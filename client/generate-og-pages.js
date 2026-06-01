@@ -17,7 +17,7 @@ const pages = {
     pageTitle: 'FAA Part 107 Drone License Test Prep | FAAExaminations.com',
     url: 'https://faaexaminations.com/part-107',
     ogTitle: 'FAA Part 107 Drone License Test Prep — Pass First Try',
-    ogDesc: 'Get your FAA drone license. Practice questions, timed simulator, and AI instructor. $37.99 one-time payment. Lifetime access.',
+    ogDesc: 'Get your FAA drone license. Practice questions, timed simulator, and AI instructor. $57.99 one-time payment. Lifetime access.',
     image: 'https://faaexaminations.com/drone_image_faa_examinations.jpg',
     imageWidth: '1440',
     imageHeight: '1080',
