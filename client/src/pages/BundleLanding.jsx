@@ -74,6 +74,41 @@ export default function BundleLanding() {
         <meta property="og:site_name" content="FAAExaminations.com" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://faaexaminations.com/plane-bundle.jpg" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Course",
+          "name": "FAA Pilot Certificate Bundle — PAR, IRA & CAX Knowledge Test Prep",
+          "description": "All three FAA pilot certificate written exams in one subscription. 2,826 practice questions across Private Pilot, Instrument Rating, and Commercial Pilot, with timed simulators, full explanations, and AI Instructor support.",
+          "courseMode": "online",
+          "learningResourceType": "Exam practice questions",
+          "educationalLevel": "FAA Private Pilot, Instrument Rating, and Commercial Pilot certificates",
+          "teaches": ["Private Pilot (PAR) knowledge test topics", "Instrument Rating (IRA) knowledge test topics", "Commercial Pilot (CAX) knowledge test topics"],
+          "provider": { "@type": "Organization", "name": "FAAExaminations.com", "url": "https://faaexaminations.com" },
+          "offers": {
+            "@type": "Offer",
+            "price": "39.99",
+            "priceCurrency": "USD",
+            "priceSpecification": { "@type": "UnitPriceSpecification", "price": "39.99", "priceCurrency": "USD", "unitCode": "MON" },
+            "url": "https://faaexaminations.com/bundle"
+          }
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://faaexaminations.com" },
+            { "@type": "ListItem", "position": 2, "name": "Pilot Certificate Bundle", "item": "https://faaexaminations.com/bundle" }
+          ]
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": FAQS.map(f => ({
+            "@type": "Question",
+            "name": f.q,
+            "acceptedAnswer": { "@type": "Answer", "text": f.a }
+          }))
+        })}</script>
       </Helmet>
 
       {/* NAV */}
