@@ -23,7 +23,10 @@ const PRICE_MAP = {
   bundle: process.env.STRIPE_PRICE_BUNDLE,
 };
 Object.defineProperty(PRICE_MAP, 'uag', {
-  get() { return isUagPromoActive() ? process.env.STRIPE_PRICE_UAG : process.env.STRIPE_PRICE_UAG_FULL; },
+  // Promo over -> use the $57.99 price. SAFETY NET: if STRIPE_PRICE_UAG_FULL
+  // isn't set yet, fall back to the old $37.99 price so checkout still works
+  // (a working sale beats a broken one). Auto-corrects once the env var is added.
+  get() { return isUagPromoActive() ? process.env.STRIPE_PRICE_UAG : (process.env.STRIPE_PRICE_UAG_FULL || process.env.STRIPE_PRICE_UAG); },
   enumerable: true,
 });
 
