@@ -14,6 +14,40 @@ const tagColors = {
 const POSTS = {
 
   /* ================================================================ */
+  'how-much-does-the-faa-written-exam-cost': {
+    title: 'How Much Does the FAA Written Exam Cost? (2026)',
+    description: 'The FAA knowledge test costs $175 — the same for Private Pilot, Instrument, Commercial, and Part 107. Here\'s what the fee covers, what it doesn\'t, and the cost nobody budgets for.',
+    date: 'June 1, 2026',
+    dateISO: '2026-06-01',
+    readTime: '4 min read',
+    tag: 'Study Tips',
+    image: '/blog-student-pilot.jpg',
+    related: ['how-to-schedule-faa-written-exam', 'how-long-to-study-for-faa-written-exam', 'what-happens-if-you-fail-faa-written-exam'],
+    content: (
+      <>
+        <h2>The short answer</h2>
+        <p>$175. Every FAA knowledge test — Private Pilot, Instrument, Commercial, Part 107 — costs the same $175, paid to PSI when you schedule. That number is fixed by the FAA's contract with PSI, so it doesn't matter which testing center you pick. Anyone quoting you a different price is either out of date or adding their own markup.</p>
+
+        <h2>What the $175 actually covers</h2>
+        <p>One attempt. That's the part people miss. The fee buys you one sitting at a PSI testing center — your two hours, the workstation, and your score report the moment you finish. It does not cover a retake. Fail, and the next attempt is another $175.</p>
+
+        <h2>What it does not cover</h2>
+        <p>The written is the cheap part of becoming a pilot. The $175 is separate from your study materials, your instructor's time, the aircraft, and — for pilot certificates — the checkride, where the examiner (DPE) fee alone usually runs several hundred dollars. Part 107 is the exception: pass the written and you're essentially done, no practical test.</p>
+
+        <h2>The cost nobody budgets for: the retake</h2>
+        <p>Here's what we see constantly. Someone treats the written as a formality, studies off a free question dump for a weekend, and walks in at 65%. Now they're out the first $175, another $175 for the retake, plus two or three weeks of lost momentum waiting to rebook. The exam fee isn't the expensive part. <strong>Failing it twice is.</strong></p>
+        <p>The pilots who pass first try almost always did the same thing: they worked through the full question bank until the practice scores stopped moving, then booked the test. Not the other way around.</p>
+
+        <h2>So what should you actually spend?</h2>
+        <p>Budget the $175 once. Spend a little on prep that covers the entire question pool with real explanations — not a free PDF of leaked questions with no reasoning behind them. The difference between those two approaches is one test fee and about a month of your life.</p>
+
+        <h2>Prepare so you only pay the $175 once</h2>
+        <p><a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>FAAExaminations.com</a> gives you the full FAA question bank for your exam — Private Pilot, Instrument, Commercial, or Part 107 — with a referenced explanation for every question and a timed simulator that mirrors the real test. Free account, no credit card.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
   'how-to-read-a-metar': {
     title: 'How to Read a METAR (With Real Examples)',
     description: 'METARs show up on every FAA knowledge test. Learn to decode them field by field with real examples — Private Pilot, Instrument Rating, Commercial, and Part 107.',

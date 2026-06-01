@@ -4,6 +4,15 @@ import { Helmet } from 'react-helmet-async';
 
 const POSTS = [
   {
+    slug: 'how-much-does-the-faa-written-exam-cost',
+    title: 'How Much Does the FAA Written Exam Cost? (2026)',
+    excerpt: "The FAA knowledge test costs $175 — same for Private Pilot, Instrument, Commercial, and Part 107. Here's what the fee covers, what it doesn't, and the cost nobody budgets for: the retake.",
+    date: 'June 1, 2026',
+    readTime: '4 min read',
+    tag: 'Study Tips',
+    image: '/blog-student-pilot.jpg',
+  },
+  {
     slug: 'how-to-become-a-commercial-pilot',
     title: 'How to Become a Commercial Pilot: Requirements, Timeline, and Cost',
     excerpt: "A step-by-step breakdown of what it takes to become a commercial pilot — FAA certificate path, 250-hour requirements, realistic timeline from zero, and what it actually costs.",
