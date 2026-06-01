@@ -95,7 +95,7 @@ function CheatSheetCapture() {
 }
 
 const HERO_IMAGES = ['/plane-hero-4.webp', '/plane-hero-2.webp', '/plane-hero-3.webp', '/plane-hero-5.webp'];
-const UAG_PROMO_ACTIVE = Date.now() < new Date('2026-06-01T04:00:00Z').getTime();
+const UAG_PROMO_ACTIVE = false; // Intro promo ended — Part 107 is now $57.99 permanent
 
 export default function Landing() {
   const { user } = useAuth();

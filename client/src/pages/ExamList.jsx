@@ -1,5 +1,5 @@
 // client/src/pages/ExamList.jsx
-const UAG_PROMO_ACTIVE = Date.now() < new Date('2026-06-01T04:00:00Z').getTime();
+const UAG_PROMO_ACTIVE = false; // Intro promo ended — Part 107 is now $57.99 permanent
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { quizzes as quizApi } from '../api/client';
@@ -97,7 +97,7 @@ export default function ExamList() {
     const purchasedPlan = params.get('plan');
     const eid = params.get('eid');
     const sid = params.get('sid');
-    const planPrices = { uag: 37.99, bundle: 39.99 };
+    const planPrices = { uag: 57.99, bundle: 39.99 };
     const value = planPrices[purchasedPlan] ?? 24.99;
     if (window.fbq) fbq('track', 'Purchase', { value, currency: 'USD', content_name: purchasedPlan || 'unknown', content_ids: [purchasedPlan || 'unknown'], content_type: 'product' }, eid ? { eventID: eid } : {});
     if (window.gtag) gtag('event', 'purchase', { currency: 'USD', value });
@@ -313,7 +313,7 @@ export default function ExamList() {
               { label: 'Private Pilot (PAR)', to: '/par-practice-test', plan: 'par', color: '#30ace2', price: '$24.99/mo' },
               { label: 'Instrument Rating (IRA)', to: '/ira-practice-test', plan: 'ira', color: '#a78bfa', price: '$24.99/mo' },
               { label: 'Commercial Pilot (CAX)', to: '/cax-practice-test', plan: 'cax', color: '#fb923c', price: '$24.99/mo' },
-              { label: 'Part 107 Drone', to: '/part-107-practice-test', plan: 'uag', color: '#34d399', price: '$37.99' },
+              { label: 'Part 107 Drone', to: '/part-107-practice-test', plan: 'uag', color: '#34d399', price: '$57.99' },
             ].map(({ label, to, plan, color, price }) => (
               <div
                 key={plan}

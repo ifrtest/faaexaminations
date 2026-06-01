@@ -253,7 +253,7 @@ export default function Part107PracticeTest() {
       heroSub="The Part 107 knowledge test has 60 questions covering airspace, regulations, weather, chart reading, and drone operations. This free test spans all major topics — find your gaps before test day."
       productPath="/part-107"
       planParam="uag"
-      price="$37.99"
+      price="$57.99"
       questionCount="265"
       questions={QUESTIONS}
       faqs={FAQS}

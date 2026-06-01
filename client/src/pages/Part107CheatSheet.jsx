@@ -500,7 +500,7 @@ export default function Part107CheatSheet() {
               <Link to="/part-107-practice-test" className="lp-btn-outline">Free 30-Question Test</Link>
               <Link to="/register?plan=part107" className="lp-btn-hero" style={{ fontSize: 17, padding: '14px 32px' }}>Get Full Question Bank →</Link>
             </div>
-            <div style={{ marginTop: 12, fontSize: 13, color: 'var(--lp-text3)' }}>$37.99 one-time · Lifetime access</div>
+            <div style={{ marginTop: 12, fontSize: 13, color: 'var(--lp-text3)' }}>$57.99 one-time · Lifetime access</div>
           </div>
 
         </div>

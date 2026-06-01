@@ -8,8 +8,8 @@ import { Helmet } from 'react-helmet-async';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
-const UAG_PROMO_ACTIVE = Date.now() < new Date('2026-06-01T04:00:00Z').getTime();
-const UAG_PRICE_NUM    = UAG_PROMO_ACTIVE ? 37.99 : 57.99;
+const UAG_PROMO_ACTIVE = false; // Intro promo ended — Part 107 is now $57.99 permanent
+const UAG_PRICE_NUM    = 57.99;
 const UAG_PRICE_LABEL  = `$${UAG_PRICE_NUM} one-time`;
 
 const PLAN_INFO = {
@@ -122,7 +122,7 @@ function CheckoutForm({ plan, intentData, onSuccess, userEmail }) {
         const data = await res.json();
         if (!res.ok) { setErr(data.error || 'Could not activate subscription.'); setBusy(false); return; }
         if (window.fbq) fbq('track', 'Purchase', { value: 0, currency: 'USD', content_name: plan });
-        const PLAN_VALUE = { par: 24.99, ira: 24.99, cax: 24.99, bundle: 39.99, uag: 37.99 };
+        const PLAN_VALUE = { par: 24.99, ira: 24.99, cax: 24.99, bundle: 39.99, uag: 57.99 };
         if (window.gtag) gtag('event', 'purchase', { transaction_id: intentData.subscriptionId, value: PLAN_VALUE[plan] || 24.99, currency: 'USD', items: [{ item_id: plan, item_name: PLAN_INFO[plan].label, price: PLAN_VALUE[plan] || 24.99, quantity: 1 }] });
         onSuccess();
       } else {
@@ -300,7 +300,7 @@ export default function Checkout() {
 
   useEffect(() => {
     if (plan && PLAN_INFO[plan] && window.fbq) {
-      const PLAN_VALUE = { par: 24.99, ira: 24.99, cax: 24.99, bundle: 39.99, uag: 37.99 };
+      const PLAN_VALUE = { par: 24.99, ira: 24.99, cax: 24.99, bundle: 39.99, uag: 57.99 };
       fbq('track', 'InitiateCheckout', {
         value: PLAN_VALUE[plan] || 24.99,
         currency: 'USD',
