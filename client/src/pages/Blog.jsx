@@ -4,6 +4,15 @@ import { Helmet } from 'react-helmet-async';
 
 const POSTS = [
   {
+    slug: 'how-long-is-the-faa-written-exam-good-for',
+    title: 'How Long Is the FAA Written Exam Good For?',
+    excerpt: "Your FAA knowledge test result is valid for 24 calendar months. Here's exactly when it expires, what the clock is for, and the timing mistake that makes pilots pay for it twice.",
+    date: 'June 1, 2026',
+    readTime: '4 min read',
+    tag: 'Study Tips',
+    image: '/blog-preflight.jpg',
+  },
+  {
     slug: 'how-much-does-the-faa-written-exam-cost',
     title: 'How Much Does the FAA Written Exam Cost? (2026)',
     excerpt: "The FAA knowledge test costs $175 — same for Private Pilot, Instrument, Commercial, and Part 107. Here's what the fee covers, what it doesn't, and the cost nobody budgets for: the retake.",

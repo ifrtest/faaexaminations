@@ -14,6 +14,37 @@ const tagColors = {
 const POSTS = {
 
   /* ================================================================ */
+  'how-long-is-the-faa-written-exam-good-for': {
+    title: 'How Long Is the FAA Written Exam Good For?',
+    description: 'Your FAA knowledge test result is valid for 24 calendar months. Here\'s exactly when it expires, what the clock is for, and the timing mistake that makes pilots pay for it twice.',
+    date: 'June 1, 2026',
+    dateISO: '2026-06-01',
+    readTime: '4 min read',
+    tag: 'Study Tips',
+    image: '/blog-preflight.jpg',
+    related: ['how-much-does-the-faa-written-exam-cost', 'how-to-schedule-faa-written-exam', 'what-happens-if-you-fail-faa-written-exam'],
+    content: (
+      <>
+        <h2>24 calendar months. Then it's gone.</h2>
+        <p>Your FAA knowledge test result is valid for 24 calendar months. Not 24 months from the day you tested — 24 <em>calendar</em> months. Take it on June 12, 2024, and it's good through June 30, 2026. The clock always runs to the end of the month.</p>
+
+        <h2>What the clock is actually for</h2>
+        <p>For a pilot certificate, the written is a prerequisite for the practical test — the checkride. You have those 24 calendar months to pass your checkride. Miss the window and the written expires, which means you retake it. Another $175, another study cycle, for a test you already passed once.</p>
+
+        <h2>The mistake that costs people the most</h2>
+        <p>Knocking out the written first, "to get it out of the way," before they've barely started flight training. It feels productive. Then training takes longer than planned — it almost always does — and the written expires months before they're ready for the checkride. Now they're studying weather and regs all over again while also prepping for the practical.</p>
+        <p>Time it the other way. Take the written when your checkride is realistically within a year. You'll retain more, and you won't be racing a clock you started too early.</p>
+
+        <h2>Part 107 is different</h2>
+        <p>No checkride, so the remote pilot certificate doesn't expire on that 24-month clock. But to keep flying commercially, you have to complete free online recurrent training every 24 calendar months. It's not another $175 test — it's a short course you do on the FAA's training site. Different rule, same number.</p>
+
+        <h2>Study once, pass once</h2>
+        <p>The pilots who never pay for a second written are the ones who go in genuinely ready. <a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>FAAExaminations.com</a> gives you the full FAA question bank for your exam with a referenced explanation for every question and a timed simulator that matches the real test. Free account, no credit card.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
   'how-much-does-the-faa-written-exam-cost': {
     title: 'How Much Does the FAA Written Exam Cost? (2026)',
     description: 'The FAA knowledge test costs $175 — the same for Private Pilot, Instrument, Commercial, and Part 107. Here\'s what the fee covers, what it doesn\'t, and the cost nobody budgets for.',
