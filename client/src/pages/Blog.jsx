@@ -4,6 +4,15 @@ import { Helmet } from 'react-helmet-async';
 
 const POSTS = [
   {
+    slug: 'what-to-bring-to-the-faa-written-exam',
+    title: 'What to Bring to the FAA Written Exam (2026 Checklist)',
+    excerpt: "ID, authorization, calculator and E6B rules for the FAA knowledge test — plus what gets you turned away at the door. A complete what-to-bring checklist for the PSI testing center.",
+    date: 'June 1, 2026',
+    readTime: '4 min read',
+    tag: 'Study Tips',
+    image: '/blog-faa-simulator.jpg',
+  },
+  {
     slug: 'how-long-is-the-faa-written-exam-good-for',
     title: 'How Long Is the FAA Written Exam Good For?',
     excerpt: "Your FAA knowledge test result is valid for 24 calendar months. Here's exactly when it expires, what the clock is for, and the timing mistake that makes pilots pay for it twice.",

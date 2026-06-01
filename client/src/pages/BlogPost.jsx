@@ -14,6 +14,41 @@ const tagColors = {
 const POSTS = {
 
   /* ================================================================ */
+  'what-to-bring-to-the-faa-written-exam': {
+    title: 'What to Bring to the FAA Written Exam (2026 Checklist)',
+    description: 'ID, authorization, calculator and E6B rules for the FAA knowledge test — plus what gets you turned away at the door. A complete what-to-bring checklist for the PSI testing center.',
+    date: 'June 1, 2026',
+    dateISO: '2026-06-01',
+    readTime: '4 min read',
+    tag: 'Study Tips',
+    image: '/blog-faa-simulator.jpg',
+    related: ['how-much-does-the-faa-written-exam-cost', 'how-to-schedule-faa-written-exam', 'how-long-is-the-faa-written-exam-good-for'],
+    content: (
+      <>
+        <p>Showing up unprepared for the logistics is a dumb way to lose a test day. People get turned away at the door over ID and calculator rules that take five minutes to get right. Here's the whole list.</p>
+
+        <h2>Bring: a government photo ID</h2>
+        <p>It has to show your photo, date of birth, signature, and physical residential address. A driver's license usually covers all four. If yours doesn't show your address (some don't), bring a second document that does. No valid ID, no test — the proctor has no discretion here.</p>
+
+        <h2>Bring: your authorization to test (pilot certificates only)</h2>
+        <p>For Private, Instrument, and Commercial, you need proof you're ready: an instructor endorsement or a ground-school graduation certificate. It's valid for 30 days and can't be extended — so don't get endorsed and then sit on it for two months. <strong>Part 107 is the exception: no endorsement needed.</strong> Anyone 14 or older can just book it.</p>
+
+        <h2>Can you use a calculator on the FAA written exam?</h2>
+        <p>Yes — a basic electronic calculator or an electronic E6B flight computer. The catch: the proctor can make you prove it has no stored data and clear the memory before you go in. If your device can't be wiped, they can deny it. A manual E6B and a plotter are always fine. <strong>Your phone is not</strong> — an E6B app on your phone doesn't count, and phones aren't allowed in the room at all.</p>
+
+        <h2>Don't bring (or leave in the car)</h2>
+        <p>Phone, smartwatch, notes, scratch paper, anything that records. The testing center provides the figure supplement — the booklet of charts and tables the questions reference — and your scratch material. Bringing your own notes is the fastest way to turn a bad test day into a failed one with consequences.</p>
+
+        <h2>Get there 15 minutes early</h2>
+        <p>Late arrivals can be marked a no-show and forfeit the $175. Build in buffer.</p>
+
+        <h2>Walk in knowing the material cold</h2>
+        <p>Logistics get you in the door. The question bank gets you the pass. <a href="https://faaexaminations.com/register" style={{color:'var(--blue)'}}>FAAExaminations.com</a> gives you the full FAA question pool for your exam with a referenced explanation for every question and a timed simulator that matches the real test. Free account, no credit card.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
   'how-long-is-the-faa-written-exam-good-for': {
     title: 'How Long Is the FAA Written Exam Good For?',
     description: 'Your FAA knowledge test result is valid for 24 calendar months. Here\'s exactly when it expires, what the clock is for, and the timing mistake that makes pilots pay for it twice.',
