@@ -14,6 +14,40 @@ const tagColors = {
 const POSTS = {
 
   /* ================================================================ */
+  'faa-remote-id-rules': {
+    title: 'FAA Remote ID Rules: What Drone Pilots Must Do in 2026',
+    description: 'Remote ID is now fully enforced. Every drone that needs FAA registration must comply one of three ways: a Standard Remote ID drone, a broadcast module, or flying in a FRIA. Here\'s how each works.',
+    date: 'June 1, 2026',
+    dateISO: '2026-06-01',
+    readTime: '5 min read',
+    tag: 'Study Tips',
+    image: '/blog-part107-drone.jpg',
+    related: ['part-107-recurrent-training', 'part-107-study-guide-2026', 'part-107-topics-breakdown'],
+    content: (
+      <>
+        <h2>Remote ID is no longer optional — it's enforced</h2>
+        <p>The grace period is over. As of 2025, the FAA actively enforces Remote ID nationwide. If your drone requires FAA registration, it has to broadcast Remote ID information when you fly — your drone's ID, its location and altitude, and the location of your control station or takeoff point. Fly without it when you're required to, and you're risking enforcement action against your certificate.</p>
+        <p>Think of Remote ID as a digital license plate for your drone. There are exactly three ways to be legal.</p>
+
+        <h2>Option 1: A Standard Remote ID drone</h2>
+        <p>The simplest path. A Standard Remote ID drone has the broadcast capability built in from the factory — most drones sold by major manufacturers in the last few years already do. You register it, make sure Remote ID is enabled, and you're compliant. No extra hardware.</p>
+
+        <h2>Option 2: A Remote ID broadcast module</h2>
+        <p>If you fly an older drone with no built-in Remote ID, you can bolt on a broadcast module — a small add-on that broadcasts the required information. One catch that trips people up: with a module, you're restricted to <strong>visual line of sight only</strong>. The drone has to stay where you can see it. No exceptions.</p>
+
+        <h2>Option 3: Fly in a FRIA</h2>
+        <p>FAA-Recognized Identification Areas are designated locations — mostly AMA-sanctioned model aircraft clubs and some schools — where you can fly drones <em>without</em> Remote ID equipment at all. There are roughly 1,900 of them. If you fly a legacy drone you can't equip, flying inside a FRIA is your legal option, but you're confined to that location.</p>
+
+        <h2>How this shows up on the Part 107 exam</h2>
+        <p>Remote ID is now standard testable material on the Part 107 knowledge test. Expect questions on which operations require it, what information gets broadcast, and the line-of-sight limitation on broadcast modules. It's an easy area to score on if you've actually read the rule — and an easy one to miss if you assumed "my drone just does it automatically."</p>
+
+        <h2>Study the current Part 107 material</h2>
+        <p><a href="https://faaexaminations.com/part-107" style={{color:'var(--blue)'}}>FAAExaminations.com</a> keeps its Part 107 question bank current with rules like Remote ID, with a referenced explanation for every question and a timed simulator that matches the real test. One-time payment, lifetime access.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
   'part-107-recurrent-training': {
     title: 'Part 107 Recurrent Training: How to Renew Your Drone Certificate (2026)',
     description: 'Part 107 no longer requires a recurrent test. Renew with the free online ALC-677 course on FAASafety.gov every 24 calendar months. Here\'s exactly how it works and what changed.',

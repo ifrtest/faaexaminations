@@ -4,6 +4,15 @@ import { Helmet } from 'react-helmet-async';
 
 const POSTS = [
   {
+    slug: 'faa-remote-id-rules',
+    title: 'FAA Remote ID Rules: What Drone Pilots Must Do in 2026',
+    excerpt: "Remote ID is now fully enforced. Every drone that needs FAA registration must comply one of three ways: a Standard Remote ID drone, a broadcast module, or flying in a FRIA. Here's how each works.",
+    date: 'June 1, 2026',
+    readTime: '5 min read',
+    tag: 'Study Tips',
+    image: '/blog-part107-drone.jpg',
+  },
+  {
     slug: 'part-107-recurrent-training',
     title: 'Part 107 Recurrent Training: How to Renew Your Drone Certificate (2026)',
     excerpt: "Part 107 no longer requires a recurrent test. Renew with the free online ALC-677 course on FAASafety.gov every 24 calendar months. Here's exactly how it works and what changed.",
