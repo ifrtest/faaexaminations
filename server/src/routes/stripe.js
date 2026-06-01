@@ -581,7 +581,7 @@ router.post('/embedded/activate', requireAuth, async (req, res) => {
           email: u.rows[0].email,
           firstName: (u.rows[0].full_name || '').split(' ')[0] || '',
           userId,
-          value: 37.99,
+          value: 57.99,
           currency: 'USD',
         });
       }
