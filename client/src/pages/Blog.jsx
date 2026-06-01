@@ -4,6 +4,15 @@ import { Helmet } from 'react-helmet-async';
 
 const POSTS = [
   {
+    slug: 'part-107-recurrent-training',
+    title: 'Part 107 Recurrent Training: How to Renew Your Drone Certificate (2026)',
+    excerpt: "Part 107 no longer requires a recurrent test. Renew with the free online ALC-677 course on FAASafety.gov every 24 calendar months. Here's exactly how it works and what changed.",
+    date: 'June 1, 2026',
+    readTime: '4 min read',
+    tag: 'Study Tips',
+    image: '/blog-part107-drone.jpg',
+  },
+  {
     slug: 'what-to-bring-to-the-faa-written-exam',
     title: 'What to Bring to the FAA Written Exam (2026 Checklist)',
     excerpt: "ID, authorization, calculator and E6B rules for the FAA knowledge test — plus what gets you turned away at the door. A complete what-to-bring checklist for the PSI testing center.",

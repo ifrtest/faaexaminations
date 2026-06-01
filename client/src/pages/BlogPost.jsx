@@ -14,6 +14,39 @@ const tagColors = {
 const POSTS = {
 
   /* ================================================================ */
+  'part-107-recurrent-training': {
+    title: 'Part 107 Recurrent Training: How to Renew Your Drone Certificate (2026)',
+    description: 'Part 107 no longer requires a recurrent test. Renew with the free online ALC-677 course on FAASafety.gov every 24 calendar months. Here\'s exactly how it works and what changed.',
+    date: 'June 1, 2026',
+    dateISO: '2026-06-01',
+    readTime: '4 min read',
+    tag: 'Study Tips',
+    image: '/blog-part107-drone.jpg',
+    related: ['part-107-study-guide-2026', 'how-hard-is-the-part-107-exam', 'part-107-topics-breakdown'],
+    content: (
+      <>
+        <h2>There is no recurrent test anymore</h2>
+        <p>This is the part that confuses everyone, so let's kill the confusion first: as of March 2021, Part 107 remote pilots no longer take an in-person recurrent <em>test</em> to stay current. No testing center, no $175, no proctor. The FAA replaced it with free online training. If someone tells you to go book a recurrent exam at PSI, they're working off five-year-old information.</p>
+
+        <h2>What you actually do: ALC-677</h2>
+        <p>To keep flying commercially, you complete the free <strong>Part 107 Small UAS Recurrent course (ALC-677)</strong> on <a href="https://www.faasafety.gov" target="_blank" rel="noopener noreferrer" style={{color:'var(--blue)'}}>FAASafety.gov</a>. It's online, takes about two hours, and ends with a 45-question open-material knowledge check with unlimited retakes. You can't really "fail" it — you review and retry until you pass. Then you get a completion certificate.</p>
+
+        <h2>How often</h2>
+        <p>Every 24 calendar months. Same clock as the original knowledge test: it runs to the end of the month, not the exact date you finished. Let it lapse and you can't legally fly commercial operations under Part 107 until you complete it — so don't sit on it.</p>
+
+        <h2>Keep your completion certificate</h2>
+        <p>Save the ALC-677 completion certificate. If the FAA ever ramp-checks you, that certificate plus your remote pilot certificate is what proves you're current. No certificate, no proof.</p>
+
+        <h2>The catch most people miss</h2>
+        <p>"Free and online with unlimited retakes" makes people treat it as a click-through. It isn't graded like the initial exam, but the rules it covers — airspace, Remote ID, operating limits — are the ones that actually keep your operation legal. Pilots who breeze through the recurrent without reading are the same ones who later get a question about controlled-airspace authorization wrong on a real job.</p>
+
+        <h2>Going for your initial Part 107 instead?</h2>
+        <p>If you haven't passed the initial knowledge test yet, that one is still a real, proctored, $175 exam. <a href="https://faaexaminations.com/part-107" style={{color:'var(--blue)'}}>FAAExaminations.com</a> has the full Part 107 question bank with a referenced explanation for every question and a timed simulator that matches the real test. One-time payment, lifetime access.</p>
+      </>
+    ),
+  },
+
+  /* ================================================================ */
   'what-to-bring-to-the-faa-written-exam': {
     title: 'What to Bring to the FAA Written Exam (2026 Checklist)',
     description: 'ID, authorization, calculator and E6B rules for the FAA knowledge test — plus what gets you turned away at the door. A complete what-to-bring checklist for the PSI testing center.',
