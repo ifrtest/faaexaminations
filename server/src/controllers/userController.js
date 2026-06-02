@@ -9,9 +9,14 @@ exports.list = async (req, res, next) => {
   try {
     const search = req.query.search || '';
     const paidOnly = req.query.paidOnly === 'true' || req.query.paidOnly === '1';
+    const plan = (req.query.plan || '').toLowerCase();
     const page     = Math.max(parseInt(req.query.page, 10)     || 1, 1);
     const pageSize = Math.min(parseInt(req.query.pageSize, 10) || 25, 100);
     const offset   = (page - 1) * pageSize;
+
+    // Committed = a customer who is paying or about to be charged (card on file).
+    const COMMITTED = `subscription_status IN ('active','trialing','past_due','cancelling')`;
+    const PAID_PLANS = ['par', 'ira', 'cax', 'bundle', 'uag'];
 
     const params = [];
     const conds  = [];
@@ -20,15 +25,22 @@ exports.list = async (req, res, next) => {
       conds.push(`(email ILIKE $${params.length} OR full_name ILIKE $${params.length})`);
     }
     if (paidOnly) {
-      // "Paid" = a committed paying customer: a real subscription that is active/
-      // trialing/past_due/cancelling, OR a one-time Part 107 (uag_access) buyer.
-      conds.push(`((subscription IN ('par','ira','cax','bundle','uag') AND subscription_status IN ('active','trialing','past_due','cancelling')) OR uag_access = TRUE)`);
+      if (plan === 'uag') {
+        // Part 107: subscription buyers OR one-time uag_access buyers
+        conds.push(`((subscription = 'uag' AND ${COMMITTED}) OR uag_access = TRUE)`);
+      } else if (PAID_PLANS.includes(plan)) {
+        params.push(plan);
+        conds.push(`(subscription = $${params.length} AND ${COMMITTED})`);
+      } else {
+        // All paid (no specific plan selected)
+        conds.push(`((subscription IN ('par','ira','cax','bundle','uag') AND ${COMMITTED}) OR uag_access = TRUE)`);
+      }
     }
     const where = conds.length ? `WHERE ${conds.join(' AND ')}` : '';
 
-    const [list, count] = await Promise.all([
+    const queries = [
       db.query(
-        `SELECT id, email, full_name, role, subscription, uag_access, is_active, created_at,
+        `SELECT id, email, full_name, role, subscription, subscription_status, uag_access, is_active, created_at,
                 last_practice_at, last_practice_exam,
                 (SELECT COUNT(*)::int FROM exam_sessions es WHERE es.user_id = users.id AND es.is_demo IS NOT TRUE) AS session_count
            FROM users ${where}
@@ -37,9 +49,31 @@ exports.list = async (req, res, next) => {
         params
       ),
       db.query(`SELECT COUNT(*)::int AS total FROM users ${where}`, params),
-    ]);
+    ];
 
-    res.json({ users: list.rows, total: count.rows[0].total, page, pageSize });
+    // When in the Paid Users view, also return a per-plan breakdown for the chips.
+    if (paidOnly) {
+      queries.push(db.query(
+        `SELECT
+           COUNT(*) FILTER (WHERE subscription='par'    AND ${COMMITTED})::int AS par,
+           COUNT(*) FILTER (WHERE subscription='ira'    AND ${COMMITTED})::int AS ira,
+           COUNT(*) FILTER (WHERE subscription='cax'    AND ${COMMITTED})::int AS cax,
+           COUNT(*) FILTER (WHERE subscription='bundle' AND ${COMMITTED})::int AS bundle,
+           COUNT(*) FILTER (WHERE (subscription='uag' AND ${COMMITTED}) OR uag_access=TRUE)::int AS uag,
+           COUNT(*) FILTER (WHERE (subscription IN ('par','ira','cax','bundle','uag') AND ${COMMITTED}) OR uag_access=TRUE)::int AS all_paid
+         FROM users`
+      ));
+    }
+
+    const [list, count, breakdownRes] = await Promise.all(queries);
+
+    res.json({
+      users: list.rows,
+      total: count.rows[0].total,
+      page,
+      pageSize,
+      breakdown: breakdownRes ? breakdownRes.rows[0] : null,
+    });
   } catch (err) { next(err); }
 };
 

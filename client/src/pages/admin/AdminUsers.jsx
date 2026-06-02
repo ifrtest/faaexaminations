@@ -4,9 +4,20 @@ import { Link } from 'react-router-dom';
 import { users as usersApi } from '../../api/client';
 import { Spinner } from '../../components/ProtectedRoute';
 
+const PLAN_CHIPS = [
+  { key: '',       label: 'All paid', countKey: 'all_paid' },
+  { key: 'par',    label: 'PAR',      countKey: 'par' },
+  { key: 'ira',    label: 'IRA',      countKey: 'ira' },
+  { key: 'cax',    label: 'CAX',      countKey: 'cax' },
+  { key: 'bundle', label: 'Bundle',   countKey: 'bundle' },
+  { key: 'uag',    label: 'Part 107', countKey: 'uag' },
+];
+
 export default function AdminUsers({ paidOnly = false }) {
   const [list, setList]     = useState(null);
   const [total, setTotal]   = useState(0);
+  const [breakdown, setBreakdown] = useState(null);
+  const [plan, setPlan]     = useState('');
   const [page, setPage]     = useState(1);
   const [search, setSearch] = useState('');
   const [input, setInput]   = useState('');
@@ -15,12 +26,14 @@ export default function AdminUsers({ paidOnly = false }) {
 
   const load = () => {
     setList(null);
-    usersApi.list({ page, pageSize, search: search || undefined, paidOnly: paidOnly || undefined })
-      .then((d) => { setList(d.users); setTotal(d.total); })
+    usersApi.list({ page, pageSize, search: search || undefined, paidOnly: paidOnly || undefined, plan: plan || undefined })
+      .then((d) => { setList(d.users); setTotal(d.total); if (d.breakdown) setBreakdown(d.breakdown); })
       .catch((ex) => setErr(ex.response?.data?.error || 'Could not load users.'));
   };
 
-  useEffect(load, [page, search]);
+  useEffect(load, [page, search, plan]);
+
+  const selectPlan = (key) => { setPlan(key); setPage(1); };
 
   const applySearch = (e) => { e.preventDefault(); setSearch(input); setPage(1); };
 
@@ -59,12 +72,41 @@ export default function AdminUsers({ paidOnly = false }) {
     <>
       <h2 style={{ margin: '0 0 12px' }}>
         {paidOnly ? 'Paid Users' : 'Users'}
-        {list !== null && <span style={{ color: 'var(--muted)', fontWeight: 400, fontSize: '.9rem', marginLeft: 10 }}>{total} total</span>}
+        {list !== null && <span style={{ color: 'var(--muted)', fontWeight: 400, fontSize: '.9rem', marginLeft: 10 }}>{total} shown</span>}
       </h2>
       {paidOnly && (
-        <p style={{ color: 'var(--muted)', fontSize: '.85rem', margin: '0 0 12px' }}>
-          Showing only paying customers — active subscriptions, trials, past-due, and Part 107 buyers.
-        </p>
+        <>
+          <p style={{ color: 'var(--muted)', fontSize: '.85rem', margin: '0 0 12px' }}>
+            Paying customers only — active subscriptions, trials, past-due, and Part 107 buyers.
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
+            {PLAN_CHIPS.map((c) => {
+              const active = plan === c.key;
+              const n = breakdown ? breakdown[c.countKey] : null;
+              return (
+                <button
+                  key={c.key || 'all'}
+                  onClick={() => selectPlan(c.key)}
+                  className="btn btn-sm"
+                  style={{
+                    background: active ? 'var(--blue, #30ace2)' : 'transparent',
+                    color: active ? '#fff' : 'var(--text, #cbd5e1)',
+                    border: `1px solid ${active ? 'var(--blue, #30ace2)' : 'var(--border, #334155)'}`,
+                    borderRadius: 999,
+                    padding: '6px 14px',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                  }}
+                >
+                  {c.label}
+                  {n !== null && (
+                    <span style={{ marginLeft: 7, opacity: active ? 0.9 : 0.6, fontWeight: 700 }}>{n}</span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </>
       )}
 
       <div className="admin-toolbar">
