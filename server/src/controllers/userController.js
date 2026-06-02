@@ -8,16 +8,23 @@ const ROUNDS = parseInt(process.env.BCRYPT_ROUNDS || '10', 10);
 exports.list = async (req, res, next) => {
   try {
     const search = req.query.search || '';
+    const paidOnly = req.query.paidOnly === 'true' || req.query.paidOnly === '1';
     const page     = Math.max(parseInt(req.query.page, 10)     || 1, 1);
     const pageSize = Math.min(parseInt(req.query.pageSize, 10) || 25, 100);
     const offset   = (page - 1) * pageSize;
 
     const params = [];
-    let where = '';
+    const conds  = [];
     if (search) {
       params.push(`%${search}%`);
-      where = `WHERE email ILIKE $${params.length} OR full_name ILIKE $${params.length}`;
+      conds.push(`(email ILIKE $${params.length} OR full_name ILIKE $${params.length})`);
     }
+    if (paidOnly) {
+      // "Paid" = a committed paying customer: a real subscription that is active/
+      // trialing/past_due/cancelling, OR a one-time Part 107 (uag_access) buyer.
+      conds.push(`((subscription IN ('par','ira','cax','bundle','uag') AND subscription_status IN ('active','trialing','past_due','cancelling')) OR uag_access = TRUE)`);
+    }
+    const where = conds.length ? `WHERE ${conds.join(' AND ')}` : '';
 
     const [list, count] = await Promise.all([
       db.query(

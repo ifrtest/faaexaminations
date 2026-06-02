@@ -128,7 +128,8 @@ export default function App() {
               <Route path="questions"     element={<AdminQuestions />} />
               <Route path="questions/new" element={<AdminEditor />} />
               <Route path="questions/:id" element={<AdminEditor />} />
-              <Route path="users"         element={<AdminUsers />} />
+              <Route path="users"         element={<AdminUsers key="all" />} />
+              <Route path="users/paid"    element={<AdminUsers key="paid" paidOnly />} />
               <Route path="users/:id"     element={<AdminUserDetail />} />
               <Route path="figures"       element={<AdminFigures />} />
             </Route>

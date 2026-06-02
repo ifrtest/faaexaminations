@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { users as usersApi } from '../../api/client';
 import { Spinner } from '../../components/ProtectedRoute';
 
-export default function AdminUsers() {
+export default function AdminUsers({ paidOnly = false }) {
   const [list, setList]     = useState(null);
   const [total, setTotal]   = useState(0);
   const [page, setPage]     = useState(1);
@@ -15,7 +15,7 @@ export default function AdminUsers() {
 
   const load = () => {
     setList(null);
-    usersApi.list({ page, pageSize, search: search || undefined })
+    usersApi.list({ page, pageSize, search: search || undefined, paidOnly: paidOnly || undefined })
       .then((d) => { setList(d.users); setTotal(d.total); })
       .catch((ex) => setErr(ex.response?.data?.error || 'Could not load users.'));
   };
@@ -57,6 +57,16 @@ export default function AdminUsers() {
 
   return (
     <>
+      <h2 style={{ margin: '0 0 12px' }}>
+        {paidOnly ? 'Paid Users' : 'Users'}
+        {list !== null && <span style={{ color: 'var(--muted)', fontWeight: 400, fontSize: '.9rem', marginLeft: 10 }}>{total} total</span>}
+      </h2>
+      {paidOnly && (
+        <p style={{ color: 'var(--muted)', fontSize: '.85rem', margin: '0 0 12px' }}>
+          Showing only paying customers — active subscriptions, trials, past-due, and Part 107 buyers.
+        </p>
+      )}
+
       <div className="admin-toolbar">
         <form onSubmit={applySearch} style={{display:'flex',flex:1,gap:8}}>
           <input placeholder="Search by email or name…" value={input} onChange={(e) => setInput(e.target.value)} />
