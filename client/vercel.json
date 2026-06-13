@@ -14,6 +14,10 @@
     }
   ],
   "redirects": [
+    { "source": "/faa-private-pilot-airplane-par-:rest([a-z0-9-]*[a-z0-9])/", "destination": "/par", "permanent": true },
+    { "source": "/faa-commercial-pilot-airplane-cax-:rest([a-z0-9-]*[a-z0-9])/", "destination": "/cax", "permanent": true },
+    { "source": "/faa-instrument-rating-airplane-ira-:rest([a-z0-9-]*[a-z0-9])/", "destination": "/ira", "permanent": true },
+    { "source": "/faa-part-107-:rest([a-z0-9-]*[a-z0-9])/", "destination": "/part-107", "permanent": true },
     { "source": "/faa-private-pilot-airplane-par/:path*", "destination": "/par", "permanent": true },
     { "source": "/faa-private-pilot-airplane-par-:path*", "destination": "/par", "permanent": true },
     { "source": "/faa-private-pilot-airplane-par", "destination": "/par", "permanent": true },
