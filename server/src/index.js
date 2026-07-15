@@ -42,6 +42,16 @@ app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 
+// Stricter limit specifically on sign-up (anti-bot / card-testing signups).
+// A real person registers once; 6/hour/IP is generous for shared networks.
+app.use('/api/auth/register', rateLimit({
+  windowMs: 60 * 60 * 1000,
+  max: 6,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many sign-up attempts, please try again later.' },
+}));
+
 // Rate limit on auth endpoints (brute force protection)
 app.use('/api/auth', rateLimit({
   windowMs: 15 * 60 * 1000,

@@ -9,6 +9,23 @@ const { capiLead } = require('../utils/metaCapi');
 
 const ROUNDS = parseInt(process.env.BCRYPT_ROUNDS || '10', 10);
 
+// Canonicalize an email so alias tricks map to one identity.
+// Gmail ignores dots and everything after "+" in the local part — fraud bots
+// abuse this to spin up many "unique" accounts from one inbox. Normalize those
+// so a single Gmail can only register once.
+function canonicalEmail(email) {
+  const lower = String(email || '').trim().toLowerCase();
+  const at = lower.lastIndexOf('@');
+  if (at < 1) return lower;
+  let local = lower.slice(0, at);
+  const domain = lower.slice(at + 1);
+  local = local.split('+')[0];               // drop +tags for every provider
+  if (domain === 'gmail.com' || domain === 'googlemail.com') {
+    return local.replace(/\./g, '') + '@gmail.com';
+  }
+  return local + '@' + domain;
+}
+
 exports.register = async (req, res, next) => {
   try {
     const { email, password, full_name } = req.body;
@@ -22,6 +39,18 @@ exports.register = async (req, res, next) => {
     const existing = await db.query('SELECT id FROM users WHERE email=$1', [email.toLowerCase()]);
     if (existing.rows.length) {
       return res.status(409).json({ error: 'Email already registered' });
+    }
+
+    // Block alias-trick duplicates (e.g. Gmail dot/plus variations of an existing account)
+    const canon = canonicalEmail(email);
+    const domain = email.toLowerCase().split('@')[1] || '';
+    if (domain === 'gmail.com' || domain === 'googlemail.com') {
+      const gmails = await db.query(
+        `SELECT email FROM users WHERE lower(email) LIKE '%@gmail.com' OR lower(email) LIKE '%@googlemail.com'`
+      );
+      if (gmails.rows.some((r) => canonicalEmail(r.email) === canon)) {
+        return res.status(409).json({ error: 'Email already registered' });
+      }
     }
 
     const password_hash = await bcrypt.hash(password, ROUNDS);
