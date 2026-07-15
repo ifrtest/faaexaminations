@@ -47,8 +47,8 @@ export function AuthProvider({ children }) {
     return user;
   }, []);
 
-  const register = useCallback(async (email, password, full_name) => {
-    const data = await authApi.register({ email, password, full_name });
+  const register = useCallback(async (email, password, full_name, comp_code) => {
+    const data = await authApi.register({ email, password, full_name, comp_code });
     localStorage.setItem('faa_token', data.token);
     setUser(data.user);
     return data;

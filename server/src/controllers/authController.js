@@ -61,6 +61,37 @@ exports.register = async (req, res, next) => {
       [email.toLowerCase(), password_hash, full_name || null]
     );
     const user = rows[0];
+
+    // Apply a comp code (free-access promo) if one was supplied and is still valid.
+    // Grants full access for N days with status 'cancelling' so it auto-revokes at the end date.
+    let compApplied = null;
+    const rawCode = (req.body.comp_code || '').trim();
+    if (rawCode) {
+      const cc = await db.query(
+        `SELECT code, plan, days, max_uses, used_count FROM comp_codes
+           WHERE lower(code) = lower($1) AND active = true`,
+        [rawCode]
+      );
+      const code = cc.rows[0];
+      if (code && code.used_count < code.max_uses) {
+        const endsAt = new Date(Date.now() + code.days * 86400000).toISOString();
+        const uag = ['bundle', 'all', 'uag'].includes(code.plan);
+        await db.query(
+          `UPDATE users
+             SET subscription = $1, subscription_status = 'cancelling',
+                 subscription_ends_at = $2, uag_access = $3
+           WHERE id = $4`,
+          [code.plan, endsAt, uag, user.id]
+        );
+        await db.query(
+          `UPDATE comp_codes SET used_count = used_count + 1 WHERE lower(code) = lower($1)`,
+          [code.code]
+        );
+        user.subscription = code.plan;
+        compApplied = { plan: code.plan, days: code.days, ends_at: endsAt };
+      }
+    }
+
     const token = sign({ id: user.id, role: user.role });
     // Send welcome email (non-blocking)
     sendEmail({
@@ -78,7 +109,7 @@ exports.register = async (req, res, next) => {
       userId:    user.id,
       userAgent: req.headers['user-agent'],
     });
-    res.status(201).json({ user, token, leadEventId });
+    res.status(201).json({ user, token, leadEventId, compApplied });
   } catch (err) { next(err); }
 };
 

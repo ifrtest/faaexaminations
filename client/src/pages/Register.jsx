@@ -25,6 +25,7 @@ export default function Register() {
   const plan = searchParams.get('plan');
   const demo = searchParams.get('demo');   // e.g. "par", "ira", "cax", "uag"
   const next = searchParams.get('next');
+  const code = searchParams.get('code');   // comp/promo code — free access, no checkout
 
   useEffect(() => {
     if (!user) return;
@@ -46,9 +47,15 @@ export default function Register() {
     if (form.password !== form.confirm) return setErr('Passwords do not match.');
     setBusy(true);
     try {
-      const data = await register(form.email, form.password, form.full_name);
+      const data = await register(form.email, form.password, form.full_name, code || undefined);
       if (window.fbq) fbq('track', 'Lead', {}, data?.leadEventId ? { eventID: data.leadEventId } : {});
       if (window.gtag) gtag('event', 'sign_up', { method: 'email' });
+
+      // Comp code applied → user already has full access, skip checkout entirely
+      if (data?.compApplied) {
+        navigate('/exams?welcome=1', { replace: true });
+        return;
+      }
 
       // Demo flow: start a real quiz session so they experience the product immediately
       const examCode = demo && DEMO_EXAM_MAP[demo.toLowerCase()];
@@ -81,7 +88,13 @@ export default function Register() {
       </Helmet>
       <div className="card auth-card">
         <h2>Create Your Account</h2>
-        <p className="sub">Free to join · No credit card required to register</p>
+        {code ? (
+          <div style={{ background: 'rgba(22,163,74,0.1)', border: '1px solid rgba(22,163,74,0.45)', borderRadius: 10, padding: '12px 16px', margin: '0 0 16px', color: '#22c55e', fontWeight: 600, fontSize: '.95rem' }}>
+            🎁 Free access unlocked — create your account below and your free month starts instantly. No credit card needed.
+          </div>
+        ) : (
+          <p className="sub">Free to join · No credit card required to register</p>
+        )}
         <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 20px', display: 'flex', flexDirection: 'column', gap: 8 }}>
           <li style={{ display: 'flex', alignItems: 'center', gap: 9, fontSize: '.92rem', color: 'var(--text2, #cbd5e1)' }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
