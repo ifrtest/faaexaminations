@@ -226,6 +226,23 @@ function winBackInviteEmail(name, link, days = 7) {
   `, null);
 }
 
+// Re-engagement invite for users who signed up but never purchased. They already
+// have an account, so this is a "log in and claim" flow — `link` is a /redeem?code=XXX
+// URL and the free clock starts when they click, not when this is sent.
+function reengageEmail(name, link, days = 3) {
+  const greeting = name ? `Hi ${name},` : 'Hi there,';
+  const dur = `${days} day${Number(days) === 1 ? '' : 's'}`;
+  return shell('Your free access is ready ✈', `
+    <p style="margin:0 0 12px">${greeting}</p>
+    <p style="margin:0 0 12px">You created an account at FAAExaminations.com but haven't tried the full thing yet — so here's <strong style="color:#fff">${dur} of complete access, on us</strong>. No credit card, nothing to enter.</p>
+    <p style="margin:0 0 16px">You'll get the full question banks (PAR, IRA, CAX, and Part 107), the timed exam simulator, full explanations on every question, and an AI instructor you can ask "why is this the answer?" and get a clear answer in seconds.</p>
+    <p style="margin:0 0 20px">Click below, log in, and your ${dur} start right away:</p>
+    ${button(link, 'Unlock My Free Access →')}
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Any trouble, just reply to this email — it comes straight to me.</p>
+    <p style="margin:16px 0 0">Blue skies,<br/>Leila<br/>FAAExaminations.com</p>
+  `, null);
+}
+
 function passwordResetEmail(name, resetUrl, userId) {
   return shell('Reset Your Password', `
     <p style="margin:0 0 12px">Hi ${name},</p>
@@ -660,6 +677,7 @@ module.exports = {
   sendEmail,
   sendEmailStrict,
   winBackInviteEmail,
+  reengageEmail,
   welcomeEmail,
   subscriptionEmail,
   cancellationEmail,

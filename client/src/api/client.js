@@ -36,6 +36,7 @@ export const auth = {
   me:       () => api.get('/auth/me').then((r) => r.data),
   forgot:   (email) => api.post('/auth/password/forgot', { email }).then((r) => r.data),
   reset:    (token, password) => api.post('/auth/password/reset', { token, password }).then((r) => r.data),
+  claim:    (data) => api.post('/auth/claim', data).then((r) => r.data),
 };
 
 export const quizzes = {
@@ -79,6 +80,8 @@ export const users = {
   remove:     (id) => api.delete(`/users/${id}`).then((r) => r.data),
   results:    (id) => api.get(`/users/${id}/results`).then((r) => r.data),
   winback:    (data) => api.post('/users/winback', data).then((r) => r.data),
+  reengagePreview: () => api.get('/users/reengage').then((r) => r.data),
+  reengage:   (data) => api.post('/users/reengage', data).then((r) => r.data),
 };
 
 export default api;

@@ -113,6 +113,31 @@ exports.register = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
+// POST /api/auth/claim  (logged-in user redeems a comp code for their own account)
+// Used by the re-engagement flow — the free-access clock starts now (on click), not at send time.
+exports.claimCode = async (req, res, next) => {
+  try {
+    const raw = String(req.body.code || '').trim();
+    if (!raw) return res.status(400).json({ error: 'Missing code.' });
+    const cc = await db.query(
+      `SELECT code, plan, days, max_uses, used_count FROM comp_codes WHERE lower(code) = lower($1) AND active = true`,
+      [raw]
+    );
+    const code = cc.rows[0];
+    if (!code || code.used_count >= code.max_uses) {
+      return res.status(400).json({ error: 'This offer link is no longer valid or has already been used.' });
+    }
+    const endsAt = new Date(Date.now() + code.days * 86400000).toISOString();
+    const uag = ['bundle', 'all', 'uag'].includes(code.plan);
+    await db.query(
+      `UPDATE users SET subscription = $1, subscription_status = 'cancelling', subscription_ends_at = $2, uag_access = $3 WHERE id = $4`,
+      [code.plan, endsAt, uag, req.user.id]
+    );
+    await db.query(`UPDATE comp_codes SET used_count = used_count + 1 WHERE lower(code) = lower($1)`, [code.code]);
+    res.json({ ok: true, plan: code.plan, days: code.days, ends_at: endsAt });
+  } catch (err) { next(err); }
+};
+
 exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;

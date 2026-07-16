@@ -2,12 +2,28 @@
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const db     = require('../config/db');
-const { sendEmailStrict, winBackInviteEmail } = require('../utils/email');
+const { sendEmailStrict, winBackInviteEmail, reengageEmail } = require('../utils/email');
 
 const ROUNDS = parseInt(process.env.BCRYPT_ROUNDS || '10', 10);
 
-// Where win-back replies should land (an inbox the owner actually reads).
+// Where win-back / re-engagement replies should land (an inbox the owner reads).
 const WINBACK_REPLY_TO = process.env.WINBACK_REPLY_TO || 'faaexaminations@gmail.com';
+
+// Owner/test accounts to never email in bulk campaigns.
+const CAMPAIGN_EXCLUDE = [
+  'admin@faaexaminations.com', 'tryfaaexaminations@gmail.com', '888imanifest@gmail.com',
+  'hundals_ca@yahoo.ca', 'top10beers@gmail.com', 'ifrtest.ca@gmail.com', 'themissproductions@gmail.com',
+];
+
+// Users who signed up but never purchased and don't currently hold access.
+const REENGAGE_SELECT = `
+  FROM users
+  WHERE is_active = true AND role <> 'admin'
+    AND subscription_price_id IS NULL
+    AND (subscription IS NULL OR subscription IN ('free', 'none'))
+    AND (subscription_status IS NULL OR subscription_status NOT IN ('active', 'trialing', 'past_due', 'cancelling'))
+    AND COALESCE(email_unsubscribed, false) = false
+    AND lower(email) <> ALL($1)`;
 
 // POST /api/users/winback  (admin)
 // Body: { recipients: [{ email, name }], plan?, days? }
@@ -53,6 +69,47 @@ exports.winback = async (req, res, next) => {
       }
     }
 
+    res.json({ sent: results.filter((r) => r.ok).length, total: results.length, results });
+  } catch (err) { next(err); }
+};
+
+// GET /api/users/reengage  (admin) — preview how many signed-up non-buyers are eligible
+exports.reengagePreview = async (req, res, next) => {
+  try {
+    const { rows } = await db.query(`SELECT COUNT(*)::int AS count ${REENGAGE_SELECT}`, [CAMPAIGN_EXCLUDE]);
+    res.json({ count: rows[0].count });
+  } catch (err) { next(err); }
+};
+
+// POST /api/users/reengage  (admin) — email every signed-up non-buyer a claim-on-click free-access offer
+exports.reengage = async (req, res, next) => {
+  try {
+    const days = Number(req.body.days) || 3;
+    const { rows } = await db.query(
+      `SELECT id, email, full_name ${REENGAGE_SELECT} ORDER BY created_at DESC`,
+      [CAMPAIGN_EXCLUDE]
+    );
+    const clientUrl = process.env.CLIENT_URL || 'https://faaexaminations.com';
+    const results = [];
+    for (const u of rows) {
+      const code = 'RE-' + crypto.randomBytes(4).toString('hex').toUpperCase();
+      const link = `${clientUrl}/redeem?code=${code}`;
+      try {
+        await db.query(
+          `INSERT INTO comp_codes (code, plan, days, max_uses, note) VALUES ($1, 'bundle', $2, 1, $3)`,
+          [code, days, `reengage:${u.email.toLowerCase()}`]
+        );
+        await sendEmailStrict({
+          to: u.email,
+          subject: `${days} days of full access, on us`,
+          html: reengageEmail((u.full_name || '').split(' ')[0] || null, link, days),
+          replyTo: WINBACK_REPLY_TO,
+        });
+        results.push({ email: u.email, ok: true });
+      } catch (err) {
+        results.push({ email: u.email, ok: false, error: err.message });
+      }
+    }
     res.json({ sent: results.filter((r) => r.ok).length, total: results.length, results });
   } catch (err) { next(err); }
 };

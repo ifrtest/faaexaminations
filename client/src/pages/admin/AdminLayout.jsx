@@ -14,6 +14,7 @@ export default function AdminLayout() {
           <NavLink to="/admin/users" end>Users</NavLink>
           <NavLink to="/admin/users/paid">Paid users</NavLink>
           <NavLink to="/admin/winback">Win-back emails</NavLink>
+          <NavLink to="/admin/reengage">Re-engage free users</NavLink>
         </aside>
         <section>
           <Outlet />

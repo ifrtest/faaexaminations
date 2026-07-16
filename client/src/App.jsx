@@ -57,6 +57,8 @@ const AdminQuestions       = lazy(() => import('./pages/admin/AdminQuestions'));
 const AdminEditor          = lazy(() => import('./pages/admin/AdminEditor'));
 const AdminUsers           = lazy(() => import('./pages/admin/AdminUsers'));
 const AdminWinBack         = lazy(() => import('./pages/admin/AdminWinBack'));
+const AdminReengage        = lazy(() => import('./pages/admin/AdminReengage'));
+const Redeem               = lazy(() => import('./pages/Redeem'));
 const AdminUserDetail      = lazy(() => import('./pages/admin/AdminUserDetail'));
 const AdminFigures         = lazy(() => import('./pages/admin/AdminFigures'));
 
@@ -103,6 +105,7 @@ export default function App() {
             <Route path="/cheatsheet/verify/:token" element={<CheatSheetVerify />} />
             <Route path="/login"          element={<Login />} />
             <Route path="/register"       element={<Register />} />
+            <Route path="/redeem"         element={<Redeem />} />
             <Route path="/forgot"         element={<ForgotPassword />} />
             <Route path="/reset"          element={<ResetPassword />} />
 
@@ -132,6 +135,7 @@ export default function App() {
               <Route path="users"         element={<AdminUsers key="all" />} />
               <Route path="users/paid"    element={<AdminUsers key="paid" paidOnly />} />
               <Route path="winback"       element={<AdminWinBack />} />
+              <Route path="reengage"      element={<AdminReengage />} />
               <Route path="users/:id"     element={<AdminUserDetail />} />
               <Route path="figures"       element={<AdminFigures />} />
             </Route>

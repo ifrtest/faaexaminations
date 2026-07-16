@@ -9,6 +9,7 @@ router.post('/login',                 ctrl.login);
 router.post('/logout',                ctrl.logout);
 router.post('/password/forgot',       ctrl.requestPasswordReset);
 router.post('/password/reset',        ctrl.resetPassword);
+router.post('/claim',   requireAuth,  ctrl.claimCode);
 router.get('/me',       requireAuth,  ctrl.me);
 
 module.exports = router;
