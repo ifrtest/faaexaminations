@@ -56,7 +56,7 @@ async function sendEmail({ to, subject, html, userId = null, allowUnsubscribed =
       }
     }
     const payload = { from: from || FROM(), to, subject, html, text: htmlToText(html) };
-    if (replyTo) payload.reply_to = replyTo;   // replies land in a monitored inbox
+    if (replyTo) { payload.replyTo = replyTo; payload.reply_to = replyTo; }   // replies land in a monitored inbox (v6 uses replyTo)
     await getResend().emails.send(payload);
   } catch (err) {
     console.error('[email] failed to send:', err.message);
@@ -67,7 +67,7 @@ async function sendEmail({ to, subject, html, userId = null, allowUnsubscribed =
 // report per-recipient success/failure instead of silently swallowing errors.
 async function sendEmailStrict({ to, subject, html, replyTo = null }) {
   const payload = { from: FROM(), to, subject, html, text: htmlToText(html) };
-  if (replyTo) payload.reply_to = replyTo;
+  if (replyTo) { payload.replyTo = replyTo; payload.reply_to = replyTo; }   // v6 uses replyTo
   const { data, error } = await getResend().emails.send(payload);
   if (error) throw new Error(error.message || 'send failed');
   return data;
