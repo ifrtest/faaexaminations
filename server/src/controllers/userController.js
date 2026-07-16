@@ -43,8 +43,8 @@ exports.winback = async (req, res, next) => {
         );
         await sendEmailStrict({
           to: email,
-          subject: `A free month at FAAExaminations${name ? `, ${name.split(' ')[0]}` : ''}`,
-          html: winBackInviteEmail(name.split(' ')[0] || null, link),
+          subject: `Your free access to FAAExaminations${name ? `, ${name.split(' ')[0]}` : ''}`,
+          html: winBackInviteEmail(name.split(' ')[0] || null, link, days),
           replyTo: WINBACK_REPLY_TO,
         });
         results.push({ email, ok: true, code, link });

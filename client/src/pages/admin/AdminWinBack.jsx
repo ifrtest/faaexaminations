@@ -36,7 +36,7 @@ function parseRecipients(text) {
 export default function AdminWinBack() {
   const [text, setText]     = useState('');
   const [plan, setPlan]     = useState('bundle');
-  const [days, setDays]     = useState(30);
+  const [days, setDays]     = useState(7);
   const [busy, setBusy]     = useState(false);
   const [results, setResults] = useState(null);
   const [err, setErr]       = useState('');
@@ -46,7 +46,7 @@ export default function AdminWinBack() {
   const send = async () => {
     setErr('');
     if (recipients.length === 0) { setErr('Paste at least one email address.'); return; }
-    if (!window.confirm(`Send a free-month invite to ${recipients.length} ${recipients.length === 1 ? 'person' : 'people'}? This emails them immediately.`)) return;
+    if (!window.confirm(`Send a ${days}-day free-access invite to ${recipients.length} ${recipients.length === 1 ? 'person' : 'people'}? This emails them immediately.`)) return;
     setBusy(true);
     setResults(null);
     try {
@@ -63,7 +63,7 @@ export default function AdminWinBack() {
     <>
       <h2 style={{ margin: '0 0 6px' }}>Win-Back Emails</h2>
       <p style={{ color: 'var(--muted)', fontSize: '.9rem', margin: '0 0 20px' }}>
-        Paste old customers below and send each a personalized free-month invite — from support@faaexaminations.com,
+        Paste old customers below and send each a personalized free-access invite — from support@faaexaminations.com,
         with replies going to <strong>faaexaminations@gmail.com</strong>. Each person gets a unique one-time link;
         access auto-expires after the free period.
       </p>

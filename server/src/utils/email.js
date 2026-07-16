@@ -211,15 +211,16 @@ function winBackEmail(name, userId) {
 }
 
 // Win-back invite for former customers of the OLD site — carries a comp link that
-// grants a free month with no card. `link` is a /register?code=XXX URL.
-function winBackInviteEmail(name, link) {
+// grants free access with no card. `link` is a /register?code=XXX URL.
+function winBackInviteEmail(name, link, days = 7) {
   const greeting = name ? `Hi ${name},` : 'Hi there,';
-  return shell('A free month, on us ✈', `
+  const dur = `${days} day${Number(days) === 1 ? '' : 's'}`;
+  return shell('Your free access to FAAExaminations ✈', `
     <p style="margin:0 0 12px">${greeting}</p>
     <p style="margin:0 0 12px">It's Leila from FAAExaminations.com. You were a member back on our original site, and since we've completely rebuilt the platform, I wanted to invite you to come check it out.</p>
-    <p style="margin:0 0 16px">It's faster now, the question banks are bigger and fully current for 2026 (PAR, IRA, CAX, and Part 107), and we added a timed exam simulator that matches the real FAA format, full explanations on every question, and an AI instructor you can ask "why is this the answer?" and get a clear answer in seconds.</p>
-    <p style="margin:0 0 20px">Here's a link that gives you a <strong style="color:#fff">full month of complete access — free, no credit card</strong>:</p>
-    ${button(link, 'Unlock My Free Month →')}
+    <p style="margin:0 0 16px">It's faster now, the question banks are bigger and fully up to date (PAR, IRA, CAX, and Part 107), and we added a timed exam simulator that matches the real FAA format, full explanations on every question, and an AI instructor you can ask "why is this the answer?" and get a clear answer in seconds.</p>
+    <p style="margin:0 0 20px">Here's a link that gives you <strong style="color:#fff">${dur} of complete access — free, no credit card</strong>:</p>
+    ${button(link, 'Start My Free Access →')}
     <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Just create your account on that page and everything unlocks instantly. Any trouble, just reply to this email — it comes straight to me.</p>
     <p style="margin:16px 0 0">Blue skies,<br/>Leila<br/>FAAExaminations.com</p>
   `, null);
