@@ -13,6 +13,7 @@ export default function AdminLayout() {
           <NavLink to="/admin/figures">Link IRA figures</NavLink>
           <NavLink to="/admin/users" end>Users</NavLink>
           <NavLink to="/admin/users/paid">Paid users</NavLink>
+          <NavLink to="/admin/winback">Win-back emails</NavLink>
         </aside>
         <section>
           <Outlet />

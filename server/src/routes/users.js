@@ -10,6 +10,7 @@ router.put('/me', requireAuth, ctrl.updateMe);
 // Admin
 router.get('/admin/stats',        requireAuth, requireAdmin, ctrl.adminStats);
 router.get('/admin/email-export', requireAuth, requireAdmin, ctrl.emailExport);
+router.post('/winback',           requireAuth, requireAdmin, ctrl.winback);
 router.get('/',                   requireAuth, requireAdmin, ctrl.list);
 router.get('/:id/results', requireAuth, requireAdmin, ctrl.userResults);
 router.get('/:id',         requireAuth, requireAdmin, ctrl.get);

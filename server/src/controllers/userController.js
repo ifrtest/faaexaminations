@@ -1,8 +1,61 @@
 // server/src/controllers/userController.js
+const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const db     = require('../config/db');
+const { sendEmailStrict, winBackInviteEmail } = require('../utils/email');
 
 const ROUNDS = parseInt(process.env.BCRYPT_ROUNDS || '10', 10);
+
+// Where win-back replies should land (an inbox the owner actually reads).
+const WINBACK_REPLY_TO = process.env.WINBACK_REPLY_TO || 'faaexaminations@gmail.com';
+
+// POST /api/users/winback  (admin)
+// Body: { recipients: [{ email, name }], plan?, days? }
+// For each recipient: mint a single-use comp code, then email a personalized
+// free-month invite from the site's own address with Reply-To set to a monitored inbox.
+exports.winback = async (req, res, next) => {
+  try {
+    const { recipients, plan = 'bundle', days = 30 } = req.body;
+    if (!Array.isArray(recipients) || recipients.length === 0) {
+      return res.status(400).json({ error: 'No recipients provided.' });
+    }
+    if (recipients.length > 200) {
+      return res.status(400).json({ error: 'Please send in batches of 200 or fewer.' });
+    }
+
+    const clientUrl = process.env.CLIENT_URL || 'https://faaexaminations.com';
+    const results = [];
+
+    for (const r of recipients) {
+      const email = String(r.email || '').trim().toLowerCase();
+      const name  = String(r.name || '').trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        results.push({ email: r.email, ok: false, error: 'Invalid email' });
+        continue;
+      }
+      const code = 'WB-' + crypto.randomBytes(4).toString('hex').toUpperCase();
+      const link = `${clientUrl}/register?code=${code}`;
+      try {
+        await db.query(
+          `INSERT INTO comp_codes (code, plan, days, max_uses, note)
+           VALUES ($1, $2, $3, 1, $4)`,
+          [code, plan, days, `winback:${email}`]
+        );
+        await sendEmailStrict({
+          to: email,
+          subject: `A free month at FAAExaminations${name ? `, ${name.split(' ')[0]}` : ''}`,
+          html: winBackInviteEmail(name.split(' ')[0] || null, link),
+          replyTo: WINBACK_REPLY_TO,
+        });
+        results.push({ email, ok: true, code, link });
+      } catch (err) {
+        results.push({ email, ok: false, error: err.message });
+      }
+    }
+
+    res.json({ sent: results.filter((r) => r.ok).length, total: results.length, results });
+  } catch (err) { next(err); }
+};
 
 // GET /api/users  (admin)
 exports.list = async (req, res, next) => {

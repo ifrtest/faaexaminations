@@ -43,7 +43,7 @@ function htmlToText(html) {
     .trim();
 }
 
-async function sendEmail({ to, subject, html, userId = null, allowUnsubscribed = false, from = null }) {
+async function sendEmail({ to, subject, html, userId = null, allowUnsubscribed = false, from = null, replyTo = null }) {
   try {
     if (userId && !allowUnsubscribed) {
       const { rows } = await db.query(
@@ -55,10 +55,22 @@ async function sendEmail({ to, subject, html, userId = null, allowUnsubscribed =
         return;
       }
     }
-    await getResend().emails.send({ from: from || FROM(), to, subject, html, text: htmlToText(html) });
+    const payload = { from: from || FROM(), to, subject, html, text: htmlToText(html) };
+    if (replyTo) payload.reply_to = replyTo;   // replies land in a monitored inbox
+    await getResend().emails.send(payload);
   } catch (err) {
     console.error('[email] failed to send:', err.message);
   }
+}
+
+// Strict send that surfaces failures — used by the win-back sender so it can
+// report per-recipient success/failure instead of silently swallowing errors.
+async function sendEmailStrict({ to, subject, html, replyTo = null }) {
+  const payload = { from: FROM(), to, subject, html, text: htmlToText(html) };
+  if (replyTo) payload.reply_to = replyTo;
+  const { data, error } = await getResend().emails.send(payload);
+  if (error) throw new Error(error.message || 'send failed');
+  return data;
 }
 
 // ---------- Brand tokens (dark aviation theme) ----------
@@ -196,6 +208,21 @@ function winBackEmail(name, userId) {
     ${button(`${SITE()}/exams`, 'Pick Up Where You Left Off →')}
     <p style="color:${MUTED};font-size:13px;margin:24px 0 0">If there's anything we could have done better, just reply to this email. We read every single one.</p>
   `, userId);
+}
+
+// Win-back invite for former customers of the OLD site — carries a comp link that
+// grants a free month with no card. `link` is a /register?code=XXX URL.
+function winBackInviteEmail(name, link) {
+  const greeting = name ? `Hi ${name},` : 'Hi there,';
+  return shell('A free month, on us ✈', `
+    <p style="margin:0 0 12px">${greeting}</p>
+    <p style="margin:0 0 12px">It's Leila from FAAExaminations.com. You were a member back on our original site, and since we've completely rebuilt the platform, I wanted to invite you to come check it out.</p>
+    <p style="margin:0 0 16px">It's faster now, the question banks are bigger and fully current for 2026 (PAR, IRA, CAX, and Part 107), and we added a timed exam simulator that matches the real FAA format, full explanations on every question, and an AI instructor you can ask "why is this the answer?" and get a clear answer in seconds.</p>
+    <p style="margin:0 0 20px">Here's a link that gives you a <strong style="color:#fff">full month of complete access — free, no credit card</strong>:</p>
+    ${button(link, 'Unlock My Free Month →')}
+    <p style="color:${MUTED};font-size:13px;margin:24px 0 0">Just create your account on that page and everything unlocks instantly. Any trouble, just reply to this email — it comes straight to me.</p>
+    <p style="margin:16px 0 0">Blue skies,<br/>Leila<br/>FAAExaminations.com</p>
+  `, null);
 }
 
 function passwordResetEmail(name, resetUrl, userId) {
@@ -630,6 +657,8 @@ async function cheatsheetPreverifiedUrl(email, plan) {
 
 module.exports = {
   sendEmail,
+  sendEmailStrict,
+  winBackInviteEmail,
   welcomeEmail,
   subscriptionEmail,
   cancellationEmail,

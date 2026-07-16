@@ -78,6 +78,7 @@ export const users = {
   adminStats: () => api.get('/users/admin/stats').then((r) => r.data),
   remove:     (id) => api.delete(`/users/${id}`).then((r) => r.data),
   results:    (id) => api.get(`/users/${id}/results`).then((r) => r.data),
+  winback:    (data) => api.post('/users/winback', data).then((r) => r.data),
 };
 
 export default api;

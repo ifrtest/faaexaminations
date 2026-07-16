@@ -56,6 +56,7 @@ const AdminDashboard       = lazy(() => import('./pages/admin/AdminDashboard'));
 const AdminQuestions       = lazy(() => import('./pages/admin/AdminQuestions'));
 const AdminEditor          = lazy(() => import('./pages/admin/AdminEditor'));
 const AdminUsers           = lazy(() => import('./pages/admin/AdminUsers'));
+const AdminWinBack         = lazy(() => import('./pages/admin/AdminWinBack'));
 const AdminUserDetail      = lazy(() => import('./pages/admin/AdminUserDetail'));
 const AdminFigures         = lazy(() => import('./pages/admin/AdminFigures'));
 
@@ -130,6 +131,7 @@ export default function App() {
               <Route path="questions/:id" element={<AdminEditor />} />
               <Route path="users"         element={<AdminUsers key="all" />} />
               <Route path="users/paid"    element={<AdminUsers key="paid" paidOnly />} />
+              <Route path="winback"       element={<AdminWinBack />} />
               <Route path="users/:id"     element={<AdminUserDetail />} />
               <Route path="figures"       element={<AdminFigures />} />
             </Route>
