@@ -13,6 +13,7 @@ export default function Redeem() {
   const ran = useRef(false);
   const [status, setStatus] = useState('working');   // working | done | error
   const [days, setDays]     = useState(null);
+  const [plan, setPlan]     = useState(null);
   const [msg, setMsg]       = useState('');
 
   useEffect(() => {
@@ -28,6 +29,7 @@ export default function Redeem() {
       try {
         const d = await authApi.claim({ code });
         setDays(d.days);
+        setPlan(d.plan);
         setStatus('done');
       } catch (ex) {
         setStatus('error');
@@ -54,6 +56,11 @@ export default function Redeem() {
               Every exam (PAR, IRA, CAX, Part 107), the timed simulator, and the AI instructor are all yours. No charge.
             </p>
             <Link to="/exams" className="btn btn-primary btn-block">Start Studying →</Link>
+            {plan && plan !== 'bundle' && plan !== 'all' && (
+              <Link to="/checkout?plan=bundle" style={{ display: 'inline-block', marginTop: 16, color: 'var(--blue, #30ace2)', fontWeight: 600, fontSize: '.92rem', textDecoration: 'none' }}>
+                Want all four exams? Upgrade to full access →
+              </Link>
+            )}
           </>
         )}
         {status === 'error' && (
