@@ -15,6 +15,20 @@ const CAMPAIGN_EXCLUDE = [
   'hundals_ca@yahoo.ca', 'top10beers@gmail.com', 'ifrtest.ca@gmail.com', 'themissproductions@gmail.com',
 ];
 
+// Map the exam a user showed interest in (from their last practice/quiz) to a plan.
+// Score suffixes like "PAR 93%" are stripped; TRUST (free drone test) → Part 107 upsell.
+function examToPlan(raw) {
+  const code = String(raw || '').trim().split(/\s+/)[0].toUpperCase();
+  switch (code) {
+    case 'PAR':   return { plan: 'par',    label: 'Private Pilot (PAR)',      desc: 'full access to our Private Pilot (PAR) prep' };
+    case 'IRA':   return { plan: 'ira',    label: 'Instrument Rating (IRA)',  desc: 'full access to our Instrument Rating (IRA) prep' };
+    case 'CAX':   return { plan: 'cax',    label: 'Commercial Pilot (CAX)',   desc: 'full access to our Commercial Pilot (CAX) prep' };
+    case 'UAG':
+    case 'TRUST': return { plan: 'uag',    label: 'Part 107',                 desc: 'full access to our Part 107 prep' };
+    default:      return { plan: 'bundle', label: 'full access',              desc: 'complete access to all our exams' };
+  }
+}
+
 // Users who signed up but never purchased and don't currently hold access.
 const REENGAGE_SELECT = `
   FROM users
@@ -86,7 +100,10 @@ exports.reengage = async (req, res, next) => {
   try {
     const days = Number(req.body.days) || 3;
     const { rows } = await db.query(
-      `SELECT id, email, full_name ${REENGAGE_SELECT} ORDER BY created_at DESC`,
+      `SELECT id, email, full_name, last_practice_exam,
+              (SELECT ex.code FROM exam_sessions s JOIN exams ex ON ex.id = s.exam_id
+                WHERE s.user_id = users.id ORDER BY s.started_at DESC LIMIT 1) AS last_session_exam
+       ${REENGAGE_SELECT} ORDER BY created_at DESC`,
       [CAMPAIGN_EXCLUDE]
     );
     const clientUrl = process.env.CLIENT_URL || 'https://faaexaminations.com';
@@ -94,18 +111,21 @@ exports.reengage = async (req, res, next) => {
     for (const u of rows) {
       const code = 'RE-' + crypto.randomBytes(4).toString('hex').toUpperCase();
       const link = `${clientUrl}/redeem?code=${code}`;
+      // Give them a free trial of the exam they actually cared about
+      const { plan, label, desc } = examToPlan(u.last_practice_exam || u.last_session_exam);
+      const subjectLabel = plan === 'bundle' ? 'full access' : `${label} access`;
       try {
         await db.query(
-          `INSERT INTO comp_codes (code, plan, days, max_uses, note) VALUES ($1, 'bundle', $2, 1, $3)`,
-          [code, days, `reengage:${u.email.toLowerCase()}`]
+          `INSERT INTO comp_codes (code, plan, days, max_uses, note) VALUES ($1, $2, $3, 1, $4)`,
+          [code, plan, days, `reengage:${u.email.toLowerCase()}`]
         );
         await sendEmailStrict({
           to: u.email,
-          subject: `${days} days of full access, on us`,
-          html: reengageEmail((u.full_name || '').split(' ')[0] || null, link, days),
+          subject: `${days} days of ${subjectLabel}, on us`,
+          html: reengageEmail((u.full_name || '').split(' ')[0] || null, link, days, desc),
           replyTo: WINBACK_REPLY_TO,
         });
-        results.push({ email: u.email, ok: true });
+        results.push({ email: u.email, ok: true, plan });
       } catch (err) {
         results.push({ email: u.email, ok: false, error: err.message });
       }
