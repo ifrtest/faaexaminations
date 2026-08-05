@@ -1,0 +1,48 @@
+name: Daily Database Backup
+
+# Runs a full, restorable backup of the Supabase database every day and keeps
+# a rolling 90-day history as a private GitHub artifact.
+#   - Automatic: 08:00 UTC daily (~3–4 AM Eastern)
+#   - Manual:    Actions tab → "Daily Database Backup" → "Run workflow"
+#
+# Requires one repository secret:  SUPABASE_DB_URL
+#   Supabase → Project Settings → Database → Connection string → "Session pooler"
+#   (the URI that starts with postgresql://postgres... — it contains the password)
+
+on:
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install PostgreSQL 17 client
+        run: |
+          sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+          curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/pgdg.gpg
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client-17
+
+      - name: Dump database
+        env:
+          DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          if [ -z "$DB_URL" ]; then
+            echo "::error::SUPABASE_DB_URL secret is not set. Add it in repo Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+          STAMP=$(date -u +%Y-%m-%d_%H%M)
+          # -Fc = custom format: compressed and restorable with pg_restore
+          pg_dump "$DB_URL" --no-owner --no-privileges -Fc -f "backup-$STAMP.dump"
+          echo "BACKUP_FILE=backup-$STAMP.dump" >> "$GITHUB_ENV"
+          ls -lh backup-*.dump
+
+      - name: Upload backup
+        uses: actions/upload-artifact@v4
+        with:
+          name: db-backup-${{ github.run_id }}
+          path: ${{ env.BACKUP_FILE }}
+          retention-days: 90
+          if-no-files-found: error
