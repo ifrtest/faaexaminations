@@ -26,11 +26,38 @@ function canonicalEmail(email) {
   return local + '@' + domain;
 }
 
+// Heuristic for the Aug-2026 signup bot: full_name is a single run of random
+// mixed-case letters (e.g. "lfjrmSMCPBlxHSyWIWIe", "VTfGyGzqyxfzhIQy").
+// Real names have spaces, or are short, or don't flip case every few letters.
+function looksLikeBotName(name) {
+  const s = String(name || '').trim();
+  if (!s || s.includes(' ') || s.length < 14) return false;
+  if (!/^[A-Za-z]+$/.test(s)) return false;
+  let flips = 0;
+  for (let i = 1; i < s.length; i++) {
+    const a = s[i - 1] === s[i - 1].toUpperCase();
+    const b = s[i] === s[i].toUpperCase();
+    if (a !== b) flips++;
+  }
+  const upper = (s.match(/[A-Z]/g) || []).length;
+  // "Christopher" -> 1 flip; bot strings -> 6+ flips with plenty of capitals
+  return flips >= 6 && upper >= 4;
+}
+
 exports.register = async (req, res, next) => {
   try {
     const { email, password, full_name } = req.body;
     if (!email || !password) {
       return res.status(400).json({ error: 'Email and password are required' });
+    }
+
+    // Honeypot: real users never fill the hidden "website" field; bots auto-fill it.
+    // Random-letter names are the other fingerprint of the signup bot.
+    // Return a generic error (don't tell the bot why) and don't touch the DB,
+    // so no welcome email / CAPI Lead / Stripe customer gets created for junk.
+    if ((req.body.website && String(req.body.website).trim()) || looksLikeBotName(full_name)) {
+      console.warn('[register] blocked bot-like signup', { email, full_name, ip: req.ip });
+      return res.status(400).json({ error: 'Could not create account. Please contact support.' });
     }
     if (password.length < 8) {
       return res.status(400).json({ error: 'Password must be at least 8 characters' });

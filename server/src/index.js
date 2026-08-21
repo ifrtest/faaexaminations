@@ -30,6 +30,11 @@ const activityRoutes     = require('./routes/activity');
 const app = express();
 const PORT = parseInt(process.env.PORT, 10) || 5000;
 
+// Behind Render's load balancer — trust the first X-Forwarded-For hop so req.ip
+// is the real client IP. Without this, express-rate-limit keys every request on
+// the LB's IP (one shared bucket for everyone) and per-IP limits are meaningless.
+app.set('trust proxy', 1);
+
 // -------- global middleware ------------------------------------------
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 app.use(cors({

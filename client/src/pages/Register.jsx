@@ -34,7 +34,7 @@ export default function Register() {
     else navigate('/dashboard', { replace: true });
   }, [user]); // eslint-disable-line
 
-  const [form, setForm] = useState({ full_name: '', email: '', password: '', confirm: '' });
+  const [form, setForm] = useState({ full_name: '', email: '', password: '', confirm: '', website: '' });
   const [err, setErr] = useState('');
   const [busy, setBusy] = useState(false);
 
@@ -47,7 +47,7 @@ export default function Register() {
     if (form.password !== form.confirm) return setErr('Passwords do not match.');
     setBusy(true);
     try {
-      const data = await register(form.email, form.password, form.full_name, code || undefined);
+      const data = await register(form.email, form.password, form.full_name, code || undefined, form.website);
       if (window.fbq) fbq('track', 'Lead', {}, data?.leadEventId ? { eventID: data.leadEventId } : {});
       if (window.gtag) gtag('event', 'sign_up', { method: 'email' });
 
@@ -115,6 +115,12 @@ export default function Register() {
         </ul>
         {err && <div className="alert alert-err">{err}</div>}
         <form onSubmit={submit}>
+          {/* Honeypot — hidden from humans, bots auto-fill it. Server rejects non-empty. */}
+          <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', top: 'auto', width: 1, height: 1, overflow: 'hidden' }}>
+            <label htmlFor="reg-website">Website</label>
+            <input id="reg-website" name="website" type="text" tabIndex={-1} autoComplete="off"
+                   value={form.website} onChange={onChange} />
+          </div>
           <div className="field">
             <label>Full name</label>
             <input name="full_name" value={form.full_name} onChange={onChange} autoComplete="name" />

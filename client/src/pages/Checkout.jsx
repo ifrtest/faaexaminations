@@ -117,13 +117,13 @@ function CheckoutForm({ plan, intentData, onSuccess, userEmail }) {
         const res = await fetch('/api/stripe/embedded/activate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('faa_token')}` },
-          body: JSON.stringify({ subscriptionId: intentData.subscriptionId, plan }),
+          body: JSON.stringify({ setupIntentId: setupIntent.id, plan }),
         });
         const data = await res.json();
         if (!res.ok) { setErr(data.error || 'Could not activate subscription.'); setBusy(false); return; }
         if (window.fbq) fbq('track', 'Purchase', { value: 0, currency: 'USD', content_name: plan });
         const PLAN_VALUE = { par: 24.99, ira: 24.99, cax: 24.99, bundle: 39.99, uag: 57.99 };
-        if (window.gtag) gtag('event', 'purchase', { transaction_id: intentData.subscriptionId, value: PLAN_VALUE[plan] || 24.99, currency: 'USD', items: [{ item_id: plan, item_name: PLAN_INFO[plan].label, price: PLAN_VALUE[plan] || 24.99, quantity: 1 }] });
+        if (window.gtag) gtag('event', 'purchase', { transaction_id: data.subscriptionId || setupIntent.id, value: PLAN_VALUE[plan] || 24.99, currency: 'USD', items: [{ item_id: plan, item_name: PLAN_INFO[plan].label, price: PLAN_VALUE[plan] || 24.99, quantity: 1 }] });
         onSuccess();
       } else {
         const { error, paymentIntent } = await stripe.confirmPayment({

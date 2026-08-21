@@ -519,36 +519,22 @@ router.post('/embedded/intent', requireAuth, async (req, res) => {
       return res.json({ type: 'payment', clientSecret: pi.client_secret });
     }
 
-    // Cancel any existing incomplete subscription for this price to avoid duplicates
-    const existing = await stripe.subscriptions.list({ customer: customerId, status: 'incomplete', limit: 5 });
-    for (const s of existing.data) {
-      if (s.items.data[0]?.price?.id === priceId) await stripe.subscriptions.cancel(s.id);
-    }
-
-    const sub = await stripe.subscriptions.create({
-      customer:         customerId,
-      items:            [{ price: priceId }],
-      trial_period_days: 3,
-      payment_behavior: 'default_incomplete',
-      payment_settings: { save_default_payment_method: 'on_subscription' },
-      expand:           ['pending_setup_intent', 'latest_invoice.payment_intent'],
-      metadata:         { user_id: String(userId), plan },
+    // Subscriptions: collect the card with a bare SetupIntent FIRST. The subscription
+    // itself is only created in /embedded/activate once the card is verified.
+    // (Previously we created a trial subscription here with default_incomplete — Stripe
+    // marks a trial sub "trialing" immediately, so bots calling /activate got 3 free days
+    // without ever entering a card. See Aug 2026 bot wave.)
+    const si = await stripe.setupIntents.create({
+      customer:             customerId,
+      usage:                'off_session',
+      payment_method_types: ['card'],
+      metadata:             { user_id: String(userId), plan, price_id: priceId },
     });
 
-    // pending_setup_intent can be null — fall back to latest_invoice payment_intent or create one
-    let clientSecret = sub.pending_setup_intent?.client_secret;
-    if (!clientSecret) {
-      clientSecret = sub.latest_invoice?.payment_intent?.client_secret;
-    }
-    if (!clientSecret) {
-      const si = await stripe.setupIntents.create({ customer: customerId, metadata: { subscription_id: sub.id, user_id: String(userId), plan } });
-      clientSecret = si.client_secret;
-    }
-
     return res.json({
-      type:           'setup',
-      clientSecret,
-      subscriptionId: sub.id,
+      type:          'setup',
+      clientSecret:  si.client_secret,
+      setupIntentId: si.id,
     });
   } catch (err) {
     console.error('[embedded/intent]', err.message);
@@ -559,14 +545,21 @@ router.post('/embedded/intent', requireAuth, async (req, res) => {
 // POST /api/stripe/embedded/activate
 // Called after card is confirmed on the frontend — grants access immediately
 router.post('/embedded/activate', requireAuth, async (req, res) => {
-  const { subscriptionId, paymentIntentId, plan } = req.body;
+  const { setupIntentId, subscriptionId, paymentIntentId, plan } = req.body;
   const userId = req.user.id;
 
   try {
+    const meRes = await db.query('SELECT stripe_customer_id FROM users WHERE id = $1', [userId]);
+    const myCustomerId = meRes.rows[0]?.stripe_customer_id || null;
+
     if (paymentIntentId) {
       // UAG one-time
       const pi = await stripe.paymentIntents.retrieve(paymentIntentId);
       if (pi.status !== 'succeeded') return res.status(402).json({ error: 'Payment not completed.' });
+      // Must be THIS user's payment — not someone else's intent id
+      if (String(pi.metadata?.user_id) !== String(userId) && pi.customer !== myCustomerId) {
+        return res.status(403).json({ error: 'Payment does not belong to this account.' });
+      }
 
       await db.query(
         'UPDATE users SET uag_access = TRUE, stripe_customer_id = COALESCE(stripe_customer_id, $1) WHERE id = $2',
@@ -594,7 +587,49 @@ router.post('/embedded/activate', requireAuth, async (req, res) => {
     }
 
     // Subscription
-    const sub = await stripe.subscriptions.retrieve(subscriptionId);
+    if (!myCustomerId) return res.status(402).json({ error: 'No payment details on file.' });
+
+    let sub;
+    if (setupIntentId) {
+      // New flow: card was collected via a SetupIntent — verify it, then create the sub.
+      const si = await stripe.setupIntents.retrieve(setupIntentId);
+      if (si.customer !== myCustomerId || String(si.metadata?.user_id) !== String(userId)) {
+        return res.status(403).json({ error: 'Payment details do not belong to this account.' });
+      }
+      if (si.status !== 'succeeded' || !si.payment_method) {
+        return res.status(402).json({ error: 'Card not verified. Please check your card details.' });
+      }
+      const siPlan  = si.metadata?.plan || plan;
+      const priceId = PRICE_MAP[siPlan];
+      if (!priceId) return res.status(400).json({ error: 'Invalid plan.' });
+
+      await stripe.customers.update(myCustomerId, {
+        invoice_settings: { default_payment_method: si.payment_method },
+      });
+      // Idempotent on the SetupIntent so a double-click can't create two subscriptions
+      sub = await stripe.subscriptions.create({
+        customer:               myCustomerId,
+        items:                  [{ price: priceId }],
+        trial_period_days:      3,
+        default_payment_method: si.payment_method,
+        payment_settings:       { save_default_payment_method: 'on_subscription' },
+        metadata:               { user_id: String(userId), plan: siPlan, setup_intent: si.id },
+      }, { idempotencyKey: `sub-${si.id}` });
+    } else if (subscriptionId) {
+      // Legacy flow (clients loaded before this deploy). Only accept a subscription that
+      // belongs to this user AND actually has a card attached.
+      sub = await stripe.subscriptions.retrieve(subscriptionId);
+      if (sub.customer !== myCustomerId || String(sub.metadata?.user_id) !== String(userId)) {
+        return res.status(403).json({ error: 'Subscription does not belong to this account.' });
+      }
+      if (!sub.default_payment_method) {
+        const pms = await stripe.paymentMethods.list({ customer: myCustomerId, type: 'card', limit: 1 });
+        if (!pms.data.length) return res.status(402).json({ error: 'Card not verified. Please check your card details.' });
+      }
+    } else {
+      return res.status(400).json({ error: 'Missing payment details.' });
+    }
+
     if (!['trialing', 'active'].includes(sub.status)) {
       return res.status(402).json({ error: 'Subscription not active. Please check your card details.' });
     }
@@ -658,7 +693,7 @@ router.post('/embedded/activate', requireAuth, async (req, res) => {
       });
     }
 
-    return res.json({ success: true, status: sub.status });
+    return res.json({ success: true, status: sub.status, subscriptionId: sub.id });
   } catch (err) {
     console.error('[embedded/activate]', err.message);
     res.status(500).json({ error: err.message });
