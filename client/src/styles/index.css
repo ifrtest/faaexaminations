@@ -619,8 +619,31 @@ kbd {
 }
 
 @media (max-width: 768px) {
-  .lp-nav { padding: 0 20px; }
-  .lp-nav-links { display: none; }
+  /* Mobile nav, fixed 2026-09-16. Was: fixed 64px height, no gap, and
+     .lp-nav-links hidden outright — so the logo ran into "Login", the CTA
+     overflowed the right edge, and phones got no navigation at all.
+     Now: logo + Login/CTA on row 1, section links on a scrollable row 2. */
+  .lp-nav {
+    height: auto;
+    min-height: 56px;
+    padding: 8px 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .lp-nav-logo { font-size: 18px; white-space: nowrap; min-width: 0; }
+  .lp-nav-cta { padding: 9px 15px; font-size: 13px; white-space: nowrap; }
+  .lp-nav-link { white-space: nowrap; }
+  .lp-nav-links {
+    display: flex;
+    order: 3;
+    flex: 1 0 100%;
+    gap: 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+  }
+  .lp-nav-links::-webkit-scrollbar { display: none; }
   .lp-hero, .lp-products-bg, .lp-how-bg, .lp-cta-section { padding: 60px 20px; }
   .lp-hero { padding: 90px 20px 50px; min-height: 580px; }
   .lp-hero-par { background-image: url(/Cesna_faa_examinations.jpg) !important; background-position: center -120px !important; }
@@ -636,6 +659,15 @@ kbd {
   .lp-steps::before { display: none; }
   .lp-hero-stats { gap: 24px; }
   .lp-btn-hero, .lp-btn-outline { align-self: flex-start; }
+}
+
+/* Narrow phones (iPhone SE and similar): keep logo + Login + CTA on one row. */
+@media (max-width: 360px) {
+  .lp-nav { padding: 8px 10px; gap: 8px; }
+  .lp-nav-logo { font-size: 16px; }
+  .lp-nav-cta { padding: 8px 12px; font-size: 12px; }
+  .lp-nav-links { gap: 16px; }
+  .lp-nav-links .lp-nav-link { font-size: 13px; }
 }
 
 @media (max-width: 560px) {
