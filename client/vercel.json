@@ -47,7 +47,7 @@
     { "source": "/Chart_Supplement_CS_NW_APR_20_2023.pdf", "destination": "/references", "permanent": true },
     { "source": "/Advisory_Circular_ac_00-6b.pdf", "destination": "/references", "permanent": true },
     { "source": "/CFR_PART_14_PDF.pdf", "destination": "/references", "permanent": true },
-    { "source": "/:slug([a-z0-9][a-z0-9-]*[a-z0-9])/", "destination": "/blog", "permanent": true }
+    { "source": "/:path+/", "destination": "/:path+", "permanent": true }
   ],
   "rewrites": [
     {
@@ -71,6 +71,10 @@
     { "source": "/part-107-cheat-sheet", "destination": "/part-107-cheat-sheet.html" },
     { "source": "/ira-cheat-sheet", "destination": "/ira-cheat-sheet.html" },
     { "source": "/cax-cheat-sheet", "destination": "/cax-cheat-sheet.html" },
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/references", "destination": "/references.html" },
+    { "source": "/faa-exam-prep-comparison", "destination": "/faa-exam-prep-comparison.html" },
+    { "source": "/blog", "destination": "/blog.html" },
     { "source": "/blog/:slug", "destination": "/blog/:slug.html" },
     {
       "source": "/(.*)",

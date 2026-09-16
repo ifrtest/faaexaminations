@@ -133,11 +133,52 @@ const pages = {
     imageHeight: '1080',
     imageAlt: 'FAA Part 107 drone license practice test — FAAExaminations.com',
   },
+  'about': {
+    pageTitle: 'About FAAExaminations.com — Built by Pilots, for Pilots',
+    url: 'https://faaexaminations.com/about',
+    ogTitle: 'About FAAExaminations.com — Built by Pilots, for Pilots',
+    ogDesc: 'FAAExaminations.com was built by a Certified Flight Instructor and a web developer after COVID shut down the airline industry. 3,000+ FAA practice questions for PAR, IRA, CAX, and Part 107.',
+    image: 'https://faaexaminations.com/about-ash-leila.jpg',
+    imageWidth: '960',
+    imageHeight: '640',
+    imageAlt: 'The team behind FAAExaminations.com',
+  },
+  'blog': {
+    pageTitle: 'Blog — FAA Exam Tips & Study Guides | FAAExaminations.com',
+    url: 'https://faaexaminations.com/blog',
+    ogTitle: 'Blog — FAA Exam Tips & Study Guides',
+    ogDesc: 'FAA knowledge test tips, study guides, and exam prep advice for Private Pilot, Instrument Rating, and Commercial Pilot written exams. Pass your FAA written test first try.',
+    image: 'https://faaexaminations.com/blog-student-pilot.jpg',
+    imageWidth: '800',
+    imageHeight: '1200',
+    imageAlt: 'FAA written exam study guides and tips — FAAExaminations.com',
+  },
+  'references': {
+    pageTitle: 'Free FAA Study References — Handbooks & ACS | FAAExaminations.com',
+    url: 'https://faaexaminations.com/references',
+    ogTitle: 'Free FAA Study References — Handbooks & ACS',
+    ogDesc: 'All official FAA handbooks, ACS standards, and testing supplements in one place — free for student pilots. PHAK, Instrument Flying Handbook, performance charts, and more.',
+    image: 'https://faaexaminations.com/plane-step2.jpg',
+    imageWidth: '1200',
+    imageHeight: '1103',
+    imageAlt: 'Free FAA handbooks and study references — FAAExaminations.com',
+  },
+  'faa-exam-prep-comparison': {
+    pageTitle: "FAA Exam Prep Comparison 2026 — FAAExaminations vs Sheppard Air vs King Schools vs Sporty's",
+    url: 'https://faaexaminations.com/faa-exam-prep-comparison',
+    ogTitle: 'FAA Exam Prep Comparison 2026 — How the Top Options Stack Up',
+    ogDesc: "Compare the top FAA written exam prep sites: FAAExaminations.com vs Sheppard Air vs King Schools vs Sporty's. Price, question counts, features, and honest pros/cons for PAR, IRA, CAX, and Part 107.",
+    image: 'https://faaexaminations.com/card-trust.jpg',
+    imageWidth: '1200',
+    imageHeight: '1029',
+    imageAlt: 'FAA exam prep comparison 2026 — FAAExaminations.com',
+  },
 };
 
 function buildHtml(base, meta) {
   return base
     .replace(/<title>[^<]*<\/title>/, `<title>${meta.pageTitle}</title>`)
+    .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${meta.url}" />`)
     .replace(/<meta name="description" content="[^"]*"[^>]*>/, `<meta name="description" content="${meta.ogDesc}" />`)
     .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${meta.url}" />`)
     .replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${meta.ogTitle}" />`)
@@ -210,6 +251,20 @@ const blogPosts = [
   { slug: 'ifr-currency-requirements', ogTitle: 'IFR Currency Requirements: What 61.57 Actually Says', ogDesc: "14 CFR 61.57(c) sets out exactly what you need to stay current for IFR flight. Six approaches, holds, intercepting and tracking — here's what counts, what doesn't, and how to get current again if you've lapsed.", image: 'https://faaexaminations.com/blog-ifr-pilot-training.jpg' },
   { slug: 'instrument-approach-missed-approach', ogTitle: 'Missed Approach: When to Execute It and What Happens Next', ogDesc: "The missed approach point is one of the most critical decision points in IFR flying. Here's when you're required to go missed, how to find the MAP on an approach plate, and what the IRA knowledge test asks about it.", image: 'https://faaexaminations.com/blog-ifr-approach-runway.jpg' },
   { slug: 'ifr-flight-planning-fuel-requirements', ogTitle: 'IFR Flight Planning: Fuel Requirements, Alternates, and the FAA Rules', ogDesc: "14 CFR 91.167 spells out the IFR fuel requirements — destination plus alternate plus 45 minutes. But there's more to IFR flight planning than fuel. Here's the complete picture.", image: 'https://faaexaminations.com/blog-ifr-cockpit-approach.jpg' },
+
+  // Added 2026-09-16 — these 12 were in sitemap.xml but never pre-rendered
+  { slug: "cax-commercial-written-exam-topics", ogTitle: "CAX Written Exam: Every Topic on the Commercial Pilot Knowledge Test", ogDesc: "Full topic breakdown of the FAA Commercial Pilot Airplane (CAX) written exam \u2014 from advanced aerodynamics to turbine engines. Know what to study and in what order.", image: "https://faaexaminations.com/blog-commercial-cockpit.jpg" },
+  { slug: "faa-written-exam-day-tips", ogTitle: "FAA Written Exam Day: What to Bring, What to Expect, and How to Finish Strong", ogDesc: "Everything you need to know about FAA written exam day \u2014 required documents, allowed items, the computer-based testing format, time strategy, and what your score report means.", image: "https://faaexaminations.com/blog-pilot-ready.jpg" },
+  { slug: "ira-written-exam-topics", ogTitle: "IRA Written Exam Topics: The Complete Breakdown (With Study Priority)", ogDesc: "Every subject tested on the FAA Instrument Rating Airplane (IRA) written exam \u2014 with question counts, difficulty ratings, and a prioritized study plan for passing on your first attempt.", image: "https://faaexaminations.com/blog-throttle-cockpit.jpg" },
+  { slug: "lnav-vs-vnav-explained", ogTitle: "LNAV vs VNAV: What's the Difference? (And Why the FAA Tests Both)", ogDesc: "A clear breakdown of LNAV, VNAV, LNAV+V, LP, and LPV approach types \u2014 what each provides, which gives the lowest minimums, and exactly what the IRA written exam tests.", image: "https://faaexaminations.com/blog-garmin-cockpit.jpg" },
+  { slug: "lpv-approach-explained", ogTitle: "LPV Approach Explained: What It Is and What the FAA Exam Tests", ogDesc: "LPV approaches use WAAS GPS to deliver ILS-like vertical guidance without any ground equipment. Here's the full breakdown \u2014 how LPV works, how it compares to ILS and LNAV, and what the IRA exam tests.", image: "https://faaexaminations.com/blog-navigation.jpg" },
+  { slug: "magnetic-compass-errors-faa-exam", ogTitle: "Magnetic Compass Errors: ANDS, OSUN, and What the FAA Tests", ogDesc: "Why magnetic compasses give incorrect readings during acceleration and turns \u2014 the physics behind ANDS and OSUN, plus exactly how the PAR and IRA test these errors.", image: "https://faaexaminations.com/blog-preflight.jpg" },
+  { slug: "par-written-exam-topics", ogTitle: "PAR Written Exam: Every Topic That Appears and How Much It's Worth", ogDesc: "A complete breakdown of every subject tested on the FAA Private Pilot Airplane (PAR) written exam \u2014 with question counts, difficulty ratings, and study priorities for each topic area.", image: "https://faaexaminations.com/blog-preflight.jpg" },
+  { slug: "part-107-topics-breakdown", ogTitle: "Part 107 Exam Topics: What's Actually on the Test (With Study Priority)", ogDesc: "Full breakdown of the FAA Part 107 knowledge test \u2014 regulations, airspace, weather, and what catches most drone pilots off guard. Includes a study priority table.", image: "https://faaexaminations.com/blog-throttle-cockpit.jpg" },
+  { slug: "stalls-aerodynamics-faa-exam", ogTitle: "Stalls and Aerodynamics: What Every FAA Written Exam Tests", ogDesc: "The FAA's approach to stalls, load factor, and aerodynamics on the PAR and CAX written exams \u2014 critical AoA, accelerated stalls, spin recovery, and the Vg diagram explained.", image: "https://faaexaminations.com/blog-garmin-cockpit.jpg" },
+  { slug: "v-speeds-faa-exam", ogTitle: "V-Speeds Explained: Every One the FAA Tests on the Written Exam", ogDesc: "Complete guide to V-speeds for the FAA written exam \u2014 definitions, ASI color coding, how they're tested, and the Va weight trap that catches students off guard.", image: "https://faaexaminations.com/blog-ga-cockpit.jpg" },
+  { slug: "vfr-weather-minimums-explained", ogTitle: "VFR Weather Minimums Explained: What the FAA Exam Always Tests", ogDesc: "A complete guide to VFR weather minimums by airspace class \u2014 with the full table, ceiling vs. sky condition definitions, special VFR rules, and every exam trap clearly flagged.", image: "https://faaexaminations.com/blog-ga-cockpit.jpg" },
+  { slug: "what-happens-if-you-fail-faa-written-exam", ogTitle: "What Happens If You Fail the FAA Written Exam?", ogDesc: "Failed the FAA written exam? Here's exactly what happens next \u2014 the retake process, instructor endorsement requirements, how to read your score report, and the smarter study strategy for your second attempt.", image: "https://faaexaminations.com/blog-pilot-ready.jpg" },
 ];
 
 mkdirSync('dist/blog', { recursive: true });
