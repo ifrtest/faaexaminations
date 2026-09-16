@@ -2,7 +2,7 @@
 const UAG_PROMO_ACTIVE = false; // Intro promo ended — Part 107 is now $57.99 permanent
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { quizzes as quizApi } from '../api/client';
+import { quizzes as quizApi, stripe as stripeApi } from '../api/client';
 import { Spinner } from '../components/ProtectedRoute';
 import { useAuth } from '../context/AuthContext';
 
@@ -62,6 +62,7 @@ export default function ExamList() {
   const [checkoutLoading] = useState(false);
   const [trialModalPlan, setTrialModalPlan] = useState(null);
   const [upgrading, setUpgrading] = useState(false);
+  const [upgradeErr, setUpgradeErr] = useState('');
   const [justPurchased, setJustPurchased] = useState(false);
   const [activating, setActivating] = useState(false);
   const [activateErr, setActivateErr] = useState('');
@@ -159,6 +160,29 @@ export default function ExamList() {
 
   const startCheckout = (plan) => {
     navigate(`/checkout?plan=${plan}`);
+  };
+
+  // Changes the price on the subscription the user already has.
+  // startCheckout() must NOT be used for this: it sends them through checkout,
+  // which opens a SECOND subscription and overwrites stripe_subscription_id —
+  // if that second one then fails, the user loses access to the plan they are
+  // still paying for. See UPGRADE_FLOW_FIX_PLAN.md.
+  const upgradePlan = async (plan) => {
+    if (upgrading) return;
+    setUpgradeErr(''); setUpgrading(true);
+    try {
+      await stripeApi.upgrade(plan);
+      const fresh = await stripeApi.subscription();
+      setSubscription(fresh);
+      setSelected(null);
+    } catch (ex) {
+      setUpgradeErr(
+        ex.response?.data?.error ||
+        'Could not change your plan. Nothing has been charged — please try again or email support@faaexaminations.com.'
+      );
+    } finally {
+      setUpgrading(false);
+    }
   };
 
   const start = async () => {
@@ -401,9 +425,9 @@ export default function ExamList() {
           <button
             className="btn btn-primary"
             style={{ flexShrink: 0, padding: '10px 20px', fontSize: '.9rem', whiteSpace: 'nowrap' }}
-            onClick={() => startCheckout('bundle')}
-            disabled={checkoutLoading}>
-            {checkoutLoading ? 'Loading…' : 'Upgrade to Bundle →'}
+            onClick={() => upgradePlan('bundle')}
+            disabled={upgrading}>
+            {upgrading ? 'Updating…' : 'Upgrade to Bundle →'}
           </button>
         </div>
       )}
@@ -443,10 +467,12 @@ export default function ExamList() {
 
       {err && <div className="alert alert-err" style={{ marginBottom: 16 }}>{err}</div>}
 
+      {upgradeErr && <div className="alert alert-err" style={{ marginBottom: 16 }}>{upgradeErr}</div>}
+
       {upgrading && (
         <div style={{ background: '#0f1f35', border: '1px solid #1e3a5f', borderRadius: 10, padding: '20px 24px', marginBottom: 24, textAlign: 'center' }}>
           <div style={{ fontSize: '1rem', fontWeight: 700, color: '#fff', marginBottom: 6 }}>Updating your plan…</div>
-          <div style={{ fontSize: '.88rem', color: '#94b8d4' }}>Your payment is being confirmed. You'll be redirected in a moment.</div>
+          <div style={{ fontSize: '.88rem', color: '#94b8d4' }}>Changing your subscription with Stripe. This page will refresh itself — no need to reload.</div>
         </div>
       )}
 
@@ -469,7 +495,14 @@ export default function ExamList() {
                   if (e.comingSoon) return;
                   if (e.isBundle) {
                     const bundleOwned = subscription?.plan === 'bundle' || subscription?.plan === 'all';
-                    if (!bundleOwned) startCheckout('bundle');
+                    if (bundleOwned) return;
+                    // Existing subscriber on a single exam -> change their plan.
+                    // Everyone else -> normal checkout for a new subscription.
+                    if (isSubscribed && ['par', 'ira', 'cax'].includes(subscription?.plan)) {
+                      upgradePlan('bundle');
+                    } else {
+                      startCheckout('bundle');
+                    }
                     return;
                   }
                   if (!accessible && !free) {
@@ -673,9 +706,9 @@ export default function ExamList() {
                 </div>
                 <button
                   className="btn btn-primary btn-block"
-                  onClick={() => startCheckout('bundle')}
-                  disabled={checkoutLoading}>
-                  {checkoutLoading ? 'Loading…' : 'Upgrade to Bundle — $39.99/month · PAR + IRA + CAX'}
+                  onClick={() => upgradePlan('bundle')}
+                  disabled={upgrading}>
+                  {upgrading ? 'Updating…' : 'Upgrade to Bundle — $39.99/month · PAR + IRA + CAX'}
                 </button>
               </div>
             ) : (

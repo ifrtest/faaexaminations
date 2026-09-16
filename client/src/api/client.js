@@ -71,6 +71,13 @@ export const questions = {
   },
 };
 
+export const stripe = {
+  // Changes the price on the user's EXISTING subscription. Does not create a
+  // second one — see POST /api/stripe/upgrade.
+  upgrade:      (plan) => api.post('/stripe/upgrade', { plan }).then((r) => r.data),
+  subscription: () => api.get('/stripe/subscription').then((r) => r.data),
+};
+
 export const users = {
   list:       (params) => api.get('/users', { params }).then((r) => r.data),
   get:        (id) => api.get(`/users/${id}`).then((r) => r.data),

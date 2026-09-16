@@ -352,29 +352,92 @@ async function deactivateSubscription(customerId, deletedSubId) {
 // POST /api/stripe/upgrade
 // Swaps an existing active subscription to a new plan (no double-charge)
 router.post('/upgrade', requireAuth, async (req, res) => {
-  const { plan } = req.body;
-  const priceId = PRICE_MAP[plan?.toLowerCase()];
+  const plan    = String(req.body?.plan || '').toLowerCase();
+  const priceId = PRICE_MAP[plan];
   if (!priceId) return res.status(400).json({ error: 'Invalid plan.' });
+
+  // UAG is a one-time purchase, not a recurring line item. Swapping a
+  // subscription's price to it would bill the customer monthly forever.
+  if (ONE_TIME_PLANS.has(plan)) {
+    return res.status(400).json({ error: 'Part 107 is a one-time purchase, not a subscription upgrade.' });
+  }
 
   try {
     const userRes = await db.query('SELECT * FROM users WHERE id = $1', [req.user.id]);
     const user = userRes.rows[0];
+    if (!user) return res.status(404).json({ error: 'User not found.' });
 
     if (!user.stripe_subscription_id) {
       return res.status(400).json({ error: 'No active subscription to upgrade.' });
     }
 
     const sub = await stripe.subscriptions.retrieve(user.stripe_subscription_id);
-    const itemId = sub.items.data[0].id;
 
-    await stripe.subscriptions.update(user.stripe_subscription_id, {
-      items: [{ id: itemId, price: priceId }],
-      proration_behavior: 'create_prorations',
+    // The subscription must belong to this user's Stripe customer.
+    if (user.stripe_customer_id && sub.customer !== user.stripe_customer_id) {
+      return res.status(403).json({ error: 'Subscription does not belong to this account.' });
+    }
+
+    // A subscription that is behind on payment cannot absorb a proration — the
+    // charge fails and Stripe pushes it further into past_due. Send them to the
+    // billing portal to fix the card first.
+    const NOT_UPGRADEABLE = new Set(['past_due', 'unpaid', 'incomplete', 'incomplete_expired', 'canceled']);
+    if (NOT_UPGRADEABLE.has(sub.status)) {
+      return res.status(409).json({
+        error: 'There is a payment problem on your current plan. Please update your card before changing plans.',
+        subscription_status: sub.status,
+      });
+    }
+
+    // Upgrading a subscription that is already scheduled to cancel would quietly
+    // overwrite our 'cancelling' status with 'active' while Stripe still cancels
+    // it at period end. Make them resume first.
+    if (sub.cancel_at_period_end) {
+      return res.status(409).json({
+        error: 'Your plan is set to cancel at the end of this billing period. Resume it first, then upgrade.',
+      });
+    }
+
+    const item = sub.items.data[0];
+    if (item.price.id === priceId) {
+      return res.status(400).json({ error: "You're already on this plan." });
+    }
+
+    // 'create_prorations' puts the price difference on the NEXT invoice rather
+    // than charging the card now. Nothing is charged during this request, so
+    // there is no 3-D Secure step and no way for a declined card to strand the
+    // user mid-upgrade. Critically, this UPDATES the existing subscription —
+    // it never creates a second one, which was the original bug.
+    //
+    // The idempotency key is bucketed per minute so a double-click collapses
+    // into a single update, while a genuine retry later still goes through.
+    const bucket = Math.floor(Date.now() / 60000);
+    const updated = await stripe.subscriptions.update(
+      sub.id,
+      {
+        items: [{ id: item.id, price: priceId }],
+        proration_behavior: 'create_prorations',
+        metadata: { user_id: String(user.id), plan },
+      },
+      { idempotencyKey: `upgrade-${sub.id}-${priceId}-${bucket}` }
+    );
+
+    // Write the new plan to the DB now instead of waiting on the
+    // customer.subscription.updated webhook, which has been unreliable here.
+    // The subscription id is unchanged by an upgrade, so this targets the same
+    // row the webhook would and running both is harmless.
+    await updateSubscription(updated);
+
+    const after = await db.query(
+      'SELECT subscription_price_id, subscription_status FROM users WHERE id = $1',
+      [user.id]
+    );
+    console.log(`[stripe/upgrade] user=${user.id} ${item.price.id} -> ${priceId} sub=${sub.id}`);
+    res.json({
+      success: true,
+      plan:    getPlanName(after.rows[0]?.subscription_price_id) || plan,
+      status:  after.rows[0]?.subscription_status || updated.status,
     });
-
-    // DB update is handled by the customer.subscription.updated webhook
-    // once Stripe confirms payment. We do not grant access here.
-    res.json({ success: true });
   } catch (err) {
     console.error('[stripe/upgrade]', err.message);
     res.status(500).json({ error: 'Could not upgrade subscription.' });
